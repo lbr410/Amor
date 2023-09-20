@@ -6,7 +6,7 @@ Spring native, JSP, Javascript를 이용한 영화 예매 사이트입니다. :)
 
 
 ### ♥️ 프로젝트 이름
-Amor
+Amor<br><br><br>
 
 
 ### 📆 개발기간
