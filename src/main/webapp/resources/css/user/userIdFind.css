@@ -1,0 +1,156 @@
+@charset "UTF-8";
+body, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+/* TOP HEADER*/
+.top{
+	background: #0F1742;
+   	display: flex;
+  	flex-direction: row;
+ 	align-items: center;
+  	justify-content: space-between;
+  	width: 100%;
+  	position: relative;
+	height: 48px;
+}
+.logo{
+	padding-left:64px;
+	padding-top:7px;
+	width: 140px;
+	height: 48px;
+	align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+}
+.txt-info{
+    font-size: 14px;
+    color: #FFFFFF;
+}
+/* SECTION*/
+.body-inner{
+    background-color: #F5F5F5;
+    width: 100%;
+    height: 100%;
+}
+.body-inner .center{
+    background-color: #FFFFFF;
+    width: 700px;
+    margin: 0 auto;
+    height: 800px;
+}
+.body-inner .center .ci img{
+    display: flex;
+    width: 700px;
+    margin: 0 auto;
+    padding: 100px 0 40px 0;
+    justify-content: center;
+    width: 200px;
+    height: 48px;
+
+}
+/* TITLE*/
+.body-inner .center .find-section .col{
+    display: flex;
+    justify-content: center;
+    width: 700px;
+    font-size: 24px;
+}
+/* TABMENU */
+.body-inner .center .find-section .tab-list{
+    display:flex;
+    justify-content: center;
+}
+ul{
+    list-style: none;
+    display: block;
+}
+li{
+    float: left;
+    margin-right: 20px;
+}
+a{
+    text-decoration: none;
+}
+/* TABLE*/
+.body-inner .center .find-section .table-wrap{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 700px;
+}
+.body-inner .center .find-section .table-wrap table{
+    width: 550px;
+    border-top: solid 1px #000000;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+.body-inner .center .find-section .table-wrap table th{
+    width: 400px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    background-color: #F8F8F8;
+    border-bottom: #BCBCBC 1px solid;
+    padding: 10px;
+}
+.body-inner .center .find-section .table-wrap table td{
+    width: 240px;
+    border-bottom: #BCBCBC;
+    padding: 10px;
+    border-bottom: #BCBCBC 1px solid;
+
+}
+.body-inner .center .find-section .table-wrap table #member-name, #member-email, #answer-num{
+    display: flex;
+    padding: 0 8px;
+    align-items: center;
+    background-color: #ffffff;
+    height: 38px;
+    box-sizing: border-box;
+    width: 240px;
+    border: 1px solid #BCBCBC;
+    cursor: pointer;
+}
+.body-inner .center .find-section .table-wrap table .gray-btn{
+    display: flex;
+    padding: 8px 5px;
+    text-align: center;
+    background-color: #EEEEEE;
+    color: #1A2C82;
+    font-weight: bold;
+    height: 38px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    width: 110px;
+    border: none;
+    cursor: pointer;
+}
+.body-inner .center .find-section .table-wrap .navi-info{
+    display: flex;
+    text-align: left;
+    padding-top: 20px;
+    margin: 0 auto;
+    height: 78px;
+    width: 550px;
+    font-size: 14px;
+}
+
+/*NEXT BUTTON*/
+.body-inner .center .find-section .table-wrap .btn-bottom{
+    display: flex;
+    padding-top: 20px;
+    margin: 0 auto;
+}
+button{
+    background-color: #1A2C82;
+    color: #FFFFFF;
+    border: none;
+    width: 220px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 18px 0 18px 0;
+}
