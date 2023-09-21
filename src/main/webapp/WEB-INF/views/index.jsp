@@ -8,8 +8,5 @@
 </head>
 <body>
 <h1>index.jsp</h1>
-<ul>
-	<li><a href="emp.do">TEST</a></li>
-</ul>
 </body>
 </html>

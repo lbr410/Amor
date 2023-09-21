@@ -4,6 +4,19 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<mappers>
-		<mapper resource="sqlmap/sampleSQL.xml" />
+		<mapper resource="sqlmap/adminSQL.xml" />
+		<mapper resource="sqlmap/adsSQL.xml" />
+		<mapper resource="sqlmap/bannerSQL.xml" />
+		<mapper resource="sqlmap/faqSQL.xml" />
+		<mapper resource="sqlmap/inquirySQL.xml" />
+		<mapper resource="sqlmap/inventorySQL.xml" />
+		<mapper resource="sqlmap/memberSQL.xml" />
+		<mapper resource="sqlmap/movieReviewSQL.xml" />
+		<mapper resource="sqlmap/noticeSQL.xml" />
+		<mapper resource="sqlmap/playingMovieSQL.xml" />
+		<mapper resource="sqlmap/productSQL.xml" />
+		<mapper resource="sqlmap/storePaymentSQL.xml" />
+		<mapper resource="sqlmap/theaterSQL.xml" />
+		<mapper resource="sqlmap/ticketingSQL.xml" />
 	</mappers>
 </configuration>

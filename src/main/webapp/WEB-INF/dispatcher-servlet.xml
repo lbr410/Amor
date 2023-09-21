@@ -16,7 +16,7 @@
 	
 	<!-- Views -->
 	<bean id="amorJson" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"></bean>
-	<bean id="amorDown" class="com.amor.view.DownloadView"></bean>
+	<bean id="amorDown" class="com.amor.view.DownloadView"></bean> 
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"></property>
 		<property name="suffix" value=".jsp"></property>

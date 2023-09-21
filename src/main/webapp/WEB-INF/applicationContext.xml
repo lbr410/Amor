@@ -22,9 +22,7 @@
 	</bean>
 	
 	<!-- daos -->
-	<bean id="empDao" class="com.amor.emp.model.EmpDAOImpl">
-		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
-	</bean>
+	
 
 	<!-- services -->
 	
