@@ -1,0 +1,179 @@
+@charset "UTF-8";
+a {
+	text-decoration: none;
+}
+
+body {
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.4;
+	color: #333333;
+}
+
+img {
+	display: block;
+}
+
+.body-inner {
+	width: 1100px;
+	margin: 0 auto;
+	position: relative;
+}
+
+/**BORDER BAR*/
+.border-bar {
+	margin-top: 300px;
+	padding-top: 140px;
+	width: 1100px;
+	margin: 0 auto;
+	display: block;
+	position: relative;
+	border-bottom: solid 1px #D9D9D9;
+}
+
+.border-title {
+	 margin-top: 78px;
+	display: block;
+	margin-bottom: 20px;
+	font-size: 24px;
+}
+
+.signUpForm {
+	margin: 50px auto;
+	width: 1100px;
+}
+
+.signUpDiv {
+	margin: 0 auto;
+	width: 350px;
+}
+
+.signUpMenu {
+	width: 350px;
+	font-weight: bold;
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+
+.textBoxDeco1 {
+	width: 338px;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	padding-left: 8px;
+	margin-bottom: 5px;
+}
+
+.textBoxDeco2 {
+	width: 338px;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	padding-left: 8px;
+	margin-bottom: 30px;
+}
+
+.genderBox {
+	border: 1px solid #d9d9d9;
+	height: 30px;
+	padding-top: 10px;
+	padding-left: 10px;
+	margin-bottom: 30px;
+}
+
+.telDiv {
+	margin-bottom: 30px;
+}
+
+.birthDiv {
+	margin-bottom: 30px;
+}
+
+.year {
+	width: 105px;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	padding-left: 8px;
+}
+
+.month {
+	width: 105px;
+	height: 34px;
+	border: 1px solid #d9d9d9;
+	padding-left: 8px;
+}
+
+.day {
+	width: 105px;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	padding-left: 8px;
+}
+
+.tel1 {
+	width: 80px;
+	height: 34px;
+	border: 1px solid #d9d9d9;
+	padding-left: 8px;
+}
+
+.tel2 {
+	width: 250px;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	padding-left: 8px;
+}
+
+.emailTextBoxDeco {
+	width: 200px;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	padding-left: 8px;
+	margin-bottom: 30px;
+}
+
+.emailAuthTextBoxDeco {
+	width: 200px;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	padding-left: 8px;
+	margin-bottom: 5px;
+}
+
+.zipTextBoxDeco {
+	width: 200px;
+	height: 30px;
+	border: 1px solid #ededed;
+	background: #ededed;
+	padding-left: 8px;
+	margin-bottom: 5px;
+}
+
+.chks {
+	margin-bottom: 30px;
+	font-size: 12px;
+	height: 14px;
+}
+
+.smallBtnDeco {
+	border:none;
+	padding-bottom: 2px;
+	width: 130px;
+	height: 34px;
+	border-radius: 3px;
+	background: #1A2C82;
+	color: #C7E3FF;
+	cursor: pointer;
+}
+
+.signUpBtn {
+	border:none;
+	padding: 2px 21px 6px 21px;
+	width: 350px;
+	height: 40px;
+	border-radius: 3px;
+	background: #1A2C82;
+	color: #C7E3FF;
+	cursor: pointer;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
