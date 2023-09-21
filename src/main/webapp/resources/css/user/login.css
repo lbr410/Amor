@@ -1,0 +1,124 @@
+@charset "UTF-8";
+.loginDiv{
+	width: 333px;
+	height: 452px;
+	flex-shrink: 0;
+	margin: 0 auto;
+	margin-top: 214px;
+}
+.loginDiv label{
+	display: flex;
+	width: 333px;
+	height: 123px;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex-shrink: 0;	
+	color: #000;
+	text-align: center;
+	font-family: Inter;
+	font-size: 37px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+	letter-spacing: 9.25px;
+}
+.loginDiv .text{
+	display: flex;
+	width: 290px;
+	height: 35px;
+	padding: 10px 20px;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex-shrink: 0;
+	margin-bottom:13px;
+	border: 1px solid #1A2C82;
+	border-radius: 3px;
+}
+.idCheck{
+	display: flex;
+	width: 329px;
+	height: 40px;
+	align-items: flex-start;
+	gap: 10px;
+	flex-shrink: 0;
+	color: #363636;
+	text-align: center;
+	font-family: Inter;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+}
+.submit{
+	display: flex;
+	width: 333px;
+	height: 55px;
+	padding: 10px;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex-shrink: 0;
+	color: #FFF;
+	text-align: center;
+	font-family: Inter;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+	letter-spacing: 2.6px;
+	border: none;
+	background: #1A2C82;
+	border-radius: 3px;
+	margin-bottom: 8px;
+}
+.join{
+	display: flex;
+	width: 333px;
+	height: 55px;
+	padding: 10px;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex-shrink: 0;
+	color: #1A2C82;
+	text-align: center;
+	font-family: Inter;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+	letter-spacing: 2.6px;
+	border: 1px solid #1A2C82;
+	background: #fff;
+	border-radius: 3px;
+}
+.find{
+	display: flex;
+	width: 329px;
+	height: 49px;
+	justify-content: center;
+	align-items: center;
+	flex-shrink: 0;
+}
+.find label{
+	display: flex;
+	width: 102px;
+	height: 49px;
+	flex-direction: column;
+	justify-content: center;
+	flex-shrink: 0;
+	color: #000;
+	text-align: center;
+	font-family: Inter;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+	letter-spacing: -1px;
+}
+.submit:hover, .join:hover{
+	background: #0F1742;
+	color:#fff;
+}

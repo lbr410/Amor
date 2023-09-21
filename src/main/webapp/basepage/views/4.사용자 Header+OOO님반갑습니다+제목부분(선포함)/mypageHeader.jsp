@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <style>
-/*GRAYSECTION*/
-
 .mypageDiv{
 	width: 1000px;
 	height: 192px;
