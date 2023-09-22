@@ -2,58 +2,125 @@
 .movieAddbox{
 	width: 1100px;
 	height:800px;
-	background-color: green;
 	margin-left: 100px;
 }
 
 .movieAddform{
 	width: 1100px;
-	height:700px;
-	background-color: red;
+	height:750px;
+	
 	display: flex;
+}
+.movieAddform th{
+	font-size: 20px;
+	
 }
 
 .movieAddImgDiv{
 	flex:1;
-	height: 600px;
-	background-color: navy;
+	height: 700px;
 	float: left;
 	text-align: center;
+}
+
+#moviePosterDiv{
+	display:inline-block;
+	margin-top: 50px;
 }
 
 .moviePosterImg{
 	width: 225px;
 	height: 300px;
-	background-color:lime;
-	
+	border:1px solid #D9D9D9;
+	object-fit: contain;
 }
+#moviePreview0{
+	width: 225px;
+	height: 300px;
+	object-fit: contain;
+}
+
 #movieStillCutDiv{
 	margin-top: 30px;
 }
 .movieStillCutImgandbutton{
-	width: 120px;
+	width: 180px;
 	height: 150px;
 	float: left;
 	
+}
+.movieStillCutImgandbutton1{
+	display:inline-block;
+	width: 180px;
+	height: 150px;
 }
 
 
 .movieStillCutImg{
 	width: 100px;
 	height: 100px;
-	background-color: lime;
+	border:1px solid #D9D9D9;
+	object-fit: contain;
+}
+.movieStillCutImg img{
+	width: 100px;
+	height: 100px;
+	object-fit: contain;
+	
 }
 
+#moviePreview1{
+	object-fit: contain;
+}
 
 .movieAddTextDiv{
 	flex:1;
-	height: 600px;
-	background-color: orange;
+	height: 730px;
 	float: left;
 }
 
-.qwe{
-	float: none;
-	background-color: fuchsia;
-	
+#movieAddTextDivTable{
+	margin : 0px auto;
+}
+
+#movieAddTextDivTable th{text-align: right;padding-right: 20px;}
+
+#movieAddTextDivTable input[type=text]{
+	width: 240px;
+	height: 45px;
+	border-radius: 3px;
+	border: 1px solid #D9D9D9;
+	gap: 10px;
+}
+#movieAddTextDivTable input[type=date]{
+	width: 243px;
+	height: 45px;
+	border-radius: 3px;
+	border: 1px solid #D9D9D9;
+	gap: 10px;
+}
+
+#movieAddTextDivTable select{
+	width: 246px;
+	height: 45px;
+	border-radius: 3px;
+	border: 1px solid #D9D9D9;
+}
+
+#movieAddTextDivTable textarea{
+	border-radius: 3px;
+	border: 1px solid #D9D9D9;
+}
+
+.movieAddSumit{
+	padding-top:20px;
+	text-align: right;
+}
+
+.movieAddSumit input[type=submit]{
+	width: 160px;
+	height: 48px;
+	border-radius: 5px;
+	background-color: #1A2C82;
+	color: white;
 }
