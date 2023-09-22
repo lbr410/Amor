@@ -22,8 +22,13 @@
 	</bean>
 	
 	<!-- daos -->
-	
+	<bean id="playingMoiveDao" class="com.amor.playingMovie.model.PlayingMovieDAOImple">
+		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
+	</bean>
 
 	<!-- services -->
+	<bean id="playingMovieService" class="com.amor.playingMovie.service.PlayingMovieServiceImple">
+		<constructor-arg ref="playingMoiveDao"></constructor-arg>
+	</bean>
 	
 </beans>
