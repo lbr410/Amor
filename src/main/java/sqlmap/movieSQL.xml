@@ -4,4 +4,11 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amor.movieSQL">
 
+<insert id="movieAdd" parameterType="com.amor.movie.model.MovieDTO">
+insert into movie values(
+movie_idx.nextval, #{movie_name}, #{movie_genre}, #{movie_god}, #{movie_actor}, #{movie_maxage}, 
+#{movie_opendate}, #{movie_runningtime}, #{movie_country}, #{movie_content}, #{movie_poster}, 'n', 0, 
+#{movie_stillcut1}, #{movie_stillcut2}, #{movie_stillcut3}, #{movie_stillcut4}, #{movie_stillcut5})
+</insert>
+
 </mapper>

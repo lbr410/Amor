@@ -11,6 +11,7 @@
 		<mapper resource="sqlmap/inquirySQL.xml" />
 		<mapper resource="sqlmap/inventorySQL.xml" />
 		<mapper resource="sqlmap/memberSQL.xml" />
+		<mapper resource="sqlmap/movieSQL.xml" />
 		<mapper resource="sqlmap/movieReviewSQL.xml" />
 		<mapper resource="sqlmap/noticeSQL.xml" />
 		<mapper resource="sqlmap/playingMovieSQL.xml" />

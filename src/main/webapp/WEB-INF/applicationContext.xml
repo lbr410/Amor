@@ -22,6 +22,9 @@
 	</bean>
 	
 	<!-- daos -->
+	<bean id="movieDao" class="com.amor.movie.model.MovieDAOImple">
+    <constructor-arg ref="sqlSessionTemplate"></constructor-arg>
+	</bean>
 	<bean id="memberDao" class="com.amor.member.model.MemberDAOImple">
     <constructor-arg ref="sqlSessionTemplate"></constructor-arg>
 	</bean>
@@ -30,6 +33,9 @@
 	</bean>
 
 	<!-- services -->
+	<bean id="movieService" class="com.amor.movie.service.MovieServiceImple" >
+		<constructor-arg ref="movieDao"></constructor-arg>
+	</bean>
 	<bean id="memberService" class="com.amor.member.service.MemberServiceImple">
 		<constructor-arg ref="memberDao"></constructor-arg>
 	</bean>

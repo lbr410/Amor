@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" href="/amor/resources/css/admin/adminAll.css">
+<link rel="stylesheet" href="/amor/basepage/views/admin_main_notable.css">
 <body>
 <div class="top">
 	<div class="logo"><a href="#"></a><img src="img/logo.png"></div>
