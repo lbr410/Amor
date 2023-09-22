@@ -6,9 +6,9 @@
 	<!-- mybatis -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
-		<property name="username" value="scott"></property>
-		<property name="password" value="1234"></property>
+		<property name="url" value="jdbc:oracle:thin:@javayong.iptime.org:9000:orcl"></property>
+		<property name="username" value="project01"></property>
+		<property name="password" value="project01"></property>
 	</bean>
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
@@ -23,6 +23,12 @@
 	
 	<!-- daos -->
 	<bean id="movieDao" class="com.amor.movie.model.MovieDAOImple">
+    <constructor-arg ref="sqlSessionTemplate"></constructor-arg>
+	</bean>
+	<bean id="memberDao" class="com.amor.member.model.MemberDAOImple">
+    <constructor-arg ref="sqlSessionTemplate"></constructor-arg>
+	</bean>
+	<bean id="playingMoiveDao" class="com.amor.playingMovie.model.PlayingMovieDAOImple">
 		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
 	</bean>
 
@@ -30,5 +36,10 @@
 	<bean id="movieService" class="com.amor.movie.service.MovieServiceImple" >
 		<constructor-arg ref="movieDao"></constructor-arg>
 	</bean>
-
+	<bean id="memberService" class="com.amor.member.service.MemberServiceImple">
+		<constructor-arg ref="memberDao"></constructor-arg>
+	</bean>
+	<bean id="playingMovieService" class="com.amor.playingMovie.service.PlayingMovieServiceImple">
+		<constructor-arg ref="playingMoiveDao"></constructor-arg>
+	</bean>
 </beans>

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@include file="../admin_header_notable.jsp" %>
+<%@include file="../admin_header.jsp" %>
 <div class="content">
 <div class="content-title"><label class="titletext">회원 조회</label>
 </div>

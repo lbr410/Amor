@@ -37,7 +37,7 @@
           </li>
           <li>
           	<div class="login">
-            <a href="#"><input type="button" value="로그인"></a>
+            <a href="member/login.do"><input type="button" value="로그인"></a>
           	</div>
           </li>
         </ul>

@@ -3,6 +3,10 @@ body, h1, h2, p {
     margin: 0;
     padding: 0;
 }
+a{
+    text-decoration: none;
+    color: #333333;
+}
 /* TOP HEADER*/
 .top{
 	background: #0F1742;
@@ -60,17 +64,43 @@ body, h1, h2, p {
 .body-inner .center .find-section .tab-list{
     display:flex;
     justify-content: center;
+    flex-direction: column;
+    width: 550px;
+    margin: 0 auto;
+    margin-top: 24px;
+    margin-left: 34px;
 }
 ul{
     list-style: none;
     display: block;
+    width: 550px;
+    height: 46px;
+    text-align: center;
 }
-li{
+
+li a{
     float: left;
-    margin-right: 20px;
+    width: 275px;
+    height: 34px;
+    padding-top: 14px;
+    font-size: 14px;
+    color: #666666;
+    border-bottom: 1px solid #F8F9FA;
 }
-a{
-    text-decoration: none;
+.body-inner .center .find-section .tab-list .on a{
+    background-color: #F8F9FA;
+    border-radius: 8px 8px 0px 0px;
+    color: #1A2C82;
+    font-size: 14px;
+}
+/* NAVI */
+.body-inner .center .find-section .navi{
+    display:flex;
+    text-align: left;
+    margin: 0 auto;
+    width: 550px;
+    padding: 0 0 24px 24px;
+    color: #1A2C82;
 }
 /* TABLE*/
 .body-inner .center .find-section .table-wrap{
@@ -138,15 +168,19 @@ a{
 
 /*NEXT BUTTON*/
 .body-inner .center .find-section .table-wrap .btn-bottom{
-    display: flex;
+    display:flex;
+    justify-content: center;
     padding-top: 20px;
+    width: 550px;
     margin: 0 auto;
+    
 }
 button{
     background-color: #1A2C82;
     color: #FFFFFF;
     border: none;
     width: 220px;
+    height: 48px;
     border-radius: 5px;
     text-align: center;
     font-size: 14px;
@@ -154,3 +188,25 @@ button{
     cursor: pointer;
     padding: 18px 0 18px 0;
 }
+.gray-btn{
+    border:none;
+    padding: 6px 6px 6px 6px;
+    width: 220px;
+    height: 48px;
+    border-radius: 3px;
+    background: #EEEEEE;
+    color: #1A2C82;
+    cursor: pointer;
+}
+.blue-btn {
+    border:none;
+    padding: 2px 21px 6px 21px;
+    margin-left: 24px;
+    width: 220px;
+    height: 48px;
+    border-radius: 3px;
+    background: #1A2C82;
+    color: #FFFFFF;
+    cursor: pointer;
+ }
+

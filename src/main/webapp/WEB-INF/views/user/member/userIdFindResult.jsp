@@ -45,15 +45,11 @@
                         아이디 찾기
                     </div>
                     <div class="id-result">
-                        <span>회원님의 아이디는 로 등록되어 있습니다.</span>
+                        <span class="member_id">회원님의 아이디는 로 등록되어 있습니다.</span>
                     </div>
                     <div class="btn-bottom">
-                        <button id="btn-login" type="button" class="gray-btn">
-                            로그인
-                        </button>
-                        <button id="btn-pwdFind" type="button" class="blue-btn">
-                            비밀번호 찾기
-                        </button>
+                        <input type="button" class="gray-btn" value="로그인">
+                        <input type="button" class="blue-btn" value="비밀번호 찾기">
                     </div>
                 </div>
             </div>
