@@ -96,7 +96,7 @@ img {
 }
 
 .month {
-	width: 105px;
+	width: 104px;
 	height: 34px;
 	border: 1px solid #d9d9d9;
 	padding-left: 8px;
@@ -129,14 +129,6 @@ img {
 	border: 1px solid #d9d9d9;
 	padding-left: 8px;
 	margin-bottom: 30px;
-}
-
-.emailAuthTextBoxDeco {
-	width: 200px;
-	height: 30px;
-	border: 1px solid #d9d9d9;
-	padding-left: 8px;
-	margin-bottom: 5px;
 }
 
 .zipTextBoxDeco {
