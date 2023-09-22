@@ -18,8 +18,8 @@
 </div>
 </div>
 <div class="contentMain">
-<div class="table">
-	<table>
+<div class="tableDiv">
+	<table class="commonTable">
 	<thead>
 	<tr>
 		<th>번호</th>

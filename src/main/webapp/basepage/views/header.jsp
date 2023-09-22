@@ -21,7 +21,7 @@
   <header>
     <div class="inner">
       <a href="#" class="logo">
-        <img src="./image/main_logo.png" alt="amor_cinema" />
+        <img src="/amor/resources/img/main_logo.png" alt="amor_cinema" />
       </a>
 
       <div class="sub-menu">

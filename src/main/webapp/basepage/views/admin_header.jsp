@@ -92,25 +92,20 @@
 		</div>
 		
 <script>
-// 페이지가 로드될 때 실행되는 함수
 window.addEventListener('DOMContentLoaded', function () {
-    // 현재 페이지의 URL을 가져오기
+
     var currentPage = window.location.href;
 
-    // 모든 메뉴 아이템을 가져오기
     var menuItems = document.querySelectorAll('.menu');
 
-    // 현재 선택된 메뉴 정보를 로컬 스토리지에서 가져오기
     var selectedMenu = localStorage.getItem('selectedMenu');
     var selectedSubmenu = localStorage.getItem('selectedSubmenu');
 
-    // 각 메뉴 아이템을 순회하면서 현재 페이지와 일치하는지 확인
     menuItems.forEach(function (menuItem) {
         var link = menuItem.querySelector('a');
         var submenuId = link.getAttribute('data-submenu');
         var submenu = document.getElementById(submenuId);
 
-        // 현재 페이지와 메뉴의 링크가 일치하면 해당 메뉴를 선택 상태로 만듭니다.
         if (link.getAttribute('href') === currentPage || submenuId === selectedSubmenu) {
             menuItem.classList.add('selected');
             submenu.style.display = 'block';
@@ -118,12 +113,12 @@ window.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// 메뉴 토글 함수
+
 function toggleSubmenu(menu) {
     var submenuId = menu.querySelector('a').getAttribute('data-submenu');
     var submenu = document.getElementById(submenuId);
 
-    // 다른 서브 메뉴를 숨김
+
     var allSubmenus = document.querySelectorAll('.submenu');
     allSubmenus.forEach(function (sub) {
         if (sub !== submenu) {
@@ -131,26 +126,24 @@ function toggleSubmenu(menu) {
         }
     });
 
-    // 모든 메뉴에서 'selected' 클래스 제거
+
     var allMenus = document.querySelectorAll('.menu');
     allMenus.forEach(function (item) {
         item.classList.remove('selected');
     });
 
-    // 현재 클릭한 메뉴에 'selected' 클래스 추가
     menu.classList.add('selected');
 
-    // 현재 클릭한 메뉴의 서브 메뉴를 토글
     if (submenu.style.display === 'block') {
         submenu.style.display = 'none';
-        menu.classList.remove('selected'); // 서브 메뉴가 닫혔을 때 'selected' 클래스 제거
+        menu.classList.remove('selected'); 
     } else {
         submenu.style.display = 'block';
     }
 
-    // 선택된 메뉴 정보를 로컬 스토리지에 저장
+
     localStorage.setItem('selectedMenu', submenuId);
-    localStorage.setItem('selectedSubmenu', submenuId); // 서브메뉴 정보도 저장
+    localStorage.setItem('selectedSubmenu', submenuId);
 }
 </script>			
 	</div>
