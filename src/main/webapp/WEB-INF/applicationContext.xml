@@ -22,8 +22,12 @@
 	</bean>
 	
 	<!-- daos -->
-	
+	<bean id="memberDao" class="com.amor.member.model.MemberDAOImple">
+		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
+	</bean>
 
 	<!-- services -->
-	
+	<bean id="memberService" class="com.amor.member.service.MemberServiceImple">
+		<constructor-arg ref="memberDao"></constructor-arg>
+	</bean>
 </beans>
