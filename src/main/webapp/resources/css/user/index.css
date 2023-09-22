@@ -128,11 +128,9 @@ body{
     background-color: #666666;
 }
 /* TITLE */
-.container .rank-movie .title-area .movie-grade{
-    width: 220px;
-    height: 44px;
-    font-size: 14px;
-    font-weight: normal;
+.container .rank-movie .title-area .movie_maxage img{
+	width: 24px;
+	height: 24px;	
 }
 .container .rank-movie .title-area{
     width: 220px;
@@ -189,7 +187,7 @@ button{
 
 }
 /*PROMOTION*/
-.notice .promotion {
+.notice .ads {
   /*width: auto;*/
   height: 693px;
   background-color: #f6f5ef;
@@ -197,15 +195,15 @@ button{
   overflow: hidden;
   transition: height .4s;
 }
-.notice .promotion.hide {
+.notice .ads.hide {
   height: 0;
 }
-.notice .promotion .swiper-slide .img{
+.notice .ads .swiper-slide .img{
 	width: 800px;
 	height: 338px;
 	overflow: hidden;
 }
-.notice .promotion .swiper-container {
+.notice .ads .swiper-container {
   /* 819px 슬라이드 3개와 그 사이 여백 10px씩 = 2477px */
   width: calc(800px * 3 + 20px);
   height: 553px;
@@ -214,16 +212,16 @@ button{
   left: 50%;
   margin-left: calc((819px * 3 + 20px) / -2);
 }
-.notice .promotion .swiper-slide {
+.notice .ads .swiper-slide {
   position: relative;
   opacity: .5;
   transition: opacity 1s;
 }
 
-.notice .promotion .swiper-slide-active {
+.notice .ads .swiper-slide-active {
   opacity: 1;
 }
-.notice .promotion .swiper-slide .btn {
+.notice .ads .swiper-slide .btn {
   /*width: 130px;*/
   position: absolute;
   bottom: 0;
@@ -231,13 +229,13 @@ button{
   right: 0;
   margin: auto;
 }
-.notice .promotion .swiper-pagination {
+.notice .ads .swiper-pagination {
   bottom: 40px;
   left: 0;
   right: 0;
   z-index: 0;
 }
-.notice .promotion .swiper-pagination .swiper-pagination-bullet {
+.notice .ads .swiper-pagination .swiper-pagination-bullet {
   background-color: transparent;
   background-image: url("../image/promotion_slide_pager.png");
   width: 13px;
@@ -245,14 +243,14 @@ button{
   margin-right: 6px;
   outline: none;
 }
-.notice .promotion .swiper-pagination .swiper-pagination-bullet:last-child {
+.notice .ads .swiper-pagination .swiper-pagination-bullet:last-child {
   margin-right: 0;
 }
-.notice .promotion .swiper-pagination .swiper-pagination-bullet-active {
+.notice .ads .swiper-pagination .swiper-pagination-bullet-active {
   background-image: url("../image/promotion_slide_pager_on.png");
 }
-.notice .promotion .swiper-prev,
-.notice .promotion .swiper-next {
+.notice .ads .swiper-prev,
+.notice .ads .swiper-next {
   width: 42px;
   height: 42px;
   outline: none;
