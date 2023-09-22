@@ -10,4 +10,6 @@ public class TicketingController {
 	public String ticketingPayment() {
 		return "/user/ticketing/ticketingPayment";
 	}
+	
+	
 }
