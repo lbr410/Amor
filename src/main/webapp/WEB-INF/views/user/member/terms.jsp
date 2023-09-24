@@ -66,8 +66,8 @@
 	</div>
 	<section class="termsSec">
 		<div class="title">
-			<img src="img.jpg" alt="leaf" class="titleImg">
-			이용약관
+			<img src="/amor/resources/img/leaf.png" alt="leaf" class="titleImg">
+			&nbsp;이용약관
 		</div>
 		<div id="t1">
 			<!-- import -->
@@ -75,8 +75,8 @@
 		<div class="chk">(필수)위 이용약관에 대한 내용에 동의합니다. &nbsp;<input type="checkbox" name="chk" onclick="allChkClear()"></div>
 		
 		<div class="title">
-			<img src="img.jpg" alt="leaf" class="titleImg">
-			정보보호
+			<img src="/amor/resources/img/leaf.png" alt="leaf" class="titleImg">
+			&nbsp;정보보호
 		</div>
 		<div id="t2">
 			<!-- import -->
@@ -84,8 +84,8 @@
 		<div class="chk">(필수)위 정보보호에 대한 내용에 동의합니다. &nbsp;<input type="checkbox" name="chk" onclick="allChkClear()"></div>
 		
 		<div class="title">
-			<img src="img.jpg" alt="leaf" class="titleImg">
-			개인정보 제공 및 마케팅 이용수집
+			<img src="/amor/resources/img/leaf.png" alt="leaf" class="titleImg">
+			&nbsp;개인정보 제공 및 마케팅 이용수집
 		</div>
 		<div id="t3">
 			<!-- import -->

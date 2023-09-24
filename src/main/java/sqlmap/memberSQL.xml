@@ -7,4 +7,19 @@
 	select member_pwd, member_quit, member_block from member 
 	where member_id=#{id} 
 </select>
+
+	<select id="idCheck" parameterType="String" resultType="String">
+		select member_id from member where member_id = #{id}		
+	</select>
+
+	<insert id="signUp" parameterType="com.amor.member.model.MemberDTO">
+		insert into
+			member
+		values(
+			member_idx.nextval, #{member_id}, #{member_pwd}, #{member_name}, 
+			#{member_birth_year}, #{member_birth_month}, #{member_birth_day},
+			#{member_gender}, #{member_tel1}, #{member_tel2}, #{member_email}, 
+			#{member_zip}, #{member_addr1}, #{member_addr2}, sysdate, 'n', 'n', sysdate
+		)
+	</insert>
 </mapper>
