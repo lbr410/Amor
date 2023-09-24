@@ -3,5 +3,51 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amor.productSQL">
-
+	<select id="productList" resultType="com.amor.product.model.ProductDTO" parameterType="Map">
+		select * from
+		(select rownum as rnum, a.* from
+		(select * from product order by product_idx desc) a)
+		where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}
+	</select>
+	
+	<select id="productTotalCnt" resultType="Integer">
+		select count(*) from product
+	</select>
+	
+	<update id="soldOutChange" parameterType="com.amor.product.model.ProductDTO">
+		update
+			product
+		set
+			product_soldout = #{product_soldout}
+		where
+			product_idx = #{product_idx}
+	</update>
+	
+	<select id="prodContent" resultType="String" parameterType="Integer">
+		select product_content from product where product_idx = #{product_idx}
+	</select>
+	
+	<select id="prodSearchList" resultType="com.amor.product.model.ProductDTO" parameterType="Map">
+		select * from
+		(select rownum as rnum, a.* from
+		(select * from product where product_title like '%'||#{search}||'%' order by product_idx desc) a)
+		where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}
+	</select>
+	
+	<select id="prodSearchTotalCnt" resultType="Integer" parameterType="String">
+		select count(*) from product where product_title like '%'||#{search}||'%'
+	</select>
+	
+	<insert id="productAdd" parameterType="com.amor.product.model.ProductDTO">
+		insert into product
+		values(
+			product_idx.nextval, 
+			#{product_category}, 
+			#{product_title}, 
+			#{product_price}, 
+			#{product_content}, 
+			#{product_img}, 
+			sysdate, 
+			'n')
+	</insert>
 </mapper>

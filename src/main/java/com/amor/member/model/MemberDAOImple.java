@@ -19,4 +19,15 @@ public class MemberDAOImple implements MemberDAO {
 		return result;
 	}
 	
+	@Override
+	public String idCheck(String id) {
+		String result = sqlmap.selectOne("idCheck", id);
+		return result;
+	}
+	
+	@Override
+	public int signUp(MemberDTO dto) {
+		int result = sqlmap.insert("signUp", dto);
+		return result;
+	}
 }
