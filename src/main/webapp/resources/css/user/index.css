@@ -18,7 +18,7 @@ body{
 .youtube {
   position: relative;
   height: 800px;
-  background-color: #333;
+  background-color: #333; 
   overflow: hidden;
 }
 .youtube .youtube__area {

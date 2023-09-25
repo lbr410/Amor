@@ -10,3 +10,4 @@ public interface MemberService {
 
 	public Map<String, String> userIdFind(String member_name, String member_email);
 }
+ 

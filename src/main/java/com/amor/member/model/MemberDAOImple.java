@@ -12,7 +12,7 @@ public class MemberDAOImple implements MemberDAO {
 		this.sqlmap = sqlmap;
 	}
 
-	@Override	
+	@Override	 
 	public MemberDTO memberLogin(String id) {
 		MemberDTO result=sqlmap.selectOne("memberLogin", id);
 		System.out.println(result);

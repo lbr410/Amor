@@ -31,7 +31,7 @@ public class UserIdFindController {
 	public String userIdFindForm() {
 		return "/user/member/userIdFind";
 	}
-	 
+	  
 	@RequestMapping(value = "member/userIdFindSubmit.do", method = RequestMethod.POST)
 	public Map<String, String> searchId(HttpServletRequest request,HttpServletResponse response, Model model,MemberDTO dto,
 			@RequestParam(value="member_name", defaultValue = "notname")String member_name,

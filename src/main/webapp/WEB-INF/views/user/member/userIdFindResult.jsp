@@ -40,7 +40,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="result-section">
+                <div class="result-section"> 
                     <div class="txt-find">
                         아이디 찾기
                     </div>

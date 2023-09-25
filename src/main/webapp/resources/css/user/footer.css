@@ -16,7 +16,7 @@ footer .btn-group {
 footer .btn-group .btn {
   font-size: 12px;
   margin-right: 10px;
-  color: #bcbcbc;
+  color: #bcbcbc; 
 }
 footer .btn-group .btn:last-child {
   margin-right: 0;
