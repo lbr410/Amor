@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,11 +8,13 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 
-function moviePopUp(){
-	window.open('moviePopUp.do','movieContent','width=570,height=300,top=400,left=1300');
+function moviePopUp(idx){
+	let movie_idx = idx;
+	window.open('moviePopUp.do?movie_idx='+movie_idx,'movieContent','width=570,height=300,top=400,left=1300');
 }
-function movieUpdate(){
-	location.href='movieUpdate.do';
+function movieUpdate(idx){
+	let movie_idx = idx;
+	location.href='movieUpdate.do?movie_idx='+movie_idx;
 }
 </script>
 </head>
@@ -49,24 +52,36 @@ function movieUpdate(){
 	</tr>
 	</thead>
 	<tbody>
-	<tr>
-		<td>1</td>
-		<td>오펜하이머</td>
-		<td>이수민</td>
-		<td>안재영,우선철,송준</td>
-		<td>로맨스</td>
-		<td>필리핀</td>
-		<td>19</td>
-		<td>200분</td>
-		<td>1,100,000명</td>
-		<td><a href="javascript:moviePopUp()">[줄거리보기]</a></td>
-		<td>Y</td>
-		<td>10.0</td>
-		<td>test.png</td>
-		<td><input type="button" value="수정" onclick="movieUpdate()"></td>
-		<td><input type="button" value="삭제"></td>
-		
-	</tr>
+	<c:if test="${empty lists }">
+		<tr>
+			<td colspan="15">없음</td>
+		</tr>
+	</c:if>
+	
+	<c:forEach var="dto" items="${lists }">
+		<tr>
+			<td>${dto.movie_idx }</td>
+			<td>${dto.movie_name}</td>
+			<td>${dto.movie_god }</td>
+			<td>${dto.movie_actor }</td>
+			<td>${dto.movie_genre }</td>
+			<td>${dto.movie_country }</td>
+			<td><c:if test="${0==dto.movie_maxage}">ALL</c:if>
+				<c:if test="${1==dto.movie_maxage}">12</c:if>
+				<c:if test="${2==dto.movie_maxage}">15</c:if>
+				<c:if test="${3==dto.movie_maxage}">19</c:if>
+			</td>
+			<td>${dto.movie_runningtime }분</td>
+			<td>${dto.movie_audience }명</td>
+			<td><a href="javascript:moviePopUp(${dto.movie_idx})">[줄거리보기]</a></td>
+			<td>${dto.movie_state }</td>
+			<td>10.0??</td>
+			<td>${dto.movie_poster}</td>
+			<td><input type="button" value="수정" onclick="movieUpdate(${dto.movie_idx})"></td>
+			<td><input type="button" value="삭제"></td>
+		</tr>
+	</c:forEach>
+
 	</tbody>
 	</table>
 </div>
