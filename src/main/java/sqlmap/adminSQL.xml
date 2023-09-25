@@ -4,4 +4,8 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amor.adminSQL">
 
+<select id="adminConection" parameterType="String" resultType="String">
+	select admin_pwd from admin
+	where admin_id = #{admin_id}
+</select>
 </mapper>
