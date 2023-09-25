@@ -133,7 +133,7 @@
 
 <button class="nextbtn" id="openReview">관람평 작성</button>
 
-<form>
+<form name="reviewUpload" action="/amor/user/myAmor/reviewAdd.do" enctype="multipart/form-data">
 <div id="myReviewBtn" class="btn">
 	<div class="btn-content">
 		
@@ -149,8 +149,8 @@
 		<br>
 		<div id="container">
 		<div id="box1">
-		<div class="inputfile">
-		<input type="file" name="movie_review_img" value="파일찾기" class="fileBtn">
+		<div class="inputfile" id="imageRe">
+		<input type="file" name="movie_review_img" value="파일찾기" class="fileBtn" id="fileInput" onchange="imageReload()">
 		</div>
 		</div>
 		<div id="box2"><textarea cols="55" rows="10" name="movie_review_content" placeholder="관람평을 작성해주세요"></textarea></div>
@@ -183,6 +183,23 @@
 	
 	function drawStar(target) {
 		document.querySelector(".star span").style.width = target.value*10+'%';		
+	}
+	
+	function imageReload() {
+		let divTag = document.reviewUpload.imageRe;
+		
+		window.alert(divTag);
+		
+		let filePath = document.getElementById('fileInput').value;
+		
+		divTag.innerHTML='<p><img src='+filePath+'></p>'
+		
+		let filePathSplit = filePath.split('\\');
+		let filePathLength = filePathSplit.length;
+		let fileNameSplit = filePathSplit [filePathLength-1].split('.');
+		let fileName = fileNameSplit[0];
+		
+		
 	}
 	
 </script>

@@ -21,7 +21,7 @@ public class PlayingMovieDAOImple implements PlayingMovieDAO {
 	
 	@Override
 	public int getTotalCnt() {
-		int count=sqlmap.selectOne("totalCnt");
+		int count=sqlmap.selectOne("totalCntPlaying");
 		return count;
 	}
 }

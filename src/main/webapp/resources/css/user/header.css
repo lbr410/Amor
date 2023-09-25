@@ -154,29 +154,7 @@ login{
    line-height: normal;
    cursor: pointer;
 }
-login{
-   display: flex;
-   float:left;
-   height: 200px;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   flex-shrink: 0;
-}
-.login input{
-   border:none;
-   display: inline-flex;
-   padding: 2px 21px 6px 21px;
-   margin-bottom:2px;
-   justify-content: center;
-   align-items: center;
-   gap: 10px;
-   border-radius: 3px;
-   background: #1A2C82;
-   color: #C7E3FF;
-   line-height: normal;
-   cursor: pointer;
-}logout{
+.logout{
    display: flex;
    float:left;
    height: 200px;
@@ -202,7 +180,7 @@ login{
 
 /*SEARCH*/
 .headSearch{
-    margin-left: 30px;
+    margin-left: 24px;
     display: flex;
     padding: 0 8px;
     align-items: center;
@@ -230,8 +208,8 @@ login{
 #searchIcon{
     margin-top: 2px;
     margin-left:24px;
-    width: 26px;
+    width: 24px;
+    height: 24px;
     text-align: right;    
 }
-
 

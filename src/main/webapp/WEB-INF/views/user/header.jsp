@@ -21,29 +21,29 @@
   <!--HEADER-->
   <header>
     <div class="inner">
-      <a href="/amor/index.jsp" class="logo">
+      <a href="index.do" class="logo">
         <img src="/amor/resources/img/main_logo.png" alt="amor_cinema" />
       </a>
 
       <div class="sub-menu">
         <ul class="menu">
           <li>
-            <a href="javascript:void(0)">MY AMOR</a>
+            <a href="/amor/myAmor.do">MY AMOR</a>
           </li> 
           <li> 
             <a href="javascript:void(0)">고객센터</a>
           </li>
           
-			<c:if test="${!empty sessionScope.sid}">
+			<c:if test="${empty sessionScope.sid}">
 				<li>
 					<a href="javascript:void(0)">회원가입</a>
 				</li>
 				<li class="login">
-					<a href="member/login.do"><input type="button" value="로그인"></a>
+					<a href="/amor/member/login.do"><input type="button" value="로그인"></a>
 				</li>
 			</c:if>
-			<c:if test="${empty sessionScope.sid}">
-				<li class="logout"><a href="member/logout.do"><input type="button" value="로그아웃"></a></li>
+			<c:if test="${!empty sessionScope.sid}">
+				<li class="logout"><a href="/amor/member/logout.do"><input type="button" value="로그아웃"></a></li>
 			</c:if>
         </ul>
       </div>
@@ -55,7 +55,7 @@
               <ul class="inner">
                 <li>
                   <ul>
-                    <li class="ticketing">예매하기</li>
+                    <li class="ticketing"><a href="/amor/ticketing/ticketing.do">예매하기</a></li>
                   </ul>
                 </li>
                 <li>

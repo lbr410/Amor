@@ -1,5 +1,6 @@
 package com.amor.member.model;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import java.util.*;
 
@@ -35,13 +36,22 @@ public class MemberDAOImple implements MemberDAO {
 		int result=sqlmap.update("memberPwdUpdate", map);
 		return result;
 	}
+
 	@Override
-	public Map<String, String> findUserId(HashMap<String, Object> parameters) {
-		return sqlmap.selectOne("com.amor.member.model.MemberDAO.findUserId", parameters);
+	public String userIdFind(String member_name, String member_email) {
+		Map map=new HashedMap();
+		map.put("member_email", member_email);
+		map.put("member_name", member_name);
+		String result=sqlmap.selectOne("userIdFind", map);
+		System.out.println(result);
+		return result;
 	}
-
-
-
+	
+	@Override
+	public String userPwdIdck(String member_id) {
+		String id=sqlmap.selectOne("userPwdIdck", member_id);
+		return id;
+	}
 	
 	@Override
 	public MemberDTO memberInfo(int sidx) {
@@ -58,6 +68,15 @@ public class MemberDAOImple implements MemberDAO {
 	@Override
 	public int signUp(MemberDTO dto) {
 		int result = sqlmap.insert("signUp", dto);
+		return result;
+	}
+	
+	@Override
+	public int memberInfoUpdate(MemberDTO dto, int sidx) {
+		Map map=new HashedMap();
+		map.put("dto", dto);
+		map.put("sidx", sidx);
+		int result=sqlmap.update("memberInfoUpdate", map);
 		return result;
 	}
 }
