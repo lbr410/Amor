@@ -1,7 +1,7 @@
 package com.amor.page;
 
-public class PageModule {
-	public static String makePage(String pagename, int totalCnt, int listSize, int pageSize, int cp) { // 메모리에 바로 올림
+public class PageModuleSearch {
+	public static String makePage(String pagename, int totalCnt, int listSize, int pageSize, int cp, String search) { // 메모리에 바로 올림
 		
 		int totalPage = totalCnt / listSize + 1;
 		if(totalCnt%listSize==0) {totalPage--;}
@@ -24,6 +24,8 @@ public class PageModule {
 			sb.append(pagename);
 			sb.append("?cp=");
 			sb.append(i);
+			sb.append("&search=");
+			sb.append(search);
 			sb.append("'>");
 			sb.append(i);
 			sb.append("</a>&nbsp;&nbsp;&nbsp;");

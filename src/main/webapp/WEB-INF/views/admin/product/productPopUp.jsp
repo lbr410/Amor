@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Amor 관리자 : 영화 줄거리</title>
+<title>아모르 관리자 : 판매상품 상세보기</title>
 </head>
 <body>
-<h1>제목 : ${dto.movie_name }</h1>
-내용 : ${dto.movie_content }
+	${content}
 </body>
 </html>

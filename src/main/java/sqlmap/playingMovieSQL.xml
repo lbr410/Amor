@@ -13,4 +13,9 @@
 	<select id="totalCnt" resultType="Integer">
 		select count(*) from playing_movie
 	</select>
+	<select id="playingMovieAdd" resultType="com.amor.playingMovie.model.PlayingMovieDTO">
+		select c.playing_movie_date, c.playing_movie_start, e.movie_name, d.theater_name
+		from playing_movie c, movie e, theater d
+		where c.theater_idx=d.theater_idx and c.movie_idx=e.movie_idx
+	</select>
 </mapper>

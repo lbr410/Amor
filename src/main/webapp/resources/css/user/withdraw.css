@@ -1,23 +1,4 @@
 @charset "UTF-8";
-	a {
-		text-decoration: none;
-	}
-	body {
-		font-family: 'Nanum Gothic', sans-serif;
-		font-size: 16px;
-		font-weight: 400;
-		line-height: 1.4;
-		color: #333333;
-	}
-	img {
-		display: block;
-	}
-	.body-inner {
-		width: 1100px;
-		margin: 0 auto;
-		position: relative;
-	}
-
 	/**GRAY BAR*/
 	.gray-bar {
 		width: 100%;
@@ -38,7 +19,7 @@
 		font-size: 14px;
 		margin-left: 0;
 	}
-		a {
+	a {
 		text-decoration: none;
 	}
 	body {
@@ -50,11 +31,6 @@
 	}
 	img {
 		display: block;
-	}
-	.body-inner {
-		width: 1100px;
-		margin: 0 auto;
-		position: relative;
 	}
 
 	/**BORDER BAR*/
@@ -73,6 +49,12 @@
 		margin-bottom: 20px;
 		font-size: 24px;
 	}
+.body-inner {
+	width: 1100px;
+	margin: 0 auto;
+	height:700px;
+	position: relative;
+}
 .deleteForm{
 	width: 949px;
 	height: 494px;

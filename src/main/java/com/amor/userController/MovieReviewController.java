@@ -1,4 +1,4 @@
-package com.amor.adminController;
+package com.amor.userController;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,3 +11,5 @@ public class MovieReviewController {
 		return "/user/myAmor/tempReview";
 	}	
 }
+
+

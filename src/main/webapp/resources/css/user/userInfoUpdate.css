@@ -1,0 +1,207 @@
+@charset "UTF-8";
+	a {
+		text-decoration: none;
+	}
+	body {
+		font-family: 'Nanum Gothic', sans-serif;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 1.4;
+		color: #333333;
+	}
+	img {
+		display: block;
+	}
+	.body-inner {
+		width: 1100px;
+		margin: 0 auto;
+		position: relative;
+		height: 900px;
+	}
+
+	/**GRAY BAR*/
+	.gray-bar {
+		width: 100%;
+		height: 34px;
+		padding-top: 140px;
+		position: relative;
+		background: #F8F8F8;
+		margin-bottom: 64px;
+	}
+
+	.navigate {
+		width: 1100px;
+		margin: 0 auto;
+	}
+
+	.navigate-msg {
+		padding-top: 8px;
+		font-size: 14px;
+		margin-left: 0;
+	}
+	/**BORDER BAR*/
+	.border-bar {
+		margin-top: 300px;
+		width: 1100px;
+		margin: 0 auto;
+		display: block;
+		position: relative;
+		border-bottom: solid 1px #D9D9D9;
+	}
+
+	.border-title {
+		margin-top: 78px;
+		display: block;
+		margin-bottom: 20px;
+		font-size: 24px;
+	}
+.signUpForm {
+	margin: 0px auto;
+	padding-top:50px;
+	width: 700px;
+}
+
+.signUpDiv {
+	margin: 0 auto;
+	width: 350px;
+}
+
+.signUpMenu {
+	width: 350px;
+	font-weight: bold;
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+
+.textBoxDeco1 {
+	width: 338px;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	padding-left: 8px;
+	margin-bottom: 5px;
+}
+
+.textBoxDeco2 , .textBoxDeco1-1{
+	width: 338px;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	padding-left: 8px;
+	margin-bottom: 30px;
+	outline: none;
+}
+
+
+.telDiv {
+	margin-bottom: 30px;
+}
+
+.birthDiv {
+	margin-bottom: 30px;
+}
+
+.year {
+	width: 105px;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	padding-left: 8px;
+}
+
+.month {
+	width: 104px;
+	height: 34px;
+	border: 1px solid #d9d9d9;
+	padding-left: 8px;
+}
+
+.day {
+	width: 105px;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	padding-left: 8px;
+}
+
+.tel1 {
+	width: 80px;
+	height: 34px;
+	border: 1px solid #d9d9d9;
+	padding-left: 8px;
+}
+
+.tel2 {
+	width: 250px;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	padding-left: 8px;
+}
+
+.emailTextBoxDeco {
+	width: 338px;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	padding-left: 8px;
+	margin-bottom: 30px;
+	outline: none;
+}
+
+.zipTextBoxDeco {
+	width: 200px;
+	height: 30px;
+	border: 1px solid #ededed;
+	background: #ededed;
+	padding-left: 8px;
+	margin-bottom: 5px;
+}
+
+
+.smallBtnDeco {
+	border:none;
+	padding-bottom: 2px;
+	width: 130px;
+	height: 34px;
+	border-radius: 3px;
+	background: #1A2C82;
+	color: #C7E3FF;
+	cursor: pointer;
+}
+
+.updateBtn {
+	border:none;
+	display: flex;
+	width: 350px;
+	height: 40px;
+	padding: 10px 63px;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex-shrink: 0;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	color: #C7E3FF;
+	border-radius: 3px;
+	background: #1A2C82;
+}
+
+/**세림*/
+.subTap{
+	width: 130px;
+	height: 147px;
+	flex-shrink: 0;
+	display: inline-block;
+	float: left;
+}
+.subTap-menu1, .subTap-menu2{
+	display: flex;
+	width: 110px;
+	height: 50px;
+	padding: 10px;
+	align-items: center;
+	flex-shrink: 0;
+	color: #000;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 550;
+	line-height: normal;
+}
+.subTap-menu1{
+	border-bottom: 1px solid #D9D9D9;
+}

@@ -23,12 +23,15 @@
 	
 	<!-- daos -->
 	<bean id="movieDao" class="com.amor.movie.model.MovieDAOImple">
-    <constructor-arg ref="sqlSessionTemplate"></constructor-arg>
+    	<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
 	</bean>
 	<bean id="memberDao" class="com.amor.member.model.MemberDAOImple">
-    <constructor-arg ref="sqlSessionTemplate"></constructor-arg>
+    	<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
 	</bean>
 	<bean id="playingMoiveDao" class="com.amor.playingMovie.model.PlayingMovieDAOImple">
+		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
+	</bean>
+	<bean id="productDao" class="com.amor.product.model.ProductDAOImple">
 		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
 	</bean>
 
@@ -41,5 +44,8 @@
 	</bean>
 	<bean id="playingMovieService" class="com.amor.playingMovie.service.PlayingMovieServiceImple">
 		<constructor-arg ref="playingMoiveDao"></constructor-arg>
+	</bean>
+	<bean id="productService" class="com.amor.product.service.ProductServiceImple">
+		<constructor-arg ref="productDao"></constructor-arg>
 	</bean>
 </beans>
