@@ -7,8 +7,26 @@
 <title>아모르 : 회원탈퇴</title>
  <!-- 브라우저 스타일 초기화 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
-    <link rel="stylesheet" href="css/withdraw.css">
+    <link rel="stylesheet" href="/amor/resources/css/user/withdraw.css">
 </head>
+<script>
+
+function show() {
+	var check=document.getElementById("check");
+	if (!check.checked) {
+        window.alert('유의 및 안내 사항을 확인해주세요.');    
+    }else{
+    	var confirm=window.confirm('탈퇴하시겠습니까?');
+    	if(confirm){
+    		window.location='myAmor/withdrawSubmit.do';
+    	}else{
+    		window.location='index.do'
+    	}
+    }
+}
+</script>
+
+
 <body>
 <%@include file="../header.jsp" %>
 <!-- GRAY BAR -->
@@ -39,11 +57,11 @@
 	</div>
 	</div>
 		<div class="deleteCheck">
-		<div class="checkBox"><input type="checkbox" value="on"><label>유의 및 안내 사항을 모두 확인하였습니다.</label></div>
+		<div class="checkBox"><input type="checkbox" value="on" id="check"><label>유의 및 안내 사항을 모두 확인하였습니다.</label></div>
 	</div>
 	<div class="btn">
-		<input type="submit" value="탈퇴" class="submit">
-		<input type="button" value="취소" class="cancel">
+		<input type="button" value="탈퇴" class="submit" onclick="show()">
+		<a href="/index.do"><input type="button" value="취소" class="cancel"></a>
 	</div>
 </div>
 </form>

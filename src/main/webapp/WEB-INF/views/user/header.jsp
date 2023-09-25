@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,9 +37,9 @@
             <a href="javascript:void(0)">회원가입</a>
           </li>
           <li>
-          	<div class="login">
-            <a href="member/login.do"><input type="button" value="로그인"></a>
-          	</div>
+	       <div class="login">
+	        <a href="member/login.do"><input type="button" value="로그인"></a>
+	       </div>
           </li>
         </ul>
       </div>

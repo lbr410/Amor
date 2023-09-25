@@ -48,25 +48,6 @@
 		font-size: 14px;
 		margin-left: 0;
 	}
-		a {
-		text-decoration: none;
-	}
-	body {
-		font-family: 'Nanum Gothic', sans-serif;
-		font-size: 16px;
-		font-weight: 400;
-		line-height: 1.4;
-		color: #333333;
-	}
-	img {
-		display: block;
-	}
-	.body-inner {
-		width: 1100px;
-		margin: 0 auto;
-		position: relative;
-	}
-
 	/**BORDER BAR*/
 	.border-bar {
 		margin-top: 300px;
