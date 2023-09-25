@@ -36,13 +36,22 @@ public class MemberDAOImple implements MemberDAO {
 		int result=sqlmap.update("memberPwdUpdate", map);
 		return result;
 	}
+
 	@Override
-	public Map<String, String> findUserId(HashMap<String, Object> parameters) {
-		return sqlmap.selectOne("com.amor.member.model.MemberDAO.findUserId", parameters);
+	public String userIdFind(String member_name, String member_email) {
+		Map map=new HashedMap();
+		map.put("member_email", member_email);
+		map.put("member_name", member_name);
+		String result=sqlmap.selectOne("userIdFind", map);
+		System.out.println(result);
+		return result;
 	}
-
-
-
+	
+	@Override
+	public String userPwdIdck(String member_id) {
+		String id=sqlmap.selectOne("userPwdIdck", member_id);
+		return id;
+	}
 	
 	@Override
 	public MemberDTO memberInfo(int sidx) {

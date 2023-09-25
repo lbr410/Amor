@@ -5,20 +5,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../resources/css/user/userFind.css">
+<link rel="stylesheet" href="/amor/resources/css/user/userIdFind.css">
 </head>
 <body>
 <body>
     <div class="top">
-        <div class="navigate"><a href="#"><img src="img/logo.png"></a>
+        <div class="navigate"><a href="index.do"><img src="/amor/resources/img/white_b_logo.png"></a>
             <span class="txt-info">Home으로 돌아가기</span>
         </div>
     </div>
     <div class="body-inner"> 
         <div class="center">
             <div class="ci">
-                <a href="#" title="메인 페이지로 이동">
-                    <img src="#" alter="amor cinema">
+                <a href="index.do" title="메인 페이지로 이동">
+                    <img src="/amor/resources/img/main_logo.png" alt="amor cinema">
                 </a>
             </div>
             <div class="find-section">
@@ -28,7 +28,7 @@
                 <div class="tab-list">
                     <ul>
                         <li>
-                            <a href="userFind.do" title="아이디찾기">
+                            <a href="userIdFindForm.do" title="아이디찾기">
                                 아이디 찾기
                             </a>
                         </li>
@@ -42,18 +42,19 @@
                 <span class="navi">
                     비밀번호를 찾고자 하는 아이디를 입력해주세요.
                 </span>
-				<form class="userPwdForm" action="">
+				<form class="userPwdFind" action="userPwdFind.do" method="POST">
                     <table class="table">
-                        <tbody>
+                         <tbody>
                             <tr>
                                 <th>아이디</th>
-                                <td>
-                                    <input type="text" name="member_name"  id="member-name" maxlength="20" type="text" placeholder="이름">
+                                <td colspan="2">
+                                    <input type="text" name="member_id"  id="member-name" maxlength="20" type="text" placeholder="아이디">
                                 </td>
                             </tr>
+                        </tbody>
                     </table>
                     <div class="btn-bottom">
-                        <button id="btn-Search" type="button" class="blue-btn">
+                        <button id="btn-Search" type="submit" class="blue-btn">
                             다음
                         </button>
                     </div>

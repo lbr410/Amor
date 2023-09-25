@@ -8,20 +8,14 @@
 	where member_id=#{id} 
 </select>
 
-<select id="userIdFind" resultType="com.amor.member.model.MemberDTO" parameterType="java.util.HashMap">
-	select * from member where member_name=#{member_name} and member_email=#{member_email}
-</select>
-
 <update id="memberWithDraw" parameterType="String">
 	update member set member_quit='y', member_quitdate=sysdate
 	where member_id=#{id}
 </update>
-
 <select id="memberPwdCheck" parameterType="String" resultType="String">
 	select member_id from member
 	where member_pwd=#{pwd}
 </select>
-
 <update id="memberPwdUpdate" parameterType="Map">
 	update member 
 	set member_pwd=#{pwd} where member_id=#{sid}
@@ -29,6 +23,14 @@
 
 <select id="memberInfo" parameterType="Integer" resultType="com.amor.member.model.MemberDTO">
 	select * from member where member_idx=#{sidx}
+</select>
+
+<select id="userIdFind" resultType="String" parameterType="Map">
+	select member_id from member where member_email=#{member_email} and member_name=#{member_name}
+</select>
+  
+<select id="userPwdIdck" parameterType="String" resultType="String">
+	select member_id from member where member_id=#{member_id}
 </select>
 
 	<select id="idCheck" parameterType="String" resultType="String">
