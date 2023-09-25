@@ -45,4 +45,17 @@
 			#{member_zip}, #{member_addr1}, #{member_addr2}, sysdate, 'n', 'n', sysdate
 		)
 	</insert>
+
+<update id="memberInfoUpdate" parameterType="Map">
+	update member
+	set member_birth_year=#{dto.member_birth_year},
+	member_birth_month=#{dto.member_birth_month},
+	member_birth_day=#{dto.member_birth_day},
+	member_tel1=#{dto.member_tel1},
+	member_tel2=#{dto.member_tel2},
+	member_zip=#{dto.member_zip},
+	member_addr1=#{dto.member_addr1},
+	member_addr2=#{dto.member_addr2}
+	where member_idx=#{sidx}
+</update>
 </mapper>

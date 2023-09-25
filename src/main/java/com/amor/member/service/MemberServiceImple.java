@@ -94,4 +94,11 @@ public class MemberServiceImple implements MemberService {
 		
 		return null;
 	}
+	
+	@Override
+	public int memberInfoUpdate(MemberDTO dto, int sidx) {
+		int result=memberDao.memberInfoUpdate(dto, sidx);
+		return result;
+	}
+	
 }

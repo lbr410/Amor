@@ -205,3 +205,10 @@
 .subTap-menu1{
 	border-bottom: 1px solid #D9D9D9;
 }
+a:visited{
+	color:#181818;
+}
+a:link{
+	color:#181818;
+	text-decoration: none;
+}

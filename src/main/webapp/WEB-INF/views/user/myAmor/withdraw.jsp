@@ -18,7 +18,7 @@ function show() {
     }else{
     	var confirm=window.confirm('탈퇴하시겠습니까?');
     	if(confirm){
-    		window.location='myAmor/withdrawSubmit.do';
+    		window.location='withdrawSubmit.do';
     	}else{
     		window.location='index.do'
     	}

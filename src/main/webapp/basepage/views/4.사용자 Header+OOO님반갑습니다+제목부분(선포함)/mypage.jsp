@@ -31,7 +31,6 @@
 <div class="mypagetitle"><a href="#"><label class="title1">예매내역</label></a> <a href="#"><label class="title2">취소내역</label></a></div>
 <!-- 이 밑으로 작업 -->
 
-
 </div>
 </div>
 </body>

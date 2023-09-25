@@ -25,7 +25,7 @@
 <form name="pwdCheck" action="userPwdCheckSubmit.do" method="post">
 	<div class="form">
 		<label>비밀번호</label>
-		<input type="password" name="pwd" class="text"> 
+		<input type="password" name="pwd" class="text" maxlength="12"> 
 		<div class="btn">
 		<a href="/index.do"><input type="button" value="취소" class="cancel"></a>
 		<input type="submit" value="확인" class="submit">
