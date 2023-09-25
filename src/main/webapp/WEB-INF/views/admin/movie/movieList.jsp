@@ -16,7 +16,13 @@ function movieUpdate(idx){
 	let movie_idx = idx;
 	location.href='movieUpdate.do?movie_idx='+movie_idx;
 }
+
+function movieDelete(idx){
+	let movie_idx = idx;
+	location.href='movieDelete.do?movie_idx='+movie_idx;
+}
 </script>
+<link rel="styleSheet" type="text/css" href="/amor/resources/css/admin/movieList.css">
 </head>
 <body>
 <%@include file="../admin_header.jsp" %>
@@ -77,8 +83,8 @@ function movieUpdate(idx){
 			<td>${dto.movie_state }</td>
 			<td>10.0??</td>
 			<td>${dto.movie_poster}</td>
-			<td><input type="button" value="수정" onclick="movieUpdate(${dto.movie_idx})"></td>
-			<td><input type="button" value="삭제"></td>
+			<td><input class="btn_movie" type="button" value="수정" onclick="movieUpdate(${dto.movie_idx})"></td>
+			<td><input class="btn_movie" type="button" value="삭제" onclick="movieDelete(${dto.movie_idx})"></td>
 		</tr>
 	</c:forEach>
 

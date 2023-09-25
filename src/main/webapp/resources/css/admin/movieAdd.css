@@ -117,10 +117,86 @@
 	text-align: right;
 }
 
-.movieAddSumit input[type=submit]{
-	width: 160px;
-	height: 48px;
-	border-radius: 5px;
-	background-color: #1A2C82;
-	color: white;
+.movieAddSumit input[type=button]{
+    border:none;
+    padding: 2px 21px 6px 21px;
+    width: 150px;
+    height: 40px;
+    border-radius: 3px;
+    background: #EEEEEE;
+    color: #1A2C82;
+    cursor: pointer;
 }
+
+.movieAddSumit input[type=submit]{
+    border:none;
+    padding: 2px 21px 6px 21px;
+    width: 150px;
+    height: 40px;
+    border-radius: 3px;
+    background: #1A2C82;
+    color: #C7E3FF;
+    cursor: pointer;
+}
+#moviePosterDiv{
+	text-align: center;
+}
+
+#moviePosterDiv label{
+	text-align: center;
+	display: inline-block;
+	
+}
+
+.btn_moviePimg{
+	margin-top:5px;
+	border:none;
+	width: 120px;
+    height: 35px;
+	border-radius: 3px;
+	color: #C7E3FF;
+	background: #1A2C82;
+	text-align: center;
+	justify-content: center;
+    align-items: center;display: flex;
+}
+
+.btn_movieSimg{
+	margin-left: 11.5px;
+	
+}
+
+
+.btn_movieSimg{
+	margin-top:5px;
+	border:none;
+	width: 80px;
+    height: 30px;
+    border-radius: 3px;
+	background: #EEEEEE;
+    color: #1A2C82;
+    text-align: center;
+    justify-content: center;
+    align-items: center;display: flex;
+}
+
+#btn_movieposter{
+	display: none;
+}
+#btn_movieSt1{
+	display: none;
+}
+#btn_movieSt2{
+	display: none;
+}
+#btn_movieSt3{
+	display: none;
+}
+#btn_movieSt4{
+	display: none;
+}
+#btn_movieSt5{
+	display: none;
+}
+
+
