@@ -9,5 +9,5 @@ public interface ProductDAO {
 	public String prodContent(int product_idx);
 	public List<ProductDTO> prodSearchList(Map map);
 	public int prodSearchTotalCnt(String search);
-	public int productAdd(ProductDTO dto);
+	public int productAdd(ProductDTO req);
 }
