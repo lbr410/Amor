@@ -16,11 +16,11 @@ public class PageModule {
 			sb.append("?cp=");
 			int temp = (userGroup-1) * pageSize + pageSize;
 			sb.append(temp);
-			sb.append("'>&lt;&nbsp;&nbsp;</a>");
+			sb.append("'>&lt;&nbsp;&nbsp;&nbsp;</a>");
 		}
 
 		for(int i=userGroup*pageSize+1; i<=userGroup*pageSize+pageSize; i++) {
-			String css = i == cp ? "nowPage" : "page";
+			String css = i == cp ? "nowPage" : "";
 			sb.append("&nbsp;&nbsp;<a class='"+css+"' href='");
 			sb.append(pagename);
 			sb.append("?cp=");
@@ -40,7 +40,7 @@ public class PageModule {
 			sb.append("?cp=");
 			int temp = (userGroup+1) * pageSize + 1;
 			sb.append(temp);
-			sb.append("'>&nbsp;&nbsp;&gt;</a>");
+			sb.append("'>&nbsp;&nbsp;&nbsp;&gt;</a>");
 		}
 		
 		return sb.toString();

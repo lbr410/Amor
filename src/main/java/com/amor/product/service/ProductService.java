@@ -14,4 +14,7 @@ public interface ProductService {
 	public List<ProductDTO> prodSearchList(int cp, int listSize, String search);
 	public int prodSearchTotalCnt(String search);
 	public int productAdd(ProductDTO dto);
+	public ProductDTO productSelectIdx(int product_idx);
+	public int productUpdate(ProductDTO dto);
+	public int productDel(int product_idx);
 }

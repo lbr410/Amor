@@ -10,4 +10,7 @@ public interface ProductDAO {
 	public List<ProductDTO> prodSearchList(Map map);
 	public int prodSearchTotalCnt(String search);
 	public int productAdd(ProductDTO req);
+	public ProductDTO productSelectIdx(int product_idx);
+	public int productUpdate(ProductDTO dto);
+	public int productDel(int product_idx);
 }

@@ -70,4 +70,22 @@ public class ProductServiceImple implements ProductService {
 		int count = productDao.productAdd(dto);
 		return count;
 	}
+	
+	@Override
+	public ProductDTO productSelectIdx(int product_idx) {
+		ProductDTO dto = productDao.productSelectIdx(product_idx);
+		return dto;
+	}
+	
+	@Override
+	public int productUpdate(ProductDTO dto) {
+		int count = productDao.productUpdate(dto);
+		return count;
+	}
+	
+	@Override
+	public int productDel(int product_idx) {
+		int count = productDao.productDel(product_idx);
+		return count;
+	}
 }

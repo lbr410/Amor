@@ -63,7 +63,7 @@ public class ProductController {
 	// 상세내용 보기 클릭시 팝업창으로 상세내용 출력
 	@RequestMapping("admin/product/productPopUp.do")
 	public ModelAndView productContent(@RequestParam("idx") int product_idx) {
-		String content = productService.prodContent(product_idx);
+		String content = productService.prodContent(product_idx).replaceAll("\n", "<br>");
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("content", content);
@@ -81,7 +81,6 @@ public class ProductController {
 		String pageStr = com.amor.page.PageModuleSearch.makePage("/amor/admin/product/prodSearchList.do", totalCnt, listSize, pageSize, cp, search);
 		
 		List<ProductDTO> lists = productService.prodSearchList(cp, listSize, search);
-		System.out.println(search);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pageStr", pageStr);
@@ -129,8 +128,6 @@ public class ProductController {
 			FileOutputStream fos = new FileOutputStream(f);
 			fos.write(bytes);
 			fos.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -151,5 +148,77 @@ public class ProductController {
 		mav.setViewName("user/msg/userMsg");
 		
 		return mav;
+	}
+	
+	// 해당 상품 수정 페이지로 이동 후 정보 불러오기
+	@RequestMapping(value = "admin/product/productUpdate.do", method = RequestMethod.GET)
+	public ModelAndView productUpdateForm(@RequestParam("idx") int product_idx) {
+		ProductDTO dto = productService.productSelectIdx(product_idx);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("dto", dto);
+		mav.setViewName("admin/product/productUpdate");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "admin/product/productUpdate.do", method = RequestMethod.POST)
+	public ModelAndView productUpdate(MultipartHttpServletRequest req) {
+		MultipartFile upl = req.getFile("product_img");
+		String upload = upl.getOriginalFilename();
+		String noExt = upload.substring(0, upload.lastIndexOf("."));
+		String ext = upload.substring(upload.lastIndexOf(".") + 1);
+		
+		String savePath = req.getRealPath("/resources/upload/product/");
+		String saveFileName = "";
+		
+		try {
+			byte bytes[] = upl.getBytes();
+			String filefull = savePath+upload;
+			File f = new File(filefull);
+			if(f.isFile()) {
+				boolean ex = true;
+				int index = 0;
+				while(ex) {
+					index++;
+					saveFileName = noExt+"("+index+")."+ext;
+					String dictFile = savePath + saveFileName;
+					ex = new File(dictFile).isFile();
+					f = new File(dictFile);
+				}
+			} else if(!f.isFile()) {
+				saveFileName = upload;
+			}
+			
+			FileOutputStream fos = new FileOutputStream(f);
+			fos.write(bytes);
+			fos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		ProductDTO dto = new ProductDTO();
+		dto.setProduct_idx(Integer.parseInt(req.getParameter("product_idx")));
+		dto.setProduct_category(req.getParameter("product_category"));
+		dto.setProduct_title(req.getParameter("product_title"));
+		dto.setProduct_price(Integer.parseInt(req.getParameter("product_price")));
+		dto.setProduct_content(req.getParameter("product_content"));
+		dto.setProduct_img(saveFileName);
+		
+		int count = productService.productUpdate(dto);
+		
+		String msg = count > 0 ? "상품을 수정하였습니다." : "상품 수정 실패!";
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg", msg);
+		mav.addObject("goUrl", "productList.do");
+		mav.setViewName("user/msg/userMsg");
+		
+		return mav;
+	}
+	
+	@RequestMapping("admin/product/productDel.do")
+	public String productDel(@RequestParam("idx") int idx) {
+		productService.productDel(idx);
+		
+		return "admin/product/productList";
 	}
 }

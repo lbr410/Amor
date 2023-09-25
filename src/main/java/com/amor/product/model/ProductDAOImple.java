@@ -55,4 +55,22 @@ public class ProductDAOImple implements ProductDAO {
 		int count = sqlmap.insert("productAdd", dto);
 		return count;
 	}
+	
+	@Override
+	public ProductDTO productSelectIdx(int product_idx) {
+		ProductDTO dto = sqlmap.selectOne("productSelectIdx", product_idx);
+		return dto;
+	}
+	
+	@Override
+	public int productUpdate(ProductDTO dto) {
+		int count = sqlmap.update("productUpdate", dto);
+		return count;
+	}
+	
+	@Override
+	public int productDel(int product_idx) {
+		int count = sqlmap.delete("productDel", product_idx);
+		return count;
+	}
 }

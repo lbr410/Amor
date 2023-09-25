@@ -38,6 +38,8 @@
 	width: 80px;
 	height: 80px;
 	border: 1px solid #cccccc;
+	margin-top: 3px;
+	margin-bottom: 3px;
 }
 
 .soldOutSel {
@@ -45,19 +47,17 @@
 }
 
 .paging {
+	margin-top: 20px;
 	text-align: center;
 	font-size: 16px;
 }
 
 .paging a:hover{
-	color: #324ABC;
+	color: #2E90FF;
 	font-weight: bold;
 }
 
-.page{
-    
-}
-
 .nowPage {
+	color: #2E90FF !important;
 	font-weight: bold;
 }

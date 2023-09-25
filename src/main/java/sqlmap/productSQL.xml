@@ -50,4 +50,25 @@
 			sysdate, 
 			'n')
 	</insert>
+	
+	<select id="productSelectIdx" resultType="com.amor.product.model.ProductDTO" parameterType="Integer">
+		select * from product where product_idx = #{product_idx}
+	</select>
+	
+	<update id="productUpdate" parameterType="com.amor.product.model.ProductDTO">
+		update
+			product
+		set
+			product_category = #{product_category},
+			product_title = #{product_title},
+			product_price = #{product_price},
+			product_content = #{product_content},
+			product_img = #{product_img}
+		where
+			product_idx = #{product_idx}			
+	</update>
+	
+	<delete id="productDel" parameterType="Integer">
+		delete from product where product_idx = #{product_idx}
+	</delete>
 </mapper>

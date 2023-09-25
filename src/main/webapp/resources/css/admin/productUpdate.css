@@ -1,0 +1,122 @@
+@charset "UTF-8";
+.prodUpdateForm {
+	width: 800px;
+	text-align: center;
+}
+
+.UpdateForm1 {
+	width: 600px;
+	margin-top: 20px;
+	text-align: right;
+}
+
+.UpdateForm2 {
+	width: 600px;
+	text-align: right;
+}
+
+.line {
+    background: #eeeeee;
+    height: 1px;
+    border: 0;
+}
+
+.prodmenu {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.menuname {
+	margin-right: 50px;
+	font-weight: bold;
+}
+
+.menuname2 {
+	margin-right: 45px;
+	font-weight: bold;
+}
+
+.menuname3 {
+	margin-right: 40px;
+	font-weight: bold;
+}
+
+.cateMenu {
+	width: 300px;
+	height: 35px;
+	border: 1px solid #d9d9d9;
+	padding-left: 5px;
+}
+
+.textBoxDeco1 {
+	width: 288px;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	padding-left: 8px;
+	margin-bottom: 5px;
+}
+
+.detailContent {
+	width: 274px;
+	height: 200px;
+	resize: none;
+	padding: 12px;
+	font-size: 14px;
+	color: #111111;
+	border: 1px solid #d9d9d9;
+	font-family: '맑은 고딕';
+}
+
+#preview {
+	width: 80px;
+	height: 80px;
+	border: 1px solid #d9d9d9;
+	margin-top: 8px;
+}
+
+.fileDeco {
+	border:none;
+	padding-bottom: 2px;
+	width: 100px;
+	height: 25px;
+	border-radius: 3px;
+	background: #eeeeee;
+	color: #1a2c82;
+	cursor: pointer;
+}
+
+.btnDiv {
+	margin-top: 30px;
+}
+
+.addBtnDeco {
+	border:none;
+	padding-bottom: 2px;
+	width: 130px;
+	height: 34px;
+	border-radius: 3px;
+	background: #1A2C82;
+	color: #C7E3FF;
+	cursor: pointer;
+}
+
+.cancelBtnDeco {
+	border:none;
+	padding-bottom: 2px;
+	width: 130px;
+	height: 34px;
+	border-radius: 3px;
+	background: #eeeeee;
+	color: #1a2c82;
+	cursor: pointer;
+}
+
+.imgDiv2 {
+	position: relative;
+	bottom: 35px;
+	right: 115px;
+}
+
+.textCount {
+	color: #bcbcbc;
+}

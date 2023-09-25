@@ -28,7 +28,15 @@
 		
 		let param = 'search='+search;
 		sendRequest('prodSearchList.do', param, null, 'GET');
+		//location.reload();
 		location.href='prodSearchList.do?search='+search;
+	}
+	
+	// 상품 삭제
+	function productDel(idx) {
+		let param = 'idx='+idx;
+		sendRequest('productDel.do', param, null, 'GET');
+		location.reload();
 	}
 </script>
 </head>
@@ -52,7 +60,7 @@
 			<th class="tableImg">이미지</th>
 			<th class="tableTitle">제목</th>
 			<th class="tableContent">상세보기</th>
-			<th class="tableCategory">분류</th>
+			<th class="tableCategory">카테고리</th>
 			<th class="tablePrice">판매가</th>
 			<th class="tableSoldout">품절여부</th>
 			<th class="tableBtn"></th>
@@ -66,36 +74,37 @@
 	</c:if>
 	<c:forEach var="dto" items="${lists}">
 		<tr>
-			<td class="tableNum">${dto.product_idx}</td>
+			<td class="tableNum"><span id="idx${dto.product_idx}">${dto.product_idx}</span></td>
 			<td class="tableImg">
-				<img src="/amor/resources/img/leaf.png" class="prodImg" alt="상품 이미지">
-				${dto.product_img}
+				<img src="/amor/resources/upload/product/${dto.product_img}" class="prodImg" alt="상품 이미지">
 			</td>
 			<td class="tableTitle">${dto.product_title}</td>
 			<td class="tableContent">
 				<a href="javascript: productPopUp(${dto.product_idx})">상세내용 보기</a>
 			</td>
-			<td class="tableCategory">${dto.product_category}</td>
+			<td class="tableCategory">
+				<c:if test="${dto.product_category eq 'd'}">음료</c:if>
+				<c:if test="${dto.product_category eq 's'}">스낵</c:if>
+				<c:if test="${dto.product_category eq 't'}">관람권</c:if>
+			</td>
 			<td class="tablePrice">${dto.product_price}</td>
 			<td class="tableSoldout">
-				<select name="product_soldout${dto.product_idx}" id="yn" class="soldOutSel" onchange="soldOutYN(${dto.product_idx})">
+				<select name="product_soldout${dto.product_idx}" class="soldOutSel" onchange="soldOutYN(${dto.product_idx})">
 					<option value="y" <c:if test="${dto.product_soldout eq 'y'}">selected</c:if>>Y</option>
 					<option value="n" <c:if test="${dto.product_soldout eq 'n'}">selected</c:if>>N</option>
 				</select>
 			</td>
 			<td class="tableBtn">
-				<input type="button" class="smallBtn" value="수정">
-				<input type="button" class="smallBtn" value="삭제">
+				<input type="button" class="smallBtn" value="수정" onclick="javascirpt: location.href='/amor/admin/product/productUpdate.do?idx=${dto.product_idx}'">
+				<input type="button" class="smallBtn" value="삭제" onclick="productDel(${dto.product_idx})">
 			</td>
 		</tr>
 	</c:forEach>
 	</tbody>
 	<tfoot>
-		<c:if test="${!empty lists}">
 		<tr>
 			<td colspan="8"><div class="paging">${pageStr}</div></td>
 		</tr>
-	</c:if>
 	</tfoot>
 	</table>
 </div>
