@@ -3,5 +3,18 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amor.movieReviewSQL">
-
+	<select id="reviewList" parameterType="Map" resultType="com.amor.movieReview.model.MovieReviewDTO">
+		select f.movie_name, c.movie_review_content, c.movie_review_img, d.member_idx, e.ticketing_screeningtime from 
+		(select * from (select rownum as rnum,a.* from 
+		(select * from movie_review order by movie_review_idx desc)a)b 
+		where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}) c,
+		 member d, ticketing e, movie f 
+		 where d.member_idx=c.member_idx 
+		 and c.member_idx=e.member_idx
+		 and f.movie_idx=c.movie_idx 
+		 and d.member_idx=#{member_idx}
+	</select>
+	<select id="totalCntReview" resultType="Integer">
+		select count(*) from movie_review
+	</select>
 </mapper>

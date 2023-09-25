@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>아모르 : 회원정보 수정</title>
  <!-- 브라우저 스타일 초기화 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
     <link rel="stylesheet" type="text/css" href="/amor/resources/css/user/userInfoUpdate.css">
@@ -89,16 +89,16 @@ window.onload=function () {
 </div>
 <div class="body-inner">
 <div class="subTap">
-	<div class="subTap-menu1"><label>비밀번호 수정</label></div>
+	<div class="subTap-menu1"><label><a href="/amor/myAmor/userPwdCheckForm.do">비밀번호 수정</a></label></div>
 	<div class="subTap-menu2"><label>회원 탈퇴</label></div>
 </div>
-	<form class="signUpForm" onsubmit="return validation()">
+	<form class="signUpForm" action="userInfoUpdateSubmit.do" method="post">
 	<div class="signUpDiv">
 		<div class="signUpMenu">아이디</div>
-		<div><input type="text" name="id" class="textBoxDeco1-1" readonly="readonly" value="${dto.member_id }" ></div>
+		<div><input type="text" name="member_id" class="textBoxDeco1-1" readonly="readonly" value="${dto.member_id }" ></div>
 		
 		<div class="signUpMenu">이름</div>
-		<div><input type="text" name="name" class="textBoxDeco2" readonly="readonly" value="${dto.member_name }"></div>
+		<div><input type="text" name="member_name" class="textBoxDeco2" readonly="readonly" value="${dto.member_name }"></div>
 		
 		<div class="signUpMenu">생년월일</div>
 		<div class="birthDiv">
@@ -124,7 +124,7 @@ window.onload=function () {
 		
 		<div class="signUpMenu">이메일</div>
 		<div>
-			<input type="text" name="email" class="emailTextBoxDeco" readonly="readonly" value="hong@naver.com" value="${dto.member_email }">
+			<input type="text" name="member_email" class="emailTextBoxDeco" readonly="readonly" value="hong@naver.com" value="${dto.member_email }">
 		</div>		
 		
 		<div class="signUpMenu">휴대전화</div>

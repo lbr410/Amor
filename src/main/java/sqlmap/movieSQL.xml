@@ -29,4 +29,9 @@ where movie_idx = #{movie_idx}
 
 </update>
 
+<delete id="movieDelete" parameterType="Integer">
+delete from movie where movie_idx = #{movie_idx}
+
+</delete>
+
 </mapper>

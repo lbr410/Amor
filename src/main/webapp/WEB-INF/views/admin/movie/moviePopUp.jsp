@@ -5,9 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Amor 관리자 : 영화 줄거리</title>
+<link rel="stylesheet" href="/amor/resources/css/admin/moviePopUp.css">
 </head>
 <body>
-<h1>제목 : ${dto.movie_name }</h1>
-내용 : ${dto.movie_content }
+<h1>영화 줄거리</h1>
+<hr id="moviePopuphr">
+<h2>${dto.movie_name }</h2>
+<br>
+${movieContent }
 </body>
 </html>

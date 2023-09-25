@@ -11,4 +11,8 @@ public interface MovieService {
 	
 	public MovieDTO movieContent(int movie_idx);
 	
+	public int movieUpdate(MovieDTO dto);
+	
+	public int movieDelete(int movie_idx);
+	
 }

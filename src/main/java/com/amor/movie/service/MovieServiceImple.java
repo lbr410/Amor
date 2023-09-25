@@ -31,5 +31,19 @@ public class MovieServiceImple implements MovieService {
 		return dto;
 	}
 	
+	@Override
+	public int movieUpdate(MovieDTO dto) {
+		int result = moviedao.movieUpdate(dto);
+		return result;
+	}
+	
+	@Override
+	public int movieDelete(int movie_idx) {
+		int result = moviedao.movieDelete(movie_idx);
+		return result;
+	}
+
+
+	
 	
 }

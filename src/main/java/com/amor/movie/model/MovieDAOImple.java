@@ -30,4 +30,16 @@ public class MovieDAOImple implements MovieDAO {
 		MovieDTO dto = sqlmap.selectOne("movieContent",movie_idx);
 		return dto;
 	}
+	
+	@Override
+	public int movieUpdate(MovieDTO dto) {
+		int result = sqlmap.update("movieUpdate",dto);
+		return result;
+	}
+	
+	@Override
+	public int movieDelete(int movie_idx) {
+		int result = sqlmap.delete("movieDelete", movie_idx);
+		return result;
+	}
 }

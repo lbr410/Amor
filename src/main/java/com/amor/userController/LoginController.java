@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.amor.member.model.*;
+import com.amor.encryption.*;
 
 @Controller
 public class LoginController {
@@ -32,11 +33,12 @@ public class LoginController {
 	@RequestMapping(value="member/login.do", method =RequestMethod.POST)
 	public ModelAndView loginSubmit(
 			@RequestParam(value="id", defaultValue = "notid")String id,
-			@RequestParam(value="pwd", defaultValue = "notpwd")String pwd,
+			@RequestParam(value="pwd", defaultValue = "notpwd")String pwd2,
 			@RequestParam(value="saveid" ,required = false) String saveid,
 			HttpServletResponse resp,
 			HttpSession session) {
 		
+		String pwd = Encryption.pwdEncrypt(pwd2);
 		ModelAndView mav=new ModelAndView();
 		
 		if(id.equals("") || pwd.equals("")) {
@@ -60,35 +62,36 @@ public class LoginController {
 				resp.addCookie(ck);
 			}
 			mav.addObject("msg", "성공(나중에 경고창없이 바로 메인)");
-			mav.setViewName("/user/msg/loginMsg");
+			mav.addObject("goUrl","/amor/index.do");
+			mav.setViewName("/user/msg/userMsg");
 			
 			dto=memberService.memberSession(dto);
 			session.setAttribute("sidx", dto.getMember_idx());
 			session.setAttribute("sname", dto.getMember_name());
 			session.setAttribute("sid", id);
 			
-			System.out.println("loginController session: "+session.getAttribute("sidx"));
-			System.out.println("loginController session: "+session.getAttribute("sname"));
-			System.out.println("loginController session: "+session.getAttribute("sid"));
-
 		}else if(result==memberService.NOT_ID_PWD) {
 			mav.addObject("msg", "아이디 또는 비밀번호가 맞지 않습니다.");
-			mav.setViewName("/user/msg/loginMsg");
+			mav.addObject("goUrl","/amor/member/login.do");
+			mav.setViewName("/user/msg/userMsg");
 		}else if(result==memberService.Join) {
 			mav.addObject("msg", "회원가입이 필요합니다.(회원가입 폼으로)");
-			mav.setViewName("/user/msg/loginMsg");
+			mav.addObject("goUrl","/amor/member/signUp.do");
+			mav.setViewName("/user/msg/userMsg");
 		}else if(result==memberService.BLOK) {
 			mav.addObject("msg", "접근이 제한된 아이디 입니다. 고객센터로 문의 바랍니다.");
-			mav.setViewName("/user/msg/loginMsg");
+			mav.addObject("goUrl","/amor/index.do");
+			mav.setViewName("/user/msg/userMsg");
 		}else if(result==memberService.ERROR) {
 			mav.addObject("msg", "아이디와 비밀번호를 입력해주세요.");
-			mav.setViewName("/user/msg/loginMsg");
+			mav.addObject("goUrl","/amor/member/login.do");
+			mav.setViewName("/user/msg/userMsg");
 		}
 		
 		return mav;
 	}
 	
-	@RequestMapping("logout.do")
+	@RequestMapping("member/logout.do")
 	public ModelAndView logout(HttpServletRequest req) {
 		HttpSession session=req.getSession();
 		session.invalidate();

@@ -5,4 +5,6 @@ public interface MovieDAO {
 	public int movieAdd(MovieDTO dto);
 	public List<MovieDTO> movieList();
 	public MovieDTO movieContent(int movie_idx);
+	public int movieUpdate(MovieDTO dto);
+	public int movieDelete(int movie_idx);
 }

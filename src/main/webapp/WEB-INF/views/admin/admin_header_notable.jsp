@@ -33,11 +33,11 @@
 			</div>
 			
 			<div class="menu" onclick="toggleSubmenu(this)">
-				<div class="menutext"><a href="movieList.do" data-submenu="submenu-3">영화 관리</a></div>
+				<div class="menutext"><a href="/amor/admin/movie/movieList.do" data-submenu="submenu-3">영화 관리</a></div>
 			</div>
 			<div class="submenu" id="submenu-3"> 
-				<div class="menutext"><a href="movieList.do">영화 목록</a></div>
-				<div class="menutext"><a href="movieAdd.do">영화 등록</a></div>
+				<div class="menutext"><a href="/amor/admin/movie/movieList.do">영화 목록</a></div>
+				<div class="menutext"><a href="/amor/admin/movie/movieAdd.do">영화 등록</a></div>
 			</div>
 			
 			<div class="menu" onclick="toggleSubmenu(this)">
