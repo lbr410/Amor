@@ -55,7 +55,7 @@
               <ul class="inner">
                 <li>
                   <ul>
-                    <li class="ticketing">예매하기</li>
+                    <li class="ticketing"><a href="/amor/ticketing/ticketing.do">예매하기</a></li>
                   </ul>
                 </li>
                 <li>

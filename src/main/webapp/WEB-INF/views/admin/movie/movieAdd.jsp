@@ -20,6 +20,14 @@ function moviePreview(input,num){
 	    document.getElementById(movieImgId).src = "";
 	  }
 }
+//러닝타임 숫자만 입력받게
+function checkNumber(event) {
+	
+	if(event.key >= 0 && event.key <= 9) {
+	    return true;
+	}
+	return false;
+}
 
 </script>
 </head>
@@ -31,21 +39,21 @@ function moviePreview(input,num){
 <div class="contentMain">
 
 <div class="movieAddbox">
-	<form name="movieAdd" action="movieAddd.do" class="movieAddform" method="post" enctype="multipart/form-data">
+	<form name="movieAdd" action="movieAdd.do" class="movieAddform" method="post" enctype="multipart/form-data">
 		<div class="movieAddImgDiv">
 			<div id="moviePosterDiv">
 				<div class="moviePosterImg"><img id="moviePreview0"></div>
-				<input type="file" name="movie_poster" onchange="moviePreview(this,0);">
+				<label for="btn_movieposter"><div class="btn_moviePimg">이미지 선택</div></label><input id="btn_movieposter" type="file" name="movie_poster" onchange="moviePreview(this,0);">
 			</div>
 			<div id="movieStillCutDiv">
 				<div id="movieStillCutDivPart1">
-					<div class="movieStillCutImgandbutton"><div class="movieStillCutImg"><img id="moviePreview1"></div><input type="file" name="movie_stillcut1" onchange="moviePreview(this,1);"></div>
-					<div class="movieStillCutImgandbutton"><div class="movieStillCutImg"><img id="moviePreview2"></div><input type="file" name="movie_stillcut2" onchange="moviePreview(this,2);"></div>
-					<div class="movieStillCutImgandbutton1"><div class="movieStillCutImg"><img id="moviePreview3"></div><input type="file" name="movie_stillcut3" onchange="moviePreview(this,3);"></div>
+					<div class="movieStillCutImgandbutton"><div class="movieStillCutImg"><img id="moviePreview1"></div><label for="btn_movieSt1"><div class="btn_movieSimg">스틸컷1</div></label><input id="btn_movieSt1" type="file" name="movie_stillcut1" onchange="moviePreview(this,1);"></div>
+					<div class="movieStillCutImgandbutton"><div class="movieStillCutImg"><img id="moviePreview2"></div><label for="btn_movieSt2"><div class="btn_movieSimg">스틸컷2</div></label><input id="btn_movieSt2" type="file" name="movie_stillcut2" onchange="moviePreview(this,2);"></div>
+					<div class="movieStillCutImgandbutton1"><div class="movieStillCutImg"><img id="moviePreview3"></div><label for="btn_movieSt2"><div class="btn_movieSimg">스틸컷3</div></label><input id="btn_movieSt3" type="file" name="movie_stillcut3" onchange="moviePreview(this,3);"></div>
 				</div>
 				<div id="movieStillCutDivPart2">
-					<div class="movieStillCutImgandbutton"><div class="movieStillCutImg"><img id="moviePreview4"></div><input type="file" name="movie_stillcut4" onchange="moviePreview(this,4);"></div>
-					<div class="movieStillCutImgandbutton"><div class="movieStillCutImg"><img id="moviePreview5"></div><input type="file" name="movie_stillcut5" onchange="moviePreview(this,5);"></div>
+					<div class="movieStillCutImgandbutton"><div class="movieStillCutImg"><img id="moviePreview4"></div><label for="btn_movieSt1"><div class="btn_movieSimg">스틸컷4</div></label><input id="btn_movieSt4" type="file" name="movie_stillcut4" onchange="moviePreview(this,4);"></div>
+					<div class="movieStillCutImgandbutton"><div class="movieStillCutImg"><img id="moviePreview5"></div><label for="btn_movieSt1"><div class="btn_movieSimg">스틸컷5</div></label><input id="btn_movieSt5" type="file" name="movie_stillcut5" onchange="moviePreview(this,5);"></div>
 				</div>
 			</div>
 		</div>
@@ -85,7 +93,7 @@ function moviePreview(input,num){
 					<th>개봉날짜</th><td><input type="date" name="movie_opendate" placeholder="개봉 날짜를 입력해주세요" required="required"></td>
 				</tr>
 				<tr>	
-					<th>러닝타임</th><td><input type="text" name="movie_runningtime" placeholder="러닝타임을 입력해주세요(단위 : 분)" required="required"></td>
+					<th>러닝타임</th><td><input type="text" name="movie_runningtime" placeholder="러닝타임을 입력해주세요(단위 : 분)" required="required" onkeypress="return checkNumber(event)"></td>
 				</tr>
 				<tr>
 					<th>국적</th><td><input type="text" name="movie_country" placeholder="국적을 입력해주세요" required="required"></td>
@@ -94,7 +102,7 @@ function moviePreview(input,num){
 					<th>줄거리</th><td><textarea name="movie_content" rows="15" cols="40" placeholder="내용을 입력해주세요" required="required"></textarea></td>
 				</tr>
 				<tr>
-					<td colspan="2" class="movieAddSumit"><input type="submit" value="저장"> </td>
+					<td colspan="2" class="movieAddSumit"><input type="button" value="취소" onclick="location.href='/amor/admin/movie/movieList.do'"> &nbsp; <input type="submit" value="저장"> </td>
 				</tr>
 			
 			</table>
