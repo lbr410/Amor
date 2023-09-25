@@ -26,7 +26,7 @@
 	</thead>
 	<tfoot>
 		<tr>
-			<td colspan="4"> ${pageStr }</td>
+			<td colspan="4"> ${playpageStr }</td>
 		</tr>
 	</tfoot>
 	<tbody>
