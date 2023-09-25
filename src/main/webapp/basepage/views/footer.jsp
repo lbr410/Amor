@@ -15,8 +15,7 @@
       <div class="btn-group">
         <a href="#" class="btn">영화관소개</a>
         <a href="#" class="btn">공지사항</a>
-        <a href="#" class="btn">예매하기</a>
-        <a href="#" class="btn">예매확인</a>
+        <a href="/amor/admin/login.do" class="btn">admin_page</a>
       </div>
 
       <div class="info">

@@ -39,19 +39,19 @@ public class AdminLoginController {
 		ModelAndView mav = new ModelAndView();
 		Boolean result = adminService.adminLogin(dto);
 		if(result == true) {
-			if(check1.equals("on")) {
+			if(check1 == "on") {
 				Cookie ck = new Cookie("idremember",dto.getAdmin_id());
 				ck.setMaxAge(60*60*24*30);
 				resp.addCookie(ck);
-			}else if(check1.equals("off")) {
+			}else if(check1 == "off") {
 				Cookie ck = new Cookie("idremember",dto.getAdmin_id());
 				ck.setMaxAge(0);
 				resp.addCookie(ck);
-			}else if(check2.equals("on")) {
+			}else if(check2 == "on") {
 				Cookie ck = new Cookie("autologin",dto.getAdmin_id());
 				ck.setMaxAge(60*60*24*30);
 				resp.addCookie(ck);
-			}else if(check2.equals("off")) {
+			}else if(check2 == "off") {
 				Cookie ck = new Cookie("autologin",dto.getAdmin_id());
 				ck.setMaxAge(0);
 				resp.addCookie(ck);
