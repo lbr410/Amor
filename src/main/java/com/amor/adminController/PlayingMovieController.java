@@ -15,7 +15,7 @@ public class PlayingMovieController {
 	@Autowired
 	private PlayingMovieService playingMovieService;
 
-	@RequestMapping("playMovie/playingMovieList.do")
+	@RequestMapping("admin/playMovie/playingMovieList.do")
 	public ModelAndView playingMovieList(
 			@RequestParam(value = "cp", defaultValue = "1") int cp) {
 		int totalCnt=playingMovieService.getTotalCnt();
@@ -24,16 +24,16 @@ public class PlayingMovieController {
 		
 		List<PlayingMovieDTO> lists=playingMovieService.playingMovieList(cp, listSize);
 		
-		String pageStr=com.amor.page.PageModule.makePage("playingMovieList.do", totalCnt, listSize, pageSize, cp);
+		String playpageStr=com.amor.page.PageModule.makePage("playingMovieList.do", totalCnt, listSize, pageSize, cp);
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("pageStr", pageStr);
+		mav.addObject("playpageStr", playpageStr);
 		mav.addObject("lists", lists);
 		mav.setViewName("/admin/playMovie/playingMovieList");
 		return mav;
 	}
 	
-	@RequestMapping("playMovie/playMovieAdd.do")
+	@RequestMapping("admin/playMovie/playMovieAdd.do")
 	public ModelAndView playingMoiveAdd () {
 		return null;
 	}
