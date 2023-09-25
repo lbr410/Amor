@@ -28,13 +28,13 @@ public class MemberDTO {
 		System.out.println("memberDTO() 호출됨");
 	}
 	
-
-	public MemberDTO(String member_id, String member_pwd) {
+	public MemberDTO(int member_idx, String member_id, String member_pwd, String member_name) {
 		super();
+		this.member_idx = member_idx;
 		this.member_id = member_id;
 		this.member_pwd = member_pwd;
+		this.member_name = member_name;
 	}
-
 
 	public MemberDTO(int member_idx, String member_id, String member_pwd, String member_name, String member_birth_year,
 			String member_birth_month, String member_birth_day, String member_gender, String member_tel1,

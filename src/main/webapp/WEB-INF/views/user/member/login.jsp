@@ -11,10 +11,10 @@
 <body>
 <%@include file="../header.jsp" %>
 <div class="body-inner">
-<form name="loginForm" action="loginSubmit.do" method="post">
+<form name="loginForm" action="login.do" method="post">
 	<div class="loginDiv">
 		<label>로그인</label>
-		<input type="text"  name="id" placeholder="아이디를 입력해주세요." class="text"> 
+		<input type="text"  name="id" placeholder="아이디를 입력해주세요." class="text" value="${cookie.saveid.value }"> 
 		<input type="password" name="pwd" placeholder="비밀번호를 입력해주세요." class="text"> 
 		<div class="idCheck"><input type="checkbox" name="saveid" value="on" ${empty cookie.saveid?'':'checked'}> 아이디 기억하기</div>
 		<input type="submit" value="로그인" class="submit">

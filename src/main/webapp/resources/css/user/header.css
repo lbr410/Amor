@@ -43,6 +43,14 @@ header .logo {
   left: 0;
   margin: auto;
 }
+header .logout {
+  height: 75px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
 header .sub-menu {
   position: absolute;
   top: 10px;

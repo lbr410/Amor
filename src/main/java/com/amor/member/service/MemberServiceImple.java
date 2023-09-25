@@ -16,25 +16,65 @@ public class MemberServiceImple implements MemberService {
 	}
 
 	@Override
-	public String memberLogin(MemberDTO dto, String saveid) {
+	public int memberLogin(MemberDTO dto) {
 		
-		MemberDTO loginResult=memberDao.memberLogin(dto.getMember_id());
-		String msg="";
-		
-		
-		if(loginResult!=null) {
-			if(loginResult.getMember_pwd().equals(dto.getMember_pwd())) {
-				msg="로그인 성공";
-				if(loginResult.getMember_quit().equals("y") || loginResult.getMember_block().equals("y")) {
-					msg="접근이 제한되었습니다. 고객센터로 문의 바랍니다.";
+		MemberDTO dbDto=memberDao.memberLogin(dto.getMember_id());
+		int result=ERROR;
+		if(dbDto!=null) {
+			if(dbDto.getMember_pwd().equals(dto.getMember_pwd())) {
+				result=SUCCES;
+				
+				if(dbDto.getMember_quit().equals("y") || dbDto.getMember_block().equals("y")) {
+					result=BLOK;
 				}
 			}else {
-				msg="아이디 혹은 비밀번호가 잘 못 되었습니다.";
+				result=NOT_ID_PWD;
 			}
 		}else {
-			msg="아이디와 비밀번호를 입력해주세요.";
+			result=Join;
 		}
-		return msg;
+		return result;
+	}
+	
+	@Override
+	public MemberDTO memberSession(MemberDTO dto) {
+		MemberDTO dbDto=memberDao.memberLogin(dto.getMember_id());
+		return dbDto;
+	}
+	
+	@Override
+	public int memberWithDraw(String id) {
+		int result=memberDao.memberWithDraw(id);
+		return result;
+	}
+	
+	@Override
+	public int memberPwdCheck(String sid, String pwd) {
+		String dbId=memberDao.memberPwdCheck(pwd);
+		int result=ERROR;	
+		if(dbId!=null) {
+			if(dbId.equals(sid)) {
+				result=SUCCES;
+			}
+		}else {
+			result=ERROR;
+		}
+		return result;
+	}
+	
+	@Override
+	public int memberPwdUpdate(String sid, String pwd) {
+		Map map=new HashedMap();
+		map.put("sid", sid);
+		map.put("pwd", pwd);
+		int result=memberDao.memberPwdUpdate(map);
+		return result;
+	}
+	
+	@Override
+	public MemberDTO memberInfo(int sidx) {
+		MemberDTO dto=memberDao.memberInfo(sidx);
+		return dto;
 	}
 	
 	@Override
