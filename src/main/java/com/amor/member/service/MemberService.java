@@ -11,15 +11,11 @@ public interface MemberService {
 	int ERROR=-1;
 	
 	public int memberLogin (MemberDTO dto);
-	
 	public MemberDTO memberSession(MemberDTO dto);
-	
 	public int memberWithDraw(String id);
-	
 	public int memberPwdCheck(String sid, String pwd);
-	
 	public int memberPwdUpdate(String sid, String pwd);
-	
 	public MemberDTO memberInfo(int sidx);
-
+	public String idCheck(String id);
+	public int signUp(MemberDTO dto);
 }

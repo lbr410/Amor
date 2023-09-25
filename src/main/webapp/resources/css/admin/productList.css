@@ -1,0 +1,49 @@
+@charset "UTF-8";
+.smallBtn {
+	border:none;
+	padding-bottom: 2px;
+	width: 50px;
+	height: 25px;
+	border-radius: 3px;
+	background: #EEEEEE;
+	color: #1A2C82;
+	cursor: pointer;
+}
+
+.tableNum {
+	width: 100px;
+}
+
+.tableImg {
+	width: 200px;
+}
+
+.tableTitle {
+	width: 200px;
+}
+
+.tableContent {
+	width: 150px;
+}
+
+.tableCategory {
+	width: 120px;
+}
+
+.tablePrice {
+	width: 120px;
+}
+
+.prodImg {
+	width: 80px;
+	height: 80px;
+	border: 1px solid #cccccc;
+}
+
+.soldOutSel {
+	width: 50px;
+}
+
+.paging {
+	text-align: center;
+}

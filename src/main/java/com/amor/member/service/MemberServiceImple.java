@@ -76,4 +76,16 @@ public class MemberServiceImple implements MemberService {
 		MemberDTO dto=memberDao.memberInfo(sidx);
 		return dto;
 	}
+	
+	@Override
+	public String idCheck(String id) {
+		String result = memberDao.idCheck(id);
+		return result;
+	}
+	
+	@Override
+	public int signUp(MemberDTO dto) {
+		int result = memberDao.signUp(dto);
+		return result;
+	}
 }

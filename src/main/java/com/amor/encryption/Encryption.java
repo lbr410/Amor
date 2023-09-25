@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Encryption {
-	public String pwdEncypt(String member_pwd) {
+	public static String pwdEncrypt(String member_pwd) {
 		String MD5 = "";
 		
 		try {
