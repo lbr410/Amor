@@ -99,4 +99,11 @@ public class MemberServiceImple implements MemberService {
 		String result=memberDao.userPwdIdck(member_id);
 		return result;
 	}
+	
+	@Override
+	public int memberInfoUpdate(MemberDTO dto, int sidx) {
+		int result=memberDao.memberInfoUpdate(dto, sidx);
+		return result;
+	}
+	
 }

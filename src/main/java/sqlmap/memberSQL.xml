@@ -25,23 +25,39 @@
 	select * from member where member_idx=#{sidx}
 </select>
 
-<select id="idCheck" parameterType="String" resultType="String">
-	select member_id from member where member_id = #{id}		
-</select>
-<insert id="signUp" parameterType="com.amor.member.model.MemberDTO">
-	insert into
-		member
-	values(
-		member_idx.nextval, #{member_id}, #{member_pwd}, #{member_name}, 
-		#{member_birth_year}, #{member_birth_month}, #{member_birth_day},
-		#{member_gender}, #{member_tel1}, #{member_tel2}, #{member_email}, 
-		#{member_zip}, #{member_addr1}, #{member_addr2}, sysdate, 'n', 'n', sysdate
-	)
-</insert>
 <select id="userIdFind" resultType="String" parameterType="Map">
 	select member_id from member where member_email=#{member_email} and member_name=#{member_name}
 </select>
+  
 <select id="userPwdIdck" parameterType="String" resultType="String">
 	select member_id from member where member_id=#{member_id}
 </select>
+
+	<select id="idCheck" parameterType="String" resultType="String">
+		select member_id from member where member_id = #{id}		
+	</select>
+
+	<insert id="signUp" parameterType="com.amor.member.model.MemberDTO">
+		insert into
+			member
+		values(
+			member_idx.nextval, #{member_id}, #{member_pwd}, #{member_name}, 
+			#{member_birth_year}, #{member_birth_month}, #{member_birth_day},
+			#{member_gender}, #{member_tel1}, #{member_tel2}, #{member_email}, 
+			#{member_zip}, #{member_addr1}, #{member_addr2}, sysdate, 'n', 'n', sysdate
+		)
+	</insert>
+
+<update id="memberInfoUpdate" parameterType="Map">
+	update member
+	set member_birth_year=#{dto.member_birth_year},
+	member_birth_month=#{dto.member_birth_month},
+	member_birth_day=#{dto.member_birth_day},
+	member_tel1=#{dto.member_tel1},
+	member_tel2=#{dto.member_tel2},
+	member_zip=#{dto.member_zip},
+	member_addr1=#{dto.member_addr1},
+	member_addr2=#{dto.member_addr2}
+	where member_idx=#{sidx}
+</update>
 </mapper>

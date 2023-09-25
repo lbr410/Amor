@@ -2,6 +2,8 @@ package com.amor.product.service;
 
 import java.util.*;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.amor.product.model.ProductDAO;
 import com.amor.product.model.ProductDTO;
 

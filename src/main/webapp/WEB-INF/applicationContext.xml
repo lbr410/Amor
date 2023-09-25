@@ -34,6 +34,9 @@
 	<bean id="productDao" class="com.amor.product.model.ProductDAOImple">
 		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
 	</bean>
+	<bean id="movieReviewDao" class="com.amor.movieReview.model.MovieReviewDAOImple">
+		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
+	</bean>
 
 	<!-- services -->
 	<bean id="movieService" class="com.amor.movie.service.MovieServiceImple" >
@@ -47,5 +50,8 @@
 	</bean>
 	<bean id="productService" class="com.amor.product.service.ProductServiceImple">
 		<constructor-arg ref="productDao"></constructor-arg>
+	</bean>
+	<bean id="movieReviewService" class="com.amor.movieReview.service.MovieReviewServiceImple">
+		<constructor-arg ref="movieReviewDao"></constructor-arg>
 	</bean>
 </beans>

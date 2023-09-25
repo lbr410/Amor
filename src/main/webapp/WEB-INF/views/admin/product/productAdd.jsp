@@ -6,6 +6,35 @@
 <meta charset="UTF-8">
 <title>아모르 관리자 : 판매상품 등록</title>
 <link rel="stylesheet" type="text/css" href="/amor/resources/css/admin/productAdd.css">
+<script>
+	// 상세내용 글자수 확인
+	function textCheck() {
+		document.getElementById('textLength').innerHTML = document.getElementById('prodContent').value.length;
+	}
+	
+	// 이미지 업로드시 확장자 확인
+	function extensionCheck(rp) {
+        let filename = rp.value;
+        let len = filename.length;
+        let filetype = filename.substring(len-4, len);
+        
+        if(filetype!='.jpg' && filetype!='.png' && filetype!='jpeg') {
+            window.alert('이미지 파일만 등록 가능합니다.');
+            rp.value = '';
+        }
+    }
+	
+	// 업로드한 이미지 미리보기	
+	function setProdImg(event) {
+		let reader = new FileReader();
+		
+		reader.onload = function(event) {
+			let img = document.getElementById('preview');
+			img.setAttribute("src", event.target.result);			
+		}
+		reader.readAsDataURL(event.target.files[0]);
+	}
+</script>
 </head>
 <body>
 <%@include file="../admin_header.jsp" %>
@@ -13,7 +42,7 @@
 <div class="content-title"><label class="titletext">판매상품 등록</label>
 </div>
 <div class="contentMain">
-<form class="prodAddForm">
+<form class="prodAddForm" name="productAdd" action="productAdd.do" method="post" enctype="multipart/form-data">
 	<div class="AddForm1">
 	<div class="prodmenu">
 		<span class="menuname2">카테고리</span>
@@ -26,10 +55,11 @@
 	</div>
 	<hr class="line">
 	<div class="AddForm2">
-	<div class="prodmenu"><span class="menuname">제목</span><input type="text" name="product_title" class="textBoxDeco1"></div>
-	<div class="prodmenu"><span class="menuname">판매가</span><input type="text" name="product_price" maxlength="6" class="textBoxDeco1"></div>
+	<div class="prodmenu"><span class="menuname">제목</span><input type="text" name="product_title" class="textBoxDeco1" maxlength="30" required></div>
+	<div class="prodmenu"><span class="menuname">판매가</span><input type="text" name="product_price" maxlength="6" class="textBoxDeco1"  required></div>
 	<div class="prodmenu">
-		<textarea class="detailContent" placeholder="상세내용 입력 (최대 380자까지 입력)" name="product_content" maxlength="380" onkeyup="textCheck()"></textarea>
+		<textarea class="detailContent" id="prodContent" placeholder="상세내용 입력 (최대 380자까지 입력)" name="product_content" maxlength="380" oninput="textCheck()" required></textarea>
+		<div class="textCount">(<span id="textLength">0</span> / 380)</div>
 	</div>
 	<div>
 		<span class="imgDiv2">

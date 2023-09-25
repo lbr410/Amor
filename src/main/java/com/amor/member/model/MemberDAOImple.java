@@ -70,4 +70,13 @@ public class MemberDAOImple implements MemberDAO {
 		int result = sqlmap.insert("signUp", dto);
 		return result;
 	}
+	
+	@Override
+	public int memberInfoUpdate(MemberDTO dto, int sidx) {
+		Map map=new HashedMap();
+		map.put("dto", dto);
+		map.put("sidx", sidx);
+		int result=sqlmap.update("memberInfoUpdate", map);
+		return result;
+	}
 }

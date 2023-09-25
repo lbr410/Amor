@@ -28,7 +28,7 @@
       <div class="sub-menu">
         <ul class="menu">
           <li>
-            <a href="javascript:void(0)">MY AMOR</a>
+            <a href="/amor/myAmor.do">MY AMOR</a>
           </li> 
           <li> 
             <a href="javascript:void(0)">고객센터</a>

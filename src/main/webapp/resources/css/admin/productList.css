@@ -46,4 +46,18 @@
 
 .paging {
 	text-align: center;
+	font-size: 16px;
+}
+
+.paging a:hover{
+	color: #324ABC;
+	font-weight: bold;
+}
+
+.page{
+    
+}
+
+.nowPage {
+	font-weight: bold;
 }
