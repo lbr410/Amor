@@ -135,3 +135,10 @@
 .btn{
 
 }
+a:visited{
+	color:#181818;
+}
+a:link{
+	color:#181818;
+	text-decoration: none;
+}

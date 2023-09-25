@@ -50,7 +50,7 @@ public class SignUpController {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
-		mav.addObject("goUrl", "login.do");
+		mav.addObject("goUrl", "/amor/member/login.do");
 		mav.setViewName("user/msg/userMsg");
 		
 		return mav;

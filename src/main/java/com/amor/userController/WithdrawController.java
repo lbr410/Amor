@@ -25,7 +25,7 @@ public class WithdrawController {
 		String id=(String)session.getAttribute("sid");
 		int result=memberService.memberWithDraw(id);
 		
-		return "index.do";
+		return "index";
 	}
 
 }

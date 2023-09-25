@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,44 +27,57 @@
                 </span>
                 <div class="tab-list">
                     <ul>
-                        <li class="on">
+                        <li>
                             <a href="userIdFindForm.do" title="아이디찾기">
                                 아이디 찾기
                             </a>
                         </li>
-                        <li>
+                        <li class="on">
                             <a href="userPwdFindForm.do" title="비밀번호 찾기">
                                 비밀번호 찾기
                             </a>
                         </li>
                     </ul>
                 </div>
-                <div class="navi">
-                        아이디는 가입시 입력하신 이메일을 통해 찾을 수 있습니다.
+                <div class="result-section"> 
+                    <div class="txt-find">
+                        아이디 찾기
                     </div>
-                <form name="userIdFind" action="userIdFindSubmit.do" method="post" class="table-wrap">
+                    <div class="id-result">
+                        <span class="member_id">회원님의 아이디는 ${member_id} 로 등록되어 있습니다.</span>
+                    </div>
+                    <form class="table-wrap">
                     <table class="table">
                         <tbody>
                             <tr>
-                                <th>이름</th>
-                                <td colspan="2">
-                                    <input type="text" name="member_name"  id="member-name" maxlength="20" type="text" placeholder="이름">
+                                <th class="signUpMenu">이메일 주소</th>
+                                <td>
+                                    <input type="text" name="member_emial" id="member-email" maxlength="50" placeholder="이메일">
+                                </td>
+                                <td>
+                                    <input type="button" class="gray-btn" value="인증번호 받기"> 
                                 </td>
                             </tr>
                             <tr>
-                                <th>이메일 주소</th>
-                                <td>
-                                    <input name="member_email" id="member-email" maxlength="30" type="text" placeholder="이메일">
+                                <th class="signUpMenu">인증번호</th>
+                                <td colspan="2">
+                                    <input type="text" name="authNum" id="answer-num" maxlength="6" placeholder="인증번호">
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+                    <div class="navi-info">
+                        본인확인 이메일 주소와 입력한 이메일 주소가 같아야<br>
+                        인증번호를 받을 수 있습니다.
+                    </div>
                     <div class="btn-bottom">
-                        <button type="submit" id="btn-Search" class="blue-btn">
-                            아이디 찾기
-                        </button>
+                    <a href="userPwdFindForm.do">
+                        <input type="button" class="blue-btn" value="확인">
+                    </a>
                     </div>
                 </form>
+                    
+                </div>
             </div>
         </div>
     </div>
