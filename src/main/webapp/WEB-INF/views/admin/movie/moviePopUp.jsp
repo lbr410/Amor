@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Amor 관리자 : 영화 줄거리</title>
 </head>
 <body>
-hi
+<h1>제목 : ${dto.movie_name }</h1>
+내용 : ${dto.movie_content }
 </body>
 </html>

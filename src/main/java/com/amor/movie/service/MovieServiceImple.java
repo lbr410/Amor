@@ -1,5 +1,7 @@
 package com.amor.movie.service;
 
+import java.util.List;
+
 import com.amor.movie.model.*;
 
 public class MovieServiceImple implements MovieService {
@@ -15,6 +17,18 @@ public class MovieServiceImple implements MovieService {
 	public int movieAdd(MovieDTO dto) {
 		int result = moviedao.movieAdd(dto);
 		return result;
+	}
+	
+	@Override
+	public List<MovieDTO> movieList() {
+		List<MovieDTO> lists = moviedao.movieList();
+		return lists;
+	}
+	
+	@Override
+	public MovieDTO movieContent(int movie_idx) {
+		MovieDTO dto = moviedao.movieContent(movie_idx);
+		return dto;
 	}
 	
 	
