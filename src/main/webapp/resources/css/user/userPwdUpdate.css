@@ -94,13 +94,17 @@
 		margin-bottom:13px;
 		border: 1px solid #1A2C82;
 		border-radius: 3px;
-		margin-bottom: 10px;
+		margin-bottom: 0px;
 }
 .form .text2{
-		margin-bottom: 15px;
+		margin-bottom: 0px;
 }
 .checkMsg{
-	margin-bottom: 10px;
+	height: 10px;
+}
+.checkMsg2{
+	height: 10px;
+	margin-bottom: 15px;
 }
 
 .cancel{

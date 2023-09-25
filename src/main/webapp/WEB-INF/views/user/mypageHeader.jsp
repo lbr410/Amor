@@ -138,11 +138,18 @@
     color: #FFF;
     border: 1px solid #1A2C82;
 }
+a:visited{
+	color:#181818;
+}
+a:link{
+	color:#181818;
+	text-decoration: none;
+}
 
 </style>
 <body>
 	<div class="mypageDiv">
-		<div class="usertitle"><label>홍길동</label>님 반갑습니다:)<label class="useredit">편집</label></div>
+		<div class="usertitle"><label>${sessionScope.sname}</label>님 반갑습니다:)<label class="useredit"><a href="/amor/myAmor/userInfoUpdateForm.do">편집</a></label></div>
 		<hr>
 		<div class="pagemenu">
 			<a href="ticketingHistory.jsp" onclick="show(event)"><button id="btn1">예매내역</button></a>

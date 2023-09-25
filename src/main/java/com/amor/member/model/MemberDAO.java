@@ -12,5 +12,6 @@ public interface MemberDAO {
 	public MemberDTO memberInfo(int sidx);
 	public String idCheck(String id);
 	public int signUp(MemberDTO dto);
+	public int memberInfoUpdate(MemberDTO dto, int sidx);
 }
  

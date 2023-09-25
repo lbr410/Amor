@@ -28,22 +28,22 @@
       <div class="sub-menu">
         <ul class="menu">
           <li>
-            <a href="javascript:void(0)">MY AMOR</a>
+            <a href="/amor/myAmor.do">MY AMOR</a>
           </li> 
           <li> 
             <a href="javascript:void(0)">고객센터</a>
           </li>
           
-			<c:if test="${!empty sessionScope.sid}">
+			<c:if test="${empty sessionScope.sid}">
 				<li>
 					<a href="javascript:void(0)">회원가입</a>
 				</li>
 				<li class="login">
-					<a href="member/login.do"><input type="button" value="로그인"></a>
+					<a href="/amor/member/login.do"><input type="button" value="로그인"></a>
 				</li>
 			</c:if>
-			<c:if test="${empty sessionScope.sid}">
-				<li class="logout"><a href="member/logout.do"><input type="button" value="로그아웃"></a></li>
+			<c:if test="${!empty sessionScope.sid}">
+				<li class="logout"><a href="/amor/member/logout.do"><input type="button" value="로그아웃"></a></li>
 			</c:if>
         </ul>
       </div>

@@ -138,7 +138,13 @@
     color: #FFF;
     border: 1px solid #1A2C82;
 }
-
+a:visited{
+	color:#181818;
+}
+a:link{
+	color:#181818;
+	text-decoration: none;
+}
 </style>
 <body>
 	<div class="mypageDiv">

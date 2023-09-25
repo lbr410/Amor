@@ -1,5 +1,6 @@
 package com.amor.member.model;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import java.util.*;
 
@@ -58,6 +59,15 @@ public class MemberDAOImple implements MemberDAO {
 	@Override
 	public int signUp(MemberDTO dto) {
 		int result = sqlmap.insert("signUp", dto);
+		return result;
+	}
+	
+	@Override
+	public int memberInfoUpdate(MemberDTO dto, int sidx) {
+		Map map=new HashedMap();
+		map.put("dto", dto);
+		map.put("sidx", sidx);
+		int result=sqlmap.update("memberInfoUpdate", map);
 		return result;
 	}
 }
