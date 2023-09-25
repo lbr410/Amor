@@ -19,7 +19,7 @@
 		<div class="idCheck"><input type="checkbox" name="saveid" value="on" ${empty cookie.saveid?'':'checked'}> 아이디 기억하기</div>
 		<input type="submit" value="로그인" class="submit">
 		<a href="#"><input type="button" value="회원가입" class="join"></a>
-		<div class="find"><a href="userIdFind.do"><label>아이디 찾기</label></a><a href="userPwdFind.do"><label>비밀번호 찾기</label></a></div>
+		<div class="find"><a href="userIdFindForm.do"><label>아이디 찾기</label></a><a href="userPwdFind.do"><label>비밀번호 찾기</label></a></div>
 	</div>
 </form>
 </div>

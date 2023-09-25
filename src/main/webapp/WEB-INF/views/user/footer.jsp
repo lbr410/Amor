@@ -4,14 +4,58 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-  <link rel="stylesheet" href="/amor/resources/css/user/footer.css" />  
-</head>
-<body>
+  <style>
+footer {
+  background-color: #272727;
+  border-top: 1px solid #333;
+}
+footer .footer-inner {
+  padding: 40px 0 60px 0;
+}
+
+footer .btn-group {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+footer .btn-group .btn {
+  font-size: 12px;
+  margin-right: 10px;
+  color: #bcbcbc;
+}
+footer .btn-group .btn:last-child {
+  margin-right: 0;
+}
+footer .info {
+  margin-top: 30px;
+  text-align: center;
+}
+footer .info span {
+  margin-right: 20px;
+  color: #999;
+  font-size: 12px;
+}
+footer .info span:last-child {
+  margin-right: 0;
+}
+footer .copyright {
+  color: #999;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 12px;
+}
+footer .footer-inner .logo {
+  margin: 30px auto 0;
+  width: 120px;
+  height: auto;
+}
+  
+  </style>
+  </head>
 
   <!--FOOTER-->
   <footer>
-    <div class="inner">
+    <div class="footer-inner">
       <div class="btn-group">
         <a href="#" class="btn">영화관소개</a>
         <a href="#" class="btn">공지사항</a>
@@ -29,9 +73,7 @@
       <p class="copyright">
         &copy; <span class="this-year"></span> Amor Cinema. All Rights Reserved.
       </p>
-      <img src="./image/white_logo.png" alt="AmorCinema" class="logo" />
-
+      <img src="/amor/resources/img/gray_logo.png" alt="AmorCinema" class="logo" />
     </div>
   </footer>
-</body>
 </html>

@@ -12,7 +12,7 @@ public class MemberDAOImple implements MemberDAO {
 		this.sqlmap = sqlmap;
 	}
 
-	@Override	
+	@Override	 
 	public MemberDTO memberLogin(String id) {
 		MemberDTO dto=sqlmap.selectOne("memberLogin", id);
 		return dto;
@@ -35,6 +35,13 @@ public class MemberDAOImple implements MemberDAO {
 		int result=sqlmap.update("memberPwdUpdate", map);
 		return result;
 	}
+	@Override
+	public Map<String, String> findUserId(HashMap<String, Object> parameters) {
+		return sqlmap.selectOne("com.amor.member.model.MemberDAO.findUserId", parameters);
+	}
+
+
+
 	
 	@Override
 	public MemberDTO memberInfo(int sidx) {

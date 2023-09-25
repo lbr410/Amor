@@ -17,7 +17,6 @@ public class MemberServiceImple implements MemberService {
 
 	@Override
 	public int memberLogin(MemberDTO dto) {
-		
 		MemberDTO dbDto=memberDao.memberLogin(dto.getMember_id());
 		int result=ERROR;
 		if(dbDto!=null) {
@@ -87,5 +86,12 @@ public class MemberServiceImple implements MemberService {
 	public int signUp(MemberDTO dto) {
 		int result = memberDao.signUp(dto);
 		return result;
+	}
+	
+	@Override
+	public Map<String, String> userIdFind(String member_name, String member_email) {
+		Map<String, String> result=new HashMap<>();
+		
+		return null;
 	}
 }

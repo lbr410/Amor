@@ -40,12 +40,12 @@
                         </li>
                     </ul>
                 </div>
-                <div class="result-section">
+                <div class="result-section"> 
                     <div class="txt-find">
                         아이디 찾기
                     </div>
                     <div class="id-result">
-                        <span class="member_id">회원님의 아이디는 로 등록되어 있습니다.</span>
+                        <span class="member_id">회원님의 아이디는 ${dto.getMember_id} 로 등록되어 있습니다.</span>
                     </div>
                     <div class="btn-bottom">
                         <input type="button" class="gray-btn" value="로그인">

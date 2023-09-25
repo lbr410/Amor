@@ -8,6 +8,10 @@
 	where member_id=#{id} 
 </select>
 
+<select id="userIdFind" resultType="com.amor.member.model.MemberDTO" parameterType="java.util.HashMap">
+	select * from member where member_name=#{member_name} and member_email=#{member_email}
+</select>
+
 <update id="memberWithDraw" parameterType="String">
 	update member set member_quit='y', member_quitdate=sysdate
 	where member_id=#{id}

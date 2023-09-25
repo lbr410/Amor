@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../resources/css/user/userFind.css">
+<link rel="stylesheet" href="/amor/resources/css/user/userIdFind.css">
 </head>
 <body>
     <div class="top">
-        <div class="navigate"><a href="#"><img src="img/logo.png"></a>
+        <div class="navigate"><a href="/amor/index.jsp"><img src="/amor/resources/img/white_b_logo.png"></a>
             <span class="txt-info">Home으로 돌아가기</span>
         </div>
     </div>
@@ -17,7 +18,7 @@
         <div class="center">
             <div class="ci">
                 <a href="#" title="메인 페이지로 이동">
-                    <img src="#" alt="amor cinema">
+                    <img src="/amor/resources/img/main_logo.png" alt="amor cinema">
                 </a>
             </div>
             <div class="find-section">
@@ -38,7 +39,10 @@
                         </li>
                     </ul>
                 </div>
-                <form name="userIdFind" action="userIdFindForm.do"class="table-wrap">
+                <div class="navi">
+                        아이디는 가입시 입력하신 이메일을 통해 찾을 수 있습니다.
+                    </div>
+                <form name="userIdFind" action="userIdFindSubmit.do" method="post" class="table-wrap">
                     <table class="table">
                         <tbody>
                             <tr>
@@ -50,26 +54,13 @@
                             <tr>
                                 <th>이메일 주소</th>
                                 <td>
-                                    <input name="email" name="member_emial" id="member-email" maxlength="30" type="text" placeholder="이메일">
-                                </td>
-                                <td>
-                                    <input type="button" class="gray-btn" value="인증번호 받기"> 
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>인증번호</th>
-                                <td colspan="2">
-                                    <input name="submitNum" id="answer-num" maxlength="6" type="text" placeholder="인증번호">
+                                    <input name="member_emial" id="member-email" maxlength="30" type="text" placeholder="이메일">
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="navi-info">
-                        본인확인 이메일 주소와 입력한 이메일 주소가 같아야<br>
-                        인증번호를 받을 수 있습니다.
-                    </div>
                     <div class="btn-bottom">
-                        <button id="btn-Search" type="button" class="blue-btn">
+                        <button type="submit" id="btn-Search" class="blue-btn">
                             아이디 찾기
                         </button>
                     </div>

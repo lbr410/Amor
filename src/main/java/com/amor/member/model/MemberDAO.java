@@ -5,6 +5,7 @@ import java.util.*;
 public interface MemberDAO {
 	
 	public MemberDTO memberLogin(String id);
+  public Map<String, String> findUserId(HashMap<String, Object> parameters);
 	public int memberWithDraw(String id);
 	public String memberPwdCheck(String pwd);
 	public int memberPwdUpdate(Map map);
@@ -12,3 +13,4 @@ public interface MemberDAO {
 	public String idCheck(String id);
 	public int signUp(MemberDTO dto);
 }
+ 

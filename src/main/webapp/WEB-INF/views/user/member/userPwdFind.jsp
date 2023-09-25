@@ -14,7 +14,7 @@
             <span class="txt-info">Home으로 돌아가기</span>
         </div>
     </div>
-    <div class="body-inner">
+    <div class="body-inner"> 
         <div class="center">
             <div class="ci">
                 <a href="#" title="메인 페이지로 이동">
