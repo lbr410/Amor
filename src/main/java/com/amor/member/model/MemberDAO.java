@@ -5,5 +5,5 @@ import java.util.*;
 public interface MemberDAO {
 	
 	public MemberDTO memberLogin(String id);
-
+    public Map<String, String> findUserId(HashMap<String, Object> parameters);
 }

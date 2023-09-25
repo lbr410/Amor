@@ -18,18 +18,35 @@ a{
   	position: relative;
 	height: 48px;
 }
+.top .navigate{
+	max-height: 48px;
+	padding-left: 120px;
+}
+.top .navigate img {
+	max-height: 30px;
+	width: auto;
+}
 .logo{
 	padding-left:64px;
 	padding-top:7px;
-	width: 140px;
-	height: 48px;
+	height: 60px;
 	align-items: flex-start;
     justify-content: flex-start;
     flex-shrink: 0;
 }
+.body-inner .center .ci img{
+    display: flex;
+    margin: 0 auto;
+    padding: 100px 0 40px 0;
+    justify-content: center;
+    width: auto;
+	max-height: 72px;
+}
 .txt-info{
     font-size: 14px;
     color: #FFFFFF;
+    padding-left: 24px;
+    padding-bottom: 24px;
 }
 /* SECTION*/
 .body-inner{
@@ -43,16 +60,7 @@ a{
     margin: 0 auto;
     height: 800px;
 }
-.body-inner .center .ci img{
-    display: flex;
-    width: 700px;
-    margin: 0 auto;
-    padding: 100px 0 40px 0;
-    justify-content: center;
-    width: 200px;
-    height: 48px;
 
-}
 /* TITLE*/
 .body-inner .center .find-section .col{
     display: flex;
@@ -69,12 +77,13 @@ a{
     margin: 0 auto;
     margin-top: 24px;
     margin-left: 34px;
+    margin-bottom: 40px;
 }
 ul{
     list-style: none;
     display: block;
     width: 550px;
-    height: 46px;
+    height: 36px;
     text-align: center;
 }
 
@@ -85,10 +94,10 @@ li a{
     padding-top: 14px;
     font-size: 14px;
     color: #666666;
-    border-bottom: 1px solid #F8F9FA;
+    border-bottom: 1px solid #EDEDED;
 }
 .body-inner .center .find-section .tab-list .on a{
-    background-color: #F8F9FA;
+    background-color: #EDEDED;
     border-radius: 8px 8px 0px 0px;
     color: #1A2C82;
     font-size: 14px;
@@ -114,18 +123,22 @@ li a{
     border-top: solid 1px #000000;
     margin: 0 auto;
     border-collapse: collapse;
+    margin-bottom: 36px;
 }
 .body-inner .center .find-section .table-wrap table th{
-    width: 400px;
+    width: 100px;
     font-size: 16px;
     font-weight: bold;
     text-align: left;
     background-color: #F8F8F8;
     border-bottom: #BCBCBC 1px solid;
-    padding: 10px;
+    padding-left: 70px;
+}
+.body-inner .center .find-section .table-wrap table th a{
+    padding-left: 60px;
 }
 .body-inner .center .find-section .table-wrap table td{
-    width: 240px;
+    width: 160px;
     border-bottom: #BCBCBC;
     padding: 10px;
     border-bottom: #BCBCBC 1px solid;
@@ -156,21 +169,11 @@ li a{
     border: none;
     cursor: pointer;
 }
-.body-inner .center .find-section .table-wrap .navi-info{
-    display: flex;
-    text-align: left;
-    padding-top: 20px;
-    margin: 0 auto;
-    height: 78px;
-    width: 550px;
-    font-size: 14px;
-}
 
 /*NEXT BUTTON*/
 .body-inner .center .find-section .table-wrap .btn-bottom{
     display:flex;
     justify-content: center;
-    padding-top: 20px;
     width: 550px;
     margin: 0 auto;
     
@@ -201,7 +204,6 @@ button{
 .blue-btn {
     border:none;
     padding: 2px 21px 6px 21px;
-    margin-left: 24px;
     width: 220px;
     height: 48px;
     border-radius: 3px;

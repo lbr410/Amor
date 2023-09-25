@@ -36,4 +36,15 @@ public class MemberServiceImple implements MemberService {
 		}
 		return msg;
 	}
+	
+	@Override
+	public Map<String, String> userIdFind(String member_name, String member_email) {
+		Map<String, String> result=new HashMap<>();
+		
+		return null;
+	}
+
+	   
+		
+
 }

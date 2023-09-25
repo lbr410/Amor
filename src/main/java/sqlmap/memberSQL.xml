@@ -7,4 +7,8 @@
 	select member_pwd, member_quit, member_block from member 
 	where member_id=#{id} 
 </select>
+
+<select id="userIdFind" resultType="com.amor.member.model.MemberDTO" parameterType="java.util.HashMap">
+	select * from member where member_name=#{member_name} and member_email=#{member_email}
+</select>
 </mapper>

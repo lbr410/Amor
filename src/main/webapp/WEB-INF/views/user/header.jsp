@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +21,8 @@
   <!--HEADER-->
   <header>
     <div class="inner">
-      <a href="#" class="logo">
-        <img src="./image/main_logo.png" alt="amor_cinema" />
+      <a href="/amor/index.jsp" class="logo">
+        <img src="/amor/resources/img/main_logo.png" alt="amor_cinema" />
       </a>
 
       <div class="sub-menu">
@@ -32,14 +33,18 @@
           <li>
             <a href="javascript:void(0)">고객센터</a>
           </li>
-          <li>
-            <a href="javascript:void(0)">회원가입</a>
-          </li>
-          <li>
-          	<div class="login">
-            <a href="member/login.do"><input type="button" value="로그인"></a>
-          	</div>
-          </li>
+          
+			<c:if test="${!empty sessionScope.sid}">
+				<li>
+					<a href="javascript:void(0)">회원가입</a>
+				</li>
+				<li class="login">
+					<a href="member/login.do"><input type="button" value="로그인"></a>
+				</li>
+			</c:if>
+			<c:if test="${empty sessionScope.sid}">
+				<li class="logout"><a href="member/logout.do"><input type="button" value="로그아웃"></a></li>
+			</c:if>
         </ul>
       </div>
        <ul class="main-menu">
@@ -48,16 +53,14 @@
           <div class="item__contents">
             <div class="contents__menu">
               <ul class="inner">
-              <li></li>
-              <li></li>
                 <li>
                   <ul>
-                    <li>예매하기</li>
+                    <li class="ticketing">예매하기</li>
                   </ul>
                 </li>
                 <li>
                   <ul>
-                  	<li>상영시간표</li>
+                  	<li class="ticketingSchedule">상영시간표</li>
                   </ul>
                 </li>
               </ul>
@@ -69,16 +72,14 @@
           <div class="item__contents">
             <div class="contents__menu">
               <ul class="inner">
-              <li></li>
-              <li></li>
                 <li>
                   <ul>
-                    <li>현재상영작</li>
+                    <li class="nowMovie">현재상영작</li>
                   </ul>
                 </li>
                 <li>
                   <ul>
-                  	<li>상영예정작</li>
+                  	<li class="comeMovie">상영예정작</li>
                   </ul>
                 </li>
               </ul>
@@ -90,12 +91,9 @@
           <div class="item__contents">
             <div class="contents__menu">
               <ul class="inner">
-              <li></li>
-              <li></li>
-              <li></li>
                 <li>
                   <ul>
-                    <li>스낵/음료</li>
+                    <li class="store">스낵/음료</li>
                   </ul>
                 </li>
               </ul>
@@ -107,13 +105,9 @@
           <div class="item__contents">
             <div class="contents__menu">
               <ul class="inner">
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
                 <li>
                   <ul>
-                    <li>영화관 소개</li>
+                    <li class="movieIntro">영화관 소개</li>
                   </ul>
                 </li>
               </ul>
@@ -124,7 +118,7 @@
 		<form name = "headSearch" class="headSearch">
             <input type="text" maxlength="30" name="search" id="search" placeholder="영화명을 입력해주세요.">
                 <div id="searchButton" onclick="userSearch()">
-                    <img id="searchIcon" src="image/searchIcon.png" alt="movieSearch">
+                    <img id="searchIcon" src="/amor/resources/img/icon_search.png" alt="movieSearch">
                 </div>
         </form>
         <span class="top-right"> </span>

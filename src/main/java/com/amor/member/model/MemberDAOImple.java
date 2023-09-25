@@ -18,5 +18,12 @@ public class MemberDAOImple implements MemberDAO {
 		System.out.println(result);
 		return result;
 	}
+	@Override
+	public Map<String, String> findUserId(HashMap<String, Object> parameters) {
+		return sqlmap.selectOne("com.amor.member.model.MemberDAO.findUserId", parameters);
+	}
+
+
+
 	
 }

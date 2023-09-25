@@ -6,7 +6,7 @@
 	<!-- mybatis -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
-		<property name="url" value="jdbc:oracle:thin:@javayong.iptime.org:9000:orcl"></property>
+		<property name="url" value="jdbc:oracle:thin:@java-yong.iptime.org:9000:orcl"></property>
 		<property name="username" value="project01"></property>
 		<property name="password" value="project01"></property>
 	</bean>

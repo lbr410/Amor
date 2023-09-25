@@ -33,10 +33,18 @@ header {
   
 }
 header > .inner {
-  height: 140px;
+  height: 120px;
 }
-header .logo {
+inner .logo {
   height: 75px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+.inner .logo img{
+ height: 75px;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -132,6 +140,51 @@ login{
    flex-shrink: 0;
 }
 .login input{
+   border:none;
+   display: inline-flex;
+   padding: 2px 21px 6px 21px;
+   margin-bottom:2px;
+   justify-content: center;
+   align-items: center;
+   gap: 10px;
+   border-radius: 3px;
+   background: #1A2C82;
+   color: #C7E3FF;
+   line-height: normal;
+   cursor: pointer;
+}
+login{
+   display: flex;
+   float:left;
+   height: 200px;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   flex-shrink: 0;
+}
+.login input{
+   border:none;
+   display: inline-flex;
+   padding: 2px 21px 6px 21px;
+   margin-bottom:2px;
+   justify-content: center;
+   align-items: center;
+   gap: 10px;
+   border-radius: 3px;
+   background: #1A2C82;
+   color: #C7E3FF;
+   line-height: normal;
+   cursor: pointer;
+}logout{
+   display: flex;
+   float:left;
+   height: 200px;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   flex-shrink: 0;
+}
+.logout input{
    border:none;
    display: inline-flex;
    padding: 2px 21px 6px 21px;
