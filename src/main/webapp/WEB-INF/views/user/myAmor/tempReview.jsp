@@ -15,6 +15,9 @@
 	#box1{
 	flex:1;
 	display:table;
+	padding-left: 10px;
+	width: 262px;
+	height: 193px;
 	}
 	
 	.inputfile {
@@ -24,7 +27,7 @@
 	
 	#box2{
 	flex:2;
-	padding-left: 10px;
+	padding-left: 40px;
 	}
 	
 	.btn {
@@ -125,7 +128,11 @@
   	float:left;
   }
   
-  
+  .thumbnail {
+ 	width: 262px;
+	height: 193px;
+  	object-fit: contain;
+  }
   
 </style>
 </head>
@@ -138,22 +145,23 @@
 	<div class="btn-content">
 		
 		<span id="closeBtn" class="closeBtn2">&times;</span>
-		<span class="name">이름</span>
+		<span class="name">${member_name}</span>
 		<span class="starBack">	
 		<span class="star">
-		<img src="/amor/resources/img/Stars_background.png">
+			<img src="/amor/resources/img/Stars_background.png">
 		<span><img src="/amor/resources/img/Stars_rating.png"></span>
-		<input type="range" name="movie_review_star" oninput="drawStar(this)" value="1" step="1" min="1" max="10">
+			<input type="range" name="movie_review_star" oninput="drawStar(this)" value="1" step="1" min="1" max="10">
 		</span>
 		</span>
 		<br>
 		<div id="container">
-		<div id="box1">
-		<div class="inputfile" id="imageRe">
-		<input type="file" name="movie_review_img" value="파일찾기" class="fileBtn" id="fileInput" onchange="imageReload()">
-		</div>
-		</div>
-		<div id="box2"><textarea cols="55" rows="10" name="movie_review_content" placeholder="관람평을 작성해주세요"></textarea></div>
+			<div id="box1" class="container2">
+				<img id="reviewPreview" class="thumbnail">
+				<div class="inputfile">
+				<input type="file" name="movie_review_img" value="파일찾기" class="fileBtn" id="fileInput" onchange="imgPreview(this)">
+				</div>
+			</div>
+			<div id="box2"><textarea cols="55" rows="12" name="movie_review_content" placeholder="관람평을 작성해주세요"></textarea></div>
 		</div>
 		<p class="centerBtn"><input type="submit" value="작성 완료" class="cancelBtn">
 		&nbsp;&nbsp;<input type="reset" value="다시 작성" class="cancelBtn"></p>
@@ -162,7 +170,7 @@
 </div>
 </form>
 
-<script>
+<script type="text/javascript">
 	const openReviewBtn = document.getElementById("openReview");
 	const myReviewBtn = document.getElementById("myReviewBtn");
 	const closeBtn = document.getElementById("closeBtn");
@@ -185,23 +193,19 @@
 		document.querySelector(".star span").style.width = target.value*10+'%';		
 	}
 	
-	function imageReload() {
-		let divTag = document.reviewUpload.imageRe;
+	function imgPreview(input){
+		let reviewImgId = 'reviewPreview';
 		
-		window.alert(divTag);
-		
-		let filePath = document.getElementById('fileInput').value;
-		
-		divTag.innerHTML='<p><img src='+filePath+'></p>'
-		
-		let filePathSplit = filePath.split('\\');
-		let filePathLength = filePathSplit.length;
-		let fileNameSplit = filePathSplit [filePathLength-1].split('.');
-		let fileName = fileNameSplit[0];
-		
-		
+		if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function(e) {
+		    	document.getElementById(reviewImgId).src = e.target.result;
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  } else {
+		    document.getElementById(reviewImgId).src = "";
+		  }
 	}
-	
 </script>
 
 </body>
