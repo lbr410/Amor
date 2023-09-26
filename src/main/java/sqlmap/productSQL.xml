@@ -71,4 +71,20 @@
 	<delete id="productDel" parameterType="Integer">
 		delete from product where product_idx = #{product_idx}
 	</delete>
+	
+	<select id="storeTicketList" resultType="com.amor.product.model.ProductDTO">
+		select * from product where product_category='t'
+	</select>
+	
+	<select id="storeDrinkList" resultType="com.amor.product.model.ProductDTO">
+		select * from product where product_category='d'
+	</select>
+	
+	<select id="storeSnackList" resultType="com.amor.product.model.ProductDTO">
+		select * from product where product_category='s'
+	</select>
+	
+	<select id="storeContent" parameterType="Integer" resultType="com.amor.product.model.ProductDTO">
+		select * from product where product_idx=#{idx}
+	</select>
 </mapper>

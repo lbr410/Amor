@@ -4,7 +4,12 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amor.memberSQL">
 <select id="memberLogin" resultType="com.amor.member.model.MemberDTO" parameterType="String">
-	select member_idx, member_name, member_pwd, member_quit, member_block from member 
+	select member_pwd, member_quit, member_block from member 
+	where member_id=#{id} 
+</select>
+
+<select id="memberSession" resultType="com.amor.member.model.MemberDTO" parameterType="String">
+	select member_idx, member_name from member
 	where member_id=#{id} 
 </select>
 

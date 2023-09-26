@@ -1,10 +1,16 @@
 package com.amor.userController;
 
+import java.net.http.HttpRequest;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.amor.member.service.MemberService;
 
@@ -20,12 +26,24 @@ public class WithdrawController {
 	}
 	
 	@RequestMapping("myAmor/withdrawSubmit.do")
-	public String withdrawSubmit(HttpSession session) {
+	public ModelAndView withdrawSubmit(
+			HttpSession session,
+			HttpServletRequest req,
+			HttpServletResponse resp) {
 		
 		String id=(String)session.getAttribute("sid");
-		int result=memberService.memberWithDraw(id);
+		int result=memberService.memberWithDraw(id);	
 		
-		return "index";
+		Cookie ck=new Cookie("saveid",id);
+		ck.setMaxAge(0);
+		resp.addCookie(ck);
+		
+		session.invalidate();
+
+		ModelAndView mav= new ModelAndView();
+		mav.setViewName("redirect:/index.do");
+		
+		return mav;
 	}
 
 }

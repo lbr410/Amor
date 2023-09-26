@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 public interface MemberDAO {
 	
 	public MemberDTO memberLogin(String id);
+	public MemberDTO memberSession(String id);
 	public int memberWithDraw(String id);
 	public String memberPwdCheck(String pwd);
 	public int memberPwdUpdate(Map map);

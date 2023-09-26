@@ -17,4 +17,8 @@ public interface ProductService {
 	public ProductDTO productSelectIdx(int product_idx);
 	public int productUpdate(ProductDTO dto);
 	public int productDel(int product_idx);
+	public List<ProductDTO> storeTicketList();
+	public List<ProductDTO> storeDrinkList();
+	public List<ProductDTO> storeSnackList();
+	public ProductDTO storeContent(int idx);
 }

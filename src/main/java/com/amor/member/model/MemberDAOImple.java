@@ -19,6 +19,12 @@ public class MemberDAOImple implements MemberDAO {
 		return dto;
 	}
 	
+	@Override
+	public MemberDTO memberSession(String id) {
+		MemberDTO dto=sqlmap.selectOne("memberSession", id);
+		return dto;
+	}
+	
 	 @Override
 	public int memberWithDraw(String id) {
 		int result=sqlmap.update("memberWithDraw", id);

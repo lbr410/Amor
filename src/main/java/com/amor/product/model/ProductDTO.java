@@ -9,10 +9,31 @@ public class ProductDTO {
 	private String product_img;
 	private String product_writedate;
 	private String product_soldout;
+	//test
+	private String product_price2;
 	
 	public ProductDTO() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	// +price2
+	public ProductDTO(int product_idx, String product_category, String product_title, int product_price,
+			String product_content, String product_img, String product_writedate, String product_soldout,
+			String product_price2) {
+		super();
+		this.product_idx = product_idx;
+		this.product_category = product_category;
+		this.product_title = product_title;
+		this.product_price = product_price;
+		this.product_content = product_content;
+		this.product_img = product_img;
+		this.product_writedate = product_writedate;
+		this.product_soldout = product_soldout;
+		this.product_price2 = product_price2;
+	}
+
+
 
 	public ProductDTO(int product_idx, String product_category, String product_title, int product_price,
 			String product_content, String product_img, String product_writedate, String product_soldout) {
@@ -90,4 +111,15 @@ public class ProductDTO {
 	public void setProduct_soldout(String product_soldout) {
 		this.product_soldout = product_soldout;
 	}
+	
+	
+	public String getProduct_price2() {
+		return product_price2;
+	}
+
+	public void setProduct_price2(String product_price2) {
+		this.product_price2 = product_price2;
+	}
+	
+	
 }

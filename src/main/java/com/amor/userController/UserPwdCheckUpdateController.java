@@ -68,7 +68,8 @@ public class UserPwdCheckUpdateController {
 				msg="비밀번호 확인 성공 (바로 수정 폼으로)";
 				mav.addObject("msg", msg);
 				mav.addObject("goUrl", "userPwdUpdateForm.do");
-				mav.setViewName("/user/msg/userMsg");			
+				mav.setViewName("/user/msg/userMsg");	
+
 			}else if(type.equals("withdraw")) {
 				msg="비밀번호 확인 성공 (바로 탈퇴 폼으로)";
 				mav.addObject("msg", msg);
