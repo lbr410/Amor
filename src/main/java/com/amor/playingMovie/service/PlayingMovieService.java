@@ -8,5 +8,7 @@ public interface PlayingMovieService {
 	
 	public List<PlayingMovieDTO> playingMovieList(int cp, int ls);
 	public int getTotalCnt();
-
+	public List<Map> playingMovieAddScreen();
+	public List<Map> playingMovieAddMovie();
+	public int playingMovieAdd(PlayingMovieDTO dto);
 }

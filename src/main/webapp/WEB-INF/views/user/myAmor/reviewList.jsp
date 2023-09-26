@@ -52,6 +52,21 @@ table tfoot tr {
 	text-align: center;
 }
 
+.paging {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 16px;
+}
+
+.paging a:hover{
+	color: #324ABC;
+	font-weight: normal;
+}
+
+.nowPage {
+	color: #324ABC !important;
+	font-weight: bold;
+}
 
 </style>
 <body>
@@ -76,7 +91,7 @@ table tfoot tr {
 			</thead>
 			<tfoot>
 				<tr>
-					<td colspan="5">${reviewpageStr}</td>
+					<td colspan="5" class="paging">${reviewpageStr}</td>
 				</tr>
 			</tfoot>
 			<tbody>

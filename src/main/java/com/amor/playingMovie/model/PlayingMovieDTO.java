@@ -33,14 +33,6 @@ public class PlayingMovieDTO {
 		this.theater_name = theater_name;
 		this.movie_name = movie_name;
 	}
-	
-	public PlayingMovieDTO(Date playing_movie_date, Date playing_movie_start, String theater_name, String movie_name) {
-		super();
-		this.playing_movie_date = playing_movie_date;
-		this.playing_movie_start = playing_movie_start;
-		this.theater_name = theater_name;
-		this.movie_name = movie_name;
-	}
 
 	public int getPlaying_movie_idx() {
 		return playing_movie_idx;

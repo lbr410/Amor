@@ -31,8 +31,8 @@
 			</div>
 			<div class="submenu" id="submenu-2"> 
 				<div class="menutext"><a href="#">상영관 등록</a></div>
-				<div class="menutext"><a href="#">상영영화 목록</a></div>
-				<div class="menutext"><a href="#">상영시간 등록</a></div>
+				<div class="menutext"><a href="/amor/admin/playMovie/playingMovieList.do">상영영화 목록</a></div>
+				<div class="menutext"><a href="/amor/admin/playMovie/playingMovieAdd.do">상영시간 등록</a></div>
 			</div>
 			
 			<div class="menu" onclick="toggleSubmenu(this)">
