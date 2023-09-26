@@ -11,11 +11,25 @@
 			where c.theater_idx=d.theater_idx and c.movie_idx=e.movie_idx
 	</select>
 	<select id="totalCntPlaying" resultType="Integer">
-		select count(*) from playing_movie
-	</select>
-	<select id="playingMovieAdd" resultType="com.amor.playingMovie.model.PlayingMovieDTO">
-		select c.playing_movie_date, c.playing_movie_start, e.movie_name, d.theater_name
-		from playing_movie c, movie e, theater d
+		select count(*) from playing_movie c, theater d, movie e 
 		where c.theater_idx=d.theater_idx and c.movie_idx=e.movie_idx
 	</select>
+	<select id="playingMovieAddMovie" resultType="Map">
+		select movie_name, movie_idx from movie
+	</select>
+	<select id="playingMovieAddScreen" resultType="Map">
+		select theater_name, theater_idx from theater
+	</select>
+	<insert id="playingMovieAdd" parameterType="com.amor.playingMovie.model.PlayingMovieDTO">
+		insert into
+		playing_movie
+		values (playing_movie_idx.nextval, 
+		#{movie_idx}, 
+		#{theater_idx}, 
+		#{playing_movie_date},
+		#{playing_movie_start},
+		#{playing_movie_end},
+		'0',
+		'[]')
+	</insert>
 </mapper>

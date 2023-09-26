@@ -145,7 +145,7 @@
 	<div class="btn-content">
 		
 		<span id="closeBtn" class="closeBtn2">&times;</span>
-		<span class="name">${member_name}</span>
+		<span class="name">이름</span>
 		<span class="starBack">	
 		<span class="star">
 			<img src="/amor/resources/img/Stars_background.png">

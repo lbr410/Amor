@@ -21,12 +21,20 @@ public class MovieReviewController {
 	@Autowired
 	private MovieReviewService movieReviewService;
 	
-	@RequestMapping("user/myAmor/reviewTemp.do")
-	public String reviewWrite() {
+	@RequestMapping("/user/myAmor/tempReview.do")
+	public String reviewTemp() {
 		return "/user/myAmor/tempReview";
+	}
+	
+	@RequestMapping(value = "/user/myAmor/reviewAdd.do", method = RequestMethod.POST)
+	public ModelAndView reviewWrite(MovieReviewDTO dto, MultipartHttpServletRequest req) {
+			
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/user/myAmor/reviewAdd");
+		return mav;
 	}	
 	
-	@RequestMapping("user/myAmor/reviewList.do")
+	@RequestMapping("/user/myAmor/reviewList.do")
 	public ModelAndView reviewList(
 			@RequestParam(value = "cp", defaultValue = "1")int cp,
 			@RequestParam(value = "member_idx", defaultValue = "4")int member_idx

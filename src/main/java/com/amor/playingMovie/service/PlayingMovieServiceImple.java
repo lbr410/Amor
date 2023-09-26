@@ -32,7 +32,24 @@ public class PlayingMovieServiceImple implements PlayingMovieService {
 		int count=playingMovieDao.getTotalCnt();
 		return count;
 	}
+	
+	@Override
+	public List<Map> playingMovieAddMovie() {
+		List<Map> movieLists=playingMovieDao.playingMovieAddMovie(); 
+		return movieLists;
+	}
+	
+	@Override
+	public List<Map> playingMovieAddScreen() {
+		List<Map> screenLists=playingMovieDao.playingMovieAddScreen();
+		return screenLists;
+	}
 
+	@Override
+	public int playingMovieAdd(PlayingMovieDTO dto) {
+		int result = playingMovieDao.playingMovieAdd(dto);
+		return result;
+	}
 }
 
 
