@@ -49,11 +49,11 @@ function checkNumber(event) {
 				<div id="movieStillCutDivPart1">
 					<div class="movieStillCutImgandbutton"><div class="movieStillCutImg"><img id="moviePreview1"></div><label for="btn_movieSt1"><div class="btn_movieSimg">스틸컷1</div></label><input id="btn_movieSt1" type="file" name="movie_stillcut1" onchange="moviePreview(this,1);"></div>
 					<div class="movieStillCutImgandbutton"><div class="movieStillCutImg"><img id="moviePreview2"></div><label for="btn_movieSt2"><div class="btn_movieSimg">스틸컷2</div></label><input id="btn_movieSt2" type="file" name="movie_stillcut2" onchange="moviePreview(this,2);"></div>
-					<div class="movieStillCutImgandbutton1"><div class="movieStillCutImg"><img id="moviePreview3"></div><label for="btn_movieSt2"><div class="btn_movieSimg">스틸컷3</div></label><input id="btn_movieSt3" type="file" name="movie_stillcut3" onchange="moviePreview(this,3);"></div>
+					<div class="movieStillCutImgandbutton1"><div class="movieStillCutImg"><img id="moviePreview3"></div><label for="btn_movieSt3"><div class="btn_movieSimg">스틸컷3</div></label><input id="btn_movieSt3" type="file" name="movie_stillcut3" onchange="moviePreview(this,3);"></div>
 				</div>
 				<div id="movieStillCutDivPart2">
-					<div class="movieStillCutImgandbutton"><div class="movieStillCutImg"><img id="moviePreview4"></div><label for="btn_movieSt1"><div class="btn_movieSimg">스틸컷4</div></label><input id="btn_movieSt4" type="file" name="movie_stillcut4" onchange="moviePreview(this,4);"></div>
-					<div class="movieStillCutImgandbutton"><div class="movieStillCutImg"><img id="moviePreview5"></div><label for="btn_movieSt1"><div class="btn_movieSimg">스틸컷5</div></label><input id="btn_movieSt5" type="file" name="movie_stillcut5" onchange="moviePreview(this,5);"></div>
+					<div class="movieStillCutImgandbutton"><div class="movieStillCutImg"><img id="moviePreview4"></div><label for="btn_movieSt4"><div class="btn_movieSimg">스틸컷4</div></label><input id="btn_movieSt4" type="file" name="movie_stillcut4" onchange="moviePreview(this,4);"></div>
+					<div class="movieStillCutImgandbutton"><div class="movieStillCutImg"><img id="moviePreview5"></div><label for="btn_movieSt5"><div class="btn_movieSimg">스틸컷5</div></label><input id="btn_movieSt5" type="file" name="movie_stillcut5" onchange="moviePreview(this,5);"></div>
 				</div>
 			</div>
 		</div>
@@ -102,7 +102,7 @@ function checkNumber(event) {
 					<th>줄거리</th><td><textarea name="movie_content" rows="15" cols="40" placeholder="내용을 입력해주세요" required="required">${dto.movie_content }</textarea></td>
 				</tr>
 				<tr>
-					<td colspan="2" class="movieUpdateSumit"> <input type="button" value="취소" onclick="location.href='/amor/admin/movie/movieList.do'"> &nbsp;<input type="submit" value="수정"> </td>
+					<td colspan="3" class="movieUpdateSumit"><input type="hidden" name="movie_idx" value="${dto.movie_idx }"> <input type="button" value="취소" onclick="location.href='/amor/admin/movie/movieList.do'"> &nbsp;<input type="submit" value="수정"> </td>
 				</tr>
 			
 			</table>

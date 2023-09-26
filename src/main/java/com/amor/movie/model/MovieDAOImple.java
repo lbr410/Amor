@@ -20,9 +20,15 @@ public class MovieDAOImple implements MovieDAO {
 	}
 	
 	@Override
-	public List<MovieDTO> movieList() {
-		List<MovieDTO> lists = sqlmap.selectList("movieList");
+	public List<MovieDTO> movieList(Map map) {
+		List<MovieDTO> lists = sqlmap.selectList("movieList",map);
 		return lists;
+	}
+	
+@Override
+	public List<MovieDTO> movieListSearch(Map map) {
+		List<MovieDTO> lists = sqlmap.selectList("movieList",map);
+		return null;
 	}
 	
 	@Override
@@ -41,5 +47,11 @@ public class MovieDAOImple implements MovieDAO {
 	public int movieDelete(int movie_idx) {
 		int result = sqlmap.delete("movieDelete", movie_idx);
 		return result;
+	}
+	
+	@Override
+	public int getTotalCnt() {
+		int count = sqlmap.selectOne("totalCnt");
+		return count;
 	}
 }

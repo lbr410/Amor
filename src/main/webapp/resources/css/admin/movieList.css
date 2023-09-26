@@ -10,3 +10,18 @@
     text-align:center;
 }
 
+.paging {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 16px;
+}
+
+.paging a:hover{
+	color: #324ABC;
+	font-weight: normal;
+}
+
+.nowPage {
+	color: #324ABC !important;
+	font-weight: bold;
+}

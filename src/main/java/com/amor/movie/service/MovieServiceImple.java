@@ -1,6 +1,6 @@
 package com.amor.movie.service;
 
-import java.util.List;
+import java.util.*;
 
 import com.amor.movie.model.*;
 
@@ -20,8 +20,26 @@ public class MovieServiceImple implements MovieService {
 	}
 	
 	@Override
-	public List<MovieDTO> movieList() {
-		List<MovieDTO> lists = moviedao.movieList();
+	public List<MovieDTO> movieList(int cp, int listSize) {
+		int start=(cp-1)*listSize+1;
+		int end=cp*listSize;
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		List<MovieDTO> lists = moviedao.movieList(map);
+		return lists;
+	}
+	
+	@Override
+	public List<MovieDTO> movieListSearch(int cp, int listSize, String search) {
+		int start=(cp-1)*listSize+1;
+		int end=cp*listSize;
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("search",search);
+		
+		List<MovieDTO> lists = moviedao.movieListSearch(map);
 		return lists;
 	}
 	
@@ -43,7 +61,12 @@ public class MovieServiceImple implements MovieService {
 		return result;
 	}
 
-
+	@Override
+	public int getTotalCnt() {
+		int result = moviedao.getTotalCnt();
+		return result;
+	}
+	
 	
 	
 }

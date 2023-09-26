@@ -1,11 +1,13 @@
 package com.amor.adminController;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.sql.*;
 import java.util.*;
 import javax.servlet.Servlet;// ?
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.collections.functors.ExceptionPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,14 +28,33 @@ public class MovieController {
 	private MovieService movieservice; 
 
 	@RequestMapping("admin/movie/movieList.do")
-	public ModelAndView movieList() {
+	public ModelAndView movieList(@RequestParam(value="cp", defaultValue = "1") int cp, @RequestParam(value="search", defaultValue = "") String search) {
+		int totalCnt=movieservice.getTotalCnt();
+		int listSize=5;
+		int pageSize=5;
 		
-		List<MovieDTO> lists = movieservice.movieList();
+		if(search != null) {
+			String pageStr = com.amor.page.PageModuleSearch.makePage("/amor/admin/movie/movieList.do", totalCnt, listSize, pageSize, cp, search);
+			List<MovieDTO> lists = movieservice.movieListSearch(cp, listSize,search);
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("lists", lists);
+			mav.addObject("pageStr",pageStr);
+			mav.setViewName("admin/movie/movieList");
+			return mav;
+			
+		}else {
+			String pageStr = com.amor.page.PageModule.makePage("/amor/admin/movie/movieList.do", totalCnt, listSize, pageSize, cp);
+			
+			List<MovieDTO> lists = movieservice.movieList(cp, listSize);
+			
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("lists", lists);
+			mav.addObject("pageStr",pageStr);
+			mav.setViewName("admin/movie/movieList");
+			return mav;
+		}
 		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("lists", lists);
-		mav.setViewName("admin/movie/movieList");
-		return mav;
+		
 	}
 	
 	@RequestMapping(value =  "admin/movie/movieAdd.do", method = RequestMethod.GET)
@@ -96,7 +117,7 @@ public class MovieController {
 	}
 	
 	@RequestMapping(value =  "admin/movie/movieUpdate.do", method = RequestMethod.POST)
-	public ModelAndView movieUpdate2(
+	public ModelAndView movieUpdate2(int movie_idx,
 			String movie_name,String movie_genre,String movie_god,String movie_actor,String movie_maxage,
 			String movie_opendate, int movie_runningtime,String movie_country, String movie_content,
 			@RequestParam(value = "movie_poster") MultipartFile movie_poster,
@@ -108,12 +129,13 @@ public class MovieController {
 			HttpServletRequest req) {
 		String savepath = req.getRealPath("/resources/upload/movie/");//이미지 파일 경로
 		java.sql.Date movie_opendate_d = java.sql.Date.valueOf(movie_opendate); //string -> java.sql.date 타입으로
-		String movieImg[] = stillcutDefault(savepath,movie_poster,movie_stillcut1,movie_stillcut2,movie_stillcut3,movie_stillcut4,movie_stillcut5);
-		MovieDTO dto = new MovieDTO(0, movie_name, movie_genre, movie_god, movie_actor, movie_maxage, movie_opendate_d, movie_runningtime, movie_country, movie_content, movieImg[0], movieImg[1], movieImg[2],movieImg[3],movieImg[4],movieImg[5]);
+		String movieImg[] = stillcutDefault(savepath, movie_poster,movie_stillcut1,movie_stillcut2,movie_stillcut3,movie_stillcut4,movie_stillcut5);
+		MovieDTO dto = new MovieDTO(movie_idx, movie_name, movie_genre, movie_god, movie_actor, movie_maxage, movie_opendate_d, movie_runningtime, movie_country, movie_content, movieImg[0], movieImg[1], movieImg[2],movieImg[3],movieImg[4],movieImg[5]);
 		int result = movieservice.movieUpdate(dto);
 		String msg = result>0? "수정" :"실패";
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg) ;
+		mav.addObject("href", "/amor/admin/movie/movieList.do");
 		mav.setViewName("admin/msg/adminMsg");
 		return mav;
 	}
@@ -124,82 +146,229 @@ public class MovieController {
 		String msg = result>0? "삭제" :"실패";
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg",msg);
+		mav.addObject("href","/amor/admin/movie/movieList.do");
 		mav.setViewName("admin/msg/adminMsg");
 		return mav;
 	}
 	
 	
 	public String[] stillcutDefault(String savepath, MultipartFile movie_poster,MultipartFile movie_stillcut1,MultipartFile movie_stillcut2, MultipartFile movie_stillcut3,MultipartFile movie_stillcut4,MultipartFile movie_stillcut5) {
-		MultipartFile[] fileImg = new MultipartFile[6];
-		fileImg[0] = movie_poster;
-		fileImg[1] = movie_stillcut1;
-		fileImg[2] = movie_stillcut2;
-		fileImg[3] = movie_stillcut3;
-		fileImg[4] = movie_stillcut4;
-		fileImg[5] = movie_stillcut5;
 		
-		try {
-			for(int i = 0 ; i<6; i++) {
-				if(fileImg[i].getOriginalFilename() == null || fileImg[i].getOriginalFilename().equals("")) {
-					
-				}else {
-					byte[] bytes = fileImg[i].getBytes();//원본
-					File f = new File(savepath+fileImg[i].getOriginalFilename());
-					//작업중
-				}
+		MultipartFile[] mfileImg = new MultipartFile[6]; // 파일
+		mfileImg[0] = movie_poster;
+		mfileImg[1] = movie_stillcut1;
+		mfileImg[2] = movie_stillcut2;
+		mfileImg[3] = movie_stillcut3;
+		mfileImg[4] = movie_stillcut4;
+		mfileImg[5] = movie_stillcut5;
+		
+		String[] saveFileName = new String[6]; // 파일 이름
+		saveFileName[0] = mfileImg[0].getOriginalFilename();
+		saveFileName[1] = mfileImg[1].getOriginalFilename();
+		saveFileName[2] = mfileImg[2].getOriginalFilename();
+		saveFileName[3] = mfileImg[3].getOriginalFilename();
+		saveFileName[4] = mfileImg[4].getOriginalFilename();
+		saveFileName[5] = mfileImg[5].getOriginalFilename();
+		
+		if(saveFileName[0].equals("")||saveFileName[0]==null) {
+			
+		}else {
+			try {
+				String upload = saveFileName[0];
+				String noExt = upload.substring(0, upload.lastIndexOf("."));
+				String ext = upload.substring(upload.lastIndexOf(".") + 1);
 				
+				byte[] bytes = mfileImg[0].getBytes();//원본
+				File f = new File(savepath+saveFileName[0]);
 				
+				if(f.isFile()) {//파일이 존재할때
+					boolean ex = true;
+					int index = 0;
+					while(ex) {
+						index++;
+						saveFileName[0] = noExt+"("+index+")."+ext;
+						String dictFile = savepath + saveFileName[0];
+						ex = new File(dictFile).isFile();
+						f = new File(dictFile);
+					}
+				}else if(!f.isFile()) {
+					saveFileName[0] = upload;
+		        }
+				
+				FileOutputStream fos = new FileOutputStream(f);
+				fos.write(bytes);
+				fos.close();
+			}catch(Exception e) {
+				e.printStackTrace();
 			}
-		} catch(Exception e){
-			e.printStackTrace();
 		}
 		
-		
-		
-		
-		String movie_poster_name = movie_poster.getOriginalFilename();
-		String movie_stillcut1_name = movie_stillcut1.getOriginalFilename();
-		String movie_stillcut2_name = movie_stillcut2.getOriginalFilename();
-		String movie_stillcut3_name = movie_stillcut3.getOriginalFilename();
-		String movie_stillcut4_name = movie_stillcut4.getOriginalFilename();
-		String movie_stillcut5_name = movie_stillcut5.getOriginalFilename();
-		
-		if(movie_stillcut1_name.equals("")||movie_stillcut1_name==null) {
-			movie_stillcut1_name = "-";
+		if(saveFileName[1].equals("")||saveFileName[1]==null) {
+			saveFileName[1] = "-";
 		}else {
-			movie_stillcut1_name = movie_stillcut1.getOriginalFilename();
+			try {
+				String upload = saveFileName[1];
+				String noExt = upload.substring(0, upload.lastIndexOf("."));
+				String ext = upload.substring(upload.lastIndexOf(".") + 1);
+				
+				byte[] bytes = mfileImg[1].getBytes();//원본
+				File f = new File(savepath+saveFileName[1]);
+				
+				if(f.isFile()) {//파일이 존재할때
+					boolean ex = true;
+					int index = 0;
+					while(ex) {
+						index++;
+						saveFileName[1] = noExt+"("+index+")."+ext;
+						String dictFile = savepath + saveFileName[1];
+						ex = new File(dictFile).isFile();
+						f = new File(dictFile);
+					}
+				}else if(!f.isFile()) {
+					saveFileName[1] = upload;
+		        }
+				
+				FileOutputStream fos = new FileOutputStream(f);
+				fos.write(bytes);
+				fos.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
-		if(movie_stillcut2_name.equals("")||movie_stillcut2_name==null) {
-			movie_stillcut2_name = "-";
+		if(saveFileName[2].equals("")||saveFileName[2]==null) {
+			saveFileName[2] = "-";
 		}else {
-			movie_stillcut2_name = movie_stillcut2.getOriginalFilename();
-		}
-		if(movie_stillcut3_name.equals("")||movie_stillcut3_name==null) {
-			movie_stillcut3_name = "-";
-		}else {
-			movie_stillcut3_name = movie_stillcut3.getOriginalFilename();
-		}
-		if(movie_stillcut4_name.equals("")||movie_stillcut4_name==null) {
-			movie_stillcut4_name = "-";
-		}else {
-			movie_stillcut4_name = movie_stillcut4.getOriginalFilename();
-		}
-		if(movie_stillcut5_name.equals("")||movie_stillcut5_name==null) {
-			movie_stillcut5_name = "-";
-		}else {
-			movie_stillcut5_name = movie_stillcut5.getOriginalFilename();
+			try {
+				String upload = saveFileName[2];
+				String noExt = upload.substring(0, upload.lastIndexOf("."));
+				String ext = upload.substring(upload.lastIndexOf(".") + 1);
+				
+				byte[] bytes = mfileImg[2].getBytes();//원본
+				File f = new File(savepath+saveFileName[2]);
+				
+				if(f.isFile()) {//파일이 존재할때
+					boolean ex = true;
+					int index = 0;
+					while(ex) {
+						index++;
+						saveFileName[2] = noExt+"("+index+")."+ext;
+						String dictFile = savepath + saveFileName[2];
+						ex = new File(dictFile).isFile();
+						f = new File(dictFile);
+					}
+				}else if(!f.isFile()) {
+					saveFileName[2] = upload;
+		        }
+				
+				FileOutputStream fos = new FileOutputStream(f);
+				fos.write(bytes);
+				fos.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
-		String movieImg[] = new String[6];
-		movieImg[0] = movie_poster_name;
-		movieImg[1] = movie_stillcut1_name;
-		movieImg[2] = movie_stillcut2_name;
-		movieImg[3] = movie_stillcut3_name;
-		movieImg[4] = movie_stillcut4_name;
-		movieImg[5] = movie_stillcut5_name;
+		if(saveFileName[3].equals("")||saveFileName[3]==null) {
+			saveFileName[3] = "-";
+		}else {
+			try {
+				String upload = saveFileName[3];
+				String noExt = upload.substring(0, upload.lastIndexOf("."));
+				String ext = upload.substring(upload.lastIndexOf(".") + 1);
+				
+				byte[] bytes = mfileImg[3].getBytes();//원본
+				File f = new File(savepath+saveFileName[3]);
+				
+				if(f.isFile()) {//파일이 존재할때
+					boolean ex = true;
+					int index = 0;
+					while(ex) {
+						index++;
+						saveFileName[3] = noExt+"("+index+")."+ext;
+						String dictFile = savepath + saveFileName[3];
+						ex = new File(dictFile).isFile();
+						f = new File(dictFile);
+					}
+				}else if(!f.isFile()) {
+					saveFileName[3] = upload;
+		        }
+				
+				FileOutputStream fos = new FileOutputStream(f);
+				fos.write(bytes);
+				fos.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
-		return movieImg;
+		if(saveFileName[4].equals("")||saveFileName[4]==null) {
+			saveFileName[4] = "-";
+		}else {
+			try {
+				String upload = saveFileName[4];
+				String noExt = upload.substring(0, upload.lastIndexOf("."));
+				String ext = upload.substring(upload.lastIndexOf(".") + 1);
+				
+				byte[] bytes = mfileImg[4].getBytes();//원본
+				File f = new File(savepath+saveFileName[4]);
+				
+				if(f.isFile()) {//파일이 존재할때
+					boolean ex = true;
+					int index = 0;
+					while(ex) {
+						index++;
+						saveFileName[4] = noExt+"("+index+")."+ext;
+						String dictFile = savepath + saveFileName[4];
+						ex = new File(dictFile).isFile();
+						f = new File(dictFile);
+					}
+				}else if(!f.isFile()) {
+					saveFileName[4] = upload;
+		        }
+				
+				FileOutputStream fos = new FileOutputStream(f);
+				fos.write(bytes);
+				fos.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(saveFileName[5].equals("")||saveFileName[5]==null) {
+			saveFileName[5] = "-";
+		}else {
+			try {
+				String upload = saveFileName[5];
+				String noExt = upload.substring(0, upload.lastIndexOf("."));
+				String ext = upload.substring(upload.lastIndexOf(".") + 1);
+				
+				byte[] bytes = mfileImg[5].getBytes();//원본
+				File f = new File(savepath+saveFileName[5]);
+				
+				if(f.isFile()) {//파일이 존재할때
+					boolean ex = true;
+					int index = 0;
+					while(ex) {
+						index++;
+						saveFileName[5] = noExt+"("+index+")."+ext;
+						String dictFile = savepath + saveFileName[5];
+						ex = new File(dictFile).isFile();
+						f = new File(dictFile);
+					}
+				}else if(!f.isFile()) {
+					saveFileName[5] = upload;
+		        }
+				
+				FileOutputStream fos = new FileOutputStream(f);
+				fos.write(bytes);
+				fos.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	
+		return saveFileName;
 	}
 	
 	
