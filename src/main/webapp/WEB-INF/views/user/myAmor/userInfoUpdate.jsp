@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,8 +90,14 @@ window.onload=function () {
 </div>
 <div class="body-inner">
 <div class="subTap">
-	<div class="subTap-menu1"><label><a href="/amor/myAmor/userPwdCheckForm.do">비밀번호 수정</a></label></div>
-	<div class="subTap-menu2"><label>회원 탈퇴</label></div>
+	<div class="subTap-menu1">
+	<label><c:url var="checkUrl" value="userPwdCheckForm.do">
+		<c:param name="type">pwdUpdate</c:param>
+	</c:url><a href="${checkUrl }">비밀번호 수정</a></label></div>
+	<div class="subTap-menu2">
+	<label><c:url var="checkUrl2" value="userPwdCheckForm.do">
+		<c:param name="type">withdraw</c:param>
+	</c:url><a href="${checkUrl2 }">회원 탈퇴</a></label></div>
 </div>
 	<form class="signUpForm" action="userInfoUpdateSubmit.do" method="post">
 	<div class="signUpDiv">

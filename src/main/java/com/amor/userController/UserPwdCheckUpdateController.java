@@ -19,14 +19,35 @@ public class UserPwdCheckUpdateController {
 	private MemberService memberService;
 	
 	@RequestMapping("myAmor/userPwdCheckForm.do")
-	public String userPwdCheckForm() {
-		return "/user/myAmor/userPwdCheck";
+	public ModelAndView userPwdCheckForm(@RequestParam("type")String type) {
+
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("/user/myAmor/userPwdCheck");
+		String msg="";
+		if(type.equals("pwdUpdate")) {
+			msg="비밀번호 수정";
+			mav.addObject("msg", msg);
+			mav.setViewName("/user/myAmor/userPwdCheck");
+		}else if(type.equals("withdraw")) {
+			msg="회원탈퇴";
+			mav.addObject("msg", msg);
+			mav.setViewName("/user/myAmor/userPwdCheck");
+		}
+		return mav;
 	}
 	
 	@RequestMapping(value="myAmor/userPwdCheckSubmit.do", method = RequestMethod.POST)
 	public ModelAndView userPwdCheckSubmit(
 			@RequestParam(value="pwd", defaultValue = "notpwd") String pwd2,
+			@RequestParam("typemsg") String typemsg,
 			HttpSession session) {
+		
+		String type="";
+		if(typemsg.equals("비밀번호 수정")) {
+			type="pwdUpdate";
+		}else if(typemsg.equals("회원탈퇴")) {
+			type="withdraw";
+		}
 		
 		String pwd = Encryption.pwdEncrypt(pwd2);
 		String sid=(String)session.getAttribute("sid");
@@ -43,14 +64,22 @@ public class UserPwdCheckUpdateController {
 		int result=memberService.memberPwdCheck(sid, pwd);
 		
 		if(result==memberService.SUCCES) {
-			msg="비밀번호 확인 성공 (바로 수정 폼으로)";
-			mav.addObject("msg", msg);
-			mav.addObject("goUrl", "userPwdUpdateForm.do");
-			mav.setViewName("/user/msg/userMsg");
+			if(type.equals("pwdUpdate")) {
+				msg="비밀번호 확인 성공 (바로 수정 폼으로)";
+				mav.addObject("msg", msg);
+				mav.addObject("goUrl", "userPwdUpdateForm.do");
+				mav.setViewName("/user/msg/userMsg");			
+			}else if(type.equals("withdraw")) {
+				msg="비밀번호 확인 성공 (바로 탈퇴 폼으로)";
+				mav.addObject("msg", msg);
+				mav.addObject("goUrl", "withdrawForm.do");
+				mav.setViewName("/user/msg/userMsg");
+			}
+			
 		}else {
 			msg="비밀번호가 맞지 않습니다.";
 			mav.addObject("msg", msg);
-			mav.addObject("goUrl", "userPwdCheckForm.do");
+			mav.addObject("goUrl", "userPwdCheckForm.do?type="+type);
 			mav.setViewName("/user/msg/userMsg");
 		}		
 		return mav;
