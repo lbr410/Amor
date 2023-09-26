@@ -14,7 +14,7 @@
 <!-- GRAY BAR -->
 <div class="gray-bar">
   <div class="navigate">
-    <div class="navigate-msg">홈 > 마이페이지 > 회원정보 수정</div>
+    <div class="navigate-msg">홈 > 마이페이지 > ${msg }</div>
   </div>
 </div>
 <!-- BORDER BAR-->
@@ -23,6 +23,7 @@
 </div>
 <div class="body-inner">
 <form name="pwdCheck" action="userPwdCheckSubmit.do" method="post">
+<input type="hidden" name="typemsg" value="${msg }">
 	<div class="form">
 		<label>비밀번호</label>
 		<input type="password" name="pwd" class="text" maxlength="12"> 
