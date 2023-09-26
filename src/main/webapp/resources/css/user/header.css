@@ -20,7 +20,10 @@ img {
   width: 1100px;
   margin: 0 auto;
   position: relative;
+  justify-content: center;
 }
+
+
 
 /*HEADER*/
 header {
@@ -65,7 +68,6 @@ header .sub-menu ul.menu li {
   position: relative;
 }
 header .sub-menu ul.menu li::before {
-  content: "";
   width: 1px;
   height: 12px;
   background-color: #ffffff;
@@ -98,7 +100,7 @@ header .main-menu .item .item__name {
   font-family: Arial, sans-serif;
   font-size: 16px;
 }
-header .main-menu .item:hover .item__name {
+header .main-menu .item:hover .item__name a{
   background-color: #0F1742;
   color: #EDEDED;
   border-radius: 6px 6px 0 0;
@@ -116,25 +118,68 @@ header .main-menu .item .item__contents .contents__menu {
   background-color: #0F1742;
 }
 header .main-menu .item .item__contents .contents__menu > ul {
-  padding: 20px 0;
+  padding: 20px 200px 20px;
   display: flex;
 }
 header .main-menu .item .item__contents .contents__menu > ul > li {
-  width: 200px;
+  width: 120px;
+}
+header .main-menu .item .item__contents .contents__menu > ul > li  a{
+  width: 80px;
+  color: #F8F9FA;
 }
 header .main-menu .item .item__contents .contents__menu > ul > li ul li {
   padding: 5px 0;
   font-size: 14px;
   color: #F8F9FA;
   cursor: pointer;
+  text-align: center;
+}
+header .main-menu .item .item__contents .contents__menu > ul > li ul .nowMovie{
+  margin-left: 80px;
+  width: 120px;
+  font-size: 14px;
+  color: #F8F9FA;
+  cursor: pointer;
+  text-align: center;
+}
+header .main-menu .item .item__contents .contents__menu > ul > li ul .comMovie{
+  margin-left: 140px;
+  font-size: 14px;
+  color: #F8F9FA;
+  cursor: pointer;
+  text-align: center;
+}
+header .main-menu .item .item__contents .contents__menu > ul > li ul .store{
+  margin-left: 120px;
+  width: 120px;
+  font-size: 14px;
+  color: #F8F9FA;
+  cursor: pointer;
+  text-align: center;
+}
+header .main-menu .item .item__contents .contents__menu > ul > li ul .movieIntro{
+  margin-left: 220px;
+  width: 120px;
+  font-size: 14px;
+  color: #F8F9FA;
+  cursor: pointer;
+  text-align: center;
 }
 header .main-menu .item .item__contents .contents__menu > ul > li ul li:hover {
   color: #C7E3FF;
 }
-login{
+header .sub-menu .menu{
+	max-height: 42px;
+}
+header .sub-menu .menu li{
+	width: 130px;
+	right: 0;
+}
+.login{
    display: flex;
    float:left;
-   height: 200px;
+   padding: 4px 0 4px 0;
    flex-direction: column;
    justify-content: center;
    align-items: center;
@@ -143,11 +188,10 @@ login{
 .login input{
    border:none;
    display: inline-flex;
-   padding: 2px 21px 6px 21px;
+   padding: 4px 14px 4px 14px;
    margin-bottom:2px;
    justify-content: center;
    align-items: center;
-   gap: 10px;
    border-radius: 3px;
    background: #1A2C82;
    color: #C7E3FF;
@@ -157,7 +201,6 @@ login{
 .logout{
    display: flex;
    float:left;
-   height: 200px;
    flex-direction: column;
    justify-content: center;
    align-items: center;
@@ -166,15 +209,15 @@ login{
 .logout input{
    border:none;
    display: inline-flex;
-   padding: 2px 21px 6px 21px;
-   margin-bottom:2px;
+   padding: 4px 13px 4px 13px;
    justify-content: center;
    align-items: center;
-   gap: 10px;
    border-radius: 3px;
-   background: #1A2C82;
-   color: #C7E3FF;
+   border-radius: 3px;
+   background: #EEEEEE;
+   color: #1A2C82;
    line-height: normal;
+   font-weight: bold;
    cursor: pointer;
 }
 
@@ -205,9 +248,9 @@ login{
 .searchButton{
     margin-left: 20px;    
 }
-#searchIcon{
+#searchButton img{
     margin-top: 2px;
-    margin-left:24px;
+	margin-left: 24px;
     width: 24px;
     height: 24px;
     text-align: right;    

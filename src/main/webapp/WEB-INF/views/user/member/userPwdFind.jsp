@@ -4,20 +4,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>아모르 : 비밀번호 찾기</title>
 <link rel="stylesheet" href="/amor/resources/css/user/userIdFind.css">
 </head>
 <body>
 <body>
     <div class="top">
-        <div class="navigate"><a href="index.do"><img src="/amor/resources/img/white_b_logo.png"></a>
+        <div class="navigate"><a href="/amor/index.do"><img src="/amor/resources/img/white_b_logo.png"></a>
             <span class="txt-info">Home으로 돌아가기</span>
         </div>
     </div>
     <div class="body-inner"> 
         <div class="center">
             <div class="ci">
-                <a href="index.do" title="메인 페이지로 이동">
+                <a href="/amor/index.do" title="메인 페이지로 이동">
                     <img src="/amor/resources/img/main_logo.png" alt="amor cinema">
                 </a>
             </div>

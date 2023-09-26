@@ -5,13 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Amor Cinemae</title>
 </head>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Amor Cinema</title>
   <!--브라우저 스타일 초기화-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
   <link rel="stylesheet" href="/amor/resources/css/user/header.css" />
@@ -74,7 +72,7 @@
               <ul class="inner">
                 <li>
                   <ul>
-                    <li class="nowMovie">현재상영작</li>
+                    <li class="nowMovie"><a href="/amor/movie/movie.do">현재상영작</a></li>
                   </ul>
                 </li>
                 <li>
@@ -93,7 +91,7 @@
               <ul class="inner">
                 <li>
                   <ul>
-                    <li class="store">스낵/음료</li>
+                    <li class="store"><a href="/amor/store.do">스낵/음료</a></li>
                   </ul>
                 </li>
               </ul>

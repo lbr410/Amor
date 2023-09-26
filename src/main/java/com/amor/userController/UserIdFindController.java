@@ -90,7 +90,7 @@ public class UserIdFindController {
 	//이메일 인증 폼으로 이동
 	@RequestMapping("member/userPwdFindAuth.do")
 	public String userPwdFindAuth() {
-		return "/amor/user/member/userPwdFindAuth";
+		return "/user/member/userPwdFindAuth";
 	}
 	
 	//비밀번호 업데이트 폼으로 이동
@@ -102,11 +102,11 @@ public class UserIdFindController {
 	//비밀번호 업데이트
 	@RequestMapping("member/userPwdFindUpdateSubmit.do")
 	public ModelAndView userPwdFindUpdateSubmit(
-		@RequestParam("pwd")String pwd,
+		@RequestParam("member_pwd")String member_pwd,
 		HttpSession session) {
-	String npwd = Encryption.pwdEncrypt(pwd);
+	String npwd = Encryption.pwdEncrypt(member_pwd);
 	String sid=(String)session.getAttribute("sid");
-	int result=memberService.memberPwdUpdate(sid, pwd);
+	int result=memberService.userPwdFindUpdate(sid, npwd);
 	String msg=result>0?"비밀번호 업데이트 성공":"비밀번호 업데이트 실패";
 
 	ModelAndView mav=new ModelAndView();

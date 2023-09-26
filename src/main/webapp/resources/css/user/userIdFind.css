@@ -60,7 +60,10 @@ a{
     margin: 0 auto;
     height: 800px;
 }
-
+result-section{
+	width: 550px;
+	margin: 0 auto;
+}
 /* TITLE*/
 .body-inner .center .find-section .col{
     display: flex;
