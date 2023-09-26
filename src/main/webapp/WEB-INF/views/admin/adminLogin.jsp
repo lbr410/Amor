@@ -61,11 +61,11 @@
 <body>
 <div>
 <img src="/amor/resources/img/main_logo.png">
-<form name = "admin" action = "/amor/admin/adminMain.do">
-<input type = "text" name = "admin_id" class = "text1" placeholder="아이디를 입력하세요."><br>
+<form name = "admin" action = "/amor/admin/adminMain.do" method = "post">
+<input type = "text" name = "admin_id" class = "text1" value = "${cookie.idremember.value}" placeholder="아이디를 입력하세요."><br>
 <input type = "password" name = "admin_pwd" class = "text2"  placeholder="비밀번호를 입력하세요."><br>
-<input type = "checkbox" name = "id_remember"><span>ID 기억하기</span> &nbsp;
-<input type = "checkbox" name = "autoLogin"> <span>자동 로그인</span><br>
+<input type = "checkbox" name = "id_remember" ${!empty cookie.idremember ? 'checked':''}><span>ID 기억하기</span> &nbsp;
+<input type = "checkbox" name = "autoLogin" ${!empty cookie.autologin ? 'checked':''}> <span>자동 로그인</span><br>
 <input type = "submit" value = "로그인" class = "button">
 </form>
 </div>
