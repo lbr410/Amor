@@ -54,6 +54,12 @@ public class MemberDAOImple implements MemberDAO {
 	}
 	
 	@Override
+	public int userPwdFindUpdate(Map map) {
+		int result=sqlmap.update("userPwdFindUpdate", map);
+		return result;
+	}
+	
+	@Override
 	public MemberDTO memberInfo(int sidx) {
 		MemberDTO dto=sqlmap.selectOne("memberInfo", sidx);
 		return dto;

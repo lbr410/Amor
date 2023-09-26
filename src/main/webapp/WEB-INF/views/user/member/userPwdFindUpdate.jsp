@@ -5,19 +5,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>아모르 : 비밀번호 찾기</title>
 <link rel="stylesheet" href="/amor/resources/css/user/userIdFind.css">
 </head>
 <body>
     <div class="top">
-        <div class="navigate"><a href="index.do"><img src="/amor/resources/img/white_b_logo.png"></a>
+        <div class="navigate"><a href="/amor/index.do"><img src="/amor/resources/img/white_b_logo.png"></a>
             <span class="txt-info">Home으로 돌아가기</span>
         </div>
     </div>
     <div class="body-inner">
         <div class="center">
             <div class="ci">
-                <a href="index.do" title="메인 페이지로 이동">
+                <a href="/amor/index.do" title="메인 페이지로 이동">
                     <img src="/amor/resources/img/main_logo.png" alt="amor cinema">
                 </a>
             </div>
@@ -45,13 +45,13 @@
                             <tr>
                                 <th>비밀번호 재설정</th>
                                 <td colspan="2">
-                                    <input type="text" name="member_name"  id="member-name" maxlength="20" type="text" placeholder="비밀번호">
+                                    <input type="text" name="member_name"  id="member-name" maxlength="12" type="text" placeholder="비밀번호">
                                 </td>
                             </tr>
                             <tr>
                                 <th>비밀번호 확인</th>
                                 <td>
-                                    <input name="member_email" id="member-email" maxlength="30" type="text" placeholder="다시 입력해주세요.">
+                                    <input type="text" name="member_pwd" id="member-email" maxlength="30" placeholder="다시 입력해주세요.">
                                 </td>
                             </tr>
                         </tbody>
@@ -59,7 +59,7 @@
                     <div class="btn-bottom">
                         <button type="submit" id="btn-Search" class="blue-btn">
                             확인
-                        </button>
+                    </button>
                     </div>
                 </form>
             </div>

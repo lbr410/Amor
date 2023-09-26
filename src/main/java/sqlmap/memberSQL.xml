@@ -20,7 +20,9 @@
 	update member 
 	set member_pwd=#{pwd} where member_id=#{sid}
 </update>
-
+<update id="userPwdFindUpdate" parameterType="Map">
+	update member set member_pwd=#{pwd} where member_id=#{sid}
+</update>
 <select id="memberInfo" parameterType="Integer" resultType="com.amor.member.model.MemberDTO">
 	select * from member where member_idx=#{sidx}
 </select>

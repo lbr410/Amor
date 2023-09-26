@@ -61,11 +61,21 @@ body, h1, h2, p {
 	font-size: 24px;
 	color: #666666;
 }
+/*
 .container{
     width: 220px;
     height: 560px;
     border-radius: 5px;
     overflow: hidden;
+}
+*/
+movie-wrapper .container{
+  display: grid;
+  grid-template-columns: repeat(4, 220px);
+  justify-items: center;
+  align-items: center;
+  box-sizing: border-box;
+  gap: 40px 24px;
 }
 .container .rank-movie .rank{
     width: 220px;
@@ -103,14 +113,6 @@ body, h1, h2, p {
     content: '|';
     margin-left: 5px;
     color:#333333;
-}
-.container .movie-wrapper{
-    display: grid;
-    grid-template-columns: repeat(4, 220px);
-    justify-items: center;
-    align-items: center;
-    box-sizing: border-box;
-    gap: 40px 24px;
 }
 .book-btn {
     width: 220px;
