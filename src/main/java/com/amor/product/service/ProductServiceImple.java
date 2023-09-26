@@ -1,5 +1,6 @@
 package com.amor.product.service;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -87,5 +88,57 @@ public class ProductServiceImple implements ProductService {
 	public int productDel(int product_idx) {
 		int count = productDao.productDel(product_idx);
 		return count;
+	}
+	
+	@Override
+	public List<ProductDTO> storeTicketList() {
+		List<ProductDTO> lists=productDao.storeTicketList();
+		DecimalFormat df=new DecimalFormat("#,##0원");
+		
+		 for (int i = 0; i < lists.size(); i++) {
+			 System.out.println(df.format(lists.get(i).getProduct_price()));
+		        double product_price=lists.get(i).getProduct_price();  
+		        String product_price2=df.format(product_price);
+		        lists.get(i).setProduct_price2(product_price2); 	        
+		    }	
+		return lists;
+	}
+	
+	@Override
+	public List<ProductDTO> storeDrinkList() {
+		List<ProductDTO> lists=productDao.storeDrinkList();
+		DecimalFormat df=new DecimalFormat("#,##0원");
+		
+		 for (int i = 0; i < lists.size(); i++) {
+			 System.out.println(df.format(lists.get(i).getProduct_price()));
+		        double product_price=lists.get(i).getProduct_price();  
+		        String product_price2=df.format(product_price);
+		        lists.get(i).setProduct_price2(product_price2); 	        
+		    }	
+		return lists;
+	}
+	
+	@Override
+	public List<ProductDTO> storeSnackList() {
+		List<ProductDTO> lists=productDao.storeSnackList();
+		DecimalFormat df=new DecimalFormat("#,##0원");
+		
+		 for (int i = 0; i < lists.size(); i++) {
+			 System.out.println(df.format(lists.get(i).getProduct_price()));
+		        double product_price=lists.get(i).getProduct_price();  
+		        String product_price2=df.format(product_price);
+		        lists.get(i).setProduct_price2(product_price2); 	        
+		    }	
+		return lists;
+	}
+	
+	@Override
+	public ProductDTO storeContent(int idx) {
+		DecimalFormat df=new DecimalFormat("#,##0");
+		ProductDTO dto=productDao.storeContent(idx);
+		String product_price2=df.format(dto.getProduct_price());
+		dto.setProduct_price2(product_price2);
+		
+		return dto;
 	}
 }

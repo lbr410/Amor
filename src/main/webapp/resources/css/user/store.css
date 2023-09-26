@@ -156,3 +156,23 @@ a:link{
 html {
     scroll-behavior: auto;
 }
+.msg{
+	display: flex;
+	width: 300px;
+	height: 25px;
+	padding: 10px 10px 10px 10px;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto; /* 수평 가운데 정렬 */
+	gap: 10px;
+	flex-shrink: 0;
+	color: #000;
+	font-size: 17px;
+	font-style: normal;
+	font-weight:400;
+	line-height: normal;
+}
+#sc1, #sc2, #sc3{
+	scroll-margin-top: 120px;
+	
+}

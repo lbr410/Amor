@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,63 +25,68 @@
 <div id="sc1">
 <div class="title">관람권</div>
     <div class="prodDiv">
+    <c:if test="${empty Tlists }">
+    	<div class="msg">상품 준비 중입니다.</div>
+    </c:if>
+    <c:forEach var="Tdto" items="${Tlists }">
         <div class="product">
+        	<c:url var="detailUrl" value="storeContentForm.do">
+				<c:param name="product_idx">${Tdto.product_idx }</c:param>
+			</c:url>
         	<div class="prodImg"></div>
         	<div class="prodTitle">
-        		<label>콜라M</label>
+        		<label><a href="${detailUrl }">${Tdto.product_title }</a></label>
         	</div>
         	<div class="prodPrice">
-        		<label>3,000원</label>
+        		<label>${Tdto.product_price2 }</label>
         	</div>
         </div>
-        <div class="product">
-        	<div class="prodImg"></div>
-        	<div class="prodTitle"></div>
-        	<div class="prodPrice"></div>
-        </div>
-        <div class="product">
-        	<div class="prodImg"></div>
-        	<div class="prodTitle"></div>
-        	<div class="prodPrice"></div>
-        </div> 
-        <div class="product">
-        	<div class="prodImg"></div>
-        	<div class="prodTitle"></div>
-        	<div class="prodPrice"></div>
-        </div>     
+     </c:forEach>
     </div>
 </div>
 <div id="sc2">
 <div class="title">스낵</div>
     <div class="prodDiv">
+     <c:if test="${empty Slists }">
+    	<div class="msg">상품 준비 중입니다.</div>
+    </c:if>
+    <c:forEach var="Ddto" items="${Slists }">
         <div class="product">
+        	<c:url var="detailUrl" value="storeContentForm.do">
+				<c:param name="product_idx">${Sdto.product_idx }</c:param>
+			</c:url>
         	<div class="prodImg"></div>
         	<div class="prodTitle">
-        		<label>콜라M</label>
+        		<label>${Sdto.product_title }</label>
         	</div>
         	<div class="prodPrice">
-        		<label>3,000원</label>
+        		<label>${Sdto.product_price2 }</label>
         	</div>
         </div>
-        <div class="product">
-        	<div class="prodImg"></div>
-        	<div class="prodTitle"></div>
-        	<div class="prodPrice"></div>
-        </div>
-        <div class="product">
-        	<div class="prodImg"></div>
-        	<div class="prodTitle"></div>
-        	<div class="prodPrice"></div>
-        </div> 
-        <div class="product">
-        	<div class="prodImg"></div>
-        	<div class="prodTitle"></div>
-        	<div class="prodPrice"></div>
-        </div>     
+     </c:forEach>   
     </div>
 </div>
 <div id="sc3">
 <div class="title">음료</div>
+    <div class="prodDiv">
+     <c:if test="${empty Dlists }">
+    	<div class="msg">상품 준비 중..</div>
+    </c:if>
+    <c:forEach var="Ddto" items="${Dlists }">
+        <div class="product">
+        	<c:url var="detailUrl" value="storeContentForm.do">
+				<c:param name="product_idx">${Ddto.product_idx }</c:param>
+			</c:url>
+        	<div class="prodImg"></div>
+        	<div class="prodTitle">
+        		<label><a href="${detailUrl }">${Ddto.product_title }</a></label>
+        	</div>
+        	<div class="prodPrice">
+        		<label>${Ddto.product_price2 }</label>
+        	</div>
+        </div>
+     </c:forEach>   
+    </div>
 </div>
 </div>
 </body>

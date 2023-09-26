@@ -36,8 +36,8 @@ public class MemberServiceImple implements MemberService {
 	}
 	
 	@Override
-	public MemberDTO memberSession(MemberDTO dto) {
-		MemberDTO dbDto=memberDao.memberLogin(dto.getMember_id());
+	public MemberDTO memberSession(String id) {
+		MemberDTO dbDto=memberDao.memberSession(id);
 		return dbDto;
 	}
 	

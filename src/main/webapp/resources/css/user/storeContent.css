@@ -1,0 +1,232 @@
+@charset "UTF-8";
+	a {
+		text-decoration: none;
+	}
+	body {
+		font-family: 'Nanum Gothic', sans-serif;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 1.4;
+		color: #333333;
+	}
+	img {
+		display: block;
+	}
+	.body-inner {
+		width: 1100px;
+		margin: 0 auto;
+		position: relative;
+	}
+
+	/**GRAY BAR*/
+	.gray-bar {
+		width: 100%;
+		height: 34px;
+		padding-top: 140px;
+		position: relative;
+		background: #F8F8F8;
+		margin-bottom: 64px;
+	}
+
+	.navigate {
+		width: 1100px;
+		margin: 0 auto;
+	}
+
+	.navigate-msg {
+		padding-top: 8px;
+		font-size: 14px;
+		margin-left: 0;
+	}
+	/* Reset some default styles for consistency */
+body, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style for the contents wrapper */
+.contents-detail {
+    width: 980px;
+    margin: 0 auto;
+    margin-top: 70px;
+    margin-left: 15px;
+}
+.contents-detail .pd-wrap{
+    position: relative;
+    min-height: 650px;
+    margin: 40px 0 80px;
+}
+/* PRODUCT IMAGE */
+.contents-detail .pd-wrap .pd-img {
+    float: left;
+    flex-shrink: 0;
+    width: 400px;
+    margin-left: 20px;
+    height: 397px;
+    position: relative;
+    background-color: #ddd;
+}
+.contents-detail .pd-wrap .pd-img .main-img {
+    position: relative;
+    margin-bottom: 20px;
+    display: flex; /* Flexbox를 사용하여 요소들을 가로/세로 중앙 정렬 */
+	justify-content: center; /* 가로 중앙 정렬 */
+	align-items: center; 
+}
+/* PRODUCT INFO*/
+.contents-detail .pd-wrap .pd-detail{
+    margin-left: 550px;
+}
+.contents-detail .pd-wrap .pd-detail .pd-table{
+    text-align: left;
+    margin-bottom: 30px;
+}
+.contents-detail .pd-wrap .pd-detail .pd-table {
+    text-align: left;
+    margin-bottom: 30px;
+    width: 430px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 0;
+}
+.contents-detail .pd-wrap .pd-detail .pd-table caption {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.contents-detail .pd-wrap .pd-detail .txt-product {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+/* PRODUCT ITLE */
+.contents-detail .pd-wrap .pd-detail .pd-table th {
+    font-weight: bold;
+    text-align: left;
+    padding-bottom: 10px;
+    padding-left:10px;
+    border-bottom: 1px solid #dddddd;
+}
+/* PRICE */
+.contents-detail .pd-wrap .pd-detail .pd-table td {
+    height: 40px;
+}
+.contents-detail .pd-wrap .pd-detail .txt-sale {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 20px;
+}
+.contents-detail .pd-wrap .pd-detail .txt-price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #444444;
+}
+.contents-detail .pd-wrap .pd-detail .txt-date {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 10px;
+    color: #444444;
+}
+.contents-detail .pd-wrap .pd-detail .pd-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+/* NUM BUTTON */
+.contents-detail .pd-wrap .pd-detail .bx-num {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    border-radius: 5px;
+    border: 1px solid #dddddd;
+    padding: 8px;
+}
+button {
+    background: none;
+    border: none;
+}
+.contents-detail .pd-wrap .pd-detail .bx-num button {
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.contents-detail .pd_wrap .pd_detail .txt_num {
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+/* TOTAL PRICE */
+.contents-detail .pd-wrap .pd-detail .txt-price-wrap {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.contents-detail .pd-wrap .pd-detail .txt-price-wrap label{
+    font-size: 14px;
+    font-weight: bold;
+    text-align: right;
+    padding-left: 176px;
+    padding-top: 13px;
+}
+.contents-detail .pd-wrap .pd-detail .txt-price-wrap .txt-price-str{
+    font-size: 33px;
+    font-weight: bold;
+    text-align: right;
+}
+tbody td, thead td{
+	vertical-align: middle;
+}
+.btn2 {
+    background-color: #1A2C82;
+    color: #fff;
+    border: none;
+    padding: 18px 40px;
+    width: 430px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 200px;
+}
+em {
+    font-style: normal;
+    font-weight: normal;
+    font-family: inherit;
+}
+.contents-detail .pd-wrap .pd-detail .btn-wrap {
+    text-align: center;
+    width: 558px;
+}
+.how{
+	display: flex;
+	width: 137px;
+	height: 60px;
+	padding: 10px;
+	align-items: center;
+	gap: 10px;
+	flex-shrink: 0;	
+	color: #000;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+	padding-top: 20px;
+}
+.howto{
+	display: flex;
+	width: 1050px;
+	height: 249px;
+	padding: 10px;
+	align-items: flex-start;
+	gap: 10px;
+	flex-shrink: 0;
+	border-top: 1px solid black;
+}

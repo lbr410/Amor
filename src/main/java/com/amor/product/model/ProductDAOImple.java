@@ -73,4 +73,29 @@ public class ProductDAOImple implements ProductDAO {
 		int count = sqlmap.delete("productDel", product_idx);
 		return count;
 	}
+	
+	@Override
+	public List<ProductDTO> storeTicketList() {
+		List<ProductDTO> lists=sqlmap.selectList("storeTicketList");
+		System.out.println(lists);
+		return lists;
+	}
+	
+	@Override
+	public List<ProductDTO> storeDrinkList() {
+		List<ProductDTO> lists=sqlmap.selectList("storeDrinkList");
+		return lists;
+	}
+	
+	@Override
+	public List<ProductDTO> storeSnackList() {
+		List<ProductDTO> lists=sqlmap.selectList("storeSnackList");
+		return lists;
+	}
+	
+	@Override
+	public ProductDTO storeContent(int idx) {
+		ProductDTO dto=sqlmap.selectOne("storeContent", idx);
+		return dto;
+	}
 }

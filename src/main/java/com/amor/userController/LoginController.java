@@ -60,12 +60,10 @@ public class LoginController {
 				Cookie ck=new Cookie("saveid",id);
 				ck.setMaxAge(60*60*24*30);
 				resp.addCookie(ck);
-			}
-			mav.addObject("msg", "성공(나중에 경고창없이 바로 메인)");
-			mav.addObject("goUrl","/amor/index.do");
-			mav.setViewName("/user/msg/userMsg");
+			};
+			mav.setViewName("redirect:/index.do");
 			
-			dto=memberService.memberSession(dto);
+			dto=memberService.memberSession(id);
 			session.setAttribute("sidx", dto.getMember_idx());
 			session.setAttribute("sname", dto.getMember_name());
 			session.setAttribute("sid", id);
@@ -75,7 +73,7 @@ public class LoginController {
 			mav.addObject("goUrl","/amor/member/login.do");
 			mav.setViewName("/user/msg/userMsg");
 		}else if(result==memberService.Join) {
-			mav.addObject("msg", "회원가입이 필요합니다.(회원가입 폼으로)");
+			mav.addObject("msg", "회원가입이 필요합니다.");
 			mav.addObject("goUrl","/amor/member/signUp.do");
 			mav.setViewName("/user/msg/userMsg");
 		}else if(result==memberService.BLOK) {
