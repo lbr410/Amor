@@ -21,17 +21,27 @@ function movieDelete(idx){
 	let movie_idx = idx;
 	location.href='movieDelete.do?movie_idx='+movie_idx;
 }
+
+function movieSearch(){
+	let result = document.all.movieSearch.value;
+	
+	if(result == "" || result == null){
+		window.alert('검색어2 입력바람');
+	}else{
+		location.href='movieList.do?search='+result;
+	}
+}
 </script>
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/admin/movieList.css">
 </head>
 <body>
 <%@include file="../admin_header.jsp" %>
 <div class="content">
-<div class="content-title"><label class="titletext">회원 조회</label>
+<div class="content-title"><label class="titletext">영화 목록</label>
 <div class="contentsearch">
 	<div class="search">
-		<input type="text"  placeholder="아이디를 검색해주세요." class="box">
-		<img src="img/Icon_Search.png" class="btn">
+		<input type="text" name="movieSearch" placeholder="영화제목을 검색해주세요." class="box">
+		<img src="img/Icon_Search.png" class="btn" onclick="movieSearch()">
 	</div>
 </div>
 </div>
@@ -57,6 +67,11 @@ function movieDelete(idx){
 		<th>삭제</th>
 	</tr>
 	</thead>
+	<tfoot>
+		<tr>
+			<td colspan="15"><div class="paging">${pageStr}</div></td>
+		</tr>
+	</tfoot>
 	<tbody>
 	<c:if test="${empty lists }">
 		<tr>

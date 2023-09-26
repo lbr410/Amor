@@ -11,9 +11,15 @@ movie_idx.nextval, #{movie_name}, #{movie_genre}, #{movie_god}, #{movie_actor}, 
 #{movie_stillcut1}, #{movie_stillcut2}, #{movie_stillcut3}, #{movie_stillcut4}, #{movie_stillcut5})
 </insert>
 
-<select id="movieList" resultType="com.amor.movie.model.MovieDTO">
-select * from movie order by movie_idx
+<select id="movieList" parameterType="Map" resultType="com.amor.movie.model.MovieDTO">
+<![CDATA[
+select * from 
+(select rownum as rnum, a.* from (select * from movie order by movie_idx desc)a)b 
+where rnum >= #{start} and rnum <= #{end}
+]]>
 </select>
+
+
 
 <select id="movieContent" parameterType="Integer" resultType="com.amor.movie.model.MovieDTO">
 select * from movie where movie_idx = #{movie_idx}
@@ -33,5 +39,10 @@ where movie_idx = #{movie_idx}
 delete from movie where movie_idx = #{movie_idx}
 
 </delete>
+
+<select id="totalCnt" resultType="Integer" >
+	select count(*) from movie
+</select>
+
 
 </mapper>

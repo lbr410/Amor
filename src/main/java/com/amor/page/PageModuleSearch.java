@@ -16,7 +16,7 @@ public class PageModuleSearch {
 			sb.append("?cp=");
 			int temp = (userGroup-1) * pageSize + pageSize;
 			sb.append(temp);
-			sb.append("'>&lt;&nbsp;&nbsp;</a>");
+			sb.append("&search="+search+"'>&lt;&nbsp;&nbsp;</a>");
 		}
 
 		for(int i=userGroup*pageSize+1; i<=userGroup*pageSize+pageSize; i++) {
@@ -41,7 +41,7 @@ public class PageModuleSearch {
 			sb.append("?cp=");
 			int temp = (userGroup+1) * pageSize + 1;
 			sb.append(temp);
-			sb.append("'>&nbsp;&nbsp;&gt;</a>");
+			sb.append("&search="+search+"'>&nbsp;&nbsp;&gt;</a>");
 		}
 		
 		return sb.toString();
