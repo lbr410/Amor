@@ -21,7 +21,7 @@
   <!--HEADER-->
   <header>
     <div class="inner">
-      <a href="index.do" class="logo">
+      <a href="/amor/index.do" class="logo">
         <img src="/amor/resources/img/main_logo.png" alt="amor_cinema" />
       </a>
 
@@ -36,7 +36,7 @@
           
 			<c:if test="${empty sessionScope.sid}">
 				<li>
-					<a href="javascript:void(0)">회원가입</a>
+					<a href="/amor/member/terms.do">회원가입</a>
 				</li>
 				<li class="login">
 					<a href="/amor/member/login.do"><input type="button" value="로그인"></a>

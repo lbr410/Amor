@@ -28,7 +28,6 @@
 		
 		let param = 'search='+search;
 		sendRequest('prodSearchList.do', param, null, 'GET');
-		//location.reload();
 		location.href='prodSearchList.do?search='+search;
 	}
 	

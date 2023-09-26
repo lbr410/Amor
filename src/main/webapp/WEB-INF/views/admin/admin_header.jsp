@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/amor/resources/css/admin/adminAll.css">
 <body>
 <div class="top">
-	<div class="logo"><a href="#"></a><img src="/amor/resources/img/logo.png"></div>
+	<div class="logo"><a href="#"></a><img src="/amor/resources/img/main_logo2.png"></div>
 	<c:if test="${empty sessonScope.name}">
 	<div class="logout"><input type="button" value="로그아웃" onclick = "adminLogout()"></div>
 	</c:if>
@@ -89,7 +89,7 @@
 				<div class="menutext"><a href="#">재고 목록</a></div>
 				<div class="menutext"><a href="#">재고 등록</a></div>
 				<div class="menutext"><a href="/amor/admin/product/productList.do">판매상품 목록</a></div>
-				<div class="menutext"><a href="#">판매상품 등록</a></div>
+				<div class="menutext"><a href="/amor/admin/product/productAdd.do">판매상품 등록</a></div>
 				<div class="menutext"><a href="#">결제내역 관리</a></div>
 			</div>			
 		</div>
