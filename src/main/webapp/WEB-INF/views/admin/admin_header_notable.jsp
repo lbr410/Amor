@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +11,9 @@
 <body>
 <div class="top">
 	<div class="logo"><a href="#"></a><img src="img/logo.png"></div>
-	<div class="logout"><input type="button" value="로그아웃"></div>
-</div>
+	<c:if test="${!empty sessionScope.data}">
+		<div class="logout"><input type="button" value="로그아웃" onclick = "adminLogout()"></div>
+	</c:if></div>
 <div class="sideDiv">
 	<div class="side">
 		<div class="sidemenu">

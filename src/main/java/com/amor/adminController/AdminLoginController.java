@@ -65,20 +65,20 @@ public class AdminLoginController {
 				ck.setMaxAge(0);
 				resp.addCookie(ck);
 			}
-			session.setAttribute("name", dto.getAdmin_id());
+			session.setAttribute("data", dto.getAdmin_id());
 			mav.addObject("msg", "관리자님 환영합니다");
 			mav.addObject("href", "/amor/admin/admin.do");
-			mav.setViewName("admin/msg/adminLoginMsg");
+			mav.setViewName("admin/msg/adminMsg");
 		}else {
 			mav.addObject("msg", "아이디 및 비밀번호가 틀렸습니다");
-			mav.addObject("href", "/amor/admin/adminMain.do");
-			mav.setViewName("admin/msg/adminLoginMsg");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("admin/msg/adminMsg");
 		}
 		return mav;
 	}
 	
 	@RequestMapping("/admin/admin.do")
-	public String goMain() {
+	public String goMainPage() {
 		return "admin/admin_header";
 	}
 	
