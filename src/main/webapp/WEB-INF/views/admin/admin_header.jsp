@@ -89,7 +89,7 @@
 				<div class="menutext"><a href="#">재고 목록</a></div>
 				<div class="menutext"><a href="#">재고 등록</a></div>
 				<div class="menutext"><a href="/amor/admin/product/productList.do">판매상품 목록</a></div>
-				<div class="menutext"><a href="#">판매상품 등록</a></div>
+				<div class="menutext"><a href="/amor/admin/product/productAdd.do">판매상품 등록</a></div>
 				<div class="menutext"><a href="#">결제내역 관리</a></div>
 			</div>			
 		</div>

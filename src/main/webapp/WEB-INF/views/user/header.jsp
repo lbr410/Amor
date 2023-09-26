@@ -21,7 +21,7 @@
   <!--HEADER-->
   <header>
     <div class="inner">
-      <a href="index.do" class="logo">
+      <a href="/amor/index.do" class="logo">
         <img src="/amor/resources/img/main_logo.png" alt="amor_cinema" />
       </a>
 
