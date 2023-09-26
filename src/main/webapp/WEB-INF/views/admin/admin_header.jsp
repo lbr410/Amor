@@ -10,9 +10,9 @@
 <link rel="stylesheet" href="/amor/resources/css/admin/adminAll.css">
 <body>
 <div class="top">
-	<div class="logo"><a href="#"></a><img src="img/logo.png"></div>
+	<div class="logo"><a href="#"></a><img src="/amor/resources/img/logo.png"></div>
 	<c:if test="${empty sessonScope.name}">
-	<div class="logout"><input type="button" value="로그아웃"></div>
+	<div class="logout"><input type="button" value="로그아웃" onclick = "adminLogout()"></div>
 	</c:if>
 </div>
 <div class="sideDiv">
@@ -154,6 +154,11 @@ function toggleSubmenu(menu) {
     // 선택된 메뉴 정보를 로컬 스토리지에 저장
     localStorage.setItem('selectedMenu', submenuId);
     localStorage.setItem('selectedSubmenu', submenuId); // 서브메뉴 정보도 저장
+}
+
+function adminLogout(){
+	
+	location.href = '/amor/admin/adminlogout.do';
 }
 </script>			
 	</div>
