@@ -28,11 +28,66 @@
 				<li>상영 예정작</li>
 			</ul>
 		</div>
-		<div class="more-movie">
-		<a href="movieList.do">더 많은 영화 보기</a>
-		</div>
 	</div>
-	
+	<!-- MOVIE TABLE -->
+	<div class="container">
+    <table border="1">
+        <tfoot>
+            <tr>
+                <td>페이징 영역</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <c:forEach var="dto" items="${lists}" varStatus="status">
+                <c:if test="${status.index % 4 == 0}">
+                    <tr>
+                </c:if>
+                <td>
+                    <table border="1">
+                        <tbody>
+                            <tr>
+                                <td class="rank">${dto.rank}<em>위</em></td>
+                            </tr>
+                            <tr>
+                                <td class="movie-poster">
+                                    <c:url var="contentUrl" value="movieContent.do">
+                                        <c:param name="movie_filename" value="${dto.movie_filename}" />
+                                    </c:url>
+                                    <img src="${contentUrl}" alt="${dto.movie_filename}" class="poster-img">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="main-info">
+                                    <span class="movie_maxage">${dto.movie_maxage}</span>
+                                    <span title="제목" class="movie_name">
+                                        <a href="#">${dto.movie_name}</a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="sub-info">
+                                    <span class="movie_review_star">관람 ${dto.movie_review_star}</span>
+                                    <span class="movie_opendate">개봉일 ${dto.movie_opendate}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="ticketing.do">
+                                        <input type="button" value="예매하기" class="ticketingBtn">
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <c:if test="${status.index % 4 == 3 or status.last}">
+                    </tr>
+                </c:if>
+            </c:forEach>
+        </tbody>
+    </table>
+</div>
+</div>
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

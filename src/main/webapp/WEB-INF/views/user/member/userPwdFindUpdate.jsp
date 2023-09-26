@@ -39,19 +39,19 @@
                         </li>
                     </ul>
                 </div>
-                <form name="userPwdFindUpdate" action="userPwdFindUpdate.do" method="post" class="table-wrap">
+                <form name="userPwdFindUpdate" action="userPwdFindUpdateSubmit.do" method="post" class="table-wrap">
                     <table class="table">
                         <tbody>
                             <tr>
                                 <th>비밀번호 재설정</th>
                                 <td colspan="2">
-                                    <input type="text" name="member_name"  id="member-name" maxlength="20" type="text" placeholder="이름">
+                                    <input type="text" name="member_name"  id="member-name" maxlength="20" type="text" placeholder="비밀번호">
                                 </td>
                             </tr>
                             <tr>
                                 <th>비밀번호 확인</th>
                                 <td>
-                                    <input name="member_email" id="member-email" maxlength="30" type="text" placeholder="이메일">
+                                    <input name="member_email" id="member-email" maxlength="30" type="text" placeholder="다시 입력해주세요.">
                                 </td>
                             </tr>
                         </tbody>

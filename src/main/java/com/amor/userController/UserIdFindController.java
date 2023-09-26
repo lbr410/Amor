@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.amor.encryption.Encryption;
 import com.amor.member.model.MemberDTO;
 import com.amor.member.service.MemberService;
 
@@ -60,11 +61,6 @@ public class UserIdFindController {
 		return "/user/member/userPwdFind";
 	}
 	
-	//이메일 인증 폼으로 이동
-		@RequestMapping("member/userPwdFindAuth.do")
-		public String userPwdFindAuth() {
-			return "/amor/user/member/userPwdFindAuth";
-		}
 	//비밀번호 아이디 입력하고 체크
 	@RequestMapping(value = "member/userPwdFind.do", method = RequestMethod.POST)
 	public ModelAndView userPwdSubmit(
@@ -90,6 +86,34 @@ public class UserIdFindController {
 	    }
 	   
 	}
+	
+	//이메일 인증 폼으로 이동
+	@RequestMapping("member/userPwdFindAuth.do")
+	public String userPwdFindAuth() {
+		return "/amor/user/member/userPwdFindAuth";
+	}
+	
+	//비밀번호 업데이트 폼으로 이동
+	@RequestMapping("member/userPwdFindUpdate.do")
+	public String userPwdFindUpdateForm() {
+		return "/user/member/userPwdFindUpdate";
+	}
+	
+	//비밀번호 업데이트
+	@RequestMapping("member/userPwdFindUpdateSubmit.do")
+	public ModelAndView userPwdFindUpdateSubmit(
+		@RequestParam("pwd")String pwd,
+		HttpSession session) {
+	String npwd = Encryption.pwdEncrypt(pwd);
+	String sid=(String)session.getAttribute("sid");
+	int result=memberService.memberPwdUpdate(sid, pwd);
+	String msg=result>0?"비밀번호 업데이트 성공":"비밀번호 업데이트 실패";
 
+	ModelAndView mav=new ModelAndView();
+	mav.addObject("msg", msg);
+	mav.addObject("goUrl", "login.do");
+	mav.setViewName("/user/msg/userMsg");
+	return mav;
+	}
 
 }

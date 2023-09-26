@@ -7,6 +7,75 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/amor/resources/css/user/userIdFind.css">
+<script type="text/javascript" src="../resources/js/httpRequest.js"></script>
+
+<script>
+let authOk = '인증번호가 일치합니다.';
+/** 이메일 인증 */
+var dataList = null;
+
+// 인증번호 메일로 보내기
+function sendMail() {
+	let email = document.getElementById('email').value; // 이메일
+	if(email != '') {		
+		let param = 'email='+email;
+		sendRequest('sendMail.do', param, sendMailCallBack, 'GET');
+	} else {
+		window.alert('이메일을 입력해주세요.');
+	}
+}
+
+function sendMailCallBack() {
+	if(XHR.readyState == 4) {
+		if(XHR.status == 200) {
+			let result = XHR.responseText;
+			let objData = JSON.parse(result);
+			
+			dataList = objData.data;
+			window.alert(dataList[0].msg);
+		}
+	}
+}
+
+// 사용자가 입력한 값과 인증번호가 일치하는지 확인
+function authChk(auth) {
+	let state = document.getElementById('authChkMsg');
+	
+	if(auth.value != '') {
+		if(auth.value == dataList[0].authNum) {
+			state.innerHTML = authOk;
+			state.style.color = 'green';
+		} else {
+			state.innerHTML = '인증번호가 일치하지 않습니다.';
+			state.style.color = 'red';
+		}
+	} else {
+		state.innerHTML = '';
+	}
+}
+
+// 회원가입 완료 전 모든 유효성 검사
+function validation() {
+	let idChkMsg = document.getElementById('idChkMsg').innerHTML;
+	let pwdChkMsg = document.getElementById('pwdChkMsg').innerHTML;
+	let pwdSameChkMsg = document.getElementById('pwdSameChkMsg').innerHTML;
+	let authChkMsg = document.getElementById('authChkMsg').innerHTML;
+	let year = document.getElementById('birth_year');
+	let day = document.getElementById('birth_day');
+	let tel = document.getElementById('tel');
+	let postcode = document.getElementById('postcode');
+	let address = document.getElementById('address');
+	
+	
+	if(authChkMsg != authOk) { // 인증번호
+		window.alert('이메일 인증번호를 확인바랍니다.');
+		document.getElementById('auth').focus();
+		return false;
+	}
+	
+	return true;
+}
+</script>
 </head>
 <body>
     <div class="top">
@@ -55,13 +124,16 @@
                                     <input type="text" name="member_emial" id="member-email" maxlength="50" placeholder="이메일">
                                 </td>
                                 <td>
-                                    <input type="button" class="gray-btn" value="인증번호 받기"> 
+                                    <input type="button" class="gray-btn" value="인증번호 받기"  onclick="sendMail()"> 
                                 </td>
                             </tr>
                             <tr>
                                 <th class="signUpMenu">인증번호</th>
                                 <td colspan="2">
-                                    <input type="text" name="authNum" id="answer-num" maxlength="6" placeholder="인증번호">
+                                    <input type="text" name="authNum" id="answer-num" class="textBoxDeco1" maxlength="6"
+									onkeypress="return checkNumber(event)" oninput="authChk(this)" required>
+                                	<div class="chks" id="authChkMsg"><!-- state --></div>
+                                
                                 </td>
                             </tr>
                         </tbody>
@@ -75,8 +147,7 @@
                         <input type="button" class="blue-btn" value="확인">
                     </a>
                     </div>
-                </form>
-                    
+                </form>    
                 </div>
             </div>
         </div>
