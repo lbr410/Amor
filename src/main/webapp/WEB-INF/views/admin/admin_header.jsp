@@ -10,9 +10,9 @@
 <link rel="stylesheet" href="/amor/resources/css/admin/adminAll.css">
 <body>
 <div class="top">
-	<div class="logo"><a href="#"></a><img src="/amor/resources/img/main_logo2.png"></div>
-	<c:if test="${empty sessonScope.name}">
-	<div class="logout"><input type="button" value="로그아웃" onclick = "adminLogout()"></div>
+	<div class="logo"><a href="#"></a><img src="/amor/resources/img/logo.png"></div>
+	<c:if test="${!empty sessionScope.data}">
+		<div class="logout"><input type="button" value="로그아웃" onclick = "adminLogout()"></div>
 	</c:if>
 </div>
 <div class="sideDiv">

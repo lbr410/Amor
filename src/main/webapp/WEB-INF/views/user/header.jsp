@@ -28,23 +28,23 @@
       <div class="sub-menu">
         <ul class="menu">
           <li>
-            <a href="/amor/myAmor.do">MY AMOR</a>
+            <a href="/amor/myAmor/ticketingHistory.do">MY AMOR</a>
           </li> 
           <li> 
             <a href="javascript:void(0)">고객센터</a>
           </li>
           
-			<c:if test="${empty sessionScope.sid}">
-				<li>
-					<a href="/amor/member/terms.do">회원가입</a>
-				</li>
-				<li class="login">
-					<a href="/amor/member/login.do"><input type="button" value="로그인"></a>
-				</li>
-			</c:if>
-			<c:if test="${!empty sessionScope.sid}">
-				<li class="logout"><a href="/amor/member/logout.do"><input type="button" value="로그아웃"></a></li>
-			</c:if>
+         <c:if test="${empty sessionScope.sid}">
+            <li>
+               <a href="javascript:void(0)">회원가입</a>
+            </li>
+            <li class="login">
+               <a href="/amor/member/login.do"><input type="button" value="로그인"></a>
+            </li>
+         </c:if>
+         <c:if test="${!empty sessionScope.sid}">
+            <li class="logout"><a href="/amor/member/logout.do"><input type="button" value="로그아웃"></a></li>
+         </c:if>
         </ul>
       </div>
        <ul class="main-menu">
@@ -60,7 +60,7 @@
                 </li>
                 <li>
                   <ul>
-                  	<li class="ticketingSchedule">상영시간표</li>
+                     <li class="ticketingSchedule">상영시간표</li>
                   </ul>
                 </li>
               </ul>
@@ -79,7 +79,7 @@
                 </li>
                 <li>
                   <ul>
-                  	<li class="comeMovie">상영예정작</li>
+                     <li class="comeMovie">상영예정작</li>
                   </ul>
                 </li>
               </ul>
@@ -100,7 +100,7 @@
             </div>
           </div>
         </li>
-		<li class="item">
+      <li class="item">
           <div class="item__name">영화관 소개</div>
           <div class="item__contents">
             <div class="contents__menu">
@@ -114,8 +114,8 @@
             </div>
           </div>
         </li>
-		<li>
-		<form name = "headSearch" class="headSearch">
+      <li>
+      <form name = "headSearch" class="headSearch">
             <input type="text" maxlength="30" name="search" id="search" placeholder="영화명을 입력해주세요.">
                 <div id="searchButton" onclick="userSearch()">
                     <img id="searchIcon" src="/amor/resources/img/icon_search.png" alt="movieSearch">
@@ -123,8 +123,7 @@
         </form>
         <span class="top-right"> </span>
 
-		</li>
+      </li>
       </ul>
     </div>
 </header>
-
