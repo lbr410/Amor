@@ -49,11 +49,10 @@ body{
 	font-style: normal;
 	font-weight: 500;
 	line-height: normal;
-	cursor: pointer;
 }
 .sideDiv{
 	width: 250px;
-	height: 975px;
+	height: 1225px; /* 이거 바꿈 */
 	box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
 	float: left;
 	
@@ -100,7 +99,7 @@ a:link{
 }
 .content{
 	width:100%;
-	height: 950px;
+	height: 1200px; /* 이거 바꿈 */
 	background: white;
 	margin-left: 265px;
 	margin-top: 15px;
@@ -199,32 +198,31 @@ a:link{
     color: #2E90FF; 
 }
 
-
-.contentMain table{
+.contentMain .tableDiv .commonTable{
 	width: 1300px;
 	border-spacing: 0px;
 	
 }
-.contentMain table th{
+.contentMain .tableDiv .commonTable th{
 	background: #F8F8F8;
 	height: 30px;
 	font-size: 12px;
 	color: #55555;
 	
 }
-.contentMain table td{
+.contentMain .tableDiv .commonTable td{
 	text-align: center;
 	font-size: 12px;
 	height: 30px;
 
 }
-.table{
+.tableDiv{
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	gap: 10px;
 }
-.contentMain table tbody tr:hover {
+.contentMain .tableDiv .commonTable tbody tr:hover {
 	background-color: #E6E6E6;
 	color:#55555;
 }
