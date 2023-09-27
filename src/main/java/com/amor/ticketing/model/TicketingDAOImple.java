@@ -2,6 +2,7 @@ package com.amor.ticketing.model;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -21,6 +22,26 @@ public class TicketingDAOImple implements TicketingDAO {
 		System.out.println(lists.size());
 		return lists;
 	}
+	
+	@Override
+	public int cancellationTicket(String ticketnum) {
+		int result = sqlmap.update("cancellationTicket",ticketnum);
+		System.out.println("updateResult="+result);
+		return result;
+	}
+	
+	@Override
+	public List<JoinTicketingHistoryDTO> getcancellList(int useridx) {
+		List<JoinTicketingHistoryDTO> lists = sqlmap.selectList("ticketingcancellList", useridx);
+		return lists;
+	}
+	
+//	@Override
+//	public List<Map<String, Object>> ticketingList(int useridx) {
+//		List<Map<String, Object>> lists = sqlmap.selectList("ticketingHistoryList", useridx);
+//		System.out.println(lists.size());
+//		return lists;
+//	}
 
 	
 }

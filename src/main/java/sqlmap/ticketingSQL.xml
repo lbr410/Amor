@@ -8,10 +8,27 @@
 <![CDATA[
 select c.movie_name as moviename,c.movie_poster as movieimg,b.ticketing_num as ticketnum,
 b.ticketing_seat as seatnum,b.ticketing_screeningtime as screeningdate,
-b.ticketing_payment as payment,b.ticketing_price as price 
+b.ticketing_payment as payment,b.ticketing_price as price,b.ticketing_reservetime as reservetime 
 from playing_movie a,(select * from ticketing
 where member_idx = #{useridx} and ticketing_state = 'y') b , movie c
 where a.playing_movie_idx = b.playing_movie_idx and a.movie_idx = c.movie_idx
 ]]>
 </select>
+
+<select id = "ticketingcancellList" parameterType="Integer" resultType="com.amor.ticketing.model.JoinTicketingHistoryDTO">
+<![CDATA[
+select c.movie_name as moviename,c.movie_poster as movieimg,b.ticketing_num as ticketnum,
+b.ticketing_seat as seatnum,b.ticketing_screeningtime as screeningdate,
+b.ticketing_payment as payment,b.ticketing_price as price,b.ticketing_reservetime as reservetime 
+from playing_movie a,(select * from ticketing
+where member_idx = #{useridx} and ticketing_state = 'n') b , movie c
+where a.playing_movie_idx = b.playing_movie_idx and a.movie_idx = c.movie_idx
+]]>
+</select>
+
+<update id="cancellationTicket" parameterType="String">
+update ticketing
+set ticketing_state = 'n'
+where ticketing_num = #{ticketnum}
+</update>
 </mapper>

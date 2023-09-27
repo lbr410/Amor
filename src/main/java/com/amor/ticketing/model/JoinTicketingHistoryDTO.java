@@ -10,14 +10,16 @@ public class JoinTicketingHistoryDTO {
 	private String seatnum;
 	private Date screeningdate;
 	private String payment;
-	private String price;
+	private Long price;
+	private Date reservetime;
+	private String changePrice;
 	
 	public JoinTicketingHistoryDTO() {
 		System.out.println("joinTicketingDTO start");
-	}
+	}		
 
 	public JoinTicketingHistoryDTO(String moviename, String movieimg, String ticketnum, String seatnum,
-			Date screeningdate, String payment, String price) {
+			Date screeningdate, String payment, Long price, Date reservetime) {
 		super();
 		this.moviename = moviename;
 		this.movieimg = movieimg;
@@ -26,6 +28,15 @@ public class JoinTicketingHistoryDTO {
 		this.screeningdate = screeningdate;
 		this.payment = payment;
 		this.price = price;
+		this.reservetime = reservetime;
+	}
+
+	public String getChangePrice() {
+		return changePrice;
+	}
+
+	public void setChangePrice(String changePrice) {
+		this.changePrice = changePrice;
 	}
 
 	public String getMoviename() {
@@ -76,13 +87,21 @@ public class JoinTicketingHistoryDTO {
 		this.payment = payment;
 	}
 
-	public String getPrice() {
+	public Long getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(Long price) {
 		this.price = price;
 	}
-	
+
+	public Date getReservetime() {
+		return reservetime;
+	}
+
+	public void setReservetime(Date reservetime) {
+		this.reservetime = reservetime;
+	}
+		
 	
 }
