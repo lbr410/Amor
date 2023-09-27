@@ -105,7 +105,7 @@
               <ul class="inner">
                 <li>
                   <ul>
-                    <li class="movieIntro">영화관 소개</li>
+                    <li class="movieIntro"><a href="/amor/intro/intro.do">영화관 소개</a></li>
                   </ul>
                 </li>
               </ul>

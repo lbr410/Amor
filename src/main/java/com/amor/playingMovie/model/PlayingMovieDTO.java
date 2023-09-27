@@ -34,6 +34,16 @@ public class PlayingMovieDTO {
 		this.movie_name = movie_name;
 	}
 
+	public PlayingMovieDTO(int movie_idx, int theater_idx, Date playing_movie_date, Date playing_movie_start,
+			Date playing_movie_end) {
+		super();
+		this.movie_idx = movie_idx;
+		this.theater_idx = theater_idx;
+		this.playing_movie_date = playing_movie_date;
+		this.playing_movie_start = playing_movie_start;
+		this.playing_movie_end = playing_movie_end;
+	}
+
 	public int getPlaying_movie_idx() {
 		return playing_movie_idx;
 	}
@@ -113,5 +123,6 @@ public class PlayingMovieDTO {
 	public void setMovie_name(String movie_name) {
 		this.movie_name = movie_name;
 	}
+
 	
 }

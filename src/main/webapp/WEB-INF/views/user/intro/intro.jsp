@@ -24,13 +24,13 @@
 <!-- 이 밑으로 작업 -->
 <br>
 <br>
-<div id="container">
+<div id="intro-container">
 
-<div id="box1" class="amorTheater" >
+<div id="intro-box1" class="amorTheater" >
 <img class="amorTheaterImg" src="/amor/resources/img/introImg.jpg">
 </div>
 
-<div id="box2" class="amorIntro">
+<div id="intro-box2" class="amorIntro">
 아모르는 극장 부재 지역에 영화 향유권 격차 해소를 위해 국가와 
 지방자치단체가조성하는 상설 영화관으로 지역민의 문화생활 증진을 
 위한 공공적 목적으로 조성되는 공공 문화 시설이다. 수익성이 없어서 
