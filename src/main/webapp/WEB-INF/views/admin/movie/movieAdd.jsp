@@ -22,7 +22,6 @@ function moviePreview(input,num){
 }
 //러닝타임 숫자만 입력받게
 function checkNumber(event) {
-	
 	if(event.key >= 0 && event.key <= 9) {
 	    return true;
 	}

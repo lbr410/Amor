@@ -9,6 +9,7 @@ public interface MovieDAO {
 	public int movieUpdate(MovieDTO dto);
 	public int movieDelete(int movie_idx);
 	public int getTotalCnt();
+	public int stateChange(MovieDTO dto);
 	
 	
 }

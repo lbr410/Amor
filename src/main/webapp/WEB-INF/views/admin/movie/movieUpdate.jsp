@@ -22,7 +22,6 @@ function moviePreview(input,num){
 }
 //러닝타임 숫자만 입력받게
 function checkNumber(event) {
-	
 	if(event.key >= 0 && event.key <= 9) {
 	    return true;
 	}
@@ -102,7 +101,7 @@ function checkNumber(event) {
 					<th>줄거리</th><td><textarea name="movie_content" rows="15" cols="40" placeholder="내용을 입력해주세요" required="required">${dto.movie_content }</textarea></td>
 				</tr>
 				<tr>
-					<td colspan="3" class="movieUpdateSumit"><input type="hidden" name="movie_idx" value="${dto.movie_idx }"> <input type="button" value="취소" onclick="location.href='/amor/admin/movie/movieList.do'"> &nbsp;<input type="submit" value="수정"> </td>
+					<td colspan="3" class="movieUpdateSumit"><input type="hidden" name="movie_idx" value="${dto.movie_idx }"> <input type="hidden" name="movie_state" value="${dto.movie_state }"> <input type="button" value="취소" onclick="location.href='/amor/admin/movie/movieList.do'"> &nbsp;<input type="submit" value="수정"> </td>
 				</tr>
 			
 			</table>
