@@ -60,4 +60,19 @@ public class MovieDAOImple implements MovieDAO {
 		int result = sqlmap.update("stateChange",dto);
 		return result;
 	}
+	
+	@Override
+	public List<MovieDTO> movieBest(Map map) {
+		List<MovieDTO> lists = sqlmap.selectList("movieBest", map);
+		System.out.println(lists);
+		return lists;
+	}
+	
+	@Override
+	public List<MovieDTO> movieCome(Map map) {
+		List<MovieDTO> lists = sqlmap.selectList("movieCome", map);
+		System.out.println(lists);
+		return lists;
+	}
+	
 }

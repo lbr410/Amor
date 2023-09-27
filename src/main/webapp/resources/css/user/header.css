@@ -136,7 +136,7 @@ header .main-menu .item .item__contents .contents__menu > ul > li ul li {
   text-align: center;
 }
 header .main-menu .item .item__contents .contents__menu > ul > li ul .nowMovie{
-  margin-left: 80px;
+  margin-left: 70px;
   width: 120px;
   font-size: 14px;
   color: #F8F9FA;
@@ -144,7 +144,8 @@ header .main-menu .item .item__contents .contents__menu > ul > li ul .nowMovie{
   text-align: center;
 }
 header .main-menu .item .item__contents .contents__menu > ul > li ul .comMovie{
-  margin-left: 140px;
+  margin-left: 400px;
+  width: 120px;
   font-size: 14px;
   color: #F8F9FA;
   cursor: pointer;

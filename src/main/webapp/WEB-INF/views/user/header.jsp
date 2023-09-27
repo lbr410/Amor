@@ -34,7 +34,7 @@
           
          <c:if test="${empty sessionScope.sid}">
             <li>
-               <a href="javascript:void(0)">회원가입</a>
+               <a href="/amor/member/signUp.do">회원가입</a>
             </li>
             <li class="login">
                <a href="/amor/member/login.do"><input type="button" value="로그인"></a>
@@ -72,12 +72,12 @@
               <ul class="inner">
                 <li>
                   <ul>
-                    <li class="nowMovie"><a href="/amor/movie/movie.do">현재상영작</a></li>
+                    <li class="movie"><a href="/amor/movie/movie.do">현재상영작</a></li>
                   </ul>
                 </li>
                 <li>
                   <ul>
-                     <li class="comeMovie">상영예정작</li>
+                     <li class="movieCome"><a href="/amor/movie/movieCome.do">상영예정작</a></li>
                   </ul>
                 </li>
               </ul>
