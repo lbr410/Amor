@@ -103,7 +103,7 @@ function emailOk() {
                     <div class="id-result">
                         <span class="member_id">회원님의 아이디는 ${member_id} 로 등록되어 있습니다.</span>
                     </div>
-                    <form class="table-wrap"  action="userPwdFindUpdate.do">
+                    <form class="table-wrap">
                     <table class="table">
                         <tbody>
                             <tr>
