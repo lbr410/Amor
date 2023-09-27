@@ -21,4 +21,5 @@ public interface ProductService {
 	public List<ProductDTO> storeDrinkList();
 	public List<ProductDTO> storeSnackList();
 	public ProductDTO storeContent(int idx);
+	public ProductDTO storePayForm(int idx, int num);
 }

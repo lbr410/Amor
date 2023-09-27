@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 </head>
 <style>
+.body-inner{
+	width: 100%;
+	height:900px;
+	margin: 0 auto;
+	position: relative;
+	background: #333;
+}
 .commonBack{
 	background: #333;
 	width: 100%;
@@ -17,7 +24,9 @@
 	width: 1100px;
 	height: 616px;
 	flex-shrink: 0;
-	margin-top: 210px;
+	padding-top: 210px;
+	margin: 0 auto;
+	marign-bottom: 30px;
 }
 .commonTop{
 	display: flex;
@@ -70,8 +79,7 @@
 </style>
 <body>
 <%@include file="../header.jsp" %>
-<div class="commonBack">
-<div class="inner">
+<div class="body-inner">
 	<div class="commonDiv">
 		<div class="commonTop">
 			<label>상품정보</label><label>결제수단</label><label>결제하기</label>
@@ -83,6 +91,7 @@
 		</div>
 	</div>
 </div>
-</div>
+
 </body>
+<%@include file="../footer.jsp" %>
 </html>

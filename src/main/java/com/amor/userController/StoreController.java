@@ -35,7 +35,7 @@ public class StoreController {
 		return mav;
 	}
 	
-	@RequestMapping("storeContentForm.do")
+	@RequestMapping("store/storeContentForm.do")
 	public ModelAndView storeContent(
 			@RequestParam(value="product_idx",defaultValue ="0") int idx) {
 		
@@ -45,4 +45,24 @@ public class StoreController {
 		mav.setViewName("user/store/storeContent");
 		return mav;
 	}
+	
+	@RequestMapping("store/storePaymentForm.do")
+	public ModelAndView storePaymentForm(
+			@RequestParam("num") int num,
+			@RequestParam("idx") int idx){
+		
+				/*@RequestParam("total")String total,
+				@RequestParam("price")int price*/
+//		System.out.println(num);
+//		System.out.println(idx);
+		ProductDTO dto=productService.storePayForm(idx,num);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("num", num);
+		mav.addObject("dto", dto);
+		mav.setViewName("/user/store/storePayment");
+		return mav;
+	}
+	
+	
 }

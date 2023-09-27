@@ -1,0 +1,195 @@
+@charset "UTF-8";
+.body-inner{
+	width: 100%;
+	height:900px;
+	margin: 0 auto;
+	position: relative;
+	background: #333;
+}
+.commonBack{
+	background: #333;
+	width: 100%;
+	height: 900px;
+	position: absolute;
+}
+.commonDiv{
+	width: 1100px;
+	height: 616px;
+	flex-shrink: 0;
+	padding-top: 210px;
+	margin: 0 auto;
+	marign-bottom: 30px;
+}
+.commonTop{
+	display: flex;
+	width: 1100px;
+	height: 50px;
+	justify-content: center;
+	align-items: flex-start;
+	flex-shrink: 0;
+	background: #1A2C82;
+}
+.commonTop label{
+	display: flex;
+	width: 366.6px;
+	height: 50px;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex-shrink: 0;
+	color: #FFF;
+	font-family: Inter;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	letter-spacing: 0.9px;
+}
+.commonMid{
+	background: #FFF;
+	width: 1100px;
+	height: 566px;
+	flex-shrink: 0;
+}
+.content1{
+	width: 366px;
+	height: 566px; 
+	float:left;
+}
+.content2{
+	width: 366px;
+	height: 566px;
+	float:left;
+	border-right: 1px solid #1A2C82;
+	border-left: 1px solid #1A2C82;
+}
+.content3{
+	width: 365px;
+	height: 566px;
+	display:inline-block;
+}
+.prodDiv{
+	display: inline-flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 2px;
+}
+.prodImg{
+	display: flex;
+	width: 347px;
+	height: 200px;
+	padding: 10px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+.prodImg src{
+	width: 236px;
+	height: 181px;
+	flex-shrink: 0;
+}
+.prodTitle {
+	display: flex;
+	width: 326px;
+	height: 12px;
+	padding: 14px 10px 14px 30px;
+	align-items: center;
+	gap: 10px;
+	color: #000;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+}
+.prodNum{
+	display: flex;
+	width: 326px;
+	height: 12px;
+	padding: 14px 10px 14px 30px;
+	align-items: center;
+	gap: 10px;
+	color: #000;
+	font-size: 17px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+.payType{
+	padding: 20px;	
+}
+#payBtn{
+   border:none;
+   padding: 2px 21px 2px 21px;
+   width: 150px;
+   height: 50px;
+   border-radius: 3px;
+   background: #EEEEEE;
+   color: #1A2C82;
+   cursor: pointer;
+}
+
+#payBtn.clicked{
+   border:none;
+   padding: 2px 20px 2px 20px;
+   width: 150px;
+   height: 50px;
+   border-radius: 3px;
+   background: #1A2C82;
+   color: white;
+   cursor: pointer;
+	
+}
+.payDiv{
+	width: 326px;
+	height: 152px;
+	flex-shrink: 0;
+    padding: 21px 20px 21px 20px;
+	
+}
+.payDiv1, .payDiv2{
+	display: flex;
+	height: 51px;
+	justify-content: center;
+	align-items: center;
+	flex-shrink: 0;
+	border-top: 1px solid #D9D9D9;
+	border-right: 1px solid #D9D9D9;
+	border-left: 1px solid #D9D9D9;
+	margin: 0 auto;
+}
+.payDiv1 .d1, .payDiv2 .d1{
+	display: flex;
+	width: 133px;
+	height: 31px;
+	padding: 10px 10px 10px 20px;
+	align-items: center;
+	gap: 10px;
+}
+.payDiv1 .d2, .payDiv2 .d2{
+	display: flex;
+	width: 131px;
+	height: 31px;
+	padding: 10px 20px 10px 10px;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 10px;
+}
+
+.submitBtn{
+	display: flex;
+	width: 326px;
+	height: 51px;
+	padding: 10px 63px;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex-shrink: 0;
+	background: #1A2C82;
+	color: white;
+	border: none;
+}
+.img{
+	width: 210px;
+	height: 150px;
+}

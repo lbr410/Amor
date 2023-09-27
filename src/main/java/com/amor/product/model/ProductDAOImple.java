@@ -97,4 +97,10 @@ public class ProductDAOImple implements ProductDAO {
 		ProductDTO dto=sqlmap.selectOne("storeContent", idx);
 		return dto;
 	}
+	
+	@Override
+	public ProductDTO storePayForm(int idx) {
+		ProductDTO dto=sqlmap.selectOne("storePay", idx);
+		return dto;
+	}
 }
