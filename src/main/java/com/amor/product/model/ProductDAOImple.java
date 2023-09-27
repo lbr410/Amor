@@ -77,7 +77,6 @@ public class ProductDAOImple implements ProductDAO {
 	@Override
 	public List<ProductDTO> storeTicketList() {
 		List<ProductDTO> lists=sqlmap.selectList("storeTicketList");
-		System.out.println(lists);
 		return lists;
 	}
 	

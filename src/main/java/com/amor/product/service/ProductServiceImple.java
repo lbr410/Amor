@@ -96,7 +96,6 @@ public class ProductServiceImple implements ProductService {
 		DecimalFormat df=new DecimalFormat("#,##0원");
 		
 		 for (int i = 0; i < lists.size(); i++) {
-			 System.out.println(df.format(lists.get(i).getProduct_price()));
 		        double product_price=lists.get(i).getProduct_price();  
 		        String product_price2=df.format(product_price);
 		        lists.get(i).setProduct_price2(product_price2); 	        
@@ -107,10 +106,9 @@ public class ProductServiceImple implements ProductService {
 	@Override
 	public List<ProductDTO> storeDrinkList() {
 		List<ProductDTO> lists=productDao.storeDrinkList();
-		DecimalFormat df=new DecimalFormat("#,##0원");
+		DecimalFormat df=new DecimalFormat("#,##0");
 		
 		 for (int i = 0; i < lists.size(); i++) {
-			 System.out.println(df.format(lists.get(i).getProduct_price()));
 		        double product_price=lists.get(i).getProduct_price();  
 		        String product_price2=df.format(product_price);
 		        lists.get(i).setProduct_price2(product_price2); 	        
@@ -121,10 +119,9 @@ public class ProductServiceImple implements ProductService {
 	@Override
 	public List<ProductDTO> storeSnackList() {
 		List<ProductDTO> lists=productDao.storeSnackList();
-		DecimalFormat df=new DecimalFormat("#,##0원");
+		DecimalFormat df=new DecimalFormat("#,##0");
 		
 		 for (int i = 0; i < lists.size(); i++) {
-			 System.out.println(df.format(lists.get(i).getProduct_price()));
 		        double product_price=lists.get(i).getProduct_price();  
 		        String product_price2=df.format(product_price);
 		        lists.get(i).setProduct_price2(product_price2); 	        

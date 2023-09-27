@@ -181,6 +181,11 @@ button {
     font-weight: bold;
     text-align: right;
 }
+.contents-detail .pd-wrap .pd-detail .txt-price-wrap .txt-price-str label{
+    font-size: 33px;
+    font-weight: bold;
+    text-align: right;
+}
 tbody td, thead td{
 	vertical-align: middle;
 }

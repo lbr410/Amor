@@ -9,7 +9,53 @@
 </head>
 <script>
 
+function minus() {
+	var product_price=${dto.product_price}; //원래 상품금액
+	var numTag=document.getElementById('num'); 
+	var num=numTag.innerHTML; //갯수
+	
+	var totalTag=document.getElementById('total');
+	
+	var priceTag=document.getElementById('amass');
+	var price=parseInt(priceTag.value);
+	
+	if(num>1){
+		num--;
+		numTag.innerHTML=num;
+		price=price-product_price;
+		priceTag.value=price;
+
+		var regexp = /\B(?=(\d{3})+(?!\d))/g;
+		price=price.toString().replace(regexp, ','); 
+		totalTag.innerHTML=price;
+	}
+	
+	
+}
+function plus() {
+	var product_price=${dto.product_price}; //원래 상품금액(3000)
+
+	var numTag=document.getElementById('num');
+	var num=numTag.innerHTML; //갯수
+	var totalTag=document.getElementById('total');
+	
+	var priceTag=document.getElementById('amass'); //누적
+	var price=parseInt(priceTag.value);
+
+	if(num<10){
+		num++;
+		numTag.innerHTML=num;
+		price=price+product_price;
+		priceTag.value=price;
+
+		var regexp = /\B(?=(\d{3})+(?!\d))/g;
+		price=price.toString().replace(regexp, ','); 
+		totalTag.innerHTML=price;
+	}
+	
+}
 </script>
+
    <%@include file="../header.jsp" %>
 <body>
     <!-- GRAY BAR -->
@@ -56,10 +102,11 @@
                     <button class="btn-plus" onclick="plus()">+</button>
                 </div>
                 <div class="txt-price-wrap">
-                    <label>총 상품금액</label>
+                    <p>총 상품금액</p>
                     <div class="txt-price-str">
-                        ${dto.product_price2 }
+                        <label id="total">${dto.product_price2 }</label>
                         <em>원</em>
+                        <input type="hidden" id="amass" value="${dto.product_price }">
                     </div>
                 </div>
                 <div class="btn-wrap">

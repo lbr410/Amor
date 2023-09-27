@@ -82,7 +82,7 @@
         		<label><a href="${detailUrl }">${Ddto.product_title }</a></label>
         	</div>
         	<div class="prodPrice">
-        		<label>${Ddto.product_price2 }</label>
+        		<label><span>${Ddto.product_price2 }</span>원</label>
         	</div>
         </div>
      </c:forEach>   
