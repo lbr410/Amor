@@ -100,12 +100,12 @@ public class MemberServiceImple implements MemberService {
 		return result;
 	}
 	
-@Override
-	public int userPwdFindUpdate(String sid, String pwd) {
+	@Override
+	public int userPwdFindUpdate(String id, String pwd) {
 		Map map=new HashedMap();
-		map.put("sid", sid);
+		map.put("fid", id);
 		map.put("pwd", pwd);
-		int result=memberDao.memberPwdUpdate(map);
+		int result=memberDao.userPwdFindUpdate(map);
 		return result;
 	}
 	@Override

@@ -67,20 +67,20 @@ public class UserIdFindController {
 			@RequestParam(value="member_id", defaultValue = "noid")String member_id,
 			HttpSession session) {
 		
-		String id = memberService.userPwdIdck(member_id);
+		String fid = memberService.userPwdIdck(member_id);
 
 	    ModelAndView mav = new ModelAndView();
 
-	    if (id == null) {
+	    if (fid == null) {
 	    	  mav.addObject("msg", "일치하는 아이디가 없습니다.");
 		      mav.addObject("goUrl","/amor/member/userPwdFindForm.do");
 		      mav.setViewName("/user/msg/userMsg");
 		        return mav;
 	    } else {
 	        // 아이디가 일치하는 경우 세션에 아이디를 저장
-			System.out.println("member_id+"+member_id+id);
-	        session.setAttribute("sId", id);
-	        mav.addObject("member_id", id);
+			System.out.println("member_id+"+member_id+fid);
+	        session.setAttribute("id", fid);
+	        mav.addObject("member_id", fid);
 		    mav.setViewName("/user/member/userPwdFindAuth");
 	        return mav;
 	    }
@@ -98,20 +98,22 @@ public class UserIdFindController {
 	public String userPwdFindUpdateForm() {
 		return "/user/member/userPwdFindUpdate";
 	}
-	
+
 	//비밀번호 업데이트
-	@RequestMapping("member/userPwdFindUpdateSubmit.do")
+	@RequestMapping(value="member/userPwdFindUpdateSubmit.do", method = RequestMethod.POST)
 	public ModelAndView userPwdFindUpdateSubmit(
 		@RequestParam("member_pwd")String member_pwd,
 		HttpSession session) {
-	String npwd = Encryption.pwdEncrypt(member_pwd);
-	String sid=(String)session.getAttribute("sid");
-	int result=memberService.userPwdFindUpdate(sid, npwd);
-	String msg=result>0?"비밀번호 업데이트 성공":"비밀번호 업데이트 실패";
+		String fid=(String)session.getAttribute("fid");
+		System.out.println("sid+"+fid);
+		String npwd = Encryption.pwdEncrypt(member_pwd);
 
-	ModelAndView mav=new ModelAndView();
+		int result=memberService.userPwdFindUpdate(fid, npwd);
+		String msg=result>0?"비밀번호 업데이트 성공":"비밀번호 업데이트 실패";
+
+		ModelAndView mav=new ModelAndView();
 	mav.addObject("msg", msg);
-	mav.addObject("goUrl", "login.do");
+	mav.addObject("goUrl", "/user/member/login.do");
 	mav.setViewName("/user/msg/userMsg");
 	return mav;
 	}
