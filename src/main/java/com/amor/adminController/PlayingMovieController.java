@@ -32,7 +32,7 @@ public class PlayingMovieController {
 		System.out.println("test="+lists.size());
 		System.out.println("totalCnt="+totalCnt);
 		
-		String playpageStr=com.amor.page.PageModule.makePage("admin/playMovie/playingMovieList.do", totalCnt, listSize, pageSize, cp);
+		String playpageStr=com.amor.page.PageModule.makePage("playingMovieList.do", totalCnt, listSize, pageSize, cp);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("playpageStr", playpageStr);
@@ -63,13 +63,13 @@ public class PlayingMovieController {
 	public ModelAndView playingMovieAdd (
 			@RequestParam("movie_idx")int movie_idx,
 			@RequestParam("theater_idx")int theater_idx,
-			@RequestParam("playing_movie_date")String playing_movie_date_d,
-			@RequestParam("playing_movie_start")String playing_movie_start_s,
-			@RequestParam("playing_movie_end")String playing_movie_end_e) throws Exception {
+			@RequestParam("playing_movie_date")String playing_movie_date,
+			@RequestParam("playing_movie_start")String playing_movie_start,
+			@RequestParam("playing_movie_end")String playing_movie_end) {
 		
-		java.sql.Date playing_movie_date = java.sql.Date.valueOf(playing_movie_date_d);
-		java.sql.Date playing_movie_start = java.sql.Date.valueOf(playing_movie_start_s);
-		java.sql.Date playing_movie_end = java.sql.Date.valueOf(playing_movie_end_e);
+		System.out.println(playing_movie_start);
+		System.out.println(playing_movie_end);
+		System.out.println(playing_movie_date);
 		
 		PlayingMovieDTO dto = new PlayingMovieDTO(movie_idx, theater_idx, playing_movie_date, playing_movie_start, playing_movie_end);
 		
@@ -81,6 +81,73 @@ public class PlayingMovieController {
 		mav.addObject("href","/amor/admin/playMovie/playingMovieAdd.do");
 		mav.setViewName("admin/msg/adminMsg");
 		return mav;
+	}
+	
+	@RequestMapping(value = "admin/playMovie/playingMovieUpdate.do", method = RequestMethod.GET)
+	public ModelAndView playingMovieUpdateList (
+			@RequestParam("playing_movie_idx")int idx_u) {
+		
+		PlayingMovieDTO updatedto=playingMovieService.playingMovieUpdateList(idx_u);
+		List<Map> movieLists = playingMovieService.playingMovieAddMovie();
+		List<Map> screenLists = playingMovieService.playingMovieAddScreen();
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("updatedto", updatedto);
+		mav.addObject("movieLists", movieLists);
+		mav.addObject("screenLists", screenLists);
+		mav.setViewName("admin/playMovie/playingMovieUpdate");
+		return mav;
+	}
+	
+	@RequestMapping(value = "admin/playMovie/playingMovieUpdate.do", method = RequestMethod.POST)
+	public ModelAndView playingMovieUpdate (	
+			@RequestParam("movie_idx")int movie_idx,
+			@RequestParam("theater_idx")int theater_idx,
+			@RequestParam("playing_movie_date")String playing_movie_date,
+			@RequestParam("playing_movie_start")String playing_movie_start,
+			@RequestParam("playing_movie_end")String playing_movie_end,
+			@RequestParam("playing_movie_idx")int playing_movie_idx) {
+		
+		System.out.println("playing_movie_idx="+playing_movie_idx);
+		
+		PlayingMovieDTO dto = new PlayingMovieDTO(playing_movie_idx , movie_idx, theater_idx, playing_movie_date, playing_movie_start, playing_movie_end);
+		int result = playingMovieService.playingMovieUpdate(dto);
+		String msg = result>0?"수정에 성공했습니다.":"수정에 실패했습니다.";
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg", msg);
+		mav.addObject("href", "/amor/admin/playMovie/playingMovieList.do");
+		mav.setViewName("admin/msg/adminMsg");
+		return mav;
+	}
+	
+	@RequestMapping("admin/playMovie/playingMovieDelete.do")
+	public ModelAndView playingMovieDelete (
+			@RequestParam("playing_movie_idx")int idx) {
+		
+		System.out.println("delete page");
+		
+		int result = playingMovieService.playingMovieDelete(idx);
+		String msg = result>0?"삭제가 완료되었습니다.":"삭제에 실패했습니다.";
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("msg", msg);
+		mav.addObject("href","/amor/admin/playMovie/playingMovieList.do");
+		mav.setViewName("admin/msg/adminMsg");
+		return mav;
+	}
+	
+	@RequestMapping("admin/playMovie/movieRunning.do")
+	public String movieRunning (
+			@RequestParam("movie_idx")int movie_idx) {
+		
+		System.out.println("movie_idx="+movie_idx);
+		
+		Map running = playingMovieService.movieRunning(movie_idx);
+		String result = "{\"runningTime\",\""+running.get("MOVIE_RUNNINGTIME")+"\"}";
+		System.out.println(result);
+		return result;
 	}
 	
 }

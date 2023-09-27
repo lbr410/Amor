@@ -4,15 +4,18 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amor.playingMovieSQL">
 	<select id="playingMovieList" parameterType="Map" resultType="com.amor.playingMovie.model.PlayingMovieDTO">
-			select c.playing_movie_date, c.playing_movie_start, e.movie_name, d.theater_name 
-			from (select * from (select rownum as rnum,a.* from 
+		select  
+			to_char(c.playing_movie_date, 'yyyy-mm-dd') as "playing_movie_date",
+			to_char(c.playing_movie_start, 'hh24:mi:ss') as "playing_movie_start", 
+			e.movie_name, d.theater_name, c.playing_movie_idx
+		from (select * from (select rownum as rnum,a.* from 
 			(select * from playing_movie order by playing_movie_idx desc)a)b 
-			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}) c, theater d, movie e 
-			where c.theater_idx=d.theater_idx and c.movie_idx=e.movie_idx
+		where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}) c, theater d, movie e 
+		where c.theater_idx=d.theater_idx and c.movie_idx=e.movie_idx
 	</select>
 	<select id="totalCntPlaying" resultType="Integer">
 		select count(*) from playing_movie c, theater d, movie e 
-		where c.theater_idx=d.theater_idx and c.movie_idx=e.movie_idx
+			where c.theater_idx=d.theater_idx and c.movie_idx=e.movie_idx
 	</select>
 	<select id="playingMovieAddMovie" resultType="Map">
 		select movie_name, movie_idx from movie
@@ -21,15 +24,42 @@
 		select theater_name, theater_idx from theater
 	</select>
 	<insert id="playingMovieAdd" parameterType="com.amor.playingMovie.model.PlayingMovieDTO">
-		insert into
-		playing_movie
-		values (playing_movie_idx.nextval, 
+		insert into 
+			playing_movie values 
+		(playing_movie_idx.nextval, 
 		#{movie_idx}, 
 		#{theater_idx}, 
-		#{playing_movie_date},
-		#{playing_movie_start},
-		#{playing_movie_end},
-		'0',
-		'[]')
+		to_date(#{playing_movie_date},'yyyy-mm-dd'), 
+		to_date(#{playing_movie_start},'hh24:mi:ss'), 
+		to_date(#{playing_movie_end},'hh24:mi:ss'), '0', '[]')
 	</insert>
+	<select id="playingMovieUpdateList" parameterType="Integer" resultType="com.amor.playingMovie.model.PlayingMovieDTO">
+		select
+			to_char(c.playing_movie_date, 'yyyy-mm-dd') as "playing_movie_date",
+			to_char(c.playing_movie_start, 'hh24:mi:ss') as "playing_movie_start", 
+			to_char(c.playing_moive_end, 'hh24:mi:ss') as "playing_movie_end",
+			e.movie_name, d.theater_name, c.playing_movie_idx 
+		from playing_movie c, theater d, movie e 
+			where c.theater_idx=d.theater_idx and c.movie_idx=e.movie_idx
+		and c.playing_movie_idx=#{idx_u}
+	</select>
+	<update id="playingMovieUpdate" parameterType="com.amor.playingMovie.model.PlayingMovieDTO">
+		update 
+			playing_movie
+		set
+			movie_idx=#{movie_idx},
+			theater_idx=#{theater_idx},
+			playing_movie_date=to_date(#{playing_movie_date},'yyyy-mm-dd'),
+			playing_movie_start=to_date(#{playing_movie_start},'hh24:mi:ss'),
+			playing_moive_end=to_date(#{playing_movie_end},'hh24:mi:ss')
+		where
+			playing_movie_idx = #{playing_movie_idx}
+	
+	</update>
+	<delete id="playingMovieDelete" parameterType="Integer">
+		delete from playing_movie where playing_movie_idx=#{idx}
+	</delete>
+	<select id="movieRunning" parameterType="Integer" resultType="Map">
+		select movie_runningtime from movie where movie_idx = #{movie_idx}
+	</select>
 </mapper>
