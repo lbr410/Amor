@@ -75,7 +75,15 @@ table td {
 				</c:forEach>
 				</select></td>
 			</tr>
-			
+			<tr>
+				<td>상영 날짜 선택</td>
+				<td><input type="date" name="playing_movie_date"></td>
+			</tr>
+			<tr>
+				<td>상영 시간</td>
+				<td><input type="time" name="playing_movie_start" min="07:00:01" max="22:00:01">&nbsp;&nbsp;~&nbsp;&nbsp;
+				<input type="time" name="playing_movie_end" min="07:00:01" max="22:00:01"></td>
+			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="상영 등록" class="nextBtn">&nbsp;&nbsp;
 				<input type="reset" value="다시 작성" class="cancelBtn"></td>

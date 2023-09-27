@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import com.amor.playingMovie.model.*;
 import com.amor.playingMovie.service.PlayingMovieService;
@@ -62,21 +63,24 @@ public class PlayingMovieController {
 	public ModelAndView playingMovieAdd (
 			@RequestParam("movie_idx")int movie_idx,
 			@RequestParam("theater_idx")int theater_idx,
-			@RequestParam("playing_movie_date")String playing_movie_date,
-			@RequestParam("playing_movie_start")String playing_movie_start,
-			@RequestParam("playing_movie_end")String playing_movie_end) {
-
+			@RequestParam("playing_movie_date")String playing_movie_date_d,
+			@RequestParam("playing_movie_start")String playing_movie_start_s,
+			@RequestParam("playing_movie_end")String playing_movie_end_e) throws Exception {
 		
-//		int result = playingMovieService.playingMovieAdd(dto);
-//		System.out.println(dto.getPlaying_movie_date());
-//		System.out.println(dto.getPlaying_movie_start());
+		java.sql.Date playing_movie_date = java.sql.Date.valueOf(playing_movie_date_d);
+		java.sql.Date playing_movie_start = java.sql.Date.valueOf(playing_movie_start_s);
+		java.sql.Date playing_movie_end = java.sql.Date.valueOf(playing_movie_end_e);
 		
-//		String msg = result>0?"상영 시간이 등록되었습니다.":"등록에 실패하였습니다.";
-//		ModelAndView mav = new ModelAndView();
-//		mav.addObject("msg",msg);
-//		mav.addObject("href","/amor/admin/playMovie/playingMovieAdd.do");
-//		mav.setViewName("admin/msg/adminMsg");
-		return null;
+		PlayingMovieDTO dto = new PlayingMovieDTO(movie_idx, theater_idx, playing_movie_date, playing_movie_start, playing_movie_end);
+		
+		int result = playingMovieService.playingMovieAdd(dto);
+		
+		String msg = result>0?"상영 시간이 등록되었습니다.":"등록에 실패하였습니다.";
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg",msg);
+		mav.addObject("href","/amor/admin/playMovie/playingMovieAdd.do");
+		mav.setViewName("admin/msg/adminMsg");
+		return mav;
 	}
 	
 }
