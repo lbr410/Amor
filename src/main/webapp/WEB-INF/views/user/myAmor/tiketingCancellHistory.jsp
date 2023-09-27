@@ -31,7 +31,7 @@
 <div class="gray-section">
 	<div class="body-inner">
 <%@include file="../mypageHeader.jsp" %>
-<div class="mypagetitle"><a href = "/amor/myAmor/ticketingHistory.do"><label class="title1">예매내역</label></a> <a href="/amor/myAmor/cancellHistory.do"><label class="title2">취소내역</label></a></div>
+<div class="mypagetitle"><a href = "/amor/myAmor/ticketingHistory.do"><label class="title2">예매내역</label></a> <a href="/amor/myAmor/cancellHistory.do"><label class="title1">취소내역</label></a></div>
 <!-- 이 밑으로 작업 -->
 <c:if test="${!empty list}">
 <c:forEach var="temp" items="${list}" >
@@ -85,7 +85,7 @@
           </span>
       </div>
     </div>
-    <input type = "button" value = "예매 취소" class = "button" onclick = "Cancellation(${temp.ticketnum})">
+    <span class = "cancellmsg">취소완료</span>
   </div>
 </div>
 </c:forEach>
