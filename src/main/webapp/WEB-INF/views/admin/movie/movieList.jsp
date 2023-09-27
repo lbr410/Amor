@@ -5,8 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>영화 관리</title>
+<script type="text/javascript" src="../../resources/js/httpRequest.js"></script>
 <script type="text/javascript">
+
 
 function moviePopUp(idx){
 	let movie_idx = idx;
@@ -31,6 +33,13 @@ function movieSearch(){
 		location.href='movieList.do?search='+result;
 	}
 }
+
+function movieStateYN(idx) {
+	let state = document.getElementsByName('movie_state'+idx)[0].value;
+	let param = 'idx='+idx+'&state='+state;
+	sendRequest('stateChk.do',param, null, 'POST');
+}
+
 </script>
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/admin/movieList.css">
 </head>
@@ -95,7 +104,10 @@ function movieSearch(){
 			<td>${dto.movie_runningtime }분</td>
 			<td>${dto.movie_audience }명</td>
 			<td><a href="javascript:moviePopUp(${dto.movie_idx})">[줄거리보기]</a></td>
-			<td>${dto.movie_state }</td>
+			<td><select name="movie_state${dto.movie_idx}" class="soldOutSel" onchange="movieStateYN(${dto.movie_idx})">
+					<option value="y" <c:if test="${dto.movie_state eq 'y'}">selected</c:if>>Y</option>
+					<option value="n" <c:if test="${dto.movie_state eq 'n'}">selected</c:if>>N</option>
+				</select></td>
 			<td>10.0??</td>
 			<td>${dto.movie_poster}</td>
 			<td><input class="btn_movie" type="button" value="수정" onclick="movieUpdate(${dto.movie_idx})"></td>

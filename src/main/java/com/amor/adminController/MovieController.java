@@ -32,17 +32,8 @@ public class MovieController {
 		int totalCnt=movieservice.getTotalCnt();
 		int listSize=5;
 		int pageSize=5;
-		
-		if(search != null) {
-			String pageStr = com.amor.page.PageModuleSearch.makePage("/amor/admin/movie/movieList.do", totalCnt, listSize, pageSize, cp, search);
-			List<MovieDTO> lists = movieservice.movieListSearch(cp, listSize,search);
-			ModelAndView mav = new ModelAndView();
-			mav.addObject("lists", lists);
-			mav.addObject("pageStr",pageStr);
-			mav.setViewName("admin/movie/movieList");
-			return mav;
 			
-		}else {
+		if(search == null || search.equals("")) {
 			String pageStr = com.amor.page.PageModule.makePage("/amor/admin/movie/movieList.do", totalCnt, listSize, pageSize, cp);
 			
 			List<MovieDTO> lists = movieservice.movieList(cp, listSize);
@@ -52,9 +43,38 @@ public class MovieController {
 			mav.addObject("pageStr",pageStr);
 			mav.setViewName("admin/movie/movieList");
 			return mav;
+		}else{
+			String pageStr = com.amor.page.PageModuleSearch.makePage("/amor/admin/movie/movieList.do", totalCnt, listSize, pageSize, cp, search);
+			List<MovieDTO> lists = movieservice.movieListSearch(cp, listSize,search);
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("lists", lists);
+			mav.addObject("pageStr",pageStr);
+			mav.setViewName("admin/movie/movieList");
+			return mav;
 		}
 		
 		
+	}
+	
+	@RequestMapping("admin/movie/stateChk.do")
+	public ModelAndView soldOutChange(@RequestParam("idx") int idx, @RequestParam("state") String state) {
+		System.out.println("qweqweqweeqwqewe");
+		MovieDTO dto = new MovieDTO(idx,state);
+		System.out.println("1233213");
+		if(state.equals("y")) {
+			dto.setMovie_state("y");
+			dto.setMovie_idx(idx);
+			movieservice.stateChange(dto);
+		} 
+		if(state.equals("n")) {
+			dto.setMovie_state("n");
+			dto.setMovie_idx(idx);
+			movieservice.stateChange(dto);
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("admin/movie/movieList");
+		return mav;
 	}
 	
 	@RequestMapping(value =  "admin/movie/movieAdd.do", method = RequestMethod.GET)
@@ -118,7 +138,7 @@ public class MovieController {
 	
 	@RequestMapping(value =  "admin/movie/movieUpdate.do", method = RequestMethod.POST)
 	public ModelAndView movieUpdate2(int movie_idx,
-			String movie_name,String movie_genre,String movie_god,String movie_actor,String movie_maxage,
+			String movie_name,String movie_genre,String movie_god,String movie_actor,String movie_maxage,String movie_state,
 			String movie_opendate, int movie_runningtime,String movie_country, String movie_content,
 			@RequestParam(value = "movie_poster") MultipartFile movie_poster,
 			@RequestParam(value = "movie_stillcut1") MultipartFile movie_stillcut1,
@@ -130,7 +150,7 @@ public class MovieController {
 		String savepath = req.getRealPath("/resources/upload/movie/");//이미지 파일 경로
 		java.sql.Date movie_opendate_d = java.sql.Date.valueOf(movie_opendate); //string -> java.sql.date 타입으로
 		String movieImg[] = stillcutDefault(savepath, movie_poster,movie_stillcut1,movie_stillcut2,movie_stillcut3,movie_stillcut4,movie_stillcut5);
-		MovieDTO dto = new MovieDTO(movie_idx, movie_name, movie_genre, movie_god, movie_actor, movie_maxage, movie_opendate_d, movie_runningtime, movie_country, movie_content, movieImg[0], movieImg[1], movieImg[2],movieImg[3],movieImg[4],movieImg[5]);
+		MovieDTO dto = new MovieDTO(movie_idx, movie_name, movie_genre, movie_god, movie_actor, movie_maxage, movie_opendate_d, movie_runningtime, movie_country, movie_content, movieImg[0], movie_state,movieImg[1], movieImg[2],movieImg[3],movieImg[4],movieImg[5]);
 		int result = movieservice.movieUpdate(dto);
 		String msg = result>0? "수정" :"실패";
 		ModelAndView mav = new ModelAndView();

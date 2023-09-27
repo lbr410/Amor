@@ -21,10 +21,16 @@ public class MovieDTO {
 	private String movie_stillcut2;
 	private String movie_stillcut3;
 	private String movie_stillcut4;
-	private String movie_stillcut5;
+	private String movie_stillcut5; 
 	
 	public MovieDTO() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public MovieDTO(int movie_idx, String movie_state) {
+		super();
+		this.movie_idx = movie_idx;
+		this.movie_state = movie_state;
 	}
 	
 	public MovieDTO(int movie_idx, String movie_name, String movie_genre, String movie_god, String movie_actor,
@@ -43,6 +49,32 @@ public class MovieDTO {
 		this.movie_country = movie_country;
 		this.movie_content = movie_content;
 		this.movie_poster = movie_poster;
+		this.movie_stillcut1 = movie_stillcut1;
+		this.movie_stillcut2 = movie_stillcut2;
+		this.movie_stillcut3 = movie_stillcut3;
+		this.movie_stillcut4 = movie_stillcut4;
+		this.movie_stillcut5 = movie_stillcut5;
+	}
+	
+	
+
+	public MovieDTO(int movie_idx, String movie_name, String movie_genre, String movie_god, String movie_actor,
+			String movie_maxage, Date movie_opendate, int movie_runningtime, String movie_country, String movie_content,
+			String movie_poster, String movie_state, String movie_stillcut1, String movie_stillcut2,
+			String movie_stillcut3, String movie_stillcut4, String movie_stillcut5) {
+		super();
+		this.movie_idx = movie_idx;
+		this.movie_name = movie_name;
+		this.movie_genre = movie_genre;
+		this.movie_god = movie_god;
+		this.movie_actor = movie_actor;
+		this.movie_maxage = movie_maxage;
+		this.movie_opendate = movie_opendate;
+		this.movie_runningtime = movie_runningtime;
+		this.movie_country = movie_country;
+		this.movie_content = movie_content;
+		this.movie_poster = movie_poster;
+		this.movie_state = movie_state;
 		this.movie_stillcut1 = movie_stillcut1;
 		this.movie_stillcut2 = movie_stillcut2;
 		this.movie_stillcut3 = movie_stillcut3;

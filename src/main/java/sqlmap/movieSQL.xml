@@ -19,6 +19,13 @@ where rnum >= #{start} and rnum <= #{end}
 ]]>
 </select>
 
+<select id="movieListSearch" parameterType="Map" resultType="com.amor.movie.model.MovieDTO">
+<![CDATA[
+select * from 
+(select rownum as rnum, a.* from (select * from movie order by movie_idx desc)a)b 
+where movie_name = #{search} and rnum >= #{start} and rnum <= #{end}
+]]>
+</select>
 
 
 <select id="movieContent" parameterType="Integer" resultType="com.amor.movie.model.MovieDTO">
@@ -28,7 +35,7 @@ select * from movie where movie_idx = #{movie_idx}
 <update id="movieUpdate" parameterType="com.amor.movie.model.MovieDTO">
 update movie set movie_name=#{movie_name}, movie_genre=#{movie_genre}, movie_god = #{movie_god}, 
 movie_actor=#{movie_actor}, movie_maxage=#{movie_maxage}, movie_opendate=#{movie_opendate}, 
-movie_runningtime=#{movie_runningtime}, movie_country=#{movie_country}, movie_content=#{movie_content}, 
+movie_runningtime=#{movie_runningtime}, movie_state=#{movie_state} ,movie_country=#{movie_country}, movie_content=#{movie_content}, 
 movie_poster=#{movie_poster},movie_stillcut1=#{movie_stillcut1}, movie_stillcut2=#{movie_stillcut2}, 
 movie_stillcut3=#{movie_stillcut3}, movie_stillcut4=#{movie_stillcut4}, movie_stillcut5=#{movie_stillcut5} 
 where movie_idx = #{movie_idx} 
@@ -43,6 +50,10 @@ delete from movie where movie_idx = #{movie_idx}
 <select id="totalCnt" resultType="Integer" >
 	select count(*) from movie
 </select>
+
+<update id="stateChange" parameterType="com.amor.movie.model.MovieDTO">
+update movie set movie_state = #{movie_state} where movie_idx = #{movie_idx}
+</update>
 
 
 </mapper>

@@ -67,6 +67,12 @@ public class MovieServiceImple implements MovieService {
 		return result;
 	}
 	
+	@Override
+	public int stateChange(MovieDTO dto) {
+		int result = moviedao.stateChange(dto);
+		return result;
+	}
+	
 	
 	
 }

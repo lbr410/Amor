@@ -19,4 +19,6 @@ public interface MovieService {
 	
 	public List<MovieDTO> movieListSearch(int cp, int listSize, String search);
 	
+	public int stateChange(MovieDTO dto);
+	
 }
