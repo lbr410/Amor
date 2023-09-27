@@ -114,5 +114,6 @@ table tfoot tr {
 
 </div>
 </div>
+<%@include file="../footer.jsp" %>
 </body>
 </html>

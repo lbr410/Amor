@@ -10,11 +10,11 @@
 <body>
 <%@include file="../admin_header.jsp" %>
 <div class="content">
-<div class="content-title"><label class="titletext">상영 영화 리스트</label>
+<div class="content-title"><label class="titletext">회원 조회</label>
 </div>
 <div class="contentMain">
-<div class="table">
-	<table>
+<div class="tableDiv">
+	<table class="commonTable">
 	<thead>
 	<tr>
 		<th>상영 날짜</th>
@@ -41,8 +41,8 @@
 			<td>${dto.playing_movie_start }</td>
 			<td>${dto.theater_name }</td>
 			<td>${dto.movie_name }</td>
-			<td><input type="button" value="수정">
-				<input type="button" value="삭제"></td>
+			<td><input type="button" value="수정" onclick="location.href='playingMovieUpdate.do?playing_movie_idx=${dto.playing_movie_idx}'">
+				<input type="button" value="삭제" onclick="location.href='playingMovieDelete.do?playing_movie_idx=${dto.playing_movie_idx}'"></td>
 			</tr>
 		</c:forEach>
 	</tbody>
