@@ -5,85 +5,139 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="styleSheet" type="text/css" href="/amor/resources/css/user/ticketing.css">
 </head>
-<style>
-.commonBack{
-	background: #333;
-	width: 100%;
-	height: 900px;
-	position: absolute;
-}
-.commonDiv{
-	width: 1100px;
-	height: 616px;
-	flex-shrink: 0;
-	margin-top: 210px;
-}
-.commonTop{
-	display: flex;
-	width: 1100px;
-	height: 50px;
-	justify-content: center;
-	align-items: flex-start;
-	flex-shrink: 0;
-	background: #1A2C82;
-}
-.commonTop label{
-	display: flex;
-	width: 366.6px;
-	height: 50px;
-	justify-content: center;
-	align-items: center;
-	gap: 10px;
-	flex-shrink: 0;
-	color: #FFF;
-	font-family: Inter;
-	font-size: 18px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
-	letter-spacing: 0.9px;
-}
-.commonMid{
-	background: #FFF;
-	width: 1100px;
-	height: 566px;
-	flex-shrink: 0;
-}
-.content1{
-	width: 366px;
-	height: 566px; 
-	float:left;
-}
-.content2{
-	width: 366px;
-	height: 566px;
-	float:left;
-	border-right: 1px solid #1A2C82;
-	border-left: 1px solid #1A2C82;
-}
-.content3{
-	width: 365px;
-	height: 566px;
-	display:inline-block;
-}
-</style>
+
 <body>
 <%@include file="../header.jsp" %>
 <div class="commonBack">
 <div class="inner">
 	<div class="commonDiv">
 		<div class="commonTop">
-			<label>상품정보</label><label>결제수단</label><label>결제하기</label>
+			<label class="label1">영화 선택</label><label class="label2">날짜</label>
 		</div>
 		<div class="commonMid">
-			<div class="content1"></div>
-			<div class="content2"></div>
-			<div class="content3"></div>
+			<div class="content1">
+				<div class="selectboxdiv">
+					<select name="ticketingList" class="ticketingOrderSelectBox">
+						<option value="movie_Name">영화이름순 </option>
+						<option value="movie_maxage">관람등급순</option>
+					</select>
+					<select name="ticketingListorder" class="ticketingOrderSelectBox">
+						<option value="movie_desc">내림차순 </option>
+						<option value="movie_asc">오름차순</option>
+					</select>
+				</div>
+				<div class="playingmovieListBox">
+					<div class="playingmovieList">
+					
+						<div class="playingmovie">
+							<div class="playingmovie_imgDiv"><img class="playingmovie_img" src="/amor/resources/img/maxage_12.png"></div>
+							<div class="playingmovie_nameDiv"><div class="playingmovie_name">오펜하이머</div></div>
+						</div>
+					
+					</div>
+					
+				
+				</div>
+			
+			
+			</div>
+			<div class="content2">
+				<div class="selectDateBox">
+					<div class="selectDate"> 
+						<div class="date0">
+							<div>
+								<table>
+									<tr><th id="datep0">123</th></tr>
+									<tr><td id="weekp0">(오늘)</td></tr>
+								</table>
+							</div>
+						</div>
+						<div class="date1">
+							<div>
+								<table id="dateandweek1">
+									<tr><th id="datep1">일</th></tr>
+									<tr><td id="weekp1">(요일)</td></tr>
+								</table>
+							</div>
+						</div>
+						<div class="date2">
+							<div>
+								<table id="dateandweek2">
+									<tr><th id="datep2">일</th></tr>
+									<tr><td id="weekp2">(요일)</td></tr>
+								</table>
+							</div>
+						</div>
+						<div class="date3">
+							<div>
+								<table id="dateandweek3">
+									<tr><th id="datep3">일</th></tr>
+									<tr><td id="weekp3">(요일)</td></tr>
+								</table>
+							</div>
+						</div>
+						<div class="date4">
+							<div>
+								<table id="dateandweek4">
+									<tr><th id="datep4">일</th></tr>
+									<tr><td id="weekp4">(요일)</td></tr>
+								</table>
+							</div>
+						</div>
+						<div class="date5">
+							<div>
+								<table id="dateandweek5">
+									<tr><th id="datep5">일</th></tr>
+									<tr><td id="weekp5">(요일)</td></tr>
+								</table>
+							</div>
+						</div>
+						<div class="date6">
+							<div>
+								<table id="dateandweek6">
+									<tr><th id="datep6">일</th></tr>
+									<tr><td id="weekp6">(요일)</td></tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="selectDateToPlayingMovie"></div>
+			</div>
 		</div>
 	</div>
 </div>
 </div>
+<script>
+
+var today = new Date();
+var year = today.getFullYear();
+var month = today.getMonth()+1;
+var date = today.getDate();
+var weekday = today.getDay();
+
+const date30 = [2,4,6,9,11];
+const date31 = [1,3,5,7,8,10,12];
+
+const week = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)'];
+
+window.alert('3');
+
+	//날짜 
+	for(let i = 0 ; i< 7; i++){
+		document.getElementById('datep'+i).innerHTML = 0+date+i;
+	}
+	
+	//요일
+	for(let i = 1 ; i<7 ;i++ ){
+		let wday = 0+weekday+i;
+		wday = (wday > 6)? wday-7 : wday;
+		document.getElementById('weekp'+i).innerHTML = week[wday];
+		
+	}
+</script>
 <%@include file="../footer.jsp" %>
 </body>
 </html>
