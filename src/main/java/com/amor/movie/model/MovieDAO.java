@@ -10,6 +10,7 @@ public interface MovieDAO {
 	public int movieDelete(int movie_idx);
 	public int getTotalCnt();
 	public int stateChange(MovieDTO dto);
-	
+	public List<MovieDTO> movieBest(Map map);
+	public List<MovieDTO> movieCome(Map map);
 	
 }

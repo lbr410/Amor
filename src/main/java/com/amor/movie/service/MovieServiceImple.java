@@ -2,6 +2,8 @@ package com.amor.movie.service;
 
 import java.util.*;
 
+import org.apache.commons.collections.map.HashedMap;
+
 import com.amor.movie.model.*;
 
 public class MovieServiceImple implements MovieService {
@@ -73,6 +75,20 @@ public class MovieServiceImple implements MovieService {
 		return result;
 	}
 	
+	@Override
+	public List<MovieDTO> movieBest() {
+		Map map=new HashedMap();
+		List <MovieDTO> lists = moviedao.movieBest(map);
+		System.out.println(lists);
+		return lists;
+	}
 	
+	@Override
+	public List<MovieDTO> movieCome() {
+		Map map=new HashedMap();
+		List <MovieDTO> lists = moviedao.movieCome(map);
+		System.out.println(lists);
+		return lists;
+	}
 	
 }

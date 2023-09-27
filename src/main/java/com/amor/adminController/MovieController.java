@@ -391,6 +391,28 @@ public class MovieController {
 		return saveFileName;
 	}
 	
+	//현재 상영작 출력
+	@RequestMapping("movie/movie.do")
+	public ModelAndView userMovieList() {
+		
+		List<MovieDTO> lists = movieservice.movieBest();
+		System.out.println("test="+lists.size());
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("lists", lists);
+
+		mav.setViewName("/user/movie/movie");
+		return mav;
+	}
 	
-	
+	//상영 예정작 출력
+	@RequestMapping("movie/movieCome.do")
+	public ModelAndView userMovieComeList() {
+		
+		List<MovieDTO> lists = movieservice.movieCome();
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("listsC", lists);
+		
+		mav.setViewName("/user/movie/movieCome");
+		return mav;
+	}
 }

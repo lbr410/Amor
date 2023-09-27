@@ -105,7 +105,7 @@ public class UserIdFindController {
 		@RequestParam("member_pwd")String member_pwd,
 		HttpSession session) {
 		String fid=(String)session.getAttribute("fid");
-		System.out.println("sid+"+fid);
+		System.out.println("fid+"+fid);
 		String npwd = Encryption.pwdEncrypt(member_pwd);
 
 		int result=memberService.userPwdFindUpdate(fid, npwd);
@@ -113,7 +113,7 @@ public class UserIdFindController {
 
 		ModelAndView mav=new ModelAndView();
 	mav.addObject("msg", msg);
-	mav.addObject("goUrl", "/user/member/login.do");
+	mav.addObject("goUrl", "/amor/member/login.do");
 	mav.setViewName("/user/msg/userMsg");
 	return mav;
 	}

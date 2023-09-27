@@ -20,11 +20,4 @@ public class IndexController {
 		return "index";   
 	}
 	
-	
-	//현재 상영작 폼으로 이동
-	@RequestMapping(value = "/movie/movie.do", method = RequestMethod.GET)
-	public String movieList() {
-		return "user/movie/movie";
-	}
-	
 }

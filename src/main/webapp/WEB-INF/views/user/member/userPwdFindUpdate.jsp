@@ -101,7 +101,7 @@ function validateForm() {
                         </li>
                     </ul>
                 </div>
-                <form name="userPwdFindUpdate" action="userPwdFindUpdate.do" method="post" class="table-wrap">
+                <form name="userPwdFindUpdate" action="userPwdFindUpdateSubmit.do" method="post" class="table-wrap">
                 <table class="table">
                     <tbody>
                         <tr>
