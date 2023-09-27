@@ -11,7 +11,7 @@
 <body>
 <div class="top">
 	<div class="logo"><a href="#"></a><img src="img/logo.png"></div>
-	<c:if test="${!empty sessionScope.data}">
+	<c:if test="${!empty sessionScope.data || !empty cookie.autologin}h">
 		<div class="logout"><input type="button" value="로그아웃" onclick = "adminLogout()"></div>
 	</c:if></div>
 <div class="sideDiv">

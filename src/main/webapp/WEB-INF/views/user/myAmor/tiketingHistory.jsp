@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +31,11 @@
 <%@include file="../mypageHeader.jsp" %>
 <div class="mypagetitle"><a href = ""><label class="title1">예매내역</label></a> <a href="#"><label class="title2">취소내역</label></a></div>
 <!-- 이 밑으로 작업 -->
+<c:if test="${!empty list}">
+<c:forEach var="temp" items="${list}" >
 
+</c:forEach>
+</c:if>
 
 </div>
 </div>

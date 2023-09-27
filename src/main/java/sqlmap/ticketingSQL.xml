@@ -4,18 +4,14 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amor.ticketingSQL">
 
-<select id = "ticketingHistoryList" parameterType="Integer" resultType="Map">
+<select id = "ticketingHistoryList" parameterType="Integer" resultType="com.amor.ticketing.model.JoinTicketingHistoryDTO">
 <![CDATA[
-select 
-c.movie_name,c.movie_poster,b.ticketing_num,b.ticketing_seat,
-b.ticketing_screeningtime,b.playing_movie_idx,b.ticketing_reservetime,
-b.ticketing_payment,b.ticketing_price  
-from playing_movie a,
-(select * from ticketing where member_idx = #{useridx} and ticketing_state = 'y') b ,
-movie c
-where a.playing_movie_idx = b.playing_movie_idx and 
-a.movie_idx = c.movie_idx
+select c.movie_name as moviename,c.movie_poster as movieimg,b.ticketing_num as ticketnum,
+b.ticketing_seat as seatnum,b.ticketing_screeningtime as screeningdate,
+b.ticketing_payment as payment,b.ticketing_price as price 
+from playing_movie a,(select * from ticketing
+where member_idx = #{useridx} and ticketing_state = 'y') b , movie c
+where a.playing_movie_idx = b.playing_movie_idx and a.movie_idx = c.movie_idx
 ]]>
-
 </select>
 </mapper>
