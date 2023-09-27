@@ -64,7 +64,6 @@ body, h1, h2, p {
     margin-left: 20px;
     height: 397px;
     position: relative;
-    background-color: #ddd;
 }
 .contents-detail .pd-wrap .pd-img .main-img {
     position: relative;
@@ -169,6 +168,15 @@ button {
     justify-content: space-between;
     align-items: center;
 }
+.contents-detail .pd-wrap .pd-detail .txt-price-wrap p {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .contents-detail .pd-wrap .pd-detail .txt-price-wrap label{
     font-size: 14px;
     font-weight: bold;
@@ -234,4 +242,11 @@ em {
 	gap: 10px;
 	flex-shrink: 0;
 	border-top: 1px solid black;
+}
+.prodImg{
+	width: 400px;
+	height: 340px;
+	justify-content: center; /* 가로 중앙 정렬 */
+	align-items: center; 
+	padding-top: 30px;
 }

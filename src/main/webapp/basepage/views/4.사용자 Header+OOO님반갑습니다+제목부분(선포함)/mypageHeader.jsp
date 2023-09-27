@@ -14,7 +14,6 @@
 	background: #FFF;
 	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	margin: 0 auto;
-	margin-top: 210px;
 }
 .mypageDiv hr{
 	width: 970px;
@@ -83,6 +82,7 @@
 	font-weight: 500;
 	line-height: normal;
 	letter-spacing: 1.9px;
+	cursor: pointer;
 }
 .pagemenu button{
 	display: flex;
@@ -103,6 +103,7 @@
 	font-weight: 500;
 	line-height: normal;
 	letter-spacing: 1.9px;
+	cursor: pointer;
 }
 .mypagetitle{
 	display: flex;
@@ -121,16 +122,7 @@
 	margin: 0 auto;
 	border-bottom: 2px solid #EDEDED;
 }
-.mypagetitle .title1{
-	color: #000;
-	font-size: 20px;
-	font-weight: 500;
-}  
-.mypagetitle .title2{
-	color:#979797;
-	font-size: 20px;
-	font-weight: 500;
-}  
+ 
 /* 클릭한 버튼 및 레이블 스타일 */
 .pagemenu button.active,
 .mypagetitle label.active-label {

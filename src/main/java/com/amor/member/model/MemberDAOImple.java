@@ -84,10 +84,7 @@ public class MemberDAOImple implements MemberDAO {
 	}
 	
 	@Override
-	public int memberInfoUpdate(MemberDTO dto, int sidx) {
-		Map map=new HashedMap();
-		map.put("dto", dto);
-		map.put("sidx", sidx);
+	public int memberInfoUpdate(Map map) {
 		int result=sqlmap.update("memberInfoUpdate", map);
 		return result;
 	}

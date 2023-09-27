@@ -93,7 +93,7 @@ public class ProductServiceImple implements ProductService {
 	@Override
 	public List<ProductDTO> storeTicketList() {
 		List<ProductDTO> lists=productDao.storeTicketList();
-		DecimalFormat df=new DecimalFormat("#,##0원");
+		DecimalFormat df=new DecimalFormat("#,##0");
 		
 		 for (int i = 0; i < lists.size(); i++) {
 		        double product_price=lists.get(i).getProduct_price();  
@@ -135,7 +135,16 @@ public class ProductServiceImple implements ProductService {
 		ProductDTO dto=productDao.storeContent(idx);
 		String product_price2=df.format(dto.getProduct_price());
 		dto.setProduct_price2(product_price2);
-		
+		dto.setProduct_content(dto.getProduct_content().replaceAll("\n", "<br>"));
+		return dto;
+	}
+	
+	@Override
+	public ProductDTO storePayForm(int idx, int num) {
+		DecimalFormat df=new DecimalFormat("#,##0");
+		ProductDTO dto=productDao.storePayForm(idx);	
+		String product_price2=df.format(dto.getProduct_price()*num);
+		dto.setProduct_price2(product_price2);
 		return dto;
 	}
 }

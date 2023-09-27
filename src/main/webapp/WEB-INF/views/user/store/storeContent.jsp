@@ -30,7 +30,6 @@ function minus() {
 		totalTag.innerHTML=price;
 	}
 	
-	
 }
 function plus() {
 	var product_price=${dto.product_price}; //원래 상품금액(3000)
@@ -54,6 +53,24 @@ function plus() {
 	}
 	
 }
+
+function submit() {
+	var numTag=document.getElementById('num');
+	var num=numTag.innerHTML; //갯수
+	
+	var totalTag=document.getElementById('total');
+	var total=totalTag.innerHTML;
+	
+	var priceTag=document.getElementById('amass'); //누적
+	var price=parseInt(priceTag.value);
+//	window.alert(num);
+//	window.alert(total);
+//	window.alert(price);
+	 //상품 인텍스랑 수량만 보내면 될 듯..? 아님 링크로 타이틀, 갯수, 토탈, 가격, 이미지를 연달아 보낼지
+//	location.href='storePaymentForm.do?num='+num+'&total='+total+'&price='+price; //이미지도 같이 보내야 함..
+	location.href='storePaymentForm.do?num='+num+'&idx='+${dto.product_idx};
+
+}
 </script>
 
    <%@include file="../header.jsp" %>
@@ -69,9 +86,10 @@ function plus() {
         <div class="pd-wrap">
             <div class="pd-img">
                 <div class="main-img">
-                    <img src="#" alt="">
+                <img src="/amor/resources/upload/product/${dto.product_img}" class="prodImg">
                 </div>
             </div>
+
             <div class="pd-detail">
                 <table class="pd-table" summary="상품 상세 설명">
                     <colgroup>
@@ -80,7 +98,7 @@ function plus() {
                     </colgroup>
                     <thead>
                         <tr>
-                            <th class="txt-product" scope="row" class="tit" colspan="2">
+                            <th class="txt-product" scope="row" colspan="2">
                                 ${dto.product_title }
                             </th>
                         </tr>
@@ -106,20 +124,22 @@ function plus() {
                     <div class="txt-price-str">
                         <label id="total">${dto.product_price2 }</label>
                         <em>원</em>
-                        <input type="hidden" id="amass" value="${dto.product_price }">
+                        <input type="hidden" name="amass" id="amass" value="${dto.product_price }">
+                        <input type="hidden" name="total" value=""> 
+                        
                     </div>
                 </div>
                 <div class="btn-wrap">
-                    <button class="btn2">구매하기</button>
+                	<button class="btn2" onclick="submit()">구매하기</button>
+                	             
                 </div>
             </div>
+
            <div class="how">사용 방법</div>
             <div class="howto">
-            	- 스토어 상품은 회원만 구매하실 수 있습니다. <br>
-				- 유효기간은 24개월로 사용일 기준입니다. <br>
-				- 결제가 완료된 상품은 myAmor > 스토어 내역에서 확인 가능합니다. <br>
+            	${dto.product_content }
             </div>
-        </div>        
+        </div>       
     </div>
    </div>
 </body>

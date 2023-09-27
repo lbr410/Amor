@@ -16,7 +16,7 @@ public interface MemberDAO {
 	public int signUp(MemberDTO dto);
 	public String userIdFind(String member_name, String member_email);
 	public String userPwdIdck(String member_id);
-	public int memberInfoUpdate(MemberDTO dto, int sidx);
+	public int memberInfoUpdate(Map map);
 	public int userPwdFindUpdate(Map map);
 }
  

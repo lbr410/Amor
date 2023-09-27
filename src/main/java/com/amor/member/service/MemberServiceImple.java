@@ -110,7 +110,10 @@ public class MemberServiceImple implements MemberService {
 	}
 	@Override
 	public int memberInfoUpdate(MemberDTO dto, int sidx) {
-		int result=memberDao.memberInfoUpdate(dto, sidx);
+		Map map=new HashedMap();
+		map.put("dto", dto);
+		map.put("sidx", sidx);
+		int result=memberDao.memberInfoUpdate(map);
 		return result;
 	}
 	

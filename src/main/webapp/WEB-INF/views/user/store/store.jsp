@@ -11,7 +11,7 @@
 <%@include file="../header.jsp" %>
 <body>
 <div class="back">
-<div class="img"><img src="/amor/resources/img/store_banner.jpg" alt="banner"></div>
+<div class="imgbanner"><img src="/amor/resources/img/store_banner.jpg" alt="banner"></div>
 </div>
 <div class="body-inner">
 	<div class="border-bar">
@@ -30,15 +30,15 @@
     </c:if>
     <c:forEach var="Tdto" items="${Tlists }">
         <div class="product">
-        	<c:url var="detailUrl" value="storeContentForm.do">
+        	<c:url var="detailUrl" value="store/storeContentForm.do">
 				<c:param name="product_idx">${Tdto.product_idx }</c:param>
 			</c:url>
-        	<div class="prodImg"></div>
+        	<div class="prodImg"><a href="${detailUrl }"><img src="/amor/resources/upload/product/${Tdto.product_img}" class="img"></a></div>
         	<div class="prodTitle">
         		<label><a href="${detailUrl }">${Tdto.product_title }</a></label>
         	</div>
         	<div class="prodPrice">
-        		<label>${Tdto.product_price2 }</label>
+        		<label><span>${Tdto.product_price2 }</span>원</label>
         	</div>
         </div>
      </c:forEach>
@@ -50,17 +50,19 @@
      <c:if test="${empty Slists }">
     	<div class="msg">상품 준비 중입니다.</div>
     </c:if>
-    <c:forEach var="Ddto" items="${Slists }">
+    <c:forEach var="Sdto" items="${Slists }">
         <div class="product">
-        	<c:url var="detailUrl" value="storeContentForm.do">
+        	<c:url var="detailUrl" value="store/storeContentForm.do">
 				<c:param name="product_idx">${Sdto.product_idx }</c:param>
 			</c:url>
-        	<div class="prodImg"></div>
+        	<div class="prodImg">
+        	<a href="${detailUrl }"><img src="/amor/resources/upload/product/${Sdto.product_img}" class="img"></a>
+        	</div>
         	<div class="prodTitle">
         		<label>${Sdto.product_title }</label>
         	</div>
         	<div class="prodPrice">
-        		<label>${Sdto.product_price2 }</label>
+        		<label><span>${Sdto.product_price2 }</span>원</label>
         	</div>
         </div>
      </c:forEach>   
@@ -70,14 +72,16 @@
 <div class="title">음료</div>
     <div class="prodDiv">
      <c:if test="${empty Dlists }">
-    	<div class="msg">상품 준비 중..</div>
+    	<div class="msg">상품 준비 중입니다.</div>
     </c:if>
     <c:forEach var="Ddto" items="${Dlists }">
         <div class="product">
-        	<c:url var="detailUrl" value="storeContentForm.do">
+        	<c:url var="detailUrl" value="store/storeContentForm.do">
 				<c:param name="product_idx">${Ddto.product_idx }</c:param>
 			</c:url>
-        	<div class="prodImg"></div>
+        	<div class="prodImg">
+        	<a href="${detailUrl }"><img src="/amor/resources/upload/product/${Ddto.product_img}" class="img"></a>
+        	</div>
         	<div class="prodTitle">
         		<label><a href="${detailUrl }">${Ddto.product_title }</a></label>
         	</div>
