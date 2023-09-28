@@ -100,7 +100,7 @@ table tfoot tr {
 					<td colspan="5" >등록된 관람평이 없습니다.</td>
 				</tr>
 			</c:if>
-			<c:forEach var="dto" items="${lists }">
+			<c:forEach var="dto" items="${reviewlists }">
 				<tr>
 					<td>${dto.ticketing_screeningtime}</td>
 					<td>${dto.movie_name }</td>

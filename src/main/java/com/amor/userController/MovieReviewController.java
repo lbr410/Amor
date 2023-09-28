@@ -26,15 +26,15 @@ public class MovieReviewController {
 		return "/user/myAmor/tempReview";
 	}
 	
-	@RequestMapping(value = "/user/myAmor/reviewAdd.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/myAmor/movieReviewAdd.do", method = RequestMethod.POST)
 	public ModelAndView reviewWrite(MovieReviewDTO dto, MultipartHttpServletRequest req) {
 			
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/user/myAmor/reviewAdd");
+		mav.setViewName("/user/myAmor/movieReviewAdd");
 		return mav;
 	}	
 	
-	@RequestMapping("/user/myAmor/reviewList.do")
+	@RequestMapping("/user/myAmor/movieReviewList.do")
 	public ModelAndView reviewList(
 			@RequestParam(value = "cp", defaultValue = "1")int cp,
 			@RequestParam(value = "member_idx", defaultValue = "4")int member_idx
@@ -44,14 +44,14 @@ public class MovieReviewController {
 		int listSize=5;
 		int pageSize=5;
 		
-		List<MovieReviewDTO> lists=movieReviewService.lists(cp, listSize, member_idx);
+		List<MovieReviewDTO> reviewLists=movieReviewService.lists(cp, listSize, member_idx);
 		
-		String reviewpageStr = com.amor.page.PageModule.makePage("myAmor/reviewList.do", totalCnt, listSize, pageSize, cp);
+		String reviewpageStr = com.amor.page.PageModule.makePage("movieReviewList.do", totalCnt, listSize, pageSize, cp);
 	
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("reviewpageStr",reviewpageStr);
-		mav.addObject("lists",lists);
-		mav.setViewName("/user/myAmor/reviewList");
+		mav.addObject("reviewLists", reviewLists);
+		mav.setViewName("/user/myAmor/movieReviewList");
 		return mav;
 	}
 	

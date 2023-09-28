@@ -26,16 +26,16 @@
 	</thead>
 	<tfoot>
 		<tr>
-			<td colspan="4"> ${playpageStr }</td>
+			<td colspan="4"> ${playingMoviepageStr }</td>
 		</tr>
 	</tfoot>
 	<tbody>
-		<c:if test="${empty lists }">
+		<c:if test="${empty playingMovieLists }">
 			<tr>
 			<td colspan="4">등록된 상영 영화가 없습니다.</td>
 			</tr>
 		</c:if>
-		<c:forEach var="dto" items="${lists }">
+		<c:forEach var="dto" items="${playingMovieLists }">
 			<tr>
 			<td>${dto.playing_movie_date }</td>
 			<td>${dto.playing_movie_start }</td>
