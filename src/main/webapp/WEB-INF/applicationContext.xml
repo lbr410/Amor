@@ -40,7 +40,7 @@
 	<bean id="movieReviewDao" class="com.amor.movieReview.model.MovieReviewDAOImple">
 		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
 	</bean>
-	<bean id = "ticketingHistoryDao" class = "com.amor.ticketing.model.TicketingDAOImple">
+	<bean id = "ticketingDao" class = "com.amor.ticketing.model.TicketingDAOImple">
 		<constructor-arg ref = "sqlSessionTemplate"></constructor-arg>
 	</bean>
 
@@ -63,7 +63,7 @@
 	<bean id="movieReviewService" class="com.amor.movieReview.service.MovieReviewServiceImple">
 		<constructor-arg ref="movieReviewDao"></constructor-arg>
 	</bean>
-	<bean id = "ticketingHistoryService" class = "com.amor.ticketing.service.TicketingServiceImple">
-		<constructor-arg ref = "ticketingHistoryDao"></constructor-arg>
+	<bean id = "ticketingService" class = "com.amor.ticketing.service.TicketingServiceImple">
+		<constructor-arg ref = "ticketingDao"></constructor-arg>
 	</bean>
 </beans>
