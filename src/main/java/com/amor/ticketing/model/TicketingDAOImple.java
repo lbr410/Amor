@@ -19,7 +19,6 @@ public class TicketingDAOImple implements TicketingDAO {
 	@Override
 	public List<JoinTicketingHistoryDTO> ticketingList(int useridx) {
 		List<JoinTicketingHistoryDTO> lists = sqlmap.selectList("ticketingHistoryList", useridx);
-		System.out.println(lists.size());
 		return lists;
 	}
 	

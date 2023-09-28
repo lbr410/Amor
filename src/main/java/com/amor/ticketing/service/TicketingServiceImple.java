@@ -1,8 +1,7 @@
 package com.amor.ticketing.service;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -11,27 +10,23 @@ import com.amor.ticketing.model.TicketingDAO;
 
 public class TicketingServiceImple implements TicketingService {
 
-	private TicketingDAO ticketingHisotoryDao;
+	private TicketingDAO ticketingDao;
 		
-	public TicketingServiceImple(TicketingDAO ticketingHisotoryDao) {
+	public TicketingServiceImple(TicketingDAO ticketingDao) {
 		super();
-		this.ticketingHisotoryDao = ticketingHisotoryDao;
+		this.ticketingDao = ticketingDao;
 	}
 
 	@Override
 	public List<JoinTicketingHistoryDTO> getReserveList(int useridx) {
-		List<JoinTicketingHistoryDTO> lists = ticketingHisotoryDao.ticketingList(useridx);
+		List<JoinTicketingHistoryDTO> lists = ticketingDao.ticketingList(useridx);
 		if(lists != null && lists.size() > 0) {
 			DecimalFormat df = new DecimalFormat("#,##0원");
 			JoinTicketingHistoryDTO dto = null;
 			for(int i = 0 ; i < lists.size(); i++) {
-				java.util.Date utilDate = lists.get(i).getScreeningdate();
-				LocalDate localDate = utilDate.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
-				System.out.println(localDate);
-				dto = lists.get(i);
+				dto = lists.get(i);				
 				dto.setChangePrice(df.format(lists.get(i).getPrice()));
-				lists.set(i, dto);
-				
+				lists.set(i, dto);				
 			}
 			return lists;
 		}else {
@@ -41,13 +36,13 @@ public class TicketingServiceImple implements TicketingService {
 	
 	@Override
 	public int cancellationTicket(String ticketnum) {
-		int result = ticketingHisotoryDao.cancellationTicket(ticketnum);
+		int result = ticketingDao.cancellationTicket(ticketnum);
 		return result;
 	}
 	
 	@Override
 	public List<JoinTicketingHistoryDTO> getcancellList(int useridx) {
-		List<JoinTicketingHistoryDTO> lists = ticketingHisotoryDao.getcancellList(useridx);
+		List<JoinTicketingHistoryDTO> lists = ticketingDao.getcancellList(useridx);
 		if(lists != null && lists.size() > 0) {
 			DecimalFormat df = new DecimalFormat("#,##0원");
 			JoinTicketingHistoryDTO dto = null;
@@ -66,7 +61,7 @@ public class TicketingServiceImple implements TicketingService {
 	
 //	@Override
 //	public List<Map<String, Object>> getReserveList(int useridx) {
-//		List<Map<String, Object>> lists = ticketingHisotoryDao.ticketingList(useridx);
+//		List<Map<String, Object>> lists = ticketingDao.ticketingList(useridx);
 //		System.out.println("test1="+lists.size());
 //		if(lists != null && lists.size() > 0) {
 //			System.out.println("test2");
