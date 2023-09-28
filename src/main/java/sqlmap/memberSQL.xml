@@ -67,4 +67,27 @@
 	member_addr2=#{dto.member_addr2}
 	where member_idx=#{sidx}
 </update>
+
+<select id="memberList" parameterType="Map" resultType="com.amor.member.model.MemberDTO">
+	select * from
+	(select rownum as rnum, a.* from
+	(select * from member order by member_idx desc) a)
+	where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}
+</select>
+
+<select id="memberTotalCnt" resultType="Integer">
+	select count(*) from member
+</select>
+
+<select id="memberSearch" resultType="com.amor.member.model.MemberDTO" parameterType="Map">
+	select * from
+	(select rownum as rnum, a.* from
+	(select * from member where member_id like '%'||#{search}||'%' 
+	order by member_idx desc) a)
+	where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}
+</select>
+
+<select id="memberSearchTotalCnt" resultType="Integer" parameterType="String">
+	select count(*) from member where member_id like '%'||#{search}||'%'
+</select>
 </mapper>

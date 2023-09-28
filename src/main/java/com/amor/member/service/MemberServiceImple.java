@@ -117,4 +117,39 @@ public class MemberServiceImple implements MemberService {
 		return result;
 	}
 	
+	@Override
+	public List<MemberDTO> memberList(int cp, int listSize) {
+		int start=(cp-1) * listSize + 1;
+		int end=cp * listSize;
+		Map map=new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		List<MemberDTO> lists=memberDao.memberList(map);
+		return lists;
+	}
+	
+	@Override
+	public int memberTotalCnt() {
+		int result=memberDao.memberTotalCnt();
+		return result;
+	}
+	
+	@Override
+	public List<MemberDTO> memberSearch(int cp, int listSize, String search) {
+		int start=(cp-1) * listSize + 1;
+		int end=cp * listSize;
+		Map map=new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("search", search);
+		
+		List<MemberDTO> lists=memberDao.memberSearch(map);
+		return lists;
+	}
+	
+	@Override
+	public int memberSearchTotalCnt(String search) {
+		int result=memberDao.memberSearchTotalCnt(search);
+		return result;
+	}
 }

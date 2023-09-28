@@ -17,7 +17,6 @@ public class ProductDTO {
 	}
 	
 	
-	// +price2
 	public ProductDTO(int product_idx, String product_category, String product_title, int product_price,
 			String product_content, String product_img, String product_writedate, String product_soldout,
 			String product_price2) {

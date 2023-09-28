@@ -72,6 +72,13 @@ body, h1, h2, p {
 	justify-content: center; /* 가로 중앙 정렬 */
 	align-items: center; 
 }
+.prodImg{
+	width: 380px;
+	height: 320px;
+	justify-content: center; /* 가로 중앙 정렬 */
+	align-items: center; 
+	padding-top: 30px;
+}
 /* PRODUCT INFO*/
 .contents-detail .pd-wrap .pd-detail{
     margin-left: 550px;
@@ -181,7 +188,7 @@ button {
     font-size: 14px;
     font-weight: bold;
     text-align: right;
-    padding-left: 176px;
+    padding-left: 136px;
     padding-top: 13px;
 }
 .contents-detail .pd-wrap .pd-detail .txt-price-wrap .txt-price-str{
@@ -218,21 +225,26 @@ em {
     text-align: center;
     width: 558px;
 }
-.how{
-	display: flex;
-	width: 137px;
-	height: 60px;
-	padding: 10px;
-	align-items: center;
-	gap: 10px;
-	flex-shrink: 0;	
-	color: #000;
-	font-size: 20px;
-	font-style: normal;
-	font-weight: 500;
-	line-height: normal;
-	padding-top: 20px;
+.how {
+	  display: flex;
+	  width: 137px;
+	  height: 60px;
+	  padding: 10px;
+	  flex-direction: column; 
+	  align-items: flex-start; 
+	  gap: 10px;
+	  flex-shrink: 0;
+	  color: #000;
+	  font-size: 20px;
+	  font-style: normal;
+	  font-weight: 500;
+	  line-height: normal;
+	  padding-top: auto; 
 }
+.how p {
+  margin-top: auto; 
+}
+
 .howto{
 	display: flex;
 	width: 1050px;
@@ -242,11 +254,4 @@ em {
 	gap: 10px;
 	flex-shrink: 0;
 	border-top: 1px solid black;
-}
-.prodImg{
-	width: 400px;
-	height: 340px;
-	justify-content: center; /* 가로 중앙 정렬 */
-	align-items: center; 
-	padding-top: 30px;
 }

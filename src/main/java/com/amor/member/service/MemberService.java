@@ -24,4 +24,8 @@ public interface MemberService {
 	public String idCheck(String id);
 	public int signUp(MemberDTO dto);
 	public int memberInfoUpdate(MemberDTO dto, int sidx);
+	public List<MemberDTO> memberList(int cp, int listSize);
+	public  int memberTotalCnt();
+	public List<MemberDTO> memberSearch(int cp, int listSize, String search);
+	public int memberSearchTotalCnt(String search);
 }

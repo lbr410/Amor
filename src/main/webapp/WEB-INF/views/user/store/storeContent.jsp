@@ -135,7 +135,7 @@ function submit() {
                 </div>
             </div>
 
-           <div class="how">사용 방법</div>
+           <div class="how"><p>사용 방법</p></div>
             <div class="howto">
             	${dto.product_content }
             </div>

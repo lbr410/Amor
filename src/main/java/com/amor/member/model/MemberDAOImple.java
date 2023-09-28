@@ -88,4 +88,28 @@ public class MemberDAOImple implements MemberDAO {
 		int result=sqlmap.update("memberInfoUpdate", map);
 		return result;
 	}
+	
+	@Override
+	public List<MemberDTO> memberList(Map map) {
+		List<MemberDTO>lists=sqlmap.selectList("memberList",map);
+		return lists;
+	}
+	
+	@Override
+	public int memberTotalCnt() {
+		int result=sqlmap.selectOne("memberTotalCnt");
+		return result;
+	}
+	
+	@Override
+	public List<MemberDTO> memberSearch(Map map) {
+		List<MemberDTO> lists=sqlmap.selectList("memberSearch", map);
+		return lists;
+	}
+	
+	@Override
+	public int memberSearchTotalCnt(String search) {
+		int result=sqlmap.selectOne("memberSearchTotalCnt", search);
+		return result;
+	}
 }
