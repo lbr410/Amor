@@ -2,6 +2,7 @@ package com.amor.adminController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,16 +28,13 @@ public class PlayingMovieController {
 		int listSize=5;
 		int pageSize=5;
 		
-		List<PlayingMovieDTO> lists=playingMovieService.playingMovieList(cp, listSize);
+		List<PlayingMovieDTO> playingMovieLists=playingMovieService.playingMovieList(cp, listSize);
 		
-		System.out.println("test="+lists.size());
-		System.out.println("totalCnt="+totalCnt);
-		
-		String playpageStr=com.amor.page.PageModule.makePage("playingMovieList.do", totalCnt, listSize, pageSize, cp);
+		String playingMoviepageStr=com.amor.page.PageModule.makePage("playingMovieList.do", totalCnt, listSize, pageSize, cp);
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("playpageStr", playpageStr);
-		mav.addObject("lists", lists);
+		mav.addObject("playingMoviepageStr", playingMoviepageStr);
+		mav.addObject("playingMovieLists", playingMovieLists);
 		mav.setViewName("/admin/playMovie/playingMovieList");
 		return mav;
 	}
@@ -66,10 +64,6 @@ public class PlayingMovieController {
 			@RequestParam("playing_movie_date")String playing_movie_date,
 			@RequestParam("playing_movie_start")String playing_movie_start,
 			@RequestParam("playing_movie_end")String playing_movie_end) {
-		
-		System.out.println(playing_movie_start);
-		System.out.println(playing_movie_end);
-		System.out.println(playing_movie_date);
 		
 		PlayingMovieDTO dto = new PlayingMovieDTO(movie_idx, theater_idx, playing_movie_date, playing_movie_start, playing_movie_end);
 		
@@ -139,15 +133,15 @@ public class PlayingMovieController {
 	}
 	
 	@RequestMapping("admin/playMovie/movieRunning.do")
-	public String movieRunning (
-			@RequestParam("movie_idx")int movie_idx) {
-		
-		System.out.println("movie_idx="+movie_idx);
+	public ModelAndView movieRunning (
+			@RequestParam("movie_idx")int movie_idx
+			) {
 		
 		Map running = playingMovieService.movieRunning(movie_idx);
-		String result = "{\"runningTime\",\""+running.get("MOVIE_RUNNINGTIME")+"\"}";
-		System.out.println(result);
-		return result;
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("running", running);
+		mav.setViewName("amorJson");
+		return mav;
 	}
-	
 }

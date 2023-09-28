@@ -7,6 +7,40 @@
 <meta charset="UTF-8">
 <title>아모르: 상영영화수정</title>
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/admin/playingMovieAddUp.css">
+<script type="text/javascript" src="../../resources/js/httpRequest.js"></script>
+<script>
+
+function show() {
+	let movie_idx = document.getElementById('movieRunning').value;
+	let param = 'movie_idx='+movie_idx;
+	sendRequest ('movieRunning.do',param,showResult,'GET');
+
+}
+function showResult() {
+	if (XHR.readyState==4) {
+		if (XHR.status==200){
+			let data=XHR.responseText;
+			let objdata=JSON.parse(data);
+			let movieRunning = objdata.running;
+			
+			let movieStart = document.getElementById('movieStart').value
+			let runTimeHH = parseInt(movieStart.substring(0,2));
+			let runTimeMM = parseInt(movieStart.substring(3,5));
+			let movieRun = parseInt(movieRunning.MOVIE_RUNNINGTIME);
+			
+			let movieEndHH = Math.floor((runTimeMM + movieRun)/60)+runTimeHH;
+			let movieEndMM = (runTimeMM + movieRun)%60;
+			if (movieEndMM < 10) {
+				movieEndMM = '0'+movieEndMM;
+			}
+			
+			document.getElementById('movieEnd').value = movieEndHH+':'+movieEndMM+':'+'00';
+			
+		}
+	}
+	
+}
+</script>
 </head>
 <body>
 <%@include file="../admin_header.jsp" %>
@@ -21,7 +55,7 @@
 		<table>
 			<tr>
 				<td class="playAdd">상영 영화 선택</td>
-				<td class="playAdd"><select name="movie_idx" class="playAddInput2">
+				<td class="playAdd"><select name="movie_idx" class="playAddInput2" id="movieRunning" onchange="show()">
 				<c:if test="${empty movieLists }">
 					<option selected disabled>등록된 영화가 없습니다.</option>				
 				</c:if>
@@ -57,9 +91,9 @@
 			<tr>
 				<td class="playAdd">상영 시간</td>
 				<td class="playAdd"><input type="time" name="playing_movie_start" 
-				value="${updatedto.playing_movie_start}" class="playAddInput">&nbsp;&nbsp;~&nbsp;&nbsp;
+				value="${updatedto.playing_movie_start}" class="playAddInput" id="movieStart" onchange="show()">&nbsp;&nbsp;~&nbsp;&nbsp;
 				<input type="time" name="playing_movie_end"
-				value="${updatedto.playing_movie_end}" class="playAddInput"></td>
+				value="${updatedto.playing_movie_end}" class="playAddInput" id="movieEnd"></td>
 			</tr>
 			<tr>
 				<td class="playAddBtn" colspan="2"><input type="submit" value="상영 수정" class="nextBtn">&nbsp;&nbsp;
