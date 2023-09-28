@@ -105,8 +105,9 @@
 	height: 260px;
 }
 .img{
-	width: 310px;
-	height: 250px;
+	width: 300px;
+	height: 240px;
+	margin: 0 auto; /* 수평 가운데 정렬 */
 }
 .prodTitle{
 	width: calc(100%);

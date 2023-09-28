@@ -64,5 +64,12 @@ public class StoreController {
 		return mav;
 	}
 	
+	@RequestMapping("store/storeDetailForm.do")
+	public ModelAndView storeDetailForm() {
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("/user/store/storeDetail");
+		return mav;
+	}
+	
 	
 }

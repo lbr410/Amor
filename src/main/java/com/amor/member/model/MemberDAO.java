@@ -18,5 +18,9 @@ public interface MemberDAO {
 	public String userPwdIdck(String member_id);
 	public int memberInfoUpdate(Map map);
 	public int userPwdFindUpdate(Map map);
+	public List<MemberDTO> memberList(Map map);
+	public int memberTotalCnt();
+	public List<MemberDTO> memberSearch(Map map);
+	public int memberSearchTotalCnt(String search);
 }
  

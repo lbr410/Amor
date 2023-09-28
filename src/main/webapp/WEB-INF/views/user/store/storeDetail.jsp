@@ -4,55 +4,41 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-	a {
-		text-decoration: none;
-	}
-	body {
-		font-family: 'Nanum Gothic', sans-serif;
-		font-size: 16px;
-		font-weight: 400;
-		line-height: 1.4;
-		color: #333333;
-	}
-	img {
-		display: block;
-	}
-	.body-inner {
-		width: 1100px;
-		margin: 0 auto;
-		position: relative;
-	}
-
-	/**BORDER BAR*/
-	.border-bar {
-		margin-top: 300px;
-		padding-top: 140px;
-		width: 1100px;
-		margin: 0 auto;
-		display: block;
-		position: relative;
-		border-bottom: solid 1px #D9D9D9;
-	}
-
-	.border-title {
-		 margin-top: 78px;
-		display: block;
-		margin-bottom: 20px;
-		font-size: 24px;
-	}
-
-</style>
+<title>아모르 : 스토어 결제확인</title>
+<link rel="stylesheet" href="/amor/resources/css/user/storeDetail.css">
 </head>
+<%@include file="../header.jsp" %>
 <body>
-	<%@include file="../header.jsp" %>
-	<!-- BORDER BAR-->
-	<div class="border-bar">
-		<div class="border-title">
-		회원가입
-		</div>
+<!-- BORDER BAR-->
+<div class="border-bar">
+	<div class="border-title">
+		결제 내역 확인
 	</div>
+</div>
+<div class="body-inner">
+<div class="payForm">
+	<table class="payTable">
+	<tbody>
+		<tr>
+			<th>상품명</th>
+			<td>콜라</td>
+			<th>결제일자</th>
+			<td>2023.09.12 10:12:12</td>
+		</tr>
+		<tr>
+			<th>결제수단</th>
+			<td>카카오페이</td>
+			<th>결제금액</th>
+			<td>300,000원</td>
+		</tr>
+	</tbody>
+	</table>
+	<div class="btnDiv">
+		<button class="submitBtn1">스토어 내역 보기</button>
+		<button class="submitBtn2">확인</button>	
+	</div>
+</div>
+</div>
 </body>
 	<%@include file="../footer.jsp" %>
 </html>
