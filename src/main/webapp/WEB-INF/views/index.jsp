@@ -38,24 +38,34 @@
 	<!-- MOVIE CHART -->
 	<div class="chart">
 	<div class="container">
-		<c:forEach var="mdto"  items="${lists }" begin="1" end="4" >
+	<c:if test="${empty mlists }">
+	<div class="nomovie">상영중인 영화가 없습니다.</div>
+	</c:if>
+		<c:set var="rank" value="1" />
+		<c:forEach var="mdto"  items="${mlists }" begin="1" end="4" >
             <div class="movie-wrapper">
                 <div class="rank-movie">
-                    <div class="rank">${mdto.movie_idx }<span class="rank-txt">위</span></div>
-                    <div class="movie_poster">${mdto.movie_poster }</div>
+                    <div class="rank">${rank }<span class="rank-txt">위</span></div>
+                    <div class="movie_poster">
+                   	 	<c:url var="MovieContentUrl" value="/amor/movie/movieContentForm.do">
+							<c:param name="movie_idx">${mdto.movie_idx }</c:param>
+                    	</c:url>
+                    <a href="${MovieContentUrl}"><img src="/amor/resources/upload/movie/${mdto.movie_poster }" alt="영화 포스터"></a>
+                    </div>
                     <div class="title-area">
-                        <span class="movie_maxage">
-                            <c:if test="${0==mdto.movie_maxage}"><img src="/amor/resources/img/maxage_all.png" alt="ALL"></c:if>
+                     <span class="movie_maxage">
+                         	<c:if test="${0==mdto.movie_maxage}"><img src="/amor/resources/img/maxage_all.png" alt="ALL"></c:if>
 							<c:if test="${1==mdto.movie_maxage}"><img src="/amor/resources/img/maxage_12.png" alt="12세 관람가"></c:if>
 							<c:if test="${2==mdto.movie_maxage}"><img src="/amor/resources/img/maxage_15.png" alt="15세 관람가"></c:if>
 							<c:if test="${3==mdto.movie_maxage}"><img src="/amor/resources/img/maxage_18.png" alt="18세 관람가"></c:if>
-                        </span>
-                        <span title="제목" class="movie_name">${dto.movie_name }</span>
-                    </div>
+                     </span>
+                     <span title="제목" class="movie_name">${mdto.movie_name }</span>
+           			</div>
+           </div>
                     <div class="info-area">
                         <span class="movie_audience">
                             <span class="rate">
-                                ${mdto.movie_audience } 명
+                                관객수 ${mdto.movie_audience }<em>명 | </em>
                             </span>
                         </span>
                         <span class="date">
@@ -63,17 +73,21 @@
                         </span>
                     </div>
                     <div class="book-btn" >
-                        <a href="/amor/ticketing/ticketing.do">
-                            <button type="button" title="영화 예매하기">예매하기</button>
-                        </a>
+                        <c:url var="ticketingUrl" value="/amor/ticketing/ticketing.do">
+                       		<c:param name="movie_idx">${mdto.movie_idx }</c:param>
+                       	</c:url>
+                     	<a href="${ticketingUrl}">
+                     		<button type="button" name="ticketing-btn" title="영화 예매하기">예매하기</button>
+                     	</a>
                     </div>
                 </div>
-            </div>
+                <c:set var="rank" value="${rank+1 }" />
           </c:forEach>
+          </div>
      </div>
+</div> 
 </div>
-</div>
-</div>
+
  	<!-- PROMOTION BANNER -->
 	<section class="navi">
     <div class="promotion">
@@ -105,19 +119,17 @@
 		<div class="left-section">
 			<div class="sub-title">
 				<span class="product_store">패키지</span>
-				<span class="more"><a href="store.do">더보기</a></span>
+				<span class="more"><a href="/amor/store.do">더보기</a></span>
 			</div>
 			<table class="product">
-			<c:forEach var="pdto"  items="${lists }">
+			<c:forEach var="pdto"  items="${slists }" begin="1" end="2">
 			  <tr>
-			    <td class="product_img">${pdto.product_img }</td>
-			    <td class="product_info">
-			      <div class="product_title">${pdto.product_title }</div>
-			      <div class="product_price">${pdto.product_price }</div>
+			    <td class="product_img">
+			    	<c:url var="storeContentUrl" value="store/storeContentForm.do">
+			    		<c:param name="product_idx">${pdto.product_idx }</c:param>
+			    	</c:url>
+			    	<a href="${storeContentUrl }"><img src="/amor/resources/upload/store/${pdto.product_img }" alt="스토어"></a>
 			    </td>
-			  </tr>
-			  <tr>
-			    <td class="product_img">${product_img }</td>
 			    <td class="product_info">
 			      <div class="product_title">${pdto.product_title }</div>
 			      <div class="product_price">${pdto.product_price }</div>
@@ -129,23 +141,23 @@
 		<div class="right-section">
 			<div class="sub-title">
 				<span class="product_store">관람권</span>
-				<span class="more">더보기</span>
+				<span class="more"><a href="/amor/store.do">더보기</a></span>
 			</div>
 			<table class="product">
+			<c:forEach var="tdto"  items="${tlists }" begin="1" end="2">
 			  <tr>
-			    <td class="product_img"><img src="#" alt="product_img"></td>
+			    <td class="product_img">
+				    <c:url var="storeContentUrl" value="store/storeContentForm.do">
+				    	<c:param name="product_idx">${tdto.product_idx }</c:param>
+			    	</c:url>
+			    	<a href="${storeContentUrl }"><img src="/amor/resources/upload/store/${tdto.product_img }" alt="관람권"></a>
+			    </td>
 			    <td class="product_info">
-			      <div class="product_title">상품명</div>
-			      <div class="product_price">가격</div>
+			      <div class="product_title">${tdto.product_title }</div>
+			      <div class="product_price">${pdto.product_price }</div>
 			    </td>
 			  </tr>
-			  <tr>
-			    <td class="product_img"><img src="#" alt="product_img"></td>
-			    <td class="product_info">
-			      <div class="product_title">상품명</div>
-			      <div class="product_price">가격</div>
-			    </td>
-			  </tr>
+			  </c:forEach>
 			</table>
 		</div>
 	</section>

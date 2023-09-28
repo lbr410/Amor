@@ -122,7 +122,6 @@ body{
 	position: relative;
 	margin-bottom: 170px;
 }
-
 .rank{
     width: 230px;
     height: 60px;
@@ -134,7 +133,6 @@ body{
     width: 230px;
     height: 300px;
     border-radius: 5px;
-    background-color: #666666;
 }
 .movie_poster img{
 	width: 230px;
@@ -143,7 +141,6 @@ body{
     border-radius: 5px;
     background-color: #666666;
 }
-/* TITLE */
 .main-info{
 	height: 40px;
 }
@@ -151,11 +148,7 @@ body{
 	width: 24px;
 	height: 24px;
 }
-.movie_class{
-	height: 40px;
-	font-weight: bold;
-	font-size: 18px;
-}
+.container .movie-wrapper .
 .sub-info{
 	height: 40px;
 	font-size: 16px;
@@ -163,13 +156,21 @@ body{
 .container .rank-movie .title-area{
     width: 230px;
     height: 34px;
+    display: flex;
     font-size: 20px;
     padding: 14px 0;
     font-weight: bold;
+    align-items: center;
+}
+.container .rank-movie .title-area .movie_name{
+    padding-left: 12px;
 }
 .container .rank-movie .info-area{
     width: 230px;
-    height: 18px;
+    height: 24px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333333;
     padding-bottom: 18px;
 }
 .container .rank-movie .info-area .review-rate .rate span ::after{
@@ -379,6 +380,7 @@ button{
 }
 .store-section .right-section .sub-title .more{
 	color: #666666;
+	padding-left: 20px;
 	font-weight: bold;
 	font-size: 14px;
 }

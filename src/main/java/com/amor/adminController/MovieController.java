@@ -390,29 +390,38 @@ public class MovieController {
 	
 		return saveFileName;
 	}
-	
+
 	//현재 상영작 출력
 	@RequestMapping("movie/movie.do")
-	public ModelAndView userMovieList() {
+	public ModelAndView movieList() {
 		
-		List<MovieDTO> lists = movieservice.movieBest();
-		System.out.println("test="+lists.size());
+		List<MovieDTO> mlists = movieservice.movieBest();
+		System.out.println("test="+mlists.size());
 		ModelAndView mav=new ModelAndView();
-		mav.addObject("lists", lists);
+		mav.addObject("mlists", mlists);
 
 		mav.setViewName("/user/movie/movie");
 		return mav;
 	}
+
 	
-	//상영 예정작 출력
-	@RequestMapping("movie/movieCome.do")
-	public ModelAndView userMovieComeList() {
+	//영화 상새내용
+	@RequestMapping("user/movie/movieContentForm.do")
+	public ModelAndView movieContent(
+			@RequestParam(value="movie_idx", defaultValue = "0")int movie_idx) {
 		
-		List<MovieDTO> lists = movieservice.movieCome();
+		MovieDTO dto = movieservice.movieContent(movie_idx);
 		ModelAndView mav=new ModelAndView();
-		mav.addObject("listsC", lists);
-		
-		mav.setViewName("/user/movie/movieCome");
+		if(dto == null) {
+			mav.addObject("msg","삭제된 게시물 잘못된 접근입니다.");
+			mav.setViewName("user/msg/userMsg");
+		}else {
+			String movieContent = dto.getMovie_content().replaceAll("\n", "<br>");
+			mav.addObject("movieContent",movieContent);
+			mav.addObject("dto",dto);
+			mav.setViewName("/user/movie/movieContent");
+		}
 		return mav;
-	}
+ 	}
+		
 }
