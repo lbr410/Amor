@@ -71,4 +71,5 @@ select * from movie where movie_opendate <![CDATA[>=]]> sysdate order by movie_o
 select count(*) from movie where movie_state='y' 
 </select>
 
+
 </mapper>

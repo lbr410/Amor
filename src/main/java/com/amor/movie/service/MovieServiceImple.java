@@ -79,7 +79,6 @@ public class MovieServiceImple implements MovieService {
 	public List<MovieDTO> movieBest() {
 		Map map=new HashedMap();
 		List <MovieDTO> lists = moviedao.movieBest(map);
-		System.out.println(lists);
 		return lists;
 	}
 	
@@ -87,8 +86,8 @@ public class MovieServiceImple implements MovieService {
 	public List<MovieDTO> movieCome() {
 		Map map=new HashedMap();
 		List <MovieDTO> lists = moviedao.movieCome(map);
-		System.out.println(lists);
 		return lists;
 	}
+	
 	
 }
