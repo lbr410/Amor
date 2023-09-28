@@ -123,10 +123,22 @@ const date31 = [1,3,5,7,8,10,12];
 
 const week = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)'];
 
-window.alert('3');
+for(let i = 0 ; i<date30.length; i++){
+	//if(month)
+}
+
+if(month == date[]){
+	
+}else{
+	
+}
+
+
 
 	//날짜 
 	for(let i = 0 ; i< 7; i++){
+		
+		
 		document.getElementById('datep'+i).innerHTML = 0+date+i;
 	}
 	
