@@ -62,7 +62,7 @@
           상영관
           </span>
           <span class="span8">
-            진달래 관, ${temp.seatnum}<br/>
+            ${temp.theatername}, ${temp.seatnum}<br/>
           </span>
            <span class="span9">
            결제 날짜
@@ -85,7 +85,17 @@
           </span>
       </div>
     </div>
-    <input type = "button" value = "예매 취소" class = "button" onclick = "Cancellation(${temp.ticketnum})">
+    <c:if test="${temp.timelimit == 'y'}">
+    	<c:url var="cancellticket" value="cancellation.do">
+			<c:param name="ticketnum">${temp.ticketnum}</c:param>    
+			<c:param name="timelimit">${temp.timelimit}</c:param>    		
+		</c:url>
+    	<input type = "button" value = "예매 취소" class = "button" onclick = "Cancellation(${cancellticket})">
+  	</c:if>
+  	<c:if test="${temp.timelimit == 'n'}">
+  		${temp.timelimit}
+  		<input type = "button" value = "관람평 작성" class = "button">
+  	</c:if>
   </div>
 </div>
 </c:forEach>
@@ -98,10 +108,8 @@
 </body>
 <script src = "/amor/resources/js/httpRequest.js"></script>
 <script>
-	function Cancellation(ticketnum){
-		alert('ss');
-		let param = 'ticketnum='+ticketnum;
-		sendRequest('cancellation.do',param,null,'GET');
+	function Cancellation(url){
+		location.href = url;
 	}
 </script>
 </html>

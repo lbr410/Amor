@@ -28,7 +28,7 @@ public class TicketingHistoryController {
 			System.out.println(useridx);
 			List<JoinTicketingHistoryDTO>lists = ticketingHistoryService.getReserveList(useridx);
 			if(lists != null) {				
-				System.out.println(lists.get(0));
+				System.out.println(lists.get(0).getTimelimit());
 				mav.addObject("list", lists);
 				mav.setViewName("user/myAmor/tiketingHistory");
 				return mav;
@@ -39,7 +39,7 @@ public class TicketingHistoryController {
 			}
 		}else {
 			mav.addObject("msg", "로그인 후 이용가능합니다.");
-			mav.addObject("href", "/amor/member/login.do");
+			mav.addObject("goUrl", "/amor/member/login.do");
 			mav.setViewName("user/msg/userMsg");
 			return mav;
 		}
@@ -63,7 +63,7 @@ public class TicketingHistoryController {
 			}
 		}else {
 			mav.addObject("msg", "로그인 후 이용가능합니다.");
-			mav.addObject("href", "/amor/member/login.do");
+			mav.addObject("goUrl", "/amor/member/login.do");
 			mav.setViewName("user/msg/userMsg");
 			return mav;
 		}
@@ -71,20 +71,29 @@ public class TicketingHistoryController {
 	
 	
 	@RequestMapping("/myAmor/cancellation.do")
-	public ModelAndView cancellationTicket(@RequestParam("ticketnum")String ticketnum) {
-		int result = ticketingHistoryService.cancellationTicket(ticketnum);
+	public ModelAndView cancellationTicket(@RequestParam("ticketnum")String ticketnum , @RequestParam("timelimit") int timelimit) {
+		
 		ModelAndView mav = new ModelAndView();
-		if(result > 0) {
-			mav.addObject("msg", "예매가 취소되었습니다.");
-			mav.addObject("href", "/amor/myAmor/ticketingHistory.do");
-			mav.setViewName("user/msg/userMsg");
-			return mav;
+		if(timelimit >= 30) {	
+			int result = ticketingHistoryService.cancellationTicket(ticketnum);
+			if(result > 0) {
+				mav.addObject("msg", "예매가 취소되었습니다.");
+				mav.addObject("goUrl", "/amor/myAmor/ticketingHistory.do");
+				mav.setViewName("user/msg/userMsg");
+				return mav;
+			}else {
+				mav.addObject("msg", "예매취소 불가(관리자 문의 바랍니다.)");
+				mav.addObject("goUrl", "/amor/myAmor/ticketingHistory.do");
+				mav.setViewName("user/msg/userMsg");
+				return mav;
+			}
 		}else {
-			mav.addObject("msg", "예매취소 불가(관리자 문의 바랍니다.)");
-			mav.addObject("href", "/amor/myAmor/ticketingHistory.do");
+			mav.addObject("msg", "영화시작 30분 전부터는 취소가 불가능합니다.");
+			mav.addObject("goUrl", "/amor/myAmor/ticketingHistory.do");
 			mav.setViewName("user/msg/userMsg");
 			return mav;
 		}
+		
 	}
 //	@RequestMapping("/myAmor/ticketingHistory.do")
 //	public ModelAndView goTiketingHistory(HttpSession session) {
