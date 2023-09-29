@@ -33,7 +33,7 @@
                             </a>
                         </li>
                         <li class="on">
-                            <a href="userPwdFind.do" title="비밀번호 찾기">
+                            <a href="userPwdFindForm.do" title="비밀번호 찾기">
                                 비밀번호 찾기
                             </a>
                         </li>

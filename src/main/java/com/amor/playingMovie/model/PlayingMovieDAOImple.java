@@ -28,7 +28,6 @@ public class PlayingMovieDAOImple implements PlayingMovieDAO {
 	@Override
 	public List<Map> playingMovieAddMovie() {
 		List<Map> movieLists=sqlmap.selectList("playingMovieAddMovie");
-		System.out.println("DAOImple="+movieLists.get(0));
 		return movieLists;
 	}
 	

@@ -76,10 +76,10 @@
 			</div>
 			
 			<div class="menu" onclick="toggleSubmenu(this)">
-				<div class="menutext"><a href="#" data-submenu="submenu-8">매출 관리</a></div>
+				<div class="menutext"><a href="/amor/admin/sales/sales.do" data-submenu="submenu-8">매출 관리</a></div>
 			</div>
 			<div class="submenu" id="submenu-8"> 
-				<div class="menutext"><a href="faq.jsp">관람평 목록</a></div>
+				<div class="menutext"><a href="/amor/admin/sales/sales.do">매출 관리</a></div>
 			</div>	
 			
 			<div class="menu" onclick="toggleSubmenu(this)">
