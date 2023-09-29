@@ -11,8 +11,9 @@ public class StorePaymentDTO {
 	private String store_payment_payment;
 	private Date store_payment_paymentdate;
 	private String store_payment_status;
-	private String a; // 총 가격 합계(매출)
+	private int a; // 총 가격 합계(매출)
 	private String b; // 날짜 문자열 타입
+	private String c; // 총 가격 format(#,###) 표현 값
 	
 	public StorePaymentDTO() {
 		// TODO Auto-generated constructor stub
@@ -20,7 +21,7 @@ public class StorePaymentDTO {
 
 	public StorePaymentDTO(int store_payment_idx, int product_idx, int member_idx, int store_payment_amount,
 			int store_payment_price, String store_payment_payment, Date store_payment_paymentdate,
-			String store_payment_status, String a, String b) {
+			String store_payment_status, int a, String b, String c) {
 		super();
 		this.store_payment_idx = store_payment_idx;
 		this.product_idx = product_idx;
@@ -32,6 +33,7 @@ public class StorePaymentDTO {
 		this.store_payment_status = store_payment_status;
 		this.a = a;
 		this.b = b;
+		this.c = c;
 	}
 
 	public int getStore_payment_idx() {
@@ -98,11 +100,11 @@ public class StorePaymentDTO {
 		this.store_payment_status = store_payment_status;
 	}
 
-	public String getA() {
+	public int getA() {
 		return a;
 	}
 
-	public void setA(String a) {
+	public void setA(int a) {
 		this.a = a;
 	}
 
@@ -112,5 +114,13 @@ public class StorePaymentDTO {
 
 	public void setB(String b) {
 		this.b = b;
+	}
+
+	public String getC() {
+		return c;
+	}
+
+	public void setC(String c) {
+		this.c = c;
 	}
 }

@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.amor.storePayment.model.StorePaymentDTO;
+
 
 public class TicketingDAOImple implements TicketingDAO {
 
@@ -43,4 +45,40 @@ public class TicketingDAOImple implements TicketingDAO {
 //	}
 
 	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public int allMovie(Map map) {
+		int result = sqlmap.selectOne("allMovie", map);
+		return result;
+	}
+	
+	@Override
+	public List<TicketingDTO> dayMovie(Map map) {
+		List<TicketingDTO> lists = sqlmap.selectList("dayMovie", map);
+		return lists;
+	}
+	
+	@Override
+	public int dayMovieTotal(Map map) {
+		int result = sqlmap.selectOne("dayMovieTotal", map);
+		return result;
+	}
+	
+	@Override
+	public List<TicketingDTO> monthMovie(Map map) {
+		List<TicketingDTO> lists = sqlmap.selectList("monthMovie", map);
+		return lists;
+	}
+	
+	@Override
+	public int monthMovieTotal(Map map) {
+		int result = sqlmap.selectOne("monthMovieTotal", map);
+		return result;
+	}
 }
