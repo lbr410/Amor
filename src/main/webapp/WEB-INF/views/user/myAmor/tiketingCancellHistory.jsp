@@ -62,7 +62,7 @@
           상영관
           </span>
           <span class="span8">
-            진달래 관, ${temp.seatnum}<br/>
+             ${temp.theatername}, ${temp.seatnum}<br/>
           </span>
            <span class="span9">
            결제 날짜
