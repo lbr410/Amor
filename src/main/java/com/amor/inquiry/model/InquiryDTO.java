@@ -12,7 +12,7 @@ public class InquiryDTO {
 	private String inquiry_astatus;
 	
 	public InquiryDTO() {
-		System.out.println("inquiryDTO()호출됨");
+		// TODO Auto-generated constructor stub
 	}
 
 	public InquiryDTO(int inquiry_idx, String inquiry_subject, String inquiry_content, String inquiry_filename,
@@ -74,4 +74,14 @@ public class InquiryDTO {
 	public void setInquiry_answer(String inquiry_answer) {
 		this.inquiry_answer = inquiry_answer;
 	}
+
+	public String getInquiry_astatus() {
+		return inquiry_astatus;
+	}
+
+	public void setInquiry_astatus(String inquiry_astatus) {
+		this.inquiry_astatus = inquiry_astatus;
+	}
+	
+	
 }

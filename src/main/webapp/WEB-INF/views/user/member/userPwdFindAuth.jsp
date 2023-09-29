@@ -119,7 +119,7 @@ function emailOk() {
                                 <th class="signUpMenu">인증번호</th>
                                 <td colspan="2">
                                     <input type="text" name="authNum" id="answer-num" class="textBoxDeco1" maxlength="6"
-									onkeypress="return checkNumber(event)" oninput="authChk(this)" required>
+									onkeypress="return checkNumber(event)" oninput="authChk(this)" placeholder="인증번호" required>
                                 	<div class="chks" id="authChkMsg"><!-- state --></div>
                                 </td>
                             </tr>

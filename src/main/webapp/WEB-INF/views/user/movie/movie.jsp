@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>아모르 : 현재 상영작</title>
-<link rel="stylesheet" href="/amor/resources/css/user/movie.css"></script>
+<link rel="stylesheet" href="/amor/resources/css/user/movie.css">
 </head>
 <%@ include file="../header.jsp" %>
 <body>
@@ -44,7 +44,7 @@
                 <div class="rank-movie">
                     <div class="rank"><span class="rank-txt">${rank }위</span></div>
                     <div class="movie_poster">
-                   	 	<c:url var="MovieContentUrl" value="/amor/movie/usermovieContent.do">
+                   	 	<c:url var="MovieContentUrl" value="movieContentForm.do">
 							<c:param name="movie_idx">${mdto.movie_idx }</c:param>
                     	</c:url>
                     <a href="${MovieContentUrl}"><img src="/amor/resources/upload/movie/${mdto.movie_poster }" alt="영화 포스터"></a>

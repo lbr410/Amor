@@ -4,14 +4,64 @@ body, h1, h2, p {
     margin: 0;
     padding: 0;
 }
-
-/* Style for the contents wrapper */
+button {
+	background: inherit ; border:none; box-shadow:none; border-radius:0; padding:0; overflow:visible;
+    background-color: transparent;
+    border: none;
+}
+a{
+	text-decoration: none;
+	color: 333333;
+}
+ a:hover, a:active {text-decoration: none; color:#333333;}
+.content{
+	border: none;
+	resize: none;
+	background-color: #bcbcbc;
+	overflow-y:scroll
+}
+.content:focus{
+	outline:none
+}
+.gray-bar{
+    width: 100%;
+    height: 14px;
+    background-color: #F7F8F9;
+    padding: 8px 8px 16px 8px;
+    margin-top: 120px;
+}
+.gray-bar .location{
+    width: 1100px;
+    margin: 0 auto;
+}
+.gray-bar .location .home{
+    margin-left: 80px;
+    color: #666666;
+    font-size: 14px;
+}
+.gray-bar .location a{
+    color: #666666;
+    text-decoration: none;
+        font-size: 14px;
+}
+.location a::before{
+    content: ' >';
+    color:#666666;
+    display: inline;
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;
+}
+.body-inner{
+    width: 1100px;
+    margin: 0 auto;
+}
 .movie-content {
     width: 980px;
     margin: 0 auto;
 }
 .movie-content .movie-wrap{
-    min-height: 460px;
+    min-height: 600px;
 }
 /*MOVIE POSTER*/
 .movie-content .movie-wrap .movie-poster {
@@ -20,6 +70,7 @@ body, h1, h2, p {
     width: 316px;
     height: 468px;
     border-radius: 10px;
+    margin-left: 24px;
     position: relative;
     background-color: #BCBCBC;
 }
@@ -52,28 +103,42 @@ body, h1, h2, p {
 }
 .movie-content .movie-wrap .right-section span{
     font-weight: bold;
+	
 }
 ul{
     list-style: none;
     display: block;
 }
 li{
+	list-style: none;
     float: left;
     margin-right: 20px;
 }
 /*MOVIE DETAIL*/
+.movie-content .movie-wrap .right-section .movie_maxage{
+	width: 180px;
+}
+.movie-content .movie-wrap .right-section .movie_maxage img{
+	width: 24px;
+	height: 24px;
+	padding: 0 14px 0 14px;
+}
+
 .movie-content .movie-wrap .movie_content{
     width: 600px;
-    background-color: #BCBCBC;
 }
 .movie-content .movie-wrap .movie_content .txtarea {
     margin: 20px 0 27px;
     overflow: scroll;
-    height: 120px;
+    height: 200px;
     font-weight: normal;
 }
+textarea{
+	width: 550px;
+	height: 250px;
+}
 /*BUTTON*/
-.btn {
+.btn-wrap .blue-btn {
     background-color: #1A2C82;
     color: #C7E3FF;;
     border: none;
@@ -84,18 +149,94 @@ li{
     font-weight: bold;
     cursor: pointer;
     margin-right: 200px;
+    text-align: center;
 }
 em {
     font-style: normal;
     font-weight: normal;
     font-family: inherit;
 }
-.movie-content .pd-wrap .pd-detail .btn-wrap {
-    text-align: center;
-    width: 558px;
-}
 p::after{
     content: '  |';
     margin-left: 5px;
     color:#333333;
 }
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+.meterial-icons{
+	width: 24px;
+	height: 24px;
+}
+.movie-detail{
+	width: 980px;
+	margin: 0 auto;
+	height: 1000px;
+}
+/**MENU*/
+html,body {width:100%;  }
+body,div,ul,li{margin:0; padding:0;}
+ul,li {list-style:none;}
+
+ .movie-detail .tab {
+      float: left;
+      width: 980px;
+      height: 90px;
+    }
+
+    .movie-detail .tabnav {
+      font-size: 0;
+      width: 980px;
+    }
+
+    .movie-detail .tabnav li {
+      display: inline-block; /* 이 부분이 변경된 부분입니다. */
+      width: 490px; /* 두 개의 탭이므로 전체 너비를 490px로 나눈 값 */
+      height: 90px;
+      text-align: center;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .movie-detail .tabnav li a:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0px;
+      width: 245px;
+      height: 3px;
+    }
+
+    .movie-detail .tabnav li a.active:before {
+      background: #ffffff;
+    }
+
+    .movie-detail .tabnav li a.active {
+      border-bottom: 2px solid #000000;
+    }
+
+    .movie-detail .tabnav li a {
+      position: relative;
+      display: block;
+      background: #f8f8f8;
+      color: #000;
+      padding: 0 30px;
+      line-height: 46px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .movie-detail .tabnav li a:hover,
+    .movie-detail .tabnav li a.active {
+      background: #fff;
+      color: #000000;
+    }
+
+    .movie-detail .tabcontent {
+      padding: 20px;
+      height: 244px;
+      background-color: #EDEDED;
+    }
