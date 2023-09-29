@@ -69,8 +69,8 @@
 				<div class="menutext"><a href="#" data-submenu="submenu-7">공지 / FAQ 관리</a></div>
 			</div>	
 			<div class="submenu" id="submenu-7"> 
-				<div class="menutext"><a href="#">공지사항 목록</a></div>
-				<div class="menutext"><a href="#">공지사항 등록</a></div>
+				<div class="menutext"><a href="/amor/admin/notice/noticeList.do">공지사항 목록</a></div>
+				<div class="menutext"><a href="/amor/admin/notice/noticeWrite.do">공지사항 등록</a></div>
 				<div class="menutext"><a href="#">FAQ 목록</a></div>
 				<div class="menutext"><a href="#">FAQ 등록</a></div>
 			</div>
