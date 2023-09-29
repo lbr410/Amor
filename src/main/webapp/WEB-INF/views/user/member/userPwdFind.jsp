@@ -37,12 +37,12 @@
                                 비밀번호 찾기
                             </a>
                         </li>
-                    </ul>
+                    </ul>  
                 </div>
                 <span class="navi">
                     비밀번호를 찾고자 하는 아이디를 입력해주세요.
                 </span>
-				<form class="userPwdFind" action="userPwdFind.do" method="POST">
+				<form name="userPwdFind" action="userPwdFind.do" method="POST" class="table-wrap">
                     <table class="table">
                          <tbody>
                             <tr>

@@ -32,7 +32,7 @@
   	<div class="movie-title">
 	<div class="title-bar">
 		<div class="menu"><ul class="now-movie"><li>현재 상영작</li></ul></div>
-		<div class="more-movie"><a href="/amor/movie/moreMovie.do">더 많은 영화 보기</a></div>
+		<div class="more-movie"><a href="/amor/movie/movie.do">더 많은 영화 보기</a></div>
 	</div>
 	
 	<!-- MOVIE CHART -->
@@ -47,7 +47,7 @@
                 <div class="rank-movie">
                     <div class="rank">${rank }<span class="rank-txt">위</span></div>
                     <div class="movie_poster">
-                   	 	<c:url var="MovieContentUrl" value="/amor/movie/movieContentForm.do">
+                   	 	<c:url var="MovieContentUrl" value="movieContentForm.do">
 							<c:param name="movie_idx">${mdto.movie_idx }</c:param>
                     	</c:url>
                     <a href="${MovieContentUrl}"><img src="/amor/resources/upload/movie/${mdto.movie_poster }" alt="영화 포스터"></a>

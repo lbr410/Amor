@@ -40,8 +40,7 @@ public class UserIdFindController {
 	public ModelAndView userIdFindSubmit(
 			@RequestParam("member_name")String member_name,
 			@RequestParam("member_email")String member_email) {
-		//System.out.println("name+"+member_name);
-		//System.out.println("email+"+member_email);
+		
 		String member_id=memberService.userIdFind(member_name, member_email);
 		ModelAndView mav=new ModelAndView();
 		if(member_id == null) {
@@ -68,7 +67,6 @@ public class UserIdFindController {
 			HttpSession session) {
 		
 		String fid = memberService.userPwdIdck(member_id);
-
 	    ModelAndView mav = new ModelAndView();
 
 	    if (fid == null) {
@@ -78,7 +76,6 @@ public class UserIdFindController {
 		        return mav;
 	    } else {
 	        // 아이디가 일치하는 경우 세션에 아이디를 저장
-			System.out.println("member_id+"+member_id+fid);
 	        session.setAttribute("id", fid);
 	        mav.addObject("member_id", fid);
 		    mav.setViewName("/user/member/userPwdFindAuth");
@@ -104,6 +101,7 @@ public class UserIdFindController {
 	public ModelAndView userPwdFindUpdateSubmit(
 		@RequestParam("member_pwd")String member_pwd,
 		HttpSession session) {
+		
 		String fid=(String)session.getAttribute("fid");
 		System.out.println("fid+"+fid);
 		String npwd = Encryption.pwdEncrypt(member_pwd);
@@ -112,10 +110,10 @@ public class UserIdFindController {
 		String msg=result>0?"비밀번호 업데이트 성공":"비밀번호 업데이트 실패";
 
 		ModelAndView mav=new ModelAndView();
-	mav.addObject("msg", msg);
-	mav.addObject("goUrl", "/amor/member/login.do");
-	mav.setViewName("/user/msg/userMsg");
-	return mav;
+		mav.addObject("msg", msg);
+
+		mav.setViewName("/user/msg/userMsg");
+		return mav;
 	}
 
 }

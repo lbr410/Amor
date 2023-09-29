@@ -119,7 +119,8 @@ li a{
     display:flex;
     justify-content: center;
     flex-direction: column;
-    width: 700px;
+    width: 550px;
+    margin: 0 auto;
 }
 .body-inner .center .find-section .table-wrap table{
     width: 550px;
@@ -129,13 +130,13 @@ li a{
     margin-bottom: 36px;
 }
 .body-inner .center .find-section .table-wrap table th{
-    width: 100px;
+    width: 176px;
     font-size: 16px;
     font-weight: bold;
     text-align: left;
     background-color: #F8F8F8;
     border-bottom: #BCBCBC 1px solid;
-    padding-left: 70px;
+    padding-left: 18px;
 }
 .body-inner .center .find-section .table-wrap table th a{
     padding-left: 60px;
@@ -145,9 +146,15 @@ li a{
     border-bottom: #BCBCBC;
     padding: 10px;
     border-bottom: #BCBCBC 1px solid;
-
 }
-.body-inner .center .find-section .table-wrap table #member-name, #member-email, #answer-num{
+.body-inner .result-section{
+	width: 550px;
+	margin: 0 auto;
+}
+.body-inner .result-section . table-wrap table{
+	width: 550px;
+}
+.body-inner .center .find-section .table-wrap table #member-name, #email, #member-email, #answer-num, #pwd1, #pwd2{
     display: flex;
     padding: 0 8px;
     align-items: center;
@@ -158,8 +165,13 @@ li a{
     border: 1px solid #BCBCBC;
     cursor: pointer;
 }
+.id-result{
+	margin-bottom: 40px;
+}
+.navi-info{
+	padding-bottom: 40px;
+}
 .body-inner .center .find-section .table-wrap table .gray-btn{
-    display: flex;
     padding: 8px 5px;
     text-align: center;
     background-color: #EEEEEE;
@@ -179,7 +191,6 @@ li a{
     justify-content: center;
     width: 550px;
     margin: 0 auto;
-    
 }
 button{
     background-color: #1A2C82;

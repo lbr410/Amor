@@ -406,7 +406,7 @@ public class MovieController {
 
 	
 	//영화 상새내용
-	@RequestMapping("user/movie/movieContentForm.do")
+	@RequestMapping("movie/movieContentForm.do")
 	public ModelAndView movieContent(
 			@RequestParam(value="movie_idx", defaultValue = "0")int movie_idx) {
 		

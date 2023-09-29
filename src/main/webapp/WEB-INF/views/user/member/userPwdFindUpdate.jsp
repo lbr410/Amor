@@ -108,7 +108,7 @@ function validateForm() {
                             <th>비밀번호 재설정</th>
                             <td colspan="2">
                                 <input type="password" id="pwd1" name="member_pwd" placeholder="8~12자리 영문, 숫자조합 입력" class="textBoxDeco1" maxlength="12"
-								oninput="pwdChk(this)" required>
+								oninput="pwdChk(this)" required >
 								<div class="chks" id="pwdChkMsg"><!-- state --></div>
                             </td>
                         </tr>

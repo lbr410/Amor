@@ -34,7 +34,7 @@
           
          <c:if test="${empty sessionScope.sid}">
             <li>
-               <a href="/amor/member/signUp.do">회원가입</a>
+               <a href="/amor/member/terms.do">회원가입</a>
             </li>
             <li class="login">
                <a href="/amor/member/login.do"><input type="button" value="로그인"></a>
