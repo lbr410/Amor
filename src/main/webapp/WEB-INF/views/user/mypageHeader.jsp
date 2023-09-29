@@ -152,8 +152,8 @@ a:link{
 		<div class="usertitle"><label>${sessionScope.sname}</label>님 반갑습니다:)<label class="useredit"><a href="/amor/myAmor/userInfoUpdateForm.do">편집</a></label></div>
 		<hr>
 		<div class="pagemenu">
-			<a href="ticketingHistory.jsp" onclick="show(event)"><button id="btn1">예매내역</button></a>
-			<a href="storeHistory.jsp" onclick="show(event)"><button id="btn2">스토어 내역</button></a>
+			<a href="/amor/myAmor/ticketingHistory.do" onclick="show(event)"><button id="btn1">예매내역</button></a>
+			<a href="/amor/myAmor/storeHistory.do" onclick="show(event)"><button id="btn2">스토어 내역</button></a>
 			<a href="myReviewList.jsp" onclick="show(event)"><button id="btn3">관람평</button></a>
 			<a href="inquiryList.jsp" onclick="show(event)"><button id="btn4">1:1문의</button></a>
 		</div>

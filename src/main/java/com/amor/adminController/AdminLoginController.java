@@ -43,24 +43,20 @@ public class AdminLoginController {
 		Boolean result = adminService.adminLogin(dto);
 		if(result == true) {
 			if(check1.equals("on")) {
-				System.out.println("gdgd");
 				Cookie ck = new Cookie("idremember",dto.getAdmin_id());
 				ck.setMaxAge(60*60*24*30);
 				resp.addCookie(ck);
 			}else if(check1.equals("off")) {
-				System.out.println("gdgd");
 				Cookie ck = new Cookie("idremember",dto.getAdmin_id());
 				ck.setMaxAge(0);
 				resp.addCookie(ck);
 			}
 			
 			if(check2.equals("on")) {
-				System.out.println("됨");
 				Cookie ck = new Cookie("autologin",dto.getAdmin_id());
 				ck.setMaxAge(60*60*24*30);
 				resp.addCookie(ck);
 			}else if(check2.equals("off")) {
-				System.out.println("gdgd");
 				Cookie ck = new Cookie("autologin",dto.getAdmin_id());
 				ck.setMaxAge(0);
 				resp.addCookie(ck);
