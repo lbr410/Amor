@@ -46,10 +46,6 @@ public class PlayingMovieController {
 		List<Map> movieLists = playingMovieService.playingMovieAddMovie();
 		List<Map> screenLists = playingMovieService.playingMovieAddScreen();
 		
-		System.out.println("test1="+movieLists.size());
-		System.out.println("test2="+screenLists.size());
-		System.out.println("test3="+movieLists.get(0).get("MOVIE_NAME"));
-		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("movieLists", movieLists);
 		mav.addObject("screenLists", screenLists);
@@ -102,8 +98,6 @@ public class PlayingMovieController {
 			@RequestParam("playing_movie_end")String playing_movie_end,
 			@RequestParam("playing_movie_idx")int playing_movie_idx) {
 		
-		System.out.println("playing_movie_idx="+playing_movie_idx);
-		
 		PlayingMovieDTO dto = new PlayingMovieDTO(playing_movie_idx , movie_idx, theater_idx, playing_movie_date, playing_movie_start, playing_movie_end);
 		int result = playingMovieService.playingMovieUpdate(dto);
 		String msg = result>0?"수정에 성공했습니다.":"수정에 실패했습니다.";
@@ -118,8 +112,6 @@ public class PlayingMovieController {
 	@RequestMapping("admin/playMovie/playingMovieDelete.do")
 	public ModelAndView playingMovieDelete (
 			@RequestParam("playing_movie_idx")int idx) {
-		
-		System.out.println("delete page");
 		
 		int result = playingMovieService.playingMovieDelete(idx);
 		String msg = result>0?"삭제가 완료되었습니다.":"삭제에 실패했습니다.";
