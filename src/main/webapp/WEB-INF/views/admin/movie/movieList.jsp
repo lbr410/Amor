@@ -55,8 +55,9 @@ function movieStateYN(idx) {
 </div>
 </div>
 <div class="contentMain">
+<div class="tableDiv">
 <div class="table">
-	<table>
+	<table class="commonTable">
 	<thead>
 	<tr>
 		<th>영화번호</th>
@@ -117,6 +118,7 @@ function movieStateYN(idx) {
 
 	</tbody>
 	</table>
+	</div>
 </div>
 </div>
 </div>

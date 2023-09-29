@@ -118,10 +118,17 @@ var month = today.getMonth()+1;
 var date = today.getDate();
 var weekday = today.getDay();
 
-const date30 = [2,4,6,9,11];
+const date30 = [4,6,9,11];
 const date31 = [1,3,5,7,8,10,12];
 
 const week = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)'];
+
+//해당 년도 2월 윤년 계산 
+if (year % 400 == 0) {window.alert('윤년');}
+else if (year % 100 == 0 && year % 4 ==0) {window.alert('NO윤년');}
+else if (year % 4 ==0) {window.alert('윤년');}
+else {window.alert('NO윤년');}
+
 
 for(let i = 0 ; i<date30.length; i++){
 	//if(month)
@@ -137,8 +144,6 @@ if(month == date[]){
 
 	//날짜 
 	for(let i = 0 ; i< 7; i++){
-		
-		
 		document.getElementById('datep'+i).innerHTML = 0+date+i;
 	}
 	

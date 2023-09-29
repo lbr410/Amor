@@ -31,7 +31,7 @@ function checkNumber(event) {
 </script>
 </head>
 <body>
-<%@include file="../admin_header_notable.jsp" %><!-- 질문 -->
+<%@include file="../admin_header.jsp" %><!-- 질문 -->
 <div class="content">
 <div class="content-title"><label class="titletext">영화 등록</label>
 </div>
