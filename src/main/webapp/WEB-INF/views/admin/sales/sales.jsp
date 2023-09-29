@@ -53,8 +53,18 @@
 	
 	// 최근 6개월 매출 차트
 	function sixMonthChart () { 
-		let xAxisData = ['a', 'b', 'c', 'd', 'e', 'f'];
-	    let seriesData = [7000000, 10000000, 5000000, 3000000, 2000000, 1000000];
+		let xAxisData = ['${lists.sixMonthsAgoMonth}',
+						 '${lists.fiveMonthsAgoMonth}', 
+						 '${lists.fourMonthsAgoMonth}', 
+						 '${lists.threeMonthsAgoMonth}', 
+						 '${lists.twoMonthsAgoMonth}', 
+						 '${lists.aMonthAgoMonth}'];
+	    let seriesData = [${lists.sixMonthsAgoTotalPrice},
+	    				  ${lists.fiveMonthsAgoTotalPrice},
+	    				  ${lists.fourMonthsAgoTotalPrice},
+	    				  ${lists.threeMonthsAgoTotalPrice}, 
+	    				  ${lists.twoMonthsAgoTotalPrice}, 
+	    				  ${lists.aMonthAgoTotalPrice}];
 		let sixmonthchart = echarts.init(document.getElementById('chart'));
 		
 		option = {
@@ -84,8 +94,20 @@
 	
 	// 최근 일주일 매출 차트
 	function weekChart () { 
-		let xAxisData = ['1', '2', '3', '4', '5', '6', '7'];
-	    let seriesData = [7000000, 10000000, 5000000, 3000000, 2000000, 1000000, 5000000];
+		let xAxisData = ['${lists.sevenDaysAgoDay}',
+			 '${lists.sixDaysAgoDay}', 
+			 '${lists.fiveDaysAgDay}', 
+			 '${lists.fourDaysAgoDay}', 
+			 '${lists.threeDaysAgoDay}', 
+			 '${lists.twoDasyAgoDay}',
+			 '${lists.aDayAgoDay}'];
+		let seriesData = [${lists.sevenDaysAgoTotalPrice},
+			  ${lists.sixDaysAgoTotalPrice},
+			  ${lists.fiveDaysAgoTotalPrice},
+			  ${lists.fourDaysAgoTotalPrice},
+			  ${lists.threeDaysAgoTotalPrice}, 
+			  ${lists.twoDaysAgoTotalPrice}, 
+			  ${lists.aDayAgoTotalPrice}];
 		let weekchart = echarts.init(document.getElementById('chart'));
 		
 		option = {
@@ -134,12 +156,51 @@
 			let endd = end.value;
 			
 			let param = 'startd='+startd+'&endd='+endd+'&category='+category+'&kind=a';
-			sendRequest('sales.do', param, allSelCallback, 'POST');
+			sendRequest('salesCheck.do', param, allSelCallback, 'POST');
 		}
 	}
 	
 	function allSelCallback() {
-		
+		if(XHR.readyState == 4) {
+			if(XHR.status == 200) {
+				let data = XHR.responseText;
+				let objData = JSON.parse(data);
+				
+				let start = document.getElementById('startd1').value;
+				let end = document.getElementById('endd1').value;
+				
+				let removeRow = document.getElementById('cktr1');
+				if(removeRow) {
+					removeRow.remove();
+				}
+				
+				let check = document.getElementById('check1');
+				let row = document.createElement('tr');
+				row.setAttribute('id', 'cktr1');
+				let cell1 = document.createElement('td');
+				let cell2 = document.createElement('td');
+				let cell3 = document.createElement('td');
+				
+				cell1.textContent = start+' ~ '+end;
+				let category = document.querySelector('input[name="category1"]:checked').value;
+				if(category == 'all') {
+					cell2.textContent = '전체';					
+				} else if(category == 'movie') {
+					cell2.textContent = '영화';					
+				} else if(category == 'store') {
+					cell2.textContent = '스토어';	
+				}
+				cell3.textContent = objData.total;
+				
+				row.appendChild(cell1);
+				row.appendChild(cell2);
+				row.appendChild(cell3);
+				
+				check.appendChild(row);
+				
+				document.getElementById('total1').innerHTML = objData.total+' 원';
+			}
+		}
 	}
 	
 	// 일자별 조회
@@ -163,12 +224,50 @@
 			let endd = end.value;
 			
 			let param = 'startd='+startd+'&endd='+endd+'&category='+category+'&kind=d';
-			sendRequest('sales.do', param, daySelCallback, 'POST');
+			sendRequest('salesCheck.do', param, daySelCallback, 'POST');
 		}
 	}
 	
 	function daySelCallback() {
-		
+		if(XHR.readyState == 4) {
+			if(XHR.status == 200) {
+				let data = XHR.responseText;
+				let objData = JSON.parse(data);
+				
+				let removeRow = document.querySelectorAll('tr[name="cktr2"]');
+				
+				removeRow.forEach(function(tr) {
+					tr.remove();
+				})
+				
+				let check = document.getElementById('check2');
+				for(let i=0; i<objData.check.length; i++) {
+					let row = document.createElement('tr');
+					row.setAttribute('name', 'cktr2');
+					let cell1 = document.createElement('td');
+					let cell2 = document.createElement('td');
+					let cell3 = document.createElement('td');
+					
+					cell1.textContent = objData.check[i].b;
+					let category = document.querySelector('input[name="category2"]:checked').value;
+					if(category == 'all') {
+						cell2.textContent = '전체';					
+					} else if(category == 'movie') {
+						cell2.textContent = '영화';					
+					} else if(category == 'store') {
+						cell2.textContent = '스토어';	
+					}
+					cell3.textContent = objData.check[i].c;
+					
+					row.appendChild(cell1);
+					row.appendChild(cell2);
+					row.appendChild(cell3);
+					
+					check.appendChild(row);
+				}
+				document.getElementById('total2').innerHTML = objData.total+' 원';
+			}
+		}
 	}
 	
 	// 월별 조회
@@ -202,12 +301,50 @@
 			let endd = end.value;
 			
 			let param = 'startd='+startd+'&endd='+endd+'&category='+category+'&kind=m';
-			sendRequest('sales.do', param, daySelCallback, 'POST');
+			sendRequest('salesCheck.do', param, monthSelCallback, 'POST');
 		}
 	}
 	
 	function monthSelCallback() {
-		
+		if(XHR.readyState == 4) {
+			if(XHR.status == 200) {
+				let data = XHR.responseText;
+				let objData = JSON.parse(data);
+
+				let removeRow = document.querySelectorAll('tr[name="cktr3"]');
+				
+				removeRow.forEach(function(tr) {
+					tr.remove();
+				})
+				
+				let check = document.getElementById('check3');
+				for(let i=0; i<objData.check.length; i++) {
+					let row = document.createElement('tr');
+					row.setAttribute('name', 'cktr3');
+					let cell1 = document.createElement('td');
+					let cell2 = document.createElement('td');
+					let cell3 = document.createElement('td');
+					
+					cell1.textContent = objData.check[i].b;
+					let category = document.querySelector('input[name="category3"]:checked').value;
+					if(category == 'all') {
+						cell2.textContent = '전체';					
+					} else if(category == 'movie') {
+						cell2.textContent = '영화';					
+					} else if(category == 'store') {
+						cell2.textContent = '스토어';	
+					}
+					cell3.textContent = objData.check[i].c;
+					
+					row.appendChild(cell1);
+					row.appendChild(cell2);
+					row.appendChild(cell3);
+					
+					check.appendChild(row);
+				}
+				document.getElementById('total3').innerHTML = objData.total+' 원';
+			}
+		}
 	}
 </script>
 </head>
@@ -249,17 +386,14 @@
 					<div class="td1">조회일자</div><div class="td2">구분</div><div class="td3">매출액</div>
 				</div>
 				<form class="resForm">
-					<table class="resultTable">
-						<tr>
-							<td>d</td>
-							<td>aa</td>
-							<td>dd</td>
-						</tr>
+					<table id="check1" class="resultTable">
+						<!-- result -->
 					</table>
 				</form>
 			</div>
 			<div class="result2">
-				<div><label class="sumDeco">총합계</label><span class="sumResult">원</span></div>
+				<div><label class="sumDeco">총합계</label>
+				<span id="total1" class="sumResult"></span></div>
 			</div>
 		</div>
 		
@@ -286,17 +420,14 @@
 					<div class="td1">조회일자</div><div class="td2">구분</div><div class="td3">매출액</div>
 				</div>
 				<form class="resForm">
-					<table class="resultTable">
-						<tr>
-							<td>d</td>
-							<td>aa</td>
-							<td>dd</td>
-						</tr>
+					<table id="check2" class="resultTable">
+						<!-- result -->
 					</table>
 				</form>
 			</div>
 			<div class="result2">
-				<div><label class="sumDeco">총합계</label><span class="sumResult">원</span></div>
+				<div><label class="sumDeco">총합계</label>
+				<span id="total2" class="sumResult"></span></div>
 			</div>
 		</div>
 		
@@ -323,17 +454,14 @@
 					<div class="td1">조회일자</div><div class="td2">구분</div><div class="td3">매출액</div>
 				</div>
 				<form class="resForm">
-					<table class="resultTable" style="width:930px;">
-						<tr>
-							<td>d</td>
-							<td>aa</td>
-							<td>dd</td>
-						</tr>
+					<table id="check3" class="resultTable">
+						<!-- result -->
 					</table>
 				</form>
 			</div>
 			<div class="result2">
-				<div><label class="sumDeco">총합계</label><span class="sumResult">원</span></div>
+				<div><label class="sumDeco">총합계</label>
+				<span id="total3" class="sumResult"></span></div>
 			</div>
 		</div>
 	</div>

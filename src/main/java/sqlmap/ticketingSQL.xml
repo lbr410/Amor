@@ -43,4 +43,60 @@ update ticketing
 set ticketing_state = 'n'
 where ticketing_num = #{ticketnum}
 </update>
+
+
+
+
+
+
+
+	<select id="allMovie" resultType="Integer" parameterType="Map">
+		<![CDATA[
+		select nvl(sum(ticketing_price), 0) as a from ticketing 
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') >= #{startd}
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') <= #{endd}
+		]]>
+	</select>
+
+	<select id="dayMovie" resultType="com.amor.ticketing.model.TicketingDTO" parameterType="Map">
+		<![CDATA[
+		select nvl(ticketing_price, 0) as a, to_char(ticketing_reservetime, 'yyyy-mm-dd') as b
+		from ticketing 
+		where ticketing_state <> 'n' 
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') >= #{startd}
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') <= #{endd}
+		order by ticketing_reservetime desc
+		]]>
+	</select>
+	
+	<select id="dayMovieTotal" resultType="Integer" parameterType="Map">
+		<![CDATA[
+		select nvl(sum(ticketing_price), 0) as a
+		from ticketing 
+		where ticketing_state <> 'n' 
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') >= #{startd}
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') <= #{endd}
+		]]>
+	</select>
+	
+	<select id="monthMovie" resultType="com.amor.ticketing.model.TicketingDTO" parameterType="Map">
+		<![CDATA[
+		select nvl(sum(ticketing_price), 0) as a, to_char(ticketing_reservetime, 'yyyy-mm') as b from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm') >= #{startd}
+		and to_char(ticketing_reservetime, 'yyyy-mm') <= #{endd}
+		group by to_char(ticketing_reservetime, 'yyyy-mm')
+		order by b desc
+		]]>
+	</select>
+	
+	<select id="monthMovieTotal" resultType="Integer" parameterType="Map">
+		<![CDATA[
+		select nvl(sum(ticketing_price), 0) as a from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm') >= #{startd}
+		and to_char(ticketing_reservetime, 'yyyy-mm') <= #{endd}
+		]]>
+	</select>
 </mapper>
