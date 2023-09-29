@@ -50,9 +50,9 @@
 	border-bottom: 1px dashed #D9D9D9;
 }
 .payForm .payTable tbody th, .payForm .payTable tbody td{
-	  text-align: left; 
-	  vertical-align: middle; 
-	  padding: 8px; 
+	 text-align: left; 
+	 vertical-align: middle; 
+	 padding: 8px; 
 }
 .payForm .payTable tbody th{
 	width: 120px;

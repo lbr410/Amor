@@ -42,6 +42,9 @@
 	</bean>
 	<bean id = "ticketingDao" class = "com.amor.ticketing.model.TicketingDAOImple">
 		<constructor-arg ref = "sqlSessionTemplate"></constructor-arg>
+	</bean>	
+	<bean id="noticeDao" class="com.amor.notice.model.NoticeDAOImple">
+		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
 	</bean>
 
 	<!-- services -->
@@ -65,5 +68,8 @@
 	</bean>
 	<bean id = "ticketingService" class = "com.amor.ticketing.service.TicketingServiceImple">
 		<constructor-arg ref = "ticketingDao"></constructor-arg>
+	</bean>
+	<bean id="noticeService" class="com.amor.notice.service.NoticeServiceImple">
+		<constructor-arg ref = "noticeDao"></constructor-arg>
 	</bean>
 </beans>
