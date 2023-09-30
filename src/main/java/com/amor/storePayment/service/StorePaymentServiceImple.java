@@ -5,8 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.amor.storePayment.model.MyPageStorePaymentDTO;
 import com.amor.storePayment.model.StorePaymentDAO;
 import com.amor.storePayment.model.StorePaymentDTO;
+import com.amor.ticketing.model.JoinTicketingHistoryDTO;
 
 public class StorePaymentServiceImple implements StorePaymentService {
 	
@@ -259,5 +261,22 @@ public class StorePaymentServiceImple implements StorePaymentService {
 		int result = storePaymentDao.monthStoreTotal(map);
 		String result_s = df.format(result);
 		return result_s;
+	}
+	
+	@Override
+	public List<MyPageStorePaymentDTO> MypageStorePaymentList(int useridx) {
+		List<MyPageStorePaymentDTO> lists = storePaymentDao.MypageStorePaymentList(useridx);
+		if(lists != null && lists.size() == 0) {
+			DecimalFormat df = new DecimalFormat("#,##0원");
+			MyPageStorePaymentDTO dto = null;
+			for(int i = 0 ; i < lists.size(); i++) {
+				dto = lists.get(i);				
+				dto.setChangePrice(df.format(dto.getPrice()));
+				lists.set(i, dto);				
+			}
+			return lists;
+		}else {
+			return null;
+		}
 	}
 }

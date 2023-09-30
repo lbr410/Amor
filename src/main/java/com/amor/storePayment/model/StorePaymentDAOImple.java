@@ -152,4 +152,10 @@ public class StorePaymentDAOImple implements StorePaymentDAO {
 		int result = sqlmap.selectOne("monthStoreTotal", map);
 		return result;
 	}
+	
+	@Override
+	public List<MyPageStorePaymentDTO> MypageStorePaymentList(int useridx) {
+		List<MyPageStorePaymentDTO> lists = sqlmap.selectList("MypageStorePaymentList", useridx);
+		return lists;
+	}
 }
