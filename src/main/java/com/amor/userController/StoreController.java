@@ -3,6 +3,8 @@ package com.amor.userController;
 import java.text.*;
 import java.util.*;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.amor.product.service.ProductService;
+import com.amor.storePayment.model.MyPageStorePaymentDTO;
 import com.amor.product.model.*;
 
 @Controller
@@ -70,6 +73,5 @@ public class StoreController {
 		mav.setViewName("/user/store/storeDetail");
 		return mav;
 	}
-	
 	
 }

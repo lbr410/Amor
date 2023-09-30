@@ -26,4 +26,6 @@ public interface StorePaymentDAO {
 	public int monthAllTotal(Map map);
 	public List<StorePaymentDTO> monthStore(Map map);
 	public int monthStoreTotal(Map map);
+	//수민
+	public List<MyPageStorePaymentDTO> MypageStorePaymentList(int useridx);
 }
