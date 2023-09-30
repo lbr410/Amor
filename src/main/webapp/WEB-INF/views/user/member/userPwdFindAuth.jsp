@@ -78,7 +78,6 @@ function emailOk() {
 <body>
     <div class="top">
         <div class="navigate"><a href="/amor/index.do"><img src="/amor/resources/img/white_b_logo.png"></a>
-            <span class="txt-info">Home으로 돌아가기</span>
         </div>
     </div>
     <div class="body-inner">

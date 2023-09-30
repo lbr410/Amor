@@ -19,24 +19,24 @@ footer .btn-group {
   display: flex;
   justify-content: center;
 }
-footer .btn-group .btn {
+footer .btn-group .navi-btn {
   font-size: 12px;
   margin-right: 10px;
   color: #bcbcbc;
 }
-footer .btn-group .btn:last-child {
+footer .btn-group .navi-btn:last-child {
   margin-right: 0;
 }
-footer .info {
+footer .footer-info {
   margin-top: 30px;
   text-align: center;
 }
-footer .info span {
+footer .footer-info span {
   margin-right: 20px;
   color: #999;
   font-size: 12px;
 }
-footer .info span:last-child {
+footer .footer-info span:last-child {
   margin-right: 0;
 }
 footer .copyright {
@@ -58,12 +58,12 @@ footer .footer-inner .logo {
   <footer>
     <div class="footer-inner">
       <div class="btn-group">
-        <a href="#" class="btn">영화관소개</a>
-        <a href="#" class="btn">공지사항</a>
-        <a href="/amor/admin/adminLogin.do" class="btn">admin_page</a>
+        <a href="/amor/intro/intro.do" class="navi-btn">영화관소개</a>
+        <a href="#" class="navi-btn">공지사항</a>
+        <a href="/amor/admin/adminLogin.do" class="navi-btn">admin_page</a>
       </div>
 
-      <div class="info">
+      <div class="footer-info">
         <span>통신판매업신고 제2023-전북보령-121호</span>
         <span>(주)아모르 영화관</span>
         <span>TEL : 02) 3484-2398 / FAX : 02) 2384-5885</span>
