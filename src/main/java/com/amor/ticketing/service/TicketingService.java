@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.amor.ticketing.model.JoinTicketingHistoryDTO;
 import com.amor.ticketing.model.TicketingDTO;
+import com.amor.ticketing.model.TicketingSelectMovieDTO;
 
 public interface TicketingService {
 
@@ -15,6 +16,7 @@ public interface TicketingService {
 	public List<JoinTicketingHistoryDTO> getcancellList(int useridx);
 	
 	
+	public List<TicketingSelectMovieDTO> ticketingPlayingMovieList();
 	
 	
 	

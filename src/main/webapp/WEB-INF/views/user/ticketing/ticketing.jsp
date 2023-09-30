@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>아모르: 티켓팅</title>
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/user/ticketing.css">
+<script type="text/javascript" src="../../resources/js/httpRequest.js"></script>
 </head>
 
 <body>
@@ -24,21 +25,25 @@
 						<option value="movie_maxage">관람등급순</option>
 					</select>
 					<select name="ticketingListorder" class="ticketingOrderSelectBox">
-						<option value="movie_desc">내림차순 </option>
-						<option value="movie_asc">오름차순</option>
+						<option value="desc">내림차순 </option>
+						<option value="asc">오름차순</option>
 					</select>
 				</div>
 				<div class="playingmovieListBox">
 					<div class="playingmovieList">
-					
-						<div class="playingmovie">
-							<div class="playingmovie_imgDiv"><img class="playingmovie_img" src="/amor/resources/img/maxage_12.png"></div>
-							<div class="playingmovie_nameDiv"><div class="playingmovie_name">오펜하이머</div></div>
+					<c:forEach var="dto" items="${lists }">
+						<div class="playingmovie" onclick="selectMovie(${dto.movie_name})">
+							<div class="playingmovie_imgDiv">
+							<c:if test="${dto.movie_maxage == 0 }"><img class="playingmovie_img" src="/amor/resources/img/maxage_all.png"></c:if>
+							<c:if test="${dto.movie_maxage == 1 }"><img class="playingmovie_img" src="/amor/resources/img/maxage_12.png"></c:if>
+							<c:if test="${dto.movie_maxage == 2 }"><img class="playingmovie_img" src="/amor/resources/img/maxage_15.png"></c:if>
+							<c:if test="${dto.movie_maxage == 3 }"><img class="playingmovie_img" src="/amor/resources/img/maxage_18.png"></c:if>
+							
+							</div>
+							<div class="playingmovie_nameDiv"><div class="playingmovie_name">${dto.movie_name }</div></div>
 						</div>
-					
+					</c:forEach>
 					</div>
-					
-				
 				</div>
 			
 			
@@ -48,7 +53,7 @@
 					<div class="selectDate"> 
 						<div class="date0">
 							<div>
-								<table>
+								<table class="ta123">
 									<tr><th id="datep0">123</th></tr>
 									<tr><td id="weekp0">(오늘)</td></tr>
 								</table>
@@ -56,7 +61,7 @@
 						</div>
 						<div class="date1">
 							<div>
-								<table id="dateandweek1">
+								<table class="ta123">
 									<tr><th id="datep1">일</th></tr>
 									<tr><td id="weekp1">(요일)</td></tr>
 								</table>
@@ -64,7 +69,7 @@
 						</div>
 						<div class="date2">
 							<div>
-								<table id="dateandweek2">
+								<table class="ta123">
 									<tr><th id="datep2">일</th></tr>
 									<tr><td id="weekp2">(요일)</td></tr>
 								</table>
@@ -72,7 +77,7 @@
 						</div>
 						<div class="date3">
 							<div>
-								<table id="dateandweek3">
+								<table class="ta123">
 									<tr><th id="datep3">일</th></tr>
 									<tr><td id="weekp3">(요일)</td></tr>
 								</table>
@@ -80,7 +85,7 @@
 						</div>
 						<div class="date4">
 							<div>
-								<table id="dateandweek4">
+								<table class="ta123">
 									<tr><th id="datep4">일</th></tr>
 									<tr><td id="weekp4">(요일)</td></tr>
 								</table>
@@ -88,7 +93,7 @@
 						</div>
 						<div class="date5">
 							<div>
-								<table id="dateandweek5">
+								<table class="ta123">
 									<tr><th id="datep5">일</th></tr>
 									<tr><td id="weekp5">(요일)</td></tr>
 								</table>
@@ -96,7 +101,7 @@
 						</div>
 						<div class="date6">
 							<div>
-								<table id="dateandweek6">
+								<table class="ta123">
 									<tr><th id="datep6">일</th></tr>
 									<tr><td id="weekp6">(요일)</td></tr>
 								</table>
@@ -104,7 +109,19 @@
 						</div>
 					</div>
 				</div>
-				<div class="selectDateToPlayingMovie"></div>
+				<div class="selectDateToPlayingMovie">
+				
+					<div class="imgandmovietitle">
+						<div class="selectimgDiv"><img class="selectmovie_img" src="/amor/resources/img/maxage_12.png"></div>
+						<div class="selectnameDiv"><div class="selectmovie_name">오펜하이머</div></div>
+					</div>
+					<div>
+						
+					
+					</div>
+				
+				
+				</div>
 			</div>
 		</div>
 	</div>
@@ -117,43 +134,53 @@ var year = today.getFullYear();
 var month = today.getMonth()+1;
 var date = today.getDate();
 var weekday = today.getDay();
-
-const date30 = [4,6,9,11];
-const date31 = [1,3,5,7,8,10,12];
+//window.alert('2');
 
 const week = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)'];
 
-//해당 년도 2월 윤년 계산 
-if (year % 400 == 0) {window.alert('윤년');}
-else if (year % 100 == 0 && year % 4 ==0) {window.alert('NO윤년');}
-else if (year % 4 ==0) {window.alert('윤년');}
-else {window.alert('NO윤년');}
-
-
-for(let i = 0 ; i<date30.length; i++){
-	//if(month)
-}
-
-if(month == date[]){
-	
-}else{
-	
-}
-
-
-
 	//날짜 
 	for(let i = 0 ; i< 7; i++){
-		document.getElementById('datep'+i).innerHTML = 0+date+i;
+		var plusDay= new Date(year,month-1,date+i);
+		var plusDayminus1= new Date(year,month-1,date+i-1);
+		
+		var plusyear = plusDay.getFullYear();
+		var plusmonth = plusDay.getMonth()+1;
+		var plusdate = plusDay.getDate();
+		
+		var plusminus1year = plusDayminus1.getFullYear();
+		var plusminus1month = plusDayminus1.getMonth()+1;
+		var plusminus1date = plusDayminus1.getDate();
+		
+		var resultmonth = '';
+		var resultyear = '';
+		
+		if(plusminus1month == plusmonth){
+			
+		}else{
+			resultmonth = plusmonth;
+		}
+		
+		if(plusminus1year == plusyear){
+			
+		}else{
+			resultyear = plusyear;
+		}	
+			document.getElementById('datep'+i).innerHTML = plusdate;
 	}
 	
 	//요일
-	for(let i = 1 ; i<7 ;i++ ){
+	for(let i = 0; i<7 ;i++ ){
 		let wday = 0+weekday+i;
 		wday = (wday > 6)? wday-7 : wday;
 		document.getElementById('weekp'+i).innerHTML = week[wday];
 		
 	}
+	
+	function selectMovie(movie_name){
+		let param = 'movie_name='+movie_name;
+		sendRequest('ticktingSelectMovie.do',param, null, 'POST');
+	}
+
 </script>
 <%@include file="../footer.jsp" %>
 </body>

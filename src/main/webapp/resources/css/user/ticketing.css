@@ -143,19 +143,52 @@
 	margin-left:142px;
 	margin-right:142px;
 	height:120px;
-	border:1px solid black;
 	display: flex;
 }
-.date0{flex: 1;background-color: lime;}
-.date1{flex: 1;background-color: aqua;}
-.date2{flex: 1;background-color: blue;}
-.date3{flex: 1;background-color: fuchsia;}
-.date4{flex: 1;background-color: green;}
-.date5{flex: 1;background-color: navy;}
-.date6{flex: 1;background-color: teal;}
+<!--
+.date0{flex: 1;}
+.date1{flex: 1;}
+.date2{flex: 1;}
+.date3{flex: 1;}
+.date4{flex: 1;}
+.date5{flex: 1;}
+.date6{flex: 1;}
 
+.ta123{
+	margin-top: 40px;
+}
 
+.ta123 tr th{
+	width:74px;
+	
+}
 
+.selectDateToPlayingMovie{
+	height: 445px;
+}
 
+.imgandmovietitle{
+	margin-left: 50px;
+	margin-top: 50px;
+	display: flex;
+}
 
+.selectimgDiv{
+	width: 40px;	
+}
+.selectnameDiv{
+	float: left;
+	display: flex;
+	
+}
 
+.selectmovie_img{
+	width: 35px;
+	height: 35px;
+}
+
+.selectmovie_name{
+	padding-top:7px;
+	font-size: 19px;
+	font-weight: bold;
+}

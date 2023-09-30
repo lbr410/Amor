@@ -25,3 +25,11 @@
 	color: #324ABC !important;
 	font-weight: bold;
 }
+
+.posterImg {
+	width: 80px;
+	height: 80px;
+	border: 1px solid #cccccc;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}

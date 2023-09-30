@@ -10,6 +10,7 @@ import com.amor.storePayment.model.StorePaymentDTO;
 import com.amor.ticketing.model.JoinTicketingHistoryDTO;
 import com.amor.ticketing.model.TicketingDAO;
 import com.amor.ticketing.model.TicketingDTO;
+import com.amor.ticketing.model.TicketingSelectMovieDTO;
 
 public class TicketingServiceImple implements TicketingService {
 
@@ -150,5 +151,13 @@ public class TicketingServiceImple implements TicketingService {
 		int result = ticketingDao.monthMovieTotal(map);
 		String result_s = df.format(result);
 		return result_s;
+	}
+	
+	@Override
+	public List<TicketingSelectMovieDTO> ticketingPlayingMovieList() {
+		
+		List<TicketingSelectMovieDTO> lists = ticketingDao.ticketingPlayingMovieList();
+		
+		return lists;
 	}
 }
