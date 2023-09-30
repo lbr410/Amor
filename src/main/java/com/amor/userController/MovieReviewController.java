@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.amor.movieReview.model.MovieReviewDTO;
+import com.amor.movieReview.model.MovieReviewJoinDTO;
 import com.amor.movieReview.service.MovieReviewService;
 import com.amor.movieReview.service.MovieReviewServiceImple;
 
@@ -27,7 +28,7 @@ public class MovieReviewController {
 	}
 	
 	@RequestMapping(value = "/user/myAmor/movieReviewAdd.do", method = RequestMethod.POST)
-	public ModelAndView reviewWrite(MovieReviewDTO dto, MultipartHttpServletRequest req) {
+	public ModelAndView reviewWrite(MovieReviewJoinDTO dto, MultipartHttpServletRequest req) {
 			
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/user/myAmor/movieReviewAdd");
@@ -44,7 +45,7 @@ public class MovieReviewController {
 		int listSize=5;
 		int pageSize=5;
 		
-		List<MovieReviewDTO> reviewLists=movieReviewService.lists(cp, listSize, member_idx);
+		List<MovieReviewJoinDTO> reviewLists=movieReviewService.lists(cp, listSize, member_idx);
 		
 		String reviewpageStr = com.amor.page.PageModule.makePage("movieReviewList.do", totalCnt, listSize, pageSize, cp);
 	
