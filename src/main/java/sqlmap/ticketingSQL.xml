@@ -98,4 +98,26 @@ where ticketing_num = #{ticketnum}
 		and to_char(ticketing_reservetime, 'yyyy-mm') <= #{endd}
 		]]>
 	</select>
+	
+	<select id="ticketingPayment" resultType="com.amor.ticketing.model.JoinTicketingHistoryDTO">
+		select 
+			a.movie_name,
+			a.movie_poster,
+			b.ticketing_reservetime,
+			b.ticketing_screeningtime,
+			d.theater_name,
+			b.ticketing_personnel,
+			b.ticketing_seat
+		from
+			movie a,
+			ticketing b,
+			playing_movie c,
+			theater d
+		where
+			a.movie_idx = c.playing_movie_idx
+			and b.theater_idx = d.theater_idx
+			and b.playing_movie_idx = c.playing_movie_idx
+	</select>
+	
+	
 </mapper>

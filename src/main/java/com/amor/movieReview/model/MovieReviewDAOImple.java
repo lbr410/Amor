@@ -14,8 +14,8 @@ public class MovieReviewDAOImple implements MovieReviewDAO {
 	}
 
 	@Override
-	public List<MovieReviewDTO> reviewList(Map map) {
-		List<MovieReviewDTO> lists=sqlmap.selectList("playingMovieList", map);
+	public List<MovieReviewJoinDTO> reviewList(Map map) {
+		List<MovieReviewJoinDTO> lists=sqlmap.selectList("playingMovieList", map);
 		return lists;
 	}
 	

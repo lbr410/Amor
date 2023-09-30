@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amor.playingMovieSQL">
-	<select id="playingMovieList" parameterType="Map" resultType="com.amor.playingMovie.model.PlayingMovieDTO">
+	<select id="playingMovieList" parameterType="Map" resultType="com.amor.playingMovie.model.PlayingMovieJoinDTO">
 		select  
 			to_char(c.playing_movie_date, 'yyyy-mm-dd') as "playing_movie_date",
 			to_char(c.playing_movie_start, 'hh24:mi:ss') as "playing_movie_start", 
@@ -25,15 +25,16 @@
 	</select>
 	<insert id="playingMovieAdd" parameterType="com.amor.playingMovie.model.PlayingMovieDTO">
 		insert into 
-			playing_movie values 
-		(playing_movie_idx.nextval, 
-		#{movie_idx}, 
-		#{theater_idx}, 
-		to_date(#{playing_movie_date},'yyyy-mm-dd'), 
-		to_date(#{playing_movie_start},'hh24:mi:ss'), 
-		to_date(#{playing_movie_end},'hh24:mi:ss'), '0', '[]')
+			playing_movie 
+		values 
+			(playing_movie_idx.nextval, 
+			#{movie_idx}, 
+			#{theater_idx}, 
+			to_date(#{playing_movie_date},'yyyy-mm-dd'), 
+			to_date(#{playing_movie_start},'hh24:mi:ss'), 
+			to_date(#{playing_movie_end},'hh24:mi:ss'), '0', '[]')
 	</insert>
-	<select id="playingMovieUpdateList" parameterType="Integer" resultType="com.amor.playingMovie.model.PlayingMovieDTO">
+	<select id="playingMovieUpdateList" parameterType="Integer" resultType="com.amor.playingMovie.model.PlayingMovieJoinDTO">
 		select
 			to_char(c.playing_movie_date, 'yyyy-mm-dd') as "playing_movie_date",
 			to_char(c.playing_movie_start, 'hh24:mi:ss') as "playing_movie_start", 

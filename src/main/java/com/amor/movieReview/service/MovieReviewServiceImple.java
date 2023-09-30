@@ -7,6 +7,7 @@ import org.apache.commons.collections.map.HashedMap;
 
 import com.amor.movieReview.model.MovieReviewDAO;
 import com.amor.movieReview.model.MovieReviewDTO;
+import com.amor.movieReview.model.MovieReviewJoinDTO;
 
 public class MovieReviewServiceImple implements MovieReviewService {
 	
@@ -18,14 +19,14 @@ public class MovieReviewServiceImple implements MovieReviewService {
 	}
 
 	@Override
-	public List<MovieReviewDTO> lists(int cp, int ls, int member_idx) {
+	public List<MovieReviewJoinDTO> lists(int cp, int ls, int member_idx) {
 		int start = (cp-1)*ls+1;
 		int end = cp*ls;
 		Map map = new HashedMap();
 		map.put("start", start);
 		map.put("end", end);
 		map.put("member_idx", member_idx);
-		List<MovieReviewDTO> lists=movieReviewDao.reviewList(map);
+		List<MovieReviewJoinDTO> lists=movieReviewDao.reviewList(map);
 		return lists;
 	}
 	

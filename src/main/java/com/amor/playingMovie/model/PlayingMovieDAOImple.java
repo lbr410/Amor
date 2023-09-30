@@ -14,8 +14,8 @@ public class PlayingMovieDAOImple implements PlayingMovieDAO {
 	}
 
 	@Override
-	public List<PlayingMovieDTO> playingMovieList(Map map) {
-		List<PlayingMovieDTO> lists=sqlmap.selectList("playingMovieList", map);
+	public List<PlayingMovieJoinDTO> playingMovieList(Map map) {
+		List<PlayingMovieJoinDTO> lists=sqlmap.selectList("playingMovieList", map);
 		return lists;
 	}
 	
@@ -44,8 +44,8 @@ public class PlayingMovieDAOImple implements PlayingMovieDAO {
 	}
 	
 	@Override
-	public PlayingMovieDTO playingMovieUpdateList(int idx_u) {
-		PlayingMovieDTO updatedto = sqlmap.selectOne("playingMovieUpdateList", idx_u);
+	public PlayingMovieJoinDTO playingMovieUpdateList(int idx_u) {
+		PlayingMovieJoinDTO updatedto = sqlmap.selectOne("playingMovieUpdateList", idx_u);
 		return updatedto;
 	}
 	
