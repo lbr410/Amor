@@ -28,7 +28,7 @@ public class PlayingMovieController {
 		int listSize=5;
 		int pageSize=5;
 		
-		List<PlayingMovieDTO> playingMovieLists=playingMovieService.playingMovieList(cp, listSize);
+		List<PlayingMovieJoinDTO> playingMovieLists=playingMovieService.playingMovieList(cp, listSize);
 		
 		String playingMoviepageStr=com.amor.page.PageModule.makePage("playingMovieList.do", totalCnt, listSize, pageSize, cp);
 		
@@ -77,7 +77,7 @@ public class PlayingMovieController {
 	public ModelAndView playingMovieUpdateList (
 			@RequestParam("playing_movie_idx")int idx_u) {
 		
-		PlayingMovieDTO updatedto=playingMovieService.playingMovieUpdateList(idx_u);
+		PlayingMovieJoinDTO updatedto=playingMovieService.playingMovieUpdateList(idx_u);
 		List<Map> movieLists = playingMovieService.playingMovieAddMovie();
 		List<Map> screenLists = playingMovieService.playingMovieAddScreen();
 		

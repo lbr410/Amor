@@ -1,5 +1,6 @@
 package com.amor.storePayment.service;
 
+import com.amor.storePayment.model.MyPageStorePaymentDTO;
 import com.amor.storePayment.model.StorePaymentDTO;
 import java.util.*;
 
@@ -27,4 +28,6 @@ public interface StorePaymentService {
 	public String monthAllTotal(String startd, String endd);
 	public List<StorePaymentDTO> monthStore(String startd, String endd);
 	public String monthStoreTotal(String startd, String endd);
+	//수민
+	public List<MyPageStorePaymentDTO> MypageStorePaymentList(int useridx);
 }

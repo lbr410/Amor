@@ -4,6 +4,6 @@ import java.util.*;
 
 public interface MovieReviewDAO {
 
-	public List<MovieReviewDTO> reviewList(Map map);
+	public List<MovieReviewJoinDTO> reviewList(Map map);
 	public int getTotalCnt();
 }

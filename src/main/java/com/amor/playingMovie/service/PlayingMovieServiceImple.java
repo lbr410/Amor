@@ -6,6 +6,7 @@ import org.apache.commons.collections.map.HashedMap;
 
 import com.amor.playingMovie.model.PlayingMovieDAO;
 import com.amor.playingMovie.model.PlayingMovieDTO;
+import com.amor.playingMovie.model.PlayingMovieJoinDTO;
 
 public class PlayingMovieServiceImple implements PlayingMovieService {
 	
@@ -17,13 +18,13 @@ public class PlayingMovieServiceImple implements PlayingMovieService {
 	}
 
 	@Override
-	public List<PlayingMovieDTO> playingMovieList(int cp, int ls) {
+	public List<PlayingMovieJoinDTO> playingMovieList(int cp, int ls) {
 		int start=(cp-1)*ls+1;
 		int end=cp*ls;
 		Map map=new HashedMap();
 		map.put("start", start);
 		map.put("end", end);
-		List<PlayingMovieDTO> lists=playingMovieDao.playingMovieList(map);
+		List<PlayingMovieJoinDTO> lists=playingMovieDao.playingMovieList(map);
 		return lists;
 	}
 	
@@ -52,8 +53,8 @@ public class PlayingMovieServiceImple implements PlayingMovieService {
 	}
 	
 	@Override
-	public PlayingMovieDTO playingMovieUpdateList(int idx_u) {
-		PlayingMovieDTO updatedto=playingMovieDao.playingMovieUpdateList(idx_u);
+	public PlayingMovieJoinDTO playingMovieUpdateList(int idx_u) {
+		PlayingMovieJoinDTO updatedto=playingMovieDao.playingMovieUpdateList(idx_u);
 		return updatedto;
 	}
 	

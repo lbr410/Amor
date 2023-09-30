@@ -99,6 +99,7 @@ where ticketing_num = #{ticketnum}
 		]]>
 	</select>
 	
+
 	<select id="ticketingPlayingMovieList" resultType="com.amor.ticketing.model.TicketingSelectMovieDTO">
 	<![CDATA[
 		select movie_maxage, movie_name 
@@ -106,4 +107,26 @@ where ticketing_num = #{ticketnum}
 		where a.movie_idx = b.movie_idx
 	]]>
 	</select>
+
+	<select id="ticketingPayment" resultType="com.amor.ticketing.model.JoinTicketingHistoryDTO">
+		select 
+			a.movie_name,
+			a.movie_poster,
+			b.ticketing_reservetime,
+			b.ticketing_screeningtime,
+			d.theater_name,
+			b.ticketing_personnel,
+			b.ticketing_seat
+		from
+			movie a,
+			ticketing b,
+			playing_movie c,
+			theater d
+		where
+			a.movie_idx = c.playing_movie_idx
+			and b.theater_idx = d.theater_idx
+			and b.playing_movie_idx = c.playing_movie_idx
+	</select>
+	
+
 </mapper>
