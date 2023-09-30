@@ -393,19 +393,24 @@ public class MovieController {
 
 	//현재 상영작 출력
 	@RequestMapping("movie/movie.do")
-	public ModelAndView movieList() {
+	public ModelAndView movieList(
+			@RequestParam(value="cp", defaultValue = "1") int cp) {
 		
-		List<MovieDTO> mlists = movieservice.movieBest();
-		System.out.println("test="+mlists.size());
+		int totalCnt=movieservice.getTotalCnt();
+		int listSize=5;
+		int pageSize=5;
+		String pageStr=com.amor.page.PageModule.makePage("/amor/admin/notice/noticeList.do", totalCnt, listSize, pageSize, cp);
+
+		List<MovieDTO> mlists = movieservice.movieBest(cp, listSize);
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("mlists", mlists);
-
+		mav.addObject("pageStr", pageStr);
 		mav.setViewName("/user/movie/movie");
 		return mav;
 	}
 
 	
-	//영화 상새내용
+	//영화 상세내용
 	@RequestMapping("movie/movieContentForm.do")
 	public ModelAndView movieContent(
 			@RequestParam(value="movie_idx", defaultValue = "0")int movie_idx) {

@@ -21,7 +21,7 @@ public interface MovieService {
 	
 	public int stateChange(MovieDTO dto);
 	
-	public List<MovieDTO> movieBest();
+	public List<MovieDTO> movieBest(int cp, int listSize);
 	
 	public List<MovieDTO> movieCome();
 	

@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>아모르 : 현재 상영작</title>
 <link rel="stylesheet" href="/amor/resources/css/user/movie.css">
+<!--브라우저 스타일 초기화-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
 </head>
 <%@ include file="../header.jsp" %>
 <body>
@@ -23,17 +25,20 @@
 	<div class="movie-section">
 	<!-- MOVIE TITLE MENU -->
   	<div class="movie-title">
+	
 	<div class="title-bar">
-		<div class="menu"><ul class="now-movie"><li>현재 상영작</li></ul></div>
+	<div class="left-title">
+	  <div class="movieNow">현재 상영작</div>
+	  <div class="movieCome">| 상영 예정작</div>
 	</div>
-	<div class="tab_menu">
-		<ul class="list">
-            <li class="is-on">
-                <a href="tab-audience" class="tab-btn">관객순</a>
-
+	<div class="right-button">
+	  <div class="sortAudience">관람객순</div>
+	  <div class="sortReview">| 관람평 많은순</div>
+	</div>
+	</div>
 	<!-- MOVIE CHART -->
 	<div class="chart">
-	<div class="movie_total">총 영화수 </div>
+	<div class="movie_total">총 영화수 ${totalCnt }</div>
 	<div class="container">
 	<c:if test="${empty mlists }">
 	<div>상영중인 영화가 없습니다.</div>
@@ -78,13 +83,8 @@
         </c:forEach>
      	</div>
 	</div>
-	</li>
- <li>
-<a href="">관람평 많은 순</a></li>
-        </ul>
-        </div>
 	</div>
-</div>
-</body>
+	</div>
 <%@ include file="../footer.jsp" %>
+</body>
 </html>

@@ -192,6 +192,10 @@ li a{
     width: 550px;
     margin: 0 auto;
 }
+.btn-bottom{
+	padding: 0 50px 0 0;
+	margin-left: 50px;
+}
 button{
     background-color: #1A2C82;
     color: #FFFFFF;
@@ -217,7 +221,7 @@ button{
 }
 .blue-btn {
     border:none;
-    padding: 2px 21px 6px 21px;
+    padding: 6px 6px 6px 6px;
     width: 220px;
     height: 48px;
     border-radius: 3px;

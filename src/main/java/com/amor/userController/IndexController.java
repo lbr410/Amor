@@ -1,6 +1,7 @@
 package com.amor.userController;
 
 import java.util.*;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,7 @@ public class IndexController {
 		//List<BannerDTO> blists = bannerService.bannerList();
 		
 		//Movie
-		List<MovieDTO> mlists = movieservice.movieBest();
+		List<MovieDTO> mlists = movieservice.movieBest(0, 0);
 		
 		//ads
 		//List<AdsDTO> alists = adsService.adsList();

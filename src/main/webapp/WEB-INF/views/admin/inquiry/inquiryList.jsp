@@ -28,7 +28,7 @@
 	<tbody>
 	<c:if test="${empty lists}">
 		<tr>
-			<td colspan="8" align="center">1:1문의가 없슶니다..</td>
+			<td colspan="8" align="center">1:1문의가 없습니다</td>
 		</tr>
 	</c:if>
 	<c:forEach var="dto" items="${lists}">

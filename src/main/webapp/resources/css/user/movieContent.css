@@ -35,7 +35,7 @@ a{
     margin: 0 auto;
 }
 .gray-bar .location .home{
-    margin-left: 80px;
+    margin-left: 0px;
     color: #666666;
     font-size: 14px;
 }
@@ -56,83 +56,155 @@ a{
     width: 1100px;
     margin: 0 auto;
 }
+.movie-wrap {
+	margin-top: 140px;
+  padding: 73px 0px 74px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 51px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 980px;
+  height: 601px;
+  position: relative;
+}
+.movie_poster img{
+  border-radius: 5px;
+  flex-shrink: 0;
+  width: 336px;
+  height: 482px;
+  position: relative;
+}
+.right-section {
+  padding: 0px 0px 34px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 590px;
+  height: 482px;
+  position: relative;
+}
+.title-info {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 590px;
+  position: relative;
+}
+.movie_name{
+	font-size: 30px;
+	font-weight: bold;
+}
+. {
+  color: #000000;
+  text-align: left;
+  font: 400 28px "Inter", sans-serif;
+  position: relative;
+}
+.movie-info {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 590px;
+  position: relative;
+}
+.movie_opendate {
+  color: #000000;
+  text-align: left;
+  font: 400 20px;
+  position: relative;
+}
+.time-icon {
+  background: #d9d9d9;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+.movie_runningtime {
+  color: #000000;
+  text-align: left;
+  font: 400 20px;
+  position: relative;
+}
+.movie_maxage {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.movie_maxage img{
+	width: 22px;
+	height: 22px;
+	padding-top: 4px;
+	position: relative;
+}
+.movie_maxage .ageTxt{
+	width: 120px;
+	text-align: left;
+	position: relative;
+}
+.movie_audience {
+  color: #000000;
+  text-align: left;
+  font: 400 20px "Inter", sans-serif;
+  position: relative;
+}
+.movie_content2 {
+  color: #979797;
+  text-align: left;
+  font: 600 18px/170.52% "Inter", sans-serif;
+  position: relative;
+  width: 590px;
+  height: 137px;
+}
+.btn-wrap {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.movie_content .txtarea {
+    margin: 27px 0 27px;
+    overflow: scroll;
+    height: 200px;
+    font-weight: normal;
+}
+textarea{
+	width: 550px;
+	height: 250px;
+}
 .movie-content {
     width: 980px;
     margin: 0 auto;
 }
 .movie-content .movie-wrap{
+    margin-top: 140px;
     min-height: 600px;
-}
-/*MOVIE POSTER*/
-.movie-content .movie-wrap .movie-poster {
-    float: left;
-    flex-shrink: 0;
-    width: 316px;
-    height: 468px;
-    border-radius: 10px;
-    margin-left: 24px;
-    position: relative;
-    background-color: #BCBCBC;
-}
-.movie-content .movie-wrap .right-section{
-    margin-left: 80px;
-    padding-left: 300px;
+    display: flex;
+  flex-direction: row;
+  gap: 58px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 980px;
+  height: 601px;
+  position: relative;
 }
 
-/*MOVIE TITLE*/
-.movie-content .movie-wrap .right-section .title-info {
-    width: 600px;
-    margin-bottom: 10px;
-    padding-top: 10px;
-    font-size: 30px;
-    line-height: 40px;
-    letter-spacing: -2px;
-}
-.movie-content .movie-wrap .right-section .title-info .movie_name {
-    font-size: 24px;
-    font-weight: bold;
-}
-/*MOVIE INFO*/
-.movie-content .movie-wrap .right-section .movie-info {
-    width: 600px;
-    margin-bottom: 10px;
-    padding-top: 10px;
-    font-size: 18px;
-    line-height: 40px;
-    letter-spacing: -2px;
-}
-.movie-content .movie-wrap .right-section span{
-    font-weight: bold;
-	
-}
-ul{
-    list-style: none;
-    display: block;
-}
-li{
-	list-style: none;
-    float: left;
-    margin-right: 20px;
-}
-/*MOVIE DETAIL*/
-.movie-content .movie-wrap .right-section .movie_maxage{
-	width: 180px;
-}
-.movie-content .movie-wrap .right-section .movie_maxage img{
-	width: 24px;
-	height: 24px;
-	padding: 0 14px 0 14px;
-}
-
-.movie-content .movie-wrap .movie_content{
-    width: 600px;
-}
-.movie-content .movie-wrap .movie_content .txtarea {
-    margin: 20px 0 27px;
-    overflow: scroll;
-    height: 200px;
-    font-weight: normal;
-}
 textarea{
 	width: 550px;
 	height: 250px;
@@ -177,66 +249,4 @@ p::after{
 	margin: 0 auto;
 	height: 1000px;
 }
-/**MENU*/
-html,body {width:100%;  }
-body,div,ul,li{margin:0; padding:0;}
-ul,li {list-style:none;}
 
- .movie-detail .tab {
-      float: left;
-      width: 980px;
-      height: 90px;
-    }
-
-    .movie-detail .tabnav {
-      font-size: 0;
-      width: 980px;
-    }
-
-    .movie-detail .tabnav li {
-      display: inline-block; /* 이 부분이 변경된 부분입니다. */
-      width: 490px; /* 두 개의 탭이므로 전체 너비를 490px로 나눈 값 */
-      height: 90px;
-      text-align: center;
-      border-bottom: 2px solid #ddd;
-    }
-
-    .movie-detail .tabnav li a:before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0px;
-      width: 245px;
-      height: 3px;
-    }
-
-    .movie-detail .tabnav li a.active:before {
-      background: #ffffff;
-    }
-
-    .movie-detail .tabnav li a.active {
-      border-bottom: 2px solid #000000;
-    }
-
-    .movie-detail .tabnav li a {
-      position: relative;
-      display: block;
-      background: #f8f8f8;
-      color: #000;
-      padding: 0 30px;
-      line-height: 46px;
-      text-decoration: none;
-      font-size: 16px;
-    }
-
-    .movie-detail .tabnav li a:hover,
-    .movie-detail .tabnav li a.active {
-      background: #fff;
-      color: #000000;
-    }
-
-    .movie-detail .tabcontent {
-      padding: 20px;
-      height: 244px;
-      background-color: #EDEDED;
-    }
