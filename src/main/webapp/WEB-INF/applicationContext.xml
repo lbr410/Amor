@@ -49,6 +49,9 @@
 	<bean id="storePaymentDao" class="com.amor.storePayment.model.StorePaymentDAOImple">
 		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
 	</bean>
+	<bean id="faqDao" class="com.amor.faq.model.FaqDAOImple">
+		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
+	</bean>
 
 	<!-- services -->
 	<bean id="movieService" class="com.amor.movie.service.MovieServiceImple" >
@@ -77,5 +80,8 @@
   </bean>
 	<bean id="storePaymentService" class="com.amor.storePayment.service.StorePaymentServiceImple">
 		<constructor-arg ref="storePaymentDao"></constructor-arg>
+	</bean>
+	<bean id="faqService" class="com.amor.faq.service.FaqServiceImple">
+		<constructor-arg ref="faqDao"></constructor-arg>
 	</bean>
 </beans>

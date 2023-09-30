@@ -96,10 +96,14 @@ public class ProductServiceImple implements ProductService {
 		DecimalFormat df=new DecimalFormat("#,##0");
 		
 		 for (int i = 0; i < lists.size(); i++) {
-		        double product_price=lists.get(i).getProduct_price();  
-		        String product_price2=df.format(product_price);
-		        lists.get(i).setProduct_price2(product_price2); 	        
-		    }	
+			 if(lists.get(i).getProduct_soldout().equals("n")) {
+			     double product_price=lists.get(i).getProduct_price();  
+			     String product_price2=df.format(product_price);
+			     lists.get(i).setProduct_price2(product_price2); 		 
+			 }else if(lists.get(i).getProduct_soldout().endsWith("y")) {
+				 lists.get(i).setProduct_price2("품절");
+			 }      
+		 }	
 		return lists;
 	}
 	
@@ -109,10 +113,14 @@ public class ProductServiceImple implements ProductService {
 		DecimalFormat df=new DecimalFormat("#,##0");
 		
 		 for (int i = 0; i < lists.size(); i++) {
-		        double product_price=lists.get(i).getProduct_price();  
-		        String product_price2=df.format(product_price);
-		        lists.get(i).setProduct_price2(product_price2); 	        
-		    }	
+			 if(lists.get(i).getProduct_soldout().equals("n")) {
+			     double product_price=lists.get(i).getProduct_price();  
+			     String product_price2=df.format(product_price);
+			     lists.get(i).setProduct_price2(product_price2);				 
+			 }else if(lists.get(i).getProduct_soldout().equals("y")) {
+				 lists.get(i).setProduct_price2("품절");
+			 }
+		}	
 		return lists;
 	}
 	
@@ -122,10 +130,14 @@ public class ProductServiceImple implements ProductService {
 		DecimalFormat df=new DecimalFormat("#,##0");
 		
 		 for (int i = 0; i < lists.size(); i++) {
-		        double product_price=lists.get(i).getProduct_price();  
-		        String product_price2=df.format(product_price);
-		        lists.get(i).setProduct_price2(product_price2); 	        
-		    }	
+			 if(lists.get(i).getProduct_soldout().equals("n")) {
+				 double product_price=lists.get(i).getProduct_price();  
+			     String product_price2=df.format(product_price);
+			     lists.get(i).setProduct_price2(product_price2);  
+			 }else if(lists.get(i).getProduct_soldout().equals("y")) {
+				 lists.get(i).setProduct_price2("품절");
+			 }    	        
+		}	
 		return lists;
 	}
 	

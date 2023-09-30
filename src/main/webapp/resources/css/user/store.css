@@ -51,6 +51,7 @@
 		height: 62px;
 		justify-content: center;
 		align-items: center;
+		cursor: pointer;
 	}
 	.menu1 label, .menu2 label, .menu3 label{
 		display: flex;
@@ -67,10 +68,12 @@
 		font-style: normal;
 		font-weight:400;
 		line-height: normal;
+		cursor: pointer;
 	}
 	.menu1 label:hover, .menu2 label:hover, .menu3 label:hover {
 		border-bottom: solid 2px #0F1742;
-		font-weight:bold
+		font-weight:bold;
+		cursor: pointer;
 	}
 .title{
 	display: flex;

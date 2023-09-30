@@ -26,7 +26,7 @@
 <input type="hidden" name="typemsg" value="${msg }">
 	<div class="form">
 		<label>비밀번호</label>
-		<input type="password" name="pwd" class="text" maxlength="12"> 
+		<input type="password" name="pwd" class="text" maxlength="12" required="required"> 
 		<div class="btn">
 		<a href="/index.do"><input type="button" value="취소" class="cancel"></a>
 		<input type="submit" value="확인" class="submit">

@@ -40,7 +40,6 @@ function check2() {
     var pwd1Value=pwd1Tag.value;
     var pwd2Value=pwd2Tag.value;
     
-
     if (pwd1Value!=pwd2Value) {
         checkTag.innerHTML='<p style="color:red; font-size:13px; font-weight:normal;">비밀번호가 일치하지 않습니다.</p>';
     } else {
@@ -54,11 +53,18 @@ function submit() {
     var pwd1Value=pwd1Tag.value;
     var pwd2Value=pwd2Tag.value;
     var checkTag=document.getElementById("check");
+    var checkTag2=document.getElementById("check2");
     if(pwd1Value=='' || pwd2Value==''){
-    	checkTag.innerHTML='<p style="color:red; font-size:13px; font-weight:normal;">비밀번호를 입력해주세요.</p>';
+    	if(pwd1Value=='' ){
+    		checkTag.innerHTML='<p style="color:red; font-size:13px; font-weight:normal;">비밀번호를 입력해주세요.</p>';
+    	}else if(pwd2Value=='')
+    		checkTag2.innerHTML='<p style="color:red; font-size:13px; font-weight:normal;">비밀번호를 입력해주세요.</p>';
     }else{
-    	var param='pwd='+pwd1Value;
-    	sendRequest('userPwdUpdateSubmit.do',param,showResult,'POST');	
+    	if(pwd1Value==pwd2Value){
+    		var param='pwd='+pwd1Value;
+        	sendRequest('userPwdUpdateSubmit.do',param,showResult,'POST');	
+    	}
+    	
     }
 }
 

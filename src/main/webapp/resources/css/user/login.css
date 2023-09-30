@@ -78,6 +78,7 @@
 	background: #1A2C82;
 	border-radius: 3px;
 	margin-bottom: 8px;
+	cursor: pointer;
 }
 .join{
 	display: flex;
@@ -99,6 +100,7 @@
 	border: 1px solid #1A2C82;
 	background: #fff;
 	border-radius: 3px;
+	cursor: pointer;
 }
 .find{
 	display: flex;
@@ -123,6 +125,7 @@
 	font-weight: 500;
 	line-height: normal;
 	letter-spacing: -1px;
+	cursor: pointer;
 }
 .submit:hover, .join:hover{
 	background: #0F1742;

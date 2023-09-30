@@ -40,7 +40,7 @@ function plus() {
 	
 	var priceTag=document.getElementById('amass'); //누적
 	var price=parseInt(priceTag.value);
-
+	
 	if(num<10){
 		num++;
 		numTag.innerHTML=num;
@@ -63,11 +63,7 @@ function submit() {
 	
 	var priceTag=document.getElementById('amass'); //누적
 	var price=parseInt(priceTag.value);
-//	window.alert(num);
-//	window.alert(total);
-//	window.alert(price);
-	 //상품 인텍스랑 수량만 보내면 될 듯..? 아님 링크로 타이틀, 갯수, 토탈, 가격, 이미지를 연달아 보낼지
-//	location.href='storePaymentForm.do?num='+num+'&total='+total+'&price='+price; //이미지도 같이 보내야 함..
+
 	location.href='storePaymentForm.do?num='+num+'&idx='+${dto.product_idx};
 
 }
@@ -115,9 +111,19 @@ function submit() {
                     </tbody>
                 </table>
                 <div class="bx-num">
+                <c:if test="${dto.product_soldout=='y' }">
+                    <button class="btn-mins">-</button>
+                </c:if>
+                <c:if test="${dto.product_soldout=='n' }">
                     <button class="btn-mins" onclick="minus()">-</button>
+                </c:if>
                     <div class="txt-num" id="num">1</div>
+                <c:if test="${dto.product_soldout=='y' }">
+                    <button class="btn-plus">+</button>
+                </c:if>
+                <c:if test="${dto.product_soldout=='n' }">
                     <button class="btn-plus" onclick="plus()">+</button>
+                </c:if>
                 </div>
                 <div class="txt-price-wrap">
                     <p>총 상품금액</p>
@@ -125,14 +131,17 @@ function submit() {
                         <label id="total">${dto.product_price2 }</label>
                         <em>원</em>
                         <input type="hidden" name="amass" id="amass" value="${dto.product_price }">
-                        <input type="hidden" name="total" value=""> 
-                        
+                        <input type="hidden" name="total" value="">                 
                     </div>
                 </div>
                 <div class="btn-wrap">
-                	<button class="btn2" onclick="submit()">구매하기</button>
-                	             
-                </div>
+                <c:if test="${dto.product_soldout=='y' }">
+                	 <button class="btn2">품절</button>  
+               	</c:if>
+               <c:if test="${dto.product_soldout=='n' }">
+               		 <button class="btn2" onclick="submit()">구매하기</button>
+               </c:if>	 	             
+                </div>  
             </div>
 
            <div class="how"><p>사용 방법</p></div>

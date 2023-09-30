@@ -63,7 +63,7 @@ function memberSearch() {
 			<td>${dto.member_name }</td>
 			<td>${dto.member_birth_year }. ${dto.member_birth_month }.${dto.member_birth_day }</td>
 			<td>${dto.member_gender }</td>
-			<td>${dto.member_tel1 }-${dto.member_tel2 }</td>
+			<td>${dto.member_tel1 }${dto.member_tel2 }</td>
 			<td>${dto.member_email }</td>
 			<td>[${dto.member_zip }] ${dto.member_addr1 } ${dto.member_addr2 } </td>
 			<td>${dto.member_block }</td>
