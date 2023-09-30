@@ -125,6 +125,7 @@
 		line-height: normal;
 		float: left;
 		margin-right: 31px;
+		cursor: pointer;
 }
 .submit{
 		width: 150px;
@@ -143,6 +144,7 @@
 		font-style: normal;
 		font-weight: 400;
 		line-height: normal;
+		cursor: pointer;
 }
 .btn{
 	

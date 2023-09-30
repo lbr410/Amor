@@ -55,14 +55,14 @@
 				<div class="menutext"><a href="#" data-submenu="submenu-5">관람평 관리</a></div>
 			</div>
 			<div class="submenu" id="submenu-5"> 
-				<div class="menutext"><a href="faq.jsp">관람평 목록</a></div>
+				<div class="menutext"><a href="#">관람평 목록</a></div>
 			</div>		
 			
 			<div class="menu" onclick="toggleSubmenu(this)">
 				<div class="menutext"><a href="#" data-submenu="submenu-6">1:1문의 관리</a></div>
 			</div>
 			<div class="submenu" id="submenu-6"> 
-				<div class="menutext"><a href="faq.jsp">관람평 목록</a></div>
+				<div class="menutext"><a href="#">관람평 목록</a></div>
 			</div>	
 						
 			<div class="menu" onclick="toggleSubmenu(this)">
@@ -71,8 +71,8 @@
 			<div class="submenu" id="submenu-7"> 
 				<div class="menutext"><a href="/amor/admin/notice/noticeList.do">공지사항 목록</a></div>
 				<div class="menutext"><a href="/amor/admin/notice/noticeWrite.do">공지사항 등록</a></div>
-				<div class="menutext"><a href="#">FAQ 목록</a></div>
-				<div class="menutext"><a href="#">FAQ 등록</a></div>
+				<div class="menutext"><a href="/amor/admin/faq/faqList.do">FAQ 목록</a></div>
+				<div class="menutext"><a href="/amor/admin/faq/faqWrite.do">FAQ 등록</a></div>
 			</div>
 			
 			<div class="menu" onclick="toggleSubmenu(this)">
@@ -90,7 +90,7 @@
 				<div class="menutext"><a href="#">재고 등록</a></div>
 				<div class="menutext"><a href="/amor/admin/product/productList.do">판매상품 목록</a></div>
 				<div class="menutext"><a href="/amor/admin/product/productAdd.do">판매상품 등록</a></div>
-				<div class="menutext"><a href="#">결제내역 관리</a></div>
+				<div class="menutext"><a href="/amor/admin/store/storeList.do">결제내역 관리</a></div>
 			</div>			
 		</div>
 		

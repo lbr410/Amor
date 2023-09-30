@@ -47,7 +47,7 @@ public class NoticeDAOImple implements NoticeDAO {
 	@Override
 	public int noticeUpdate(NoticeDTO dto) {
 		int result=sqlmap.update("noticeUpdate", dto);
-		return 0;
+		return result;
 	}
 	
 	@Override

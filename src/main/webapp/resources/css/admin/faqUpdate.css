@@ -1,0 +1,104 @@
+@charset "UTF-8";
+.faqDiv{
+	width: 1000px;
+	height: 641px;
+	flex-shrink: 0;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+.titleDiv{
+	width: 1000px;
+	height: 48px;
+	flex-shrink: 0;
+	margin-bottom: 20px;
+}
+.titleDiv label{
+	display: flex;
+	width: 142px;
+	padding: 7px 25px 7px 10px;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 10px;
+	font-size:20px;
+	float: left;
+
+}
+.titleDiv input{
+	width: 805px;
+	height: 37px;
+	border: 1px solid #d9d9d9;
+	padding-left: 10px;
+}
+.typeDiv{
+	width: 1000px;
+	height: 48px;
+	flex-shrink: 0;
+	margin-bottom: 20px;
+}
+.typeDiv label{
+	display: flex;
+	width: 142px;
+	padding: 7px 25px 7px 10px;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 10px;
+	font-size:20px;
+	float: left;
+}
+.typeDiv select{
+	width: 130px;
+	height: 37px;
+	border: 1px solid #d9d9d9;
+	padding-left: 10px;
+}
+.contentDiv{
+	width: 1000px;
+	height: 468px;
+	margin-bottom:30px;
+	flex-shrink: 0;
+}
+.contentDiv label{
+	display: flex;
+	width: 142px;
+	padding: 7px 25px 7px 10px;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 10px;
+	font-size:20px;
+	float: left;
+}
+.contentDiv textarea{
+	width: 797px;
+	height: 419px;
+	resize: none;
+	border: 1px solid #d9d9d9;
+	padding: 10px;
+}
+.faqBtn{
+	text-align: right;
+}
+.cancel{
+   border:none;
+   padding: 2px 21px 6px 21px;
+   width: 150px;
+   height: 40px;
+   border-radius: 3px;
+   background: #EEEEEE;
+   color: #1A2C82;
+   cursor: pointer;
+}
+.submit{
+   border:none;
+   padding: 2px 21px 6px 21px;
+   width: 150px;
+   height: 40px;
+   border-radius: 3px;
+   background: #1A2C82;
+   color: #C7E3FF;
+   cursor: pointer;
+}
+.countDiv{
+	text-align: right;
+	font-size: 18px;
+	padding: 5px;
+}

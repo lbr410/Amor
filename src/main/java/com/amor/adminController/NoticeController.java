@@ -30,7 +30,6 @@ public class NoticeController {
 		int pageSize=5;
 		String pageStr=com.amor.page.PageModule.makePage("/amor/admin/notice/noticeList.do", totalCnt, listSize, pageSize, cp);
 		
-		
 		ModelAndView mav=new ModelAndView();
 		if(session.getAttribute("data")==null) {
 			mav.addObject("msg", "로그인 후 이용가능합니다.");
@@ -41,17 +40,16 @@ public class NoticeController {
 			mav.addObject("lists", lists);
 			mav.addObject("pageStr", pageStr);
 			mav.setViewName("/admin/notice/noticeList");
-		}
-		
+		}	
 		return mav;
 	}
 	
-	@RequestMapping("admin/notice/noticeWrite.do")
+	@RequestMapping(value="admin/notice/noticeWrite.do",method = RequestMethod.GET)
 	public String noticeWriteForm() {
 		return "/admin/notice/noticeWrite";
 	}
 	
-	@RequestMapping(value="admin/notice/noticeWriteAdd.do", method = RequestMethod.POST)
+	@RequestMapping(value="admin/notice/noticeWrite.do", method = RequestMethod.POST)
 	public ModelAndView noticeAdd(
 			@RequestParam("notice_subject")String subject,
 			@RequestParam("notice_content")String content) {
@@ -88,12 +86,18 @@ public class NoticeController {
 	
 	@RequestMapping("admin/notice/noticeUpdateForm.do")
 	public ModelAndView noticeUpdateForm(
-			@RequestParam("idx")int idx) {
+			@RequestParam(value="idx", defaultValue = "0")int idx) {
 		
 		NoticeDTO dto=noticeService.noticeUpdateForm(idx);
 		ModelAndView mav=new ModelAndView();
-		mav.addObject("dto", dto);
-		mav.setViewName("/admin/notice/noticeUpdate");
+		if(dto==null) {
+			mav.addObject("msg", "잘못된 접근입니다.");
+			mav.addObject("href", "/amor/admin/notice/noticeList.do");
+			mav.setViewName("/admin/msg/adminMsg");			
+		}else {
+			mav.addObject("dto", dto);
+			mav.setViewName("/admin/notice/noticeUpdate");			
+		}
 		return mav;
 	}
 	
@@ -115,7 +119,7 @@ public class NoticeController {
 	
 	@RequestMapping("admin/notice/noticeDelete.do")
 	public ModelAndView noticeDelete(
-			@RequestParam("idx")int idx) {
+			@RequestParam(value="idx",defaultValue = "0")int idx) {
 		int result=noticeService.noticeDelete(idx);
 
 		String msg=result>0?"삭제 완료되었습니다.":"삭제 실패하였습니다.";

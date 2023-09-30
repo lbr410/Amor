@@ -13,7 +13,7 @@
 <div class="content-title"><label class="titletext">공지사항 수정</label>
 </div>
 <div class="contentMain">
-<form name="noticeAdd" action="noticeUpdate.do" method="post">
+<form name="noticeUpdate" action="noticeUpdate.do" method="post">
 <input type="hidden" name="idx" value="${dto.notice_idx }">
 <div class="noticeDiv">
 	<div class="titleDiv">

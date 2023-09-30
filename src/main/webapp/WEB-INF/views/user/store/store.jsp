@@ -8,6 +8,9 @@
 <title>아모르 : 스토어</title>
 <link rel="stylesheet" href="/amor/resources/css/user/store.css">
 </head>
+<script>
+
+</script>
 <%@include file="../header.jsp" %>
 <body>
 <div class="back">
@@ -38,7 +41,12 @@
         		<label><a href="${detailUrl }">${Tdto.product_title }</a></label>
         	</div>
         	<div class="prodPrice">
+        	<c:if test="${Tdto.product_price2=='품절' }">
+        		<label><span>${Tdto.product_price2 }</span></label>
+        	</c:if>
+        	<c:if test="${Tdto.product_price2!='품절' }">
         		<label><span>${Tdto.product_price2 }</span>원</label>
+        	</c:if>
         	</div>
         </div>
      </c:forEach>
@@ -62,7 +70,12 @@
         		<label>${Sdto.product_title }</label>
         	</div>
         	<div class="prodPrice">
+        	<c:if test="${Sdto.product_price2=='품절' }">
+        		<label><span>${Sdto.product_price2 }</span></label>
+        	</c:if>
+        	<c:if test="${Sdto.product_price2!='품절' }">
         		<label><span>${Sdto.product_price2 }</span>원</label>
+        	</c:if>
         	</div>
         </div>
      </c:forEach>   
@@ -86,7 +99,12 @@
         		<label><a href="${detailUrl }">${Ddto.product_title }</a></label>
         	</div>
         	<div class="prodPrice">
+        	<c:if test="${Ddto.product_price2=='품절' }">
+        		<label><span>${Ddto.product_price2 }</span></label>
+        	</c:if>
+        	<c:if test="${Ddto.product_price2!='품절' }">
         		<label><span>${Ddto.product_price2 }</span>원</label>
+        	</c:if>
         	</div>
         </div>
      </c:forEach>   

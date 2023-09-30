@@ -65,16 +65,16 @@ public class UserPwdCheckUpdateController {
 		
 		if(result==memberService.SUCCES) {
 			if(type.equals("pwdUpdate")) {
-				msg="비밀번호 확인 성공 (바로 수정 폼으로)";
-				mav.addObject("msg", msg);
-				mav.addObject("goUrl", "userPwdUpdateForm.do");
-				mav.setViewName("/user/msg/userMsg");	
+//				msg="비밀번호 확인 성공 (바로 수정 폼으로)";
+//				mav.addObject("msg", msg);
+//				mav.addObject("goUrl", "userPwdUpdateForm.do");
+				mav.setViewName("/user/myAmor/userPwdUpdate");	
 
 			}else if(type.equals("withdraw")) {
-				msg="비밀번호 확인 성공 (바로 탈퇴 폼으로)";
-				mav.addObject("msg", msg);
-				mav.addObject("goUrl", "withdrawForm.do");
-				mav.setViewName("/user/msg/userMsg");
+//				msg="비밀번호 확인 성공 (바로 탈퇴 폼으로)";
+//				mav.addObject("msg", msg);
+//				mav.addObject("goUrl", "withdrawForm.do");
+				mav.setViewName("/user/myAmor/withdraw");
 			}
 			
 		}else {
@@ -98,7 +98,7 @@ public class UserPwdCheckUpdateController {
 		String pwd = Encryption.pwdEncrypt(pwd2);
 		String sid=(String)session.getAttribute("sid");
 		int result=memberService.memberPwdUpdate(sid, pwd);
-		String msg=result>0?"비번 업데이트 성공":"비번 업데이트 실패";
+		String msg=result>0?"비밀번호 수정 완료되었습니다.":"비밀번호 수정 실패하였습니다.";
 
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg", msg);

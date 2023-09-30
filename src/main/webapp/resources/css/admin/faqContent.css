@@ -1,0 +1,48 @@
+@charset "UTF-8";
+.faqTable{
+	width: 900px;
+	margin-left: 20px;
+}
+.faqTable table{
+	width:950px;
+	margin: 0 auto;
+}
+.faqTable table thead th{
+	text-align: left;
+	width:70px;
+	padding: 20px 0px 20px 20px;
+	border-bottom: 1px dashed #C1C1C1;
+}
+.faqTable table thead td{
+	text-align: left;
+	width:180px;
+	padding: 20px 10px 20px 0px;
+	border-bottom: 1px dashed #C1C1C1;
+}
+.faqTable table tbody td{
+	padding: 20px 10px 30px 20px;
+	border-bottom: 1px dashed #C1C1C1;
+}
+.faqTable table tfoot td{
+	padding-top: 30px;
+}
+.delete{
+   border:none;
+   padding: 6px 21px 6px 21px;
+   width: 100px;
+   height: 35px;
+   border-radius: 3px;
+   background: #EEEEEE;
+   color: #1A2C82;
+   cursor: pointer;	
+}
+.update{
+   border:none;
+   padding: 6px 21px 6px 21px;
+   width: 100px;
+   height:35px;
+   border-radius: 3px;
+   background: #1A2C82;
+   color: #C7E3FF;
+   cursor: pointer;
+}

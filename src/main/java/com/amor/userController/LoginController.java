@@ -44,7 +44,7 @@ public class LoginController {
 		if(id.equals("") || pwd.equals("")) {
 			mav.addObject("msg", "아이디와 비밀번호를 입력해주세요.");
 			mav.addObject("goUrl", "login.do");
-			mav.setViewName("/user/msg/loginMsg");
+			mav.setViewName("/user/msg/userMsg");
 			return mav;
 		}
 		

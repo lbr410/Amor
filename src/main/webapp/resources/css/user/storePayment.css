@@ -188,6 +188,7 @@
 	background: #1A2C82;
 	color: white;
 	border: none;
+	cursor: pointer;
 }
 .img{
 	width: 210px;

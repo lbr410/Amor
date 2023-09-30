@@ -3,5 +3,39 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amor.faqSQL">
+<select id="faqList" parameterType="Map" resultType="com.amor.faq.model.FaqDTO">
+	select * from
+	(select rownum as rnum, a.* from
+	(select * from faq order by faq_idx desc) a)
+	where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}
+</select>
 
+<select id="faqTotalCnt" resultType="Integer">
+	select count(*) from faq
+</select>
+
+<insert id="faqAdd" parameterType="com.amor.faq.model.FaqDTO">
+	insert into faq 
+	values (faq_idx.nextval,#{faq_type},#{faq_subject},#{faq_content},sysdate)
+</insert>
+
+<select id="faqContent" parameterType="Integer" resultType="com.amor.faq.model.FaqDTO">
+	select * from faq
+	where faq_idx=#{idx}
+</select>
+
+<select id="faqUpdateForm" parameterType="Integer" resultType="com.amor.faq.model.FaqDTO">
+	select * from faq
+	where faq_idx=#{idx}
+</select>
+
+<update id="faqUpdate" parameterType="com.amor.faq.model.FaqDTO">
+	update faq
+	set faq_type=#{faq_type}, faq_subject=#{faq_subject}, faq_content=#{faq_content}
+	where faq_idx=#{faq_idx}
+</update>
+
+<delete id="faqDelete" parameterType="Integer">
+	delete from faq where faq_idx=#{idx}
+</delete>
 </mapper>

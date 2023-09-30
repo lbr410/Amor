@@ -62,6 +62,7 @@
 	align-items: center;
 	gap: 28px;
 	flex-shrink: 0;
+	cursor: pointer;
 }
 .pagemenu button:hover{
 	display: flex;
@@ -129,6 +130,10 @@
     background: #1A2C82;
     color: #FFF;
     border: 1px solid #1A2C82;
+    cursor: pointer;
+}
+.mybtn{
+	cursor: pointer;
 }
 a:visited{
 	color:#181818;
@@ -143,10 +148,10 @@ a:link{
 		<div class="usertitle"><label>홍길동</label>님 반갑습니다:)<label class="useredit">편집</label></div>
 		<hr>
 		<div class="pagemenu">
-			<a href="ticketingHistory.jsp" onclick="show(event)"><button id="btn1">예매내역</button></a>
-			<a href="storeHistory.jsp" onclick="show(event)"><button id="btn2">스토어 내역</button></a>
-			<a href="myReviewList.jsp" onclick="show(event)"><button id="btn3">관람평</button></a>
-			<a href="inquiryList.jsp" onclick="show(event)"><button id="btn4">1:1문의</button></a>
+			<a href="ticketingHistory.jsp" onclick="show(event)"><button id="btn1" class="mybtn">예매내역</button></a>
+			<a href="storeHistory.jsp" onclick="show(event)"><button id="btn2" class="mybtn">스토어 내역</button></a>
+			<a href="myReviewList.jsp" onclick="show(event)"><button id="btn3" class="mybtn">관람평</button></a>
+			<a href="inquiryList.jsp" onclick="show(event)"><button id="btn4" class="mybtn">1:1문의</button></a>
 		</div>
 	</div>
 <script>
