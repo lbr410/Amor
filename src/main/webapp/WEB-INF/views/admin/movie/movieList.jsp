@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>영화 관리</title>
+<title>아모르 관리자 : 영화 관리</title>
 <script type="text/javascript" src="../../resources/js/httpRequest.js"></script>
 <script type="text/javascript">
 
@@ -110,7 +110,7 @@ function movieStateYN(idx) {
 					<option value="n" <c:if test="${dto.movie_state eq 'n'}">selected</c:if>>N</option>
 				</select></td>
 			<td>10.0??</td>
-			<td>${dto.movie_poster}</td>
+			<td><img src="/amor/resources/upload/movie/${dto.movie_poster}" class="posterImg" alt="포스터 이미지"></td>
 			<td><input class="btn_movie" type="button" value="수정" onclick="movieUpdate(${dto.movie_idx})"></td>
 			<td><input class="btn_movie" type="button" value="삭제" onclick="movieDelete(${dto.movie_idx})"></td>
 		</tr>

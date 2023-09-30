@@ -10,6 +10,8 @@ public interface TicketingDAO {
 	public int cancellationTicket(String ticketnum);
 	public List<JoinTicketingHistoryDTO> getcancellList(int useridx);
 	
+	public List<TicketingSelectMovieDTO> ticketingPlayingMovieList();
+	
 	
 	
 	

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Amor 관리자 : 영화 줄거리</title>
+<title>아모르 관리자 : 영화 줄거리</title>
 <link rel="stylesheet" href="/amor/resources/css/admin/moviePopUp.css">
 </head>
 <body>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Amor 관리자 : 영화 등록</title>
+<title>아모르 관리자 : 영화 등록</title>
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/admin/movieAdd.css">
 <script type="text/javascript">
 function moviePreview(input,num){

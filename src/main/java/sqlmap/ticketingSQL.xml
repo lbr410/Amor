@@ -98,4 +98,12 @@ where ticketing_num = #{ticketnum}
 		and to_char(ticketing_reservetime, 'yyyy-mm') <= #{endd}
 		]]>
 	</select>
+	
+	<select id="ticketingPlayingMovieList" resultType="com.amor.ticketing.model.TicketingSelectMovieDTO">
+	<![CDATA[
+		select movie_maxage, movie_name 
+		from (select * from movie)a, (select movie_idx from playing_movie group by movie_idx) b 
+		where a.movie_idx = b.movie_idx
+	]]>
+	</select>
 </mapper>
