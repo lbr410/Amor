@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MyPage StoreList</title>
+<title>MyPage StoreCancellList</title>
 <link rel="stylesheet" href="/amor/resources/css/user/storePaymentList.css" />
 </head>
 <style>
@@ -31,7 +31,7 @@
 <div class="gray-section">
 	<div class="body-inner">
 <%@include file="../mypageHeader.jsp" %>
-<div class="mypagetitle"><a href = "/amor/myAmor/storePayment.do"><label class="title1">상품 내역</label></a> <a href="/amor/myAmor/storeCancellList.do"><label class="title2">취소 내역</label></a></div>
+<div class="mypagetitle"><a href = "/amor/myAmor/storePayment.do"><label class="title2">상품 내역</label></a> <a href="/amor/myAmor/storeCancellList.do"><label class="title1">취소 내역</label></a></div>
 <!-- 이 밑으로 작업 -->
 <c:if test="${!empty list}">
 <c:forEach var="temp" items="${list}" >
@@ -65,29 +65,21 @@
             ${temp.amount}개<br/>
           </span>
            <span class="span9">
-           금액     
+           금액
           </span>
           <span class="span10">
-              ${temp.changePrice} <br/>
+            ${temp.changePrice} <br/>
           </span>
           </span>
       </div>
     </div>
-    <c:if test="${temp.status == '미승인'}">
-    	<c:url var="storeCancell" value="/myAmor/storeCancellation.do" >
-			<c:param name="paymentidx">${temp.paymentidx}</c:param>    
-		</c:url>
-   			<a href = "${storeCancell}"><input type = "button" value = "구매 취소" class = "button"></a>
-   	</c:if>
-  	<c:if test="${temp.status == 'y'}">
-  		<div class = "button">구매 완료</div>
-  	</c:if>
+    <span class = "cancellmsg">취소완료</span>
   </div>
 </div>
 </c:forEach>
 </c:if>
 <c:if test="${empty list}">
-<div class = "nullcontent">구매 내역이 없습니다.</div>
+<div class = "nullcontent">취소 내역이 없습니다.</div>
 </c:if>
 </div>
 </div>

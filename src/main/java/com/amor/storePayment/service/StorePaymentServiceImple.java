@@ -264,13 +264,44 @@ public class StorePaymentServiceImple implements StorePaymentService {
 	}
 	
 	@Override
-	public List<MyPageStorePaymentDTO> MypageStorePaymentList(int useridx) {
-		List<MyPageStorePaymentDTO> lists = storePaymentDao.MypageStorePaymentList(useridx);
-		if(lists != null && lists.size() == 0) {
+	public List<MyPageStorePaymentDTO> mypageStorePaymentList(int useridx) {
+		List<MyPageStorePaymentDTO> lists = storePaymentDao.mypageStorePaymentList(useridx);
+		if(lists != null && lists.size() > 0) {
 			DecimalFormat df = new DecimalFormat("#,##0원");
+			SimpleDateFormat dateDf = new SimpleDateFormat("yyyy.MM.dd (E) | HH:mm");
 			MyPageStorePaymentDTO dto = null;
 			for(int i = 0 ; i < lists.size(); i++) {
-				dto = lists.get(i);				
+				dto = lists.get(i);
+				dto.setChangePaymentDate(dateDf.format(lists.get(i).getPaymentdate()));
+				dto.setChangePrice(df.format(dto.getPrice()));
+				lists.set(i, dto);				
+			}
+			return lists;
+		}else {
+			return null;
+		}
+	}
+	
+	@Override
+	public int mypageStoreCancell(int paymentidx) {
+		int result = storePaymentDao.mypageStoreCancell(paymentidx);
+		if(result > 0) {
+			return result;
+		}else {
+			return -1;
+		}
+	}
+	
+	@Override
+	public List<MyPageStorePaymentDTO> mypageStoreCancellList(int useridx) {
+		List<MyPageStorePaymentDTO> lists = storePaymentDao.mypageStoreCancellList(useridx);
+		if(lists != null && lists.size() > 0) {
+			DecimalFormat df = new DecimalFormat("#,##0원");
+			SimpleDateFormat dateDf = new SimpleDateFormat("yyyy.MM.dd (E) | HH:mm");
+			MyPageStorePaymentDTO dto = null;
+			for(int i = 0 ; i < lists.size(); i++) {
+				dto = lists.get(i);
+				dto.setChangePaymentDate(dateDf.format(lists.get(i).getPaymentdate()));
 				dto.setChangePrice(df.format(dto.getPrice()));
 				lists.set(i, dto);				
 			}

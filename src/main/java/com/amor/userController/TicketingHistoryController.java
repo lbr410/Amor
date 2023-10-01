@@ -16,7 +16,7 @@ import java.util.*;
 public class TicketingHistoryController {
 
 	@Autowired
-	private TicketingService ticketingHistoryService;
+	private TicketingService ticketingService;
 	
 	@RequestMapping("/myAmor/ticketingHistory.do")
 	public ModelAndView goTiketingHistory(HttpSession session) {
@@ -26,7 +26,7 @@ public class TicketingHistoryController {
 		if(id != null) {			
 			int useridx = (int)session.getAttribute("sidx");
 			System.out.println(useridx);
-			List<JoinTicketingHistoryDTO>lists = ticketingHistoryService.getReserveList(useridx);
+			List<JoinTicketingHistoryDTO>lists = ticketingService.getReserveList(useridx);
 			if(lists != null) {				
 				System.out.println(lists.get(0).getTimelimit());
 				mav.addObject("list", lists);
@@ -50,7 +50,7 @@ public class TicketingHistoryController {
 		ModelAndView mav = new ModelAndView();
 		if(session.getAttribute("sidx") != null) {
 			int useridx = (int)session.getAttribute("sidx");
-			List<JoinTicketingHistoryDTO>lists = ticketingHistoryService.getcancellList(useridx);
+			List<JoinTicketingHistoryDTO>lists = ticketingService.getcancellList(useridx);
 			if(lists != null) {				
 				System.out.println(lists.get(0));
 				mav.addObject("list", lists);
@@ -75,7 +75,7 @@ public class TicketingHistoryController {
 		
 		ModelAndView mav = new ModelAndView();
 		if(timelimit >= 30) {	
-			int result = ticketingHistoryService.cancellationTicket(ticketnum);
+			int result = ticketingService.cancellationTicket(ticketnum);
 			if(result > 0) {
 				mav.addObject("msg", "예매가 취소되었습니다.");
 				mav.addObject("goUrl", "/amor/myAmor/ticketingHistory.do");

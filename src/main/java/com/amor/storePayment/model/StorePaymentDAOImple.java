@@ -154,8 +154,20 @@ public class StorePaymentDAOImple implements StorePaymentDAO {
 	}
 	
 	@Override
-	public List<MyPageStorePaymentDTO> MypageStorePaymentList(int useridx) {
-		List<MyPageStorePaymentDTO> lists = sqlmap.selectList("MypageStorePaymentList", useridx);
+	public List<MyPageStorePaymentDTO> mypageStorePaymentList(int useridx) {
+		List<MyPageStorePaymentDTO> lists = sqlmap.selectList("mypageStorePaymentList", useridx);
+		return lists;
+	}
+	
+	@Override
+	public int mypageStoreCancell(int paymentidx) {
+		int result = sqlmap.update("mypageStoreCancell", paymentidx);
+		return result;
+	}
+	
+	@Override
+	public List<MyPageStorePaymentDTO> mypageStoreCancellList(int useridx) {
+		List<MyPageStorePaymentDTO> lists = sqlmap.selectList("mypageStoreCancellList", useridx);
 		return lists;
 	}
 }

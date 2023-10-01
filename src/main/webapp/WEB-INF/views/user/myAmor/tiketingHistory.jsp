@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Amor:MyPage(ReserveList)</title>
 <link rel="stylesheet" href="/amor/resources/css/user/tiketingHistory.css" />
 </head>
 <style>
@@ -164,7 +164,7 @@
 <c:if test="${!empty list}">
 <c:forEach var="temp" items="${list}" >
 <div class="contentbox">
-  <img class="movieimg" src="/amor/resources/upload/movie/1.jpg"/>
+  <img class="movieimg" src="/amor/resources/upload/movie/${temp.movieimg}"/>
   <div class="contentbox2">
     <div class="contentbox3">
       <div class="content-container">
@@ -184,7 +184,7 @@
           관람 일시
           </span>
           <span class="span6">
-            ${temp.screeningdate}<br/>
+            ${temp.changeScreeningDate}<br/>
           </span>
           <span class="span7">
           상영관
@@ -196,7 +196,7 @@
            결제 날짜
           </span>
           <span class="span10">
-            ${temp.reservetime} <br/>
+            ${temp.changeReserveTime} <br/>
           </span>
           <span class="span11">
           결제방법
@@ -205,7 +205,7 @@
             ${temp.payment}<br/>
           </span>
           <span class="span13">
-          금액 
+          금액
           </span>
           <span class="span14">
             ${temp.changePrice}
@@ -218,7 +218,7 @@
 			<c:param name="ticketnum">${temp.ticketnum}</c:param>    
 			<c:param name="timelimit">${temp.timelimit}</c:param>    		
 		</c:url>
-    	<input type = "button" value = "예매 취소" class = "button" onclick = "Cancellation(${cancellticket})">
+    	<a href = "cancellticket"><input type = "button" value = "예매 취소" class = "button"></a>
   	</c:if>
   	<c:if test="${temp.timelimit == 'n'}">
   		${temp.timelimit}
@@ -268,11 +268,6 @@
 </form>
 </body>
 <script src = "/amor/resources/js/httpRequest.js"></script>
-<script>
-	function Cancellation(url){
-		location.href = url;
-	}
-</script>
 <script type="text/javascript">
 	const openReviewBtn = document.getElementById("openReview");
 	const myReviewBtn = document.getElementById("myReviewBtn");

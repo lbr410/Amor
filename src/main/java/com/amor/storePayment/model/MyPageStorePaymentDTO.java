@@ -1,6 +1,6 @@
 package com.amor.storePayment.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class MyPageStorePaymentDTO {
 
@@ -12,6 +12,7 @@ public class MyPageStorePaymentDTO {
 	private int amount;
 	private Long price;
 	private String status;
+	private String changePaymentDate;
 	private String changePrice;
 	
 	public MyPageStorePaymentDTO() {
@@ -101,6 +102,14 @@ public class MyPageStorePaymentDTO {
 
 	public void setChangePrice(String changePrice) {
 		this.changePrice = changePrice;
-	}	
+	}
+
+	public String getChangePaymentDate() {
+		return changePaymentDate;
+	}
+
+	public void setChangePaymentDate(String changePaymentDate) {
+		this.changePaymentDate = changePaymentDate;
+	}
 	
 }

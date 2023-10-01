@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Amor:MyPage(CancellList)</title>
 <link rel="stylesheet" href="/amor/resources/css/user/tiketingHistory.css" />
 </head>
 <style>
@@ -36,7 +36,7 @@
 <c:if test="${!empty list}">
 <c:forEach var="temp" items="${list}" >
 <div class="contentbox">
-  <img class="movieimg" src="/amor/resources/upload/movie/1.jpg"/>
+  <img class="movieimg" src="/amor/resources/upload/movie/${temp.movieimg}"/>
   <div class="contentbox2">
     <div class="contentbox3">
       <div class="content-container">
@@ -56,7 +56,7 @@
           관람 일시
           </span>
           <span class="span6">
-            ${temp.screeningdate}<br/>
+            ${temp.changeScreeningDate}<br/>
           </span>
           <span class="span7">
           상영관
@@ -68,7 +68,7 @@
            결제 날짜
           </span>
           <span class="span10">
-            ${temp.reservetime} <br/>
+            ${temp.changeReserveTime} <br/>
           </span>
           <span class="span11">
           결제방법
@@ -91,17 +91,9 @@
 </c:forEach>
 </c:if>
 <c:if test="${empty list}">
-<div class = "nullcontent">예매 내역이 없습니다.</div>
+<div class = "nullcontent">취소 내역이 없습니다.</div>
 </c:if>
 </div>
 </div>
 </body>
-<script src = "/amor/resources/js/httpRequest.js"></script>
-<script>
-	function Cancellation(ticketnum){
-		alert('ss');
-		let param = 'ticketnum='+ticketnum;
-		sendRequest('cancellation.do',param,null,'GET');
-	}
-</script>
 </html>
