@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>아모르: 티켓팅</title>
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/user/ticketing.css">
-<script type="text/javascript" src="../../resources/js/httpRequest.js"></script>
 </head>
 
 <body>
@@ -32,7 +32,7 @@
 				<div class="playingmovieListBox">
 					<div class="playingmovieList">
 					<c:forEach var="dto" items="${lists }">
-						<div class="playingmovie" onclick="selectMovie(${dto.movie_name})">
+						<div class="playingmovie" onclick="selectMovie('${dto.movie_name}',${dto.movie_maxage})">
 							<div class="playingmovie_imgDiv">
 							<c:if test="${dto.movie_maxage == 0 }"><img class="playingmovie_img" src="/amor/resources/img/maxage_all.png"></c:if>
 							<c:if test="${dto.movie_maxage == 1 }"><img class="playingmovie_img" src="/amor/resources/img/maxage_12.png"></c:if>
@@ -50,8 +50,8 @@
 			</div>
 			<div class="content2">
 				<div class="selectDateBox">
-					<div class="selectDate"> 
-						<div class="date0">
+					<div class="selectDate">
+						<div class="date0" onclick="selectDate(0)">
 							<div>
 								<table class="ta123">
 									<tr><th id="datep0">123</th></tr>
@@ -59,7 +59,7 @@
 								</table>
 							</div>
 						</div>
-						<div class="date1">
+						<div class="date1" onclick="selectDate(1)">
 							<div>
 								<table class="ta123">
 									<tr><th id="datep1">일</th></tr>
@@ -67,7 +67,7 @@
 								</table>
 							</div>
 						</div>
-						<div class="date2">
+						<div class="date2" onclick="selectDate(2)">
 							<div>
 								<table class="ta123">
 									<tr><th id="datep2">일</th></tr>
@@ -75,7 +75,7 @@
 								</table>
 							</div>
 						</div>
-						<div class="date3">
+						<div class="date3" onclick="selectDate(3)">
 							<div>
 								<table class="ta123">
 									<tr><th id="datep3">일</th></tr>
@@ -83,7 +83,7 @@
 								</table>
 							</div>
 						</div>
-						<div class="date4">
+						<div class="date4" onclick="selectDate(4)">
 							<div>
 								<table class="ta123">
 									<tr><th id="datep4">일</th></tr>
@@ -91,7 +91,7 @@
 								</table>
 							</div>
 						</div>
-						<div class="date5">
+						<div class="date5" onclick="selectDate(5)">
 							<div>
 								<table class="ta123">
 									<tr><th id="datep5">일</th></tr>
@@ -101,7 +101,7 @@
 						</div>
 						<div class="date6">
 							<div>
-								<table class="ta123">
+								<table class="ta123" onclick="selectDate(6)">
 									<tr><th id="datep6">일</th></tr>
 									<tr><td id="weekp6">(요일)</td></tr>
 								</table>
@@ -112,11 +112,11 @@
 				<div class="selectDateToPlayingMovie">
 				
 					<div class="imgandmovietitle">
-						<div class="selectimgDiv"><img class="selectmovie_img" src="/amor/resources/img/maxage_12.png"></div>
-						<div class="selectnameDiv"><div class="selectmovie_name">오펜하이머</div></div>
+						<div class="selectimgDiv" id="ticketingMovieMaxage"></div>
+						<div class="selectnameDiv"><div class="selectmovie_name" id="ticketingMovieTitle"></div></div>
 					</div>
-					<div>
-						
+					<div class="movieTime">
+						<div class="selectMovieTimeDiv" id="ticketingMovieTime"></div>
 					
 					</div>
 				
@@ -127,7 +127,8 @@
 	</div>
 </div>
 </div>
-<script>
+<script type="text/javascript" src="/amor/resources/js/httpRequest.js"></script>
+<script type="text/javascript">
 
 var today = new Date();
 var year = today.getFullYear();
@@ -176,9 +177,47 @@ const week = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)'];
 		
 	}
 	
-	function selectMovie(movie_name){
-		let param = 'movie_name='+movie_name;
-		sendRequest('ticktingSelectMovie.do',param, null, 'POST');
+	function selectMovie(movie_name,movie_maxage){
+		let param = 'movie_name='+movie_name+'&movie_maxage='+movie_maxage;
+		sendRequest('ticketingSelectMovie.do',param, selectMovieResult, 'POST');
+	}
+	
+	function selectMovieResult(){
+		if(XHR.readyState==4){
+			if(XHR.status==200){
+				var data = XHR.responseText;
+				var objData = JSON.parse(data);
+				var movie_name = objData.movie_name;
+				var movie_maxage = objData.movie_maxage;
+				var msg = objData.msg;
+				var movie_maxage_img ='';
+				
+				switch(movie_maxage){
+				case 0 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_all.png">';break;
+				case 1 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_12.png">';break;
+				case 2 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_15.png">';break;
+				case 3 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_18.png">';break;
+				}
+				
+				document.getElementById('ticketingMovieMaxage').innerHTML = movie_maxage_img;
+				document.getElementById('ticketingMovieTitle').innerHTML = movie_name;
+				document.getElementById('ticketingMovieTime').innerHTML = msg;
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	function selectDate(currentPlusDate,movie_name){
+		var dayPost= new Date(year,month-1,date+currentPlusDate);
+		let yearPost = dayPost.getFullYear();
+		let monthPost = dayPost.getMonth()+1;
+		let datePost = dayPost.getDate();
+		let param = 'year='+yearPost+'&month='+monthPost+'&date='+datePost;
+		sendRequest('ticketingSelectDate.do',param, null, 'POST');
+		
 	}
 
 </script>
