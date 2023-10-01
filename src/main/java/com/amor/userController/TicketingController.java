@@ -1,9 +1,13 @@
 package com.amor.userController;
 
+import java.sql.*;
 import java.util.*;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,17 +28,35 @@ public class TicketingController {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("lists", lists);
-		mav.setViewName("user/ticketing/ticketing");
+		mav.setViewName("/user/ticketing/ticketing");
 		return mav;
 	}
 	
-	@RequestMapping("ticketing/ticktingSelectMovie.do")
-	public ModelAndView ticktingSelectMovie(@RequestParam(value="movie_name", defaultValue = "1") String movie_name) {
+	@RequestMapping("ticketing/ticketingSelectMovie.do")
+	public String ticketingSelectMovie(String movie_name, int movie_maxage,HttpSession session, Model model) {
+		session.setAttribute("ticketing_movie_name", movie_name);
+		System.out.println(session.getAttribute("ticketing_movie_name"));
 		
+		model.addAttribute("movie_name",movie_name);
+		model.addAttribute("movie_maxage",movie_maxage);
+		model.addAttribute("msg","날짜를 선택해주세요");
 		
+		return "amorJson";
+	}
+	
+	@RequestMapping("ticketing/ticketingSelectDate.do")
+	public ModelAndView ticketingSelectDate(HttpSession session, int year, int month, int date) {
+		String date_d = "";
+		if(date < 10) {date_d = "0"+date;}
+		else {date_d = ""+date;}
+		String sumdate = year+"-"+month+"-"+date_d;
+		java.sql.Date sumdate_s = java.sql.Date.valueOf(sumdate);
+		System.out.println(sumdate_s);
+		System.out.println(session.getAttribute("ticketing_movie_name"));
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("user/ticketing/ticketing");
+		mav.setViewName("/user/ticketing/ticketing");
 		return mav;
 	}
+	
 	
 }
