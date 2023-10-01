@@ -39,11 +39,11 @@
 	</c:if>
 	<c:forEach var="dto" items="${lists }">
 		<tr>
-			<td>${dto.notice_idx }</td>
+			<td class="idxTd">${dto.notice_idx }</td>
 			<c:url var="contentUrl" value="noticeContent.do">
 				<c:param name="notice_idx">${dto.notice_idx }</c:param>			
 			</c:url>
-			<td><a href="${contentUrl }">${dto.notice_subject }</a></td>
+			<td class="subject"><a href="${contentUrl }">${dto.notice_subject }</a></td>
 			<td>${dto.notice_writedate }</td>
 			<td>${dto.notice_readnum }</td>
 		</tr>

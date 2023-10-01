@@ -29,5 +29,8 @@ public interface StorePaymentService {
 	public List<StorePaymentDTO> monthStore(String startd, String endd);
 	public String monthStoreTotal(String startd, String endd);
 	//수민
-	public List<MyPageStorePaymentDTO> MypageStorePaymentList(int useridx);
+	public List<MyPageStorePaymentDTO> MypageStorePaymentList(int useridx);	
+	public int storeListTotalCnt();
+	public List<StorePaymentDTO> storeList(int cp, int listSize);
+	public int storeListSubmit(String status, int idx);
 }
