@@ -2,8 +2,11 @@ package com.amor.notice.service;
 
 import java.util.*;
 
+import org.springframework.stereotype.Service;
+
 import com.amor.notice.model.*;
 
+@Service
 public class NoticeServiceImple implements NoticeService {
 
 	private NoticeDAO noticeDao;
@@ -58,6 +61,12 @@ public class NoticeServiceImple implements NoticeService {
 	@Override
 	public int noticeDelete(int idx) {
 		int result=noticeDao.noticeDelete(idx);
+		return result;
+	}
+	
+	@Override
+	public int noticeReadNumUpdate(int notice_idx) {
+		int result=noticeDao.noticeReadNumUpdate(notice_idx);
 		return result;
 	}
 }

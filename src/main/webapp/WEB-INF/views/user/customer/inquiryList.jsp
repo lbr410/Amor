@@ -11,8 +11,11 @@
 <div class="gray-section">
 	<div class="body-inner">
 <%@include file="../mypageHeader.jsp" %>
-<div class="mypagetitle"><a href = "/amor/customer/#.do"><label class="title1">1:1 문의</label></a> <a href="/amor/customer/#.do"><label class="title2">취소내역</label></a></div>
-<form class="inquiryForm" action="#" method="post">
+<div class="mypagetitle"><a href = "/amor/customer/inquiryList.do"><label class="title1">1:1 문의</label></a></div>
+<div class="inquiryQBtn">
+	<a href="/amor/customer/inquiryWrite.do"><input type="button" value="1:1문의 쓰기"></a>
+</div>
+<form class="inquiryForm" action="inquiryContent.do" method="post">
 	<div></div>
 
 </form>
