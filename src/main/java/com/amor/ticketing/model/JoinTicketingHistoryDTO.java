@@ -1,6 +1,6 @@
 package com.amor.ticketing.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class JoinTicketingHistoryDTO {
 
@@ -12,6 +12,8 @@ public class JoinTicketingHistoryDTO {
 	private String payment;
 	private Long price;
 	private Date reservetime;
+	private String changeScreeningDate;
+	private String changeReserveTime;
 	private String changePrice;
 	private String theatername;
 	private String timelimit;
@@ -123,9 +125,22 @@ public class JoinTicketingHistoryDTO {
 
 	public void setTimelimit(String timelimit) {
 		this.timelimit = timelimit;
-	}		
+	}
 
-	
-		
+	public String getChangeScreeningDate() {
+		return changeScreeningDate;
+	}
+
+	public void setChangeScreeningDate(String changeScreeningDate) {
+		this.changeScreeningDate = changeScreeningDate;
+	}
+
+	public String getChangeReserveTime() {
+		return changeReserveTime;
+	}
+
+	public void setChangeReserveTime(String changeReserveTime) {
+		this.changeReserveTime = changeReserveTime;
+	}		
 	
 }

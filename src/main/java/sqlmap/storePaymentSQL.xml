@@ -303,17 +303,41 @@
 		]]>
 	</select>
 	
-	<select id="MypageStorePaymentList" parameterType="Integer" resultType="com.amor.storePayment.model.MyPageStorePaymentDTO">
+	<select id="mypageStorePaymentList" parameterType="Integer" resultType="com.amor.storePayment.model.MyPageStorePaymentDTO">
 		<![CDATA[
 		select a.store_payment_idx as paymentidx, c.product_title as productname,
 		c.product_img as productimg,a.store_payment_paymentdate as paymentdate,
 		a.store_payment_payment as payment, a.store_payment_amount as amount, 
 		a.store_payment_price as price,a.store_payment_status as status
 		from store_payment a,(select * from member
-		where member_idx = 42) b,product c
+		where member_idx = #{useridx}) b,product c
 		where a.member_idx = b.member_idx 
 		and a.product_idx = c.product_idx
 		and a.store_payment_status != 'n'
+		order by rownum desc
+		]]>
+	</select>
+	
+	<update id = "mypageStoreCancell" parameterType="Integer">
+		<![CDATA[
+		update store_payment
+		set store_payment_status = 'n'
+		where store_payment_idx = #{paymentidx}
+		]]>
+	</update>
+	
+	<select id = "mypageStoreCancellList" parameterType="Integer" resultType="com.amor.storePayment.model.MyPageStorePaymentDTO">
+		<![CDATA[
+		select a.store_payment_idx as paymentidx, c.product_title as productname,
+		c.product_img as productimg,a.store_payment_paymentdate as paymentdate,
+		a.store_payment_payment as payment, a.store_payment_amount as amount, 
+		a.store_payment_price as price,a.store_payment_status as status
+		from store_payment a,(select * from member
+		where member_idx = #{useridx}) b,product c
+		where a.member_idx = b.member_idx 
+		and a.product_idx = c.product_idx
+		and a.store_payment_status = 'n'
+		order by rownum desc
 		]]>
 	</select>
 	

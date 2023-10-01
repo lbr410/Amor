@@ -1,7 +1,11 @@
 package com.amor.ticketing.service;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,11 +31,14 @@ public class TicketingServiceImple implements TicketingService {
 		List<JoinTicketingHistoryDTO> lists = ticketingDao.ticketingList(useridx);
 		if(lists != null && lists.size() > 0) {
 			DecimalFormat df = new DecimalFormat("#,##0원");
+			SimpleDateFormat dateDf = new SimpleDateFormat("yyyy.MM.dd (E) | HH:mm");
 			JoinTicketingHistoryDTO dto = null;
 			for(int i = 0 ; i < lists.size(); i++) {
 				dto = lists.get(i);				
 				dto.setChangePrice(df.format(lists.get(i).getPrice()));
-				lists.set(i, dto);				
+				dto.setChangeScreeningDate(dateDf.format(lists.get(i).getScreeningdate()));
+				dto.setChangeReserveTime(dateDf.format(lists.get(i).getReservetime()));
+				lists.set(i, dto);					
 			}
 			return lists;
 		}else {
@@ -50,16 +57,18 @@ public class TicketingServiceImple implements TicketingService {
 		List<JoinTicketingHistoryDTO> lists = ticketingDao.getcancellList(useridx);
 		if(lists != null && lists.size() > 0) {
 			DecimalFormat df = new DecimalFormat("#,##0원");
+			SimpleDateFormat dateDf = new SimpleDateFormat("yyyy.MM.dd (E) | HH:mm");
 			JoinTicketingHistoryDTO dto = null;
 			for(int i = 0 ; i < lists.size(); i++) {
-				dto = lists.get(i);
+				dto = lists.get(i);				
 				dto.setChangePrice(df.format(lists.get(i).getPrice()));
-				lists.set(i, dto);
-				
+				dto.setChangeScreeningDate(dateDf.format(lists.get(i).getScreeningdate()));
+				dto.setChangeReserveTime(dateDf.format(lists.get(i).getReservetime()));
+				lists.set(i, dto);					
 			}
 			return lists;
 		}else {
-			return null;	
+			return null;
 		}
 		
 	}
