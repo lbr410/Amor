@@ -340,4 +340,29 @@
 		order by rownum desc
 		]]>
 	</select>
+	
+	<select id="storeListTotalCnt" resultType="Integer">
+		select count(*) from store_payment
+	</select>
+	
+	<select id="storeList" parameterType="Map" resultType="com.amor.storePayment.model.StorePaymentDTO">
+		select * from
+		(select rownum as rnum, a.* from
+		(select sp.store_payment_idx,
+		(select m.member_id
+		from member m
+		where m.member_idx=sp.member_idx) as member_id,
+		(select p.product_title
+		from product p
+		where p.product_idx=sp.product_idx) as product_title,
+		sp.store_payment_amount,sp.store_payment_price, sp.store_payment_payment,sp.store_payment_paymentdate,sp.store_payment_status
+		from store_payment sp order by store_payment_idx desc) a)
+		where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}	
+	</select>
+	
+	<update id="storeListSubmit" parameterType="Map">
+		update store_payment
+		set store_payment_status=#{status}
+		where store_payment_idx=#{idx}
+	</update>
 </mapper>

@@ -46,10 +46,11 @@
 	
 	#box2{
 	flex:2;
-	padding-left: 40px;
+	padding-left: 20px;
 	}
 	
 	.btn {
+		margin-top: 60px;
 		display: none;
 		position: fixed;
 		z-index: 1;
@@ -68,6 +69,7 @@
 		width: 700px;
 		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 		border-radius: 15px;
+		border: 5px solid #1A2C82;
 	}
 	
 	.nextbtn {
@@ -109,11 +111,22 @@
 	}
 	
   .star {
+  	padding-bottom: 5px;
     position: relative;
-    font-size: 2rem;
+    font-size: 1.3rem;
     color: white;
   }
+ 
+  .starBack span {
+  	position: relative;
+  	background-color: #FFF0BB;
+  	border-radius: 5px;
+  }
   
+  .star span {
+   
+  }
+
   .star input {
     width: 100%;
     height: 100%;
@@ -121,26 +134,11 @@
     left: 0;
     opacity: 0;
     cursor: pointer;
-  }
-  
-  .starBack span {
-  	padding-bottom: 5px;
-  	position: relative;
-  	background-color: #FFF0BB;
-  	border-radius: 10px;
-  }
-  
-  .star span {
-    width: 0;
-    position: absolute; 
-    left: 0;
-    color: #FFAC33;
-    overflow: hidden;
-    pointer-events: none;
-  }
+  }  
   
   .name {
- 	line-height: 50px;
+  	margin-top:5px;
+ 	line-height: 30px;
   	height: 50px;
   	margin-right: 30px;
   	margin-left: 40px;
@@ -151,8 +149,30 @@
  	width: 262px;
 	height: 193px;
   	object-fit: contain;
+  	border: none;
+  	border-top: 3px solid #EEEEEE;
+  	border-bottom: 3px solid #EEEEEE;
+  	border-left: 3px solid #EEEEEE;
+  	border-right: 3px solid #EEEEEE;
   }
   
+  .reviewtitle {
+  	margin-left: 15px;
+  	margin-bottom: 10px;
+  	font-size: 25px;
+  	font-weight: bold;
+  	color: #1A2C82;
+  }
+  
+  .reviewTextarea{
+  	border: none;
+  	border-top: 3px solid #EEEEEE;
+  	border-bottom: 3px solid #EEEEEE;
+  	border-left: 3px solid #EEEEEE;
+  	border-right: 3px solid #EEEEEE;
+  	resize: none;
+  
+  }
 </style>
 <body>
 <%@include file="../header.jsp" %>
@@ -162,7 +182,7 @@
 <div class="mypagetitle"><a href = "/amor/myAmor/ticketingHistory.do"><label class="title1">예매내역</label></a> <a href="/amor/myAmor/cancellHistory.do"><label class="title2">취소내역</label></a></div>
 <!-- 이 밑으로 작업 -->
 <c:if test="${!empty list}">
-<c:forEach var="temp" items="${list}" >
+<c:forEach var="temp" items="${list}" varStatus="vs">
 <div class="contentbox">
   <img class="movieimg" src="/amor/resources/upload/movie/${temp.movieimg}"/>
   <div class="contentbox2">
@@ -222,11 +242,45 @@
   	</c:if>
   	<c:if test="${temp.timelimit == 'n'}">
   		${temp.timelimit}
-  		<input type = "button" value = "관람평 작성" class = "button" id="openReview">
+  		<input type = "button" value = "관람평 작성" class = "button" onclick="document.getElementById('myReviewBtn${vs.index}').style.display='block'">
   	</c:if>
   	
   </div>
 </div>
+
+<!-- 관람평 리뷰 -->
+
+<form name="reviewUpload" action="/amor/user/myAmor/reviewAdd.do" enctype="multipart/form-data">
+<div id="myReviewBtn${vs.index}" class="btn">
+	<div class="btn-content">
+		
+		<span id="closeBtn" class="closeBtn2" onclick="document.getElementById('myReviewBtn${vs.index}').style.display='none'">&times;</span>
+		<span class="reviewtitle">관람평 작성</span>
+		<br>
+		<br>
+		<span class="name">${sessionScope.sname } 님</span>
+		<span class="starBack">	
+		<span class="star${vs.index }" style="width: 0; position: absolute; left: 0; color: #FFAC33; overflow: hidden; pointer-events: none; border-radius: 5px;">
+			☆☆☆☆☆
+		<span>★★★★★</span>
+			<input type="range" name="movie_review_star" oninput="drawStar(this, .star${vs.index } span)" value="1" step="1" min="1" max="10">
+		</span>
+		</span>
+		<br>
+		<div id="container">
+			<div id="box1" class="container2">
+				<img id="reviewPreview${vs.index }" class="thumbnail">
+				<div class="inputfile">
+				<input type="file" name="movie_review_img" value="파일찾기" class="fileBtn" id="fileInput" onchange="imgPreview(this, reviewPreview${vs.index })">
+				</div>
+			</div>
+			<div id="box2"><textarea cols="55" rows="12" name="movie_review_content" placeholder="관람평을 작성해주세요" class="reviewTextarea"></textarea></div>
+		</div>
+		<p class="centerBtn"><input type="submit" value="작성 완료" class="cancelBtn"></p>
+		
+	</div>
+</div>
+</form>
 </c:forEach>
 </c:if>
 <c:if test="${empty list}">
@@ -235,65 +289,22 @@
 </div>
 </div>
 
-<!-- 관람평 리뷰 -->
 
-<form name="reviewUpload" action="/amor/user/myAmor/reviewAdd.do" enctype="multipart/form-data">
-<div id="myReviewBtn" class="btn">
-	<div class="btn-content">
-		
-		<span id="closeBtn" class="closeBtn2">&times;</span>
-		<span class="name">이름</span>
-		<span class="starBack">	
-		<span class="star">
-			<img src="/amor/resources/img/Stars_background.png">
-		<span><img src="/amor/resources/img/Stars_rating.png"></span>
-			<input type="range" name="movie_review_star" oninput="drawStar(this)" value="1" step="1" min="1" max="10">
-		</span>
-		</span>
-		<br>
-		<div id="container">
-			<div id="box1" class="container2">
-				<img id="reviewPreview" class="thumbnail">
-				<div class="inputfile">
-				<input type="file" name="movie_review_img" value="파일찾기" class="fileBtn" id="fileInput" onchange="imgPreview(this)">
-				</div>
-			</div>
-			<div id="box2"><textarea cols="55" rows="12" name="movie_review_content" placeholder="관람평을 작성해주세요"></textarea></div>
-		</div>
-		<p class="centerBtn"><input type="submit" value="작성 완료" class="cancelBtn">
-		&nbsp;&nbsp;<input type="reset" value="다시 작성" class="cancelBtn"></p>
-		
-	</div>
-</div>
-</form>
 </body>
 <script src = "/amor/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
-	const openReviewBtn = document.getElementById("openReview");
-	const myReviewBtn = document.getElementById("myReviewBtn");
-	const closeBtn = document.getElementById("closeBtn");
-	
-	openReviewBtn.addEventListener("click", () => {
-		myReviewBtn.style.display = "block";
-	});
-	
-	closeBtn.addEventListener("click", () =>{
-		myReviewBtn.style.display = "none";
-	});
-	
 	window.addEventListener("click", (event) => {
         if (event.target == myReviewBtn) {
             myReviewBtn.style.display = "none";
         }
     });		    
 	
-	function drawStar(target) {
-		window.alert(document.querySelector(".star span").style.width);
-		document.querySelector(".star span").style.width = target.value*10+'%';		
+	function drawStar(target, aaa) {
+		document.querySelector(aaa).style.width = target.value*10+'%';		
 	}
 	
-	function imgPreview(input){
-		let reviewImgId = 'reviewPreview';
+	function imgPreview(input, imgID){
+		let reviewImgId = imgID;
 		
 		if (input.files && input.files[0]) {
 		    var reader = new FileReader();

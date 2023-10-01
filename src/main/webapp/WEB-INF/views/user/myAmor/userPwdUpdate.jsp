@@ -62,20 +62,12 @@ function submit() {
     }else{
     	if(pwd1Value==pwd2Value){
     		var param='pwd='+pwd1Value;
-        	sendRequest('userPwdUpdateSubmit.do',param,showResult,'POST');	
+        	sendRequest('userPwdUpdateSubmit.do',param,null,'POST');	
+        	window.alert('비밀번호가 수정되었습니다.');
+			location.href='/amor/index.do';
     	}
     	
     }
-}
-
-function showResult() { 
-	if(XHR.readyState==4){
-		if(XHR.status==200){
-			var data=XHR.responseText; 
-			window.alert('비밀번호가 수정되었습니다.');
-			location.href='/amor/index.do';
-		}
-	}
 }
 
 </script>

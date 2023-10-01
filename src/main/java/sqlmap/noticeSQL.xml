@@ -39,4 +39,7 @@
 <delete id="noticeDelete" parameterType="Integer">
 	delete from notice where notice_idx=#{idx}
 </delete>
+<update id="noticeReadNumUpdate" parameterType="com.amor.notice.model.NoticeDTO">
+	update notice set notice_readnum=notice_readnum+1 where notice_idx=#{notice_idx}
+</update> 
 </mapper>

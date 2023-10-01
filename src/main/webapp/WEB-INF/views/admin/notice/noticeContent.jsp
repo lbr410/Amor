@@ -21,7 +21,7 @@
 		<th>번호</th>
 		<td>${dto.notice_idx }</td>
 		<th>조회수</th>
-		<td>${dto.notice_readnum }</td>
+		<td>${notice_read}</td>
 		<th>작성일</th>
 		<td>${dto.notice_writedate }</td>
 	</tr>

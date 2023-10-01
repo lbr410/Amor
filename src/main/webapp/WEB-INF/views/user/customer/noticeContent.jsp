@@ -6,15 +6,18 @@
 <meta charset="UTF-8">
 <title>아모르 : 공지사항 내용</title>
 <style>
-
+.content{
+	margin-top: 140px;
+}
 table{
 	width:800px;
+	margin: 0 auto;
 	padding-top: 35px;
 	border-spacing: 0px;
 }
-.th1{
-	background-color: #ff7f50;
-	color:white;
+.th{
+	background-color: #F8F8F8;
+	color:#000000;
 	height: 30px;
 }
 .th2{
@@ -50,31 +53,37 @@ table{
 </style>
 </head>
 <%@include file = "../header.jsp" %>
-<section>
-	<article>
+<section class="content">
+
 		<table>
-			<thead>
-				<tr>
-					<th class="th2">번호</th>
-					<td class="notice_idx" >${dto.notice_idx }</td>
-					<th class="th2">작성날짜</th>
-					<td class="notice_writedate">${dto.notice_writedate }</td>
-				</tr>
-				<tr>
-					<th class="th1">조회수</th>
-					<td class="td1">${dto.notice_readnum }</td>
-				</tr>
-				<tr>
-					<th class="th1">제목</th>
-					<td colspan="3" class="td1">${dto.notice_subject }</td>
-				</tr>
-				<tr>
-					<td colspan="4" class="content">
-					<div class="contentDiv">${dto.notice_content().replaceAll("\n", "<br>") }</div></td>
-				</tr>
-		</table>
-		<div id="noticelist"><a href="/amor/customer/noticeList.do">목록으로</a></div>
-	</article>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<td>${dto.notice_idx }</td>
+				<th>조회수</th>
+				<td>${dto.notice_readnum }</td>
+				<th>작성일</th>
+				<td>${dto.notice_writedate }</td>
+			</tr>
+			<tr>
+				<th>제목</th>
+				<td colspan="5" align="left">${dto.notice_subject  }</td>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<td colspan="6" align="right">
+				<div id="noticelist"><a href="/amor/customer/noticeList.do">목록으로</a></div>
+			</tr>
+		</tfoot>
+		<tbody>
+	<tr>
+		<td colspan="6" align="left">
+		${dto.notice_content }</td>
+	</tr>
+</tbody>
+</table>
+
 </section>
 <%@ include file="../footer.jsp" %>
 </body>

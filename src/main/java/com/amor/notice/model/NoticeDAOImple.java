@@ -56,4 +56,9 @@ public class NoticeDAOImple implements NoticeDAO {
 		return result;
 	}
 
+	@Override
+	public int noticeReadNumUpdate(int notice_idx) {
+		int result=sqlmap.update("noticeReadNumUpdate", notice_idx);
+		return result;
+	}
 }

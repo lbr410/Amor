@@ -39,12 +39,12 @@
 	</c:if>
 	<c:forEach var="dto" items="${lists }">
 		<tr>
-			<td>${dto.faq_idx }</td>
-			<td>${dto.faq_type2}</td>
+			<td class="idxTd">${dto.faq_idx }</td>
+			<td class="type">${dto.faq_type2}</td>
 			<c:url var="contentUrl" value="faqContent.do">
 				<c:param name="faq_idx">${dto.faq_idx }</c:param>			
 			</c:url>
-			<td><a href="${contentUrl }">${dto.faq_subject }</a></td>
+			<td class="subject"><a href="${contentUrl }">${dto.faq_subject }</a></td>
 			<td>${dto.faq_writedate }</td>
 		</tr>
 	</c:forEach>

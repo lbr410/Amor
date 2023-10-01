@@ -1,4 +1,84 @@
 @charset "UTF-8";
+@charset "UTF-8";
+
+body, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+a a:active a:link{
+	text-decoration: none;
+	color: 333333;
+}
+.body-inner {
+    width: 1100px;
+    margin: 0 auto;
+    position: relative;
+}
+button {
+    background-color: transparent;
+    border: none;
+}
+.paging {
+	margin-top: 30px;
+	text-align: center;
+	font-size: 16px;
+}
+
+.paging a:hover{
+	color: #2E90FF;
+	font-weight: normal;
+}
+
+.nowPage {
+	color: #2E90FF !important;
+	font-weight: bold;
+}
+.gray-bar{
+	margin-top: 120px;
+    width: 100%;
+    height: 14px;
+    background-color: #F7F8F9;
+    padding: 8px 8px 16px 8px;
+}
+.gray-bar .location{
+    width: 1100px;
+    margin: 0 auto;
+}
+.gray-bar .location .home{
+    margin-left: 80px;
+    color: #666666;
+    font-size: 14px;
+}
+.gray-bar .location a{
+    color: #666666;
+    text-decoration: none;
+        font-size: 14px;
+}
+.location a::before{
+    content: ' >';
+    color:#666666;
+    display: inline;
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;
+}
+/**BORDER BAR*/
+.border-bar {
+    padding-top: 48px;
+    width: 1100px;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    border-bottom: solid 1px #D9D9D9;
+}
+
+.border-title {
+    margin-top: 48px;
+    display: block;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
 .faqListDiv{
 	width: 1000px;
 	height: 192px;
@@ -64,6 +144,30 @@
     background: #EEEEEE;
     color: #1A2C82;
     border: 1px solid #EEEEEE;
+}
+/**MENU*/
+#category-bar {
+    display: flex;
+    width: 1100px;
+    gap: 0px;
+    overflow: auto;
+}
+.category-button {
+    color: #BCBCbC;
+    width: 550px;
+    height: 66px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+.category-button:hover {
+    color: #000000;
+    border-bottom: 2px solid #DDDDDD;
+}
+#active-category-button {
+    color: #000000;
+    border-bottom: 2px solid #000000;
 }
 a:visited{
 	color:#181818;
@@ -148,7 +252,7 @@ a:hover {
 .tb_wrap .txt_qna {
     position: absolute;
     top: 20px;
-    left: 20px;
+    left: -25px;
 }
 .txt_qna {
     overflow: hidden;
@@ -162,6 +266,7 @@ a:hover {
 }
 strong {
     font-weight: bold;
+    color: white;
 }
 .txt_qna span {
     display: block;
@@ -172,9 +277,28 @@ strong {
 }
 .acc_body.active {
     display: table-row;
+    background: #EEEEEE;
+    padding: 20px;
+}
+.faq_subject{
+	font-weight: bold;
+	font-size: 16px;
+	padding-bottom: 24px;
+}
+.faq_content{
+	font-weight: middle;
+	font-size: 14px;
+}
+.open{
+	text-align: left;
+	padding: 34px;
 }
 #row0,
 #thead0 {
 width: 400px;
 }
-
+em{
+	font-size: 24px;
+	font-weight: bold;
+	color: #333333;
+}

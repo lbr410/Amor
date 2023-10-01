@@ -310,4 +310,37 @@ public class StorePaymentServiceImple implements StorePaymentService {
 			return null;
 		}
 	}
+	
+	@Override
+	public int storeListTotalCnt() {
+		int result=storePaymentDao.storeListTotalCnt();
+		return result;
+	}
+	
+	@Override
+	public List<StorePaymentDTO> storeList(int cp, int listSize) {
+		int start=(cp-1) * listSize + 1;
+		int end=cp * listSize;
+		Map map=new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		List<StorePaymentDTO> lists=storePaymentDao.storeList(map);
+		DecimalFormat df=new DecimalFormat("#,##0원");
+		
+		for(int i=0;i<lists.size();i++) {
+			double dbstore_price=lists.get(i).getStore_payment_price();
+			String store_price=df.format(dbstore_price);
+			lists.get(i).setC(store_price);
+		}		
+		return lists;
+	}
+	
+	@Override
+	public int storeListSubmit(String status, int idx) {
+		Map map=new HashMap();
+		map.put("status", status);
+		map.put("idx", idx);
+		int result=storePaymentDao.storeListSubmit(map);
+		return result;
+	}
 }

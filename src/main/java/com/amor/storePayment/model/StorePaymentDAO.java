@@ -30,4 +30,9 @@ public interface StorePaymentDAO {
 	public List<MyPageStorePaymentDTO> mypageStorePaymentList(int useridx);
 	public int mypageStoreCancell(int paymentidx);
 	public List<MyPageStorePaymentDTO> mypageStoreCancellList(int useridx);
+
+	public int storeListTotalCnt();
+	public List<StorePaymentDTO> storeList(Map map);
+	public int storeListSubmit(Map map);
+
 }

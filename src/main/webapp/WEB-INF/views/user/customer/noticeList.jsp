@@ -16,6 +16,7 @@
         	Home
             <a href="/amor/customer/noticeList.do" title="페이지로 이동">고객센터</a>
             <a href="/amor/customer/noticeList.do" title="공지사항 페이지로 이동">공지사항</a>
+            <a href="/amor/customer/inquiryList.do" title="1:1문의 페이지로 이동">1:1문의</a>
         </div>
     </div>
     
@@ -26,9 +27,11 @@
         </div>
         <!-- CATEGORY BAR -->
         <div id="category-bar">
+        	<a href="/amor/customer/faqList.do">
             <button class="category-button">
                 <div>FAQ</div>
             </button>
+            </a>
             <a href="/amor/customer/noticeList.do">
             <button class="category-button" id="active-category-button">
                 <div>공지사항</div>
@@ -59,9 +62,9 @@
                 	</tr>
                 </c:if>
                 <c:forEach var="dto" items="${lists }">
-                    <tr>
+                    <tr class="customer">
                     	<td class="notice_idx">${dto.notice_idx }</td>
-						<c:url var="contentUrl" value="userNoticeContent.do">
+						<c:url var="contentUrl" value="noticeContent.do">
 							<c:param name="notice_idx">${dto.notice_idx }</c:param>			
 						</c:url>
                         <td class="notice_subject"><a href="${contentUrl }">${dto.notice_subject }</a></td>

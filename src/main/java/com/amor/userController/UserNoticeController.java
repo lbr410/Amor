@@ -32,4 +32,17 @@ public class UserNoticeController {
 		return mav;
 	}
 	
+	@RequestMapping("customer/noticeContent.do")
+	public ModelAndView noticeContent(
+		@RequestParam(value="notice_idx", defaultValue = "0")int notice_idx) {
+		
+		NoticeDTO dto=noticeService.noticeContnet(notice_idx);
+		ModelAndView mav=new ModelAndView();
+		int readNum=noticeService.noticeReadNumUpdate(notice_idx);
+		mav.addObject("dto", dto);
+		mav.addObject("notice_read", readNum);
+		mav.setViewName("/user/customer/noticeContent");
+		return mav;
+	}
+	
 }

@@ -170,4 +170,22 @@ public class StorePaymentDAOImple implements StorePaymentDAO {
 		List<MyPageStorePaymentDTO> lists = sqlmap.selectList("mypageStoreCancellList", useridx);
 		return lists;
 	}
+	
+	@Override
+	public int storeListTotalCnt() {
+		int result=sqlmap.selectOne("storeListTotalCnt");
+		return result;
+	}
+	
+	@Override
+	public List<StorePaymentDTO> storeList(Map map) {
+		List<StorePaymentDTO> lists=sqlmap.selectList("storeList", map);
+		return lists;
+	}
+	
+	@Override
+	public int storeListSubmit(Map map) {
+		int result=sqlmap.update("storeListSubmit", map);
+		return result;
+	}
 }
