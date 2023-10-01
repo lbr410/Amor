@@ -13,16 +13,16 @@
     <!-- GRAY NAVIGATE BAR -->
     <div class="gray-bar">
         <div class="location">
-            <a href="#" title="페이지로 이동">고객센터</a>
-            <a href="#" title="FAQ 페이지로 이동">FAQ</a>
+        	Home
+            <a href="/amor/customer/noticeList.do" title="페이지로 이동">고객센터</a>
+            <a href="/amor/customer/faqList.do" title="공지사항 페이지로 이동">faq</a>
         </div>
     </div>
     
     <div class="body-inner">
-    <div class="title">고객센터</div>
         <!-- BORDER BAR -->
         <div class="border-bar">
-            <div class="border-title">FAQ</div>
+            <div class="border-title">고객센터</div>
         </div>
         <!-- CATEGORY BAR -->
         <div id="category-bar">
@@ -32,7 +32,7 @@
             </button>
             </a>
             <a href="/amor/customer/noticeList.do">
-            <button class="category-button" id="category-button">
+            <button class="category-button">
                 <div>공지사항</div>
             </button>
             </a>
@@ -74,10 +74,8 @@
                     <tr class="acc_head" aria-expanded="false" role="button" title="닫기">
                         <td id="row0" headers="thead0">${dto.faq_type }</td>
                         <td headers="thead1 row0" class="text_1">
-                            <a href="#" class="op" title="열림" aria-expanded="false">
-                                <strong class="txt_qna q">Q 
-                                    ${dto.faq_subject }
-                                </strong>
+                            <a  class="op" title="열림" aria-expanded="false">
+                                <span>${dto.faq_subject }</span><strong class="txt_qna q">Q</strong>
                             </a>
                         </td>
                     </tr>
@@ -86,10 +84,11 @@
                             <div class="2" headers="thead1 row0">
                                 <div class="op">
                                     <strong class="txt_qna a">
-                                        <span></span>
+                                        <span>${dto.faq_subject }</span>
                                     </strong>
-                                    <div>
-                                        <p><span>${dto.faq_content }</span></p>
+                                    <div class="open">
+                                    	<p><em>Q . </em><span class="faq_subject">${dto.faq_subject }</span></p>
+                                        <p><em>A . </em><span class="faq_content">${dto.faq_content }</span></p>
                                     </div>
                                 </div>
                             </div>

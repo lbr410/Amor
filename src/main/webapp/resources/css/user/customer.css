@@ -4,9 +4,14 @@ body, h1, h2, p {
     margin: 0;
     padding: 0;
 }
-a{
-	text-decoration: none;
-	color: 333333;
+a,
+a:link,
+a:visited,
+a:active,
+a:hover {
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
 }
 .body-inner {
     width: 1100px;
@@ -78,23 +83,25 @@ button {
     font-size: 24px;
 }
 
-.customerSection .customerTable .customerTable .commonTable{
+.customerSection .customerTable .commontable{
 	width: 1100px;
 	border-spacing: 0px;
-	
+	margin-bottom: 78px;
 }
-.customerSection .customerTable .customerTable .commonTable th{
+.customerSection .customerTable .commontable th{
 	background: #F8F8F8;
-	height: 30px;
 	font-size: 12px;
 	color: #55555;
-	
+	padding: 20px;
+	font-weight: bold;
 }
-.customerSection .customerTable .customerTable .commonTable td{
+.customerSection .customerTable .commontable td{
 	text-align: center;
 	font-size: 12px;
-	height: 30px;
-
+	padding: 14px;
+}
+.customer{
+	border-bottom: 1px solid #333333;
 }
 .customerSection .customerTable{
 	display: flex;
@@ -102,7 +109,7 @@ button {
 	align-items: flex-start;
 	gap: 10px;
 }
-.customerTable .customerTable .commonTable tbody tr:hover {
+.customerTable .customerTable .commontable tbody tr:hover {
 	background-color: #E6E6E6;
 	color:#55555;
 }
@@ -110,7 +117,7 @@ button {
 #category-bar {
     display: flex;
     width: 1100px;
-    gap: 32px;
+    gap: 0px;
     overflow: auto;
 }
 .category-button {
