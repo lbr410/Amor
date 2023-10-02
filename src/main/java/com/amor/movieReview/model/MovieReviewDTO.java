@@ -7,36 +7,44 @@ public class MovieReviewDTO {
 	private int movie_idx;
 	private int ticketing_idx;
 	private int member_idx;
-	private int moview_review_star;
-	private String moview_review_content;
-	private String moview_review_img;
+	private int movie_review_star;
+	private String movie_review_content;
+	private String movie_review_img;
+	private Date movie_review_writedate;
 	private Date ticketing_screeningtime;
 	private String movie_name;
+	private String member_id;
+	private String member_block;
 	
 	public MovieReviewDTO() {
 		// TODO Auto-generated constructor stub
 	}
+	
 
-	public MovieReviewDTO(int movie_review_idx, int movie_idx, int ticketing_idx, int member_idx,
-			int moview_review_star, String moview_review_content, String moview_review_img,
-			Date ticketing_screeningtime, String movie_name) {
+	public MovieReviewDTO(int movie_review_idx, int movie_idx, int ticketing_idx, int member_idx, int movie_review_star,
+			String movie_review_content, String movie_review_img, Date movie_review_writedate,
+			Date ticketing_screeningtime, String movie_name, String member_id, String member_block) {
 		super();
 		this.movie_review_idx = movie_review_idx;
 		this.movie_idx = movie_idx;
 		this.ticketing_idx = ticketing_idx;
 		this.member_idx = member_idx;
-		this.moview_review_star = moview_review_star;
-		this.moview_review_content = moview_review_content;
-		this.moview_review_img = moview_review_img;
+		this.movie_review_star = movie_review_star;
+		this.movie_review_content = movie_review_content;
+		this.movie_review_img = movie_review_img;
+		this.movie_review_writedate = movie_review_writedate;
 		this.ticketing_screeningtime = ticketing_screeningtime;
 		this.movie_name = movie_name;
+		this.member_id = member_id;
+		this.member_block = member_block;
 	}
 
-	public MovieReviewDTO(String moview_review_content, String moview_review_img, Date ticketing_screeningtime,
+
+	public MovieReviewDTO(String movie_review_content, String movie_review_img, Date ticketing_screeningtime,
 			String movie_name) {
 		super();
-		this.moview_review_content = moview_review_content;
-		this.moview_review_img = moview_review_img;
+		this.movie_review_content = movie_review_content;
+		this.movie_review_img = movie_review_img;
 		this.ticketing_screeningtime = ticketing_screeningtime;
 		this.movie_name = movie_name;
 	}
@@ -73,28 +81,36 @@ public class MovieReviewDTO {
 		this.member_idx = member_idx;
 	}
 
-	public int getMoview_review_star() {
-		return moview_review_star;
+	public int getMovie_review_star() {
+		return movie_review_star;
 	}
 
-	public void setMoview_review_star(int moview_review_star) {
-		this.moview_review_star = moview_review_star;
+	public void setMovie_review_star(int movie_review_star) {
+		this.movie_review_star = movie_review_star;
 	}
 
-	public String getMoview_review_content() {
-		return moview_review_content;
+	public String getMovie_review_content() {
+		return movie_review_content;
 	}
 
-	public void setMoview_review_content(String moview_review_content) {
-		this.moview_review_content = moview_review_content;
+	public void setMovie_review_content(String movie_review_content) {
+		this.movie_review_content = movie_review_content;
 	}
 
-	public String getMoview_review_img() {
-		return moview_review_img;
+	public String getMovie_review_img() {
+		return movie_review_img;
 	}
 
-	public void setMoview_review_img(String moview_review_img) {
-		this.moview_review_img = moview_review_img;
+	public void setMovie_review_img(String movie_review_img) {
+		this.movie_review_img = movie_review_img;
+	}
+
+	public Date getMovie_review_writedate() {
+		return movie_review_writedate;
+	}
+
+	public void setMovie_review_writedate(Date movie_review_writedate) {
+		this.movie_review_writedate = movie_review_writedate;
 	}
 
 	public Date getTicketing_screeningtime() {
@@ -112,10 +128,22 @@ public class MovieReviewDTO {
 	public void setMovie_name(String movie_name) {
 		this.movie_name = movie_name;
 	}
-	
-	
-	
-	
-	
 
+	public String getMember_id() {
+		return member_id;
+	}
+
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+
+	public String getMember_block() {
+		return member_block;
+	}
+
+	public void setMember_block(String member_block) {
+		this.member_block = member_block;
+	}
+
+	
 }

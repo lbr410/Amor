@@ -55,7 +55,7 @@
 				<div class="menutext"><a href="#" data-submenu="submenu-5">관람평 관리</a></div>
 			</div>
 			<div class="submenu" id="submenu-5"> 
-				<div class="menutext"><a href="#">관람평 목록</a></div>
+				<div class="menutext"><a href="/amor/admin/review/reviewList.do">관람평 목록</a></div>
 			</div>		
 			
 			<div class="menu" onclick="toggleSubmenu(this)">

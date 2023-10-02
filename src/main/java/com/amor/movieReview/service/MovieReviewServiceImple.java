@@ -1,5 +1,6 @@
 package com.amor.movieReview.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +35,39 @@ public class MovieReviewServiceImple implements MovieReviewService {
 	public int getTotalCnt() {
 		int count=movieReviewDao.getTotalCnt();
 		return count;
+	}
+	
+	@Override
+	public int reviewListTotalCnt() {
+		int result=movieReviewDao.reviewListTotalCnt();
+		return result;
+	}
+	
+	@Override
+	public List<MovieReviewDTO> adminReviewList(int cp, int listSize) {
+		int start=(cp-1) * listSize + 1;
+		int end=cp * listSize;
+		Map map=new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		List<MovieReviewDTO> lists=movieReviewDao.adminReviewList(map);
+		return lists;
+	}
+	
+	@Override
+	public MovieReviewDTO adminReviewPopup(int idx) {
+		MovieReviewDTO dto=movieReviewDao.adminReviewPopup(idx);
+		dto.setMovie_review_content(dto.getMovie_review_content().replaceAll("\n", "<br>"));
+		return dto;
+	}
+	
+	@Override
+	public int adminReviewBlockUpdate(int idx, String value) {
+		Map map=new HashMap();
+		map.put("idx", idx);
+		map.put("value", value);
+		int result=movieReviewDao.adminReviewBlockUpdate(map);
+		return result;
 	}
 
 }
