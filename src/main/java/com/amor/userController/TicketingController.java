@@ -35,7 +35,7 @@ public class TicketingController {
 	@RequestMapping("ticketing/ticketingSelectMovie.do")
 	public String ticketingSelectMovie(String movie_name, int movie_maxage,HttpSession session, Model model) {
 		session.setAttribute("ticketing_movie_name", movie_name);
-		System.out.println(session.getAttribute("ticketing_movie_name"));
+		System.out.println("세션값 : "+session.getAttribute("ticketing_movie_name"));
 		
 		model.addAttribute("movie_name",movie_name);
 		model.addAttribute("movie_maxage",movie_maxage);
@@ -59,5 +59,22 @@ public class TicketingController {
 		
 		return "amorJson";
 	}
+	
+	@RequestMapping("ticketing/ticketingSchedule.do")
+	public ModelAndView ticketingSchedule() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/user/ticketing/ticketingSchedule");
+		return mav;
+	}
+	
+	@RequestMapping("ticketing/ticketingScheduleSelectDate.do")
+	public String ticketingScheduleSelectDate() {
+		
+		
+		
+		return "amorJson";
+	}
+	
+	
 	
 }

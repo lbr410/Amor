@@ -58,7 +58,7 @@
                 </li>
                 <li>
                   <ul>
-                     <li class="ticketingSchedule">상영시간표</li>
+                     <li class="ticketingSchedule"><a href="/amor/ticketing/ticketingSchedule.do">상영시간표</a></li>
                   </ul>
                 </li>
               </ul>
