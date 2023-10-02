@@ -83,7 +83,7 @@ public class MovieServiceImple implements MovieService {
 	}
 	
 	@Override
-	public List<MovieDTO> movieCome() {
+	public List<MovieDTO> movieCome(int cp, int listSize) {
 		Map map=new HashedMap();
 		List <MovieDTO> lists = moviedao.movieCome(map);
 		return lists;

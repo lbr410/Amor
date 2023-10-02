@@ -62,7 +62,7 @@
 				<div class="menutext"><a href="#" data-submenu="submenu-6">1:1문의 관리</a></div>
 			</div>
 			<div class="submenu" id="submenu-6"> 
-				<div class="menutext"><a href="#">관람평 목록</a></div>
+				<div class="menutext"><a href="/amor/admin/inquiry/inquiryList.do">1:1문의 목록</a></div>
 			</div>	
 						
 			<div class="menu" onclick="toggleSubmenu(this)">

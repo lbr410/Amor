@@ -23,7 +23,7 @@ public interface MovieService {
 	
 	public List<MovieDTO> movieBest(int cp, int listSize);
 	
-	public List<MovieDTO> movieCome();
+	public List<MovieDTO> movieCome(int cp, int listSize);
 	
 	public int getUserSearchTotalCnt(String userSearch);
 	

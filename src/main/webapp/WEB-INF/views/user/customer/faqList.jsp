@@ -72,7 +72,12 @@
                 </c:if>
                 <c:forEach var="dto" items="${lists }">
                     <tr class="acc_head" aria-expanded="false" role="button" title="닫기">
-                        <td id="row0" headers="thead0">${dto.faq_type }</td>
+                        <td id="row0" headers="thead0">
+                        <c:if test="${1==dto.faq_type }">영화관 이용</c:if>
+                        <c:if test="${2==dto.faq_type }">온라인</c:if>
+                        <c:if test="${3==dto.faq_type }">관람권</c:if>
+                        <c:if test="${4==dto.faq_type }">스토어</c:if>
+                        </td>
                         <td headers="thead1 row0" class="text_1">
                             <a  class="op" title="열림" aria-expanded="false">
                                 <span>${dto.faq_subject }</span><strong class="txt_qna q">Q</strong>

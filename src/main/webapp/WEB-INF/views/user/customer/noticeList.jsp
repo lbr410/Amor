@@ -16,7 +16,6 @@
         	Home
             <a href="/amor/customer/noticeList.do" title="페이지로 이동">고객센터</a>
             <a href="/amor/customer/noticeList.do" title="공지사항 페이지로 이동">공지사항</a>
-            <a href="/amor/customer/inquiryList.do" title="1:1문의 페이지로 이동">1:1문의</a>
         </div>
     </div>
     

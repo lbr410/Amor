@@ -3,7 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amor.inquirySQL">
-<select id="inquiryList" parameterType="Map" resultType="com.amor.inquiry.model.InquiryDTO">
+
+<select id="memberInquiryList" parameterType="Map" resultType="com.amor.inquiry.model.InquiryDTO">
 	select * from
 	(select rownum as rnum, a.* from
 	(select * from inquiry order by inquiry_idx desc) a)
@@ -16,7 +17,7 @@
 
 <insert id="inquiryWrite" parameterType="com.amor.inquiry.model.InquiryDTO">
 	insert into inquiry values(
-	inquiry_idx.nextval, #{member_idx}, #{inquiry_subject}, #{inquiry_content}, #{inquiry_filename}, sysdate, '-', 0))
+	inquiry_idx.nextval, #{member_idx}, #{inquiry_subject}, #{inquiry_content}, #{inquiry_filename}, sysdate, 'n', 0)
 </insert>
 
 <select id="inquiryContent" parameterType="Integer" resultType="com.amor.inquiry.model.InquiryDTO">
@@ -24,10 +25,17 @@
 	where inquiry_idx=#{inquiry_idx}
 </select>
 
+<select id="inquiryList" parameterType="Map" resultType="com.amor.inquiry.model.InquiryDTO">
+	select * from
+    (select rownum as rnum, a.* from
+    (select * from inquiry order by inquiry_idx desc) a)
+    where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}
+</select>
+
 <update id="inquiryAnswer" parameterType="Map">
 	update inquiry set
 		inquiry_answer=#{inquiry_answer},
-		inquiry_astatus=#{inquiry_astatus}
+		inquiry_astatus='y'
 	where inquiry_idx=#{inquiry_idx}
 </update>
 <delete id="inquiryDelete" parameterType="Integer">

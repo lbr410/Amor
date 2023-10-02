@@ -17,13 +17,13 @@ public class InquiryServiceImple implements InquiryService {
 	}
 
 	@Override
-	public List<InquiryDTO> inquiryList(int cp, int listSize) {
+	public List<InquiryDTO> memberInquiryList(int cp, int listSize) {
 		int start=(cp-1) * listSize + 1;
 		int end=cp * listSize;
 		Map map=new HashedMap();
 		map.put("start", start);
 		map.put("end", end);
-		List<InquiryDTO>lists=inquiryDao.inquiryList(map);
+		List<InquiryDTO>lists=inquiryDao.memberInquiryList(map);
 		return lists;
 	}
 	
@@ -39,5 +39,26 @@ public class InquiryServiceImple implements InquiryService {
 		return result;
 	}
 	
-
+	@Override
+	public List<InquiryDTO> inquiryList(int cp, int listSize) {
+		int start=(cp-1) * listSize + 1;
+		int end=cp * listSize;
+		Map map=new HashedMap();
+		map.put("start", start);
+		map.put("end", end);
+		List<InquiryDTO>lists=inquiryDao.inquiryList(map);
+		return lists;
+	}
+	
+	@Override
+	public int inquiryAnswer(InquiryDTO dto) {
+		int result=inquiryDao.inquiryAnswer(dto);
+		return result;
+	}
+	
+	@Override
+	public int inquiryDelete(int idx) {
+		int result=inquiryDao.inquiryDelete(idx);
+		return result;
+	}
 }
