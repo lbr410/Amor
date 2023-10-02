@@ -24,32 +24,44 @@
 		['f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'f9', 'f10', 'f11', 'f12', 'f13', 'f14', 'f15', 'f16', 'f17', 'f18', 'f19', 'f20'],
 		['g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9', 'g10', 'g11', 'g12', 'g13', 'g14', 'g15', 'g16', 'g17', 'g18', 'g19', 'g20'],
 		['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8', 'h9', 'h10', 'h11', 'h12', 'h13', 'h14', 'h15', 'h16', 'h17', 'h18', 'h19', 'h20']
-	]
-	
-	let tongroTest = [
-		['a3', 'a18'],
-		['b3', 'b18'],
-		['c3', 'c18'],
-		['d3', 'd18'],
-		['e3', 'e18'],
-		['f3', 'f18'],
-		['g3', 'g18'],
-		['h3', 'h18']
 	]*/
 	
 	// 이미 예약된 좌석
 	let alreadyBookedArr = '${playingMovieInfo.playing_movie_seat}'.split(',');
 	
+	// 통로
+	/*let tongro = '${theaterInfo.theater_path}';
+
+	let formattedString = tongro.replace(/\[|\]/g, '');
+	let stringArray = formattedString.split(',');
+
+	let tongroArr = [];
+	for (let i=0; i<stringArray.length; i++) {
+	    let innerArray = stringArray[i].split(',');
+	    tongroArr.push(innerArray);
+	}*/
+	
+	let seats = '${theaterInfo.theater_seat}';
+	let seatsArr = JSON.parse(seats);
+	
+	/*let formattedString = seats.replace(/\[|\]/g, '');
+	let stringArray = formattedString.split(',');
+
+	let seatsArr = [];
+	for (let i=0; i<stringArray.length; i++) {
+	    let innerArray = stringArray[i].split(',');
+	    seatsArr.push(innerArray);
+	}*/
+	
 	window.onload = function() {
 		let seatPlace = document.getElementById('seatPlace');
-		//for(let i=0; i<jsonArrTest.length; i++) { // theater의 행
-		for(let i=0; i<${theaterInfo.theater_row}; i++) {
+		
+		for(let i=0; i<${theaterInfo.theater_row}; i++) { // theater의 행
 			let alphabetRow = document.createElement('span');
 			alphabetRow.textContent = alphabet.charAt(i);
 			alphabetRow.className = 'alphabetRow';
 			seatPlace.appendChild(alphabetRow);
 			
-			//for(let j=0; j<jsonArrTest[i].length; j++) {
 			for(let j=0; j<${theaterInfo.theater_column}; j++) { // theater의 열
 				let seatBox = document.createElement('input');
 				seatBox.type = 'checkbox';
@@ -67,10 +79,10 @@
 
 				//seatBox.value = jsonArrTest[i][j];
 				
-				/*if(tongroTest[i].includes(seatBox.value)) {
-					let tongro = document.createElement('span');
-					tongro.className = 'tongroDeco';
-					seatPlace.appendChild(tongro);
+				/*if(tongroArr.includes(seatBox.value)) {
+					let tongroSpan = document.createElement('span');
+					tongroSpan.className = 'tongroDeco';
+					seatPlace.appendChild(tongroSpan);
 				} else {*/
 					//console.log(tongroTest[i].includes(seatBox.value));
 					//console.log(seatBox.value);
@@ -109,7 +121,7 @@
 							}
 						}
 					}) // end function
-				//} // end if
+				//} // tongro end if
 			} // end for
 			let lineBreak = document.createElement('br');
 			seatPlace.appendChild(lineBreak);
