@@ -124,7 +124,12 @@
   }
   
   .star span {
-   
+   position: absolute; 
+   left: 0; 
+   color: #FFAC33; 
+   overflow: hidden; 
+   pointer-events: none; 
+   border-radius: 5px;
   }
 
   .star input {
@@ -260,10 +265,10 @@
 		<br>
 		<span class="name">${sessionScope.sname } 님</span>
 		<span class="starBack">	
-		<span class="star${vs.index }" style="width: 0; position: absolute; left: 0; color: #FFAC33; overflow: hidden; pointer-events: none; border-radius: 5px;">
+		<span class="star">
 			☆☆☆☆☆
-		<span>★★★★★</span>
-			<input type="range" name="movie_review_star" oninput="drawStar(this, .star${vs.index } span)" value="1" step="1" min="1" max="10">
+		<span class="starAll${vs.index}" style="width: 0;">★★★★★</span>
+			<input type="range" name="movie_review_star" oninput="drawStar(this, '.starAll${vs.index}')" min="1" max="10">
 		</span>
 		</span>
 		<br>
@@ -271,7 +276,7 @@
 			<div id="box1" class="container2">
 				<img id="reviewPreview${vs.index }" class="thumbnail">
 				<div class="inputfile">
-				<input type="file" name="movie_review_img" value="파일찾기" class="fileBtn" id="fileInput" onchange="imgPreview(this, reviewPreview${vs.index })">
+				<input type="file" name="movie_review_img" value="파일찾기" class="fileBtn" id="fileInput" onchange="imgPreview(this, 'reviewPreview${vs.index }')">
 				</div>
 			</div>
 			<div id="box2"><textarea cols="55" rows="12" name="movie_review_content" placeholder="관람평을 작성해주세요" class="reviewTextarea"></textarea></div>
@@ -280,7 +285,10 @@
 		
 	</div>
 </div>
+	<input type="hidden" name="ticketing_idx" value="${temp.ticketnum}">
+	<input type="hidden" name="movie_idx" value=${temp.movieidx }>
 </form>
+
 </c:forEach>
 </c:if>
 <c:if test="${empty list}">
@@ -303,8 +311,8 @@
 		document.querySelector(aaa).style.width = target.value*10+'%';		
 	}
 	
-	function imgPreview(input, imgID){
-		let reviewImgId = imgID;
+	function imgPreview(input, bbb){
+		let reviewImgId = bbb;
 		
 		if (input.files && input.files[0]) {
 		    var reader = new FileReader();

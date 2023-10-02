@@ -1,5 +1,9 @@
 package com.amor.userController;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,6 +35,58 @@ public class MovieReviewController {
 	@RequestMapping(value = "/user/myAmor/movieReviewAdd.do", method = RequestMethod.POST)
 	public ModelAndView reviewWrite(MovieReviewJoinDTO dto, MultipartHttpServletRequest req) {
 			
+		MultipartFile upl = req.getFile("movie_review_img");
+	      String upload = upl.getOriginalFilename();
+	      String noExt = upload.substring(0, upload.lastIndexOf("."));
+	      String ext = upload.substring(upload.lastIndexOf(".") + 1);
+
+	      String savePath = req.getRealPath("/resources/upload/review/");
+	      String saveFileName = "";
+	      
+	      try {
+	         byte bytes[] = upl.getBytes();
+	         String filefull = savePath + upload;
+	         File f = new File(filefull);
+	         if(f.isFile()) {
+	            boolean ex = true;
+	            int index = 0;
+	            while(ex) {
+	               index++;
+	               saveFileName = noExt+"("+index+")."+ext;
+	               String dictFile = savePath + saveFileName;
+	               ex = new File(dictFile).isFile();
+	               f = new File(dictFile);
+	            }
+	         } else if(!f.isFile()) {
+	            saveFileName = upload;
+	         }
+	         
+	         FileOutputStream fos = new FileOutputStream(f);
+	         fos.write(bytes);
+	         fos.close();
+	      } catch (FileNotFoundException e) {
+	         e.printStackTrace();
+	      } catch (IOException e) {
+	         e.printStackTrace();
+	      }
+	      
+//	      ProductDTO dto = new ProductDTO();
+//	      dto.setProduct_category(req.getParameter("product_category"));
+//	      dto.setProduct_title(req.getParameter("product_title"));
+//	      dto.setProduct_price(Integer.parseInt(req.getParameter("product_price")));
+//	      dto.setProduct_content(req.getParameter("product_content"));
+//	      dto.setProduct_img(saveFileName);
+
+//	      int count = productService.productAdd(dto);
+	      
+//	      String msg = count > 0 ? "상품을 등록하였습니다." : "상품 등록 실패!";
+//	      ModelAndView mav = new ModelAndView();
+//	      mav.addObject("msg", msg);
+//	      mav.addObject("goUrl", "productList.do");
+//	      mav.setViewName("user/msg/userMsg");
+//	      
+//	      return mav;
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/user/myAmor/movieReviewAdd");
 		return mav;

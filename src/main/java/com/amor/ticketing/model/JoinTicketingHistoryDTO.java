@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class JoinTicketingHistoryDTO {
 
+	private int movieidx;
 	private String moviename;
 	private String movieimg;
 	private String ticketnum;
@@ -22,10 +23,11 @@ public class JoinTicketingHistoryDTO {
 		System.out.println("joinTicketingDTO start");
 	}
 
-	public JoinTicketingHistoryDTO(String moviename, String movieimg, String ticketnum, String seatnum,
-			Date screeningdate, String payment, Long price, Date reservetime, String changePrice, String theatername,
-			String timelimit) {
+	public JoinTicketingHistoryDTO(int movieidx, String moviename, String movieimg, String ticketnum, String seatnum,
+			Date screeningdate, String payment, Long price, Date reservetime, String changeScreeningDate,
+			String changeReserveTime, String changePrice, String theatername, String timelimit) {
 		super();
+		this.movieidx = movieidx;
 		this.moviename = moviename;
 		this.movieimg = movieimg;
 		this.ticketnum = ticketnum;
@@ -34,9 +36,19 @@ public class JoinTicketingHistoryDTO {
 		this.payment = payment;
 		this.price = price;
 		this.reservetime = reservetime;
+		this.changeScreeningDate = changeScreeningDate;
+		this.changeReserveTime = changeReserveTime;
 		this.changePrice = changePrice;
 		this.theatername = theatername;
 		this.timelimit = timelimit;
+	}
+
+	public int getMovieidx() {
+		return movieidx;
+	}
+
+	public void setMovieidx(int movieidx) {
+		this.movieidx = movieidx;
 	}
 
 	public String getMoviename() {
@@ -103,6 +115,22 @@ public class JoinTicketingHistoryDTO {
 		this.reservetime = reservetime;
 	}
 
+	public String getChangeScreeningDate() {
+		return changeScreeningDate;
+	}
+
+	public void setChangeScreeningDate(String changeScreeningDate) {
+		this.changeScreeningDate = changeScreeningDate;
+	}
+
+	public String getChangeReserveTime() {
+		return changeReserveTime;
+	}
+
+	public void setChangeReserveTime(String changeReserveTime) {
+		this.changeReserveTime = changeReserveTime;
+	}
+
 	public String getChangePrice() {
 		return changePrice;
 	}
@@ -127,20 +155,5 @@ public class JoinTicketingHistoryDTO {
 		this.timelimit = timelimit;
 	}
 
-	public String getChangeScreeningDate() {
-		return changeScreeningDate;
-	}
-
-	public void setChangeScreeningDate(String changeScreeningDate) {
-		this.changeScreeningDate = changeScreeningDate;
-	}
-
-	public String getChangeReserveTime() {
-		return changeReserveTime;
-	}
-
-	public void setChangeReserveTime(String changeReserveTime) {
-		this.changeReserveTime = changeReserveTime;
-	}		
 	
 }

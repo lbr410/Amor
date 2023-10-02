@@ -58,8 +58,11 @@ public class PlayingMovieController {
 			@RequestParam("movie_idx")int movie_idx,
 			@RequestParam("theater_idx")int theater_idx,
 			@RequestParam("playing_movie_date")String playing_movie_date,
-			@RequestParam("playing_movie_start")String playing_movie_start,
-			@RequestParam("playing_movie_end")String playing_movie_end) {
+			@RequestParam("playing_movie_start")String playing_movie_start_s,
+			@RequestParam("playing_movie_end")String playing_movie_end_e) {
+		
+		String playing_movie_start = playing_movie_date+" "+playing_movie_start_s;
+		String playing_movie_end = playing_movie_date+" "+playing_movie_end_e;
 		
 		PlayingMovieDTO dto = new PlayingMovieDTO(movie_idx, theater_idx, playing_movie_date, playing_movie_start, playing_movie_end);
 		

@@ -390,42 +390,4 @@ public class MovieController {
 		return saveFileName;
 	}
 
-	//현재 상영작 출력
-	@RequestMapping("movie/movie.do")
-	public ModelAndView movieList(
-			@RequestParam(value="cp", defaultValue = "1") int cp) {
-		
-		int totalCnt=movieservice.getTotalCnt();
-		int listSize=5;
-		int pageSize=5;
-		String pageStr=com.amor.page.PageModule.makePage("/amor/admin/notice/noticeList.do", totalCnt, listSize, pageSize, cp);
-
-		List<MovieDTO> mlists = movieservice.movieBest(cp, listSize);
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("mlists", mlists);
-		mav.addObject("pageStr", pageStr);
-		mav.setViewName("/user/movie/movie");
-		return mav;
-	}
-
-	
-	//영화 상세내용
-	@RequestMapping("movie/movieContentForm.do")
-	public ModelAndView movieContent(
-			@RequestParam(value="movie_idx", defaultValue = "0")int movie_idx) {
-		
-		MovieDTO dto = movieservice.movieContent(movie_idx);
-		ModelAndView mav=new ModelAndView();
-		if(dto == null) {
-			mav.addObject("msg","삭제된 게시물 잘못된 접근입니다.");
-			mav.setViewName("user/msg/userMsg");
-		}else {
-			String movieContent = dto.getMovie_content().replaceAll("\n", "<br>");
-			mav.addObject("movieContent",movieContent);
-			mav.addObject("dto",dto);
-			mav.setViewName("/user/movie/movieContent");
-		}
-		return mav;
- 	}
-		
 }
