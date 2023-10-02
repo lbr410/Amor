@@ -15,20 +15,10 @@
 <div class="inner">
 	<div class="commonDiv">
 		<div class="commonTop">
-			<label class="label1">영화 선택</label><label class="label2">날짜</label>
+			<label class="label1">영화 선택</label><label class="label2" id="selectDay">날짜</label>
 		</div>
 		<div class="commonMid">
 			<div class="content1">
-				<div class="selectboxdiv">
-					<select name="ticketingList" class="ticketingOrderSelectBox">
-						<option value="movie_Name">영화이름순 </option>
-						<option value="movie_maxage">관람등급순</option>
-					</select>
-					<select name="ticketingListorder" class="ticketingOrderSelectBox">
-						<option value="desc">내림차순 </option>
-						<option value="asc">오름차순</option>
-					</select>
-				</div>
 				<div class="playingmovieListBox">
 					<div class="playingmovieList">
 					<c:forEach var="dto" items="${lists }">
@@ -119,8 +109,6 @@
 						<div class="selectMovieTimeDiv" id="ticketingMovieTime"></div>
 					
 					</div>
-				
-				
 				</div>
 			</div>
 		</div>
@@ -135,9 +123,11 @@ var year = today.getFullYear();
 var month = today.getMonth()+1;
 var date = today.getDate();
 var weekday = today.getDay();
-//window.alert('2');
+
 
 const week = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)'];
+
+document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+week[weekday];
 
 	//날짜 
 	for(let i = 0 ; i< 7; i++){
@@ -154,6 +144,7 @@ const week = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)'];
 		
 		var resultmonth = '';
 		var resultyear = '';
+		
 		
 		if(plusminus1month == plusmonth){
 			
@@ -172,8 +163,12 @@ const week = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)'];
 	//요일
 	for(let i = 0; i<7 ;i++ ){
 		let wday = 0+weekday+i;
-		wday = (wday > 6)? wday-7 : wday;
-		document.getElementById('weekp'+i).innerHTML = week[wday];
+		if (weekday == wday){
+			document.getElementById('weekp'+i).innerHTML = '(오늘)';
+		}else{
+			wday = (wday > 6)? wday-7 : wday;
+			document.getElementById('weekp'+i).innerHTML = week[wday];
+		}
 		
 	}
 	
@@ -215,7 +210,11 @@ const week = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)'];
 		let yearPost = dayPost.getFullYear();
 		let monthPost = dayPost.getMonth()+1;
 		let datePost = dayPost.getDate();
+		let wdayPost = dayPost.getDay();
 		let param = 'year='+yearPost+'&month='+monthPost+'&date='+datePost;
+		
+		document.getElementById('selectDay').innerHTML = yearPost+'-'+monthPost+'-'+datePost+' '+week[wdayPost];
+		
 		sendRequest('ticketingSelectDate.do',param, selectDateResult, 'POST');
 		
 	}
@@ -229,8 +228,6 @@ const week = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)'];
 				var movieTimeLists = objData.movieTimeLists;
 				var msg ='';
 				
-				window.alert('8');
-				
 				if (movieTimeLists == null || movieTimeLists == ''){
 					msg = '선택된 날짜에 상영시간이 없습니다';
 				}else{
@@ -239,7 +236,7 @@ const week = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)'];
 						let time = ''+movieTimeLists[i].playing_movie_start+'';
 						let timeHHandMM = time.substring(11,16);
 						
-						msg += '<div class="sTimeC" onclick="selectresult('+movieTimeLists[i].playing_movie_idx+')"><div>'+ timeHHandMM +'</div><div class="sTimeC_2line">'+ (movieTimeLists[i].theater_totalseat - movieTimeLists[i].playing_movie_remain_seats)+'/'+ movieTimeLists[i].theater_totalseat +'&nbsp;&nbsp;'+movieTimeLists[i].theater_name+'</div></div>';
+						msg += '<div class="sTimeC" onclick="selectresult('+movieTimeLists[i].playing_movie_idx+','+movieTimeLists[i].theater_idx+','+movieTimeLists[i].movie_idx+')"><div>'+ timeHHandMM +'</div><div class="sTimeC_2line">'+ (movieTimeLists[i].theater_totalseat - movieTimeLists[i].playing_movie_remain_seats)+'/'+ movieTimeLists[i].theater_totalseat +'&nbsp;&nbsp;'+movieTimeLists[i].theater_name+'</div></div>';
 					}
 				}
 				document.getElementById('ticketingMovieTime').innerHTML = msg;
@@ -254,6 +251,6 @@ const week = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)'];
 	
 
 </script>
-<%@include file="../footer.jsp" %>
 </body>
+<%@include file="../footer.jsp" %>
 </html>
