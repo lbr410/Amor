@@ -48,4 +48,21 @@ public class MovieReviewDAOImple implements MovieReviewDAO {
 		int result=sqlmap.update("blockUpdate", map);
 		return result;
 	}
+	
+	@Override
+	public int adminReviewListDelete(int idx) {
+		int result=sqlmap.delete("adminReviewListDelete", idx);
+		return result;
+	}
+	@Override
+	public int adminReviewListSearchTotalCnt(String search) {
+		int result=sqlmap.selectOne("adminReviewSearch", search);
+		return result;
+	}
+	
+	@Override
+	public List<MovieReviewDTO> adminReviewListSearch(Map map) {
+		List<MovieReviewDTO>lists=sqlmap.selectList("adminReviewListSearch", map);
+		return lists;
+	}
 }

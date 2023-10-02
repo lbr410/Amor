@@ -19,6 +19,19 @@ function block(idx) {
 	sendRequest('reviewListBlock.do',param,null,'GET');	
 	
 }
+function deleteClick(idx) {
+	let param='idx='+idx;
+	let confirm=window.confirm('삭제하시겠습니까?');
+	if(confirm){
+		sendRequest('reviewListDelete.do',param,null,'GET');	
+		window.location.reload();
+	}
+}
+function reviewSearch() {
+	var search=document.getElementById('reviewSearch').value;
+	var param='search='+search;
+	location.href='reviewListSearch.do?search='+search;
+}
 </script>
 <body>
 <%@include file="../admin_header.jsp" %>
@@ -26,8 +39,8 @@ function block(idx) {
 <div class="content-title"><label class="titletext">관람평 목록</label>
 <div class="contentsearch">
 	<div class="search">
-		<input type="text"  placeholder="아이디를 검색해주세요." class="box">
-		<img src="img/Icon_Search.png" class="btn">
+		<input type="text"  placeholder="영화를 검색해주세요." class="box" id="reviewSearch">
+		<a href="javascript:reviewSearch()"><img src="/amor/resources/img/icon_search.png" class="btn"></a>
 	</div>
 </div>
 </div>
@@ -73,7 +86,7 @@ function block(idx) {
 				</select>
 			</td>
 			<td class="btnTd">
-				<button class="delete" id="deleteBtn" onclick="deletekBtn()">삭제</button>
+				<button class="deleteBtn" onclick="deleteClick(${dto.movie_review_idx})">삭제</button>
 			</td>
 		</tr>
 		</c:forEach>

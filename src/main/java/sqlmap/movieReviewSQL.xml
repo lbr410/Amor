@@ -57,4 +57,29 @@
 		where member_idx=
 		(select mr.member_idx from movie_review mr where mr.movie_review_idx=#{idx})
 	</update>
+	
+	<delete id="adminReviewListDelete" parameterType="Integer">
+		delete from movie_review
+		where movie_review_idx=#{idx}
+	</delete>
+	
+	<select id="adminReviewSearch" resultType="Integer" parameterType="String">
+		select count(*) from movie_review mr
+		where (select mv.movie_name from movie mv where mv.movie_idx=mr.movie_idx)
+		like '%'||#{search}||'%'
+	</select>
+	
+	<select id="adminReviewListSearch" resultType="com.amor.movieReview.model.MovieReviewDTO" parameterType="Map">
+		select * from
+		(select rownum as rnum, a.* from
+		(select mr.movie_review_idx,
+		(select member_id from member mm where mm.member_idx=mr.member_idx) as member_id, 
+		(select movie_name from movie mv where mv.movie_idx=mr.movie_idx) as movie_name,
+		mr.movie_review_content,mr.movie_review_writedate,
+		(select member_block from member mm where mm.member_idx=mr.member_idx) as member_block 
+		from movie_review mr
+		where (select movie_name from movie mv where mv.movie_idx=mr.movie_idx) like '%'||#{search}||'%'
+		order by movie_review_idx desc) a)
+		where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}	
+	</select>
 </mapper>

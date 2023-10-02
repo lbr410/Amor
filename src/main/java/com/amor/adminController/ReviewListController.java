@@ -44,10 +44,26 @@ public class ReviewListController {
 		return mav;
 	}
 	
+	@RequestMapping("admin/review/reviewListSearch.do")
+	public ModelAndView reviewListSearch(
+			@RequestParam(value="cp",defaultValue = "1")int cp,
+			@RequestParam("search")String search) {
+		int totalCnt=movieReviewService.adminReviewListSearchTotalCnt(search);
+		int listSize = 5;
+		int pageSize = 5;
+		String pageStr=com.amor.page.PageModule.makePage("/amor/admin/review/reviewList.do", totalCnt, listSize, pageSize, cp);
+
+		List<MovieReviewDTO> lists=movieReviewService.adminReviewListSearch(cp, listSize, search);
+		ModelAndView mav =new ModelAndView();
+		mav.addObject("pageStr", pageStr);
+		mav.addObject("lists", lists);
+		mav.setViewName("/admin/review/reviewList");
+		return mav;
+	}
+	
 	@RequestMapping("admin/review/reviewPopup.do")
 	public ModelAndView reviewPopup(
 			@RequestParam("idx")int idx) {
-		//System.out.println(idx);
 		ModelAndView mav=new ModelAndView();
 		MovieReviewDTO dto=movieReviewService.adminReviewPopup(idx);
 		mav.addObject("dto", dto);
@@ -57,7 +73,7 @@ public class ReviewListController {
 	
 	@RequestMapping("admin/review/reviewListBlock.do")
 	public ModelAndView reviewListBlock(
-			@RequestParam("idx") int idx,
+			@RequestParam(value="idx",defaultValue = "0") int idx,
 			@RequestParam("value")String value) {
 		ModelAndView mav=new ModelAndView();
 		MovieReviewDTO dto=new MovieReviewDTO();
@@ -70,6 +86,15 @@ public class ReviewListController {
 		}
 		mav.setViewName("/admin/review/reviewList");
 		
+		return mav;
+	}
+	
+	@RequestMapping("admin/review/reviewListDelete.do")
+	public ModelAndView reviewListDelete(
+			@RequestParam(value="idx",defaultValue = "0") int idx) {
+		
+		ModelAndView mav=new ModelAndView();
+		int result=movieReviewService.adminReviewListDelete(idx);
 		return mav;
 	}
 }
