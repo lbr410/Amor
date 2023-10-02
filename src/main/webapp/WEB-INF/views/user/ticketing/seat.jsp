@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,79 +15,102 @@
 	let totalPriceFormat = totalPrice.toLocaleString('ko-KR')+'원';
 	let alphabet = 'ABCDEFGH';
 	let seatCheckCnt = 0;
-	let jsonArrTest = [
-		['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a3', 'a8', 'a9', 'a10', 'a11', 'a12', 'a13', 'a14', 'a15', 'a16', 'a17', 'a18', 'a19', 'a20'],
-		['b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'b3', 'b8', 'b9', 'b10', 'b11', 'b12', 'b13', 'b14', 'b15', 'b16', 'b17', 'b18', 'b19', 'b20'],
-		['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c3', 'c8', 'c9', 'c10', 'c11', 'c12', 'c13', 'c14', 'c15', 'c16', 'c17', 'c18', 'c19', 'c20'],
-		['d1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd3', 'd8', 'd9', 'd10', 'd11', 'd12', 'd13', 'd14', 'd15', 'd16', 'd17', 'd18', 'd19', 'd20'],
-		['e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7', 'e3', 'e8', 'e9', 'e10', 'e11', 'e12', 'e13', 'e14', 'e15', 'e16', 'e17', 'e18', 'e19', 'e20'],
-		['f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f3', 'f8', 'f9', 'f10', 'f11', 'f12', 'f13', 'f14', 'f15', 'f16', 'f17', 'f18', 'f19', 'f20'],
-		['g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g3', 'g8', 'g9', 'g10', 'g11', 'g12', 'g13', 'g14', 'g15', 'g16', 'g17', 'g18', 'g19', 'g20'],
-		['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h3', 'h8', 'h9', 'h10', 'h11', 'h12', 'h13', 'h14', 'h15', 'h16', 'h17', 'h18', 'h19', 'h20']
+	/*let jsonArrTest = [
+		['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'a9', 'a10', 'a11', 'a12', 'a13', 'a14', 'a15', 'a16', 'a17', 'a18', 'a19', 'a20'],
+		['b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'b8', 'b9', 'b10', 'b11', 'b12', 'b13', 'b14', 'b15', 'b16', 'b17', 'b18', 'b19', 'b20'],
+		['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'c11', 'c12', 'c13', 'c14', 'c15', 'c16', 'c17', 'c18', 'c19', 'c20'],
+		['d1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd8', 'd9', 'd10', 'd11', 'd12', 'd13', 'd14', 'd15', 'd16', 'd17', 'd18', 'd19', 'd20'],
+		['e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7', 'e8', 'e9', 'e10', 'e11', 'e12', 'e13', 'e14', 'e15', 'e16', 'e17', 'e18', 'e19', 'e20'],
+		['f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'f9', 'f10', 'f11', 'f12', 'f13', 'f14', 'f15', 'f16', 'f17', 'f18', 'f19', 'f20'],
+		['g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9', 'g10', 'g11', 'g12', 'g13', 'g14', 'g15', 'g16', 'g17', 'g18', 'g19', 'g20'],
+		['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8', 'h9', 'h10', 'h11', 'h12', 'h13', 'h14', 'h15', 'h16', 'h17', 'h18', 'h19', 'h20']
 	]
 	
 	let tongroTest = [
-		['a3'],
-		['b3'],
-		['c3'],
-		['d3'],
-		['e3'],
-		['f3'],
-		['g3'],
-		['h3']
-	]
+		['a3', 'a18'],
+		['b3', 'b18'],
+		['c3', 'c18'],
+		['d3', 'd18'],
+		['e3', 'e18'],
+		['f3', 'f18'],
+		['g3', 'g18'],
+		['h3', 'h18']
+	]*/
+	
+	// 이미 예약된 좌석
+	let alreadyBookedArr = '${playingMovieInfo.playing_movie_seat}'.split(',');
 	
 	window.onload = function() {
 		let seatPlace = document.getElementById('seatPlace');
-		for(let i=0; i<jsonArrTest.length; i++) {
+		//for(let i=0; i<jsonArrTest.length; i++) { // theater의 행
+		for(let i=0; i<${theaterInfo.theater_row}; i++) {
 			let alphabetRow = document.createElement('span');
 			alphabetRow.textContent = alphabet.charAt(i);
 			alphabetRow.className = 'alphabetRow';
 			seatPlace.appendChild(alphabetRow);
 			
-			for(let j=0; j<jsonArrTest[i].length-1; j++) {
+			//for(let j=0; j<jsonArrTest[i].length; j++) {
+			for(let j=0; j<${theaterInfo.theater_column}; j++) { // theater의 열
 				let seatBox = document.createElement('input');
 				seatBox.type = 'checkbox';
 				seatBox.name = 'playing_movie_seat';
 				seatBox.id = 'seatBox'+i+j; // 각 체크박스에 고유한 id 부여
 				seatPlace.appendChild(seatBox);
-				//seatBox.value = alphabet.charAt(i)+(j+1);
-				seatBox.value = jsonArrTest[i][j];
-				let seatLabel = document.createElement('label');
-				seatLabel.htmlFor = 'seatBox'+i+j;
-				seatLabel.textContent = j+1;
-				seatPlace.appendChild(seatLabel);
+				seatBox.value = alphabet.charAt(i)+(j+1);
 				
-				/*seatBox.addEventListener('change', function() {
-					if(seatBox.checked) {
-						window.alert('value = '+seatBox.value);
-					} else {
-						window.alert('value = '+seatBox.value);
-					}
-				})*/ // value test Code!!!!
+				if(alreadyBookedArr.includes(seatBox.value)) { // 이미 예약된 좌석
+					seatBox.className = 'alreadyBooked';
+					seatBox.disabled = true;
+				} else { // 예매 가능한 좌석
+					seatBox.className = 'noBooked';
+				}
+
+				//seatBox.value = jsonArrTest[i][j];
 				
-				seatBox.addEventListener('click', function() {
-					if(personnelCnt == 0) {
-						seatBox.checked = false;
-						window.alert('인원을 선택해주세요.');
-					} else {
-						if(seatCheckCnt < personnelCnt) {
-							if(seatBox.checked) {
-								seatCheckCnt++;
-							} else if(seatCheckCnt > 0) {
-								seatCheckCnt--;
-							}
+				/*if(tongroTest[i].includes(seatBox.value)) {
+					let tongro = document.createElement('span');
+					tongro.className = 'tongroDeco';
+					seatPlace.appendChild(tongro);
+				} else {*/
+					//console.log(tongroTest[i].includes(seatBox.value));
+					//console.log(seatBox.value);
+				
+					let seatLabel = document.createElement('label');
+					seatLabel.htmlFor = 'seatBox'+i+j;
+					seatLabel.textContent = j+1;
+					seatPlace.appendChild(seatLabel);
+					
+					/*seatBox.addEventListener('change', function() {
+						if(seatBox.checked) {
+							window.alert('value = '+seatBox.value);
 						} else {
-							if(!seatBox.checked) {
-								seatCheckCnt--;
+							window.alert('value = '+seatBox.value);
+						}
+					})*/ // value test Code!!!!
+					
+					seatBox.addEventListener('click', function() {
+						if(personnelCnt == 0) {
+							seatBox.checked = false;
+							window.alert('인원을 선택해주세요.');
+						} else {
+							if(seatCheckCnt < personnelCnt) {
+								if(seatBox.checked) {
+									seatCheckCnt++;
+								} else if(seatCheckCnt > 0) {
+									seatCheckCnt--;
+								}
 							} else {
-								window.alert('더이상 선택하실 수 없습니다.');
-								seatBox.checked = false;
+								if(!seatBox.checked) {
+									seatCheckCnt--;
+								} else {
+									window.alert('더이상 선택하실 수 없습니다.');
+									seatBox.checked = false;
+								}
 							}
 						}
-					}
-				}) // end function
-			}
+					}) // end function
+				//} // end if
+			} // end for
 			let lineBreak = document.createElement('br');
 			seatPlace.appendChild(lineBreak);
 		}
@@ -236,9 +260,24 @@
 			<div class="infoDiv">
 				<div class="movieInfo">
 					<img src="/amor/resources/img/introImg.jpg" alt="영화 이미지" class="posterImg">
-					<div class="movieName">1947 보스톤</div>
-					<div class="movieTime">23.09.30(토) | 20:25~22:25</div>
-					<div class="theaterName">동백꽃관</div>
+					<div class="movieName">
+						<c:if test="${movieInfo.movie_maxage eq 0}">
+							<img src="/amor/resources/img/maxage_all.png" class="ageImg">
+						</c:if>
+						<c:if test="${movieInfo.movie_maxage eq 1}">
+							<img src="/amor/resources/img/maxage_12.png" class="ageImg">
+						</c:if>
+						<c:if test="${movieInfo.movie_maxage eq 2}">
+							<img src="/amor/resources/img/maxage_15.png" class="ageImg">
+						</c:if>
+						<c:if test="${movieInfo.movie_maxage eq 3}">
+							<img src="/amor/resources/img/maxage_18.png" class="ageImg">
+						</c:if>
+						&nbsp;${movieInfo.movie_name}
+					</div>
+					<div class="movieTime">${playingMovieInfo.playing_movie_date} | 
+					${playingMovieInfo.playing_movie_start}~${playingMovieInfo.playing_movie_end}</div>
+					<div class="theaterName">${theaterInfo.theater_name}</div>
 				</div>
 				<div class="priceInfo">총 합계 <span id="totalPrice"></span></div>
 				<a href="#">

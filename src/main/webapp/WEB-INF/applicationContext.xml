@@ -55,6 +55,10 @@
 	<bean id="inquiryDao" class="com.amor.inquiry.model.InquiryDAOImple">
 		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
 	</bean>
+	<bean id="theaterDao" class="com.amor.theater.model.TheaterDAOImple">
+		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
+	</bean>
+	
 
 	<!-- services -->
 	<bean id="movieService" class="com.amor.movie.service.MovieServiceImple" >
@@ -90,4 +94,8 @@
 	<bean id="inquiryService" class="com.amor.inquiry.service.InquiryServiceImple">
 		<constructor-arg ref="inquiryDao"></constructor-arg>
 	</bean>
+	<bean id="theaterService" class="com.amor.theater.service.TheaterServiceImple">
+		<constructor-arg ref="theaterDao"></constructor-arg>
+	</bean>
+	
 </beans>

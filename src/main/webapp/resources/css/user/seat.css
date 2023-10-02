@@ -138,6 +138,44 @@
 	padding-top: 3px;
 }
 
+.alreadyBooked + label {
+	display: inline-block;
+	width: 30px;
+	line-height: 30px;
+	vertical-align: middle;
+	border-radius: 3px;
+	background: #aaaaaa;
+	text-align: center;
+	margin-top: 2px;
+	margin-right: 2px;
+}
+
+.alreadyBooked {
+	display: none;
+}
+
+.noBooked + label {
+	display: inline-block;
+	width: 30px;
+	line-height: 30px;
+	vertical-align: middle;
+	border-radius: 3px;
+	background: #ffffff;
+	text-align: center;
+	margin-top: 2px;
+	margin-right: 2px;
+}
+
+.noBooked:checked + label {
+	background-color: #1a2c82;
+	color: #ffffff;
+}
+
+.noBooked {
+	display: none;
+}
+
+/*
 input[type="checkbox"] + label {
 	display: inline-block;
 	width: 30px;
@@ -157,7 +195,15 @@ input[type="checkbox"]:checked + label {
 
 input[type="checkbox"] {
 	display: none;
-}
+}*/
+
+
+/*
+.tongroDeco {
+	display: inline-block;
+	width: 30px;
+	height: 20px;
+}*/
 
 
 .screenDiv {
@@ -207,7 +253,7 @@ input[type="checkbox"] {
 	display:inline-block;
 	width: 20px;
 	height: 20px;
-	background: #cccccc;
+	background: #aaaaaa;
 	float: left;
 }
 
@@ -224,6 +270,12 @@ input[type="checkbox"] {
 	margin-top: 10px;
 	margin-left: 30px;
 	margin-right: 10px;
+	float: left;
+}
+
+.ageImg {
+	width: 30px;
+	height: 30px;
 	float: left;
 }
 

@@ -66,4 +66,15 @@ public class PlayingMovieDAOImple implements PlayingMovieDAO {
 		Map running=sqlmap.selectOne("movieRunning", idx_m);
 		return running;
 	}
+	
+	
+	
+	
+	
+	
+	@Override
+	public PlayingMovieDTO playingMovieContent(int playing_movie_idx) {
+		PlayingMovieDTO dto = sqlmap.selectOne("playingMovieContent", playing_movie_idx);
+		return dto;
+	}
 }
