@@ -69,5 +69,30 @@ public class MovieReviewServiceImple implements MovieReviewService {
 		int result=movieReviewDao.adminReviewBlockUpdate(map);
 		return result;
 	}
+	
+	@Override
+	public int adminReviewListDelete(int idx) {
+		int result=movieReviewDao.adminReviewListDelete(idx);
+		return result;
+	}
+	
+	@Override
+	public int adminReviewListSearchTotalCnt(String search) {
+		int result=movieReviewDao.adminReviewListSearchTotalCnt(search);
+		return result;
+	}
+	
+	@Override
+	public List<MovieReviewDTO> adminReviewListSearch(int cp, int listSize, String search) {
+		int start=(cp-1) * listSize + 1;
+		int end=cp * listSize;
+		Map map=new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("search", search);
+		
+		List<MovieReviewDTO> lists=movieReviewDao.adminReviewListSearch(map);
+		return lists;
+	}
 
 }
