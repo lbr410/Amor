@@ -89,5 +89,23 @@ public class MovieServiceImple implements MovieService {
 		return lists;
 	}
 	
+	@Override
+	public int getUserSearchTotalCnt(String userSearch) {
+		int result = moviedao.getUserSearchTotalCnt(userSearch);
+		return result;
+	}
+	
+	@Override
+	public List<MovieDTO> userMovieSearch(String userSearch, int cp, int listSize) {
+		int start=(cp-1)*listSize+1;
+		int end=cp*listSize;
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("search",userSearch);
+		List<MovieDTO> lists = moviedao.userMovieListSearch(map);
+		return lists;
+	}
+	
 	
 }

@@ -12,5 +12,7 @@ public interface MovieDAO {
 	public int stateChange(MovieDTO dto);
 	public List<MovieDTO> movieBest(Map map);
 	public List<MovieDTO> movieCome(Map map);
+	public int getUserSearchTotalCnt(String userSearch);
+	public List<MovieDTO> userMovieListSearch(Map map);
 	
 }

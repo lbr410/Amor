@@ -25,5 +25,8 @@ public interface MovieService {
 	
 	public List<MovieDTO> movieCome();
 	
+	public int getUserSearchTotalCnt(String userSearch);
+	
+	public List<MovieDTO> userMovieSearch(String userSearch, int cp, int listSize);
 	
 }

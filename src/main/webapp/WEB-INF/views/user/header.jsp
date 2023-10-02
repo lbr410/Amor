@@ -125,3 +125,9 @@
       </ul>
     </div>
 </header>
+<script>
+	function userSearch(){
+		let search = document.getElementById('search').value;
+		location.href = '/amor/movie/movieSearch.do?search='+search;
+	}
+</script>

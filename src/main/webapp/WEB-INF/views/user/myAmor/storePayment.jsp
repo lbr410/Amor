@@ -80,7 +80,7 @@
    			<a href = "${storeCancell}"><input type = "button" value = "구매 취소" class = "button"></a>
    	</c:if>
   	<c:if test="${temp.status == 'y'}">
-  		<div class = "button">구매 완료</div>
+  		<span class = "cancellmsg">구매 완료</span>
   	</c:if>
   </div>
 </div>
