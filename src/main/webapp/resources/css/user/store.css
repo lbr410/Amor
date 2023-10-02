@@ -96,11 +96,11 @@
 }
 
 .product {
-    width: calc(33.33% - 10px); /* 한 줄에 3개의 상품을 표시하도록 폭을 설정*/
-    margin: 5px; /* 각 상품 사이의 간격을 조절합니다. */
+    width: calc(33.33% - 10px); 
+    margin: 5px; 
     padding: 10px;
     text-align: center;
-    box-sizing: border-box; /* border와 padding이 요소의 전체 크기에 포함되도록 설정*/
+    box-sizing: border-box; 
     height: 370px;
 }
 .prodImg{

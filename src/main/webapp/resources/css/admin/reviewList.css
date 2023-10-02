@@ -1,0 +1,51 @@
+@charset "UTF-8";
+.paging {
+	margin-top: 30px;
+	text-align: center;
+	font-size: 16px;
+}
+
+.paging a:hover{
+	color: #2E90FF;
+	font-weight: normal;
+}
+
+.nowPage {
+	color: #2E90FF !important;
+	font-weight: bold;
+}
+.delete{
+	border:none;
+    padding: 2px 11px 3px 11px;
+    width: 50px;
+    height: 25px;
+    border-radius: 3px;
+    background: #EEEEEE;
+    color: #1A2C82;
+    cursor: pointer;
+   	justify-content: center;
+	align-items: center;
+}
+.idTd{
+	width: 100px;
+}
+.nameTd{
+	width: 500px;
+}
+.btnTd{
+	width: 100px;
+}
+.popupTd{
+	width: 130px;
+}
+.dateTd{
+	width: 120px;
+}
+.blockTd{
+	width: 100px;
+}
+.selectBox{
+	width: 40px;
+	height: 22px;
+	
+}

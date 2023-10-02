@@ -24,5 +24,28 @@ public class MovieReviewDAOImple implements MovieReviewDAO {
 		int count=sqlmap.selectOne("totalCntReview");
 		return count;
 	}
-
+	
+	@Override
+	public int reviewListTotalCnt() {
+		int result=sqlmap.selectOne("reviewListTotalCnt");
+		return result;
+	}
+	
+	@Override
+	public List<MovieReviewDTO> adminReviewList(Map map) {
+		List<MovieReviewDTO> lists=sqlmap.selectList("adminReviewList", map);
+		return lists;
+	}
+	
+	@Override
+	public MovieReviewDTO adminReviewPopup(int idx) {
+		MovieReviewDTO dto=sqlmap.selectOne("adminReviewPopup", idx);
+		return dto;
+	}
+	
+	@Override
+	public int adminReviewBlockUpdate(Map map) {
+		int result=sqlmap.update("blockUpdate", map);
+		return result;
+	}
 }
