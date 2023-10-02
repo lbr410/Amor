@@ -3,5 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amor.theaterSQL">
-
+	<select id="theaterInfo" parameterType="Integer" resultType="com.amor.theater.model.TheaterDTO">
+		select * from theater where theater_idx = #{theater_idx}
+	</select>
 </mapper>

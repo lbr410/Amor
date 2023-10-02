@@ -63,4 +63,11 @@
 	<select id="movieRunning" parameterType="Integer" resultType="Map">
 		select movie_runningtime from movie where movie_idx = #{movie_idx}
 	</select>
+	
+	
+	
+	
+	<select id="playingMovieContent" parameterType="Integer" resultType="com.amor.playingMovie.model.PlayingMovieDTO">
+		select * from playing_movie where playing_movie_idx = #{playing_movie_idx}
+	</select>
 </mapper>

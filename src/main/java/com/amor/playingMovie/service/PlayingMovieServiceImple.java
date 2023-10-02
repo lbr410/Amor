@@ -76,6 +76,17 @@ public class PlayingMovieServiceImple implements PlayingMovieService {
 		return running;
 	}
 	
+	
+	
+	
+	
+	
+	@Override
+	public PlayingMovieDTO playingMovieContent(int playing_moive_idx) {
+		PlayingMovieDTO dto = playingMovieDao.playingMovieContent(playing_moive_idx);
+		return dto;
+	}
+	
 }
 
 
