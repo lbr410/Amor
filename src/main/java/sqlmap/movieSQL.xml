@@ -23,7 +23,7 @@ where rnum >= #{start} and rnum <= #{end}
 <![CDATA[
 select * from 
 (select rownum as rnum, a.* from (select * from movie order by movie_idx desc)a)b 
-where movie_name = #{search} and rnum >= #{start} and rnum <= #{end}
+where movie_name like '%${search}%' and rnum >= #{start} and rnum <= #{end}
 ]]>
 </select>
 
@@ -44,8 +44,14 @@ where movie_idx = #{movie_idx}
 
 <delete id="movieDelete" parameterType="Integer">
 delete from movie where movie_idx = #{movie_idx}
-
 </delete>
+
+<select id = "userSearchTotalCnt" parameterType="String" resultType="Integer">
+	<![CDATA[
+	select count(*) from movie
+	where movie_name like '%${userSearch}%'	
+	]]>
+</select>
 
 <select id="totalCnt" resultType="Integer" >
 	select count(*) from movie

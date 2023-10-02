@@ -73,5 +73,17 @@ public class MovieDAOImple implements MovieDAO {
 		return lists;
 	}
 	
+	@Override
+	public int getUserSearchTotalCnt(String userSearch) {
+		int result = sqlmap.selectOne("userSearchTotalCnt", userSearch); 
+		return result;
+	}
+	
+	@Override
+	public List<MovieDTO> userMovieListSearch(Map map) {
+		List<MovieDTO> lists = sqlmap.selectList("movieListSearch", map);
+		return lists;
+	}
+	
 	
 }
