@@ -104,7 +104,11 @@ public class MovieServiceImple implements MovieService {
 		map.put("end", end);
 		map.put("search",userSearch);
 		List<MovieDTO> lists = moviedao.userMovieListSearch(map);
-		return lists;
+		if(lists != null || lists.size() > 0) {
+			return lists;
+		}else {
+			return null;
+		}
 	}
 	
 	
