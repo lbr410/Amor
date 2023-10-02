@@ -21,6 +21,7 @@ table{
 }
 thead{
 	background-color: #F8F8F8;
+	height: 200px;
 }
 .th{
 	background-color: #F8F8F8;
