@@ -18,22 +18,30 @@ public class MovieSearchController {
 	private MovieService movieservice;
 
 	@RequestMapping("/movie/movieSearch.do")
-	public ModelAndView movieSearch(@RequestParam("search")String search,
+	public ModelAndView movieSearch(@RequestParam(value = "search",defaultValue = "없음")String search,
 			@RequestParam(value = "cp", defaultValue = "1")int cp) {
 		
 		int totalCnt = movieservice.getUserSearchTotalCnt(search);
-		System.out.println(totalCnt);
+		System.out.println(search);
 		int listSize = 5;
 		int pageSize = 5;
 		
 		ModelAndView mav = new ModelAndView();
-		if(search != null || search.equals("")) {
+		if(search != null || search == "없음" || search.equals("") || search == "") {
 			String pageTag = com.amor.page.PageModuleSearch.makePage("/amor/movie/movieSearch.do", totalCnt, listSize, pageSize, cp, search);
 			List<MovieDTO> lists = movieservice.userMovieSearch(search, cp, listSize);
-			mav.addObject("lists",lists);
-			mav.addObject("pageTag", pageTag);
-			mav.setViewName("/user/headerSearch");
-			return mav;
+			if(lists != null) {
+				mav.addObject("lists",lists);
+				mav.addObject("search", search);
+				mav.addObject("pageTag", pageTag);
+				mav.setViewName("/user/headerSearch");
+				return mav;
+			}else { 
+				mav.addObject("lists",null);
+				mav.addObject("pageTag",null);
+				mav.setViewName("/user/headerSearch");
+				return mav;
+			}
 		}else {
 			mav.addObject("lists",null);
 			mav.addObject("pageTag",null);

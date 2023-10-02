@@ -127,6 +127,15 @@ a{
 	align-items: center;
 	gap: 500px;
 }
+.movie-title .title-bar1{
+	display: flex;
+	width: 550px;
+	padding-top: 128px;
+	padding-bottom: 78px;
+	justify-content: center;
+	align-items: center;
+	gap: 500px;
+}
 .movie-title .title-bar .menu{
 	display: flex;
 	width: 357px;
@@ -242,4 +251,20 @@ button{
     font-weight: bold;
     cursor: pointer;
     padding: 18px 0 18px 0;
-}}
+}
+.paging {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 16px;
+}
+
+.paging a:hover{
+	color: #324ABC;
+	font-weight: normal;
+}
+
+.nowPage {
+	color: #324ABC !important;
+	font-weight: bold;
+}
+}

@@ -113,14 +113,13 @@
           </div>
         </li>
       <li>
-      <form name = "headSearch" class="headSearch">
+      <form name = "headSearch" class="headSearch" action="/amor/movie/movieSearch.do">
             <input type="text" maxlength="30" name="search" id="search" placeholder="영화명을 입력해주세요.">
                 <div id="searchButton" onclick="userSearch()">
                     <img id="searchIcon" src="/amor/resources/img/icon_search.png" alt="movieSearch">
                 </div>
         </form>
         <span class="top-right"> </span>
-
       </li>
       </ul>
     </div>
