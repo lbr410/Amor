@@ -17,6 +17,7 @@ public interface TicketingService {
 	
 	
 	public List<TicketingSelectMovieDTO> ticketingPlayingMovieList();
+	public List<TicketingSelectMovieDTO> ticketingPlayingMovieTimeList(String movie_name, java.sql.Date sumdate);
 	
 	
 	

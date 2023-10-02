@@ -45,18 +45,19 @@ public class TicketingController {
 	}
 	
 	@RequestMapping("ticketing/ticketingSelectDate.do")
-	public ModelAndView ticketingSelectDate(HttpSession session, int year, int month, int date) {
+	public String ticketingSelectDate(HttpSession session, int year, int month, int date, Model model) {
 		String date_d = "";
 		if(date < 10) {date_d = "0"+date;}
 		else {date_d = ""+date;}
 		String sumdate = year+"-"+month+"-"+date_d;
 		java.sql.Date sumdate_s = java.sql.Date.valueOf(sumdate);
-		System.out.println(sumdate_s);
-		System.out.println(session.getAttribute("ticketing_movie_name"));
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/user/ticketing/ticketing");
-		return mav;
+		String movie_name = (String)session.getAttribute("ticketing_movie_name");
+		
+		List<TicketingSelectMovieDTO> movieTimeLists = ticketingservice.ticketingPlayingMovieTimeList(movie_name,sumdate_s);
+		
+		model.addAttribute("movieTimeLists",movieTimeLists);
+		
+		return "amorJson";
 	}
-	
 	
 }

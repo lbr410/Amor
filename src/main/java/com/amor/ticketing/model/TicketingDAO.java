@@ -11,7 +11,7 @@ public interface TicketingDAO {
 	public List<JoinTicketingHistoryDTO> getcancellList(int useridx);
 	
 	public List<TicketingSelectMovieDTO> ticketingPlayingMovieList();
-	
+	public List<TicketingSelectMovieDTO> ticketingPlayingMovieTimeList(Map map);
 	
 	
 	

@@ -216,9 +216,42 @@ const week = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)'];
 		let monthPost = dayPost.getMonth()+1;
 		let datePost = dayPost.getDate();
 		let param = 'year='+yearPost+'&month='+monthPost+'&date='+datePost;
-		sendRequest('ticketingSelectDate.do',param, null, 'POST');
+		sendRequest('ticketingSelectDate.do',param, selectDateResult, 'POST');
 		
 	}
+	
+	function selectDateResult(){
+		
+		if(XHR.readyState==4){
+			if(XHR.status==200){
+				var data = XHR.responseText;
+				var objData = JSON.parse(data);
+				var movieTimeLists = objData.movieTimeLists;
+				var msg ='';
+				
+				window.alert('8');
+				
+				if (movieTimeLists == null || movieTimeLists == ''){
+					msg = '선택된 날짜에 상영시간이 없습니다';
+				}else{
+					//movieTimeLists.length
+					for(var i = 0 ; i < movieTimeLists.length; i++){
+						let time = ''+movieTimeLists[i].playing_movie_start+'';
+						let timeHHandMM = time.substring(11,16);
+						
+						msg += '<div class="sTimeC" onclick="selectresult('+movieTimeLists[i].playing_movie_idx+')"><div>'+ timeHHandMM +'</div><div class="sTimeC_2line">'+ (movieTimeLists[i].theater_totalseat - movieTimeLists[i].playing_movie_remain_seats)+'/'+ movieTimeLists[i].theater_totalseat +'&nbsp;&nbsp;'+movieTimeLists[i].theater_name+'</div></div>';
+					}
+				}
+				document.getElementById('ticketingMovieTime').innerHTML = msg;
+			}
+		}
+		
+	}
+	
+	function selectresult(){
+		location.href='seat.do';
+	}
+	
 
 </script>
 <%@include file="../footer.jsp" %>
