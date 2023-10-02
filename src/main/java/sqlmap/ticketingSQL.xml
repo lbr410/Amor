@@ -128,5 +128,17 @@ where ticketing_num = #{ticketnum}
 			and b.playing_movie_idx = c.playing_movie_idx
 	</select>
 	
+	<select id="ticketingPlayingMovieTimeList" parameterType="Map" resultType="com.amor.ticketing.model.TicketingSelectMovieDTO">
+	<![CDATA[
+		select a.movie_idx as "movie_idx", movie_name as "movie_name", playing_movie_idx, 
+		b.theater_idx as "theater_idx", c.theater_name as "theater_name" ,b.playing_movie_date as "playing_movie_date", 
+		b.playing_movie_start as "playing_movie_start", b.playing_movie_remain_seats as "playing_movie_remain_seats", 
+		c.theater_totalseat as "theater_totalseat" 
+		from (select movie_idx, movie_name from movie where movie_name = #{movie_name} )a, 
+			playing_movie b, (select theater_idx, theater_name, theater_totalseat from theater) c 
+		where a.movie_idx = b.movie_idx and c.theater_idx = b.theater_idx and b.playing_movie_date = #{sumdate}
+	]]>
+	</select>
+	
 
 </mapper>

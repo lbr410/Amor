@@ -87,4 +87,10 @@ public class TicketingDAOImple implements TicketingDAO {
 		List<TicketingSelectMovieDTO> lists = sqlmap.selectList("ticketingPlayingMovieList");
 		return lists;
 	}
+	
+	@Override
+	public List<TicketingSelectMovieDTO> ticketingPlayingMovieTimeList(Map map) {
+		List<TicketingSelectMovieDTO> lists = sqlmap.selectList("ticketingPlayingMovieTimeList", map);
+		return lists;
+	}
 }

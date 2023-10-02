@@ -169,4 +169,15 @@ public class TicketingServiceImple implements TicketingService {
 		
 		return lists;
 	}
+	
+	@Override
+	public List<TicketingSelectMovieDTO> ticketingPlayingMovieTimeList(String movie_name, java.sql.Date sumdate) {
+		
+		Map map = new HashMap();
+		map.put("movie_name", movie_name);
+		map.put("sumdate", sumdate);
+		List<TicketingSelectMovieDTO> lists = ticketingDao.ticketingPlayingMovieTimeList(map);
+		
+		return lists;
+	}
 }
