@@ -23,31 +23,31 @@ public class InquiryController {
 	private InquiryService inquiryService;
 	
 	//사용자 1:1문의 리스트
-	@RequestMapping("customer/inquiryList.do")
+	@RequestMapping("myAmor/memberInquiryList.do")
 	public ModelAndView inquiryList(
 			HttpSession session,
 			@RequestParam(value="cp", defaultValue="1")int cp) {
 		int totalCnt=inquiryService.inquiryTotalCnt();
 		int listSize=5;
 		int pageSize=5;
-		String pageStr=com.amor.page.PageModule.makePage("/amor/user/customer/inquiryList.do", totalCnt, listSize, pageSize, cp);
+		String pageStr=com.amor.page.PageModule.makePage("/amor/user/myAmor/memberInquiryList.do", totalCnt, listSize, pageSize, cp);
 		
 		ModelAndView mav=new ModelAndView();
 		
-			List<InquiryDTO>lists=inquiryService.inquiryList(cp, listSize);
+			List<InquiryDTO>lists=inquiryService.memberInquiryList(cp, listSize);
 			mav.addObject("lists", lists);
 			mav.addObject("pageStr", pageStr);
-			mav.setViewName("/user/customer/inquiryList");
+			mav.setViewName("/user/myAmor/inquiryList");
 
 		return mav;
 	}
 	//사용자 1:1문의 작성 폼으로 이동
-	@RequestMapping("customer/inquiryWrite.do")
+	@RequestMapping("myAmor/inquiryWrite.do")
 	public String inquiryWriteForm() {
-		return "/user/customer/inquiryWrite";
+		return "/user/myAmor/inquiryWrite";
 	}
 	//사용자 1:1문의 작성
-	@RequestMapping(value="customer/inquiryWrite.do", method = RequestMethod.POST)
+	@RequestMapping(value="myAmor/inquiryWrite.do", method = RequestMethod.POST)
 	public ModelAndView inquiryWrite(
 			@RequestParam("inquiry_subject")String inquiry_subject,
 			@RequestParam("inquiry_content")String inquiry_content,
@@ -58,7 +58,7 @@ public class InquiryController {
 		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg", msg);
-		mav.addObject("href","user/customer/inquiryWrite.do"); 
+		mav.addObject("href","user/myAmor/inquiryWrite.do"); 
 		mav.setViewName("/user/msg/userMsg");
 		return mav;
 	}

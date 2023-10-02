@@ -7,7 +7,11 @@ import com.amor.inquiry.model.InquiryDTO;
 
 public interface InquiryService {
 
-	public List<InquiryDTO> inquiryList(int cp, int listSize);
+	public List<InquiryDTO> memberInquiryList(int cp, int listSize);
 	public int inquiryTotalCnt();
 	public int inquiryWrite(InquiryDTO dto);
+	public List<InquiryDTO> inquiryList(int cp, int listSize);
+	public int inquiryAnswer(InquiryDTO dto);
+	public int inquiryDelete(int idx);
+
 }

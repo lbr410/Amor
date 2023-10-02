@@ -82,6 +82,7 @@
             <c:set var="rank" value="${rank+1 }" />
         </c:forEach>
      	</div>
+     	<div class="paging">${pageStr }</div>
 	</div>
 	</div>
 	</div>

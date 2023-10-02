@@ -17,8 +17,8 @@ public class InquiryDAOImple implements InquiryDAO {
 	}
 
 	@Override
-	public List<InquiryDTO> inquiryList(Map map) {
-		List<InquiryDTO> lists=sqlmap.selectList("inquiryList", map);
+	public List<InquiryDTO> memberInquiryList(Map map) {
+		List<InquiryDTO> lists=sqlmap.selectList("memberInquiryList", map);
 		return lists;
 	}
 	
@@ -34,5 +34,21 @@ public class InquiryDAOImple implements InquiryDAO {
 		return result;
 	}
 	
+	@Override
+	public List<InquiryDTO> inquiryList(Map map) {
+		List<InquiryDTO> lists=sqlmap.selectList("inquiryList", map);
+		return null;
+	}
 	
+	@Override
+	public int inquiryAnswer(InquiryDTO dto) {
+		int result=sqlmap.update("inquiryAnswer", dto);
+		return result;
+	}
+	
+	@Override
+	public int inquiryDelete(int idx) {
+		int result=sqlmap.delete("inquiryDelete", idx);
+		return result;
+	}
 }

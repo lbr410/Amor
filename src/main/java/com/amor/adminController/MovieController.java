@@ -58,7 +58,9 @@ public class MovieController {
 	
 	@RequestMapping("admin/movie/stateChk.do")
 	public ModelAndView soldOutChange(@RequestParam("idx") int idx, @RequestParam("state") String state) {
+		System.out.println("qweqweqweeqwqewe");
 		MovieDTO dto = new MovieDTO(idx,state);
+		System.out.println("1233213");
 		if(state.equals("y")) {
 			dto.setMovie_state("y");
 			dto.setMovie_idx(idx);
@@ -93,8 +95,7 @@ public class MovieController {
 
 		//movie_poster.getr
 		java.sql.Date movie_opendate_d = java.sql.Date.valueOf(movie_opendate); //string -> java.sql.date 타입으로
-		System.out.println(movie_opendate);
-		System.out.println(movie_opendate_d);
+		
 		String movieImg[] = stillcutDefault(savepath, movie_poster,movie_stillcut1,movie_stillcut2,movie_stillcut3,movie_stillcut4,movie_stillcut5);
 		System.out.println("스틸컷 => \n 1"+movieImg[1]+"2"+movieImg[2]+"3"+movieImg[3]+"4"+movieImg[4]+"5"+movieImg[5]);
 

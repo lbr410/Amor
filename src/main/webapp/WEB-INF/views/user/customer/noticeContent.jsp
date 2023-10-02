@@ -6,14 +6,21 @@
 <meta charset="UTF-8">
 <title>아모르 : 공지사항 내용</title>
 <style>
-.content{
+.noticeContent{
 	margin-top: 140px;
+}
+.content{
+	margin: 0 auto;
+	width: 1100px;
 }
 table{
 	width:800px;
 	margin: 0 auto;
 	padding-top: 35px;
 	border-spacing: 0px;
+}
+thead{
+	background-color: #F8F8F8;
 }
 .th{
 	background-color: #F8F8F8;
@@ -53,6 +60,7 @@ table{
 </style>
 </head>
 <%@include file = "../header.jsp" %>
+<div class="noticeContent">
 <section class="content">
 
 		<table>
@@ -85,6 +93,7 @@ table{
 </table>
 
 </section>
+</div>
 <%@ include file="../footer.jsp" %>
 </body>
 </html>
