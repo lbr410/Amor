@@ -7,22 +7,6 @@
 <title>아모르 : 영화 상세</title>
 <link rel="stylesheet" href="/amor/resources/css/user/movieContent.css"></link>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<script>
-$(document).ready(function(){
-  $('.tabcontent > div').hide();
-  $('.tabnav li:first-child a').addClass('active');
-  $('.tabcontent > div:first-child').show();
-
-  $('.tabnav a').click(function(e) {
-    e.preventDefault();
-    var target = $(this).attr('href');
-    $('.tabnav a').removeClass('active');
-    $(this).addClass('active');
-    $('.tabcontent > div').hide();
-    $(target).fadeIn();
-  });
-});
-</script>
 </head>
 <%@ include file="../header.jsp" %>
 <body>
@@ -64,7 +48,43 @@ $(document).ready(function(){
   </div>
 </div>
 </div>
+    <div class="infodiv"><input type="button" value="상세정보" class="infoBtn">
+    <input type="button" value="관람평" class="infoBtn"></div>
     
+    <!-- 리뷰 페이지 -->
+    <div id="review">
+    	<div class="grayspace">
+    		영화의 관람평입니다.
+    	</div>
+    	
+    	<div>
+    
+    
+    
+    	</div>
+    </div>
+    
+    
+    <!-- 상세정보 페이지 -->
+    <div id="moviedetail">
+    	<div class="grayspace">
+    		영화 상세정보 페이지입니다.
+    	</div>
+    	<div id="stillcontainer">
+    		<div id="stillbox1">
+    			<img src="/amor/resources/upload/movie/${dto.movie_stillcut1 }">
+    		</div>
+    		<div id="stillbox2">
+    			<img src="">
+    		</div>
+    		<div id="stillbox3">
+    			<img src="">
+    		</div>
+    		<div id="stillbox4">
+    			<img src="">
+    		</div>
+    	</div>
+    </div>
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

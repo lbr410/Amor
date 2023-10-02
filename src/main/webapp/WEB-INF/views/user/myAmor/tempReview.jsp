@@ -190,8 +190,8 @@
     });		    
 	
 	function drawStar(target) {
-		window.alert(document.querySelector(".star span").style.width);
 		document.querySelector(".star span").style.width = target.value*10+'%';		
+		
 	}
 	
 	function imgPreview(input){

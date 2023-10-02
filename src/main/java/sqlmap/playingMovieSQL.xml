@@ -31,14 +31,14 @@
 			#{movie_idx}, 
 			#{theater_idx}, 
 			to_date(#{playing_movie_date},'yyyy-mm-dd'), 
-			to_date(#{playing_movie_start},'hh24:mi:ss'), 
-			to_date(#{playing_movie_end},'hh24:mi:ss'), '0', '[]')
+			to_date(#{playing_movie_start},'yyyy-mm-dd hh24:mi:ss'), 
+			to_date(#{playing_movie_end},'yyyy-mm-dd hh24:mi:ss'), '0', '[]')
 	</insert>
 	<select id="playingMovieUpdateList" parameterType="Integer" resultType="com.amor.playingMovie.model.PlayingMovieJoinDTO">
 		select
 			to_char(c.playing_movie_date, 'yyyy-mm-dd') as "playing_movie_date",
 			to_char(c.playing_movie_start, 'hh24:mi:ss') as "playing_movie_start", 
-			to_char(c.playing_moive_end, 'hh24:mi:ss') as "playing_movie_end",
+			to_char(c.playing_movie_end, 'hh24:mi:ss') as "playing_movie_end",
 			e.movie_name, d.theater_name, c.playing_movie_idx 
 		from playing_movie c, theater d, movie e 
 			where c.theater_idx=d.theater_idx and c.movie_idx=e.movie_idx
@@ -52,7 +52,7 @@
 			theater_idx=#{theater_idx},
 			playing_movie_date=to_date(#{playing_movie_date},'yyyy-mm-dd'),
 			playing_movie_start=to_date(#{playing_movie_start},'hh24:mi:ss'),
-			playing_moive_end=to_date(#{playing_movie_end},'hh24:mi:ss')
+			playing_movie_end=to_date(#{playing_movie_end},'hh24:mi:ss')
 		where
 			playing_movie_idx = #{playing_movie_idx}
 	
