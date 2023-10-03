@@ -123,6 +123,7 @@ var year = today.getFullYear();
 var month = today.getMonth()+1;
 var date = today.getDate();
 var weekday = today.getDay();
+var select_movie_name = '';
 
 
 const week = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)'];
@@ -173,6 +174,7 @@ document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+wee
 	}
 	
 	function selectMovie(movie_name,movie_maxage){
+		select_movie_name = movie_name;
 		let param = 'movie_name='+movie_name+'&movie_maxage='+movie_maxage;
 		sendRequest('ticketingSelectMovie.do',param, selectMovieResult, 'POST');
 	}
@@ -205,13 +207,13 @@ document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+wee
 	
 	
 	
-	function selectDate(currentPlusDate,movie_name){
+	function selectDate(currentPlusDate){
 		var dayPost= new Date(year,month-1,date+currentPlusDate);
 		let yearPost = dayPost.getFullYear();
 		let monthPost = dayPost.getMonth()+1;
 		let datePost = dayPost.getDate();
 		let wdayPost = dayPost.getDay();
-		let param = 'year='+yearPost+'&month='+monthPost+'&date='+datePost;
+		let param = 'year='+yearPost+'&month='+monthPost+'&date='+datePost+'&movie_name='+select_movie_name;
 		
 		document.getElementById('selectDay').innerHTML = yearPost+'-'+monthPost+'-'+datePost+' '+week[wdayPost];
 		
@@ -245,8 +247,8 @@ document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+wee
 		
 	}
 	
-	function selectresult(){
-		location.href='seat.do';
+	function selectresult(playing_movie_idx, theater_idx, movie_idx){
+		location.href='seat.do?movie_idx='+movie_idx+'&theater_idx='+theater_idx+'&playing_movie_idx='+playing_movie_idx;
 	}
 	
 
