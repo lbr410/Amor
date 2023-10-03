@@ -101,8 +101,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="">
-				
+				<div class="selectMovieBox">
+					
 				
 				
 				</div>
@@ -118,6 +118,7 @@ var year = today.getFullYear();
 var month = today.getMonth()+1;
 var date = today.getDate();
 var weekday = today.getDay();
+var select_movie_name = '';
 
 const week = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)'];
 
@@ -187,7 +188,6 @@ function selectDateResult(){
 
 		}
 	}
-	
 }
 
 
