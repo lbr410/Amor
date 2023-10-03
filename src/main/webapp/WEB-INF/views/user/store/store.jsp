@@ -8,9 +8,6 @@
 <title>아모르 : 스토어</title>
 <link rel="stylesheet" href="/amor/resources/css/user/store.css">
 </head>
-<script>
-
-</script>
 <%@include file="../header.jsp" %>
 <body>
 <div class="back">
@@ -32,7 +29,7 @@
     	<div class="msg">상품 준비 중입니다.</div>
     </c:if>
     <c:forEach var="Tdto" items="${Tlists }">
-        <div class="product">
+        <div class="product ${Tdto.product_price2=='품절'?'soldout':'' }">
         	<c:url var="detailUrl" value="store/storeContentForm.do">
 				<c:param name="product_idx">${Tdto.product_idx }</c:param>
 			</c:url>
@@ -42,6 +39,7 @@
         	</div>
         	<div class="prodPrice">
         	<c:if test="${Tdto.product_price2=='품절' }">
+        	 <div class="soldout-cover"></div>
         		<label><span>${Tdto.product_price2 }</span></label>
         	</c:if>
         	<c:if test="${Tdto.product_price2!='품절' }">
@@ -59,7 +57,7 @@
     	<div class="msg">상품 준비 중입니다.</div>
     </c:if>
     <c:forEach var="Sdto" items="${Slists }">
-        <div class="product">
+        <div class="product ${Sdto.product_price2=='품절'?'soldout':'' }" >
         	<c:url var="detailUrl" value="store/storeContentForm.do">
 				<c:param name="product_idx">${Sdto.product_idx }</c:param>
 			</c:url>
@@ -71,6 +69,7 @@
         	</div>
         	<div class="prodPrice">
         	<c:if test="${Sdto.product_price2=='품절' }">
+        	<div class="soldout-cover"></div>
         		<label><span>${Sdto.product_price2 }</span></label>
         	</c:if>
         	<c:if test="${Sdto.product_price2!='품절' }">
@@ -88,7 +87,7 @@
     	<div class="msg">상품 준비 중입니다.</div>
     </c:if>
     <c:forEach var="Ddto" items="${Dlists }">
-        <div class="product">
+        <div class="product ${Ddto.product_price2=='품절'?'soldout':'' }">
         	<c:url var="detailUrl" value="store/storeContentForm.do">
 				<c:param name="product_idx">${Ddto.product_idx }</c:param>
 			</c:url>
@@ -100,6 +99,7 @@
         	</div>
         	<div class="prodPrice">
         	<c:if test="${Ddto.product_price2=='품절' }">
+        	<div class="soldout-cover"></div>
         		<label><span>${Ddto.product_price2 }</span></label>
         	</c:if>
         	<c:if test="${Ddto.product_price2!='품절' }">

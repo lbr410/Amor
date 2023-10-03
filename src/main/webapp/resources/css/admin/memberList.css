@@ -14,3 +14,18 @@
 	color: #2E90FF !important;
 	font-weight: bold;
 }
+.idTd{
+	width: 55px;
+}
+.genderTd{
+	width: 30px;
+}
+.nyTd{
+	width: 50px;
+}
+.dateTd{
+	width: 85px;
+}
+.telTd{
+	width: 100px;
+}

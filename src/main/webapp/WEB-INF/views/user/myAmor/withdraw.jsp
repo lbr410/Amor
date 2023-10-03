@@ -20,7 +20,7 @@ function show() {
     	if(confirm){
     		window.location='withdrawSubmit.do';
     	}else{
-    		window.location='index.do'
+    		window.location='/amor/index.do'
     	}
     }
 }
@@ -61,7 +61,7 @@ function show() {
 	</div>
 	<div class="btn">
 		<input type="button" value="탈퇴" class="submit" onclick="show()">
-		<a href="/index.do"><input type="button" value="취소" class="cancel"></a>
+		<a href="/amor/index.do"><input type="button" value="취소" class="cancel"></a>
 	</div>
 </div>
 </form>

@@ -34,7 +34,7 @@ public class LoginController {
 	public ModelAndView loginSubmit(
 			@RequestParam(value="id", defaultValue = "notid")String id,
 			@RequestParam(value="pwd", defaultValue = "notpwd")String pwd2,
-			@RequestParam(value="saveid" ,required = false) String saveid,
+			@RequestParam(value="saveId" ,required = false) String saveId,
 			HttpServletResponse resp,
 			HttpSession session) {
 		
@@ -52,12 +52,12 @@ public class LoginController {
 		int result=memberService.memberLogin(dto);
 
 		if(result==memberService.SUCCES) {
-			if(saveid==null) {
-				Cookie ck=new Cookie("saveid",id);
+			if(saveId==null) {
+				Cookie ck=new Cookie("ckid",id);
 				ck.setMaxAge(0);
 				resp.addCookie(ck);
 			}else {
-				Cookie ck=new Cookie("saveid",id);
+				Cookie ck=new Cookie("ckid",id);
 				ck.setMaxAge(60*60*24*30);
 				resp.addCookie(ck);
 			};

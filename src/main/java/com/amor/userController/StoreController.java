@@ -52,18 +52,27 @@ public class StoreController {
 	@RequestMapping("store/storePaymentForm.do")
 	public ModelAndView storePaymentForm(
 			@RequestParam("num") int num,
-			@RequestParam("idx") int idx){
+			@RequestParam("idx") int idx,
+			HttpSession session){
 		
 				/*@RequestParam("total")String total,
 				@RequestParam("price")int price*/
 //		System.out.println(num);
 //		System.out.println(idx);
-		ProductDTO dto=productService.storePayForm(idx,num);
-		
 		ModelAndView mav=new ModelAndView();
-		mav.addObject("num", num);
-		mav.addObject("dto", dto);
-		mav.setViewName("/user/store/storePayment");
+		if(session.getAttribute("sid")==null) {
+			mav.addObject("msg", "로그인 후 이용가능합니댜.");
+			mav.addObject("goUrl", "/amor/member/login.do");
+			mav.setViewName("/user/msg/userMsg");
+		}else {
+			
+			ProductDTO dto=productService.storePayForm(idx,num);
+				
+			mav.addObject("num", num);
+			mav.addObject("dto", dto);
+			mav.setViewName("/user/store/storePayment");
+		}
+
 		return mav;
 	}
 	

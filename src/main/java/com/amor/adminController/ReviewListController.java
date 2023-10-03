@@ -20,7 +20,7 @@ public class ReviewListController {
 	private MovieReviewService movieReviewService;
 	
 	@RequestMapping("admin/review/reviewList.do")
-	public ModelAndView reviewList(
+	public ModelAndView reviewListForm(
 			HttpSession session,
 			@RequestParam(value="cp",defaultValue = "1")int cp) {
 		
