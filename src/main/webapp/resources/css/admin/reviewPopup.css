@@ -26,15 +26,14 @@ body{
 	gap:20px;
 }
 .popupImg{
-	/**width: calc(33.33% - 10px); */
-	width:600px;
+	width: 550px;
 	height: 185px;
-	float: left;
 }
 .img{
-	width: 149px;
-	height: 185px;
-	background: black;
+	max-width: 550px; 
+    max-height: 185px;
+    width: auto;
+    height: auto;
 }
 .popupTextDiv{
 	width: 550px;

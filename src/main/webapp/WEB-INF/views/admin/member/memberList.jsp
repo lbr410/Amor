@@ -58,18 +58,23 @@ function memberSearch() {
 	</c:if>
 	<c:forEach var="dto" items="${lists }">
 		<tr>
-			<td>${dto.member_idx }</td>
+			<td class="idTd">${dto.member_idx }</td>
 			<td>${dto.member_id }</td>
 			<td>${dto.member_name }</td>
 			<td>${dto.member_birth_year }. ${dto.member_birth_month }.${dto.member_birth_day }</td>
-			<td>${dto.member_gender }</td>
-			<td>${dto.member_tel1 }${dto.member_tel2 }</td>
+			<td class="genderTd">${dto.member_gender }</td>
+			<td class="telTd">${dto.member_tel1 }${dto.member_tel2 }</td>
 			<td>${dto.member_email }</td>
 			<td>[${dto.member_zip }] ${dto.member_addr1 } ${dto.member_addr2 } </td>
-			<td>${dto.member_block }</td>
-			<td>${dto.member_joindate }</td>
-			<td>${dto.member_quit }</td>
-			<td>${dto.member_quitdate }</td>
+			<td class="nyTd">${dto.member_block }</td>
+			<td class="dateTd">${dto.member_joindate }</td>
+			<td class="nyTd">${dto.member_quit }</td>
+			<c:if test="${dto.member_quit=='n'}">
+				<td></td>
+			</c:if>
+			<c:if test="${dto.member_quit=='y'}">
+				<td class="dateTd">${dto.member_quitdate }</td>
+			</c:if>
 		</tr>
 	</c:forEach>
 	</tbody>

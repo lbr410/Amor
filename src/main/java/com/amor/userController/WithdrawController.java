@@ -28,18 +28,19 @@ public class WithdrawController {
 	@RequestMapping("myAmor/withdrawSubmit.do")
 	public ModelAndView withdrawSubmit(
 			HttpSession session,
-			HttpServletRequest req,
 			HttpServletResponse resp) {
 		
 		String id=(String)session.getAttribute("sid");
+		
 		int result=memberService.memberWithDraw(id);	
 		
-		Cookie ck=new Cookie("saveid",id);
-		ck.setMaxAge(0);
-		resp.addCookie(ck);
-		
-		session.invalidate();
-
+		if(result>0) {
+			Cookie ck=new Cookie("ckid",null);
+			ck.setMaxAge(0);
+			ck.setPath("/");
+			resp.addCookie(ck);
+			session.invalidate();
+		}
 		ModelAndView mav= new ModelAndView();
 		mav.setViewName("redirect:/index.do");
 		
