@@ -7,7 +7,7 @@ import com.amor.movieReview.model.MovieReviewJoinDTO;
 public interface MovieReviewService {
 	
 	public List<MovieReviewJoinDTO> lists(int cp, int ls, int member_idx);
-	public int getTotalCnt();
+	public int getTotalCnt(int member_idx);
 	public int reviewListTotalCnt();
 	public List<MovieReviewDTO> adminReviewList(int cp, int listSize);
 	public MovieReviewDTO adminReviewPopup(int idx);
@@ -15,4 +15,6 @@ public interface MovieReviewService {
 	public int adminReviewListDelete(int idx);
 	public int adminReviewListSearchTotalCnt(String search);
 	public List<MovieReviewDTO> adminReviewListSearch(int cp, int listSize, String search);
+	public int movieReviewAdd(MovieReviewJoinDTO dto);
+	public int reviewListIdx(String member_id);
 }

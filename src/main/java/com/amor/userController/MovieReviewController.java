@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.style.DefaultValueStyler;
 import org.springframework.stereotype.Controller;
@@ -32,10 +34,16 @@ public class MovieReviewController {
 		return "/user/myAmor/tempReview";
 	}
 	
-	@RequestMapping(value = "/user/myAmor/movieReviewAdd.do", method = RequestMethod.POST)
-	public ModelAndView reviewWrite(MovieReviewJoinDTO dto, MultipartHttpServletRequest req) {
+	@RequestMapping(value = "/myAmor/movieReviewAdd.do", method = RequestMethod.POST)
+	public ModelAndView movieReviewAdd (MultipartHttpServletRequest req,
+			@RequestParam("movie_idx") int movie_idx,
+			@RequestParam("ticketing_idx") int ticketing_idx,
+			@RequestParam("member_idx") int member_idx,
+			@RequestParam("movie_review_star")int movie_review_star,
+			@RequestParam("movie_review_content")String movie_review_content
+			) {
 			
-		MultipartFile upl = req.getFile("movie_review_img");
+		  MultipartFile upl = req.getFile("movie_review_img");
 	      String upload = upl.getOriginalFilename();
 	      String noExt = upload.substring(0, upload.lastIndexOf("."));
 	      String ext = upload.substring(upload.lastIndexOf(".") + 1);
@@ -70,46 +78,38 @@ public class MovieReviewController {
 	         e.printStackTrace();
 	      }
 	      
-//	      ProductDTO dto = new ProductDTO();
-//	      dto.setProduct_category(req.getParameter("product_category"));
-//	      dto.setProduct_title(req.getParameter("product_title"));
-//	      dto.setProduct_price(Integer.parseInt(req.getParameter("product_price")));
-//	      dto.setProduct_content(req.getParameter("product_content"));
-//	      dto.setProduct_img(saveFileName);
-
-//	      int count = productService.productAdd(dto);
-	      
-//	      String msg = count > 0 ? "상품을 등록하였습니다." : "상품 등록 실패!";
-//	      ModelAndView mav = new ModelAndView();
-//	      mav.addObject("msg", msg);
-//	      mav.addObject("goUrl", "productList.do");
-//	      mav.setViewName("user/msg/userMsg");
-//	      
-//	      return mav;
-		
+	    MovieReviewJoinDTO dto = new MovieReviewJoinDTO(movie_idx, ticketing_idx, member_idx, movie_review_star, movie_review_content, saveFileName);
+	    int result = movieReviewService.movieReviewAdd(dto);
+	    String msg = result>0?"등록에 성공하였습니다.":"등록에 실패하였습니다.";
+	    
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/user/myAmor/movieReviewAdd");
+		mav.addObject("msg", msg);
+		mav.addObject("goUrl", "/amor/myAmor/ticketingHistory.do");
+		mav.setViewName("user/msg/userMsg");
 		return mav;
 	}	
 	
-	@RequestMapping("/user/myAmor/movieReviewList.do")
+	@RequestMapping("/myAmor/reviewList.do")
 	public ModelAndView reviewList(
 			@RequestParam(value = "cp", defaultValue = "1")int cp,
-			@RequestParam(value = "member_idx", defaultValue = "4")int member_idx
+			HttpSession session
 			) {
 		
-		int totalCnt=movieReviewService.getTotalCnt();
+		String member_id =(String)session.getAttribute("sid");
+		int member_idx = movieReviewService.reviewListIdx(member_id);
+		
+		int totalCnt=movieReviewService.getTotalCnt(member_idx);
 		int listSize=5;
 		int pageSize=5;
 		
 		List<MovieReviewJoinDTO> reviewLists=movieReviewService.lists(cp, listSize, member_idx);
 		
-		String reviewpageStr = com.amor.page.PageModule.makePage("movieReviewList.do", totalCnt, listSize, pageSize, cp);
+		String reviewpageStr = com.amor.page.PageModule.makePage("/amor/myAmor/reviewList.do", totalCnt, listSize, pageSize, cp);
 	
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("reviewpageStr",reviewpageStr);
+		mav.addObject("reviewpageStr", reviewpageStr);
 		mav.addObject("reviewLists", reviewLists);
-		mav.setViewName("/user/myAmor/movieReviewList");
+		mav.setViewName("/user/myAmor/reviewList");
 		return mav;
 	}
 	

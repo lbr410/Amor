@@ -5,7 +5,7 @@ import java.util.*;
 public interface MovieReviewDAO {
 
 	public List<MovieReviewJoinDTO> reviewList(Map map);
-	public int getTotalCnt();
+	public int getTotalCnt(int member_idx);
 	public int reviewListTotalCnt();
 	public List<MovieReviewDTO> adminReviewList(Map map);
 	public MovieReviewDTO adminReviewPopup(int idx);
@@ -13,4 +13,6 @@ public interface MovieReviewDAO {
 	public int adminReviewListDelete(int idx);
 	public int adminReviewListSearchTotalCnt(String search);
 	public List<MovieReviewDTO> adminReviewListSearch(Map map);
+	public int movieReviewAdd(MovieReviewJoinDTO dto);
+	public int reviewListIdx(String member_id);
 }

@@ -6,25 +6,33 @@
 	<select id="reviewList" parameterType="Map" resultType="com.amor.movieReview.model.MovieReviewJoinDTO">
 		select 
 			f.movie_name, 
-			c.movie_review_content, 
+			c.movie_review_content,
+			substr(movie_review_content, 0, 8) as movie_review_shortcontent, 
 			c.movie_review_img, 
-			d.member_idx, 
-			e.ticketing_screeningtime 
+			d.member_idx,
+			c.movie_review_writedate 
 		from 
 			(select * from (select rownum as rnum,a.* from 
 			(select * from movie_review order by movie_review_idx desc)a)b 
 			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}) c,
 			 member d, 
-			 ticketing e, 
 			 movie f 
 		 where 
 		 	d.member_idx=c.member_idx 
-			 and c.member_idx=e.member_idx
 			 and f.movie_idx=c.movie_idx 
 			 and d.member_idx=#{member_idx}
 	</select>
 	<select id="totalCntReview" resultType="Integer">
-		select count(*) from movie_review
+		select 
+			count(*) 
+		from 
+			movie_review c,
+			member d, 
+			movie f 
+		where 
+		 	d.member_idx=c.member_idx 
+			 and f.movie_idx=c.movie_idx 
+			 and d.member_idx=#{member_idx}
 	</select>
 	
 	<select id="reviewListTotalCnt" resultType="Integer">
@@ -81,5 +89,20 @@
 		where (select movie_name from movie mv where mv.movie_idx=mr.movie_idx) like '%'||#{search}||'%'
 		order by movie_review_idx desc) a)
 		where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}	
+	</select>
+	<insert id="movieReviewAdd" parameterType="com.amor.movieReview.model.MovieReviewJoinDTO">
+		insert into
+			movie_review
+		values
+			(movie_review_idx.nextval, 
+			#{movie_idx}, 
+			#{ticketing_idx}, 
+			#{member_idx}, 
+			#{movie_review_star}, 
+			#{movie_review_content},
+			#{movie_review_img}, sysdate)
+	</insert>
+	<select id="reviewListIdx" parameterType="String" resultType="Integer">
+		select member_idx from member where member_id = #{member_id}
 	</select>
 </mapper>

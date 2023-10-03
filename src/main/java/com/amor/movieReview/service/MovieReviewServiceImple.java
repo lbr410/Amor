@@ -32,8 +32,8 @@ public class MovieReviewServiceImple implements MovieReviewService {
 	}
 	
 	@Override
-	public int getTotalCnt() {
-		int count=movieReviewDao.getTotalCnt();
+	public int getTotalCnt(int member_idx) {
+		int count=movieReviewDao.getTotalCnt(member_idx);
 		return count;
 	}
 	
@@ -93,6 +93,18 @@ public class MovieReviewServiceImple implements MovieReviewService {
 		
 		List<MovieReviewDTO> lists=movieReviewDao.adminReviewListSearch(map);
 		return lists;
+	}
+	
+	@Override
+	public int movieReviewAdd(MovieReviewJoinDTO dto) {
+		int result = movieReviewDao.movieReviewAdd(dto);
+		return result;
+	}
+	
+	@Override
+	public int reviewListIdx(String member_id) {
+		int member_idx = movieReviewDao.reviewListIdx(member_id);
+		return member_idx;
 	}
 
 }

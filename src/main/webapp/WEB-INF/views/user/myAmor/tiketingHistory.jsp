@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Amor:MyPage(ReserveList)</title>
-<link rel="stylesheet" href="/amor/resources/css/user/tiketingHistory.css" />
+<link rel="stylesheet" type="text/css" href="/amor/resources/css/user/tiketingHistory.css">
 </head>
 <style>
 .body-inner{
@@ -26,104 +26,105 @@
 	margin-top:50px;
 }
 
-	#container {
+#container {
 	display: flex;
 	margin: 5% auto;
-	}
+}
 	
-	#box1{
+#box1{
 	flex:1;
 	display:table;
 	padding-left: 10px;
 	width: 262px;
 	height: 193px;
-	}
+}
 	
-	.inputfile {
+.inputfile {
 	text-align: center;
 	line-height: 50px;
-	}
+}
 	
-	#box2{
+#box2{
 	flex:2;
 	padding-left: 20px;
-	}
+}
 	
-	.btn {
-		margin-top: 60px;
-		display: none;
-		position: fixed;
-		z-index: 1;
-		left: 0;
-		top: 0;
-		width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.7);
-	}
+.btn {
+	margin-top: 60px;
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
 	
-	.btn-content {
-		background-color: #fff;
-		margin: 10% auto;
-		padding: 20px;
-		border: 2px solid #1A2C82;
-		width: 700px;
-		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-		border-radius: 15px;
-		border: 5px solid #1A2C82;
-	}
+.btn-content {
+	background-color: #fff;
+	margin: 10% auto;
+	padding: 20px;
+	border: 2px solid #1A2C82;
+	width: 700px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	border-radius: 15px;
+	border: 5px solid #1A2C82;
+}
 	
-	.nextbtn {
-		 border:none;
-  		 padding: 2px 21px 6px 21px;
-		 width: 150px;
-		 height: 40px;
-		 border-radius: 3px;
-		 background: #1A2C82;
-		 color: #C7E3FF;
-		 cursor: pointer;
-	}
+.nextbtn {
+	border:none;
+	padding: 2px 21px 6px 21px;
+	width: 150px;
+	height: 40px;
+	border-radius: 3px;
+	background: #1A2C82;
+	color: #C7E3FF;
+	cursor: pointer;
+}
 	
-	.cancelBtn {
-	   border:none;
-	   padding: 2px 21px 6px 21px;
-	   width: 150px;
-	   height: 40px;
-	   border-radius: 3px;
-	   background: #EEEEEE;
-	   color: #1A2C82;
-	   cursor: pointer;
-	}
+.cancelBtn {
+   border:none;
+   padding: 2px 21px 6px 21px;
+   width: 150px;
+   height: 40px;
+   border-radius: 3px;
+   background: #EEEEEE;
+   color: #1A2C82;
+   cursor: pointer;
+}
 	
-	.fileBtn {
-  	   vertical-align:middle;
-	   border:none;
-	   border-radius: 3px;
-	   color: #1A2C82;
-	   cursor: pointer;
-	}
+.fileBtn {
+	vertical-align:middle;
+	border:none;
+	border-radius: 3px;
+	color: #1A2C82;
+	cursor: pointer;
+}
 	
-	.closeBtn2 {
-		float: right;
-		cursor: pointer;
-	}
-	.centerBtn {
-		text-align: center;
-	}
+.closeBtn2 {
+	float: right;
+	cursor: pointer;
+}
+
+.centerBtn {
+	text-align: center;
+}
 	
-  .star {
-  	padding-bottom: 5px;
-    position: relative;
-    font-size: 1.3rem;
-    color: white;
-  }
+ .star {
+	padding-bottom: 5px;
+	position: relative;
+	font-size: 1.3rem;
+	color: white;
+}
  
-  .starBack span {
+.starBack span {
   	position: relative;
   	background-color: #FFF0BB;
   	border-radius: 5px;
-  }
+}
   
-  .star span {
+.star span {
    position: absolute; 
    left: 0; 
    color: #FFAC33; 
@@ -132,7 +133,7 @@
    border-radius: 5px;
   }
 
-  .star input {
+.star input {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -141,7 +142,7 @@
     cursor: pointer;
   }  
   
-  .name {
+.name {
   	margin-top:5px;
  	line-height: 30px;
   	height: 50px;
@@ -150,7 +151,7 @@
   	float:left;
   }
   
-  .thumbnail {
+.thumbnail {
  	width: 262px;
 	height: 193px;
   	object-fit: contain;
@@ -159,25 +160,24 @@
   	border-bottom: 3px solid #EEEEEE;
   	border-left: 3px solid #EEEEEE;
   	border-right: 3px solid #EEEEEE;
-  }
+}
   
-  .reviewtitle {
+.reviewtitle {
   	margin-left: 15px;
   	margin-bottom: 10px;
   	font-size: 25px;
   	font-weight: bold;
   	color: #1A2C82;
-  }
+}
   
-  .reviewTextarea{
+.reviewTextarea{
   	border: none;
   	border-top: 3px solid #EEEEEE;
   	border-bottom: 3px solid #EEEEEE;
   	border-left: 3px solid #EEEEEE;
   	border-right: 3px solid #EEEEEE;
   	resize: none;
-  
-  }
+}
 </style>
 <body>
 <%@include file="../header.jsp" %>
@@ -255,7 +255,7 @@
 
 <!-- 관람평 리뷰 -->
 
-<form name="reviewUpload" action="/amor/user/myAmor/reviewAdd.do" enctype="multipart/form-data">
+<form name="reviewUpload" action="movieReviewAdd.do" method="post" enctype="multipart/form-data">
 <div id="myReviewBtn${vs.index}" class="btn">
 	<div class="btn-content">
 		
@@ -279,14 +279,15 @@
 				<input type="file" name="movie_review_img" value="파일찾기" class="fileBtn" id="fileInput" onchange="imgPreview(this, 'reviewPreview${vs.index }')">
 				</div>
 			</div>
-			<div id="box2"><textarea cols="55" rows="12" name="movie_review_content" placeholder="관람평을 작성해주세요" class="reviewTextarea"></textarea></div>
+			<div id="box2"><textarea cols="55" rows="12" name="movie_review_content" placeholder="관람평을 작성해주세요" maxlength="200" class="reviewTextarea"></textarea></div>
 		</div>
 		<p class="centerBtn"><input type="submit" value="작성 완료" class="cancelBtn"></p>
 		
 	</div>
 </div>
 	<input type="hidden" name="ticketing_idx" value="${temp.ticketnum}">
-	<input type="hidden" name="movie_idx" value=${temp.movieidx }>
+	<input type="hidden" name="movie_idx" value="${temp.movieidx }">
+	<input type="hidden" name="member_idx" value="${temp.memberidx }">
 </form>
 
 </c:forEach>
@@ -301,12 +302,7 @@
 </body>
 <script src = "/amor/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
-	window.addEventListener("click", (event) => {
-        if (event.target == myReviewBtn) {
-            myReviewBtn.style.display = "none";
-        }
-    });		    
-	
+
 	function drawStar(target, aaa) {
 		document.querySelector(aaa).style.width = target.value*10+'%';		
 	}
