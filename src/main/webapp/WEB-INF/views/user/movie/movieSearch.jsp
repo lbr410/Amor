@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아모르 : 현재 상영작</title>
+<title>검색 결과</title>
 <link rel="stylesheet" href="/amor/resources/css/user/movie.css">
 <!--브라우저 스타일 초기화-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
 </head>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 <body>
 	<!--GRAY NAVIGATE BAR-->
     <div class="gray-bar">
@@ -78,6 +78,6 @@
      	<div class="paging">${pageTag}</div>
 	</div>
 	</div>
-<%@ include file="footer.jsp" %>
+<%@ include file="../footer.jsp" %>
 </body>
 </html>
