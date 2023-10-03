@@ -48,23 +48,6 @@ public class IndexController {
 		return mav;   
 	}
 	
-	//영화 상새내용 페이지로 이동
-	@RequestMapping("movieContentForm.do")
-	public ModelAndView movieContent(
-			@RequestParam(value="movie_idx", defaultValue = "0")int movie_idx) {
-		
-		MovieDTO dto = movieservice.movieContent(movie_idx);
-		ModelAndView mav=new ModelAndView();
-		if(dto == null) {
-			mav.addObject("msg","삭제된 게시물 잘못된 접근입니다.");
-			mav.setViewName("user/msg/userMsg");
-		}else {
-			String movieContent = dto.getMovie_content().replaceAll("\n", "<br>");
-			mav.addObject("movieContent",movieContent);
-			mav.addObject("dto",dto);
-			mav.setViewName("/user/movie/movieContent");
-		}
-		return mav;
- 	}
+	
 	
 }

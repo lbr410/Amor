@@ -25,12 +25,20 @@
 	where inquiry_idx=#{inquiry_idx}
 </select>
 
-<select id="inquiryList" parameterType="Map" resultType="com.amor.inquiry.model.InquiryDTO">
+<select id="adminInquiryList" parameterType="Map" resultType="com.amor.inquiry.model.InquiryDTO">
 	select * from
     (select rownum as rnum, a.* from
-    (select * from inquiry order by inquiry_idx desc) a)
+    (select member_id from member m where m.member_idx=i.member_idx) as member_id, member_tel, member_email,
+    (select member_block from member m where m.member_idx=i.member_idx) as member_block
+    from inquiry i order by inquiry_idx desc) a)
     where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}
 </select>
+
+<update id="blockUpdate" parameterType="Map">
+	update member
+	set member_block=#{value}
+	where member_idx=(select i.member_idx from inquiry i where i.inquiry_idx=#{inquiry_idx} )
+</update>
 
 <update id="inquiryAnswer" parameterType="Map">
 	update inquiry set

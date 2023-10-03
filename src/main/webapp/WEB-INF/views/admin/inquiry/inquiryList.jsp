@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>아모르 관리자 : 1:1 문의 목록</title>
+<style>
+
+</style>
 </head>
 <body>
 <%@include file="../admin_header.jsp" %>
@@ -43,8 +46,8 @@
 				<a href="${dto.inquiry_content})"></a>
 			</td>
 			<td class="tableStatus">
-				<c:if test="${dto.inquiry_astatus eq 'y'}">답변대기</c:if>
-				<c:if test="${dto.inquiry_astatus eq 'n'}">답변완료</c:if>
+				<c:if test="${dto.inquiry_astatus eq 'y'}">답변완료</c:if>
+				<c:if test="${dto.inquiry_astatus eq 'n'}">답변대기</c:if>
 			</td>
 			<td class="tableBtn">
 				<input type="button" class="smallBtn" value="수정" onclick="">
