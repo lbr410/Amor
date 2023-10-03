@@ -30,7 +30,7 @@
 <div class="gray-section">
 	<div class="body-inner">
 <%@include file="../mypageHeader.jsp" %>
-<div class="mypagetitle"><a href = "/amor/myAmor/inquiryList.do"><label class="title1">1:1 문의</label></a></div>
+<div class="mypagetitle"><a href = "/amor/myAmor/memberInquiryList.do"><label class="title1">1:1 문의</label></a></div>
 <div class="inquiryQBtn">
 	<a href="/amor/myAmor/inquiryWrite.do"><input type="button" value="1:1문의 쓰기"></a>
 </div>
@@ -54,13 +54,13 @@
                 	</tr>
                 </tfoot>
                 <tbody id="tab">
-                <c:if test="${empty lists }">
+                <!--<c:if test="${empty lists }">
                 	<tr>
                 	<td colspan="2" align="center">
                 		등록된 1:1문의가 없습니다.
                 	</td>
                 	</tr>
-                </c:if>
+                </c:if>-->
                 <c:forEach var="dto" items="${lists }">
                     <tr class="acc_head" aria-expanded="false" role="button" title="닫기">
                         <td id="row0" headers="thead0">${dto.inquiry_subject }</td>

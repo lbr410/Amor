@@ -9,42 +9,6 @@
 <link rel="stylesheet" href="/amor/resources/css/user/movie.css">
 <!--브라우저 스타일 초기화-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
-<script>
-var XHR=null;
-
-function getXHR(){
-	if(window.ActiveXObject){
-		return new ActiveXObject('Msxml2.XMLHTP');
-	}else if(window.XMLHttpRequest){
-		return new XMLHttpRequest();
-	}else{
-		return null;
-	}
-}
-
-function show(){
-	//window.alert('이것은 경고창!');
-	var name=document.fm.name.value;
-	var params='name='+name;
-	XHR=getXHR();
-	XHR.onreadystatechange=showResult;
-	XHR.open('GET','getAjaxData.jsp?'+params,true);
-	XHR.send(null);
-}
-
-function showResult(){//응답 전용 함수
-	
-	if(XHR.readyState==4){//completed 데이터를 전부 받은 상태
-		if(XHR.status==200){//200은 성공. 결과 상태
-			var data=XHR.responseText;
-			window.alert(data);
-			document.querySelector(data).innerHTML = text;
-		}
-	}
-}
-
-</script>
-
 </head>
 <%@ include file="../header.jsp" %>
 <body>
@@ -53,7 +17,7 @@ function showResult(){//응답 전용 함수
         <div class="location">
             <span class="home">Home</span>
             <a href="/amor/movie/movie.do" title="영화 페이지로 이동">영화</a>
-            <a href="/amor/movie/movie.do" title="현재 상영작 페이지로 이동">현재 상영작</a>
+            <a href="/amor/movie/movieCom.do" title="상영 예정작 페이지로 이동">현재 상영작</a>
         </div>
     </div>
     <div class="body-inner"></div>
