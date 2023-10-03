@@ -2,6 +2,8 @@ package com.amor.adminController;
 
 import java.util.*;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +25,9 @@ public class SalesController {
 	@Autowired
 	private TicketingService ticketingService;
 	
+	// 매출관리 페이지로 이동
 	@RequestMapping("admin/sales/sales.do")
-	public ModelAndView salesForm() {		
+	public ModelAndView salesForm(HttpSession session) {		
 		StorePaymentDTO aMonthAgo = storePaymentService.aMonthAgo();
 		StorePaymentDTO twoMonthsAgo = storePaymentService.twoMonthsAgo();
 		StorePaymentDTO threeMonthsAgo = storePaymentService.threeMonthsAgo();
@@ -73,11 +76,18 @@ public class SalesController {
 		lists.put("sevenDaysAgoDay", sevenDaysAgo.getB());
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("lists", lists);
-		mav.setViewName("admin/sales/sales");
+		if(session.getAttribute("data") == null) {
+			mav.addObject("msg", "로그인 후 이용 가능합니다."); // 메시지 왜 안뜨는?
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");
+		} else {
+			mav.addObject("lists", lists);
+			mav.setViewName("admin/sales/sales");
+		}
 		return mav;
 	}
 	
+	// 기간별 매출 조회
 	@RequestMapping("admin/sales/salesCheck.do")
 	public String salesCheck(@RequestParam(value = "startd", defaultValue = "") String startd,
 			@RequestParam(value = "endd", defaultValue = "") String endd,
