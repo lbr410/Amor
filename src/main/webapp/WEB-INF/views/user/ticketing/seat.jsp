@@ -9,97 +9,71 @@
 <link rel="stylesheet" type="text/css" href="/amor/resources/css/user/seat.css">
 <script type="text/javascript" src="../resources/js/httpRequest.js"></script>
 <script>
-	let personnelCnt = 0;
+	let personnelCnt = 0; // 전체 인원 선택 수
+	let adultC = 0; // 성인 수
+	let teenagerC = 0; // 청소년 수
+	let seniorC = 0; // 시니어 수
+	let disabledC = 0; // 장애인 수
 	let eightPersonMsg = '최대 8명까지 선택 가능합니다.';
-	let totalPrice = 0;
-	let totalPriceFormat = totalPrice.toLocaleString('ko-KR')+'원';
-	let alphabet = 'ABCDEFGH';
-	let seatCheckCnt = 0;
-	/*let jsonArrTest = [
-		['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'a9', 'a10', 'a11', 'a12', 'a13', 'a14', 'a15', 'a16', 'a17', 'a18', 'a19', 'a20'],
-		['b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'b8', 'b9', 'b10', 'b11', 'b12', 'b13', 'b14', 'b15', 'b16', 'b17', 'b18', 'b19', 'b20'],
-		['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'c11', 'c12', 'c13', 'c14', 'c15', 'c16', 'c17', 'c18', 'c19', 'c20'],
-		['d1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd8', 'd9', 'd10', 'd11', 'd12', 'd13', 'd14', 'd15', 'd16', 'd17', 'd18', 'd19', 'd20'],
-		['e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7', 'e8', 'e9', 'e10', 'e11', 'e12', 'e13', 'e14', 'e15', 'e16', 'e17', 'e18', 'e19', 'e20'],
-		['f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'f9', 'f10', 'f11', 'f12', 'f13', 'f14', 'f15', 'f16', 'f17', 'f18', 'f19', 'f20'],
-		['g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9', 'g10', 'g11', 'g12', 'g13', 'g14', 'g15', 'g16', 'g17', 'g18', 'g19', 'g20'],
-		['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8', 'h9', 'h10', 'h11', 'h12', 'h13', 'h14', 'h15', 'h16', 'h17', 'h18', 'h19', 'h20']
-	]*/
-	
+	let totalPrice = 0; // 전체 가격
+	let priceArr = []; // 가격 배열
+	let priceStack = []; // 가격 스택 배열
+	let alphabet = 'ABCDEFGH'; // 행
+	let seatCheckCnt = 0; // 좌석 체크 갯수
+
 	// 이미 예약된 좌석
 	let alreadyBookedArr = '${playingMovieInfo.playing_movie_seat}'.split(',');
 	
-	// 통로
-	/*let tongro = '${theaterInfo.theater_path}';
-
-	let formattedString = tongro.replace(/\[|\]/g, '');
-	let stringArray = formattedString.split(',');
-
-	let tongroArr = [];
-	for (let i=0; i<stringArray.length; i++) {
-	    let innerArray = stringArray[i].split(',');
-	    tongroArr.push(innerArray);
-	}*/
-	
+	// 전체 좌석
 	let seats = '${theaterInfo.theater_seat}';
-	let seatsArr = JSON.parse(seats);
-	
-	/*let formattedString = seats.replace(/\[|\]/g, '');
-	let stringArray = formattedString.split(',');
-
-	let seatsArr = [];
-	for (let i=0; i<stringArray.length; i++) {
-	    let innerArray = stringArray[i].split(',');
-	    seatsArr.push(innerArray);
-	}*/
+	let seatsArr = JSON.parse(seats); // 좌석을 배열로 변환
 	
 	window.onload = function() {
-		let seatPlace = document.getElementById('seatPlace');
+		let seatPlace = document.getElementById('seatPlace'); 
 		
+		// 좌석 생성
 		for(let i=0; i<${theaterInfo.theater_row}; i++) { // theater의 행
 			let alphabetRow = document.createElement('span');
 			alphabetRow.textContent = alphabet.charAt(i);
 			alphabetRow.className = 'alphabetRow';
 			seatPlace.appendChild(alphabetRow);
 			
+			let jNum = 0; 
 			for(let j=0; j<${theaterInfo.theater_column}; j++) { // theater의 열
-				let seatBox = document.createElement('input');
-				seatBox.type = 'checkbox';
-				seatBox.name = 'playing_movie_seat';
-				seatBox.id = 'seatBox'+i+j; // 각 체크박스에 고유한 id 부여
-				seatPlace.appendChild(seatBox);
-				seatBox.value = alphabet.charAt(i)+(j+1);
-				
-				if(alreadyBookedArr.includes(seatBox.value)) { // 이미 예약된 좌석
-					seatBox.className = 'alreadyBooked';
-					seatBox.disabled = true;
-				} else { // 예매 가능한 좌석
-					seatBox.className = 'noBooked';
-				}
-
-				//seatBox.value = jsonArrTest[i][j];
-				
-				/*if(tongroArr.includes(seatBox.value)) {
+				if(seatsArr[i][j] == 0) { // 0일때 통로 만들기
 					let tongroSpan = document.createElement('span');
 					tongroSpan.className = 'tongroDeco';
 					seatPlace.appendChild(tongroSpan);
-				} else {*/
-					//console.log(tongroTest[i].includes(seatBox.value));
-					//console.log(seatBox.value);
-				
+				} else { // 아니면(1이면) 좌석 만들기
+					let seatBox = document.createElement('input');
+					seatBox.type = 'checkbox'; 
+					seatBox.name = 'playing_movie_seat'; // name 
+					seatBox.id = 'seatBox'+i+jNum; // 각 체크박스에 고유한 id 부여
+					seatPlace.appendChild(seatBox);
+					seatBox.value = alphabet.charAt(i)+(jNum+1); // 체크박스에 value 부여
+					
+					if(alreadyBookedArr.includes(seatBox.value)) { // 이미 예약된 좌석
+						seatBox.className = 'alreadyBooked';
+						seatBox.disabled = true;
+					} else { // 예매 가능한 좌석
+						seatBox.className = 'noBooked';
+					}
+					
 					let seatLabel = document.createElement('label');
-					seatLabel.htmlFor = 'seatBox'+i+j;
-					seatLabel.textContent = j+1;
+					seatLabel.htmlFor = 'seatBox'+i+jNum;
+					seatLabel.textContent = jNum+1;
 					seatPlace.appendChild(seatLabel);
+					jNum++;
 					
 					/*seatBox.addEventListener('change', function() {
 						if(seatBox.checked) {
 							window.alert('value = '+seatBox.value);
-						} else {
-							window.alert('value = '+seatBox.value);
 						}
-					})*/ // value test Code!!!!
+					})*/ // value test Code!! 나중에 지울 예정
 					
+					let totalPriceSpan = document.getElementById('totalPrice');
+					
+					// 체크박스 클릭 시 이벤트 추가
 					seatBox.addEventListener('click', function() {
 						if(personnelCnt == 0) {
 							seatBox.checked = false;
@@ -108,112 +82,219 @@
 							if(seatCheckCnt < personnelCnt) {
 								if(seatBox.checked) {
 									seatCheckCnt++;
+
+									if(priceArr.length > 0) {
+									    let price = priceArr.shift();
+									    totalPrice += price;
+									
+									    priceStack.push(price);
+									
+									    totalPriceSpan.innerHTML = totalPrice.toLocaleString('ko-KR') + '원';
+									}
 								} else if(seatCheckCnt > 0) {
 									seatCheckCnt--;
+
+									if(priceStack.length > 0) {
+										let lastAddedPrice = priceStack.pop();
+										totalPrice -= lastAddedPrice;
+										priceArr.unshift(lastAddedPrice);
+										
+										totalPriceSpan.innerHTML = totalPrice.toLocaleString('ko-KR') + '원';
+									}
 								}
-							} else {
+							} else { // seatCheckCnt와 personnelCnt가 같아도 seatCheckCnt가 마이너스 되게함
 								if(!seatBox.checked) {
 									seatCheckCnt--;
+
+									if(priceStack.length > 0) {
+										let lastAddedPrice = priceStack.pop();
+										totalPrice -= lastAddedPrice;
+										priceArr.unshift(lastAddedPrice);
+										
+										totalPriceSpan.innerHTML = totalPrice.toLocaleString('ko-KR') + '원';
+									}
 								} else {
 									window.alert('더이상 선택하실 수 없습니다.');
 									seatBox.checked = false;
 								}
 							}
 						}
-					}) // end function
-				//} // tongro end if
-			} // end for
+					}) // seatBox event
+				} // 통로, 통로 아닌 것 여부 if
+			} // 안쪽 for
 			let lineBreak = document.createElement('br');
 			seatPlace.appendChild(lineBreak);
-		}
-	}
+		} // 바깥 for
+	} // onload
 	
 	// 연령대별 인원수 증감
-	function adultMinusPlus(type) {
+	// 성인 - +
+	function adultMinus() {
 		let adultCnt = document.getElementById('adultCnt');
-		let total = document.getElementById('totalPrice');
-		if(type === 'minus') {
+		
+		if(seatCheckCnt == 0) {
 			if(!(seatCheckCnt == personnelCnt)) {
 				if(adultCnt.value > 0) {
 					let number = parseInt(adultCnt.value) - 1;
 					adultCnt.value = number;
 					personnelCnt--;
+					adultC--;
+					
+					let priceIdx = priceArr.indexOf(15000);
+					if(priceIdx !== -1) {
+						priceArr.splice(priceIdx, 1);
+					}
 				}
 			}
-		} else if(type === 'plus') {
+		}
+	}
+	
+	function adultPlus() {
+		let adultCnt = document.getElementById('adultCnt');
+		
+		if(seatCheckCnt == 0) {
 			if(personnelCnt < 8) {
 				let number = parseInt(adultCnt.value) + 1;
 				adultCnt.value = number;
 				personnelCnt++;
+				adultC++;
+				
+				priceArr.push(15000);
 			} else {
 				window.alert(eightPersonMsg);
 			}
 		}
 	}
 	
-	function TeenagerMinusPlus(type) {
+
+	// 청소년 - +	
+	function TeenagerMinus() {
 		let teenagerCnt = document.getElementById('teenagerCnt');
-		let total = document.getElementById('totalPrice');
-		if(!(seatCheckCnt == personnelCnt)) {
-			if(type === 'minus') {
+		
+		if(seatCheckCnt == 0) {
+			if(!(seatCheckCnt == personnelCnt)) {
 				if(teenagerCnt.value > 0) {
 					let number = parseInt(teenagerCnt.value) - 1;
 					teenagerCnt.value = number;
 					personnelCnt--;
+					teenagerC--;
+					
+					let priceIdx = priceArr.indexOf(12000);
+					if(priceIdx !== -1) {
+						priceArr.splice(priceIdx, 1);
+					}
 				}
 			}
-		} else if(type === 'plus') {
+		}
+	}
+	
+	function TeenagerPlus() {
+		let teenagerCnt = document.getElementById('teenagerCnt');
+		
+		if(seatCheckCnt == 0) {
 			if(personnelCnt < 8) {
 				let number = parseInt(teenagerCnt.value) + 1;
 				teenagerCnt.value = number;
 				personnelCnt++;
+				teenagerC++;
+				
+				priceArr.push(12000);
 			} else {
 				window.alert(eightPersonMsg);
 			}
 		}
 	}
 	
-	function seniorMinusPlus(type) {
+	// 시니어 - +
+	function seniorMinus() {
 		let seniorCnt = document.getElementById('seniorCnt');
-		let total = document.getElementById('totalPrice');
-		if(!(seatCheckCnt == personnelCnt)) {
-			if(type === 'minus') {
+		
+		if(seatCheckCnt == 0) {
+			if(!(seatCheckCnt == personnelCnt)) {
 				if(seniorCnt.value > 0) {
 					let number = parseInt(seniorCnt.value) - 1;
 					seniorCnt.value = number;
 					personnelCnt--;
+					seniorC--;
+					
+					let priceIdx = priceArr.indexOf(5000);
+					if(priceIdx !== -1) {
+						priceArr.splice(priceIdx, 1);
+					}
 				}
 			}
-		} else if(type === 'plus') {
+		}
+	}
+	
+	function seniorPlus() {
+		let seniorCnt = document.getElementById('seniorCnt');
+		
+		if(seatCheckCnt == 0) {
 			if(personnelCnt < 8) {
 				let number = parseInt(seniorCnt.value) + 1;
 				seniorCnt.value = number;
 				personnelCnt++;
+				seniorC++;
+				
+				priceArr.push(5000);
 			} else {
 				window.alert(eightPersonMsg);
 			}
 		}
 	}
 	
-	function disabledMinusPlus(type) {
+	// 장애인 - +
+	function disabledMinus() {
 		let disabledCnt = document.getElementById('disabledCnt');
-		let total = document.getElementById('totalPrice');
-		if(!(seatCheckCnt == personnelCnt)) {
-			if(type === 'minus') {
+		
+		if(seatCheckCnt == 0) {
+			if(!(seatCheckCnt == personnelCnt)) {
 				if(disabledCnt.value > 0) {
 					let number = parseInt(disabledCnt.value) - 1;
 					disabledCnt.value = number;
 					personnelCnt--;
+					disabledC--;
+					
+					let priceIdx = priceArr.indexOf(5000);
+					if(priceIdx !== -1) {
+						priceArr.splice(priceIdx, 1);
+					}
 				}
 			}
-		} else if(type === 'plus') {
+		}
+	}
+	
+	function disabledPlus() {
+		let disabledCnt = document.getElementById('disabledCnt');
+		
+		if(seatCheckCnt == 0) {
 			if(personnelCnt < 8) {
 				let number = parseInt(disabledCnt.value) + 1;
 				disabledCnt.value = number;
 				personnelCnt++;
+				disabledC++;
+				
+				priceArr.push(5000);
 			} else {
 				window.alert(eightPersonMsg);
 			}
+		}
+	}
+	
+	// submit
+	function seatSubmit() {
+		document.seatForm.adultC.value = adultC;
+		document.seatForm.teenagerC.value = teenagerC;
+		document.seatForm.seniorC.value = seniorC;
+		document.seatForm.disabledC.value = disabledC;
+		document.seatForm.ticketing_personnel.value = personnelCnt;
+		document.seatForm.ticketing_price.value = totalPrice;
+		
+		if(personnelCnt > 0 && personnelCnt == seatCheckCnt) {
+			document.seatForm.submit();
+		} else {
+			window.alert('좌석을 모두 선택해주세요.');
+			return false;
 		}
 	}
 </script>
@@ -225,35 +306,36 @@
 		<div class="commonTop">
 			<label>인원/좌석 선택</label>
 		</div>
+		<form name="seatForm" action="ticketingPayment.do" method="post">
 		<div class="commonMid">
 			<div class="personnelDiv">
 				<div class="countDiv">
 					성인&nbsp;
 					<span class="countSpan">
-					<input type="button" value="-" class="countBtn" onclick="adultMinusPlus('minus')">&nbsp;
+					<input type="button" value="-" class="countBtn" onclick="adultMinus()">&nbsp;
 					<input type="text" value="0" class="countText" id="adultCnt">&nbsp;
-					<input type="button" value="+" class="countBtn2" onclick="adultMinusPlus('plus')">
-					</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="button" value="+" class="countBtn2" onclick="adultPlus()">
+					</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 					
 					청소년&nbsp;
 					<span class="countSpan">
-					<input type="button" value="-" class="countBtn" onclick="TeenagerMinusPlus('minus')">&nbsp;
+					<input type="button" value="-" class="countBtn" onclick="TeenagerMinus()">&nbsp;
 					<input type="text" value="0" class="countText" id="teenagerCnt">&nbsp;
-					<input type="button" value="+" class="countBtn2" onclick="TeenagerMinusPlus('plus')">
+					<input type="button" value="+" class="countBtn2" onclick="TeenagerPlus()">
 					</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					
 					시니어&nbsp;
 					<span class="countSpan">
-					<input type="button" value="-" class="countBtn" onclick="seniorMinusPlus('minus')">&nbsp;
+					<input type="button" value="-" class="countBtn" onclick="seniorMinus()">&nbsp;
 					<input type="text" value="0" class="countText" id="seniorCnt">&nbsp;
-					<input type="button" value="+" class="countBtn2" onclick="seniorMinusPlus('plus')">
+					<input type="button" value="+" class="countBtn2" onclick="seniorPlus()">
 					</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					
+					 
 					장애인&nbsp;
 					<span class="countSpan">
-					<input type="button" value="-" class="countBtn" onclick="disabledMinusPlus('minus')">&nbsp;
+					<input type="button" value="-" class="countBtn" onclick="disabledMinus()">&nbsp;
 					<input type="text" value="0" class="countText" id="disabledCnt">&nbsp;
-					<input type="button" value="+" class="countBtn2" onclick="disabledMinusPlus('plus')">
+					<input type="button" value="+" class="countBtn2" onclick="disabledPlus()">
 					</span>
 				</div>
 			</div>
@@ -271,7 +353,7 @@
 			</div>
 			<div class="infoDiv">
 				<div class="movieInfo">
-					<img src="/amor/resources/img/introImg.jpg" alt="영화 이미지" class="posterImg">
+					<img src="/amor/resources/upload/movie/${movieInfo.movie_poster}" alt="영화 이미지" class="posterImg">
 					<div class="movieName">
 						<c:if test="${movieInfo.movie_maxage eq 0}">
 							<img src="/amor/resources/img/maxage_all.png" class="ageImg">
@@ -292,11 +374,21 @@
 					<div class="theaterName">${theaterInfo.theater_name}</div>
 				</div>
 				<div class="priceInfo">총 합계 <span id="totalPrice"></span></div>
-				<a href="#">
+				<a href="#" onclick="javascript: seatSubmit()">
 					<div class="payGo">결제하기</div>
 				</a>
 			</div>
 		</div>
+		<input type="hidden" name="movie_idx" value="${movieInfo.movie_idx}">
+		<input type="hidden" name="theater_idx" value="${theaterInfo.theater_idx}">
+		<input type="hidden" name="playing_movie_idx" value="${playingMovieInfo.playing_movie_idx}">
+		<input type="hidden" name="adultC" value="">
+		<input type="hidden" name="teenagerC" value="">
+		<input type="hidden" name="seniorC" value="">
+		<input type="hidden" name="disabledC" value="">
+		<input type="hidden" name="ticketing_personnel" value="">
+		<input type="hidden" name="ticketing_price" value="">
+		</form>
 	</div>
 </div>
 

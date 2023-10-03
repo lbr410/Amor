@@ -2,6 +2,8 @@ package com.amor.adminController;
 
 import java.util.*;
 
+import javax.servlet.http.HttpSession;
+
 import java.io.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +25,8 @@ public class ProductController {
 
 	// 관리자 상품 목록 조회
 	@RequestMapping("/admin/product/productList.do")
-	public ModelAndView productListForm(@RequestParam(value = "cp", defaultValue = "1") int cp) {
+	public ModelAndView productListForm(@RequestParam(value = "cp", defaultValue = "1") int cp,
+										HttpSession session) {
 		int totalCnt = productService.totalCnt();
 		int listSize = 5;
 		int pageSize = 5;
@@ -33,9 +36,15 @@ public class ProductController {
 		List<ProductDTO> lists = productService.productList(cp, listSize);
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("pageStr", pageStr);
-		mav.addObject("lists", lists);
-		mav.setViewName("admin/product/productList");
+		if(session.getAttribute("data") == null) {
+			mav.addObject("msg", "로그인 후 이용 가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");
+		} else {
+			mav.addObject("pageStr", pageStr);
+			mav.addObject("lists", lists);
+			mav.setViewName("admin/product/productList");
+		}
 		
 		return mav;
 	}
@@ -73,7 +82,8 @@ public class ProductController {
 	
 	// 스토어 제목 검색
 	@RequestMapping("admin/product/prodSearchList.do")
-	public ModelAndView searchList(@RequestParam(value = "cp", defaultValue = "1") int cp, @RequestParam("search") String search) {
+	public ModelAndView searchList(@RequestParam(value = "cp", defaultValue = "1") int cp, @RequestParam("search") String search,
+								   HttpSession session) {
 		int totalCnt = productService.prodSearchTotalCnt(search);
 		int listSize = 5;
 		int pageSize = 5;
@@ -83,17 +93,32 @@ public class ProductController {
 		List<ProductDTO> lists = productService.prodSearchList(cp, listSize, search);
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("pageStr", pageStr);
-		mav.addObject("lists", lists);
-		mav.setViewName("admin/product/productList");
+		if(session.getAttribute("data") == null) {
+			mav.addObject("msg", "로그인 후 이용 가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");
+		} else {
+			mav.addObject("pageStr", pageStr);
+			mav.addObject("lists", lists);
+			mav.setViewName("admin/product/productList");
+		}
 		
 		return mav;
 	}
 	
 	// 상품 등록 페이지로 이동
 	@RequestMapping(value = "admin/product/productAdd.do", method = RequestMethod.GET)
-	public String productAddForm() {
-		return "admin/product/productAdd";
+	public ModelAndView productAddForm(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		if(session.getAttribute("data") == null) {
+			mav.addObject("msg", "로그인 후 이용 가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");
+		} else {
+			mav.setViewName("admin/product/productAdd");
+		}
+		
+		return mav;
 	}
 	
 	// 상품 등록
@@ -152,15 +177,23 @@ public class ProductController {
 	
 	// 해당 상품 수정 페이지로 이동 후 정보 불러오기
 	@RequestMapping(value = "admin/product/productUpdate.do", method = RequestMethod.GET)
-	public ModelAndView productUpdateForm(@RequestParam("idx") int product_idx) {
+	public ModelAndView productUpdateForm(@RequestParam("idx") int product_idx, HttpSession session) {
+		
 		ProductDTO dto = productService.productSelectIdx(product_idx);
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("dto", dto);
-		mav.setViewName("admin/product/productUpdate");
+		if(session.getAttribute("data") == null) {
+			mav.addObject("msg", "로그인 후 이용 가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");
+		} else {
+			mav.addObject("dto", dto);
+			mav.setViewName("admin/product/productUpdate");
+		}
 		
 		return mav;
 	}
 	
+	// 상품 수정
 	@RequestMapping(value = "admin/product/productUpdate.do", method = RequestMethod.POST)
 	public ModelAndView productUpdate(MultipartHttpServletRequest req) {
 		MultipartFile upl = req.getFile("product_img");
@@ -215,6 +248,7 @@ public class ProductController {
 		return mav;
 	}
 	
+	// 상품 삭제
 	@RequestMapping("admin/product/productDel.do")
 	public String productDel(@RequestParam("idx") int idx) {
 		productService.productDel(idx);
