@@ -22,7 +22,6 @@ public class MovieSearchController {
 			@RequestParam(value = "cp", defaultValue = "1")int cp) {
 		
 		int totalCnt = movieservice.getUserSearchTotalCnt(search);
-		System.out.println(search);
 		int listSize = 5;
 		int pageSize = 5;
 		
@@ -34,18 +33,18 @@ public class MovieSearchController {
 				mav.addObject("lists",lists);
 				mav.addObject("search", search);
 				mav.addObject("pageTag", pageTag);
-				mav.setViewName("/user/headerSearch");
+				mav.setViewName("/user/movie/movieSearch");
 				return mav;
 			}else { 
 				mav.addObject("lists",null);
 				mav.addObject("pageTag",null);
-				mav.setViewName("/user/headerSearch");
+				mav.setViewName("/user/movie/movieSearch");
 				return mav;
 			}
 		}else {
 			mav.addObject("lists",null);
 			mav.addObject("pageTag",null);
-			mav.setViewName("/user/headerSearch");
+			mav.setViewName("/user/movie/movieSearch");
 			return mav;
 		}
 	}
