@@ -6,7 +6,7 @@
 
 <select id="ticketingHistoryList" parameterType="Integer" resultType="com.amor.ticketing.model.JoinTicketingHistoryDTO">
   <![CDATA[
-select c.movie_idx as moiveidx,c.movie_name as moviename,c.movie_poster as movieimg,b.ticketing_num as ticketnum,
+select b.member_idx as memberidx, c.movie_idx as movieidx,c.movie_name as moviename,c.movie_poster as movieimg,b.ticketing_num as ticketnum,
 b.theater_name as theatername,b.ticketing_seat as seatnum,b.ticketing_screeningtime as screeningdate,
 b.ticketing_payment as payment,b.ticketing_price as price,b.ticketing_reservetime as reservetime,
 to_char(case 

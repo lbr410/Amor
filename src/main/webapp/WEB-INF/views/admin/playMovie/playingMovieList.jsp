@@ -10,7 +10,7 @@
 <body>
 <%@include file="../admin_header.jsp" %>
 <div class="content">
-<div class="content-title"><label class="titletext">회원 조회</label>
+<div class="content-title"><label class="titletext">상영 영화 조회</label>
 </div>
 <div class="contentMain">
 <div class="tableDiv">

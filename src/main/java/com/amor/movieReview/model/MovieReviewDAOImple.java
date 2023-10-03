@@ -15,13 +15,13 @@ public class MovieReviewDAOImple implements MovieReviewDAO {
 
 	@Override
 	public List<MovieReviewJoinDTO> reviewList(Map map) {
-		List<MovieReviewJoinDTO> lists=sqlmap.selectList("playingMovieList", map);
+		List<MovieReviewJoinDTO> lists=sqlmap.selectList("reviewList", map);
 		return lists;
 	}
 	
 	@Override
-	public int getTotalCnt() {
-		int count=sqlmap.selectOne("totalCntReview");
+	public int getTotalCnt(int member_idx) {
+		int count=sqlmap.selectOne("totalCntReview", member_idx);
 		return count;
 	}
 	
@@ -64,5 +64,17 @@ public class MovieReviewDAOImple implements MovieReviewDAO {
 	public List<MovieReviewDTO> adminReviewListSearch(Map map) {
 		List<MovieReviewDTO>lists=sqlmap.selectList("adminReviewListSearch", map);
 		return lists;
+	}
+	
+	@Override
+	public int movieReviewAdd(MovieReviewJoinDTO dto) {
+		int result = sqlmap.insert("movieReviewAdd",dto);
+		return result;
+	}
+	
+	@Override
+	public int reviewListIdx(String member_id) {
+		int member_idx = sqlmap.selectOne("reviewListIdx", member_id);
+		return member_idx;
 	}
 }
