@@ -2,6 +2,7 @@ package com.amor.ticketing.model;
 
 import java.util.List;
 import java.util.Map;
+import java.sql.*;
 
 public interface TicketingDAO {
 	
@@ -12,7 +13,7 @@ public interface TicketingDAO {
 	
 	public List<TicketingSelectMovieDTO> ticketingPlayingMovieList();
 	public List<TicketingSelectMovieDTO> ticketingPlayingMovieTimeList(Map map);
-	
+	public List<TicketingSelectMovieDTO> timetoMovieLists(Date sumdate_s);
 	
 	
 	public int allMovie(Map map);

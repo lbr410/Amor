@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아모르: 상영시간표</title>
+<title>아모르 : 상영시간표</title>
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/user/ticketingSchedule.css">
 </head>
 
@@ -101,8 +101,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="selectMovieBox">
-					
+				<div class="selectMovieBox" id="selectMovieBox">
 				
 				
 				</div>
@@ -152,7 +151,7 @@ for(let i = 0 ; i< 10; i++){
 	}else{
 		resultyear = plusyear;
 	}	
-		document.getElementById('datep'+i).innerHTML = plusdate;
+		document.getElementById('datep'+i).innerHTML = '<a class="cursorblack" href="#">'+plusdate+'</a>';
 }
 
 //요일
@@ -174,7 +173,6 @@ function selectDate(currentPlusDate){
 	let datePost = dayPost.getDate();
 	let wdayPost = dayPost.getDay();
 	let param = 'year='+yearPost+'&month='+monthPost+'&date='+datePost;
-	
 	document.getElementById('selectDay').innerHTML = yearPost+'-'+monthPost+'-'+datePost+' '+week[wdayPost];
 	sendRequest('ticketingScheduleSelectDate.do',param, selectDateResult, 'POST');
 	
@@ -185,11 +183,125 @@ function selectDateResult(){
 		if(XHR.status==200){
 			var data = XHR.responseText;
 			var objData = JSON.parse(data);
-
+			var timetoMovieList = objData.timetoMovieLists;
+			var msg ='';
+			var movie_maxage_img ='';
+			
+			//데이터가 없을 때 
+			if(timetoMovieList.length == 0){
+				msg = '<div class = "allPlayingMovieBoxDiv"> 해당 날짜에는 상영영화가 없습니다.</div>'
+			}
+			
+			//index : 0 ~  timetoMovieList.length-1 까지
+			for(var i=0 ; i< timetoMovieList.length ; i++){
+				let time = ''+timetoMovieList[i].playing_movie_start+'';
+				let timeHHandMM = time.substring(11,16); 
+				//(영화가 한개일 때)
+				if(timetoMovieList.length == 1){
+					switch(timetoMovieList[i].movie_maxage){
+					case 0 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_all.png">';break;
+					case 1 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_12.png">';break;
+					case 2 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_15.png">';break;
+					case 3 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_18.png">';break;
+					}
+					//msg += ~;
+					msg = msg + '<div class="playingMovieBoxDiv"><div class="playingMovieImgAndTitle"><div class="playingMovieImg">'+movie_maxage_img+'</div><div class="playingMovieTitle">'+timetoMovieList[i].movie_name+'</div></div><div class="sTimeC" onclick="selectresult('+timetoMovieList[i].playing_movie_idx+','+timetoMovieList[i].theater_idx+','+timetoMovieList[i].movie_idx+')"><div><a href="#" class="cursorblack">'+ timeHHandMM +'</div><div class="sTimeC_2line">'+ (timetoMovieList[i].theater_totalseat - timetoMovieList[i].playing_movie_remain_seats)+'/'+ timetoMovieList[i].theater_totalseat +'&nbsp;&nbsp;'+timetoMovieList[i].theater_name+'</a></div></div></div>';
+				}
+				else{
+					//이부분에 아래코드 추가
+					//index : 0 (영화가 여러개 일때)
+					if(i == 0){
+						//다음 영화와 같은 경우 
+						if(timetoMovieList[0].movie_idx == timetoMovieList[1].movie_idx){
+							switch(timetoMovieList[i].movie_maxage){
+							case 0 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_all.png">';break;
+							case 1 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_12.png">';break;
+							case 2 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_15.png">';break;
+							case 3 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_18.png">';break;
+							}
+							
+							msg = msg + '<div class="playingMovieBoxDiv"><div class="playingMovieImgAndTitle"><div class="playingMovieImg">'+movie_maxage_img+'</div><div class="playingMovieTitle">'+timetoMovieList[i].movie_name+'</div></div><div class="sTimeC" onclick="selectresult('+timetoMovieList[i].playing_movie_idx+','+timetoMovieList[i].theater_idx+','+timetoMovieList[i].movie_idx+')"><div><a href="#" class="cursorblack">'+ timeHHandMM +'</div><div class="sTimeC_2line">'+ (timetoMovieList[i].theater_totalseat - timetoMovieList[i].playing_movie_remain_seats)+'/'+ timetoMovieList[i].theater_totalseat +'&nbsp;&nbsp;'+timetoMovieList[i].theater_name+'</a></div></div>';
+						//다음 영화와 같지 않은 경우
+						}else{
+							switch(timetoMovieList[i].movie_maxage){
+							case 0 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_all.png">';break;
+							case 1 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_12.png">';break;
+							case 2 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_15.png">';break;
+							case 3 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_18.png">';break;
+							}
+							
+							//msg += ~;
+							msg = msg + '<div class="playingMovieBoxDiv"><div class="playingMovieImgAndTitle"><div class="playingMovieImg">'+movie_maxage_img+'</div><div class="playingMovieTitle">'+timetoMovieList[i].movie_name+'</div></div><div class="sTimeC" onclick="selectresult('+timetoMovieList[i].playing_movie_idx+','+timetoMovieList[i].theater_idx+','+timetoMovieList[i].movie_idx+')"><div><a href="#" class="cursorblack">'+ timeHHandMM +'</div><div class="sTimeC_2line">'+ (timetoMovieList[i].theater_totalseat - timetoMovieList[i].playing_movie_remain_seats)+'/'+ timetoMovieList[i].theater_totalseat +'&nbsp;&nbsp;'+timetoMovieList[i].theater_name+'</a></div></div></div>';
+						}
+						
+					//index : 1 ~ timetoMovieList.length-2 까지
+					}else if(i > 0 && i < timetoMovieList.length-1){
+						//다음 영화와 같은 경우
+						if(timetoMovieList[i].movie_idx == timetoMovieList[i+1].movie_idx){
+							//그전 영화와 같은 경우
+							if(timetoMovieList[i].movie_idx == timetoMovieList[i-1].movie_idx){
+								msg = msg + '<div class="sTimeC" onclick="selectresult('+timetoMovieList[i].playing_movie_idx+','+timetoMovieList[i].theater_idx+','+timetoMovieList[i].movie_idx+')"><div><a href="#" class="cursorblack">'+ timeHHandMM +'</div><div class="sTimeC_2line">'+ (timetoMovieList[i].theater_totalseat - timetoMovieList[i].playing_movie_remain_seats)+'/'+ timetoMovieList[i].theater_totalseat +'&nbsp;&nbsp;'+timetoMovieList[i].theater_name+'</a></div></div>';
+							//그전 영화와 같지 않은 경우
+							}else{
+								switch(timetoMovieList[i].movie_maxage){
+								case 0 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_all.png">';break;
+								case 1 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_12.png">';break;
+								case 2 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_15.png">';break;
+								case 3 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_18.png">';break;
+								}
+								msg = msg + '<div class="playingMovieBoxDiv"><div class="playingMovieImgAndTitle"><div class="playingMovieImg">'+movie_maxage_img+'</div><div class="playingMovieTitle">'+timetoMovieList[i].movie_name+'</div></div><div class="sTimeC" onclick="selectresult('+timetoMovieList[i].playing_movie_idx+','+timetoMovieList[i].theater_idx+','+timetoMovieList[i].movie_idx+')"><div><a href="#" class="cursorblack">'+ timeHHandMM +'</div><div class="sTimeC_2line">'+ (timetoMovieList[i].theater_totalseat - timetoMovieList[i].playing_movie_remain_seats)+'/'+ timetoMovieList[i].theater_totalseat +'&nbsp;&nbsp;'+timetoMovieList[i].theater_name+'</a></div></div>';
+							}
+						
+						//다음 영화와 같지 않은 경우
+						}else{
+							//그전 영화와 같은 경우
+							if(timetoMovieList[i].movie_idx == timetoMovieList[i-1].movie_idx){
+								msg = msg + '<div class="sTimeC" onclick="selectresult('+timetoMovieList[i].playing_movie_idx+','+timetoMovieList[i].theater_idx+','+timetoMovieList[i].movie_idx+')"><div><a href="#" class="cursorblack">'+ timeHHandMM +'</div><div class="sTimeC_2line">'+ (timetoMovieList[i].theater_totalseat - timetoMovieList[i].playing_movie_remain_seats)+'/'+ timetoMovieList[i].theater_totalseat +'&nbsp;&nbsp;'+timetoMovieList[i].theater_name+'</a></div></div></div>';
+								
+							//그전 영화와 같지 않은 경우	
+							}else{
+								switch(timetoMovieList[i].movie_maxage){
+								case 0 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_all.png">';break;
+								case 1 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_12.png">';break;
+								case 2 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_15.png">';break;
+								case 3 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_18.png">';break;
+								}
+								msg = msg + '<div class="playingMovieBoxDiv"><div class="playingMovieImgAndTitle"><div class="playingMovieImg">'+movie_maxage_img+'</div><div class="playingMovieTitle">'+timetoMovieList[i].movie_name+'</div></div><div class="sTimeC" onclick="selectresult('+timetoMovieList[i].playing_movie_idx+','+timetoMovieList[i].theater_idx+','+timetoMovieList[i].movie_idx+')"><div><a href="#" class="cursorblack">'+ timeHHandMM +'</div><div class="sTimeC_2line">'+ (timetoMovieList[i].theater_totalseat - timetoMovieList[i].playing_movie_remain_seats)+'/'+ timetoMovieList[i].theater_totalseat +'&nbsp;&nbsp;'+timetoMovieList[i].theater_name+'</a></div></div></div>';
+								
+							}
+						}
+						
+					//index : timetoMovieList.length-1
+					}else if(i == timetoMovieList.length-1){
+						//그전 영화와 같은 경우
+						if(timetoMovieList[i].movie_idx == timetoMovieList[i-1].movie_idx){
+							msg = msg + '<div class="sTimeC" onclick="selectresult('+timetoMovieList[i].playing_movie_idx+','+timetoMovieList[i].theater_idx+','+timetoMovieList[i].movie_idx+')"><div><a href="#" class="cursorblack">'+ timeHHandMM +'</div><div class="sTimeC_2line">'+ (timetoMovieList[i].theater_totalseat - timetoMovieList[i].playing_movie_remain_seats)+'/'+ timetoMovieList[i].theater_totalseat +'&nbsp;&nbsp;'+timetoMovieList[i].theater_name+'</a></div></div></div>';
+							
+						//그전 영화와 같지 않은 경우
+						}else{
+							switch(timetoMovieList[i].movie_maxage){
+							case 0 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_all.png">';break;
+							case 1 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_12.png">';break;
+							case 2 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_15.png">';break;
+							case 3 : movie_maxage_img = '<img class="selectmovie_img" src="/amor/resources/img/maxage_18.png">';break;
+							}
+							msg = msg + '<div class="playingMovieBoxDiv"><div class="playingMovieImgAndTitle"><div class="playingMovieImg">'+movie_maxage_img+'</div><div class="playingMovieTitle">'+timetoMovieList[i].movie_name+'</div></div><div class="sTimeC" onclick="selectresult('+timetoMovieList[i].playing_movie_idx+','+timetoMovieList[i].theater_idx+','+timetoMovieList[i].movie_idx+')"><div><a href="#" class="cursorblack">'+ timeHHandMM +'</div><div class="sTimeC_2line">'+ (timetoMovieList[i].theater_totalseat - timetoMovieList[i].playing_movie_remain_seats)+'/'+ timetoMovieList[i].theater_totalseat +'&nbsp;&nbsp;'+timetoMovieList[i].theater_name+'</a></div></div></div>';
+							
+						}
+					}
+				}
+				
+			}
+		
+			document.getElementById('selectMovieBox').innerHTML = '<div class="allPlayingMovieBoxDiv">'+ msg +'</div>';
+	
 		}
 	}
 }
 
+function selectresult(playing_movie_idx, theater_idx, movie_idx){
+	location.href='seat.do?movie_idx='+movie_idx+'&theater_idx='+theater_idx+'&playing_movie_idx='+playing_movie_idx;
+}
 
 
 
