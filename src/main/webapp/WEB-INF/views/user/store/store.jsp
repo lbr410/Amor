@@ -33,7 +33,7 @@
         	<c:url var="detailUrl" value="store/storeContentForm.do">
 				<c:param name="product_idx">${Tdto.product_idx }</c:param>
 			</c:url>
-        	<div class="prodImg"><a href="${detailUrl }"><img src="/amor/resources/upload/product/${Tdto.product_img}" class="img"></a></div>
+        	<div class="prodImg"><a href="${detailUrl }"><img src="/amor/resources/upload/product/${Tdto.product_img}" class="img" alt="store_ticket_img"></a></div>
         	<div class="prodTitle">
         		<label><a href="${detailUrl }">${Tdto.product_title }</a></label>
         	</div>
@@ -62,7 +62,7 @@
 				<c:param name="product_idx">${Sdto.product_idx }</c:param>
 			</c:url>
         	<div class="prodImg">
-        	<a href="${detailUrl }"><img src="/amor/resources/upload/product/${Sdto.product_img}" class="img"></a>
+        	<a href="${detailUrl }"><img src="/amor/resources/upload/product/${Sdto.product_img}" class="img" alt="store_snack_img"></a>
         	</div>
         	<div class="prodTitle">
         		<label>${Sdto.product_title }</label>
@@ -92,7 +92,7 @@
 				<c:param name="product_idx">${Ddto.product_idx }</c:param>
 			</c:url>
         	<div class="prodImg">
-        	<a href="${detailUrl }"><img src="/amor/resources/upload/product/${Ddto.product_img}" class="img"></a>
+        	<a href="${detailUrl }"><img src="/amor/resources/upload/product/${Ddto.product_img}" class="img" alt="store_drink_img"></a>
         	</div>
         	<div class="prodTitle">
         		<label><a href="${detailUrl }">${Ddto.product_title }</a></label>

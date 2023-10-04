@@ -26,7 +26,7 @@ public class NoticeController {
 			HttpSession session,
 			@RequestParam(value="cp", defaultValue = "1")int cp) {
 		int totalCnt=noticeService.noticeTotalCnt();
-		int listSize=5;
+		int listSize=10;
 		int pageSize=5;
 		String pageStr=com.amor.page.PageModule.makePage("/amor/admin/notice/noticeList.do", totalCnt, listSize, pageSize, cp);
 		

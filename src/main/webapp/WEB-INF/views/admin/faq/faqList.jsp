@@ -27,7 +27,7 @@
 	<tfoot>
 		<tr>
 			<td colspan="4" align="center">	
-			<div class="paging">${pageStr }</div></td>
+			<c:if test="${!empty lists }"><div class="paging">${pageStr }</div></c:if></td>
 		</tr>	
 	</tfoot>
 	<tbody>

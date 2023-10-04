@@ -58,14 +58,14 @@ function showResult(storeIdx, status) {
 	<tfoot>
 		<tr>
 			<td colspan="8" align="center">	
-			<div class="paging">${pageStr }</div></td>			
+			<c:if test="${!empty lists }"><div class="paging">${pageStr }</div></c:if></td>			
 		</tr>
 	</tfoot>
 	<tbody>
 	<c:if test="${empty lists }">
 		<tr>
 			<td colspan="8" align="center">
-			조회된 결제 목록이 없습니다.</td>
+			조회된 결제목록이 없습니다.</td>
 		</tr>
 	</c:if>
 	<c:forEach var="dto" items="${lists }">

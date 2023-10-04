@@ -27,10 +27,12 @@ public class UserPwdCheckUpdateController {
 		if(type.equals("pwdUpdate")) {
 			msg="비밀번호 수정";
 			mav.addObject("msg", msg);
+			mav.addObject("type", "pwdUpdate");
 			mav.setViewName("/user/myAmor/userPwdCheck");
 		}else if(type.equals("withdraw")) {
 			msg="회원탈퇴";
 			mav.addObject("msg", msg);
+			mav.addObject("type", "withdraw");
 			mav.setViewName("/user/myAmor/userPwdCheck");
 		}
 		return mav;
@@ -71,7 +73,7 @@ public class UserPwdCheckUpdateController {
 				mav.setViewName("/user/myAmor/withdraw");
 			}
 			
-		}else {
+		}else if(result==memberService.ERROR) {
 			msg="비밀번호가 맞지 않습니다.";
 			mav.addObject("msg", msg);
 			mav.addObject("goUrl", "userPwdCheckForm.do?type="+type);

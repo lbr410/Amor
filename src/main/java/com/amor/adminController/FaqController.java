@@ -24,7 +24,7 @@ public class FaqController {
 			HttpSession session,
 			@RequestParam(value="cp", defaultValue = "1")int cp) {
 		int totalCnt=faqService.faqTotalCnt();
-		int listSize=5;
+		int listSize=10;
 		int pageSize=5;
 		String pageStr=com.amor.page.PageModule.makePage("/amor/admin/faq/faqList.do", totalCnt, listSize, pageSize, cp);
 				

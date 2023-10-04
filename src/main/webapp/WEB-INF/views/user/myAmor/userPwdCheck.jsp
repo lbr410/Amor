@@ -11,12 +11,17 @@
 
 <body>
 <%@include file="../header.jsp" %>
-<!-- GRAY BAR -->
-<div class="gray-bar">
-  <div class="navigate">
-    <div class="navigate-msg">홈 > 마이페이지 > ${msg }</div>
-  </div>
-</div>
+   <!--GRAY NAVIGATE BAR-->
+    <div class="gray-bar">
+        <div class="location">
+            <span class="home">Home</span>
+            <a href="/amor/myAmor/ticketingHistory.do" title="마이페이지로 이동">마이페이지</a>
+            <a href="/amor/myAmor/userInfoUpdateForm.do" title="회원 정보 수정페이지로 이동">회원정보 수정</a>
+            <a href="/amor/myAmor/userPwdCheckForm.do?type=${type }" title="${msg }페이지로 이동">${msg }</a>
+        </div>
+    </div>
+
+
 <!-- BORDER BAR-->
 <div class="border-bar">
  	<div class="border-title">비밀번호 확인</div>
@@ -28,7 +33,7 @@
 		<label>비밀번호</label>
 		<input type="password" name="pwd" class="text" maxlength="12" required="required"> 
 		<div class="btn">
-		<a href="/index.do"><input type="button" value="취소" class="cancel"></a>
+		<a href="/amor/index.do"><input type="button" value="취소" class="cancel"></a>
 		<input type="submit" value="확인" class="submit">
 		</div>
 	</div>

@@ -25,7 +25,7 @@ public class ReviewListController {
 			@RequestParam(value="cp",defaultValue = "1")int cp) {
 		
 		int totalCnt=movieReviewService.reviewListTotalCnt();
-		int listSize=5;
+		int listSize=10;
 		int pageSize=5;
 		
 		String pageStr=com.amor.page.PageModule.makePage("/amor/admin/review/reviewList.do", totalCnt, listSize, pageSize, cp);
@@ -49,7 +49,7 @@ public class ReviewListController {
 			@RequestParam(value="cp",defaultValue = "1")int cp,
 			@RequestParam("search")String search) {
 		int totalCnt=movieReviewService.adminReviewListSearchTotalCnt(search);
-		int listSize = 5;
+		int listSize = 10;
 		int pageSize = 5;
 		String pageStr=com.amor.page.PageModule.makePage("/amor/admin/review/reviewList.do", totalCnt, listSize, pageSize, cp);
 
@@ -78,9 +78,9 @@ public class ReviewListController {
 		ModelAndView mav=new ModelAndView();
 		MovieReviewDTO dto=new MovieReviewDTO();
 		int result=movieReviewService.adminReviewBlockUpdate(idx,value);
-
+		
 		if(value.equals("y")) {
-			dto.setMember_block(value);
+			dto.setMember_block("y");
 		}else if(value.equals("n")) {
 			dto.setMember_block("n");
 		}

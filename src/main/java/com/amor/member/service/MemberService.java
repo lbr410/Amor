@@ -28,4 +28,5 @@ public interface MemberService {
 	public  int memberTotalCnt();
 	public List<MemberDTO> memberSearch(int cp, int listSize, String search);
 	public int memberSearchTotalCnt(String search);
+	public int memberListBlock(int idx, String value);
 }

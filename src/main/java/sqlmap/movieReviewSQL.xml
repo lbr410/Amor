@@ -59,7 +59,7 @@
 		where mr.movie_review_idx=#{idx}
 	</select>
 	
-	<update id="blockUpdate" parameterType="Map">
+	<update id="reviewListBlock" parameterType="Map">
 		update member
 		set member_block=#{value}
 		where member_idx=
