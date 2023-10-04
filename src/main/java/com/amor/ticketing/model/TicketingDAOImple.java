@@ -1,6 +1,7 @@
 package com.amor.ticketing.model;
 
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -91,6 +92,12 @@ public class TicketingDAOImple implements TicketingDAO {
 	@Override
 	public List<TicketingSelectMovieDTO> ticketingPlayingMovieTimeList(Map map) {
 		List<TicketingSelectMovieDTO> lists = sqlmap.selectList("ticketingPlayingMovieTimeList", map);
+		return lists;
+	}
+	
+@Override
+	public List<TicketingSelectMovieDTO> timetoMovieLists(Date sumdate_s) {
+		List<TicketingSelectMovieDTO> lists = sqlmap.selectList("timetoMovieLists",sumdate_s);
 		return lists;
 	}
 }

@@ -69,16 +69,36 @@
 	display: flex;
 }
 
-.date0{flex: 1;}
-.date1{flex: 1;}
-.date2{flex: 1;}
-.date3{flex: 1;}
-.date4{flex: 1;}
-.date5{flex: 1;}
-.date6{flex: 1;}
-.date7{flex: 1;}
-.date8{flex: 1;}
-.date9{flex: 1;}
+.date0{flex: 1;cursor: pointer;}
+.date1{flex: 1;cursor: pointer;}
+.date2{flex: 1;cursor: pointer;}
+.date3{flex: 1;cursor: pointer;}
+.date4{flex: 1;cursor: pointer;}
+.date5{flex: 1;cursor: pointer;}
+.date6{flex: 1;cursor: pointer;}
+.date7{flex: 1;cursor: pointer;}
+.date8{flex: 1;cursor: pointer;}
+.date9{flex: 1;cursor: pointer;}
+
+.cursorblack{
+	color: black;
+}
+
+.cursorblack:link{
+	color : black;
+}
+
+.cursorblack:visited{
+	color : black;
+}
+
+.cursorblack:hover {
+  	color : black;
+}
+
+.cursorblack:active {
+  color : black;
+}
 
 .ta123{
 	margin-top: 40px;
@@ -90,7 +110,61 @@
 }
 
 .selectMovieBox{
-	background-color: gray;
 	height: 445px;
+	overflow:auto;
 	
 }
+
+.allPlayingMovieBoxDiv{
+	margin-top:50px;
+	margin-left:100px;
+}
+.playingMovieBoxDiv{
+	margin-top:10px;
+	margin-bottom: 10px;
+	
+}
+
+
+.playingMovieImgAndTitle{
+	display: flex;
+}
+
+.selectmovie_img{
+	width: 35px;
+	height: 35px;
+}
+
+.playingMovieImg{
+	width: 40px;
+}
+
+
+.playingMovieTitle{
+	margin-left: 5px;
+	float: left;
+	color: black;
+	padding-top:7px;
+	font-size: 19px;
+	font-weight: bold;
+}
+
+.sTimeC{
+	padding: 11px 8px 11px 8px;
+	margin-right: 20px;
+	text-align : center;
+	margin-top: 12px;
+	margin-bottom :13px; 
+	width: 110px;
+	height:45px;
+	border: 1px solid #D9D9D9;
+	display: inline-block;
+	background-color:#FBFBFB;
+	border-radius: 5px;
+}
+.sTimeC_2line{
+	margin-top: 7px;
+	font-size: 12px;
+}
+
+

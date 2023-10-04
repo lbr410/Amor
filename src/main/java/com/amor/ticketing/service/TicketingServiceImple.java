@@ -1,5 +1,6 @@
 package com.amor.ticketing.service;
 
+import java.sql.Date;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -177,6 +178,15 @@ public class TicketingServiceImple implements TicketingService {
 		map.put("movie_name", movie_name);
 		map.put("sumdate", sumdate);
 		List<TicketingSelectMovieDTO> lists = ticketingDao.ticketingPlayingMovieTimeList(map);
+		
+		return lists;
+	}
+	
+	
+	@Override
+	public List<TicketingSelectMovieDTO> timetoMovieLists(Date sumdate_s) {
+		
+		List<TicketingSelectMovieDTO> lists = ticketingDao.timetoMovieLists(sumdate_s);
 		
 		return lists;
 	}

@@ -5,14 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아모르: 티켓팅</title>
+<title>아모르 : 티켓팅</title>
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/user/ticketing.css">
 </head>
-
 <body>
 <%@include file="../header.jsp" %>
-<div class="commonBack">
-<div class="inner">
+<div class="body-inner">
 	<div class="commonDiv">
 		<div class="commonTop">
 			<label class="label1">영화 선택</label><label class="label2" id="selectDay">날짜</label>
@@ -30,13 +28,11 @@
 							<c:if test="${dto.movie_maxage == 3 }"><img class="playingmovie_img" src="/amor/resources/img/maxage_18.png"></c:if>
 							
 							</div>
-							<div class="playingmovie_nameDiv"><div class="playingmovie_name">${dto.movie_name }</div></div>
+							<div class="playingmovie_nameDiv"><div class="playingmovie_name"><a href="#" class="cursorblack">${dto.movie_name }</a></div></div>
 						</div>
 					</c:forEach>
 					</div>
 				</div>
-			
-			
 			</div>
 			<div class="content2">
 				<div class="selectDateBox">
@@ -110,11 +106,13 @@
 					
 					</div>
 				</div>
+
 			</div>
+			
 		</div>
 	</div>
 </div>
-</div>
+
 <script type="text/javascript" src="/amor/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
 
@@ -158,7 +156,7 @@ document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+wee
 		}else{
 			resultyear = plusyear;
 		}	
-			document.getElementById('datep'+i).innerHTML = plusdate;
+			document.getElementById('datep'+i).innerHTML = '<a class="cursorblack" href="#">'+plusdate+'</a>';
 	}
 	
 	//요일
@@ -238,7 +236,7 @@ document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+wee
 						let time = ''+movieTimeLists[i].playing_movie_start+'';
 						let timeHHandMM = time.substring(11,16);
 						
-						msg += '<div class="sTimeC" onclick="selectresult('+movieTimeLists[i].playing_movie_idx+','+movieTimeLists[i].theater_idx+','+movieTimeLists[i].movie_idx+')"><div>'+ timeHHandMM +'</div><div class="sTimeC_2line">'+ (movieTimeLists[i].theater_totalseat - movieTimeLists[i].playing_movie_remain_seats)+'/'+ movieTimeLists[i].theater_totalseat +'&nbsp;&nbsp;'+movieTimeLists[i].theater_name+'</div></div>';
+						msg += '<div class="sTimeC" onclick="selectresult('+movieTimeLists[i].playing_movie_idx+','+movieTimeLists[i].theater_idx+','+movieTimeLists[i].movie_idx+')"><div><a href="#" class="cursorblack">'+ timeHHandMM +'</a></div><div class="sTimeC_2line"><a href="#" class="cursorblack">'+ (movieTimeLists[i].theater_totalseat - movieTimeLists[i].playing_movie_remain_seats)+'/'+ movieTimeLists[i].theater_totalseat +'&nbsp;&nbsp;'+movieTimeLists[i].theater_name+'</a></div></div>';
 					}
 				}
 				document.getElementById('ticketingMovieTime').innerHTML = msg;
@@ -253,6 +251,7 @@ document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+wee
 	
 
 </script>
+
 </body>
 <%@include file="../footer.jsp" %>
 </html>
