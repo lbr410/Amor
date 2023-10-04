@@ -7,8 +7,8 @@ import com.amor.inquiry.model.InquiryDTO;
 
 public interface InquiryService {
 
-	public List<InquiryDTO> memberInquiryList(int cp, int listSize);
-	public int inquiryTotalCnt();
+	public List<InquiryDTO> memberInquiryList(int cp, int listSize, int member_idx);
+	public int memberInquiryTotalCnt(int member_idx);
 	public int inquiryWrite(InquiryDTO dto);
 	public List<InquiryDTO> inquiryList(int cp, int listSize);
 	public int inquiryAnswer(InquiryDTO dto);

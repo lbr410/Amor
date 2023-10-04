@@ -23,8 +23,8 @@ public class InquiryDAOImple implements InquiryDAO {
 	}
 	
 	@Override
-	public int inquiryTotalCnt() {
-		int result=sqlmap.selectOne("inquiryTotalCnt");
+	public int memberInquiryTotalCnt(int member_idx) {
+		int result=sqlmap.selectOne("memberInquiryTotalCnt", member_idx);
 		return result;
 	}
 	
@@ -47,8 +47,8 @@ public class InquiryDAOImple implements InquiryDAO {
 	}
 	
 	@Override
-	public int inquiryDelete(int idx) {
-		int result=sqlmap.delete("inquiryDelete", idx);
+	public int inquiryDelete(int inquiry_idx) {
+		int result=sqlmap.delete("inquiryDelete", inquiry_idx);
 		return result;
 	}
 }
