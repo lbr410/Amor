@@ -99,11 +99,13 @@ header .main-menu .item .item__name {
   padding: 10px 20px 34px 20px;
   font-family: Arial, sans-serif;
   font-size: 16px;
+  cursor: default;
 }
 header .main-menu .item:hover .item__name a{
   background-color: #0F1742;
   color: #EDEDED;
   border-radius: 6px 6px 0 0;
+  cursor: default;
 }
 header .main-menu .item .item__contents {
   width: 100%;
