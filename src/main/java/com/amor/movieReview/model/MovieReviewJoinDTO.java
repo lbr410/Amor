@@ -48,6 +48,15 @@ public class MovieReviewJoinDTO {
 		this.movie_review_img = movie_review_img;
 	}
 
+	public MovieReviewJoinDTO(int movie_review_idx, int movie_review_star, String movie_review_content,
+			String movie_review_img) {
+		super();
+		this.movie_review_idx = movie_review_idx;
+		this.movie_review_star = movie_review_star;
+		this.movie_review_content = movie_review_content;
+		this.movie_review_img = movie_review_img;
+	}
+
 	public int getMovie_review_idx() {
 		return movie_review_idx;
 	}

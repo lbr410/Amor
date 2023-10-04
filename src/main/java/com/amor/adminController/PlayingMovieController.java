@@ -12,6 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import javax.servlet.http.HttpSession;
+
 import com.amor.playingMovie.model.*;
 import com.amor.playingMovie.service.PlayingMovieService;
 
@@ -23,9 +26,11 @@ public class PlayingMovieController {
 
 	@RequestMapping("admin/playMovie/playingMovieList.do")
 	public ModelAndView playingMovieList(
-			@RequestParam(value = "cp", defaultValue = "1") int cp) {
+			@RequestParam(value = "cp", defaultValue = "1") int cp,
+			HttpSession session) {
+		
 		int totalCnt=playingMovieService.getTotalCnt();
-		int listSize=5;
+		int listSize=10;
 		int pageSize=5;
 		
 		List<PlayingMovieJoinDTO> playingMovieLists=playingMovieService.playingMovieList(cp, listSize);
@@ -33,10 +38,19 @@ public class PlayingMovieController {
 		String playingMoviepageStr=com.amor.page.PageModule.makePage("playingMovieList.do", totalCnt, listSize, pageSize, cp);
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("playingMoviepageStr", playingMoviepageStr);
-		mav.addObject("playingMovieLists", playingMovieLists);
-		mav.setViewName("/admin/playMovie/playingMovieList");
+		
+		if (session.getAttribute("data")==null) {
+			mav.addObject("msg", "로그인 후 이용가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");	
+		} else {
+			mav.addObject("playingMoviepageStr", playingMoviepageStr);
+			mav.addObject("playingMovieLists", playingMovieLists);
+			mav.setViewName("/admin/playMovie/playingMovieList");
+		}
+		
 		return mav;
+		
 	}
 	
 
@@ -64,7 +78,9 @@ public class PlayingMovieController {
 		String playing_movie_start = playing_movie_date+" "+playing_movie_start_s;
 		String playing_movie_end = playing_movie_date+" "+playing_movie_end_e;
 		
-		PlayingMovieDTO dto = new PlayingMovieDTO(movie_idx, theater_idx, playing_movie_date, playing_movie_start, playing_movie_end);
+		int theater_totalseat = playingMovieService.playingMovieSeat(theater_idx);
+		
+		PlayingMovieDTO dto = new PlayingMovieDTO(movie_idx, theater_idx, playing_movie_date, playing_movie_start, playing_movie_end, theater_totalseat);
 		
 		int result = playingMovieService.playingMovieAdd(dto);
 		
@@ -97,9 +113,12 @@ public class PlayingMovieController {
 			@RequestParam("movie_idx")int movie_idx,
 			@RequestParam("theater_idx")int theater_idx,
 			@RequestParam("playing_movie_date")String playing_movie_date,
-			@RequestParam("playing_movie_start")String playing_movie_start,
-			@RequestParam("playing_movie_end")String playing_movie_end,
+			@RequestParam("playing_movie_start")String playing_movie_start_s,
+			@RequestParam("playing_movie_end")String playing_movie_end_e,
 			@RequestParam("playing_movie_idx")int playing_movie_idx) {
+		
+		String playing_movie_start = playing_movie_date+" "+playing_movie_start_s;
+		String playing_movie_end = playing_movie_date+" "+playing_movie_end_e;
 		
 		PlayingMovieDTO dto = new PlayingMovieDTO(playing_movie_idx , movie_idx, theater_idx, playing_movie_date, playing_movie_start, playing_movie_end);
 		int result = playingMovieService.playingMovieUpdate(dto);

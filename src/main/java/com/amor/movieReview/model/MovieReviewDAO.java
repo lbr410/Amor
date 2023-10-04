@@ -15,4 +15,6 @@ public interface MovieReviewDAO {
 	public List<MovieReviewDTO> adminReviewListSearch(Map map);
 	public int movieReviewAdd(MovieReviewJoinDTO dto);
 	public int reviewListIdx(String member_id);
+	public int reviewDelete(int movie_review_idx);
+	public int reivewUpdate(MovieReviewJoinDTO dto);
 }

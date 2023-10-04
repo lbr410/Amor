@@ -17,7 +17,7 @@ table td {
 
 .playAddBtn {
 	text-align: center;
-	padding-right: 300px;
+	padding-right: 450px;
 }
 
 .playAddInput {
@@ -75,4 +75,8 @@ table td {
    background: #EEEEEE;
    color: #1A2C82;
    cursor: pointer;
+}
+
+#playAdd3 {
+	width: 350px;
 }

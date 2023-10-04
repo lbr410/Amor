@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아모르: 영화관 소개</title>
+<title>아모르 : 영화관 소개</title>
  <!-- 브라우저 스타일 초기화 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
     <link rel="stylesheet" type="text/css" href="/amor/resources/css/user/intro.css">
@@ -12,11 +12,13 @@
 <body>
 <%@include file="../header.jsp" %>
 <!-- GRAY BAR -->
-<div class="gray-bar">
-  <div class="navigate">
-    <div class="navigate-msg">홈 > 영화관 소개</div>
-  </div>
-</div>
+ <div class="gray-bar">
+        <div class="location">
+            <span class="home">Home</span>
+            <a href="/amor/movie/movie.do" title="영화 페이지로 이동">영화</a>
+            <a href="/amor/movie/movie.do" title="현재 상영작 페이지로 이동">현재 상영작</a>
+        </div>
+    </div>
 <!-- BORDER BAR-->
 <div class="border-bar">
  	<div class="border-title">아모르 극장 소개</div>

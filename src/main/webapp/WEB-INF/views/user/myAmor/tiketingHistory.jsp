@@ -111,7 +111,7 @@
 	text-align: center;
 }
 	
- .star {
+.star {
 	padding-bottom: 5px;
 	position: relative;
 	font-size: 1.3rem;
@@ -256,7 +256,7 @@
 <!-- 관람평 리뷰 -->
 
 <form name="reviewUpload" action="movieReviewAdd.do" method="post" enctype="multipart/form-data">
-<div id="myReviewBtn${vs.index}" class="btn">
+<div id="myReviewBtn${vs.index}" class="btn" onclick="if (event.target == myReviewBtn${vs.index}) { document.getElementById('myReviewBtn${vs.index}').style.display='none'}">
 	<div class="btn-content">
 		
 		<span id="closeBtn" class="closeBtn2" onclick="document.getElementById('myReviewBtn${vs.index}').style.display='none'">&times;</span>
@@ -267,7 +267,7 @@
 		<span class="starBack">	
 		<span class="star">
 			☆☆☆☆☆
-		<span class="starAll${vs.index}" style="width: 0;">★★★★★</span>
+		<span class="starAll${vs.index}" style="width: 50%;">★★★★★</span>
 			<input type="range" name="movie_review_star" oninput="drawStar(this, '.starAll${vs.index}')" min="1" max="10">
 		</span>
 		</span>
@@ -276,10 +276,10 @@
 			<div id="box1" class="container2">
 				<img id="reviewPreview${vs.index }" class="thumbnail">
 				<div class="inputfile">
-				<input type="file" name="movie_review_img" value="파일찾기" class="fileBtn" id="fileInput" onchange="imgPreview(this, 'reviewPreview${vs.index }')">
+				<input type="file" name="movie_review_img" value="파일찾기" class="fileBtn" id="fileInput" onchange="imgPreview(this, 'reviewPreview${vs.index }')" required>
 				</div>
 			</div>
-			<div id="box2"><textarea cols="55" rows="12" name="movie_review_content" placeholder="관람평을 작성해주세요" maxlength="200" class="reviewTextarea"></textarea></div>
+			<div id="box2"><textarea cols="55" rows="12" name="movie_review_content" placeholder="관람평을 작성해주세요" maxlength="200" class="reviewTextarea" required></textarea></div>
 		</div>
 		<p class="centerBtn"><input type="submit" value="작성 완료" class="cancelBtn"></p>
 		

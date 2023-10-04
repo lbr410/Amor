@@ -77,4 +77,16 @@ public class MovieReviewDAOImple implements MovieReviewDAO {
 		int member_idx = sqlmap.selectOne("reviewListIdx", member_id);
 		return member_idx;
 	}
+	
+	@Override
+	public int reviewDelete(int movie_review_idx) {
+		int result = sqlmap.delete("reviewDelete", movie_review_idx);
+		return result;
+	}
+	
+	@Override
+	public int reivewUpdate(MovieReviewJoinDTO dto) {
+		int result = sqlmap.update("reviewUpdate", dto);
+		return result;
+	}
 }

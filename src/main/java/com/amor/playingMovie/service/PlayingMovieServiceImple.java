@@ -45,6 +45,12 @@ public class PlayingMovieServiceImple implements PlayingMovieService {
 		List<Map> screenLists=playingMovieDao.playingMovieAddScreen();
 		return screenLists;
 	}
+	
+	@Override
+	public int playingMovieSeat(int theater_idx) {
+		int seat = playingMovieDao.playingMovieSeat(theater_idx);
+		return seat;
+	}
 
 	@Override
 	public int playingMovieAdd(PlayingMovieDTO dto) {

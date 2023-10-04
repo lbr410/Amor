@@ -99,7 +99,7 @@ public class MovieReviewController {
 		int member_idx = movieReviewService.reviewListIdx(member_id);
 		
 		int totalCnt=movieReviewService.getTotalCnt(member_idx);
-		int listSize=5;
+		int listSize=10;
 		int pageSize=5;
 		
 		List<MovieReviewJoinDTO> reviewLists=movieReviewService.lists(cp, listSize, member_idx);
@@ -113,8 +113,75 @@ public class MovieReviewController {
 		return mav;
 	}
 	
+	@RequestMapping("/myAmor/reviewDelete.do")
+	public ModelAndView reviewDelete(
+			@RequestParam("movie_review_idx") int movie_review_idx
+			) {
+		
+		int result = movieReviewService.reviewDelete(movie_review_idx);
+		
+		String msg = result>0?"삭제에 성공했습니다.":"삭제에 실패했습니다.";
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg",msg);
+		mav.addObject("goUrl", "/amor/myAmor/reviewList.do");
+		mav.setViewName("/user/msg/userMsg");
+		return mav;
+	}
 	
-	
+	@RequestMapping(value = "/myAmor/reviewUpdate.do", method = RequestMethod.POST)
+	public ModelAndView reviewUpdate(MultipartHttpServletRequest req,
+			@RequestParam("movie_review_star") int movie_review_star,
+			@RequestParam("movie_review_content") String movie_review_content,
+			@RequestParam("movie_review_idx") int movie_review_idx
+			) {
+		
+		  MultipartFile upl = req.getFile("movie_review_img");
+	      String upload = upl.getOriginalFilename();
+	      String noExt = upload.substring(0, upload.lastIndexOf("."));
+	      String ext = upload.substring(upload.lastIndexOf(".") + 1);
+
+	      String savePath = req.getRealPath("/resources/upload/review/");
+	      String saveFileName = "";
+	      
+	      try {
+	         byte bytes[] = upl.getBytes();
+	         String filefull = savePath + upload;
+	         File f = new File(filefull);
+	         if(f.isFile()) {
+	            boolean ex = true;
+	            int index = 0;
+	            while(ex) {
+	               index++;
+	               saveFileName = noExt+"("+index+")."+ext;
+	               String dictFile = savePath + saveFileName;
+	               ex = new File(dictFile).isFile();
+	               f = new File(dictFile);
+	            }
+	         } else if(!f.isFile()) {
+	            saveFileName = upload;
+	         }
+	         
+	         FileOutputStream fos = new FileOutputStream(f);
+	         fos.write(bytes);
+	         fos.close();
+	      } catch (FileNotFoundException e) {
+	         e.printStackTrace();
+	      } catch (IOException e) {
+	         e.printStackTrace();
+	      }
+	     
+	    MovieReviewJoinDTO dto = new MovieReviewJoinDTO(movie_review_idx, movie_review_star, movie_review_content, saveFileName);
+	      
+	    int result = movieReviewService.reviewUpdate(dto);
+		
+	    String msg = result>0?"수정에 성공하였습니다.":"수정에 실패하였습니다.";
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg", msg);
+		mav.addObject("goUrl", "/amor/myAmor/reviewList.do");
+		mav.setViewName("/user/msg/userMsg");
+		return mav;
+		
+	}
 }
 
 

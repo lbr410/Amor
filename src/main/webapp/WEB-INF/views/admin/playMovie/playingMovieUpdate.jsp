@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아모르: 상영영화수정</title>
+<title>아모르 관리자 : 상영영화수정</title>
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/admin/playingMovieAddUp.css">
 <script type="text/javascript" src="../../resources/js/httpRequest.js"></script>
 <script>
@@ -30,8 +30,13 @@ function showResult() {
 			
 			let movieEndHH = Math.floor((runTimeMM + movieRun)/60)+runTimeHH;
 			let movieEndMM = (runTimeMM + movieRun)%60;
+			
 			if (movieEndMM < 10) {
 				movieEndMM = '0'+movieEndMM;
+			}
+			
+			if (movieEndHH < 10) {
+				movieEndHH = '0'+movieEndHH;
 			}
 			
 			document.getElementById('movieEnd').value = movieEndHH+':'+movieEndMM+':'+'00';
@@ -54,7 +59,7 @@ function showResult() {
 	<form name="playingMovieAdd" action="playingMovieUpdate.do" method="post">
 		<table>
 			<tr>
-				<td class="playAdd">상영 영화 선택</td>
+				<td class="playAdd" id="playAdd3">상영 영화 선택</td>
 				<td class="playAdd"><select name="movie_idx" class="playAddInput2" id="movieRunning" onchange="show()">
 				<c:if test="${empty movieLists }">
 					<option selected disabled>등록된 영화가 없습니다.</option>				
@@ -69,7 +74,7 @@ function showResult() {
 				</select></td>
 			</tr>
 			<tr>
-				<td class="playAdd">상영 스크린 선택</td>
+				<td class="playAdd" id="playAdd3">상영 스크린 선택</td>
 				<td class="playAdd"><select name="theater_idx" class="playAddInput2">
 				<c:if test="${empty screenLists }">
 					<option selected disabled>등록된 상영관이 없습니다.</option>				
@@ -84,16 +89,16 @@ function showResult() {
 				</select></td>
 			</tr>
 			<tr>
-				<td class="playAdd">상영 날짜 선택</td>
+				<td class="playAdd" id="playAdd3">상영 날짜 선택</td>
 				<td class="playAdd"><input type="date" name="playing_movie_date" 
 				value="${updatedto.playing_movie_date }" class="playAddInput"></td>
 			</tr>
 			<tr>
-				<td class="playAdd">상영 시간</td>
+				<td class="playAdd" id="playAdd3">상영 시간</td>
 				<td class="playAdd"><input type="time" name="playing_movie_start" 
 				value="${updatedto.playing_movie_start}" class="playAddInput" id="movieStart" onchange="show()">&nbsp;&nbsp;~&nbsp;&nbsp;
 				<input type="time" name="playing_movie_end"
-				value="${updatedto.playing_movie_end}" class="playAddInput" id="movieEnd"></td>
+				value="${updatedto.playing_movie_end}" class="playAddInput" id="movieEnd" readonly></td>
 			</tr>
 			<tr>
 				<td class="playAddBtn" colspan="2"><input type="submit" value="상영 수정" class="nextBtn">&nbsp;&nbsp;
