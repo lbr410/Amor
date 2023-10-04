@@ -106,5 +106,17 @@ public class MovieReviewServiceImple implements MovieReviewService {
 		int member_idx = movieReviewDao.reviewListIdx(member_id);
 		return member_idx;
 	}
+	
+	@Override
+	public int reviewDelete(int movie_review_idx) {
+		int result = movieReviewDao.reviewDelete(movie_review_idx);
+		return result;
+	}
+	
+	@Override
+	public int reviewUpdate(MovieReviewJoinDTO dto) {
+		int result = movieReviewDao.reivewUpdate(dto);
+		return result;
+	}
 
 }

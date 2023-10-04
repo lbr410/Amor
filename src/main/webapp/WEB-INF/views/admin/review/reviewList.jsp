@@ -60,8 +60,10 @@ function reviewSearch() {
 	</thead>
 	<tfoot>
 		<tr>
+			<c:if test="${!empty pageStr }">
 			<td colspan="7" align="center">	
 			<div class="paging">${pageStr }</div></td>
+			</c:if>
 		</tr>
 	</tfoot>
 	<tbody>

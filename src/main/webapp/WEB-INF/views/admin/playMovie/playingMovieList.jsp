@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아모르: 상영영화리스트</title>
+<title>아모르 관리자 : 상영영화리스트</title>
+<link rel="styleSheet" type="text/css" href="/amor/resources/css/admin/playingMovieList.css">
 </head>
 <body>
 <%@include file="../admin_header.jsp" %>
@@ -24,11 +25,6 @@
 		<th>수정 및 삭제</th>
 	</tr>
 	</thead>
-	<tfoot>
-		<tr>
-			<td colspan="4"> ${playingMoviepageStr }</td>
-		</tr>
-	</tfoot>
 	<tbody>
 		<c:if test="${empty playingMovieLists }">
 			<tr>
@@ -41,12 +37,15 @@
 			<td>${dto.playing_movie_start }</td>
 			<td>${dto.theater_name }</td>
 			<td>${dto.movie_name }</td>
-			<td><input type="button" value="수정" onclick="location.href='playingMovieUpdate.do?playing_movie_idx=${dto.playing_movie_idx}'">
-				<input type="button" value="삭제" onclick="location.href='playingMovieDelete.do?playing_movie_idx=${dto.playing_movie_idx}'"></td>
+			<td><input type="button" class="smallBtn" value="수정" onclick="location.href='playingMovieUpdate.do?playing_movie_idx=${dto.playing_movie_idx}'">
+				<input type="button" class="smallBtn" value="삭제" onclick="location.href='playingMovieDelete.do?playing_movie_idx=${dto.playing_movie_idx}'"></td>
 			</tr>
 		</c:forEach>
 	</tbody>
 	</table>
+	<c:if test="${!empty playingMoviepageStr }">
+		<div class="paging">${playingMoviepageStr }</div>
+	</c:if>
 </div>
 </div>
 </div>

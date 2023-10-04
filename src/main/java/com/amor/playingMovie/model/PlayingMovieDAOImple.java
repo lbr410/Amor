@@ -38,6 +38,12 @@ public class PlayingMovieDAOImple implements PlayingMovieDAO {
 	}
 	
 	@Override
+	public int playingMovieSeat(int theater_idx) {
+		int seat = sqlmap.selectOne("playingMovieSeat", theater_idx);
+		return seat;
+	}
+	
+	@Override
 	public int playingMovieAdd(PlayingMovieDTO dto) {
 		int count = sqlmap.insert("playingMovieAdd", dto);
 		return count;
@@ -66,11 +72,7 @@ public class PlayingMovieDAOImple implements PlayingMovieDAO {
 		Map running=sqlmap.selectOne("movieRunning", idx_m);
 		return running;
 	}
-	
-	
-	
-	
-	
+		
 	
 	@Override
 	public PlayingMovieDTO playingMovieContent(int playing_movie_idx) {

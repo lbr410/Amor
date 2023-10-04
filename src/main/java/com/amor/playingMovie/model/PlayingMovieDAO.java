@@ -8,6 +8,7 @@ public interface PlayingMovieDAO {
 	public int getTotalCnt();
 	public List<Map> playingMovieAddScreen();
 	public List<Map> playingMovieAddMovie();
+	public int playingMovieSeat(int theater_idx);
 	public int playingMovieAdd(PlayingMovieDTO dto);
 	public PlayingMovieJoinDTO playingMovieUpdateList(int idx_u);
 	public int playingMovieUpdate(PlayingMovieDTO dto);

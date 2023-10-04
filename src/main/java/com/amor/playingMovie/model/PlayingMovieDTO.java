@@ -42,13 +42,14 @@ public class PlayingMovieDTO {
 	}
 
 	public PlayingMovieDTO(int movie_idx, int theater_idx, String playing_movie_date, String playing_movie_start,
-			String playing_movie_end) {
+			String playing_movie_end, int playing_movie_remain_seats) {
 		super();
 		this.movie_idx = movie_idx;
 		this.theater_idx = theater_idx;
 		this.playing_movie_date = playing_movie_date;
 		this.playing_movie_start = playing_movie_start;
 		this.playing_movie_end = playing_movie_end;
+		this.playing_movie_remain_seats = playing_movie_remain_seats;
 	}
 
 	public int getPlaying_movie_idx() {

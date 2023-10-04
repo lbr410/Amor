@@ -10,7 +10,9 @@
 			substr(movie_review_content, 0, 8) as movie_review_shortcontent, 
 			c.movie_review_img, 
 			d.member_idx,
-			c.movie_review_writedate 
+			c.movie_review_writedate, 
+			c.movie_review_idx,
+			c.movie_review_star
 		from 
 			(select * from (select rownum as rnum,a.* from 
 			(select * from movie_review order by movie_review_idx desc)a)b 
@@ -105,4 +107,18 @@
 	<select id="reviewListIdx" parameterType="String" resultType="Integer">
 		select member_idx from member where member_id = #{member_id}
 	</select>
+	<delete	id="reviewDelete" parameterType="Integer">
+		delete from movie_review where movie_review_idx = #{movie_review_idx}
+	</delete>
+	<update id="reviewUpdate" parameterType="com.amor.movieReview.model.MovieReviewJoinDTO">
+		update 
+			movie_review 
+		set
+			movie_review_content = #{movie_review_content},
+			movie_review_star = #{movie_review_star},
+			movie_review_img = #{movie_review_img}
+		where
+			movie_review_idx = #{movie_review_idx}
+		
+	</update>
 </mapper>

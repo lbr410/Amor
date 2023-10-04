@@ -17,4 +17,6 @@ public interface MovieReviewService {
 	public List<MovieReviewDTO> adminReviewListSearch(int cp, int listSize, String search);
 	public int movieReviewAdd(MovieReviewJoinDTO dto);
 	public int reviewListIdx(String member_id);
+	public int reviewDelete(int movie_review_idx);
+	public int reviewUpdate(MovieReviewJoinDTO dto);
 }
