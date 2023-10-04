@@ -11,9 +11,9 @@ b.theater_name as theatername,b.ticketing_seat as seatnum,b.ticketing_screeningt
 b.ticketing_payment as payment,b.ticketing_price as price,b.ticketing_reservetime as reservetime,
 to_char(case 
     when to_number((to_date(b.ticketing_screeningtime, 'YYYY-MM-DD HH24:MI:SS') - to_date(sysdate, 'YYYY-MM-DD HH24:MI:SS')) * 24 * 60) >= 30 
-    then 'y'
+    then to_char(to_number((to_date(b.ticketing_screeningtime, 'YYYY-MM-DD HH24:MI:SS') - to_date(sysdate, 'YYYY-MM-DD HH24:MI:SS')) * 24 * 60))
     when to_number((to_date(b.ticketing_screeningtime, 'YYYY-MM-DD HH24:MI:SS') - to_date(sysdate, 'YYYY-MM-DD HH24:MI:SS')) * 24 * 60) < 30
-    then 'n'
+    then to_char(to_number((to_date(b.ticketing_screeningtime, 'YYYY-MM-DD HH24:MI:SS') - to_date(sysdate, 'YYYY-MM-DD HH24:MI:SS')) * 24 * 60))
     else 'null'
 end)as timelimit
 from playing_movie a,(select * from ticketing,theater
