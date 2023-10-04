@@ -81,7 +81,7 @@
 		<span class="imgDiv2">
 			<span class="menuname3">이미지</span>
 			<input type="file" id="selectImg" name="product_img" accept=".jpg, .jpeg, .png"
-				onchange="extensionCheck(this); setProdImg(event)" style="display: none">
+				onchange="extensionCheck(this); setProdImg(event)" style="display: none" required>
 			<input type="button" value="이미지 추가" onclick="document.getElementById('selectImg').click();" class="fileDeco">
 		</span>
 		<span><img src="/amor/resources/img/preview.png" id="preview" onError="this.style.visibility='hidden'"></span>

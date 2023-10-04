@@ -32,13 +32,16 @@ public class SeatController {
 	private TheaterService theaterService;
 	
 	@RequestMapping("ticketing/seat.do")
-	public ModelAndView seatForm(HttpSession session) { // RequestParam 3가지 추가할 것
+	public ModelAndView seatForm(HttpSession session,
+								 @RequestParam("movie_idx") int movie_idx,
+								 @RequestParam("theater_idx") int theater_idx,
+								 @RequestParam("playing_movie_idx") int playing_movie_idx) {
 		// 영화 정보 조회
-		MovieDTO movieInfo = movieService.movieContent(35); // 넘어온 movie_idx 값으로 수정할 예정
+		MovieDTO movieInfo = movieService.movieContent(movie_idx);
 		// 상영 영화 정보 조회
-		PlayingMovieDTO playingMovieInfo = playingMovieService.playingMovieContent(22); // 위와 동일
+		PlayingMovieDTO playingMovieInfo = playingMovieService.playingMovieContent(playing_movie_idx);
 		// 상영관 정보
-		TheaterDTO theaterInfo = theaterService.theaterInfo(3); // 위와 동일
+		TheaterDTO theaterInfo = theaterService.theaterInfo(theater_idx);
 		
 		// 상영 영화 날짜의 요일 구하기
 		int movieDateY = Integer.parseInt(playingMovieInfo.getPlaying_movie_date().substring(0, 4));

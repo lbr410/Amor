@@ -91,7 +91,7 @@
               <ul class="inner">
                 <li>
                   <ul>
-                    <li class="store"><a href="/amor/store.do">스낵/음료</a></li>
+                    <li class="store"><a href="/amor/store.do">스낵/음료/관람권</a></li>
                   </ul>
                 </li>
               </ul>

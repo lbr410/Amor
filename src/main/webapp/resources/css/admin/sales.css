@@ -9,10 +9,11 @@ ul, li {
 }
 
 .tab {
-	float: left;
+	/*float: left;*/
 	width: 1000px;
 	height: 510px; /* 바깥 content */
 	background: #f8f8f8;
+	margin-top: 450px;
 }
 
 .tabnav {
@@ -181,7 +182,7 @@ ul, li {
 }
 
 .chartBtnView {
-	text-align: right;
+	/*text-align: right;*/
 	margin-top: 30px;
 }
 

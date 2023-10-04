@@ -272,15 +272,15 @@
 			<input type="text" name="member_birth_year" id="birth_year" placeholder="년(4자)" class="year" maxlength="4"
 				onkeypress="return checkNumber(event)" required>
 			<select name="member_birth_month" class="month">
-				<option value="1" selected>01</option>
-				<option value="2">02</option>
-				<option value="3">03</option>
-				<option value="4">04</option>
-				<option value="5">05</option>
-				<option value="6">06</option>
-				<option value="7">07</option>
-				<option value="8">08</option>
-				<option value="9">09</option>
+				<option value="01" selected>01</option>
+				<option value="02">02</option>
+				<option value="03">03</option>
+				<option value="04">04</option>
+				<option value="05">05</option>
+				<option value="06">06</option>
+				<option value="07">07</option>
+				<option value="08">08</option>
+				<option value="09">09</option>
 				<option value="10">10</option>
 				<option value="11">11</option>
 				<option value="12">12</option>
