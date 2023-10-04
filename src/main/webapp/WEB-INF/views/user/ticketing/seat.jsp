@@ -40,7 +40,7 @@
 			
 			let jNum = 0; 
 			for(let j=0; j<${theaterInfo.theater_column}; j++) { // theater의 열
-				if(seatsArr[i][j] == 0) { // 0일때 통로 만들기
+				if(seatsArr[i][j] == '0') { // 0일때 통로 만들기
 					let tongroSpan = document.createElement('span');
 					tongroSpan.className = 'tongroDeco';
 					seatPlace.appendChild(tongroSpan);

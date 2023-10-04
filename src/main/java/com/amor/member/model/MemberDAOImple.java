@@ -32,8 +32,8 @@ public class MemberDAOImple implements MemberDAO {
 	}
 	 
 	 @Override
-	public String memberPwdCheck(String pwd) {
-		String dbId=sqlmap.selectOne("memberPwdCheck", pwd);
+	public String memberPwdCheck(Map map) {
+		String dbId=sqlmap.selectOne("memberPwdCheck", map);
 		return dbId;
 	}
 	 
@@ -110,6 +110,12 @@ public class MemberDAOImple implements MemberDAO {
 	@Override
 	public int memberSearchTotalCnt(String search) {
 		int result=sqlmap.selectOne("memberSearchTotalCnt", search);
+		return result;
+	}
+	
+	@Override
+	public int memberListBlock(Map map) {
+		int result=sqlmap.update("memberListBlock", map);
 		return result;
 	}
 }

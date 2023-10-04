@@ -6,7 +6,6 @@ public class TheaterDTO {
 	private int theater_totalseat;
 	private int theater_row;
 	private int theater_column;
-	private String theater_path;
 	private String theater_seat;
 	
 	public TheaterDTO() {
@@ -14,14 +13,13 @@ public class TheaterDTO {
 	}
 
 	public TheaterDTO(int theater_idx, String theater_name, int theater_totalseat, int theater_row, int theater_column,
-			String theater_path, String theater_seat) {
+			 String theater_seat) {
 		super();
 		this.theater_idx = theater_idx;
 		this.theater_name = theater_name;
 		this.theater_totalseat = theater_totalseat;
 		this.theater_row = theater_row;
 		this.theater_column = theater_column;
-		this.theater_path = theater_path;
 		this.theater_seat = theater_seat;
 	}
 
@@ -63,14 +61,6 @@ public class TheaterDTO {
 
 	public void setTheater_column(int theater_column) {
 		this.theater_column = theater_column;
-	}
-
-	public String getTheater_path() {
-		return theater_path;
-	}
-
-	public void setTheater_path(String theater_path) {
-		this.theater_path = theater_path;
 	}
 
 	public String getTheater_seat() {

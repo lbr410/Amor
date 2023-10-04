@@ -82,7 +82,7 @@ thead{
 		<tfoot>
 			<tr>
 				<td colspan="6" align="right">
-				<div id="noticelist"><a href="/amor/customer/noticeList.do">목록으로</a></div>
+				<div id="noticelist"><a href="/amor/myAmot/noticeList.do">목록으로</a></div>
 			</tr>
 		</tfoot>
 		<tbody>

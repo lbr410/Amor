@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/amor/resources/css/admin/adminAll.css">
 <body>
 <div class="top">
-	<div class="logo"><a href="#"></a><img src="/amor/resources/img/logo.png"></div>
+	<div class="logo"><a href="#"></a><img src="/amor/resources/img/main_logo.png" class="mainLogoImg"></div>
 	<c:if test="${!empty sessionScope.data || !empty cookie.autologin}">
 		<div class="logout"><input type="button" value="로그아웃" onclick = "adminLogout()"></div>
 	</c:if>
@@ -30,7 +30,7 @@
 				<div class="menutext"><a href="#" data-submenu="submenu-2">상영관 관리</a></div>
 			</div>
 			<div class="submenu" id="submenu-2"> 
-				<div class="menutext"><a href="#">상영관 등록</a></div>
+				<div class="menutext"><a href="/amor/admin/theater/theaterList.do">상영관 등록</a></div>
 				<div class="menutext"><a href="/amor/admin/playMovie/playingMovieList.do">상영영화 목록</a></div>
 				<div class="menutext"><a href="/amor/admin/playMovie/playingMovieAdd.do">상영시간 등록</a></div>
 			</div>
@@ -52,23 +52,31 @@
 			</div>			
 			
 			<div class="menu" onclick="toggleSubmenu(this)">
-				<div class="menutext"><a href="#" data-submenu="submenu-5">관람평 관리</a></div>
-			</div>
+				<div class="menutext"><a href="#" data-submenu="submenu-5">광고 관리</a></div>
+			</div>	
 			<div class="submenu" id="submenu-5"> 
+				<div class="menutext"><a href="#">광고 목록</a></div>
+				<div class="menutext"><a href="#">광고 등록</a></div>
+			</div>
+			
+			<div class="menu" onclick="toggleSubmenu(this)">
+				<div class="menutext"><a href="#" data-submenu="submenu-6">관람평 관리</a></div>
+			</div>
+			<div class="submenu" id="submenu-6"> 
 				<div class="menutext"><a href="/amor/admin/review/reviewList.do">관람평 목록</a></div>
 			</div>		
 			
 			<div class="menu" onclick="toggleSubmenu(this)">
-				<div class="menutext"><a href="#" data-submenu="submenu-6">1:1문의 관리</a></div>
+				<div class="menutext"><a href="#" data-submenu="submenu-7">1:1문의 관리</a></div>
 			</div>
-			<div class="submenu" id="submenu-6"> 
+			<div class="submenu" id="submenu-7"> 
 				<div class="menutext"><a href="/amor/admin/inquiry/inquiryList.do">1:1문의 목록</a></div>
 			</div>	
 						
 			<div class="menu" onclick="toggleSubmenu(this)">
-				<div class="menutext"><a href="#" data-submenu="submenu-7">공지 / FAQ 관리</a></div>
+				<div class="menutext"><a href="#" data-submenu="submenu-8">공지 / FAQ 관리</a></div>
 			</div>	
-			<div class="submenu" id="submenu-7"> 
+			<div class="submenu" id="submenu-8"> 
 				<div class="menutext"><a href="/amor/admin/notice/noticeList.do">공지사항 목록</a></div>
 				<div class="menutext"><a href="/amor/admin/notice/noticeWrite.do">공지사항 등록</a></div>
 				<div class="menutext"><a href="/amor/admin/faq/faqList.do">FAQ 목록</a></div>
@@ -76,16 +84,16 @@
 			</div>
 			
 			<div class="menu" onclick="toggleSubmenu(this)">
-				<div class="menutext"><a href="/amor/admin/sales/sales.do" data-submenu="submenu-8">매출 관리</a></div>
+				<div class="menutext"><a href="/amor/admin/sales/sales.do" data-submenu="submenu-9">매출 관리</a></div>
 			</div>
-			<div class="submenu" id="submenu-8"> 
+			<div class="submenu" id="submenu-9"> 
 				<div class="menutext"><a href="/amor/admin/sales/sales.do">매출 관리</a></div>
 			</div>	
 			
 			<div class="menu" onclick="toggleSubmenu(this)">
-				<div class="menutext"><a href="#" data-submenu="submenu-9">스토어</a></div>
+				<div class="menutext"><a href="#" data-submenu="submenu-10">스토어</a></div>
 			</div>
-			<div class="submenu" id="submenu-9"> 
+			<div class="submenu" id="submenu-10"> 
 				<div class="menutext"><a href="#">재고 목록</a></div>
 				<div class="menutext"><a href="#">재고 등록</a></div>
 				<div class="menutext"><a href="/amor/admin/product/productList.do">판매상품 목록</a></div>

@@ -353,6 +353,15 @@
 <div class="content">
 <div class="content-title"><label class="titletext">매출 관리</label>
 </div>
+<div>
+	<div id="chartDiv">
+		<div id="chart" class="chartView"><!-- chart --></div>
+		<div id="chartBtnDiv" class="chartBtnView">
+			<input type="button" value="최근 6개월 매출" id="sixMonthBtn" class="chartBtnDeco"><br>
+			<input type="button" value="최근 일주일 매출" id="weekBtn" class="chartBtnDeco">
+		</div>
+	</div>
+</div>
 <div class="contentMain">
 <div class="tab">
 	<ul class="tabnav">
@@ -465,13 +474,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="chartDiv">
-		<div id="chart" class="chartView"><!-- chart --></div>
-		<div id="chartBtnDiv" class="chartBtnView">
-			<input type="button" value="최근 6개월 매출" id="sixMonthBtn" class="chartBtnDeco"><br>
-			<input type="button" value="최근 일주일 매출" id="weekBtn" class="chartBtnDeco">
-		</div>
-	</div>
+	
 </div>
 </div>
 </div>

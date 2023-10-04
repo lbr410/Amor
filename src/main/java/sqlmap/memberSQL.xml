@@ -17,9 +17,9 @@
 	update member set member_quit='y', member_quitdate=sysdate
 	where member_id=#{id}
 </update>
-<select id="memberPwdCheck" parameterType="String" resultType="String">
+<select id="memberPwdCheck" parameterType="Map" resultType="String">
 	select member_id from member
-	where member_pwd=#{pwd}
+	where member_id=#{sid} and member_pwd=#{pwd}
 </select>
 <update id="memberPwdUpdate" parameterType="Map">
 	update member 
@@ -90,4 +90,10 @@
 <select id="memberSearchTotalCnt" resultType="Integer" parameterType="String">
 	select count(*) from member where member_id like '%'||#{search}||'%'
 </select>
+
+<update id="memberListBlock" parameterType="Map">
+	update member
+	set member_block=#{value}
+	where member_idx=#{idx}
+</update>
 </mapper>

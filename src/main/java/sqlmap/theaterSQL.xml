@@ -6,4 +6,24 @@
 	<select id="theaterInfo" parameterType="Integer" resultType="com.amor.theater.model.TheaterDTO">
 		select * from theater where theater_idx = #{theater_idx}
 	</select>
+	<insert id="theaterAdd">
+		<![CDATA[		
+		insert into theater
+		values(theater_idx.nextval,
+		'none',
+		160,
+		8,
+		20,
+		'[["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"]]'
+		)		
+		]]>
+	</insert>
+	<select id="theaterSelect" resultType="com.amor.theater.model.TheaterDTO">
+		select * from theater
+		order by theater_idx asc 
+	</select>
+	<select id="seateSelect" parameterType="Integer" resultType="com.amor.theater.model.TheaterDTO">
+		select theater_idx,theater_name,theater_row,theater_column,theater_seat from theater
+		where theater_idx = #{theateridx}
+	</select>		
 </mapper>

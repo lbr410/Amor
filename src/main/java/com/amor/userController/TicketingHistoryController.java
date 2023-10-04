@@ -27,8 +27,11 @@ public class TicketingHistoryController {
 			int useridx = (int)session.getAttribute("sidx");
 			System.out.println(useridx);
 			List<JoinTicketingHistoryDTO>lists = ticketingService.getReserveList(useridx);
-			if(lists != null) {				
-				System.out.println(lists.get(0).getTimelimit());
+			if(lists != null) {		
+				System.out.println("aaaa="+lists.size());
+				for(int i=0;i<lists.size();i++) {
+				System.out.println("test="+lists.get(i).getMoviename()+"/"+lists.get(i).getScreeningdate()+"/"+lists.get(i).getTimelimit());
+				}
 				mav.addObject("list", lists);
 				mav.setViewName("user/myAmor/tiketingHistory");
 				return mav;

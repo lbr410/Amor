@@ -14,14 +14,19 @@ body{
 	
 }
 .logo{
-	padding-left:64px;
-	padding-top:7px;
+	display: flex;
 	width: 250px;
 	height: 75px;
-	align-items: flex-start;
-    justify-content: flex-start;
-    flex-shrink: 0;
-
+	padding-bottom:3px;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+.mainLogoImg{
+	width: 122px;
+	height: 58px;
+	flex-shrink: 0;
 }
 .logout{
 	color: var(--grey, #c6c6c6);

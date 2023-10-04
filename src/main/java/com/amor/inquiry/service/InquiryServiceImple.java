@@ -17,19 +17,20 @@ public class InquiryServiceImple implements InquiryService {
 	}
 
 	@Override
-	public List<InquiryDTO> memberInquiryList(int cp, int listSize) {
+	public List<InquiryDTO> memberInquiryList(int cp, int listSize, int member_idx) {
 		int start=(cp-1) * listSize + 1;
 		int end=cp * listSize;
 		Map map=new HashedMap();
 		map.put("start", start);
 		map.put("end", end);
+		map.put("member_idx", member_idx);
 		List<InquiryDTO>lists=inquiryDao.memberInquiryList(map);
 		return lists;
 	}
 	
 	@Override
-	public int inquiryTotalCnt() {
-		int result=inquiryDao.inquiryTotalCnt();
+	public int memberInquiryTotalCnt(int member_idx) {
+		int result=inquiryDao.memberInquiryTotalCnt(member_idx);
 		return result;
 	}
 	

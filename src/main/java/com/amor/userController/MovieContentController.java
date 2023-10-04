@@ -25,7 +25,7 @@ public class MovieContentController {
 			int totalCnt=movieservice.getTotalCnt();
 			int listSize=5;
 			int pageSize=5;
-			String pageStr=com.amor.page.PageModule.makePage("/amor/admin/notice/noticeList.do", totalCnt, listSize, pageSize, cp);
+			String pageStr=com.amor.page.PageModule.makePage("/amor/user/movie/movie.do", totalCnt, listSize, pageSize, cp);
 
 			List<MovieDTO> mlists = movieservice.movieBest(cp, listSize);
 			ModelAndView mav=new ModelAndView();

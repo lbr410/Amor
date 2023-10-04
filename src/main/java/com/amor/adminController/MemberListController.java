@@ -23,7 +23,7 @@ public class MemberListController {
 			HttpSession session,
 			@RequestParam(value="cp", defaultValue = "1")int cp) {
 		int totalCnt=memberService.memberTotalCnt();
-		int listSize=5;
+		int listSize=10;
 		int pageSize=5;
 		
 		String pageStr=com.amor.page.PageModule.makePage("/amor/admin/member/memberList.do", totalCnt, listSize, pageSize, cp);
@@ -42,12 +42,29 @@ public class MemberListController {
 		return mav;
 	}
 	
+	@RequestMapping("admin/member/memberListBlock.do")
+	public ModelAndView memberListBlock(
+			@RequestParam(value="idx",defaultValue = "0") int idx,
+			@RequestParam("value")String value) {
+		ModelAndView mav=new ModelAndView();
+		MemberDTO dto=new MemberDTO();
+		int result=memberService.memberListBlock(idx, value);
+		
+		if(value.equals("y")) {
+			dto.setMember_block("y");
+		}else if(value.equals("n")) {
+			dto.setMember_block("n");
+		}
+		
+		return mav;
+	}
+	
 	@RequestMapping("admin/member/memberSearch.do")
 	public ModelAndView memberSearch(
 			@RequestParam(value="cp",defaultValue = "1")int cp,
 			@RequestParam("search")String search) {
 		int totalCnt = memberService.memberSearchTotalCnt(search);
-		int listSize = 5;
+		int listSize =10;
 		int pageSize = 5;
 		String pageStr=com.amor.page.PageModule.makePage("/amor/admin/member/memberList.do", totalCnt, listSize, pageSize, cp);
 		
