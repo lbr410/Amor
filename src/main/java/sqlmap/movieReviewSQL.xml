@@ -39,17 +39,7 @@
 		select count(*) from movie_review
 	</select>
 	
-	<select id="adminReviewList" parameterType="Map" resultType="com.amor.movieReview.model.MovieReviewDTO">
-		select * from
-		(select rownum as rnum, a.* from
-		(select mr.movie_review_idx,
-		(select member_id from member mm where mm.member_idx=mr.member_idx) as member_id, 
-		(select movie_name from movie mv where mv.movie_idx=mr.movie_idx) as movie_name,
-		mr.movie_review_content,mr.movie_review_writedate,
-		(select member_block from member mm where mm.member_idx=mr.member_idx) as member_block 
-		from movie_review mr order by movie_review_idx desc) a)
-		where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}
-	</select>
+	
 	
 	<select id="adminReviewPopup" parameterType="Integer" resultType="com.amor.movieReview.model.MovieReviewDTO">
 		select 

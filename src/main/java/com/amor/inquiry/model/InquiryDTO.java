@@ -4,27 +4,32 @@ import java.sql.*;
 public class InquiryDTO {
 	
 	private int inquiry_idx;
+	private int member_idx;
 	private String inquiry_subject;
 	private String inquiry_content;
 	private String inquiry_filename;
 	private Date inquiry_writedate;
 	private String inquiry_answer;
 	private String inquiry_astatus;
+	private int inquiry_type;
 	
 	public InquiryDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public InquiryDTO(int inquiry_idx, String inquiry_subject, String inquiry_content, String inquiry_filename,
-			Date inquiry_writedate, String inquiry_answer, String inquiry_astatus) {
+	public InquiryDTO(int inquiry_idx, int member_idx, String inquiry_subject, String inquiry_content,
+			String inquiry_filename, Date inquiry_writedate, String inquiry_answer, String inquiry_astatus,
+			int inquiry_type) {
 		super();
 		this.inquiry_idx = inquiry_idx;
+		this.member_idx = member_idx;
 		this.inquiry_subject = inquiry_subject;
 		this.inquiry_content = inquiry_content;
 		this.inquiry_filename = inquiry_filename;
 		this.inquiry_writedate = inquiry_writedate;
 		this.inquiry_answer = inquiry_answer;
 		this.inquiry_astatus = inquiry_astatus;
+		this.inquiry_type = inquiry_type;
 	}
 
 	public int getInquiry_idx() {
@@ -33,6 +38,14 @@ public class InquiryDTO {
 
 	public void setInquiry_idx(int inquiry_idx) {
 		this.inquiry_idx = inquiry_idx;
+	}
+
+	public int getMember_idx() {
+		return member_idx;
+	}
+
+	public void setMember_idx(int member_idx) {
+		this.member_idx = member_idx;
 	}
 
 	public String getInquiry_subject() {
@@ -81,6 +94,14 @@ public class InquiryDTO {
 
 	public void setInquiry_astatus(String inquiry_astatus) {
 		this.inquiry_astatus = inquiry_astatus;
+	}
+
+	public int getInquiry_type() {
+		return inquiry_type;
+	}
+
+	public void setInquiry_type(int inquiry_type) {
+		this.inquiry_type = inquiry_type;
 	}
 	
 	

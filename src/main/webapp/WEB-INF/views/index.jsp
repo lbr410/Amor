@@ -68,7 +68,7 @@
                                 관객수 ${mdto.movie_audience }<em>명 | </em>
                             </span>
                         </span>
-                        <span class="date">
+                        <span class="movie_opendate">
                             개봉일 ${mdto.movie_opendate }
                         </span>
                     </div>

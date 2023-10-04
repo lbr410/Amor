@@ -4,50 +4,41 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amor.inquirySQL">
 
-<select id="memberInquiryList" parameterType="Map" resultType="com.amor.inquiry.model.InquiryDTO">
-	select * from
-	(select rownum as rnum, a.* from
-	(select * from inquiry order by inquiry_idx desc) a)
-	where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}
-</select>
-
-<select id="inquiryTotalCnt" resultType="Integer">
-	select count(*) from inquiry
-</select>
-
-<insert id="inquiryWrite" parameterType="com.amor.inquiry.model.InquiryDTO">
-	insert into inquiry values(
-	inquiry_idx.nextval, #{member_idx}, #{inquiry_subject}, #{inquiry_content}, #{inquiry_filename}, sysdate, 'n', 0)
-</insert>
-
-<select id="inquiryContent" parameterType="Integer" resultType="com.amor.inquiry.model.InquiryDTO">
-	select * from inquiry
-	where inquiry_idx=#{inquiry_idx}
-</select>
-
-<select id="adminInquiryList" parameterType="Map" resultType="com.amor.inquiry.model.InquiryDTO">
-	select * from
-    (select rownum as rnum, a.* from
-    (select member_id from member m where m.member_idx=i.member_idx) as member_id, member_tel, member_email,
-    (select member_block from member m where m.member_idx=i.member_idx) as member_block
-    from inquiry i order by inquiry_idx desc) a)
-    where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}
-</select>
-
-<update id="blockUpdate" parameterType="Map">
-	update member
-	set member_block=#{value}
-	where member_idx=(select i.member_idx from inquiry i where i.inquiry_idx=#{inquiry_idx} )
-</update>
-
-<update id="inquiryAnswer" parameterType="Map">
-	update inquiry set
-		inquiry_answer=#{inquiry_answer},
-		inquiry_astatus='y'
-	where inquiry_idx=#{inquiry_idx}
-</update>
-<delete id="inquiryDelete" parameterType="Integer">
-	delete from inquiry where inquiry_idx=#{inquiry_idx}
-</delete>
+	<select id="memberInquiryList" parameterType="Map" resultType="com.amor.inquiry.model.InquiryDTO">
+		select * from
+		(select rownum as rnum, a.* from
+		(select * from inquiry where member_idx=#{member_idx} order by inquiry_idx desc) a)
+		where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}
+	</select>
+	
+	<select id="memberInquiryTotalCnt" resultType="Integer">
+		select count(*) from inquiry where member_idx=#{member_idx}
+	</select>
+	
+	<insert id="inquiryWrite" parameterType="com.amor.inquiry.model.InquiryDTO">
+		insert into inquiry values(
+		inquiry_idx.nextval,  #{member_idx}, #{inquiry_subject}, #{inquiry_content}, #{inquiry_filename}, sysdate, 0, 'n', #{inquiry_type})
+	</insert>
+	
+	<delete id="inquiryDelete" parameterType="Integer">
+		delete from inquiry where inquiry_idx=#{inquiry_idx}
+	</delete>
+	
+	<select id="adminInquiryList" parameterType="Map" resultType="com.amor.inquiry.model.InquiryDTO">
+		select * from
+		(select rownum as rnum, a.* from
+		(select * from inquiry where order by inquiry_idx desc) a)
+		where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}
+	</select>
+	
+	<select id="inquiryTotalCnt" resultType="Integer">
+		select count(*) from inquiry
+	</select>
+	
+	<select id="inquiryContent" parameterType="Integer" resultType="com.amor.inquiry.model.InquiryDTO">
+		select m.member_idx,  m.member_email, m.member_id, i.inquiry_idx, i.inquiry_subject, i.inquiry_content, i.inquiry_filename, i.inquiry_writedate, i.inquiry_answer, i.inquiry_astatus
+		from member m, inquiry i
+		where m.member_idx=${member_idx} and i.inquiry_idx=${inquiry_idx}
+	</select>
 
 </mapper>
