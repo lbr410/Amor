@@ -49,7 +49,10 @@ public class MemberServiceImple implements MemberService {
 	
 	@Override
 	public int memberPwdCheck(String sid, String pwd) {
-		String dbId=memberDao.memberPwdCheck(pwd);
+		Map map=new HashedMap();
+		map.put("sid", sid);
+		map.put("pwd", pwd);
+		String dbId=memberDao.memberPwdCheck(map);
 		int result=ERROR;	
 		if(dbId!=null) {
 			if(dbId.equals(sid)) {
@@ -124,7 +127,7 @@ public class MemberServiceImple implements MemberService {
 		Map map=new HashMap();
 		map.put("start", start);
 		map.put("end", end);
-		List<MemberDTO> lists=memberDao.memberList(map);
+		List<MemberDTO> lists=memberDao.memberList(map);		
 		return lists;
 	}
 	
@@ -150,6 +153,15 @@ public class MemberServiceImple implements MemberService {
 	@Override
 	public int memberSearchTotalCnt(String search) {
 		int result=memberDao.memberSearchTotalCnt(search);
+		return result;
+	}
+	
+	@Override
+	public int memberListBlock(int idx, String value) {
+		Map map=new HashMap();
+		map.put("idx", idx);
+		map.put("value", value);
+		int result=memberDao.memberListBlock(map);
 		return result;
 	}
 }

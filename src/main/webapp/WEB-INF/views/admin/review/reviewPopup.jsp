@@ -10,7 +10,7 @@
 <body>
 <div class="popupTitle"><label>${dto.member_id }</label>님 관람평</div>
 <div class="popupContent">
-	<div class="popupImg"><img src="/amor/resources/img/main_logo.png" class=img></div>
+	<div class="popupImg"><img src="/amor/resources/upload/review/${dto.movie_review_img }" class=img alt="review_img"></div>
 	<div class="popupTextDiv">
 		<div class="popupText">${dto.movie_review_content }</div>
 	</div>

@@ -19,6 +19,7 @@ function check() {
 	var pwd1Tag=document.getElementById("pwd1Tag");
 	var pwd2Tag=document.getElementById("pwd2Tag");
 	var checkTag=document.getElementById("check");
+	var checkTag2=document.getElementById("check2");
     var pwd1Value=pwd1Tag.value;
     var pwd2Value=pwd2Tag.value;
     
@@ -29,21 +30,34 @@ function check() {
 		} else {
 			checkTag.innerHTML= '<p style="color:green; font-size:13px; font-weight:normal;">사용할 수 있는 비밀번호입니다.</p>';
 		}
-	} else {
+		if(pwd2Value!=''){
+		    if (pwd1Value!=pwd2Value) {
+		        checkTag2.innerHTML='<p style="color:red; font-size:13px; font-weight:normal;">비밀번호가 일치하지 않습니다.</p>';
+		    } else if(pwd1Value==pwd2Value && pwd2Value!=''){
+		        checkTag2.innerHTML='<p style="color:green; font-size:13px; font-weight:normal;">비밀번호가 일치합니다.</p>';
+		    } 
+		}else if(pwd2Value==''){
+			checkTag2.innerHTML = '';
+		}
+	} else if(pwd1Value == '') {
 		checkTag.innerHTML = '';
+		checkTag2.innerHTML = '';
 	}
+
 }
 function check2() {
 	var pwd1Tag=document.getElementById("pwd1Tag");
 	var pwd2Tag=document.getElementById("pwd2Tag");
-	var checkTag=document.getElementById("check2");
+	var checkTag2=document.getElementById("check2");
     var pwd1Value=pwd1Tag.value;
     var pwd2Value=pwd2Tag.value;
-    
-    if (pwd1Value!=pwd2Value) {
-        checkTag.innerHTML='<p style="color:red; font-size:13px; font-weight:normal;">비밀번호가 일치하지 않습니다.</p>';
-    } else {
-        checkTag.innerHTML='<p style="color:green; font-size:13px; font-weight:normal;">비밀번호가 일치합니다.</p>';
+    if(pwd2Value==''){
+    	checkTag2.innerHTML = '';
+    }
+    if (pwd1Value!=pwd2Value && pwd2Value!='') {
+        checkTag2.innerHTML='<p style="color:red; font-size:13px; font-weight:normal;">비밀번호가 일치하지 않습니다.</p>';
+    } else if(pwd1Value==pwd2Value){
+        checkTag2.innerHTML='<p style="color:green; font-size:13px; font-weight:normal;">비밀번호가 일치합니다.</p>';
     }
 }
 
@@ -73,12 +87,15 @@ function submit() {
 </script>
 <body>
 <%@include file="../header.jsp" %>
-<!-- GRAY BAR -->
-<div class="gray-bar">
-  <div class="navigate">
-    <div class="navigate-msg">홈 > 마이페이지 > 비밀번호 수정</div>
-  </div>
-</div>
+   <!--GRAY NAVIGATE BAR-->
+    <div class="gray-bar">
+        <div class="location">
+            <span class="home">Home</span>
+            <a href="/amor/myAmor/ticketingHistory.do" title="마이페이지로 이동">마이페이지</a>
+            <a href="/amor/myAmor/userInfoUpdateForm.do" title="회원 정보 수정페이지로 이동">회원정보 수정</a>
+            <a href="#" title="비밀번호 수정 페이지로 이동">비밀번호 수정</a>
+        </div>
+    </div>
 <!-- BORDER BAR-->
 <div class="border-bar">
  	<div class="border-title">비밀번호 수정</div>

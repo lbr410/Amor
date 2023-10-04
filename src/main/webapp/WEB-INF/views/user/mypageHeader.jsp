@@ -47,14 +47,17 @@
 	font-weight: 600;
 	line-height: normal;
 }
+.titleNameDiv{
+	display: inline-block;
+	width: 920px;
+}
 .usertitle .useredit{
 	color: #000;
-	font-family: Inter;
 	font-size: 14px;
 	font-style: normal;
 	font-weight: 500;
 	line-height: normal;
-	padding-left: 720px;
+	
 }
 .pagemenu{
 	display: flex;
@@ -150,7 +153,7 @@ a:link{
 </style>
 <body>
 	<div class="mypageDiv">
-		<div class="usertitle"><label>${sessionScope.sname}</label>님 반갑습니다:)<label class="useredit"><a href="/amor/myAmor/userInfoUpdateForm.do">편집</a></label></div>
+		<div class="usertitle"><div class="titleNameDiv"><label>${sessionScope.sname}</label>님 반갑습니다:)</div><label class="useredit"><a href="/amor/myAmor/userInfoUpdateForm.do">편집</a></label></div>
 		<hr>
 		<div class="pagemenu">
 			<a href="/amor/myAmor/ticketingHistory.do" onclick="show(event)"><button id="btn1">예매내역</button></a>

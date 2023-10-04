@@ -45,7 +45,7 @@ public class MovieReviewDAOImple implements MovieReviewDAO {
 	
 	@Override
 	public int adminReviewBlockUpdate(Map map) {
-		int result=sqlmap.update("blockUpdate", map);
+		int result=sqlmap.update("reviewListBlock", map);
 		return result;
 	}
 	

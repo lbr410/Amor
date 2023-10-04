@@ -78,12 +78,14 @@ window.onload=function () {
 </script>
 <body>
 <%@include file="../header.jsp" %>
-<!-- GRAY BAR -->
-<div class="gray-bar">
-  <div class="navigate">
-    <div class="navigate-msg">홈 > 마이페이지 > 회원 수정</div>
-  </div>
-</div>
+   <!--GRAY NAVIGATE BAR-->
+    <div class="gray-bar">
+        <div class="location">
+            <span class="home">Home</span>
+            <a href="/amor/myAmor/ticketingHistory.do" title="마이페이지로 이동">마이페이지</a>
+            <a href="/amor/myAmor/userInfoUpdateForm.do" title="회원 정보 수정페이지로 이동">회원정보 수정</a>
+        </div>
+    </div>
 <!-- BORDER BAR-->
 <div class="border-bar">
  	<div class="border-title">회원 수정</div>
@@ -131,7 +133,7 @@ window.onload=function () {
 		
 		<div class="signUpMenu">이메일</div>
 		<div>
-			<input type="text" name="member_email" class="emailTextBoxDeco" readonly="readonly" value="hong@naver.com" value="${dto.member_email }">
+			<input type="text" name="member_email" class="emailTextBoxDeco" readonly="readonly" value="${dto.member_email }">
 		</div>		
 		
 		<div class="signUpMenu">휴대전화</div>

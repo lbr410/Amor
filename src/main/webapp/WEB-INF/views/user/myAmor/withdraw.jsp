@@ -29,12 +29,15 @@ function show() {
 
 <body>
 <%@include file="../header.jsp" %>
-<!-- GRAY BAR -->
-<div class="gray-bar">
-  <div class="navigate">
-    <div class="navigate-msg">홈 > 마이페이지 > 회원탈퇴</div>
-  </div>
-</div>
+   <!--GRAY NAVIGATE BAR-->
+    <div class="gray-bar">
+        <div class="location">
+            <span class="home">Home</span>
+            <a href="/amor/myAmor/ticketingHistory.do" title="마이페이지로 이동">마이페이지</a>
+            <a href="/amor/myAmor/userInfoUpdateForm.do" title="회원 정보 수정페이지로 이동">회원정보 수정</a>
+            <a href="#" title="회원탈퇴 페이지로 이동">회원탈퇴</a>
+        </div>
+    </div>
 <!-- BORDER BAR-->
 <div class="border-bar">
  	<div class="border-title">회원탈퇴</div>

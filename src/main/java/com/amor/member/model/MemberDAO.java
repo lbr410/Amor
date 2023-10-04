@@ -9,7 +9,7 @@ public interface MemberDAO {
 	public MemberDTO memberLogin(String id);
 	public MemberDTO memberSession(String id);
 	public int memberWithDraw(String id);
-	public String memberPwdCheck(String pwd);
+	public String memberPwdCheck(Map map);
 	public int memberPwdUpdate(Map map);
 	public MemberDTO memberInfo(int sidx);
 	public String idCheck(String id);
@@ -22,5 +22,6 @@ public interface MemberDAO {
 	public int memberTotalCnt();
 	public List<MemberDTO> memberSearch(Map map);
 	public int memberSearchTotalCnt(String search);
+	public int memberListBlock(Map map);
 }
  
