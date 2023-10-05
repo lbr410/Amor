@@ -21,5 +21,6 @@ public interface StorePaymentDAO {
 	public int storeListTotalCnt();
 	public List<StorePaymentDTO> storeList(Map map);
 	public int storeListSubmit(Map map);
+	public int storePayInert(StorePaymentDTO dto);
 
 }

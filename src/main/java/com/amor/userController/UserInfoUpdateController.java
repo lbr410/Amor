@@ -40,7 +40,7 @@ public class UserInfoUpdateController {
 		String msg=result>0?"수정이 완료되었습니다.":"잘못된 접근입니다.";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg", msg);
-		mav.addObject("goUrl","/amor/index.do");
+		mav.addObject("goUrl","/amor/myAmor/userInfoUpdateForm.do");
 		mav.setViewName("/user/msg/userMsg");
 		return mav;
 	}

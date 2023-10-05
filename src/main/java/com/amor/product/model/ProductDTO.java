@@ -9,7 +9,6 @@ public class ProductDTO {
 	private String product_img;
 	private String product_writedate;
 	private String product_soldout;
-	//test
 	private String product_price2;
 	
 	public ProductDTO() {
