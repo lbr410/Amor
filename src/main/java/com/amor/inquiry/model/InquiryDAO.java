@@ -5,9 +5,12 @@ public interface InquiryDAO {
 	public List<InquiryDTO> memberInquiryList(Map map);
 	public int memberInquiryTotalCnt(int member_idx);
 	public int inquiryWrite(InquiryDTO dto);
-	public List<InquiryDTO> inquiryList(Map map);
-	public int inquiryAnswer(InquiryDTO dto);
 	public int inquiryDelete(int idx);
+	public List<InquiryJoinDTO> adminInquiryList(Map map);
+	public int inquiryBlock(Map map);
+	public int inquiryTotalCnt();
+	public InquiryJoinDTO inquiryContent(int idx);
+	public int inquiryAnswer(InquiryJoinDTO dto);
 	
 	
 	

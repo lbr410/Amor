@@ -17,30 +17,49 @@
 	
 	<insert id="inquiryWrite" parameterType="com.amor.inquiry.model.InquiryDTO">
 		insert into inquiry values(
-		inquiry_idx.nextval,  #{member_idx}, #{inquiry_subject}, #{inquiry_content}, #{inquiry_filename}, sysdate, 0, 'n', #{inquiry_type})
+		inquiry_idx.nextval,  #{member_idx}, #{inquiry_subject}, #{inquiry_content}, #{inquiry_filename}, sysdate, 'n', 'n', #{inquiry_type})
 	</insert>
 	
 	<delete id="inquiryDelete" parameterType="Integer">
 		delete from inquiry where inquiry_idx=#{inquiry_idx}
 	</delete>
 	
-	<select id="adminInquiryList" parameterType="Map" resultType="com.amor.inquiry.model.InquiryDTO">
+	<select id="adminInquiryList" parameterType="Map" resultType="com.amor.inquiry.model.InquiryJoinDTO">
 		select * from
 		(select rownum as rnum, a.* from
-		(select * from inquiry where order by inquiry_idx desc) a)
+		(select m.member_id, m.member_block, i.inquiry_idx, i.inquiry_type, i.inquiry_subject, i.inquiry_astatus, i.inquiry_writedate
+		from member m join inquiry i on m.member_idx=i.member_idx order by inquiry_idx desc) a)
 		where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}
 	</select>
+
+	<update id="inquiryMemberBlock" parameterType="Map">
+		update member
+		set member_block=#{value}
+		where member_idx=
+		(select member_idx from inquiry where inquiry_idx=#{inquiry_idx})
+	</update>
 	
 	<select id="inquiryTotalCnt" resultType="Integer">
 		select count(*) from inquiry
 	</select>
 	
-	<select id="inquiryContent" parameterType="Integer" resultType="com.amor.inquiry.model.InquiryDTO">
-		select m.member_idx,  m.member_email, m.member_id, i.inquiry_idx, i.inquiry_subject, i.inquiry_content, i.inquiry_filename, i.inquiry_writedate, i.inquiry_answer, i.inquiry_astatus
-		from member m, inquiry i
-		where m.member_idx=${member_idx} and i.inquiry_idx=${inquiry_idx}
+	<select id="inquiryContent" parameterType="Integer" resultType="com.amor.inquiry.model.InquiryJoinDTO">
+		select i.inquiry_idx, i.member_idx, i.inquiry_subject, i.inquiry_content, i.inquiry_filename,
+			i.inquiry_writedate, i.inquiry_answer, i.inquiry_astatus, i.inquiry_type,
+			m.member_idx, m.member_email, m.member_id, m.member_tel1, m.member_tel2
+		from inquiry i
+		join member m on i.member_idx = m.member_idx
+		where i.inquiry_idx = #{idx}
 	</select>
 
+	<update id="inquiryAnswer" parameterType="com.amor.inquiry.model.InquiryJoinDTO">
+		update inquiry
+		set
+			inquiry_answer = #{inquiry_answer},
+			inquiry_astatus = 'y'
+		where
+			inquiry_idx = #{inquiry_idx}
+	</update>
 
 
 
