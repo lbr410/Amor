@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.amor.dual.model.DualDTO;
+import com.amor.dual.service.DualService;
 import com.amor.storePayment.model.StorePaymentDTO;
 import com.amor.storePayment.service.StorePaymentService;
 import com.amor.ticketing.model.TicketingDTO;
@@ -18,6 +20,9 @@ import com.amor.ticketing.service.TicketingService;
 
 @Controller
 public class SalesController {
+	
+	@Autowired
+	private DualService dualService;
 	
 	@Autowired
 	private StorePaymentService storePaymentService;
@@ -28,60 +33,29 @@ public class SalesController {
 	// 매출관리 페이지로 이동
 	@RequestMapping("admin/sales/sales.do")
 	public ModelAndView salesForm(HttpSession session) {		
-		StorePaymentDTO aMonthAgo = storePaymentService.aMonthAgo();
-		StorePaymentDTO twoMonthsAgo = storePaymentService.twoMonthsAgo();
-		StorePaymentDTO threeMonthsAgo = storePaymentService.threeMonthsAgo();
-		StorePaymentDTO fourMonthsAgo = storePaymentService.fourMonthsAgo();
-		StorePaymentDTO fiveMonthsAgo = storePaymentService.fiveMonthsAgo();
-		StorePaymentDTO sixMonthsAgo = storePaymentService.sixMonthsAgo();
-		StorePaymentDTO aDayAgo = storePaymentService.aDayAgo();
-		StorePaymentDTO twoDaysAgo = storePaymentService.twoDaysAgo();
-		StorePaymentDTO threeDaysAgo = storePaymentService.threeDaysAgo();
-		StorePaymentDTO fourDaysAgo = storePaymentService.fourDaysAgo();
-		StorePaymentDTO fiveDaysAgo = storePaymentService.fiveDaysAgo();
-		StorePaymentDTO sixDaysAgo = storePaymentService.sixDaysAgo();
-		StorePaymentDTO sevenDaysAgo = storePaymentService.sevenDaysAgo();
 		
-		Map lists = new HashMap();
-		// 최근 6개월
-		lists.put("aMonthAgoTotalPrice", aMonthAgo.getA());
-		lists.put("twoMonthsAgoTotalPrice", twoMonthsAgo.getA());
-		lists.put("threeMonthsAgoTotalPrice", threeMonthsAgo.getA());
-		lists.put("fourMonthsAgoTotalPrice", fourMonthsAgo.getA());
-		lists.put("fiveMonthsAgoTotalPrice", fiveMonthsAgo.getA());
-		lists.put("sixMonthsAgoTotalPrice", sixMonthsAgo.getA());
+		List<DualDTO> salesChartData = dualService.salesChartData();
+		List<DualDTO> sixMonthData = new ArrayList<DualDTO>();
+		List<DualDTO> weekData = new ArrayList<DualDTO>();
 		
-		lists.put("aMonthAgoMonth", aMonthAgo.getB());
-		lists.put("twoMonthsAgoMonth", twoMonthsAgo.getB());
-		lists.put("threeMonthsAgoMonth", threeMonthsAgo.getB());
-		lists.put("fourMonthsAgoMonth", fourMonthsAgo.getB());
-		lists.put("fiveMonthsAgoMonth", fiveMonthsAgo.getB());
-		lists.put("sixMonthsAgoMonth", sixMonthsAgo.getB());
-		
-		// 최근 일주일
-		lists.put("aDayAgoTotalPrice", aDayAgo.getA());
-		lists.put("twoDaysAgoTotalPrice", twoDaysAgo.getA());
-		lists.put("threeDaysAgoTotalPrice", threeDaysAgo.getA());
-		lists.put("fourDaysAgoTotalPrice", fourDaysAgo.getA());
-		lists.put("fiveDaysAgoTotalPrice", fiveDaysAgo.getA());
-		lists.put("sixDaysAgoTotalPrice", sixDaysAgo.getA());
-		lists.put("sevenDaysAgoTotalPrice", sevenDaysAgo.getA());
-		
-		lists.put("aDayAgoDay", aDayAgo.getB());
-		lists.put("twoDasyAgoDay", twoDaysAgo.getB());
-		lists.put("threeDaysAgoDay", threeDaysAgo.getB());
-		lists.put("fourDaysAgoDay", fourDaysAgo.getB());
-		lists.put("fiveDaysAgDay", fiveDaysAgo.getB());
-		lists.put("sixDaysAgoDay", sixDaysAgo.getB());
-		lists.put("sevenDaysAgoDay", sevenDaysAgo.getB());
-		
+		for(int i=0; i<salesChartData.size(); i++) {
+			if(salesChartData.get(i).getOrders() <= 5) {
+				// 최근 6개월
+				sixMonthData.add(salesChartData.get(i));
+			} else {
+				// 최근 일주일
+				weekData.add(salesChartData.get(i));
+			}
+		}
+
 		ModelAndView mav = new ModelAndView();
 		if(session.getAttribute("data") == null) {
 			mav.addObject("msg", "로그인 후 이용 가능합니다."); // 메시지 왜 안뜨는?
 			mav.addObject("href", "/amor/admin/adminLogin.do");
 			mav.setViewName("/admin/msg/adminMsg");
 		} else {
-			mav.addObject("lists", lists);
+			mav.addObject("sixMonthData", sixMonthData);
+			mav.addObject("weekData", weekData);
 			mav.setViewName("admin/sales/sales");
 		}
 		return mav;

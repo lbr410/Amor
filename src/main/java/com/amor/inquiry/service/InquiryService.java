@@ -13,5 +13,15 @@ public interface InquiryService {
 	public List<InquiryDTO> inquiryList(int cp, int listSize);
 	public int inquiryAnswer(InquiryDTO dto);
 	public int inquiryDelete(int idx);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public List<InquiryDTO> adminMainInquiryList();
 
 }

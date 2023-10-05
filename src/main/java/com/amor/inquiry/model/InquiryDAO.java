@@ -8,4 +8,14 @@ public interface InquiryDAO {
 	public List<InquiryDTO> inquiryList(Map map);
 	public int inquiryAnswer(InquiryDTO dto);
 	public int inquiryDelete(int idx);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public List<InquiryDTO> adminMainInquiryList();
 }

@@ -51,4 +51,33 @@ public class InquiryDAOImple implements InquiryDAO {
 		int result=sqlmap.delete("inquiryDelete", inquiry_idx);
 		return result;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public List<InquiryDTO> adminMainInquiryList() {
+		List<InquiryDTO> lists = sqlmap.selectList("adminMainInquiryList");
+		return lists;
+	}
 }
