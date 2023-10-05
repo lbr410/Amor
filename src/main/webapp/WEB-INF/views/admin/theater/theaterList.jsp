@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>아모르 관리자 : 상영관 생성</title>
-<link rel="stylesheet" href="/amor/resources/css/admin/theaterAdd.css" />
+<link rel="stylesheet" href="/amor/resources/css/admin/theaterList.css" />
 </head>
 <body>
 <%@include file="../admin_header.jsp" %>
@@ -16,20 +16,22 @@
 
 <input type = "button" value = "상영관 추가" class = "button" onclick = "theaterAdd()">
 <c:if test="${!empty lists}">
+<div class = "container">
 <c:forEach var="temp" items="${lists}">
-<div class="contentMain">
-<div class="tableDiv">
-<span class="component-18">
-  <div class="component-14">
-    <div class="rectangle-565"></div>
-    <div class="_1">${temp.theater_name}</div>
+<div class="theater">
+  <div class="theaterbox">
+    <div class="theatername"></div>
+    <div class="name">${temp.theater_name}</div>
   </div>
-  <c:url var="seateSelect" value="/amor/admin/theater/seateSelect.do">
+  <c:url var="seateSelect" value="/admin/theater/seateSelect.do">
   	<c:param name="theateridx">${temp.theater_idx}</c:param>
+  	<c:param name="theatername">${temp.theater_name}</c:param>
+  	<c:param name="row">${temp.theater_row}</c:param>
+  	<c:param name="col">${temp.theater_column}</c:param>
   </c:url>
-  <a href = "${seatSelect}"><div class="component-16">
+  <a href = "${seateSelect}"><div class="addbox">
     <svg
-      class="rectangle-567"
+      class="addimg"
       width="29"
       height="29"
       viewBox="0 0 29 29"
@@ -59,8 +61,8 @@
       />
     </svg>
   </div></a>
-  <div class="component-17">
-    <div class="rectangle-570"></div>
+  <div class="delbox" onclick = "theaterDel(${temp.theater_idx})">
+    <div class="delimg"></div>
     <svg
       class="bin"
       width="24"
@@ -77,10 +79,9 @@
       />
     </svg>
   </div>
-</span>
-</div>
 </div>
 </c:forEach>
+</div>
 </c:if>
 </div>
 </body>
@@ -94,6 +95,33 @@
 	function showResult(){
 		if(XHR.readyState == 4){
 			if(XHR.status == 200){
+				let data = XHR.responseText;
+				let objData = JSON.parse(data);
+				let msg = objData.alert;
+				if(msg == null){					
+				location.reload();
+				}else {					
+					alert(msg);
+				}
+			}
+		}
+	}
+	
+	function theaterDel(tidx){
+		let delcheck = window.confirm("상영관을 삭제하시겠습니까?");
+		if(delcheck){
+		let param = 'tidx='+tidx;
+		sendRequest('/amor/admin/theater/theaterDelete.do',param,delResult,'GET')
+		}
+	}
+	
+	function delResult(){
+		if(XHR.readyState == 4){
+			if(XHR.status == 200){
+				let data = XHR.responseText;
+				let objData = JSON.parse(data);
+				let msg = objData.alert;
+				alert(msg);
 				location.reload();
 			}
 		}

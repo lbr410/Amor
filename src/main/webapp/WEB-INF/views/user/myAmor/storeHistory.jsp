@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MyPage StoreList</title>
+<title>아모르 마이페이지 : 스토어 내역</title>
 <link rel="stylesheet" href="/amor/resources/css/user/storePaymentList.css" />
 </head>
 <style>
@@ -56,7 +56,7 @@
           결제 방법
           </span>
           <span class="span6">
-            ${temp.payment}<br/>
+            카카오페이<br/>
           </span>
           <span class="span7">
           수량

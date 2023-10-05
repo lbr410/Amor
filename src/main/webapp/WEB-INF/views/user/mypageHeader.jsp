@@ -157,7 +157,7 @@ a:link{
 		<hr>
 		<div class="pagemenu">
 			<a href="/amor/myAmor/ticketingHistory.do" onclick="show(event)"><button id="btn1">예매내역</button></a>
-			<a href="/amor/myAmor/storePayment.do" onclick="show(event)"><button id="btn2">스토어 내역</button></a>
+			<a href="/amor/myAmor/storeHistory.do" onclick="show(event)"><button id="btn2">스토어 내역</button></a>
 			<a href="/amor/myAmor/reviewList.do" onclick="show(event)"><button id="btn3">관람평</button></a>
 			<a href="/amor/myAmor/memberInquiryList.do" onclick="show(event)"><button id="btn4">1:1문의</button></a>
 		</div>

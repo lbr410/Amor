@@ -14,12 +14,12 @@ import com.amor.storePayment.model.MyPageStorePaymentDTO;
 import com.amor.storePayment.service.StorePaymentService;
 
 @Controller
-public class MyPageStorePaymentController {
+public class MyPageStoreHistoryController {
 
 	@Autowired
 	StorePaymentService storePaymentService;
 	
-	@RequestMapping("myAmor/storePayment.do")
+	@RequestMapping("myAmor/storeHistory.do")
 	public ModelAndView mypageStorePaymentList(HttpSession session) {
 		int useridx = (int)session.getAttribute("sidx");
 		ModelAndView mav = new ModelAndView();
@@ -27,11 +27,11 @@ public class MyPageStorePaymentController {
 			List<MyPageStorePaymentDTO> lists = storePaymentService.mypageStorePaymentList(useridx);
 			if(lists != null) {
 				mav.addObject("list", lists);
-				mav.setViewName("user/myAmor/storePayment");
+				mav.setViewName("user/myAmor/storeHistory");
 				return mav;
 			}else {
 				mav.addObject("list", null);
-				mav.setViewName("user/myAmor/storePayment");
+				mav.setViewName("user/myAmor/storeHistory");
 				return mav;
 			}
 		}else {
@@ -48,12 +48,12 @@ public class MyPageStorePaymentController {
 		int result = storePaymentService.mypageStoreCancell(paymentidx);
 		if(result == 1) {
 			mav.addObject("msg", "상품이 취소되었습니다.");
-			mav.addObject("goUrl","/amor/myAmor/storePayment.do");
+			mav.addObject("goUrl","/amor/myAmor/storeHistory.do");
 			mav.setViewName("user/msg/userMsg");
 			return mav;
 		}else {
 			mav.addObject("msg", "상품취소가 불가합니다.(관리자 문의부탁드립니다.)");
-			mav.addObject("goUrl","/amor/myAmor/storePayment.do");
+			mav.addObject("goUrl","/amor/myAmor/storeHistory.do");
 			mav.setViewName("user/msg/userMsg");
 			return mav;
 		}
