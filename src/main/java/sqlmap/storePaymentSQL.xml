@@ -365,4 +365,13 @@
 		set store_payment_status=#{status}
 		where store_payment_idx=#{idx}
 	</update>
+	
+	<insert id="storePayInsert" parameterType="com.amor.storePayment.model.StorePaymentDTO">
+		insert into store_payment values(
+		store_payment_idx.nextval,
+		#{product_idx},#{member_idx},
+		#{store_payment_amount},#{store_payment_price},
+		'c',sysdate,'미승인')
+	</insert>
+	
 </mapper>

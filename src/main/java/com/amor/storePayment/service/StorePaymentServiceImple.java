@@ -343,4 +343,11 @@ public class StorePaymentServiceImple implements StorePaymentService {
 		int result=storePaymentDao.storeListSubmit(map);
 		return result;
 	}
+	
+	@Override
+	public int storePayInert(StorePaymentDTO dto) {
+		int result=storePaymentDao.storePayInert(dto);
+		return result;
+	}
+	
 }
