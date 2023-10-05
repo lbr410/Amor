@@ -5,6 +5,7 @@ import java.util.Date;
 public class JoinTicketingHistoryDTO {
 
 	private int movieidx;
+	private int ticketingidx;
 	private int memberidx;
 	private String moviename;
 	private String movieimg;
@@ -24,12 +25,13 @@ public class JoinTicketingHistoryDTO {
 		System.out.println("joinTicketingDTO start");
 	}
 
-	public JoinTicketingHistoryDTO(int movieidx, int memberidx, String moviename, String movieimg, String ticketnum,
-			String seatnum, Date screeningdate, String payment, Long price, Date reservetime,
+	public JoinTicketingHistoryDTO(int movieidx, int ticketingidx, int memberidx, String moviename, String movieimg,
+			String ticketnum, String seatnum, Date screeningdate, String payment, Long price, Date reservetime,
 			String changeScreeningDate, String changeReserveTime, String changePrice, String theatername,
 			String timelimit) {
 		super();
 		this.movieidx = movieidx;
+		this.ticketingidx = ticketingidx;
 		this.memberidx = memberidx;
 		this.moviename = moviename;
 		this.movieimg = movieimg;
@@ -52,6 +54,14 @@ public class JoinTicketingHistoryDTO {
 
 	public void setMovieidx(int movieidx) {
 		this.movieidx = movieidx;
+	}
+
+	public int getTicketingidx() {
+		return ticketingidx;
+	}
+
+	public void setTicketingidx(int ticketingidx) {
+		this.ticketingidx = ticketingidx;
 	}
 
 	public int getMemberidx() {
@@ -165,6 +175,5 @@ public class JoinTicketingHistoryDTO {
 	public void setTimelimit(String timelimit) {
 		this.timelimit = timelimit;
 	}
-
 	
 }

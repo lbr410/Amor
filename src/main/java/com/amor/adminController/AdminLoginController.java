@@ -23,10 +23,11 @@ public class AdminLoginController {
 	private AdminService adminService;
 	
 	@RequestMapping("/admin/adminLogin.do")
-	public String adminLoginSubmit(@CookieValue(value = "autologin", required = false)String autologin) {
-		
-		if(autologin != null) {
-			return "admin/member/memberList";
+	public String adminLoginSubmit(@CookieValue(value = "autologin", required = false)String autologin,
+			HttpSession session) {
+		String id = (String)session.getAttribute("data");
+		if(autologin != null && id != null) {
+			return "admin/adminIndex";
 		}else {			
 			return "admin/adminLogin";
 		}
@@ -63,7 +64,7 @@ public class AdminLoginController {
 			}
 			session.setAttribute("data", dto.getAdmin_id());
 			mav.addObject("msg", "관리자님 환영합니다.");
-			mav.addObject("href", "/amor/admin/member/memberList.do");
+			mav.addObject("href", "/amor/admin/adminIndex.do");
 			mav.setViewName("admin/msg/adminMsg");
 		}else {
 			mav.addObject("msg", "아이디 및 비밀번호가 틀렸습니다.");
@@ -75,7 +76,7 @@ public class AdminLoginController {
 	
 	@RequestMapping("/admin/admin.do")
 	public String goMainPage() {
-		return "admin/member/memberList";
+		return "admin/adminIndex";
 	}
 	
 	@RequestMapping("/admin/adminlogout.do")

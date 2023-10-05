@@ -1,110 +1,133 @@
 @charset "UTF-8";
-.component-18,
-.component-18 * {
-  box-sizing: border-box;
-}
-.component-18 {
-  width: 221px;
-  height: 133px;
-  position: relative;
-}
-.component-14 {
-  border-style: solid;
-  border-color: #000000;
-  border-width: 1px;
-  width: 222px;
-  height: 152px;
-  position: absolute;
-  left: 0px;
-  top: 1px;
-}
-.rectangle-565 {
-  background: #ffffff;
-  width: 220px;
-  height: 132px;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-}
-._1 {
-  color: #000000;
-  text-align: left;
-  font: 400 16px "Inter", sans-serif;
-  position: absolute;
-  left: 72px;
-  top: 66px;
-  width: 85px;
-  height: 16px;
-}
-.component-16 {
-  width: 29px;
-  height: 29px;
-  position: absolute;
-  left: 163px;
-  top: 1px;
-  cursor: pointer;
-}
-.rectangle-567 {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  overflow: visible;
-}
-.wright {
-  position: absolute;
-  left: 3px;
-  top: 3px;
-  overflow: visible;
-}
-.component-17 {
-  width: 29px;
-  height: 31px;
-  position: absolute;
-  left: 192px;
-  top: 0px;
-  cursor: pointer;
-}
-.rectangle-570 {
-  background: #ffffff;
-  border-style: solid;
-  border-color: #000000;
-  border-width: 1px;
-  width: 29px;
-  height: 31px;
-  position: absolute;
-  left: 29px;
-  top: 0px;
-  transform-origin: 0 0;
-  transform: rotate(0deg) scale(-1, 1);
-}
-.bin {
-  position: absolute;
-  left: 3px;
-  top: 3.21px;
-  overflow: visible;
-}
 
+.checkbox-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
-.button {
-  border-radius: 10px;
-  width: 104px;
-  height: 40px;
-  position: relative;
-  overflow: hidden;
-  color: white;
-  border: none;
-   background: #1a2c82;
-   cursor: pointer;
-}
+        
+        input[type="checkbox"] {
+            display: none;
+        }
+        
+        input[type="checkbox"] + label {
+		display: inline-block;
+        position: relative;
+        width: 30px;
+        height: 30px;
+		border: 2px solid #bcbcbc;
+		cursor: pointer;
+		}
+        
+        input[type="checkbox"] + label{
+            background-color: #cccccc36;
+        }
 
-.text {
-  color: #ffffff;
-  text-align: left;
-  font: 400 16px "Inter", sans-serif;
-  position: absolute;
-  left: 12px;
-  top: 11px;
-  width: 79px;
-  height: 14px;
-}
-
+        
+        input[type="checkbox"]:checked + label{
+            background-color: #666666;
+            color: white;
+        }
+        
+        .blockbutton1 {
+		  border-radius: 5px;
+		  border-style: solid;
+		  border-color: #1a2c82;
+		  border-width: 1px;
+		  background-color: white;
+		  padding: 10px 63px 10px 63px;
+		  display: flex;
+		  flex-direction: row;
+		  gap: 10px;
+		  align-items: center;
+		  justify-content: center;
+		  flex-shrink: 0;
+		  width: 131px;
+		  position: relative;
+		  overflow: hidden;
+		  color: #000000;
+		  cursor: pointer;
+		  margin-top: 30px;
+		  margin-left: 20px;
+		}
+		
+		.blockbutton2 {
+		  border-radius: 5px;
+		  border-style: solid;
+		  border-color: #1a2c82;
+		  border-width: 1px;
+		  background-color: white;
+		  padding: 10px 63px 10px 63px;
+		  display: flex;
+		  flex-direction: row;
+		  gap: 10px;
+		  align-items: center;
+		  justify-content: center;
+		  flex-shrink: 0;
+		  width: 131px;
+		  position: relative;
+		  overflow: hidden;
+		  color: #000000;
+		  cursor: pointer;
+		  margin-left: 20px;
+		}
+		
+		.submit {
+		  background: #1a2c82;
+		  border-radius: 5px;
+		  border-style: solid;
+		  border-color: #1a2c82;
+		  border-width: 1px;
+		  padding: 10px 63px 10px 63px;
+		  display: flex;
+		  flex-direction: row;
+		  gap: 10px;
+		  align-items: center;
+		  justify-content: center;
+		  flex-shrink: 0;
+		  width: 131px;
+		  position: relative;
+		  overflow: hidden;
+		  cursor: pointer;
+		  color: white;
+		  margin-left: 20px;
+		}
+		
+		
+		input[type="number"]{
+		width: 120px;
+		height: 30px;
+		border-radius: 5px;
+		text-align: center;
+		}
+		
+		input[type="number"]::-webkit-inner-spin-button,
+		input[type="number"]::-webkit-outer-spin-button {
+			-webkit-appearance: inner-spin-button;    
+		    opacity: 1;
+		    width: 20px;
+    		height: 20px;
+		}
+		
+		.nameAdd{
+		width: 120px;
+		height: 30px;
+		border-radius: 5px;
+		text-align: center;
+		}
+		
+		.seate{
+		float: left;
+		margin-top: 10px;
+		margin-left: 20px;
+		}
+		
+		.addbutton{
+			margin-top:20px;
+		}		
+		
+		.controller{
+		margin-left: 20px;
+		}

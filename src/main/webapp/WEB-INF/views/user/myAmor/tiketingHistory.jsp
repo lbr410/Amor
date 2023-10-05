@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Amor:MyPage(ReserveList)</title>
+<title>아모르 마이페이지 : 영화 예매내역</title>
 <link rel="stylesheet" type="text/css" href="/amor/resources/css/user/tiketingHistory.css">
 </head>
 <style>
@@ -297,9 +297,8 @@
 </c:if>
 </div>
 </div>
-
-
 </body>
+<%@include file = "../footer.jsp" %>
 <script src = "/amor/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
 

@@ -60,6 +60,7 @@ public class TicketingServiceImple implements TicketingService {
 			DecimalFormat df = new DecimalFormat("#,##0원");
 			SimpleDateFormat dateDf = new SimpleDateFormat("yyyy.MM.dd (E) | HH:mm");
 			JoinTicketingHistoryDTO dto = null;
+			
 			for(int i = 0 ; i < lists.size(); i++) {
 				dto = lists.get(i);				
 				dto.setChangePrice(df.format(lists.get(i).getPrice()));

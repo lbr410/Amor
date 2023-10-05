@@ -1,6 +1,7 @@
 package com.amor.theater.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -32,8 +33,20 @@ public class TheaterDAOImple implements TheaterDAO {
 	}
 	
 	@Override
-	public List<TheaterDTO> seatesSelect(int theateridx) {
-		List<TheaterDTO> list = sqlmap.selectList("seateSelect", theateridx);
-		return list;
+	public int updateSeate(Map<String, Object> map) {
+		int result = sqlmap.update("updateSeate", map);
+		return result;
+	}
+	
+	@Override
+	public int totalTheater() {
+		int result = sqlmap.selectOne("totalTheater");
+		return result;
+	}
+	
+	@Override
+	public int theaterDelete(int tidx) {
+		int result = sqlmap.delete("theaterDelete", tidx);
+		return result;
 	}
 }
