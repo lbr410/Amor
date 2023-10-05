@@ -12,6 +12,8 @@
 			(select * from playing_movie order by playing_movie_idx desc)a)b 
 		where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}) c, theater d, movie e 
 		where c.theater_idx=d.theater_idx and c.movie_idx=e.movie_idx
+		order by 
+			c.playing_movie_idx desc
 	</select>
 	<select id="totalCntPlaying" resultType="Integer">
 		select count(*) from playing_movie c, theater d, movie e 

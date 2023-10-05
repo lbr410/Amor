@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/amor/resources/css/admin/adminAll.css">
 <body>
 <div class="top">
-	<div class="logo"><a href="#"></a><img src="/amor/resources/img/main_logo.png" class="mainLogoImg"></div>
+	<div class="logo"><a href="/amor/admin/adminIndex.do"><img src="/amor/resources/img/main_logo.png" class="mainLogoImg"></a></div>
 	<c:if test="${!empty sessionScope.data || !empty cookie.autologin}">
 		<div class="logout"><input type="button" value="로그아웃" onclick = "adminLogout()"></div>
 	</c:if>

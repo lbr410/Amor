@@ -5,6 +5,7 @@ import org.apache.commons.collections.map.HashedMap;
 
 import com.amor.inquiry.model.InquiryDAO;
 import com.amor.inquiry.model.InquiryDTO;
+import com.amor.inquiry.model.InquiryJoinDTO;
 
 public class InquiryServiceImple implements InquiryService {
 
@@ -41,25 +42,71 @@ public class InquiryServiceImple implements InquiryService {
 	}
 	
 	@Override
-	public List<InquiryDTO> inquiryList(int cp, int listSize) {
+	public List<InquiryJoinDTO> adminInquiryList(int cp, int listSize) {
 		int start=(cp-1) * listSize + 1;
 		int end=cp * listSize;
 		Map map=new HashedMap();
 		map.put("start", start);
 		map.put("end", end);
-		List<InquiryDTO>lists=inquiryDao.inquiryList(map);
+		List<InquiryJoinDTO>lists=inquiryDao.adminInquiryList(map);
 		return lists;
 	}
 	
 	@Override
-	public int inquiryAnswer(InquiryDTO dto) {
+	public int inquiryBlock(int inquiry_idx, String value) {
+		Map map=new HashedMap();
+		map.put("inquiry_idx", inquiry_idx);
+		map.put("value", value);
+		int result=inquiryDao.inquiryBlock(map);
+		return result;
+	}
+	@Override
+	public int inquiryTotalCnt() {
+		int result=inquiryDao.inquiryTotalCnt();
+		return result;
+	}
+	
+	@Override
+	public InquiryJoinDTO inquiryContent(int idx) {
+		InquiryJoinDTO dto=inquiryDao.inquiryContent(idx);
+		//dto.setInquiry_content(dto.getInquiry_content().replaceAll("\n", "<br>"));
+		return dto;
+	}
+	@Override
+	public int inquiryAnswer(InquiryJoinDTO dto) {
 		int result=inquiryDao.inquiryAnswer(dto);
 		return result;
 	}
 	
 	@Override
-	public int inquiryDelete(int idx) {
-		int result=inquiryDao.inquiryDelete(idx);
+	public int inquiryDelete(int inquiry_idx) {
+		int result=inquiryDao.inquiryDelete(inquiry_idx);
 		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public List<InquiryDTO> adminMainInquiryList() {
+		List<InquiryDTO> lists = inquiryDao.adminMainInquiryList();
+		return lists;
 	}
 }

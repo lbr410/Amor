@@ -132,4 +132,10 @@ public class TicketingDAOImple implements TicketingDAO {
 		return result;
 	}
 	
+
+	@Override
+	public TicketingPayingJoinDTO ticketingPaying(Map map) {
+		TicketingPayingJoinDTO dto = sqlmap.selectOne("ticketingPaying", map);
+		return dto;
+	}
 }

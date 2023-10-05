@@ -48,8 +48,8 @@
   </div>
 </div>
 </div>
-    <div class="infodiv"><input type="button" value="상세정보" class="infoBtn">
-    <input type="button" value="관람평" class="infoBtn"></div>
+    <div class="infodiv"><input type="button" value="상세정보" class="infoBtn" id="detailMovie">
+    <input type="button" value="관람평" class="infoBtn" id="reviewWrite"></div>
     
     <!-- 리뷰 페이지 -->
     <div id="review">
@@ -85,6 +85,26 @@
     		</div>
     	</div>
     </div>
+    
+<script>
+
+	const reviewWrite = document.getElementById("reviewWrite");
+	const detailMovie = document.getElementById("detailMovie");	
+	
+	const reviewBtn = document.getElementById("review");
+	const movieDetailBtn = document.getElementById("moviedetail");
+	
+	reviewWrite.addEventListener("click", () => {
+		reviewBtn.style.display = "block";
+		movieDetailBtn.style.display = "none";
+	});
+	
+	detailMovie.addEventListener("click", () => {
+		reviewBtn.style.display = "none";
+		movieDetailBtn.style.display = "block";
+	});
+
+</script>    
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

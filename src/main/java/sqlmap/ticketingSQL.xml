@@ -6,16 +6,9 @@
 
 <select id="ticketingHistoryList" parameterType="Integer" resultType="com.amor.ticketing.model.JoinTicketingHistoryDTO">
   <![CDATA[
-select b.member_idx as memberidx, c.movie_idx as movieidx,c.movie_name as moviename,c.movie_poster as movieimg,b.ticketing_num as ticketnum,
+select b.member_idx as memberidx,b.ticketing_idx as ticketingidx,c.movie_idx as movieidx,c.movie_name as moviename,c.movie_poster as movieimg,b.ticketing_num as ticketnum,
 b.theater_name as theatername,b.ticketing_seat as seatnum,b.ticketing_screeningtime as screeningdate,
-b.ticketing_payment as payment,b.ticketing_price as price,b.ticketing_reservetime as reservetime,
-to_char(case 
-    when to_number((to_date(b.ticketing_screeningtime, 'YYYY-MM-DD HH24:MI:SS') - to_date(sysdate, 'YYYY-MM-DD HH24:MI:SS')) * 24 * 60) >= 30 
-    then to_char(to_number((to_date(b.ticketing_screeningtime, 'YYYY-MM-DD HH24:MI:SS') - to_date(sysdate, 'YYYY-MM-DD HH24:MI:SS')) * 24 * 60))
-    when to_number((to_date(b.ticketing_screeningtime, 'YYYY-MM-DD HH24:MI:SS') - to_date(sysdate, 'YYYY-MM-DD HH24:MI:SS')) * 24 * 60) < 30
-    then to_char(to_number((to_date(b.ticketing_screeningtime, 'YYYY-MM-DD HH24:MI:SS') - to_date(sysdate, 'YYYY-MM-DD HH24:MI:SS')) * 24 * 60))
-    else 'null'
-end)as timelimit
+b.ticketing_payment as payment,b.ticketing_price as price,b.ticketing_reservetime as reservetime
 from playing_movie a,(select * from ticketing,theater
 where ticketing.member_idx = #{useridx} and ticketing.ticketing_state = 'y' 
 and ticketing.theater_idx = theater.theater_idx
@@ -209,5 +202,17 @@ where ticketing_num = #{ticketnum}
 	
 	
 	
+	<select id="ticketingPaying" parameterType="Map" resultType="com.amor.ticketing.model.TicketingPayingJoinDTO">
+		select 
+			a.movie_poster, a.movie_name, 
+			to_char(b.playing_movie_start, 'yyyy-mm-dd hh24:mi:ss') as "playing_movie_start", 
+			c.theater_name
+		from 
+			movie a, playing_movie b, theater c
+		where 
+			a.movie_idx = #{movie_idx}
+		and b.playing_movie_idx = #{playing_movie_idx}
+		and c.theater_idx = #{theater_idx}
+	</select>
 
 </mapper>

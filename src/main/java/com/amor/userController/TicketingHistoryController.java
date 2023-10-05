@@ -98,23 +98,5 @@ public class TicketingHistoryController {
 		}
 		
 	}
-//	@RequestMapping("/myAmor/ticketingHistory.do")
-//	public ModelAndView goTiketingHistory(HttpSession session) {
-//		String id = (String)session.getAttribute("sid");
-//		System.out.println(id);
-//		ModelAndView mav = new ModelAndView();
-//		if(id != null) {			
-//			int useridx = (int)session.getAttribute("sidx");
-//			System.out.println(useridx);
-//			List<Map<String, Object>> lists = ticketingHistoryService.getReserveList(useridx);
-//			System.out.println(lists.get(0).get("price"));
-//			mav.addObject("list", lists);
-//			mav.setViewName("user/myAmor/tiketingHistory");
-//			return mav;
-//		}else {
-//			mav.setViewName("user/member/login");
-//			return mav;
-//		}
-//	}
 	
 }

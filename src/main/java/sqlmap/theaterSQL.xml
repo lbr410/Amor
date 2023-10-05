@@ -22,8 +22,21 @@
 		select * from theater
 		order by theater_idx asc 
 	</select>
-	<select id="seateSelect" parameterType="Integer" resultType="com.amor.theater.model.TheaterDTO">
-		select theater_idx,theater_name,theater_row,theater_column,theater_seat from theater
-		where theater_idx = #{theateridx}
-	</select>		
+	<update id="updateSeate" parameterType="Map">
+		update theater
+		set 
+		theater_name = #{theatername},
+		theater_totalseat = #{totalseat},
+		theater_row = #{row},
+		theater_column = #{col},		
+		theater_seat = #{seates}
+		where theater_idx = #{tidx}
+	</update>
+	<select id="totalTheater" resultType="Integer">
+		select count(*) from theater
+	</select>
+	<delete id="theaterDelete" parameterType="Integer">
+		delete from theater
+		where theater_idx = #{tidx}
+	</delete>		
 </mapper>

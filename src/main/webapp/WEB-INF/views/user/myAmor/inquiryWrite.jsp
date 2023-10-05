@@ -30,7 +30,8 @@
     justify-content: center;
     border-bottom: 1px solid #333333;
 }
-.titleDiv .input{width: 400px, height: 40px;}
+.titleDiv input{width: 400px, height: 40px; border: 1px solid #D9D9D9}
+.contentDiv textarea{width: 400px height: 419px; resize: none; border: 1px solid #D9D9D9; padding: 10px;}
 .info{ width: 200px; padding: 24px;margin-left: 48px;}
 .info-content{ width: 200px; padding: 24px; margin-left: 48px;}
 .content{ border-style: solid;
@@ -75,9 +76,7 @@
    color: #1A2C82;
    cursor: pointer;
 }
-.typeDiv{
-}
-.inquiry-content{ width: }
+
 </style>
 </head>
 <body>

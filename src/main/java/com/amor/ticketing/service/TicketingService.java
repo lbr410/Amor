@@ -6,6 +6,7 @@ import java.util.Map;
 import com.amor.ticketing.model.JoinTicketingHistoryDTO;
 import com.amor.ticketing.model.TicketingDTO;
 import com.amor.ticketing.model.TicketingListDTO;
+import com.amor.ticketing.model.TicketingPayingJoinDTO;
 import com.amor.ticketing.model.TicketingSelectMovieDTO;
 
 public interface TicketingService {
@@ -33,4 +34,6 @@ public interface TicketingService {
 	public String dayMovieTotal(String startd, String endd);
 	public List<TicketingDTO> monthMovie(String startd, String endd);
 	public String monthMovieTotal(String startd, String endd);
+	
+	public TicketingPayingJoinDTO ticketingPaying(int movie_idx, int theater_idx, int playing_movie_idx);
 }

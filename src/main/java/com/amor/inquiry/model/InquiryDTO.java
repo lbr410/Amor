@@ -13,6 +13,7 @@ public class InquiryDTO {
 	private String inquiry_astatus;
 	private int inquiry_type;
 	
+	
 	public InquiryDTO() {
 		// TODO Auto-generated constructor stub
 	}

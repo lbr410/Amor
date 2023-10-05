@@ -1,25 +1,37 @@
 package com.amor.userController;
 
+import java.io.*;
+import java.net.*;
+import java.net.URL;
 import java.text.*;
 import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.amor.product.service.ProductService;
-import com.amor.storePayment.model.MyPageStorePaymentDTO;
+import com.amor.storePayment.service.StorePaymentService;
 import com.amor.product.model.*;
+import com.amor.storePayment.model.*;
 
 @Controller
 public class StoreController {
 	
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private StorePaymentService storePaymentService;
 
 	@RequestMapping("store.do")
 	public ModelAndView storeForm() {
@@ -76,11 +88,14 @@ public class StoreController {
 		return mav;
 	}
 	
-	@RequestMapping("store/storeDetailForm.do")
+	
+	@RequestMapping("store/storeDetail.do")
 	public ModelAndView storeDetailForm() {
+		        
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("/user/store/storeDetail");
 		return mav;
 	}
+	
 	
 }

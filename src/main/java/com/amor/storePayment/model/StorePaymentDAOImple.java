@@ -16,84 +16,6 @@ public class StorePaymentDAOImple implements StorePaymentDAO {
 	}
 
 	@Override
-	public StorePaymentDTO aMonthAgo() {
-		StorePaymentDTO dto = sqlmap.selectOne("aMonthAgo");
-		return dto;
-	}
-	
-	@Override
-	public StorePaymentDTO twoMonthsAgo() {
-		StorePaymentDTO dto = sqlmap.selectOne("twoMonthsAgo");
-		return dto;
-	}
-	
-	@Override
-	public StorePaymentDTO threeMonthsAgo() {
-		StorePaymentDTO dto = sqlmap.selectOne("threeMonthsAgo");
-		return dto;
-	}
-	
-	@Override
-	public StorePaymentDTO fourMonthsAgo() {
-		StorePaymentDTO dto = sqlmap.selectOne("fourMonthsAgo");
-		return dto;
-	}
-	
-	@Override
-	public StorePaymentDTO fiveMonthsAgo() {
-		StorePaymentDTO dto = sqlmap.selectOne("fiveMonthsAgo");
-		return dto;
-	}
-	
-	@Override
-	public StorePaymentDTO sixMonthsAgo() {
-		StorePaymentDTO dto = sqlmap.selectOne("sixMonthsAgo");
-		return dto;
-	}
-	
-	@Override
-	public StorePaymentDTO aDayAgo() {
-		StorePaymentDTO dto = sqlmap.selectOne("aDayAgo");
-		return dto;
-	}
-	
-	@Override
-	public StorePaymentDTO twoDaysAgo() {
-		StorePaymentDTO dto = sqlmap.selectOne("twoDaysAgo");
-		return dto;
-	}
-	
-	@Override
-	public StorePaymentDTO threeDaysAgo() {
-		StorePaymentDTO dto = sqlmap.selectOne("threeDaysAgo");
-		return dto;
-	}
-	
-	@Override
-	public StorePaymentDTO fourDaysAgo() {
-		StorePaymentDTO dto = sqlmap.selectOne("fourDaysAgo");
-		return dto;
-	}
-	
-	@Override
-	public StorePaymentDTO fiveDaysAgo() {
-		StorePaymentDTO dto = sqlmap.selectOne("fiveDaysAgo");
-		return dto;
-	}
-	
-	@Override
-	public StorePaymentDTO sixDaysAgo() {
-		StorePaymentDTO dto = sqlmap.selectOne("sixDaysAgo");
-		return dto;
-	}
-	
-	@Override
-	public StorePaymentDTO sevenDaysAgo() {
-		StorePaymentDTO dto = sqlmap.selectOne("sevenDaysAgo");
-		return dto;
-	}
-	
-	@Override
 	public int allAll(Map map) {
 		int result = sqlmap.selectOne("allAll", map);
 		return result;
@@ -188,4 +110,11 @@ public class StorePaymentDAOImple implements StorePaymentDAO {
 		int result=sqlmap.update("storeListSubmit", map);
 		return result;
 	}
+	
+	@Override
+	public int storePayInert(StorePaymentDTO dto) {
+		int result=sqlmap.insert("storePayInsert", dto);
+		return result;
+	}
+	
 }
