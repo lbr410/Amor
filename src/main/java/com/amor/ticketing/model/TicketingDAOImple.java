@@ -100,4 +100,11 @@ public class TicketingDAOImple implements TicketingDAO {
 		List<TicketingSelectMovieDTO> lists = sqlmap.selectList("timetoMovieLists",sumdate_s);
 		return lists;
 	}
+
+
+	@Override
+	public TicketingPayingJoinDTO ticketingPaying(Map map) {
+		TicketingPayingJoinDTO dto = sqlmap.selectOne("ticketingPaying", map);
+		return dto;
+	}
 }

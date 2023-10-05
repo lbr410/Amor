@@ -2,6 +2,9 @@ package com.amor.ticketing.model;
 
 import java.util.List;
 import java.util.Map;
+
+import com.amor.movie.model.MovieDTO;
+
 import java.sql.*;
 
 public interface TicketingDAO {
@@ -21,4 +24,6 @@ public interface TicketingDAO {
 	public int dayMovieTotal(Map map);
 	public List<TicketingDTO> monthMovie(Map map);
 	public int monthMovieTotal(Map map);
+	
+	public TicketingPayingJoinDTO ticketingPaying(Map map);
 }

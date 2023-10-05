@@ -1,15 +1,19 @@
 @charset "UTF-8";
 .paging {
-	height : 80px;
-	margin-top: 50px;
-	margin-left: 500px;
+	margin-top: 30px;
 	text-align: center;
 	font-size: 16px;
+	padding-left: 500px;
 }
 
 .paging a:hover{
-	color: #324ABC;
+	color: #2E90FF;
 	font-weight: normal;
+}
+
+.nowPage {
+	color: #2E90FF !important;
+	font-weight: bold;
 }
 
 .smallBtn {

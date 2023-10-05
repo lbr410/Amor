@@ -1,74 +1,57 @@
 @charset "UTF-8";
-	a {
-		text-decoration: none;
-	}
-	body {
-		font-family: 'Nanum Gothic', sans-serif;
-		font-size: 16px;
-		font-weight: 400;
-		line-height: 1.4;
-		color: #333333;
-	}
-	img {
-		display: block;
-	}
-	.body-inner {
-		width: 1100px;
-		margin: 0 auto;
-		position: relative;
-	}
+a {
+	text-decoration: none;
+}
+body {
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.4;
+	color: #333333;
+}
+img {
+	display: block;
+}
+.body-inner {
+	width: 1100px;
+	margin: 0 auto;
+	position: relative;
+}
 
-	/**GRAY BAR*/
-	.gray-bar{
+/**GRAY BAR*/
+a{
+text-decoration: none;
+color: 333333;
+}
+.gray-bar{
     width: 100%;
     height: 14px;
     background-color: #F7F8F9;
     padding: 8px 8px 16px 8px;
     margin-top: 120px;
-	}
-	.gray-bar .location{
+}
+.gray-bar .location{
     width: 1100px;
     margin: 0 auto;
-	}
-	.gray-bar .location .home{
+}
+.gray-bar .location .home{
     margin-left: 0;
     color: #666666;
     font-size: 14px;
-	}
-	.gray-bar .location a{
+}
+.gray-bar .location a{
     color: #666666;
     text-decoration: none;
         font-size: 14px;
-	}
-	.navigate {
-		width: 1100px;
-		margin: 0 auto;
-	}
-
-	.navigate-msg {
-		padding-top: 8px;
-		font-size: 14px;
-		margin-left: 0;
-	}
-		a {
-		text-decoration: none;
-	}
-	body {
-		font-family: 'Nanum Gothic', sans-serif;
-		font-size: 16px;
-		font-weight: 400;
-		line-height: 1.4;
-		color: #333333;
-	}
-	img {
-		display: block;
-	}
-	.body-inner {
-		width: 1100px;
-		margin: 0 auto;
-		position: relative;
-	}
-
+}
+.location a::before{
+    content: ' >';
+    color:#666666;
+    display: inline;
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;
+}
 	/**BORDER BAR*/
 	.border-bar {
 		margin-top: 300px;

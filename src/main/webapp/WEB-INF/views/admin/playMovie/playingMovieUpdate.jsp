@@ -81,7 +81,7 @@ function showResult() {
 				</c:if>
 				<c:forEach var="map" items="${screenLists }">
 					<option value="${map.THEATER_IDX}" name="theater_idx"
-					<c:if test="${map.TEATER_NAME == updatedto.theater_name }">
+					<c:if test="${map.THEATER_NAME == updatedto.theater_name }">
 					selected
 					</c:if>
 					>${map.THEATER_NAME}</option>

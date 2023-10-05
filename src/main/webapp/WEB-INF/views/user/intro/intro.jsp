@@ -15,8 +15,7 @@
  <div class="gray-bar">
         <div class="location">
             <span class="home">Home</span>
-            <a href="/amor/movie/movie.do" title="영화 페이지로 이동">영화</a>
-            <a href="/amor/movie/movie.do" title="현재 상영작 페이지로 이동">현재 상영작</a>
+            <a href="/amor/movie/movie.do" title="영화 페이지로 이동">영화관 소개</a>
         </div>
     </div>
 <!-- BORDER BAR-->
