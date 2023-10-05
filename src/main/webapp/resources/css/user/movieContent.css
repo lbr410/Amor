@@ -253,10 +253,6 @@ p::after{
 	cursor: pointer;
 }
 
-#review {
-	display: none;		
-}
-
 .grayspace {
 	text-indent: 20px;
 	display: flex;

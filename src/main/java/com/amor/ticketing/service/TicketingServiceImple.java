@@ -11,10 +11,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.map.HashedMap;
+
 import com.amor.storePayment.model.StorePaymentDTO;
 import com.amor.ticketing.model.JoinTicketingHistoryDTO;
 import com.amor.ticketing.model.TicketingDAO;
 import com.amor.ticketing.model.TicketingDTO;
+import com.amor.ticketing.model.TicketingPayingJoinDTO;
 import com.amor.ticketing.model.TicketingSelectMovieDTO;
 
 public class TicketingServiceImple implements TicketingService {
@@ -190,5 +193,16 @@ public class TicketingServiceImple implements TicketingService {
 		List<TicketingSelectMovieDTO> lists = ticketingDao.timetoMovieLists(sumdate_s);
 		
 		return lists;
+	}
+	
+	@Override
+	public TicketingPayingJoinDTO ticketingPaying(int movie_idx, int theater_idx, int playing_movie_idx) {
+		
+		Map map = new HashMap();
+		map.put("movie_idx", movie_idx);
+		map.put("theater_idx", theater_idx);
+		map.put("playing_movie_idx", playing_movie_idx);
+		TicketingPayingJoinDTO dto = ticketingDao.ticketingPaying(map);
+		return dto;
 	}
 }

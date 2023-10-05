@@ -147,7 +147,17 @@ where ticketing_num = #{ticketnum}
 	]]>
 	</select>
 	
-	
-	
+	<select id="ticketingPaying" parameterType="Map" resultType="com.amor.ticketing.model.TicketingPayingJoinDTO">
+		select 
+			a.movie_poster, a.movie_name, 
+			to_char(b.playing_movie_start, 'yyyy-mm-dd hh24:mi:ss') as "playing_movie_start", 
+			c.theater_name
+		from 
+			movie a, playing_movie b, theater c
+		where 
+			a.movie_idx = #{movie_idx}
+		and b.playing_movie_idx = #{playing_movie_idx}
+		and c.theater_idx = #{theater_idx}
+	</select>
 
 </mapper>

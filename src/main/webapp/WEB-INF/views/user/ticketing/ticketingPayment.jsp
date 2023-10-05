@@ -1,74 +1,286 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- <!-- 브라우저 스타일 초기화 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
-<style>
-	a {
-		text-decoration: none;
-	}
-	body {
-		font-family: 'Nanum Gothic', sans-serif;
-		font-size: 16px;
-		font-weight: 400;
-		line-height: 1.4;
-		color: #333333;
-	}
-	img {
-		display: block;
-	}
-	.body-inner {
-		width: 1100px;
-		margin: 0 auto;
-		position: relative;
-	}
-	
-	#container {
-	display: flex;
-	margin: 5% auto;
-	width: 1100px;
-	}
-	
-	#box1{
-	flex:1;
-
-	}
-	
-	#box2{
-	flex:2;
-	
-	}
-	
-	#box3{
-	flex:3
-	
-	}
-</style>
 </head>
+<style>
+.body-inner{
+	width: 100%;
+	height:1000px;
+	margin: 0 auto;
+	position: relative;
+	background: #333;
+}
+.commonBack{
+	background: #333;
+	width: 100%;
+	height: 900px;
+	position: absolute;
+}
+.commonDiv{
+	width: 1100px;
+	height: 616px;
+	flex-shrink: 0;
+	padding-top: 210px;
+	margin: 0 auto;
+	marign-bottom: 30px;
+}
+.commonTop{
+	display: flex;
+	width: 1100px;
+	height: 50px;
+	justify-content: center;
+	align-items: flex-start;
+	flex-shrink: 0;
+	background: #1A2C82;
+}
+.commonTop label{
+	display: flex;
+	width: 366.6px;
+	height: 50px;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex-shrink: 0;
+	color: #FFF;
+	font-family: Inter;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	letter-spacing: 0.9px;
+}
+.commonMid{
+	background: #FFF;
+	width: 1100px;
+	height: 620px;
+	flex-shrink: 0;
+}
+.content1{
+	width: 366px;
+	height: 600px; 
+	float:left;
+	text-indent: 90px;
+}
+.content2{
+	width: 366px;
+	height: 600px;
+	float:left;
+	border-right: 1px solid #1A2C82;
+	border-left: 1px solid #1A2C82;
+}
+.content3{
+	width: 365px;
+	height: 600px;
+	display:inline-block;
+	text-align: center;
+}
+
+.ticketingInfo {
+	border: none;
+	height: 25px;
+	font-size: 15px;
+}
+
+.ticketingInfo:focus {
+	outline: none;
+}
+
+.ticketingInfo2 {
+	border: none;
+	height: 25px;
+	width: 10px;
+	font-size: 15px;
+}
+
+.ticketingInfo2:focus {
+	outline: none;
+}
+
+.ticketingInfo3 {
+	border: none;
+	height: 25px;
+	font-size: 18px;
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+
+.ticketingInfo3:focus {
+	outline: none;
+}
+
+.ticketingInfo4 {
+	border: none;
+	height: 25px;
+	width: 280px;
+	font-size: 15px;
+}
+
+.ticketingInfo4:focus {
+	outline: none;
+}
+
+.ticketingInfo5 {
+	border: none;
+	height: 25px;
+	width: 70px;
+	font-size: 15px;
+}
+
+.ticketingInfo5:focus {
+	outline: none;
+}
+
+.ticketingPoster {
+	margin: 30px auto;
+	width: 200px;
+	object-fit: contain;
+}
+
+.ticketingBox {
+	margin-top: 30px;
+	display: inline-flex;
+	padding: 15px 16px 15px 23px;
+	justify-content: flex-end;
+	align-items: flex-start;
+	gap: 172px;
+	border-top: 1px solid #D9D9D9;
+	border-right: 1px solid #D9D9D9;
+	border-left: 1px solid #D9D9D9;
+}
+
+.ticketingBox2 {
+	display: inline-flex;
+	padding: 15px 16px 15px 23px;
+	justify-content: flex-end;
+	align-items: flex-start;
+	gap: px;
+	border-top: 1px solid #D9D9D9;
+	border-right: 1px solid #D9D9D9;
+	border-left: 1px solid #D9D9D9;
+}
+.ticketingTable{
+	margin: 30px auto;
+	width : 300px;
+	font-weight: bold;
+}
+
+.ticketingTable2 {
+	text-align: left;
+	border-top: 1px solid #D9D9D9;
+	border-left: 1px solid #D9D9D9;
+	line-height: 60px;
+	text-indent: 15px;
+}
+
+.ticketingTable3 {
+	text-align: right;
+	border-top: 1px solid #D9D9D9;
+	border-right: 1px solid #D9D9D9;
+	line-height: 60px;
+	padding-right: 15px; 
+}
+
+.ticketingTable5 { 
+   border:none;
+   padding: 2px 21px 6px 21px;
+   width: 300px;
+   height: 60px;
+   border-radius: 3px;
+   background: #1A2C82;
+   color: #C7E3FF;
+   cursor: pointer;
+}
+
+</style>
+<script type="text/javascript" src="../../resources/js/httpRequest.js"></script>
+<script>
+function show() {
+	let ticketing_personnel = document.getElementById('').value;
+	let ticketing_price = document.getElementById('').value;
+	let param = 'ticketing_personnel='+ticketing_personnel+'&ticketing_price='+ticketing_price;
+	sendRequest ('ticketingPayment.do',param,showResult,'POST');
+}
+
+function showResult() {
+	if (XHR.status==4) {
+		if (XHR.status==200) {
+			let data = XHR.responseText;
+			let objdata=JSON.parse(data);
+			let qrCode = objdata.next_redirect_pc_url;
+			
+			window.open(qrCode);
+		}
+	}
+	
+}
+
+
+</script>
 <body>
-<%@ include file="../header.jsp" %>
-<div id="container">
-
-<div id="box1">
-예매내역
-
+<%@include file="../header.jsp" %>
+<div class="body-inner">
+	<div class="commonDiv">
+		<div class="commonTop">
+			<label>예매정보</label><label>결제수단</label><label>결제하기</label>
+		</div>
+		<div class="commonMid">
+		<form id="ticketingPayment" action="ticketingPayDetail">
+			<div class="content1">
+				<div><img class="ticketingPoster" src="/amor/resources/upload/movie/${movie_poster }.jpg"></div>
+				<div><input class="ticketingInfo3" type="text" value="${movie_name }" readonly></div>
+				<div><input class="ticketingInfo" type="text" value="${playing_movie_start }" readonly></div>
+				<div><input class="ticketingInfo" type="text" value="${theater_name }" readonly></div>
+				<c:if test="${adultC != 0}">
+				<div>성인 <input class="ticketingInfo2" type="text" value="${adultC }" readonly>명</div>
+				</c:if>
+				<c:if test="${teenagerC != 0}">
+				<div>청소년 <input class="ticketingInfo2" type="text" value="${teenagerC }" readonly>명</div>
+				</c:if>
+				<c:if test="${seniorC != 0 }">
+				<div>시니어 <input class="ticketingInfo2" type="text" value="${seniorC }" readonly>명</div>
+				</c:if>
+				<c:if test="${disabledC != 0 }">
+				<div>장애인 <input class="ticketingInfo2" type="text" value="${disabledC }" readonly>명</div>
+				</c:if>
+				<div><input class="ticketingInfo4" type="text" value="${playing_movie_seat}" readonly></div>
+				<input type="hidden" value="${playing_movie_idx }">
+				<input type="hidden" value="${theater_idx }">
+				<input type="hidden" value="${sessionScope.sidx }">
+			</div>
+			
+			<div class="content2">
+				
+				
+			</div>
+			<div class="content3">
+				<table class="ticketingTable">
+					<tr>
+						<td class="ticketingTable2">수량</td>
+						<td class="ticketingTable3">${ticketing_personnel }</td>
+					</tr>
+					<tr>
+						<td class="ticketingTable2">결제금액</td>
+						<td class="ticketingTable3">${ticketing_price }</td>
+					</tr>
+					<tr>
+						<td colspan="2" class="ticketingTable4">
+						<input type="hidden" value="${ticketing_price }">
+						<input type="hidden" value="${ticketing_personnel }">
+						<input type="submit" class="ticketingTable5" value="결제하기" onclick="show()">
+						</td>
+					</tr>
+				</table>
+			</div>
+			</form>
+		</div>
+	</div>
 </div>
 
-<div id="box2">
-<h3>결제수단</h3>
-
-</div>
-
-<div id="box3">
-<h3>결제하기</h3>
-
-</div>
-
-</div>
-<%@ include file="../footer.jsp" %>
 </body>
+<%@include file="../footer.jsp" %>
 </html>

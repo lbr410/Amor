@@ -300,9 +300,11 @@ table tfoot tr {
 				</tr>
 			</thead>
 			<tfoot>
+			<c:if test="${!empty reviewLists }">
 				<tr>
 					<td colspan="5" class="paging">${reviewpageStr}</td>
 				</tr>
+			</c:if>
 			</tfoot>
 			<tbody>
 			<c:if test="${empty reviewLists }">
