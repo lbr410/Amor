@@ -53,18 +53,18 @@
 	
 	// 최근 6개월 매출 차트
 	function sixMonthChart () { 
-		let xAxisData = ['${lists.sixMonthsAgoMonth}',
-						 '${lists.fiveMonthsAgoMonth}', 
-						 '${lists.fourMonthsAgoMonth}', 
-						 '${lists.threeMonthsAgoMonth}', 
-						 '${lists.twoMonthsAgoMonth}', 
-						 '${lists.aMonthAgoMonth}'];
-	    let seriesData = [${lists.sixMonthsAgoTotalPrice},
-	    				  ${lists.fiveMonthsAgoTotalPrice},
-	    				  ${lists.fourMonthsAgoTotalPrice},
-	    				  ${lists.threeMonthsAgoTotalPrice}, 
-	    				  ${lists.twoMonthsAgoTotalPrice}, 
-	    				  ${lists.aMonthAgoTotalPrice}];
+		let xAxisData = ['${sixMonthData[5].ad}',
+						 '${sixMonthData[4].ad}', 
+						 '${sixMonthData[3].ad}', 
+						 '${sixMonthData[2].ad}', 
+						 '${sixMonthData[1].ad}', 
+						 '${sixMonthData[0].ad}'];
+	    let seriesData = [${sixMonthData[5].a},
+	    				  ${sixMonthData[4].a},
+	    				  ${sixMonthData[3].a},
+	    				  ${sixMonthData[2].a}, 
+	    				  ${sixMonthData[1].a}, 
+	    				  ${sixMonthData[0].a}];
 		let sixmonthchart = echarts.init(document.getElementById('chart'));
 		
 		option = {
@@ -94,20 +94,20 @@
 	
 	// 최근 일주일 매출 차트
 	function weekChart () { 
-		let xAxisData = ['${lists.sevenDaysAgoDay}',
-			 '${lists.sixDaysAgoDay}', 
-			 '${lists.fiveDaysAgDay}', 
-			 '${lists.fourDaysAgoDay}', 
-			 '${lists.threeDaysAgoDay}', 
-			 '${lists.twoDasyAgoDay}',
-			 '${lists.aDayAgoDay}'];
-		let seriesData = [${lists.sevenDaysAgoTotalPrice},
-			  ${lists.sixDaysAgoTotalPrice},
-			  ${lists.fiveDaysAgoTotalPrice},
-			  ${lists.fourDaysAgoTotalPrice},
-			  ${lists.threeDaysAgoTotalPrice}, 
-			  ${lists.twoDaysAgoTotalPrice}, 
-			  ${lists.aDayAgoTotalPrice}];
+		let xAxisData = ['${weekData[6].ad}',
+			 '${weekData[5].ad}', 
+			 '${weekData[4].ad}', 
+			 '${weekData[3].ad}', 
+			 '${weekData[2].ad}', 
+			 '${weekData[1].ad}',
+			 '${weekData[0].ad}'];
+		let seriesData = [${weekData[6].a},
+			  ${weekData[5].a},
+			  ${weekData[4].a},
+			  ${weekData[3].a},
+			  ${weekData[2].a}, 
+			  ${weekData[1].a}, 
+			  ${weekData[0].a}];
 		let weekchart = echarts.init(document.getElementById('chart'));
 		
 		option = {

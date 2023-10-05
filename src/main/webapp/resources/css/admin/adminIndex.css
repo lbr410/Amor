@@ -1,0 +1,136 @@
+@charset "UTF-8";
+.helloAdmin {
+	padding-top: 30px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.chartDeco {
+	width: 1300px;
+	height: 450px;
+}
+
+.salesChartDeco {
+	width: 650px;
+	height: 450px;
+	float: left;
+}
+
+.cntTicketingChartDeco {
+	width: 650px;
+	height: 450px;
+	float: right;
+}
+
+.tableDiv1 {
+	width: 1300px;
+	height: 350px;
+	text-align: center;
+}
+
+.table1Deco {
+	width: 650px;
+	height: 350px;
+	float: left;
+}
+
+.table2Deco {
+	width: 650px;
+	height: 350px;
+	float: right;
+}
+
+.tableDiv2 {
+	width: 1300px;
+	height: 350px;
+}
+
+.table3Deco {
+	width: 650px;
+	height: 350px;
+	float: left;
+}
+
+.table4Deco {
+	width: 650px;
+	height: 350px;
+	float: right;
+}
+
+.tableMenu {
+	font-weight: bold;
+	font-size: 18px;
+	color: #555555;
+}
+
+.moreView {
+	font-size: 14px;
+	margin-left: 480px;
+}
+
+/* table css */
+.tableDivs .commonTables {
+	width: 600px;
+	border-spacing: 0px;
+	cursor: pointer;
+	margin-top: 5px;
+}
+
+.tableDivs .commonTables th{
+	background: #F8F8F8;
+	height: 30px;
+	font-size: 12px;
+	color: #55555;
+	padding: 5px;
+}
+
+.tableDivs .commonTables td{
+	text-align: center;
+	font-size: 12px;
+	height: 30px;
+	padding: 5px;
+}
+
+.tableDivs {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 10px;
+}
+
+.tableDivs .commonTables tbody tr:hover {
+	background-color: #E6E6E6;
+	/*color:#55555;*/
+} /* end table css */
+
+.tabletd1 {
+	width: 100px;
+}
+
+.tabletd2 {
+	width: 300px;
+}
+
+.tabletd11 {
+	width: 50px;
+}
+
+.tabletd12 {
+	width: 350px;
+}
+
+.tabletd13 {
+	width: 100px;	
+}
+
+.tabletd14 {
+	width: 100px;
+}
+
+.answerWait {
+	color: red;
+}
+
+.answerComplete {
+	color: blue;
+}

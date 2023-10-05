@@ -41,4 +41,37 @@
 		where m.member_idx=${member_idx} and i.inquiry_idx=${inquiry_idx}
 	</select>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<select id="adminMainInquiryList" resultType="com.amor.inquiry.model.InquiryDTO">
+		<![CDATA[select * from (select inquiry_idx, inquiry_subject, inquiry_writedate, inquiry_answer 
+			from inquiry 
+			order by inquiry_writedate desc) 
+		where rownum <= 5
+		]]>
+	</select>
 </mapper>

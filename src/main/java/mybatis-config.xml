@@ -19,5 +19,6 @@
 		<mapper resource="sqlmap/storePaymentSQL.xml" />
 		<mapper resource="sqlmap/theaterSQL.xml" />
 		<mapper resource="sqlmap/ticketingSQL.xml" />
+		<mapper resource="sqlmap/dualSQL.xml" />
 	</mappers>
 </configuration>
