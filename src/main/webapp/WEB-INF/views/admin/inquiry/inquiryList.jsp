@@ -21,14 +21,20 @@
 		<tr>
 			<th class="tableNum">번호</th>
 			<th class="tableImg">문의유형</th>
-			<th class="tableTitle">제목</th>
-			<th class="tableContent">글쓴이</th>
+			<th class="tableTitle">글쓴이</th>
+			<th class="tableContent">제목</th>
 			<th class="tableStatus">상태</th>
-			<th class="tablePrice">제한여부</th>
-			<th class="tableSoldout">등록일</th>
+			<th class="tablePrice">등록일</th>
+			<th class="tableSoldout">제한여부</th>
 			<th class="tableBtn"></th>
 		</tr>
 	</thead>
+	<tfoot>
+		<tr>
+			<td colspan="8">
+			<c:if test="${!empty lists }"><div class="paging">${pageStr}</div></c:if></td>
+		</tr>
+	</tfoot>
 	<tbody>
 	<c:if test="${empty lists}">
 		<tr>
@@ -36,31 +42,41 @@
 		</tr>
 	</c:if>
 	<c:forEach var="dto" items="${lists}">
-		<tr>
-			<td class="tableNum"><span id="idx${dto.inquiry_idx}">${dto.inquiry_idx}</span></td>
-			<td class="tableImg">
-				<img src="/amor/resources/upload/inquiry/${dto.inquiry_filename}" class="prodImg" alt="문의 이미지">
-			</td>
-			<td class="tableTitle">${dto.inquiry_subject}</td>
-			<td class="tableContent">
-				<a href="${dto.inquiry_content})"></a>
-			</td>
-			<td class="tableStatus">
-				<c:if test="${dto.inquiry_astatus eq 'y'}">답변완료</c:if>
-				<c:if test="${dto.inquiry_astatus eq 'n'}">답변대기</c:if>
-			</td>
-			<td class="tableBtn">
-				<input type="button" class="smallBtn" value="수정" onclick="">
-				<input type="button" class="smallBtn" value="삭제" onclick="inquiryDel(${dto.inquiry_idx})">
-			</td>
-		</tr>
-	</c:forEach>
+    <tr>
+        <td class="tableNum"><span>${dto.inquiry_idx}</span></td>
+        <c:url var="contentUrl" value="inquiryContent.do">
+        	<c:param name="idx">${dto.inquiry_idx }</c:param>
+        </c:url>
+        <td class="tableImg">
+            <c:choose>
+                <c:when test="${dto.inquiry_type eq 0}">문의</c:when>
+                <c:when test="${dto.inquiry_type eq 1}">불만</c:when>
+                <c:when test="${dto.inquiry_type eq 2}">칭찬</c:when>
+                <c:when test="${dto.inquiry_type eq 3}">제안</c:when>
+                <c:when test="${dto.inquiry_type eq 4}">분실물</c:when>
+            </c:choose>
+        </td>
+        <td class="tableTitle">${dto.member_id}</td>
+        <td class="tableContent">
+        <a href="${contentUrl}">${dto.inquiry_subject}</a></td>
+        <td>
+        	<c:if test="${dto.inquiry_astatus =='y'}">답변완료</c:if>
+        	<c:if test="${dto.inquiry_astatus =='n'}">답변대기</c:if>
+        </td>
+        <td>${dto.inquiry_writedate}</td>
+        <td class="nyTd">
+			<select name="member_block" class="selectBox" id="blockId" onchange="block(${dto.member_idx})">
+				<option value="n" <c:if test="${dto.member_block=='n'}">selected</c:if>>N</option>
+				<option value="y" <c:if test="${dto.member_block=='y'}">selected</c:if>>Y</option>
+			</select>			
+		</td>
+        <td class="tableBtn">
+            <input type="button" class="smallBtn" value="삭제" onclick="inquiryDel(${joinDTO.idto.inquiry_idx})">
+        </td>
+    </tr>
+</c:forEach>
+
 	</tbody>
-	<tfoot>
-		<tr>
-			<td colspan="8"><div class="paging">${pageStr}</div></td>
-		</tr>
-	</tfoot>
 	</table>
 </div>
 </div>

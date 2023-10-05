@@ -35,7 +35,6 @@ public class InquiryController {
 			@RequestParam(value="cp", defaultValue="1")int cp) {
 		
 		int member_idx=(Integer)session.getAttribute("sidx");
-		
 		InquiryDTO dto=new InquiryDTO();
 		dto.setMember_idx(member_idx);
 		String sid = (String)session.getAttribute("sid");
