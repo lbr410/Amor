@@ -15,6 +15,7 @@ import com.amor.storePayment.model.StorePaymentDTO;
 import com.amor.ticketing.model.JoinTicketingHistoryDTO;
 import com.amor.ticketing.model.TicketingDAO;
 import com.amor.ticketing.model.TicketingDTO;
+import com.amor.ticketing.model.TicketingListDTO;
 import com.amor.ticketing.model.TicketingSelectMovieDTO;
 
 public class TicketingServiceImple implements TicketingService {
@@ -190,4 +191,48 @@ public class TicketingServiceImple implements TicketingService {
 		
 		return lists;
 	}
+	
+	@Override
+	public List<TicketingListDTO> ticketingList(int cp, int listSize) {
+		int start=(cp-1)*listSize+1;
+		int end=cp*listSize;
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		List<TicketingListDTO> lists = ticketingDao.ticketingList(map);
+		return lists;
+	}
+	
+	@Override
+	public List<TicketingListDTO> ticketingListSearch(int cp, int listSize, String search) {
+		int start=(cp-1)*listSize+1;
+		int end=cp*listSize;
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("search",search);
+		List<TicketingListDTO> lists = ticketingDao.ticketingList(map);
+		return lists;
+	}
+	
+	
+	
+	@Override
+	public int getTotalCnt() {
+		int result = ticketingDao.getTotalCnt();
+		return result;
+	}
+	
+	@Override
+	public int getTotalSearchCnt(String search) {
+		int result = ticketingDao.getTotalSearchCnt(search);
+		return result;
+	}
+	
+	@Override
+	public int ticketingstateChange(TicketingListDTO dto) {
+		int result = ticketingDao.ticketingstateChange(dto);
+		return result;
+	}
+	
 }

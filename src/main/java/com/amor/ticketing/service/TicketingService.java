@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.amor.ticketing.model.JoinTicketingHistoryDTO;
 import com.amor.ticketing.model.TicketingDTO;
+import com.amor.ticketing.model.TicketingListDTO;
 import com.amor.ticketing.model.TicketingSelectMovieDTO;
 
 public interface TicketingService {
@@ -19,6 +20,12 @@ public interface TicketingService {
 	public List<TicketingSelectMovieDTO> ticketingPlayingMovieList();
 	public List<TicketingSelectMovieDTO> ticketingPlayingMovieTimeList(String movie_name, java.sql.Date sumdate);
 	public List<TicketingSelectMovieDTO> timetoMovieLists(java.sql.Date sumdate_s);
+	
+	public List<TicketingListDTO> ticketingList(int cp, int listSize);
+	public List<TicketingListDTO> ticketingListSearch(int cp, int listSize, String search);
+	public int getTotalCnt();
+	public int getTotalSearchCnt(String search);
+	public int ticketingstateChange(TicketingListDTO dto);
 	
 	
 	public String allMovie(String startd, String endd);

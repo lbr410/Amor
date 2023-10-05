@@ -22,6 +22,7 @@ public class MovieDTO {
 	private String movie_stillcut3;
 	private String movie_stillcut4;
 	private String movie_stillcut5; 
+	//private int 
 	
 	public MovieDTO() {
 		// TODO Auto-generated constructor stub

@@ -28,7 +28,7 @@ function movieSearch(){
 	let result = document.all.movieSearch.value;
 	
 	if(result == "" || result == null){
-		window.alert('검색어2 입력바람');
+		window.alert('검색어 입력바람');
 	}else{
 		location.href='movieList.do?search='+result;
 	}
@@ -38,7 +38,6 @@ function movieStateYN(idx) {
 	let state = document.getElementsByName('movie_state'+idx)[0].value;
 	let param = 'idx='+idx+'&state='+state;
 	sendRequest('stateChk.do',param, null, 'POST');
-	window.alert('123');
 }
 
 </script>

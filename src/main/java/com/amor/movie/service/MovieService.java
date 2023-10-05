@@ -17,6 +17,8 @@ public interface MovieService {
 	
 	public int getTotalCnt();
 	
+	public int getTotalSearchCnt(String search);
+	
 	public List<MovieDTO> movieListSearch(int cp, int listSize, String search);
 	
 	public int stateChange(MovieDTO dto);

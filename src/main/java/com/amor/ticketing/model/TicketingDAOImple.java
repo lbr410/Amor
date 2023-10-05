@@ -95,9 +95,41 @@ public class TicketingDAOImple implements TicketingDAO {
 		return lists;
 	}
 	
-@Override
+	@Override
 	public List<TicketingSelectMovieDTO> timetoMovieLists(Date sumdate_s) {
 		List<TicketingSelectMovieDTO> lists = sqlmap.selectList("timetoMovieLists",sumdate_s);
 		return lists;
 	}
+
+	@Override
+	public List<TicketingListDTO> ticketingList(Map map) {
+		List<TicketingListDTO> lists = sqlmap.selectList("ticketingList", map);
+		return lists;
+	}
+	
+	@Override
+	public List<TicketingListDTO> ticketingListSearch(Map map) {
+		List<TicketingListDTO> lists = sqlmap.selectList("ticketingListSearch", map);
+		return lists;
+	}
+	
+	
+	@Override
+	public int getTotalCnt() {
+		int result = sqlmap.selectOne("ticketingListtotalCnt");
+		return result;
+	}
+	
+	@Override
+	public int getTotalSearchCnt(String search) {
+		int result = sqlmap.selectOne("ticketingListSearchtotalCnt", search);
+		return result;
+	}
+	
+	@Override
+	public int ticketingstateChange(TicketingListDTO dto) {
+		int result = sqlmap.update("ticketingstateChange",dto);
+		return result;
+	}
+	
 }

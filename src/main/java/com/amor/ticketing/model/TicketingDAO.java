@@ -15,6 +15,11 @@ public interface TicketingDAO {
 	public List<TicketingSelectMovieDTO> ticketingPlayingMovieTimeList(Map map);
 	public List<TicketingSelectMovieDTO> timetoMovieLists(Date sumdate_s);
 	
+	public List<TicketingListDTO> ticketingList(Map map);
+	public List<TicketingListDTO> ticketingListSearch(Map map);
+	public int getTotalCnt();
+	public int getTotalSearchCnt(String search);
+	public int ticketingstateChange(TicketingListDTO dto);
 	
 	public int allMovie(Map map);
 	public List<TicketingDTO> dayMovie(Map map);
