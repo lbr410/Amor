@@ -18,5 +18,14 @@ public interface InquiryService {
 	public InquiryJoinDTO inquiryContent(int idx);
 	public int inquiryAnswer(InquiryJoinDTO dto);
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	public List<InquiryDTO> adminMainInquiryList();
 
 }

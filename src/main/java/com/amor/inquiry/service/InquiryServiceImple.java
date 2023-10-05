@@ -84,5 +84,29 @@ public class InquiryServiceImple implements InquiryService {
 		return result;
 	}
 	
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public List<InquiryDTO> adminMainInquiryList() {
+		List<InquiryDTO> lists = inquiryDao.adminMainInquiryList();
+		return lists;
+	}
 }

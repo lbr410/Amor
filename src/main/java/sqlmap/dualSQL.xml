@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.amor.dualSQL">
+	<select id="chartData" resultType="com.amor.dual.model.DualDTO">
+		<![CDATA[
+		select a, ad, b, bd, c, cd, d, dd, e, ed, f, fd, g, gd, orders from (select (select nvl(sum(aa), 0) as a from
+		(select nvl(store_payment_price, 0) as aa from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm-dd') = to_char(sysdate, 'yyyy-mm-dd')
+		union all
+		select nvl(ticketing_price, 0) as aa from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate, 'yyyy-mm-dd'))) a,
+		(select to_char(sysdate, 'mm/dd') from dual) as ad,
+		(select nvl(sum(aa), 0) as a from
+		(select nvl(store_payment_price, 0) as aa from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm-dd') = to_char(sysdate-1, 'yyyy-mm-dd')
+		union all
+		select nvl(ticketing_price, 0) as aa from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate-1, 'yyyy-mm-dd'))) b,
+		(select to_char(sysdate-1, 'mm/dd') from dual) as bd,
+		(select nvl(sum(aa), 0) as a from
+		(select nvl(store_payment_price, 0) as aa from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm-dd') = to_char(sysdate-2, 'yyyy-mm-dd')
+		union all
+		select nvl(ticketing_price, 0) as aa from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate-2, 'yyyy-mm-dd'))) c,
+		(select to_char(sysdate-2, 'mm/dd') from dual) as cd,
+		(select nvl(sum(aa), 0) as a from
+		(select nvl(store_payment_price, 0) as aa from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm-dd') = to_char(sysdate-3, 'yyyy-mm-dd')
+		union all
+		select nvl(ticketing_price, 0) as aa from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate-3, 'yyyy-mm-dd'))) d,
+		(select to_char(sysdate-3, 'mm/dd') from dual) as dd,
+		(select nvl(sum(aa), 0) as a from
+		(select nvl(store_payment_price, 0) as aa from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm-dd') = to_char(sysdate-4, 'yyyy-mm-dd')
+		union all
+		select nvl(ticketing_price, 0) as aa from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate-4, 'yyyy-mm-dd'))) e,
+		(select to_char(sysdate-4, 'mm/dd') from dual) as ed,
+		(select nvl(sum(aa), 0) as a from
+		(select nvl(store_payment_price, 0) as aa from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm-dd') = to_char(sysdate-5, 'yyyy-mm-dd')
+		union all
+		select nvl(ticketing_price, 0) as aa from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate-5, 'yyyy-mm-dd'))) f,
+		(select to_char(sysdate-5, 'mm/dd') from dual) as fd,
+		(select nvl(sum(aa), 0) as a from
+		(select nvl(store_payment_price, 0) as aa from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm-dd') = to_char(sysdate-6, 'yyyy-mm-dd')
+		union all
+		select nvl(ticketing_price, 0) as aa from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate-6, 'yyyy-mm-dd'))) g,
+		(select to_char(sysdate-6, 'mm/dd') from dual) as gd, 1 as orders
+		from dual)
+		union all
+		(select (select count(*) from ticketing where to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate, 'yyyy-mm-dd')
+		and ticketing_state <> 'n') a,
+		(select to_char(sysdate, 'mm/dd') from dual) as ad,
+		(select count(*) from ticketing where to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate-1, 'yyyy-mm-dd')
+		and ticketing_state <> 'n') b,
+		(select to_char(sysdate-1, 'mm/dd') from dual) as bd,
+		(select count(*) from ticketing where to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate-2, 'yyyy-mm-dd')
+		and ticketing_state <> 'n') c,
+		(select to_char(sysdate-2, 'mm/dd') from dual) as cd,
+		(select count(*) from ticketing where to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate-3, 'yyyy-mm-dd')
+		and ticketing_state <> 'n') d, 
+		(select to_char(sysdate-3, 'mm/dd') from dual) as dd,
+		(select count(*) from ticketing where to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate-4, 'yyyy-mm-dd')
+		and ticketing_state <> 'n') e,
+		(select to_char(sysdate-4, 'mm/dd') from dual) as ed,
+		(select count(*) from ticketing where to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate-5, 'yyyy-mm-dd')
+		and ticketing_state <> 'n') f,
+		(select to_char(sysdate-5, 'mm/dd') from dual) as fd,
+		(select count(*) from ticketing where to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate-6, 'yyyy-mm-dd')
+		and ticketing_state <> 'n') g,
+		(select to_char(sysdate-6, 'mm/dd') from dual) as gd, 2 as orders
+		from dual)
+		order by orders
+		]]>
+	</select>
+	
+	<select id="threeTableResult" resultType="com.amor.dual.model.DualDTO">
+		<![CDATA[
+		select a, ad, dates, orders from (
+		select * from (select member_idx as a, member_id as ad, member_joindate as dates, 0 as orders from member order by member_joindate desc) where rownum <= 5
+		union
+		select * from (select movie_idx as a, movie_name as ad, movie_opendate as dates, 1 as orders from movie where movie_state = 'y' order by movie_opendate desc) where rownum <= 5
+		union
+		select * from (select notice_idx as a, notice_subject as ad, notice_writedate as dates, 2 as orders from notice order by notice_writedate desc) where rownum <= 5
+		) dual order by orders, rownum desc
+		]]>
+	</select>
+	
+	<select id="salesChartData" resultType="com.amor.dual.model.DualDTO">
+		<![CDATA[
+		select a, ad, orders from(
+		select nvl(sum(a), 0) as a, to_char(add_months(sysdate, -1), 'mm') as ad, 0 as orders from 
+		(select sum(store_payment_price) as a from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm') = to_char(add_months(sysdate, -1), 'yyyy-mm')
+		union all
+		select sum(ticketing_price) as a from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm') = to_char(add_months(sysdate, -1), 'yyyy-mm'))
+		union
+		select nvl(sum(a), 0) as a, to_char(add_months(sysdate, -2), 'mm') as ad, 1 as orders from 
+		(select sum(store_payment_price) as a from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm') = to_char(add_months(sysdate, -2), 'yyyy-mm')
+		union all
+		select sum(ticketing_price) as a from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm') = to_char(add_months(sysdate, -2), 'yyyy-mm'))
+		union
+   		select nvl(sum(a), 0) as a, to_char(add_months(sysdate, -3), 'mm') as ad, 2 as orders from 
+		(select sum(store_payment_price) as a from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm') = to_char(add_months(sysdate, -3), 'yyyy-mm')
+		union all
+		select sum(ticketing_price) as a from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm') = to_char(add_months(sysdate, -3), 'yyyy-mm')) 
+		union
+		select nvl(sum(a), 0) as a, to_char(add_months(sysdate, -4), 'mm') as ad, 3 as orders from 
+		(select sum(store_payment_price) as a from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm') = to_char(add_months(sysdate, -4), 'yyyy-mm')
+		union all
+		select sum(ticketing_price) as a from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm') = to_char(add_months(sysdate, -4), 'yyyy-mm'))
+		union
+		select nvl(sum(a), 0) as a, to_char(add_months(sysdate, -5), 'mm') as ad, 4 as orders from 
+		(select sum(store_payment_price) as a from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm') = to_char(add_months(sysdate, -5), 'yyyy-mm')
+		union all
+		select sum(ticketing_price) as a from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm') = to_char(add_months(sysdate, -5), 'yyyy-mm'))
+		union
+		select nvl(sum(a), 0) as a, to_char(add_months(sysdate, -6), 'mm') as ad, 5 as orders from 
+		(select sum(store_payment_price) as a from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm') = to_char(add_months(sysdate, -6), 'yyyy-mm')
+		union all
+		select sum(ticketing_price) as a from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm') = to_char(add_months(sysdate, -6), 'yyyy-mm'))
+		union
+		select nvl(sum(a), 0) as a, to_char(sysdate-1, 'mm/dd') as ad, 6 as orders from 
+		(select sum(store_payment_price) as a from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm-dd') = to_char(sysdate-1, 'yyyy-mm-dd')
+		union all
+		select sum(ticketing_price) as a from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate-1, 'yyyy-mm-dd'))
+		union
+ 		select nvl(sum(a), 0) as a, to_char(sysdate-2, 'mm/dd') as ad, 7 as orders from 
+		(select sum(store_payment_price) as a from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm-dd') = to_char(sysdate-2, 'yyyy-mm-dd')
+		union all
+		select sum(ticketing_price) as a from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate-2, 'yyyy-mm-dd'))
+		union
+		select nvl(sum(a), 0) as a, to_char(sysdate-3, 'mm/dd') as ad, 8 as orders from 
+		(select sum(store_payment_price) as a from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm-dd') = to_char(sysdate-3, 'yyyy-mm-dd')
+		union all
+		select sum(ticketing_price) as a from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate-3, 'yyyy-mm-dd'))
+		union
+		select nvl(sum(a), 0) as a, to_char(sysdate-4, 'mm/dd') as ad, 9 as orders from 
+		(select sum(store_payment_price) as a from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm-dd') = to_char(sysdate-4, 'yyyy-mm-dd')
+		union all
+		select sum(ticketing_price) as a from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate-4, 'yyyy-mm-dd'))
+		union
+		select nvl(sum(a), 0) as a, to_char(sysdate-5, 'mm/dd') as ad, 10 as orders from 
+		(select sum(store_payment_price) as a from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm-dd') = to_char(sysdate-5, 'yyyy-mm-dd')
+		union all
+		select sum(ticketing_price) as a from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate-5, 'yyyy-mm-dd'))
+		union
+		select nvl(sum(a), 0) as a, to_char(sysdate-6, 'mm/dd') as ad, 11 as orders from 
+		(select sum(store_payment_price) as a from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm-dd') = to_char(sysdate-6, 'yyyy-mm-dd')
+		union all
+		select sum(ticketing_price) as a from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate-6, 'yyyy-mm-dd'))
+		union
+		select nvl(sum(a), 0) as a, to_char(sysdate-7, 'mm/dd') as ad, 12 as orders from 
+		(select sum(store_payment_price) as a from store_payment
+		where store_payment_status <> 'n'
+		and to_char(store_payment_paymentdate, 'yyyy-mm-dd') = to_char(sysdate-7, 'yyyy-mm-dd')
+		union all
+		select sum(ticketing_price) as a from ticketing
+		where ticketing_state <> 'n'
+		and to_char(ticketing_reservetime, 'yyyy-mm-dd') = to_char(sysdate-7, 'yyyy-mm-dd'))        
+		) order by orders asc
+		]]>
+	</select>
+</mapper>

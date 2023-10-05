@@ -30,13 +30,28 @@
 	
 	window.onload = function() {
 		let seatPlace = document.getElementById('seatPlace'); 
+		let alphabetIndex = 0;
 		
 		// 좌석 생성
 		for(let i=0; i<${theaterInfo.theater_row}; i++) { // theater의 행
-			let alphabetRow = document.createElement('span');
+			let rowValue = seatsArr[i];
+			  
+			// 행의 모든 요소가 0이 아닌지 확인
+			let hasNonZeroElement = rowValue.some((element) => element !== '0');
+			  
+			if(hasNonZeroElement) {
+			    // 행의 모든 요소가 0이 아닐 때 코드 실행
+			    let alphabetRow = document.createElement('span');
+			    alphabetRow.textContent = alphabet.charAt(alphabetIndex);
+				alphabetRow.className = 'alphabetRow';
+				seatPlace.appendChild(alphabetRow);
+				alphabetIndex++;
+			}
+			
+			/*let alphabetRow = document.createElement('span');
 			alphabetRow.textContent = alphabet.charAt(i);
 			alphabetRow.className = 'alphabetRow';
-			seatPlace.appendChild(alphabetRow);
+			seatPlace.appendChild(alphabetRow);*/
 			
 			let jNum = 0; 
 			for(let j=0; j<${theaterInfo.theater_column}; j++) { // theater의 열
@@ -50,7 +65,7 @@
 					seatBox.name = 'playing_movie_seat'; // name 
 					seatBox.id = 'seatBox'+i+jNum; // 각 체크박스에 고유한 id 부여
 					seatPlace.appendChild(seatBox);
-					seatBox.value = alphabet.charAt(i)+(jNum+1); // 체크박스에 value 부여
+					seatBox.value = alphabet.charAt(alphabetIndex-1)+(jNum+1); // 체크박스에 value 부여
 					
 					if(alreadyBookedArr.includes(seatBox.value)) { // 이미 예약된 좌석
 						seatBox.className = 'alreadyBooked';

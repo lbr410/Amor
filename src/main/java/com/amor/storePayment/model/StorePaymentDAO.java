@@ -3,19 +3,6 @@ package com.amor.storePayment.model;
 import java.util.*;
 
 public interface StorePaymentDAO {
-	public StorePaymentDTO aMonthAgo();
-	public StorePaymentDTO twoMonthsAgo();
-	public StorePaymentDTO threeMonthsAgo();
-	public StorePaymentDTO fourMonthsAgo();
-	public StorePaymentDTO fiveMonthsAgo();
-	public StorePaymentDTO sixMonthsAgo();
-	public StorePaymentDTO aDayAgo();
-	public StorePaymentDTO twoDaysAgo();
-	public StorePaymentDTO threeDaysAgo();
-	public StorePaymentDTO fourDaysAgo();
-	public StorePaymentDTO fiveDaysAgo();
-	public StorePaymentDTO sixDaysAgo();
-	public StorePaymentDTO sevenDaysAgo();
 	public int allAll(Map map);
 	public int allStore(Map map);
 	public List<StorePaymentDTO> dayAll(Map map);
