@@ -56,6 +56,12 @@ public class MovieDAOImple implements MovieDAO {
 	}
 	
 	@Override
+	public int getTotalSearchCnt(String search) {
+		int result = sqlmap.selectOne("totalSearchCnt",search);
+		return result;
+	}
+	
+	@Override
 	public int stateChange(MovieDTO dto) {
 		int result = sqlmap.update("stateChange",dto);
 		return result;

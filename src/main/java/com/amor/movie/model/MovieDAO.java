@@ -9,6 +9,7 @@ public interface MovieDAO {
 	public int movieUpdate(MovieDTO dto);
 	public int movieDelete(int movie_idx);
 	public int getTotalCnt();
+	public int getTotalSearchCnt(String search);
 	public int stateChange(MovieDTO dto);
 	public List<MovieDTO> movieBest(Map map);
 	public List<MovieDTO> movieCome(Map map);

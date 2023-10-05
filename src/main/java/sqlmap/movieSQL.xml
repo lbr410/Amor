@@ -57,6 +57,10 @@ delete from movie where movie_idx = #{movie_idx}
 	select count(*) from movie
 </select>
 
+<select id="totalSearchCnt" resultType="Integer" parameterType="String">
+	select count(*) from movie where movie_name like '%${userSearch}%'
+</select>
+
 <update id="stateChange" parameterType="com.amor.movie.model.MovieDTO">
 update movie set movie_state = #{movie_state} where movie_idx = #{movie_idx}
 </update>

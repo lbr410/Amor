@@ -1,0 +1,27 @@
+@charset "UTF-8";
+.paging {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 16px;
+}
+
+.paging a:hover{
+	color: #324ABC;
+	font-weight: normal;
+}
+
+.nowPage {
+	color: #324ABC !important;
+	font-weight: bold;
+}
+
+.btnticketingcancel{
+	border:none;
+    width: 40px;
+    height: 28px;
+    border-radius: 3px;
+    background: #EEEEEE;
+    color: #1A2C82;
+    cursor: pointer;
+    text-align:center;
+}

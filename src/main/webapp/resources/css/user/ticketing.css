@@ -29,9 +29,9 @@
 	flex-shrink: 0;
 	background: #1A2C82;
 }
-.commonTop label{
+.commonTop .label1{
 	display: flex;
-	width: 366.6px;
+	flex:1;
 	height: 50px;
 	justify-content: center;
 	align-items: center;
@@ -44,6 +44,22 @@
 	font-weight: 400;
 	line-height: normal;
 	letter-spacing: 0.9px;
+}
+.commonTop .label2{
+    display: flex;
+    flex:2.8;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.9px;
 }
 .commonMid{
 	background: #FFF;

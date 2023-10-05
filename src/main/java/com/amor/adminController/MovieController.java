@@ -29,21 +29,19 @@ public class MovieController {
 
 	@RequestMapping("admin/movie/movieList.do")
 	public ModelAndView movieList(@RequestParam(value="cp", defaultValue = "1") int cp, @RequestParam(value="search", defaultValue = "") String search) {
-		int totalCnt=movieservice.getTotalCnt();
 		int listSize=5;
 		int pageSize=5;
-			
 		if(search == null || search.equals("")) {
+			int totalCnt=movieservice.getTotalCnt();
 			String pageStr = com.amor.page.PageModule.makePage("/amor/admin/movie/movieList.do", totalCnt, listSize, pageSize, cp);
-			
 			List<MovieDTO> lists = movieservice.movieList(cp, listSize);
-			
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("lists", lists);
 			mav.addObject("pageStr",pageStr);
 			mav.setViewName("admin/movie/movieList");
 			return mav;
 		}else{
+			int totalCnt=movieservice.getTotalSearchCnt(search);
 			String pageStr = com.amor.page.PageModuleSearch.makePage("/amor/admin/movie/movieList.do", totalCnt, listSize, pageSize, cp, search);
 			List<MovieDTO> lists = movieservice.movieListSearch(cp, listSize,search);
 			ModelAndView mav = new ModelAndView();
@@ -58,9 +56,7 @@ public class MovieController {
 	
 	@RequestMapping("admin/movie/stateChk.do")
 	public ModelAndView soldOutChange(@RequestParam("idx") int idx, @RequestParam("state") String state) {
-		System.out.println("qweqweqweeqwqewe");
 		MovieDTO dto = new MovieDTO(idx,state);
-		System.out.println("1233213");
 		if(state.equals("y")) {
 			dto.setMovie_state("y");
 			dto.setMovie_idx(idx);

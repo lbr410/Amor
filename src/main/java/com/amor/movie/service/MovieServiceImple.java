@@ -70,6 +70,12 @@ public class MovieServiceImple implements MovieService {
 	}
 	
 	@Override
+	public int getTotalSearchCnt(String search) {
+		int result = moviedao.getTotalSearchCnt(search);
+		return result;
+	}
+	
+	@Override
 	public int stateChange(MovieDTO dto) {
 		int result = moviedao.stateChange(dto);
 		return result;

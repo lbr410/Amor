@@ -147,6 +147,61 @@ where ticketing_num = #{ticketnum}
 	]]>
 	</select>
 	
+	<select id="ticketingList" parameterType="Map" resultType="com.amor.ticketing.model.TicketingListDTO">
+	<![CDATA[
+	select * from 
+	(select rownum as rnum, g.* from (select ticketing_idx, b.member_idx as "member_idx", e.playing_movie_idx as "playing_movie_idx", f.theater_idx as "theater_idx" , a.member_id as "member_id", a.member_name as "member_name", a.member_tel1 as "member_tel1", a.member_tel2 as "member_tel2", e.movie_name as "movie_name", f.theater_name ,ticketing_seat, e.playing_movie_date as "playing_movie_date", e.playing_movie_start as "playing_movie_start", ticketing_reservetime, ticketing_price, ticketing_personnel, ticketing_payment, ticketing_state  
+	from (select * from member) a, ticketing b, 
+    (select playing_movie_idx, playing_movie_date, playing_movie_start, d.movie_idx as "movie_idx", movie_name from (select movie_idx, movie_name from movie) c, playing_movie d where c.movie_idx = d.movie_idx) e,
+    (select theater_idx ,theater_name from theater) f
+	where a.member_idx = b.member_idx and b.playing_movie_idx = e.playing_movie_idx and b.theater_idx = f.theater_idx
+	order by ticketing_idx desc) g)h
+	where rnum >= #{start} and rnum <= #{end}
+	]]>
+	</select>
+	
+	<select id="ticketingListSearch" parameterType="Map" resultType="com.amor.ticketing.model.TicketingListDTO">
+	<![CDATA[
+	select * from 
+	(select rownum as rnum, g.* from (select ticketing_idx, b.member_idx as "member_idx", e.playing_movie_idx as "playing_movie_idx", f.theater_idx as "theater_idx" , a.member_id as "member_id", a.member_name as "member_name", a.member_tel1 as "member_tel1", a.member_tel2 as "member_tel2", e.movie_name as "movie_name", f.theater_name ,ticketing_seat, e.playing_movie_date as "playing_movie_date", e.playing_movie_start as "playing_movie_start", ticketing_reservetime, ticketing_price, ticketing_personnel, ticketing_payment, ticketing_state  
+	from (select * from member) a, ticketing b, 
+    (select playing_movie_idx, playing_movie_date, playing_movie_start, d.movie_idx as "movie_idx", movie_name from (select movie_idx, movie_name from movie) c, playing_movie d where c.movie_idx = d.movie_idx) e,
+    (select theater_idx ,theater_name from theater) f
+	where a.member_idx = b.member_idx and b.playing_movie_idx = e.playing_movie_idx and b.theater_idx = f.theater_idx and and a.member_id like '%${search}%'
+	order by ticketing_idx desc) g)h
+	where rnum >= #{start} and rnum <= #{end}
+	]]>
+	</select>
+	
+	
+	<select id="ticketingListtotalCnt" resultType="Integer" >
+	<![CDATA[
+		select count(*)
+		from (select * from member) a, ticketing b, 
+	    (select playing_movie_idx, playing_movie_date, playing_movie_start, d.movie_idx as "movie_idx", movie_name from (select movie_idx, movie_name from movie) c, playing_movie d where c.movie_idx = d.movie_idx) e,
+	    (select theater_idx ,theater_name from theater) f
+		where a.member_idx = b.member_idx and b.playing_movie_idx = e.playing_movie_idx and b.theater_idx = f.theater_idx
+		order by ticketing_idx desc
+	]]>
+	</select>
+	
+	<select id="ticketingListSearchtotalCnt" resultType="Integer" parameterType="String">
+	<![CDATA[
+		select count(*)
+		from (select * from member) a, ticketing b, 
+	    (select playing_movie_idx, playing_movie_date, playing_movie_start, d.movie_idx as "movie_idx", movie_name from (select movie_idx, movie_name from movie) c, playing_movie d where c.movie_idx = d.movie_idx) e,
+	    (select theater_idx ,theater_name from theater) f
+		where a.member_idx = b.member_idx and b.playing_movie_idx = e.playing_movie_idx and b.theater_idx = f.theater_idx and a.member_id like '%${search}%'
+		order by ticketing_idx desc
+	]]>
+	</select>
+	
+	<update id="ticketingstateChange" parameterType="com.amor.ticketing.model.TicketingListDTO">
+		update ticketing set ticketing_state = #{ticketing_state} where ticketing_idx = #{ticketing_idx} 
+	</update>
+	
+	
+	
 	<select id="ticketingPaying" parameterType="Map" resultType="com.amor.ticketing.model.TicketingPayingJoinDTO">
 		select 
 			a.movie_poster, a.movie_name, 

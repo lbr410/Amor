@@ -23,7 +23,7 @@
 			</div>
 			<div class="submenu" id="submenu-1"> 
 				<div class="menutext" ><a href="/amor/admin/member/memberList.do" data-submenu="submenu-1">회원 조회</a></div>
-				<div class="menutext"><a href="#">회원 예매 목록</a></div>
+				<div class="menutext"><a href="/amor/admin/ticketing/ticketingList.do">회원 예매 목록</a></div>
 			</div>
 			
 			<div class="menu" onclick="toggleSubmenu(this)">
