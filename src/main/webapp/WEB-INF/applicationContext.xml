@@ -65,6 +65,9 @@
 		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
 	</bean>
 	<bean id="adsDao" class="com.amor.ads.model.AdsDAOImple">
+    <constructor-arg ref="sqlSessionTemplate"></constructor-arg>
+	</bean>
+	<bean id="inventoryDao" class="com.amor.inventory.model.InventoryDAOImple">
 		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
 	</bean>
 
@@ -113,5 +116,8 @@
 	</bean>
 	<bean id="adsService" class="com.amor.ads.service.AdsServiceImple">
 		<constructor-arg ref="adsDao"></constructor-arg>
+  </bean>
+	<bean id="inventoryService" class="com.amor.inventory.service.InventoryServiceImple">
+		<constructor-arg ref="inventoryDao"></constructor-arg>
 	</bean>
 </beans>

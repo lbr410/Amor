@@ -78,12 +78,6 @@ public class ReviewListController {
 		ModelAndView mav=new ModelAndView();
 		MovieReviewDTO dto=new MovieReviewDTO();
 		int result=movieReviewService.adminReviewBlockUpdate(idx,value);
-		
-		if(value.equals("y")) {
-			dto.setMember_block("y");
-		}else if(value.equals("n")) {
-			dto.setMember_block("n");
-		}
 		mav.setViewName("/admin/review/reviewList");
 		
 		return mav;

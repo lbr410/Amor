@@ -50,12 +50,7 @@ public class MemberListController {
 		MemberDTO dto=new MemberDTO();
 		int result=memberService.memberListBlock(idx, value);
 		
-		if(value.equals("y")) {
-			dto.setMember_block("y");
-		}else if(value.equals("n")) {
-			dto.setMember_block("n");
-		}
-		
+		mav.setViewName("/admin/member/memberList");
 		return mav;
 	}
 	

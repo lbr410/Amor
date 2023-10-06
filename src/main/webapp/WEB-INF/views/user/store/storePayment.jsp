@@ -7,9 +7,7 @@
 <title>아모르 : 스토어 결제</title>
 <link rel="stylesheet" href="/amor/resources/css/user/storePayment.css">
 </head>
-<!--
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
- <script src="/amor/resources/js/kakaopay.js"></script> -->
+
 <body>
 <%@include file="../header.jsp" %>
 
@@ -42,7 +40,7 @@
 					<div class="payDiv2"><p class="d1">결제금액</p><p class="d2">${dto.product_price2 }원</p></div>
 					<div class="payDiv3">
 					<input type="submit" class="submitBtn" id="submitBtn" disabled="disabled" value="결제하기">
-					<!-- <button class="submitBtn" id="submitBtn" disabled="disabled"> 결제하기</button> --></div>
+					</div>
 				</div>
 			</div>
 </form>

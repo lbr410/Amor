@@ -94,8 +94,8 @@
 				<div class="menutext"><a href="#" data-submenu="submenu-10">스토어</a></div>
 			</div>
 			<div class="submenu" id="submenu-10"> 
-				<div class="menutext"><a href="#">재고 목록</a></div>
-				<div class="menutext"><a href="#">재고 등록</a></div>
+				<div class="menutext"><a href="/amor/admin/inventory/inventoryList.do">재고 목록</a></div>
+				<div class="menutext"><a href="/amor/admin/inventory/inventoryWrite.do">재고 등록</a></div>
 				<div class="menutext"><a href="/amor/admin/product/productList.do">판매상품 목록</a></div>
 				<div class="menutext"><a href="/amor/admin/product/productAdd.do">판매상품 등록</a></div>
 				<div class="menutext"><a href="/amor/admin/store/storeList.do">결제내역 관리</a></div>

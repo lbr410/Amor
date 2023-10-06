@@ -6,18 +6,31 @@
 <select id="inventoryList" resultType="com.amor.inventory.model.InventoryDTO" parameterType="Map">
 	select * from
 	(select rownum as rnum, a.* from
-	(select * from member order by inventory_idx desc) a)
+	(select * from inventory order by inventory_idx desc) a)
 	where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}
+</select>
+
+<select id="inventoryTotalCnt" resultType="Integer">
+	select count(*) from inventory
 </select>
 
 <insert id="inventoryAdd" parameterType="com.amor.inventory.model.InventoryDTO">
 	insert into inventory values(
-	inventory_idx.nextval, #{inventory_category}, #{inventory_num}, #{inventory_name}, #{inventory_unit}, #{inventory_optimal},0,0)
+	inventory_idx.nextval, #{inventory_category}, #{inventory_num}, #{inventory_brand} #{inventory_name}, #{inventory_unit}, #{inventory_optimal},0,0)
 </insert>
+
+<select id="inventoryUpdateForm" parameterType="Integer" resultType="com.amor.inventory.model.InventoryDTO">
+	select * from inventory
+	where inventory_idx=#{idx}
+</select>
 <update id="inventoryUpdate" parameterType="com.amor.inventory.model.InventoryDTO">
-    UPDATE inventory 
-    SET inventory_current = #{inventory_current}, 
-        difference = (#{inventory_current} - inventory_optimal)
-    WHERE inventory_id = #{inventory_id}
+    update inventory 
+    set inventory_current = #{inventory_current}, 
+        inventory_deviation = (inventory_optimal - #{inventory_current})
+    where inventory_idx = #{inventory_idx}
 </update>
+
+<delete id="inventoryDelete" parameterType="Integer">
+	delete from inventory where inventory_idx=#{idx}
+</delete>
 </mapper>

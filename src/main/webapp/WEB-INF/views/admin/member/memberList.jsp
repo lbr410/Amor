@@ -16,8 +16,10 @@ function memberSearch() {
 	location.href='memberSearch.do?search='+search;
 }
 function block(idx) {
-	value=document.getElementById('blockId').value;
-	let param='idx='+idx+'&value='+value;	
+	blockTag=document.getElementsByName('member_block'+idx)[0];
+	block_value=blockTag.value;
+	
+	let param='idx='+idx+'&value='+block_value;	
 	sendRequest('memberListBlock.do',param,null,'GET');	
 }
 
@@ -77,7 +79,7 @@ function block(idx) {
 			<td>${dto.member_email }</td>
 			<td>[${dto.member_zip }] ${dto.member_addr1 } ${dto.member_addr2 } </td>
 			<td class="nyTd">
-				<select name="member_block" class="selectBox" id="blockId" onchange="block(${dto.member_idx})">
+				<select name="member_block${dto.member_idx }" class="selectBox" id="blockId" onchange="block(${dto.member_idx})">
 					<option value="n" <c:if test="${dto.member_block=='n'}">selected</c:if>>N</option>
 					<option value="y" <c:if test="${dto.member_block=='y'}">selected</c:if>>Y</option>
 				</select>			

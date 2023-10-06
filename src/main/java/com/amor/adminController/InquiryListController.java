@@ -45,6 +45,7 @@ public class InquiryListController {
 		}
 		return mav;
 	}
+	
 	//사용자 block
 	public ModelAndView inquiryBlock(
 			@RequestParam(value="inquiry_idx", defaultValue = "0")int inquiry_idx,
@@ -61,6 +62,7 @@ public class InquiryListController {
 		return mav;
 		
 	}
+	
 	//관리자 1:1문의 내용으로 이동
 	@RequestMapping("admin/inquiry/inquiryContent.do")
 	public ModelAndView inquiriyContentForm(
@@ -73,6 +75,7 @@ public class InquiryListController {
 
 		return mav;
 	}
+	
 	//관리자 답변 등록
 	@RequestMapping(value="admin/inquiry/inquiryContent.do", method = RequestMethod.POST)
 	public ModelAndView inquiryAnswer(

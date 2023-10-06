@@ -135,9 +135,10 @@ public class StoreController {
 
 		String sid=(String)session.getAttribute("sid");
 		int sidx=(Integer)session.getAttribute("sidx");
+		int totalPriceInt=Integer.parseInt(totalPrice);
 		
-		//int resut=storePaymentService.storePayInert(sidx, product_idx, dbnum,)
-		
+		int result=storePaymentService.storePayInert(product_idx, sidx, dbnum,totalPriceInt);
+		System.out.println(result);
 		
         
         System.out.println("ok pdidx: "+product_idx);
@@ -148,6 +149,26 @@ public class StoreController {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("store", kaka.kakaoPayInfo(pg_token, kdto));
 		mav.setViewName("/user/store/storeDetail");
+		return mav;
+	}
+	
+	
+	@RequestMapping("store/kakaoCancel.do")
+	public ModelAndView storeCancel() {
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("msg", "결제가 취소되었습니다.");
+		mav.addObject("goUrl", "/amor/store.do");
+		mav.setViewName("/user/msg/userMsg");
+		return mav;
+	}
+	
+	@RequestMapping("store/kakaoFail.do")
+	public ModelAndView storeFail() {
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("msg", "결제가 실패하였습니다.");
+		mav.addObject("goUrl", "/amor/index.do");
+		mav.setViewName("/user/msg/userMsg");
 		return mav;
 	}
 	

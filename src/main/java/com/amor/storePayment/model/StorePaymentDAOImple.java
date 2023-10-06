@@ -112,8 +112,8 @@ public class StorePaymentDAOImple implements StorePaymentDAO {
 	}
 	
 	@Override
-	public int storePayInert(StorePaymentDTO dto) {
-		int result=sqlmap.insert("storePayInsert", dto);
+	public int storePayInert(Map map) {
+		int result=sqlmap.insert("storePayInsert", map);
 		return result;
 	}
 	
