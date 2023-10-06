@@ -14,15 +14,26 @@
   width: 1100px;
   margin: 0 auto;
   position: relative;
-  height: 8000px;
+  padding-top: 200px;
 }
 .gray-section{
    width: 100%;
    height: 350px;
    background: #F8F8F8;
-   margin-bottom: 64px;
-   position: absolute;
+   margin-bottom: 900px; /**작업하는 영역 조절은 여기서*/
 }
+.mypagetitle .title1{
+	color: #000;
+	font-size: 20px;
+	font-weight: 500;
+	cursor: pointer;
+}  
+.mypagetitle .title2{
+	color:#979797;
+	font-size: 20px;
+	font-weight: 500;
+	cursor: pointer;
+} 
 
 .reviewTable {
 	margin: 50px auto;
@@ -377,7 +388,7 @@ table tfoot tr {
 
 </div>
 </div>
-<%@include file="../footer.jsp" %>
+
 <script type="text/javascript">
 
 	function drawStar(target, aaa) {
@@ -399,4 +410,5 @@ table tfoot tr {
 	}
 </script>
 </body>
+<%@include file="../footer.jsp" %>
 </html>

@@ -37,7 +37,7 @@ function showResult() {
 			if (movieEndHH < 10) {
 				movieEndHH = '0'+movieEndHH;
 			}
-			
+
 			document.getElementById('movieEnd').value = movieEndHH+':'+movieEndMM+':'+'00';
 			
 		}

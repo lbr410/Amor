@@ -29,7 +29,7 @@ public class TicketingPaymentController {
 	@Autowired
 	private TicketingService ticketingService;
 
-	@RequestMapping(value = "ticketing/ticketingPayment.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ticketing/ticketingPayment.do", method = RequestMethod.POST)
 	public ModelAndView ticketingPayment(
 			@RequestParam("movie_idx") int movie_idx,
 			@RequestParam("theater_idx") int theater_idx,
@@ -90,7 +90,7 @@ public class TicketingPaymentController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "ticketing/ticketingPayment.do", method = RequestMethod.POST)
+	@RequestMapping(value = "ticketing/ticketingPayment.do", method = RequestMethod.GET)
 	public ModelAndView ticketingPayment (
 			HttpSession session,
 			@RequestParam("ticketing_personnel") String ticketing_personnel,
