@@ -69,29 +69,6 @@ public class InquiryDAOImple implements InquiryDAO {
 		return result;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@Override
 	public List<InquiryDTO> adminMainInquiryList() {
 		List<InquiryDTO> lists = sqlmap.selectList("adminMainInquiryList");
