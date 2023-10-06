@@ -179,7 +179,7 @@ document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+wee
 		if (weekday == wday){
 			document.getElementById('weekp'+i).innerHTML = '(오늘)';
 		}else{
-			wday = (wday > 6)? wday-7 : wday;
+			wday = (wday % 7);
 			document.getElementById('weekp'+i).innerHTML = week[wday];
 		}
 		
@@ -252,27 +252,12 @@ document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+wee
 						//movieTimeLists.length
 						for(var i = 0 ; i < movieTimeLists.length; i++){
 							let fYMD = ''+movieTimeLists[i].playing_movie_date+'';
-							let vsYearAndMonthAndDate = ''+fYMD.substring(0,4)+''+fYMD.substring(5,7)+''+fYMD.substring(8,10)+'';
-							//window.alert(vsYearAndMonthAndDate);
-							let time = ''+movieTimeLists[i].playing_movie_start+'';
-							let vsHHMM_s = ''+time.substring(11,13)+time.substring(14,16);
-							let vsHHMM = parseInt(vsHHMM_s);
 							
-							//오늘 일때
-							if(vsYearAndMonthAndDate == cYMD){
-								//현재 시간 > 상영 영화 시간 
-								if(cHHMM > vsHHMM){
-									 continue;
-								}else{
-									let timeHHandMM = time.substring(11,16);
-									msg += '<div class="sTimeC" onclick="selectresult('+movieTimeLists[i].playing_movie_idx+','+movieTimeLists[i].theater_idx+','+movieTimeLists[i].movie_idx+')"><div><a href="#" class="cursorblack">'+ timeHHandMM +'</a></div><div class="sTimeC_2line"><a href="#" class="cursorblack">'+ (movieTimeLists[i].playing_movie_remain_seats)+'/'+ movieTimeLists[i].theater_totalseat +'&nbsp;&nbsp;'+movieTimeLists[i].theater_name+'</a></div></div>';
-									
-								}
-							}else{
-								let timeHHandMM = time.substring(11,16);
-								msg += '<div class="sTimeC" onclick="selectresult('+movieTimeLists[i].playing_movie_idx+','+movieTimeLists[i].theater_idx+','+movieTimeLists[i].movie_idx+')"><div><a href="#" class="cursorblack">'+ timeHHandMM +'</a></div><div class="sTimeC_2line"><a href="#" class="cursorblack">'+ (movieTimeLists[i].playing_movie_remain_seats)+'/'+ movieTimeLists[i].theater_totalseat +'&nbsp;&nbsp;'+movieTimeLists[i].theater_name+'</a></div></div>';
-								
-							}
+							let time = ''+movieTimeLists[i].playing_movie_start+'';
+							let timeHHandMM = time.substring(11,16);
+							
+							msg += '<div class="sTimeC" onclick="selectresult('+movieTimeLists[i].playing_movie_idx+','+movieTimeLists[i].theater_idx+','+movieTimeLists[i].movie_idx+')"><div><a href="#" class="cursorblack">'+ timeHHandMM +'</a></div><div class="sTimeC_2line"><a href="#" class="cursorblack">'+ (movieTimeLists[i].playing_movie_remain_seats)+'/'+ movieTimeLists[i].theater_totalseat +'&nbsp;&nbsp;'+movieTimeLists[i].theater_name+'</a></div></div>';
+							
 						}
 					}
 				}

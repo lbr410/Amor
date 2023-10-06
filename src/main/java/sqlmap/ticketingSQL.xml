@@ -129,7 +129,7 @@ where ticketing_idx = #{ticketidx}
 		c.theater_totalseat as "theater_totalseat" 
 		from (select movie_idx, movie_name from movie where movie_name = #{movie_name} )a, 
 			playing_movie b, (select theater_idx, theater_name, theater_totalseat from theater) c 
-		where a.movie_idx = b.movie_idx and c.theater_idx = b.theater_idx and b.playing_movie_date = #{sumdate}
+		where a.movie_idx = b.movie_idx and c.theater_idx = b.theater_idx and b.playing_movie_date = #{sumdate} and  b.playing_movie_start > sysdate
 		order by playing_movie_start
 	]]>
 	</select>
@@ -141,7 +141,7 @@ where ticketing_idx = #{ticketidx}
 		b.playing_movie_start as "playing_movie_start", b.playing_movie_remain_seats as "playing_movie_remain_seats", 
 		c.theater_totalseat as "theater_totalseat"
 		from movie a, playing_movie b, (select theater_idx, theater_name, theater_totalseat from theater) c 
-		where a.movie_idx = b.movie_idx and c.theater_idx = b.theater_idx and b.playing_movie_date = #{sumdate}
+		where a.movie_idx = b.movie_idx and c.theater_idx = b.theater_idx and b.playing_movie_date = #{sumdate} and  b.playing_movie_start > sysdate
 		order by movie_name asc, playing_movie_start asc
 	
 	]]>
