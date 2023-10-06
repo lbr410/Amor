@@ -180,10 +180,10 @@
 						<td>${inquiry.inquiry_idx}</td>
 						<td>${inquiry.inquiry_subject}</td>
 						<td>${inquiry.inquiry_writedate}</td>
-						<c:if test="${inquiry.inquiry_answer eq 'n'}">
+						<c:if test="${inquiry.inquiry_astatus eq 'n'}">
 							<td><label class="answerWait">답변대기</label></td>
 						</c:if>
-						<c:if test="${inquiry.inquiry_answer eq 'y'}">
+						<c:if test="${inquiry.inquiry_astatus eq 'y'}">
 							<td><label class="answerComplete">답변완료</label></td>
 						</c:if>
 					</tr>
