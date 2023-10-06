@@ -21,15 +21,15 @@
 	<tbody>
 		<tr>
 			<th>상품명</th>
-			<td>콜라</td>
+			<td>${store.item_name }</td>
 			<th>결제일자</th>
-			<td>2023.09.12 10:12:12</td>
+			<td>${store.approved_at }</td>
 		</tr>
 		<tr>
 			<th>결제수단</th>
 			<td>카카오페이</td>
 			<th>결제금액</th>
-			<td>300,000원</td>
+			<td>${store.amount.total }</td>
 		</tr>
 	</tbody>
 	</table>
