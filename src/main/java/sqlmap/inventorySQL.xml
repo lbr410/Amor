@@ -3,5 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amor.inventorySQL">
+<select id="inventoryList" resultType="com.amor.inventory.model.InventoryDTO" parameterType="Map">
+	select * from
+	(select rownum as rnum, a.* from
+	(select * from member order by inventory_idx desc) a)
+	where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}
+</select>
 
+<insert id="inventoryAdd" parameterType="com.amor.inventory.model.InventoryDTO">
+	insert into inventory values(
+	inventory_idx.nextval, #{inventory_category}, #{inventory_num}, #{inventory_name}, #{inventory_unit}, #{inventory_optimal},0,0)
+</insert>
+<update id="inventoryUpdate" parameterType="com.amor.inventory.model.InventoryDTO">
+    UPDATE inventory 
+    SET inventory_current = #{inventory_current}, 
+        difference = (#{inventory_current} - inventory_optimal)
+    WHERE inventory_id = #{inventory_id}
+</update>
 </mapper>

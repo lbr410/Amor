@@ -33,17 +33,16 @@ public class InquiryListController {
 		String pageStr=com.amor.page.PageModule.makePage("/amor/admin/inquiry/inquiryList.do", totalCnt, listSize, pageSize, cp);
 	
 		ModelAndView mav=new ModelAndView();
-//		if(session.getAttribute("date")==null) {
-//			mav.addObject("msg", "로그인 후 이용가능합니다.");
-//			mav.addObject("href", "/amor/admin/adminLogin.do");
-//			mav.setViewName("/admin/msg/adminMsg");
-//		}else {
+		if(session.getAttribute("data")==null) {
+			mav.addObject("msg", "로그인 후 이용가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");
+		}else {
 			List<InquiryJoinDTO> lists=inquiryService.adminInquiryList(cp, listSize);
-			
 			mav.addObject("pageStr", pageStr);
 			mav.addObject("lists", lists);
 			mav.setViewName("/admin/inquiry/inquiryList");
-//		}
+		}
 		return mav;
 	}
 	//사용자 block

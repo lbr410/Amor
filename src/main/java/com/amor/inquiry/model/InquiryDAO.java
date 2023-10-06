@@ -11,14 +11,5 @@ public interface InquiryDAO {
 	public int inquiryTotalCnt();
 	public InquiryJoinDTO inquiryContent(int idx);
 	public int inquiryAnswer(InquiryJoinDTO dto);
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public List<InquiryDTO> adminMainInquiryList();
 }

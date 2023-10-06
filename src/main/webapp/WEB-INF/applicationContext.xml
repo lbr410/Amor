@@ -102,5 +102,4 @@
 	<bean id="dualService" class="com.amor.dual.service.DualServiceImple">
 		<constructor-arg ref="dualDao"></constructor-arg>
 	</bean>
-	
 </beans>

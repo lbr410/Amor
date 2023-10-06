@@ -26,34 +26,46 @@
 	<table class="commonTable">
 	<thead>
 		<tr>
-			<th class="tableNum">번호</th>
-			<th class="tableImg">이미지</th>
-			<th class="tableTitle">상품명</th>
-			<th class="tableContent">상세보기</th>
-			<th class="tableCategory">현재 재고량</th>
-			<th class="tablePrice">제품 단가</th>
-			<th class="tableSoldout">품절여부</th>
-			<th class="tableBtn"></th>
+			<th>번호</th>
+			<th>카테고리</th>
+			<th>품명</th>
+			<th>품번</th>
+			<th>브랜드</th>
+			<th>단위</th>
+			<th>적정재고량</th>
+			<th>현재고량</th>
+			<th>차이</th>
 		</tr>
 	</thead>
+	<tfoot>
+		<tr>
+			<td colspan="9" align="center">
+			<c:if test="${!empty lists }"><div class="paging">${pageStr }</div></c:if>
+		</tr>
+	</tfoot>
 	<tbody>
 	<c:if test="${empty lists}">
 		<tr>
-			<td colspan="8" align="center">등록된 상품이 없습니다.</td>
+			<td colspan="9" align="center">등록된 재고상품이 없습니다.</td>
 		</tr>
 	</c:if>
 	<c:forEach var="dto" items="${lists}">
 		<tr>
-			<td class="tableNum"><span id="idx${dto.inventory_idx}">${dto.product_idx}</span></td>
-			<td class="tableImg">
-				<img src="/amor/resources/upload/inventory/${dto.inventory_img}" class="invenImg" alt="상품 이미지">
+			<td><span>${dto.inventory_idx}</span></td>
+			<td>
+				${dto.inventory_category }
 			</td>
-			<td class="tableTitle">${dto.inventory_title}</td>
-			<td class="tableContent">
-				<a href="javascript: productPopUp(${dto.inventory_idx})">상세내용 보기</a>
-			</td>
-			<td class="tablePrice">${dto.product_price}</td>
-			<td class="tableSoldout">
+			<td>${dto.inventory_name}</td>
+			<td>${dto.inventory_num }</td>
+			<td>${dto.inventory_brand}</td>
+			<td>${dto.inventory_unit }</td>
+			<td>${dto.inventory_optimal }</td>
+			<td>
+				<c:if test="${!empty dto.inventory_current }">
+				<input type="button" class="smallBtn" value="입력">
+				</c:if> ${dto.inventory_current }</td>
+			<td>${dto.inventory_deviation }</td>
+			<td>
 				<select name="product_soldout${dto.product_idx}" class="soldOutSel" onchange="soldOutYN(${dto.product_idx})">
 					<option value="y" <c:if test="${dto.product_soldout eq 'y'}">selected</c:if>>Y</option>
 					<option value="n" <c:if test="${dto.product_soldout eq 'n'}">selected</c:if>>N</option>
