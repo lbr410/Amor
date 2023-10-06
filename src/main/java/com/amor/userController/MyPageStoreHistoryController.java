@@ -21,10 +21,11 @@ public class MyPageStoreHistoryController {
 	
 	@RequestMapping("myAmor/storeHistory.do")
 	public ModelAndView mypageStorePaymentList(HttpSession session) {
-		int useridx = (int)session.getAttribute("sidx");
+		String useridx = (String)session.getAttribute("sidx");
 		ModelAndView mav = new ModelAndView();
-		if(useridx > 0) {
-			List<MyPageStorePaymentDTO> lists = storePaymentService.mypageStorePaymentList(useridx);
+		if(useridx != null) {
+			int uidx = Integer.parseInt(useridx);
+			List<MyPageStorePaymentDTO> lists = storePaymentService.mypageStorePaymentList(uidx);
 			if(lists != null) {
 				mav.addObject("list", lists);
 				mav.setViewName("user/myAmor/storeHistory");

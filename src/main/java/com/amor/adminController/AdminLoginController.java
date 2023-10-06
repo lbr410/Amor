@@ -1,5 +1,8 @@
 package com.amor.adminController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.amor.admin.model.*;
 import com.amor.admin.service.AdminService;
+import com.amor.dual.model.DualDTO;
+import com.amor.dual.service.DualService;
+import com.amor.inquiry.model.InquiryDTO;
+import com.amor.inquiry.service.InquiryService;
 
 @Controller
 public class AdminLoginController {
@@ -22,15 +29,46 @@ public class AdminLoginController {
 	@Autowired
 	private AdminService adminService;
 	
+	@Autowired
+	private DualService dualService;
+	
+	@Autowired
+	private InquiryService inquiryService;
+	
 	@RequestMapping("/admin/adminLogin.do")
-	public String adminLoginSubmit(@CookieValue(value = "autologin", required = false)String autologin,
+	public ModelAndView adminLoginSubmit(@CookieValue(value = "autologin", required = false)String autologin,
 			HttpSession session) {
 		String id = (String)session.getAttribute("data");
+		ModelAndView mav = new ModelAndView();
+
 		if(autologin != null && id != null) {
-			return "admin/adminIndex";
-		}else {			
-			return "admin/adminLogin";
+			List<DualDTO> chartData = dualService.chartData();
+			List<DualDTO> tableData = dualService.threeTableResult(); // 3개의 테이블(member, movie, notice)의 결과
+			List<DualDTO> memberResult = new ArrayList<DualDTO>();
+			List<DualDTO> movieResult = new ArrayList<DualDTO>();
+			List<DualDTO> noticeResult = new ArrayList<DualDTO>();
+			for(int i=0; i<tableData.size(); i++) {
+				if(tableData.get(i).getOrders() == 0) {
+					memberResult.add(tableData.get(i));
+				} else if(tableData.get(i).getOrders() == 1) {
+					movieResult.add(tableData.get(i));
+				} else if(tableData.get(i).getOrders() == 2) {
+					noticeResult.add(tableData.get(i));
+				}
+			}
+			List<InquiryDTO> inquiryResult = inquiryService.adminMainInquiryList(); 
+			
+			mav.addObject("chartData", chartData);
+			mav.addObject("memberResult", memberResult);
+			mav.addObject("movieResult", movieResult);
+			mav.addObject("noticeResult", noticeResult);
+			mav.addObject("inquiryResult", inquiryResult);
+			mav.setViewName("admin/adminIndex");
+			
+		}else {
+			mav.setViewName("admin/adminLogin");
 		}
+		return mav;
 	}
 	
 	@RequestMapping("/admin/adminMain.do")
@@ -38,8 +76,6 @@ public class AdminLoginController {
 			@RequestParam(value = "id_remember",defaultValue = "off")String check1,
 			@RequestParam(value = "autoLogin",defaultValue = "off")String check2,
 			HttpServletResponse resp, HttpSession session) {
-		System.out.println(check1);
-		System.out.println(check2);
 		ModelAndView mav = new ModelAndView();
 		Boolean result = adminService.adminLogin(dto);
 		if(result == true) {
