@@ -241,7 +241,7 @@
     <c:if test="${temp.timelimit == 'y'}">
     	<c:url var="cancellticket" value="cancellation.do">
 			<c:param name="ticketingidx">${temp.ticketingidx}</c:param>    
-			<c:param name="timelimit">${temp.timelimit}</c:param>    		
+			<c:param name="playingMovieidx">${temp.playingMovieidx}</c:param>    		
 		</c:url>
     	<a href = "${cancellticket}"><input type = "button" value = "예매 취소" class = "button"></a>
   	</c:if>

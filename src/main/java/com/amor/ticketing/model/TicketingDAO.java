@@ -4,15 +4,17 @@ import java.util.List;
 import java.util.Map;
 
 import com.amor.movie.model.MovieDTO;
+import com.amor.playingMovie.model.PlayingMovieDTO;
 
 import java.sql.*;
 
 public interface TicketingDAO {
 	
 	public List<JoinTicketingHistoryDTO> ticketingList(int useridx);
-	//public List<Map<String, Object>> ticketingList(int useridx);
+	public java.util.Date checkDate(int ticketidx);
 	public int cancellationTicket(int ticketidx);
 	public List<JoinTicketingHistoryDTO> getcancellList(int useridx);
+	public PlayingMovieDTO getPlayingMovie(int playingMovieidx);
 	
 	public List<TicketingSelectMovieDTO> ticketingPlayingMovieList();
 	public List<TicketingSelectMovieDTO> ticketingPlayingMovieTimeList(Map map);

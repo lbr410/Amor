@@ -3,6 +3,7 @@ package com.amor.ticketing.service;
 import java.util.List;
 import java.util.Map;
 
+import com.amor.playingMovie.model.PlayingMovieDTO;
 import com.amor.ticketing.model.JoinTicketingHistoryDTO;
 import com.amor.ticketing.model.TicketingDTO;
 import com.amor.ticketing.model.TicketingListDTO;
@@ -13,8 +14,9 @@ public interface TicketingService {
 
 	public List<JoinTicketingHistoryDTO> getReserveList(int useridx);
 	//public List<Map<String, Object>> getReserveList(int useridx);
-	public int cancellationTicket(int ticketnum);
-	
+	public int cancellationTicket(int ticketidx);
+	public boolean checkDate(int ticketidx);
+	public PlayingMovieDTO getPlayMovie(int playingMovieidx);
 	public List<JoinTicketingHistoryDTO> getcancellList(int useridx);
 	
 	
