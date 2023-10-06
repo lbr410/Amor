@@ -14,9 +14,10 @@ movie_idx.nextval, #{movie_name}, #{movie_genre}, #{movie_god}, #{movie_actor}, 
 <select id="movieList" parameterType="Map" resultType="com.amor.movie.model.MovieDTO">
 <![CDATA[
 select * from 
-(select rownum as rnum, c.* from (select a.*, b.movie_review_star_avg as "avg_movie_review_star"
+(select rownum as rnum, c.* from (
+select a.*, nvl(b.movie_review_star_avg, 0) as "avg_movie_review_star"
 from movie a
-inner join (
+left join (
     select movie_idx, avg(movie_review_star) as movie_review_star_avg
     from movie_review
     group by movie_idx
@@ -29,9 +30,10 @@ where rnum >= #{start} and rnum <= #{end}
 <select id="movieListSearch" parameterType="Map" resultType="com.amor.movie.model.MovieDTO">
 <![CDATA[
 select * from 
-(select rownum as rnum, c.* from (select a.*, b.movie_review_star_avg as "avg_movie_review_star"
+(select rownum as rnum, c.* from (
+select a.*, nvl(b.movie_review_star_avg, 0) as "avg_movie_review_star"
 from movie a
-inner join (
+left join (
     select movie_idx, avg(movie_review_star) as movie_review_star_avg
     from movie_review
     group by movie_idx
@@ -68,11 +70,26 @@ delete from movie where movie_idx = #{movie_idx}
 </select>
 
 <select id="totalCnt" resultType="Integer" >
-	select count(*) from movie
+	select count(*) from 
+(select a.*, nvl(b.movie_review_star_avg, 0) as "avg_movie_review_star"
+from movie a
+left join (
+    select movie_idx, avg(movie_review_star) as movie_review_star_avg
+    from movie_review
+    group by movie_idx
+) b on a.movie_idx = b.movie_idx
+order by a.movie_idx desc)
 </select>
 
 <select id="totalSearchCnt" resultType="Integer" parameterType="String">
-	select count(*) from movie where movie_name like '%${userSearch}%'
+	select count(*) from (select a.*, nvl(b.movie_review_star_avg, 0) as "avg_movie_review_star"
+from movie a
+left join (
+    select movie_idx, avg(movie_review_star) as movie_review_star_avg
+    from movie_review
+    group by movie_idx
+) b on a.movie_idx = b.movie_idx
+order by a.movie_idx desc) where movie_name like '%${userSearch}%'
 </select>
 
 <update id="stateChange" parameterType="com.amor.movie.model.MovieDTO">
