@@ -232,5 +232,6 @@ public class StorePaymentServiceImple implements StorePaymentService {
 		int result=storePaymentDao.storePayInert(dto);
 		return result;
 	}
+
 	
 }

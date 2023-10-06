@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.amor.product.model.ProductDAO;
 import com.amor.product.model.ProductDTO;
+import com.amor.storePayment.model.StorePaymentDTO;
 
 public class ProductServiceImple implements ProductService {
 	
@@ -157,6 +158,16 @@ public class ProductServiceImple implements ProductService {
 		ProductDTO dto=productDao.storePayForm(idx);	
 		String product_price2=df.format(dto.getProduct_price()*num);
 		dto.setProduct_price2(product_price2);
+		return dto;
+	}
+	
+	@Override
+	public ProductDTO storeKakao(int idx, int num) {
+		ProductDTO dto=productDao.storeKakao(idx);
+		DecimalFormat df=new DecimalFormat("#,##0");
+		String product_price2=df.format(dto.getProduct_price()*num);
+		dto.setProduct_price2(product_price2);
+		dto.setTotalnum(num);
 		return dto;
 	}
 }

@@ -18,4 +18,5 @@ public interface ProductDAO {
 	public List<ProductDTO> storeSnackList();
 	public ProductDTO storeContent(int idx);
 	public ProductDTO storePayForm(int idx);
+	public ProductDTO storeKakao(int idx);
 }

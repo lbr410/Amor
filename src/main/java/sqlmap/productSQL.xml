@@ -91,4 +91,9 @@
 	<select id="storePay" parameterType="Integer" resultType="com.amor.product.model.ProductDTO">
 		select * from product where product_idx=#{idx}
 	</select>
+	
+	<select id="storeKakao" parameterType="Integer" resultType="com.amor.product.model.ProductDTO">
+		select * from product
+		where product_idx=#{idx}
+	</select>
 </mapper>

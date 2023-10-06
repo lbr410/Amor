@@ -5,6 +5,7 @@ import java.util.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.amor.product.model.ProductDTO;
+import com.amor.storePayment.model.StorePaymentDTO;
 
 public interface ProductService {
 	public List<ProductDTO> productList(int cp, int listSize);
@@ -22,4 +23,5 @@ public interface ProductService {
 	public List<ProductDTO> storeSnackList();
 	public ProductDTO storeContent(int idx);
 	public ProductDTO storePayForm(int idx, int num);
+	public ProductDTO storeKakao(int idx , int num);
 }

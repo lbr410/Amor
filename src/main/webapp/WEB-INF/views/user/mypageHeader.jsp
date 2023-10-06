@@ -15,7 +15,6 @@
 	background: #FFF;
 	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	margin: 0 auto;
-	margin-top: 210px;
 }
 .mypageDiv hr{
 	width: 970px;
@@ -48,16 +47,16 @@
 	line-height: normal;
 }
 .titleNameDiv{
-	display: inline-block;
 	width: 920px;
+	display: inline-block;
 }
 .usertitle .useredit{
 	color: #000;
+	font-family: Inter;
 	font-size: 14px;
 	font-style: normal;
 	font-weight: 500;
 	line-height: normal;
-	
 }
 .pagemenu{
 	display: flex;
@@ -67,6 +66,7 @@
 	align-items: center;
 	gap: 28px;
 	flex-shrink: 0;
+	cursor: pointer;
 }
 .pagemenu button:hover{
 	display: flex;
@@ -87,6 +87,7 @@
 	font-weight: 500;
 	line-height: normal;
 	letter-spacing: 1.9px;
+	cursor: pointer;
 }
 .pagemenu button{
 	display: flex;
@@ -107,6 +108,7 @@
 	font-weight: 500;
 	line-height: normal;
 	letter-spacing: 1.9px;
+	cursor: pointer;
 }
 .mypagetitle{
 	display: flex;
@@ -125,16 +127,17 @@
 	margin: 0 auto;
 	border-bottom: 2px solid #EDEDED;
 }
-
-.mybtn{
-	cursor: pointer;
-}
+ 
 /* 클릭한 버튼 및 레이블 스타일 */
 .pagemenu button.active,
 .mypagetitle label.active-label {
     background: #1A2C82;
     color: #FFF;
     border: 1px solid #1A2C82;
+    cursor: pointer;
+}
+.mybtn{
+	cursor: pointer;
 }
 a:visited{
 	color:#181818;
