@@ -26,8 +26,8 @@ public class TicketingDAOImple implements TicketingDAO {
 	}
 	
 	@Override
-	public int cancellationTicket(String ticketnum) {
-		int result = sqlmap.update("cancellationTicket",ticketnum);
+	public int cancellationTicket(int ticketidx) {
+		int result = sqlmap.update("cancellationTicket",ticketidx);
 		System.out.println("updateResult="+result);
 		return result;
 	}
@@ -37,22 +37,7 @@ public class TicketingDAOImple implements TicketingDAO {
 		List<JoinTicketingHistoryDTO> lists = sqlmap.selectList("ticketingcancellList", useridx);
 		return lists;
 	}
-	
-//	@Override
-//	public List<Map<String, Object>> ticketingList(int useridx) {
-//		List<Map<String, Object>> lists = sqlmap.selectList("ticketingHistoryList", useridx);
-//		System.out.println(lists.size());
-//		return lists;
-//	}
-
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	@Override
 	public int allMovie(Map map) {
 		int result = sqlmap.selectOne("allMovie", map);

@@ -96,7 +96,7 @@ checkboxes.forEach(checkbox => {
 		
 		let inputData = setData;
 				
-			const jsonData = JSON.stringify(inputData);			
+			let jsonData = JSON.stringify(inputData);			
 
 			console.log(jsonData);
 		
@@ -275,18 +275,20 @@ checkboxes.forEach(checkbox => {
 				
 				let firstHideNum = document.getElementsByName(datarowblock[0]);
 				let lastHideNum = document.getElementsByName(datacolblock[0]);
-
+				
+				let count = 0;
+				
 				for(let i = 0 ; i < box.length; i++){
-				let firstblock = box[i].value.slice(0,datarowblock[0].length) == datarowblock[0];
+				let firstblock = box[count].value.slice(0,datarowblock[0].length) == datarowblock[0];
 				console.log(firstblock);
-				let lastblock = box[i].value.slice(0,datacolblock[0].length) == datacolblock[0];				
+				let lastblock = box[count].value.slice(0,datacolblock[0].length) == datacolblock[0];				
 				console.log(lastblock);
 				if(firstblock || lastblock){
 						
-						box[i].checked = false;
-						box[i].value = 0;           
-						box[i].disabled = true;
-						
+						box[count].checked = false;
+						box[count].value = 0;           
+						box[count].disabled = true;
+						count++;
 						
 						
 						for(let j = 0 ; j < firstHideNum.length; j++){
@@ -319,7 +321,6 @@ checkboxes.forEach(checkbox => {
 							box[j].checked = false;
 							box[j].value = 0;
 							box[j].disabled = true;
-							
 						}
 						}
 					}	

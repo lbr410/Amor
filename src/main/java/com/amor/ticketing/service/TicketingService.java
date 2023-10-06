@@ -13,7 +13,7 @@ public interface TicketingService {
 
 	public List<JoinTicketingHistoryDTO> getReserveList(int useridx);
 	//public List<Map<String, Object>> getReserveList(int useridx);
-	public int cancellationTicket(String ticketnum);
+	public int cancellationTicket(int ticketnum);
 	
 	public List<JoinTicketingHistoryDTO> getcancellList(int useridx);
 	

@@ -25,13 +25,16 @@
 	margin-left:50px;
 	margin-top:50px;
 }
+.title1{
+border: 3px solid black;
+}
 </style>
 <body>
 <%@include file="../header.jsp" %>
 <div class="gray-section">
 	<div class="body-inner">
 <%@include file="../mypageHeader.jsp" %>
-<div class="mypagetitle"><a href = "/amor/myAmor/storePayment.do"><label class="title1">상품 내역</label></a> <a href="/amor/myAmor/storeCancellList.do"><label class="title2">취소 내역</label></a></div>
+<div class="mypagetitle"><a href = "/amor/myAmor/storeHistory.do"><label class="title1">상품 내역</label></a> <a href="/amor/myAmor/storeCancellList.do"><label class="title2">취소 내역</label></a></div>
 <!-- 이 밑으로 작업 -->
 <c:if test="${!empty list}">
 <c:forEach var="temp" items="${list}" >

@@ -30,10 +30,10 @@ where a.playing_movie_idx = b.playing_movie_idx and a.movie_idx = c.movie_idx
 ]]>
 </select>
 
-<update id="cancellationTicket" parameterType="String">
+<update id="cancellationTicket" parameterType="Integer">
 update ticketing
 set ticketing_state = 'n'
-where ticketing_num = #{ticketnum}
+where ticketing_idx = #{ticketidx}
 </update>
 
 
