@@ -61,6 +61,9 @@
 	<bean id="dualDao" class="com.amor.dual.model.DualDAOImple">
 		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
 	</bean>
+	<bean id="inventoryDao" class="com.amor.inventory.model.InventoryDAOImple">
+		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
+	</bean>
 
 	<!-- services -->
 	<bean id="movieService" class="com.amor.movie.service.MovieServiceImple" >
@@ -101,5 +104,8 @@
 	</bean>
 	<bean id="dualService" class="com.amor.dual.service.DualServiceImple">
 		<constructor-arg ref="dualDao"></constructor-arg>
+	</bean>
+	<bean id="inventoryService" class="com.amor.inventory.service.InventoryServiceImple">
+		<constructor-arg ref="inventoryDao"></constructor-arg>
 	</bean>
 </beans>
