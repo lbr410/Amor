@@ -198,29 +198,6 @@
 
 </style>
 <script type="text/javascript" src="../../resources/js/httpRequest.js"></script>
-<script>
-function show() {
-	let ticketing_personnel = document.getElementById('').value;
-	let ticketing_price = document.getElementById('').value;
-	let param = 'ticketing_personnel='+ticketing_personnel+'&ticketing_price='+ticketing_price;
-	sendRequest ('ticketingPayment.do',param,showResult,'POST');
-}
-
-function showResult() {
-	if (XHR.status==4) {
-		if (XHR.status==200) {
-			let data = XHR.responseText;
-			let objdata=JSON.parse(data);
-			let qrCode = objdata.next_redirect_pc_url;
-			
-			window.open(qrCode);
-		}
-	}
-	
-}
-
-
-</script>
 <body>
 <%@include file="../header.jsp" %>
 <div class="body-inner">
@@ -229,12 +206,12 @@ function showResult() {
 			<label>예매정보</label><label>결제수단</label><label>결제하기</label>
 		</div>
 		<div class="commonMid">
-		<form id="ticketingPayment" action="ticketingPayDetail">
+		<form id="ticketingPayment" action="ticketingPaymentKako.do" method="post">
 			<div class="content1">
 				<div><img class="ticketingPoster" src="/amor/resources/upload/movie/${movie_poster }.jpg"></div>
-				<div><input class="ticketingInfo3" type="text" value="${movie_name }" readonly></div>
-				<div><input class="ticketingInfo" type="text" value="${playing_movie_start }" readonly></div>
-				<div><input class="ticketingInfo" type="text" value="${theater_name }" readonly></div>
+				<div><input class="ticketingInfo3" type="text" name="movie_name" value="${movie_name }" readonly></div>
+				<div><input class="ticketingInfo" type="text" name="ticketing_screeningtime" value="${playing_movie_start }" readonly></div>
+				<div><input class="ticketingInfo" type="text" name="theater_name" value="${theater_name }" readonly></div>
 				<c:if test="${adultC != 0}">
 				<div>성인 <input class="ticketingInfo2" type="text" value="${adultC }" readonly>명</div>
 				</c:if>
@@ -247,10 +224,9 @@ function showResult() {
 				<c:if test="${disabledC != 0 }">
 				<div>장애인 <input class="ticketingInfo2" type="text" value="${disabledC }" readonly>명</div>
 				</c:if>
-				<div><input class="ticketingInfo4" type="text" value="${playing_movie_seat}" readonly></div>
-				<input type="hidden" value="${playing_movie_idx }">
-				<input type="hidden" value="${theater_idx }">
-				<input type="hidden" value="${sessionScope.sidx }">
+				<div><input class="ticketingInfo4" name="ticketing_seat" type="text" value="${playing_movie_seat}" readonly></div>
+				<input type="hidden" name="playing_movie_idx" value="${playing_movie_idx }">
+				<input type="hidden" name="theater_idx" value="${theater_idx }">
 			</div>
 			
 			<div class="content2">
@@ -269,9 +245,9 @@ function showResult() {
 					</tr>
 					<tr>
 						<td colspan="2" class="ticketingTable4">
-						<input type="hidden" value="${ticketing_price }">
-						<input type="hidden" value="${ticketing_personnel }">
-						<input type="submit" class="ticketingTable5" value="결제하기" onclick="show()">
+						<input type="hidden" name="ticketing_price" value="${ticketing_price }">
+						<input type="hidden" name="ticketing_personnel" value="${ticketing_personnel }">
+						<input type="submit" class="ticketingTable5" value="결제하기">
 						</td>
 					</tr>
 				</table>

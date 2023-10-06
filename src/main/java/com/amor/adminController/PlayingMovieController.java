@@ -55,15 +55,24 @@ public class PlayingMovieController {
 	
 
 	@RequestMapping(value = "admin/playMovie/playingMovieAdd.do", method = RequestMethod.GET)
-	public ModelAndView playingMoiveAddList () {
+	public ModelAndView playingMoiveAddList (
+			@RequestParam HttpSession session
+			) {
 		
 		List<Map> movieLists = playingMovieService.playingMovieAddMovie();
 		List<Map> screenLists = playingMovieService.playingMovieAddScreen();
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("movieLists", movieLists);
-		mav.addObject("screenLists", screenLists);
-		mav.setViewName("/admin/playMovie/playingMovieAdd");
+		
+		if (session.getAttribute("data")==null) {
+			mav.addObject("msg", "로그인 후 이용가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");	
+		} else {
+			mav.addObject("movieLists", movieLists);
+			mav.addObject("screenLists", screenLists);
+			mav.setViewName("/admin/playMovie/playingMovieAdd");
+		}
 		return mav;
 	}
 	
@@ -73,7 +82,8 @@ public class PlayingMovieController {
 			@RequestParam("theater_idx")int theater_idx,
 			@RequestParam("playing_movie_date")String playing_movie_date,
 			@RequestParam("playing_movie_start")String playing_movie_start_s,
-			@RequestParam("playing_movie_end")String playing_movie_end_e) {
+			@RequestParam("playing_movie_end")String playing_movie_end_e
+			) {
 		
 		String playing_movie_start = playing_movie_date+" "+playing_movie_start_s;
 		String playing_movie_end = playing_movie_date+" "+playing_movie_end_e;
