@@ -79,8 +79,10 @@ public class MovieReviewController {
 	      }
 	      
 	    MovieReviewJoinDTO dto = new MovieReviewJoinDTO(movie_idx, ticketing_idx, member_idx, movie_review_star, movie_review_content, saveFileName);
-	    int result = movieReviewService.movieReviewAdd(dto);
-	    String msg = result>0?"등록에 성공하였습니다.":"등록에 실패하였습니다.";
+	    int result1 = movieReviewService.movieReviewAdd(dto);
+	    int result2 = movieReviewService.reviewTicketingState(ticketing_idx);
+	    int result = result1+result2;
+	    String msg = result>1?"등록에 성공하였습니다.":"등록에 실패하였습니다.";
 	    
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
@@ -95,31 +97,45 @@ public class MovieReviewController {
 			HttpSession session
 			) {
 		
-		String member_id =(String)session.getAttribute("sid");
-		int member_idx = movieReviewService.reviewListIdx(member_id);
-		
-		int totalCnt=movieReviewService.getTotalCnt(member_idx);
-		int listSize=10;
-		int pageSize=5;
-		
-		List<MovieReviewJoinDTO> reviewLists=movieReviewService.lists(cp, listSize, member_idx);
-		
-		String reviewpageStr = com.amor.page.PageModule.makePage("/amor/myAmor/reviewList.do", totalCnt, listSize, pageSize, cp);
-	
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("reviewpageStr", reviewpageStr);
-		mav.addObject("reviewLists", reviewLists);
-		mav.setViewName("/user/myAmor/reviewList");
+		
+		if (session.getAttribute("sid") == null) {
+			
+			mav.addObject("msg", "로그인이 필요합니다.");
+			mav.addObject("goUrl", "/amor");
+			mav.setViewName("/user/msg/userMsg");
+			
+		} else {
+
+			String member_id =(String)session.getAttribute("sid");
+			int member_idx = movieReviewService.reviewListIdx(member_id);
+			
+			int totalCnt=movieReviewService.getTotalCnt(member_idx);
+			int listSize=5;
+			int pageSize=5;
+			
+			List<MovieReviewJoinDTO> reviewLists=movieReviewService.lists(cp, listSize, member_idx);
+			
+			String reviewpageStr = com.amor.page.PageModule.makePage("/amor/myAmor/reviewList.do", totalCnt, listSize, pageSize, cp);
+		
+			
+			mav.addObject("reviewpageStr", reviewpageStr);
+			mav.addObject("reviewLists", reviewLists);
+			mav.setViewName("/user/myAmor/reviewList");
+		}
+		
 		return mav;
 	}
 	
 	@RequestMapping("/myAmor/reviewDelete.do")
 	public ModelAndView reviewDelete(
-			@RequestParam("movie_review_idx") int movie_review_idx
+			@RequestParam("movie_review_idx") int movie_review_idx,
+			@RequestParam("ticketing_idx") int ticketing_idx
 			) {
 		
-		int result = movieReviewService.reviewDelete(movie_review_idx);
-		
+		int result1 = movieReviewService.reviewDelete(movie_review_idx);
+		int result2 = movieReviewService.reviewTicketingDelState(ticketing_idx);
+		int result = result1+result2;
 		String msg = result>0?"삭제에 성공했습니다.":"삭제에 실패했습니다.";
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg",msg);

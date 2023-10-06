@@ -198,6 +198,21 @@ textarea{
 	width: 550px;
 	height: 250px;
 }
+
+#review {
+	display: none;
+}
+
+#stillcontainer {
+	margin: 50px auto;
+}
+
+.moviedetailtable {
+	width: 800px;
+	height: 500px;
+	object-fit: contain;
+}
+
 /*BUTTON*/
 .btn-wrap .blue-btn {
     background-color: #1A2C82;

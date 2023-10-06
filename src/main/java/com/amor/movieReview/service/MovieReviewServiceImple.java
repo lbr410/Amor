@@ -119,4 +119,15 @@ public class MovieReviewServiceImple implements MovieReviewService {
 		return result;
 	}
 
+	@Override
+	public int reviewTicketingState(int ticketing_idx) {
+		int result = movieReviewDao.reviewTicketingState(ticketing_idx);
+		return result;
+	}
+
+	@Override
+	public int reviewTicketingDelState(int ticketing_idx) {
+		int result = movieReviewDao.reviewTicketingDelState(ticketing_idx);
+		return result;
+	}
 }

@@ -1,4 +1,4 @@
-package com.amor.adminController;
+	package com.amor.adminController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,7 +39,7 @@ public class PlayingMovieController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		if (session.getAttribute("data")==null) {
+		if (session.getAttribute("sname")==null) {
 			mav.addObject("msg", "로그인 후 이용가능합니다.");
 			mav.addObject("href", "/amor/admin/adminLogin.do");
 			mav.setViewName("/admin/msg/adminMsg");	

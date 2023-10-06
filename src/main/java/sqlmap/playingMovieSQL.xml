@@ -4,16 +4,15 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amor.playingMovieSQL">
 	<select id="playingMovieList" parameterType="Map" resultType="com.amor.playingMovie.model.PlayingMovieJoinDTO">
-		select  
+		select * from
+		(select rownum as rnum,a.* from 
+		(select  
 			to_char(c.playing_movie_date, 'yyyy-mm-dd') as "playing_movie_date",
 			to_char(c.playing_movie_start, 'hh24:mi:ss') as "playing_movie_start", 
-			e.movie_name, d.theater_name, c.playing_movie_idx
-		from (select * from (select rownum as rnum,a.* from 
-			(select * from playing_movie order by playing_movie_idx desc)a)b 
-		where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}) c, theater d, movie e 
-		where c.theater_idx=d.theater_idx and c.movie_idx=e.movie_idx
-		order by 
-			c.playing_movie_idx desc
+			e.movie_name, d.theater_name, c.playing_movie_idx from playing_movie c, theater d, movie e 
+			where c.theater_idx=d.theater_idx and c.movie_idx=e.movie_idx
+			order by c.playing_movie_date desc)a)b
+		where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 	</select>
 	<select id="totalCntPlaying" resultType="Integer">
 		select count(*) from playing_movie c, theater d, movie e 
@@ -69,10 +68,6 @@
 	<select id="movieRunning" parameterType="Integer" resultType="Map">
 		select movie_runningtime from movie where movie_idx = #{movie_idx}
 	</select>
-	
-	
-	
-	
 	<select id="playingMovieContent" parameterType="Integer" resultType="com.amor.playingMovie.model.PlayingMovieDTO">
 		select * from playing_movie where playing_movie_idx = #{playing_movie_idx}
 	</select>

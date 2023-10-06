@@ -71,17 +71,18 @@
     		영화 상세정보 페이지입니다.
     	</div>
     	<div id="stillcontainer">
-    		<div id="stillbox1">
-    			<img src="/amor/resources/upload/movie/${dto.movie_stillcut1 }">
-    		</div>
-    		<div id="stillbox2">
-    			<img src="">
-    		</div>
-    		<div id="stillbox3">
-    			<img src="">
-    		</div>
-    		<div id="stillbox4">
-    			<img src="">
+    		<div id="stillbox">
+    			<table class="moviedetailtable">
+    				<tr>
+    					<td rowspan="2"><img src="/amor/resources/upload/movie/${dto.movie_stillcut1 }"></td>
+    					<td><img src="/amor/resources/upload/movie/${dto.movie_stillcut2 }"></td>
+    					<td><img src="/amor/resources/upload/movie/${dto.movie_stillcut3 }"></td>
+    				</tr>
+    				<tr>
+    					<td><img src="/amor/resources/upload/movie/${dto.movie_stillcut4 }"></td>
+    					<td><img src="/amor/resources/upload/movie/${dto.movie_stillcut5 }"></td>
+    				</tr>
+    			</table>
     		</div>
     	</div>
     </div>

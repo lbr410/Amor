@@ -3,8 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amor.movieReviewSQL">
-	<select id="reviewList" parameterType="Map" resultType="com.amor.movieReview.model.MovieReviewJoinDTO">
-		select 
+	<select id="reviewList" parameterType="Map" resultType="com.amor.movieReview.model.MovieReviewJoinDTO">		
+		select * from
+		(select rownum as rnum,a.* from 
+		(select 
 			f.movie_name, 
 			c.movie_review_content,
 			substr(movie_review_content, 0, 8) as movie_review_shortcontent, 
@@ -12,17 +14,19 @@
 			d.member_idx,
 			c.movie_review_writedate, 
 			c.movie_review_idx,
-			c.movie_review_star
-		from 
-			(select * from (select rownum as rnum,a.* from 
-			(select * from movie_review order by movie_review_idx desc)a)b 
-			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}) c,
+			c.movie_review_star,
+			g.ticketing_idx 
+		from movie_review c, 
 			 member d, 
-			 movie f 
-		 where 
+			 movie f,
+			 ticketing g
+		where 
 		 	d.member_idx=c.member_idx 
 			 and f.movie_idx=c.movie_idx 
 			 and d.member_idx=#{member_idx}
+			 and g.member_idx=#{member_idx} 
+		order by c.movie_idx desc)a)b
+		where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 	</select>
 	<select id="totalCntReview" resultType="Integer">
 		select 
@@ -120,5 +124,21 @@
 		where
 			movie_review_idx = #{movie_review_idx}
 		
+	</update>
+	<update id="reviewTicketingState" parameterType="Integer">
+		upadate
+			ticketing
+		set
+			ticketing_state = 'r'
+		where
+			ticketing_idx = #{ticketing_idx}
+	</update>
+	<update id="reviewTicketingDelState" parameterType="Integer">
+		update
+			ticketing
+		set
+			ticketing_state = 'y'
+		where
+			ticketing_idx = #{ticketing_idx}
 	</update>
 </mapper>

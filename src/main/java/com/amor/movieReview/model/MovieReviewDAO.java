@@ -17,4 +17,6 @@ public interface MovieReviewDAO {
 	public int reviewListIdx(String member_id);
 	public int reviewDelete(int movie_review_idx);
 	public int reivewUpdate(MovieReviewJoinDTO dto);
+	public int reviewTicketingState(int ticketing_idx);
+	public int reviewTicketingDelState(int ticketing_idx);
 }

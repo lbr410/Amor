@@ -20,7 +20,7 @@
    width: 100%;
    height: 350px;
    background: #F8F8F8;
-   margin-bottom: 900px; /**작업하는 영역 조절은 여기서*/
+   margin-bottom: 2100px; /**작업하는 영역 조절은 여기서*/
 }
 .mypagetitle .title1{
 	color: #000;
@@ -82,6 +82,7 @@ table tfoot tr {
 .reviewImg {
  	width: 262px;
 	height: 193px;
+	line-height: 193px;
   	object-fit: contain;
   	border: none;
 }
@@ -113,6 +114,7 @@ table tfoot tr {
 	text-align: center;
 	border: none;
 	width: 150px;
+	vertical-align: middle;
 }
 
 .reviewTdContent3 {
@@ -299,7 +301,6 @@ table tfoot tr {
 <div class="mypagetitle"><label>관람평 목록</label></div>
 
 <div class="reviewTable">
-	<form>
 		<table>
 			<thead>
 				<tr>
@@ -339,7 +340,7 @@ table tfoot tr {
 					
 					</td>
 					<td class="reviewTd2"><input type="button" value="수정" class="smallBtn" onclick="document.getElementById('myReviewBtn${vs.index}').style.display='block'">&nbsp;&nbsp;&nbsp;
-					<input type="button" value="삭제" onclick="location.href='reviewDelete.do?movie_review_idx=${dto.movie_review_idx }'" class="smallBtn"></td>
+					<input type="button" value="삭제" onclick="location.href='reviewDelete.do?movie_review_idx=${dto.movie_review_idx }&ticketing_idx=${dto.ticketing_idx}'" class="smallBtn"></td>
 					<td class="reviewTd3" onclick="document.getElementById('reviewContent${vs.index}').style.display=''">▽</td>
 				</tr>
 				<tr id="reviewContent${vs.index }" style="display:none;">

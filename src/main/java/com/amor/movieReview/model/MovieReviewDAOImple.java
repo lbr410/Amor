@@ -89,4 +89,16 @@ public class MovieReviewDAOImple implements MovieReviewDAO {
 		int result = sqlmap.update("reviewUpdate", dto);
 		return result;
 	}
+	
+	@Override
+	public int reviewTicketingState(int ticketing_idx) {
+		int result = sqlmap.update("reviewTicketingState", ticketing_idx);
+		return result;
+	}
+	
+	@Override
+	public int reviewTicketingDelState(int ticketing_idx) {
+		int result = sqlmap.update("reviewTicketingDelState", ticketing_idx);
+		return result;
+	}
 }

@@ -13,6 +13,7 @@ public class MovieReviewJoinDTO {
 	private String movie_review_shortcontent;
 	private String movie_review_img;
 	private Date ticketing_screeningtime;
+	private String ticketing_state;
 	private Date movie_review_writedate;
 	private String movie_name;
 	
@@ -22,7 +23,8 @@ public class MovieReviewJoinDTO {
 
 	public MovieReviewJoinDTO(int movie_review_idx, int movie_idx, int ticketing_idx, int member_idx,
 			int movie_review_star, String movie_review_content, String movie_review_shortcontent,
-			String movie_review_img, Date ticketing_screeningtime, Date movie_review_writedate, String movie_name) {
+			String movie_review_img, Date ticketing_screeningtime, String ticketing_state, Date movie_review_writedate,
+			String movie_name) {
 		super();
 		this.movie_review_idx = movie_review_idx;
 		this.movie_idx = movie_idx;
@@ -33,9 +35,12 @@ public class MovieReviewJoinDTO {
 		this.movie_review_shortcontent = movie_review_shortcontent;
 		this.movie_review_img = movie_review_img;
 		this.ticketing_screeningtime = ticketing_screeningtime;
+		this.ticketing_state = ticketing_state;
 		this.movie_review_writedate = movie_review_writedate;
 		this.movie_name = movie_name;
 	}
+
+
 
 	public MovieReviewJoinDTO(int movie_idx, int ticketing_idx, int member_idx, int movie_review_star,
 			String movie_review_content, String movie_review_img) {
@@ -129,6 +134,14 @@ public class MovieReviewJoinDTO {
 		this.ticketing_screeningtime = ticketing_screeningtime;
 	}
 
+	public String getTicketing_state() {
+		return ticketing_state;
+	}
+
+	public void setTicketing_state(String ticketing_state) {
+		this.ticketing_state = ticketing_state;
+	}
+
 	public Date getMovie_review_writedate() {
 		return movie_review_writedate;
 	}
@@ -144,5 +157,7 @@ public class MovieReviewJoinDTO {
 	public void setMovie_name(String movie_name) {
 		this.movie_name = movie_name;
 	}
+
+	
 	
 }

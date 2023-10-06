@@ -19,4 +19,6 @@ public interface MovieReviewService {
 	public int reviewListIdx(String member_id);
 	public int reviewDelete(int movie_review_idx);
 	public int reviewUpdate(MovieReviewJoinDTO dto);
+	public int reviewTicketingState(int ticketing_idx);
+	public int reviewTicketingDelState(int ticketing_idx);
 }
