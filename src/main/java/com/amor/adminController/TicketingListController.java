@@ -10,6 +10,8 @@ import com.amor.ticketing.service.TicketingService;
 import com.amor.ticketing.model.TicketingListDTO;
 import java.util.*;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class TicketingListController {
 	
@@ -17,29 +19,37 @@ public class TicketingListController {
 	private TicketingService ticketingservice;
 
 	@RequestMapping("admin/ticketing/ticketingList.do")
-	public ModelAndView ticketingList(@RequestParam(value="cp", defaultValue = "1") int cp, @RequestParam(value="search", defaultValue = "") String search) {
-		
+	public ModelAndView ticketingList(@RequestParam(value="cp", defaultValue = "1") int cp, @RequestParam(value="search", defaultValue = "") String search, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
 		int listSize=5;
 		int pageSize=5;
-		if(search == null || search.equals("")) {
-			int totalCnt=ticketingservice.getTotalCnt();
-			String pageStr = com.amor.page.PageModule.makePage("/amor/admin/ticketing/ticketingList.do", totalCnt, listSize, pageSize, cp);
-			List<TicketingListDTO> lists = ticketingservice.ticketingList(cp, listSize);
-			ModelAndView mav = new ModelAndView();
-			mav.addObject("lists",lists);
-			mav.addObject("pageStr",pageStr);
-			mav.setViewName("admin/ticketing/ticketingList");
-			return mav;
-		}else {
-			int totalCnt=ticketingservice.getTotalSearchCnt(search);
-			String pageStr = com.amor.page.PageModuleSearch.makePage("/amor/admin/ticketing/ticketingList.do", totalCnt, listSize, pageSize, cp, search);
-			List<TicketingListDTO> lists = ticketingservice.ticketingListSearch(cp, listSize,search);
-			ModelAndView mav = new ModelAndView();
-			mav.addObject("lists",lists);
-			mav.addObject("pageStr",pageStr);
-			mav.setViewName("admin/ticketing/ticketingList");
-			return mav;
+		
+		if(session.getAttribute("data") == null) {
+			mav.addObject("msg", "로그인 후 이용 가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");
+		} else {
+			if(search == null || search.equals("")) {
+				int totalCnt=ticketingservice.getTotalCnt();
+				String pageStr = com.amor.page.PageModule.makePage("/amor/admin/ticketing/ticketingList.do", totalCnt, listSize, pageSize, cp);
+				List<TicketingListDTO> lists = ticketingservice.ticketingList(cp, listSize);
+				int pagsize = lists.size();
+				mav.addObject("lists",lists);
+				mav.addObject("pagsize", pagsize);
+				mav.addObject("pageStr", pageStr);
+				mav.setViewName("admin/ticketing/ticketingList");
+				
+			}else {
+				int totalCnt=ticketingservice.getTotalSearchCnt(search);
+				String pageStr = com.amor.page.PageModuleSearch.makePage("/amor/admin/ticketing/ticketingList.do", totalCnt, listSize, pageSize, cp, search);
+				List<TicketingListDTO> lists = ticketingservice.ticketingListSearch(cp, listSize,search);
+				int pagsize = lists.size();
+				mav.addObject("pagsize", pagsize);
+				mav.addObject("pageStr", pageStr);
+				mav.setViewName("admin/ticketing/ticketingList");
+			}
 		}
+		return mav;
 	}
 	
 	@RequestMapping("admin/ticketing/ticketingstateChk.do")

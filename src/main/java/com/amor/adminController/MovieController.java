@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.*;
 import javax.servlet.Servlet;// ?
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.collections.functors.ExceptionPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,30 +29,40 @@ public class MovieController {
 	private MovieService movieservice; 
 
 	@RequestMapping("admin/movie/movieList.do")
-	public ModelAndView movieList(@RequestParam(value="cp", defaultValue = "1") int cp, @RequestParam(value="search", defaultValue = "") String search) {
+	public ModelAndView movieList(@RequestParam(value="cp", defaultValue = "1") int cp, @RequestParam(value="search", defaultValue = "") String search, HttpSession session) {
 		int listSize=5;
 		int pageSize=5;
-		if(search == null || search.equals("")) {
-			int totalCnt=movieservice.getTotalCnt();
-			String pageStr = com.amor.page.PageModule.makePage("/amor/admin/movie/movieList.do", totalCnt, listSize, pageSize, cp);
-			List<MovieDTO> lists = movieservice.movieList(cp, listSize);
-			ModelAndView mav = new ModelAndView();
-			mav.addObject("lists", lists);
-			mav.addObject("pageStr",pageStr);
-			mav.setViewName("admin/movie/movieList");
-			return mav;
-		}else{
-			int totalCnt=movieservice.getTotalSearchCnt(search);
-			String pageStr = com.amor.page.PageModuleSearch.makePage("/amor/admin/movie/movieList.do", totalCnt, listSize, pageSize, cp, search);
-			List<MovieDTO> lists = movieservice.movieListSearch(cp, listSize,search);
-			ModelAndView mav = new ModelAndView();
-			mav.addObject("lists", lists);
-			mav.addObject("pageStr",pageStr);
-			mav.setViewName("admin/movie/movieList");
-			return mav;
+		ModelAndView mav = new ModelAndView();
+		if(session.getAttribute("data") == null) {
+			mav.addObject("msg", "로그인 후 이용 가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");
+			
+		}else {
+			if(search == null || search.equals("")) {
+				int totalCnt=movieservice.getTotalCnt();
+				String pageStr = com.amor.page.PageModule.makePage("/amor/admin/movie/movieList.do", totalCnt, listSize, pageSize, cp);
+				List<MovieDTO> lists = movieservice.movieList(cp, listSize);
+				int pagsize = lists.size();
+				mav.addObject("lists", lists);
+				mav.addObject("pagsize", pagsize);
+				mav.addObject("pageStr", pageStr);
+				mav.setViewName("admin/movie/movieList");
+				
+			}else{
+				int totalCnt=movieservice.getTotalSearchCnt(search);
+				String pageStr = com.amor.page.PageModuleSearch.makePage("/amor/admin/movie/movieList.do", totalCnt, listSize, pageSize, cp, search);
+				List<MovieDTO> lists = movieservice.movieListSearch(cp, listSize,search);
+				int pagsize = lists.size();
+				mav.addObject("lists", lists);
+				mav.addObject("pagsize", pagsize);
+				mav.addObject("pageStr", pageStr);
+				mav.setViewName("admin/movie/movieList");
+				
+			}
 		}
-		
-		
+		return mav;
+
 	}
 	
 	@RequestMapping("admin/movie/stateChk.do")
@@ -124,11 +135,18 @@ public class MovieController {
 	}
 
 	@RequestMapping(value =  "admin/movie/movieUpdate.do", method = RequestMethod.GET)
-	public ModelAndView movieUpdate1(int movie_idx) {
-		MovieDTO dto = movieservice.movieContent(movie_idx);
+	public ModelAndView movieUpdate1(int movie_idx, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("dto", dto);
-		mav.setViewName("admin/movie/movieUpdate");
+		if(session.getAttribute("data") == null) {
+			mav.addObject("msg", "로그인 후 이용 가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");
+		}else {
+			MovieDTO dto = movieservice.movieContent(movie_idx);
+			mav.addObject("dto", dto);
+			mav.setViewName("admin/movie/movieUpdate");
+		}
+
 		return mav;
 	}
 	
@@ -157,13 +175,19 @@ public class MovieController {
 	}
 	
 	@RequestMapping("admin/movie/movieDelete.do")
-	public ModelAndView movieDelete(int movie_idx) {
-		int result = movieservice.movieDelete(movie_idx);
-		String msg = result>0? "삭제" :"실패";
+	public ModelAndView movieDelete(int movie_idx, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("msg",msg);
-		mav.addObject("href","/amor/admin/movie/movieList.do");
-		mav.setViewName("admin/msg/adminMsg");
+		if(session.getAttribute("data") == null) {
+			mav.addObject("msg", "로그인 후 이용 가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");
+		}else {
+			int result = movieservice.movieDelete(movie_idx);
+			String msg = result>0? "삭제" :"실패";
+			mav.addObject("msg",msg);
+			mav.addObject("href","/amor/admin/movie/movieList.do");
+			mav.setViewName("admin/msg/adminMsg");
+		}
 		return mav;
 	}
 	

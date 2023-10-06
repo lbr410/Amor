@@ -111,9 +111,17 @@
 	cursor: pointer;
 }
 
+
 .playingmovie:hover{
-	background-color: D9d9d9;
+	background-color: green;
 }
+.playingmovie:active{
+	background-color: green;
+}
+.playingmovie:visited{
+	background-color: green;
+}
+
 
 .playingmovie_imgDiv{ 
 	margin-top : 5px;

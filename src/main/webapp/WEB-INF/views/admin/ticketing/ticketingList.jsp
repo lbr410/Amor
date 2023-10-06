@@ -60,12 +60,19 @@ function ticketingCancel(idx){
 		
 	</tr>
 	</thead>
+	<c:if test="${pagsize != 0}">
 	<tfoot>
 		<tr>
 			<td colspan="15"><div class="paging">${pageStr}</div></td>
 		</tr>
 	</tfoot>
+	</c:if>
 	<tbody>
+	<c:if test="${empty lists }">
+		<tr>
+			<td colspan="14">없음</td>
+		</tr>
+	</c:if>
 	<c:forEach var="dto" items="${lists }">
 	<tr>
 		<td>${dto.ticketing_idx}</td>

@@ -39,7 +39,7 @@ public class PlayingMovieController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		if (session.getAttribute("sname")==null) {
+		if (session.getAttribute("data")==null) {
 			mav.addObject("msg", "로그인 후 이용가능합니다.");
 			mav.addObject("href", "/amor/admin/adminLogin.do");
 			mav.setViewName("/admin/msg/adminMsg");	
