@@ -82,8 +82,6 @@ public class InquiryListController {
 		InquiryJoinDTO dto=new InquiryJoinDTO();
 		dto.setInquiry_answer(inquiry_answer);
 		dto.setInquiry_idx(inquiry_idx);
-		System.out.println(inquiry_answer);
-		System.out.println(inquiry_idx);
 		int result=inquiryService.inquiryAnswer(dto);
 		String msg=result>0?"문의에 대한 답변이 등록되었습니다.":"문의에 대한 답변이 등록되지 않았습니다.";
 		ModelAndView mav=new ModelAndView();

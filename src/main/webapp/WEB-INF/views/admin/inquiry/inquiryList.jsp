@@ -67,7 +67,7 @@
         <td class="nyTd">
 			<select name="member_block" class="selectBox" id="blockId" onchange="block(${dto.member_idx})">
 				<option value="n" <c:if test="${dto.member_block=='n'}">selected</c:if>>N</option>
-				<option value="y" <c:if test="${dto.member_block=='y'}">selected</c:if>>Y</option>
+				<option value="y" <c:if test="${dto.member_block=='y'}"></c:if>>Y</option>
 			</select>			
 		</td>
         <td class="tableBtn">
