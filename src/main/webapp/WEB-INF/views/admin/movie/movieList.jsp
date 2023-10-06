@@ -77,11 +77,13 @@ function movieStateYN(idx) {
 		<th>삭제</th>
 	</tr>
 	</thead>
+	<c:if test="${pagsize != 0}">
 	<tfoot>
 		<tr>
 			<td colspan="15"><div class="paging">${pageStr}</div></td>
 		</tr>
 	</tfoot>
+	</c:if>
 	<tbody>
 	<c:if test="${empty lists }">
 		<tr>
