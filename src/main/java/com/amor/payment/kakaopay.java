@@ -3,7 +3,6 @@ package com.amor.payment;
 import java.io.*;
 import java.net.*;
 
-import lombok.extern.java.Log;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -17,105 +16,100 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.util.MultiValueMap;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.http.HttpEntity;
-import lombok.extern.java.Log;
 import com.amor.payment.*;
-import com.amor.product.model.ProductDTO;
-import com.amor.storePayment.model.StorePaymentDTO;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import lombok.extern.java.Log;
 
-@Log
-public class kakaopay {
 
+public class Kakaopay {
+	
     private static final String HOST = "https://kapi.kakao.com";  
     private KakaoPayReadyVO kakaoPayReadyVO;	
     private KakaoPayApprovalVO kakaoPayApprovalVO;
-    private static String tid1;  
+    private static String tid1;
     
-    public String kakaoPayReady(){
-    	  	
-        RestTemplate restTemplate = new RestTemplate();
+	   public String kakaoPayReady(KakaopayDTO kdto) {
+		   
+		   
+	        RestTemplate restTemplate = new RestTemplate();
+	 
+	        // 서버로 요청할 Header
+	        HttpHeaders headers = new HttpHeaders();
+	        headers.add("Authorization", "KakaoAK fccc27b54366df53bfa835c02e180aa9");
+	        headers.add("Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
+	        headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
+	        
+	        // 서버로 요청할 Body
+	        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+	        params.add("cid", "TC0ONETIME");
+	        params.add("partner_order_id", kdto.getPartner_order_id());
+	        params.add("partner_user_id", kdto.getPartner_user_id());
+	        params.add("item_name", kdto.getItem_name());
+	        params.add("quantity", kdto.getQuantity());
+	        params.add("total_amount", kdto.getTotal_amount());
+	        params.add("tax_free_amount", "100");
+	        params.add("approval_url", kdto.getApproval_url());
+	        params.add("cancel_url", kdto.getCancel_url());
+	        params.add("fail_url", kdto.getFail_url());
+	 
+	         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
+	 
+	        try {
+	            kakaoPayReadyVO = restTemplate.postForObject (new URI(HOST + "/v1/payment/ready"), body, KakaoPayReadyVO.class);
+	            
+	            tid1=kakaoPayReadyVO.getTid();
+	            
+	            return kakaoPayReadyVO.getNext_redirect_pc_url();
+	 
+	        } catch (RestClientException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        } catch (URISyntaxException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+	        
+	        return "";
+	        
+	    }	
+	   
+	   
+	    public KakaoPayApprovalVO kakaoPayInfo (String pg_token, KakaopayDTO kdto) {
+	    	 
+	        System.out.println("kakaInfo1");
+	        RestTemplate restTemplate = new RestTemplate();
+	 
+	        // 서버로 요청할 Header
+	        HttpHeaders headers = new HttpHeaders();
+	        System.out.println("kakaInfo2");
+	        headers.add("Authorization","KakaoAK fccc27b54366df53bfa835c02e180aa9");
+	        headers.add("Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
+	        headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");	        
+	        
+	        // 서버로 요청할 Body
+	        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+	        params.add("cid", "TC0ONETIME");
+	        params.add("tid", tid1);
+	        params.add("partner_order_id", kdto.getPartner_order_id());
+	        params.add("partner_user_id", kdto.getPartner_user_id());
+	        params.add("pg_token", pg_token);
+	        params.add("total_amount", kdto.getTotal_amount());
+	        
+	        HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
+	        
+	        try {
+	            kakaoPayApprovalVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/approve"), body, KakaoPayApprovalVO.class);
+	          
+	            return kakaoPayApprovalVO;
+	        
+	        } catch (RestClientException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        } catch (URISyntaxException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+	        
+	        return null;
+	    }
 
-        
-        // 서버로 요청할 Header
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "KakaoAK fccc27b54366df53bfa835c02e180aa9");
-        headers.add("Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
-        headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
-        
-        // 서버로 요청할 Body
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
-        params.add("cid", "TC0ONETIME"); //테스트 코드 수정X
-        params.add("partner_order_id", "1001"); //주문번호
-        params.add("partner_user_id", "gorany"); //결제자 id
-        params.add("item_name", "콜라"); //결제 상품
-        params.add("quantity", "1"); //수량
-        params.add("total_amount","2100"); //총 금액
-        params.add("tax_free_amount", "100"); //부가세 수정 X
-        params.add("approval_url", "http://localhost:9090/amor/store/kakaoOk.do"); 
-        params.add("cancel_url", "http://localhost:9090/myweb3/kakaoPayCancel.do");
-        params.add("fail_url", "http://localhost:9090/myweb3/kakaoPaySuccessFail.do");
-
-        HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
-
-        try {
-
-            kakaoPayReadyVO = restTemplate.postForObject (new URI(HOST + "/v1/payment/ready"), body, KakaoPayReadyVO.class);
-            
-            log.info("" + kakaoPayReadyVO);
-            tid1=kakaoPayReadyVO.getTid();
-            
-            return kakaoPayReadyVO.getNext_redirect_pc_url();
- 
-        } catch (RestClientException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        
-        return "";
-    	
-    }
-    
-    
-    public KakaoPayApprovalVO kakaoPayInfo(String pg_token) {
-
-        RestTemplate restTemplate = new RestTemplate();
- 
-        // 서버로 요청할 Header
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization","KakaoAK fccc27b54366df53bfa835c02e180aa9");
-        headers.add("Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
-        headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
-        
-        
-        // 서버로 요청할 Body
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
-        params.add("cid", "TC0ONETIME"); 
-        params.add("tid", tid1); 
-        params.add("partner_order_id", "1001"); //주문번호 동일하게
-        params.add("partner_user_id", "gorany"); //결제자 id 동일하게
-        params.add("pg_token", pg_token);
-        params.add("total_amount", "500"); //총금액 동일하게
-        
-        HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
-        
-        try {
-            kakaoPayApprovalVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/approve"), body, KakaoPayApprovalVO.class);
-            log.info("" + kakaoPayApprovalVO);
-          
-            return kakaoPayApprovalVO;
-        
-        } catch (RestClientException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        
-        return null;    	
-    }
 }

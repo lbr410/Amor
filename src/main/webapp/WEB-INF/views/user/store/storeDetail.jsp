@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +31,9 @@
 			<th>결제수단</th>
 			<td>카카오페이</td>
 			<th>결제금액</th>
-			<td>${store.amount.total }</td>
+			<td>
+			<f:formatNumber type="number" value="${store.amount.total}" pattern="#,###"/>원
+			</td>
 		</tr>
 	</tbody>
 	</table>
