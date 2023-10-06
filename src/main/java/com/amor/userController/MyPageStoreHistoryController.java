@@ -21,26 +21,23 @@ public class MyPageStoreHistoryController {
 	
 	@RequestMapping("myAmor/storeHistory.do")
 	public ModelAndView mypageStorePaymentList(HttpSession session) {
-		String useridx = (String)session.getAttribute("sidx");
+		int useridx = (int)session.getAttribute("sidx");
 		ModelAndView mav = new ModelAndView();
-		if(useridx != null) {
-			int uidx = Integer.parseInt(useridx);
-			List<MyPageStorePaymentDTO> lists = storePaymentService.mypageStorePaymentList(uidx);
+		if(useridx > 0) {
+			List<MyPageStorePaymentDTO> lists = storePaymentService.mypageStorePaymentList(useridx);
 			if(lists != null) {
 				mav.addObject("list", lists);
 				mav.setViewName("user/myAmor/storeHistory");
-				return mav;
 			}else {
 				mav.addObject("list", null);
 				mav.setViewName("user/myAmor/storeHistory");
-				return mav;
 			}
 		}else {
 			mav.addObject("msg", "로그인 후 이용가능합니다.");
 			mav.addObject("goUrl", "/amor/member/login.do");
 			mav.setViewName("user/msg/userMsg");
-			return mav;
 		}
+		return mav;
 	}
 	
 	@RequestMapping("myAmor/storeCancellation.do")

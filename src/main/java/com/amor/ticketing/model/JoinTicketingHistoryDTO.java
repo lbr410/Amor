@@ -7,6 +7,7 @@ public class JoinTicketingHistoryDTO {
 	private int movieidx;
 	private int ticketingidx;
 	private int memberidx;
+	private int playingMovieidx;
 	private String moviename;
 	private String movieimg;
 	private String ticketnum;
@@ -22,17 +23,17 @@ public class JoinTicketingHistoryDTO {
 	private String timelimit;
 	
 	public JoinTicketingHistoryDTO() {
-		System.out.println("joinTicketingDTO start");
 	}
 
-	public JoinTicketingHistoryDTO(int movieidx, int ticketingidx, int memberidx, String moviename, String movieimg,
-			String ticketnum, String seatnum, Date screeningdate, String payment, Long price, Date reservetime,
-			String changeScreeningDate, String changeReserveTime, String changePrice, String theatername,
-			String timelimit) {
+	public JoinTicketingHistoryDTO(int movieidx, int ticketingidx, int memberidx, int playingMovieidx, String moviename,
+			String movieimg, String ticketnum, String seatnum, Date screeningdate, String payment, Long price,
+			Date reservetime, String changeScreeningDate, String changeReserveTime, String changePrice,
+			String theatername, String timelimit) {
 		super();
 		this.movieidx = movieidx;
 		this.ticketingidx = ticketingidx;
 		this.memberidx = memberidx;
+		this.playingMovieidx = playingMovieidx;
 		this.moviename = moviename;
 		this.movieimg = movieimg;
 		this.ticketnum = ticketnum;
@@ -70,6 +71,14 @@ public class JoinTicketingHistoryDTO {
 
 	public void setMemberidx(int memberidx) {
 		this.memberidx = memberidx;
+	}
+
+	public int getPlayingMovieidx() {
+		return playingMovieidx;
+	}
+
+	public void setPlayingMovieidx(int playingMovieidx) {
+		this.playingMovieidx = playingMovieidx;
 	}
 
 	public String getMoviename() {
@@ -174,6 +183,5 @@ public class JoinTicketingHistoryDTO {
 
 	public void setTimelimit(String timelimit) {
 		this.timelimit = timelimit;
-	}
-	
+	}	
 }

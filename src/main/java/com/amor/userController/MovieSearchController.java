@@ -22,7 +22,7 @@ public class MovieSearchController {
 			@RequestParam(value = "cp", defaultValue = "1")int cp) {
 		
 		int totalCnt = movieservice.getUserSearchTotalCnt(search);
-		int listSize = 5;
+		int listSize = 8;
 		int pageSize = 5;
 		
 		ModelAndView mav = new ModelAndView();

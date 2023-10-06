@@ -13,6 +13,7 @@ import java.util.Map;
 
 import org.apache.commons.collections.map.HashedMap;
 
+import com.amor.playingMovie.model.PlayingMovieDTO;
 import com.amor.storePayment.model.StorePaymentDTO;
 import com.amor.ticketing.model.JoinTicketingHistoryDTO;
 import com.amor.ticketing.model.TicketingDAO;
@@ -40,12 +41,12 @@ public class TicketingServiceImple implements TicketingService {
          JoinTicketingHistoryDTO dto = null;
 
          for(int i = 0 ; i < lists.size(); i++) {
-        	 java.util.Date sqlDate = lists.get(i).getScreeningdate();
-        	 long sqlTimeMillis = sqlDate.getTime();
-        	 long sqlMinutes = 30 * 60 * 1000;
+        	 java.util.Date ticketDate = lists.get(i).getScreeningdate();
+        	 long getMS = ticketDate.getTime();
+        	 long minutes = 30 * 60 * 1000;
         	 
-        	 long newTime = sqlTimeMillis - sqlMinutes;
-        	 java.util.Date getDate = new java.util.Date(newTime);
+        	 long resultTime = getMS - minutes;
+        	 java.util.Date getDate = new java.util.Date(resultTime);
         	 java.util.Date nowDate = new java.util.Date();
             
         	 dto = lists.get(i);            
@@ -66,10 +67,33 @@ public class TicketingServiceImple implements TicketingService {
    }
    
    @Override
-   public int cancellationTicket(int ticketnum) {
-      int result = ticketingDao.cancellationTicket(ticketnum);
+   public int cancellationTicket(int ticketidx) {
+      int result = ticketingDao.cancellationTicket(ticketidx);
       return result;
    }
+   
+   @Override
+	public boolean checkDate(int ticketidx) {
+	
+	 java.util.Date movieDate = ticketingDao.checkDate(ticketidx);
+		
+	 long getMS = movieDate.getTime();
+	 long minutes = 30 * 60 * 1000;
+	 
+	 long resultTime = getMS - minutes;
+	 java.util.Date getDate = new java.util.Date(resultTime);
+	 java.util.Date nowDate = new java.util.Date();
+	 
+	 boolean result = getDate.equals(nowDate) || getDate.after(nowDate);
+	 
+	return result;
+	}
+   
+   @Override
+	public PlayingMovieDTO getPlayMovie(int playingMovieidx) {
+		PlayingMovieDTO result = ticketingDao.getPlayingMovie(playingMovieidx);
+		return result;
+	}
    
    @Override
    public List<JoinTicketingHistoryDTO> getcancellList(int useridx) {
@@ -92,33 +116,7 @@ public class TicketingServiceImple implements TicketingService {
       }
       
    }
-   
-//   @Override
-//   public List<Map<String, Object>> getReserveList(int useridx) {
-//      List<Map<String, Object>> lists = ticketingDao.ticketingList(useridx);
-//      System.out.println("test1="+lists.size());
-//      if(lists != null && lists.size() > 0) {
-//         System.out.println("test2");
-//         DecimalFormat df = new DecimalFormat("#,##0원");
-//         System.out.println("test3");
-//         for(int i = 0 ; i < lists.size(); i++) {
-//            System.out.println("test4="+((lists.get(i).get("PRICE"))).getClass());
-//            BigDecimal changeValue =(BigDecimal)(lists.get(i).get("PRICE"));
-//            System.out.println("test5="+changeValue);
-//            Object resultValue = df.format(changeValue); 
-//            System.out.p rintln(resultValue);
-//            lists.get(i).put("price", resultValue); 
-//         }
-//      }
-//      return lists;
-//   }
-   
-   
-   
-   
-   
-   
-   
+     
    @Override
    public String allMovie(String startd, String endd) {
       Map map = new HashMap();
