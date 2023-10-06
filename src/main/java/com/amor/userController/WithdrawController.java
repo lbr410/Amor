@@ -35,9 +35,9 @@ public class WithdrawController {
 		int result=memberService.memberWithDraw(id);	
 		
 		if(result>0) {
-			Cookie ck=new Cookie("ckid",null);
+			Cookie ck=new Cookie("ckid",id);
 			ck.setMaxAge(0);
-			ck.setPath("/");
+			ck.setPath("/amor/member");
 			resp.addCookie(ck);
 			session.invalidate();
 		}
