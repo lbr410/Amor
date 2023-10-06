@@ -1,6 +1,6 @@
 package com.amor.payment;
 
-public class kakaopayDTO {
+public class KakaopayDTO {
 	
 	private String partner_order_id;
 	private String partner_user_id;
@@ -11,11 +11,11 @@ public class kakaopayDTO {
 	private String cancel_url;
 	private String fail_url;
 	
-	public kakaopayDTO() {
+	public KakaopayDTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public kakaopayDTO(String partner_order_id, String partner_user_id, String item_name, String quantity,
+	public KakaopayDTO(String partner_order_id, String partner_user_id, String item_name, String quantity,
 			String total_amount, String approval_url, String cancel_url, String fail_url) {
 		super();
 		this.partner_order_id = partner_order_id;
