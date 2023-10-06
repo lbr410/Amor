@@ -13,7 +13,7 @@
 <body>
 <%@include file="../admin_header.jsp" %>
 <div class="content">
-<div class="content-title"><label class="titletext">판매상품 목록</label>
+<div class="content-title"><label class="titletext">재고관리 목록</label>
 <div class="contentsearch">
 	<div class="search">
 		<input type="text" id="prodSearch" placeholder="제목을 검색해주세요." class="box">
@@ -61,28 +61,17 @@
 			<td>${dto.inventory_unit }</td>
 			<td>${dto.inventory_optimal }</td>
 			<td>
-				<c:if test="${!empty dto.inventory_current }">
-				<input type="button" class="smallBtn" value="입력">
-				</c:if> ${dto.inventory_current }</td>
+				<c:if test="${0!= dto.inventory_current }">
+				${dto.inventory_current }
+				</c:if>
+				<c:if test="${0==dto.inventory_current }">
+				<input type="button" class="smallBtn" value="입력" onclick="javascript: location.href='/amor/admin/inventory/inventoryUpdate.do?idx=${dto.inventory_idx}'">
+				</c:if>
+			</td>
 			<td>${dto.inventory_deviation }</td>
-			<td>
-				<select name="product_soldout${dto.product_idx}" class="soldOutSel" onchange="soldOutYN(${dto.product_idx})">
-					<option value="y" <c:if test="${dto.product_soldout eq 'y'}">selected</c:if>>Y</option>
-					<option value="n" <c:if test="${dto.product_soldout eq 'n'}">selected</c:if>>N</option>
-				</select>
-			</td>
-			<td class="tableBtn">
-				<input type="button" class="smallBtn" value="수정" onclick="javascirpt: location.href='/amor/admin/product/productUpdate.do?idx=${dto.product_idx}'">
-				<input type="button" class="smallBtn" value="삭제" onclick="productDel(${dto.product_idx})">
-			</td>
 		</tr>
 	</c:forEach>
 	</tbody>
-	<tfoot>
-		<tr>
-			<td colspan="8"><div class="paging">${pageStr}</div></td>
-		</tr>
-	</tfoot>
 	</table>
 </div>
 </div>
