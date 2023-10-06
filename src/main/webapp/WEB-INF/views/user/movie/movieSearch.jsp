@@ -9,8 +9,16 @@
 <link rel="stylesheet" href="/amor/resources/css/user/movie.css">
 <!--브라우저 스타일 초기화-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <%@ include file="../header.jsp" %>
+<style>
+	.material-icons{
+	color: #FFAC33;
+	vertical-align: middle;
+	
+	}
+</style>
 <body>
 	<!--GRAY NAVIGATE BAR-->
     <div class="gray-bar">
@@ -57,9 +65,11 @@
                     </div>
                     <div class="info-area">
                         <span class="movie_audience">
-                            <span class="rate">관객수 : ${temp.movie_audience }</span>
+                            <span class="rate">
+                            <span class="material-icons">star</span> ${temp.avg_movie_review_star} &nbsp;
+                            </span>
                         </span>
-                        <span class="movie_opendate">개봉일 : ${temp.movie_opendate}</span>
+                        <span class="movie_opendate">&nbsp;개봉일 : ${temp.movie_opendate}</span>
                     </div>
                     <div class="book-btn" >
                         <c:url var="ticketingUrl" value="/amor/ticketing/ticketing.do">

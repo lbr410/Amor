@@ -14,14 +14,14 @@
 <div class="content-title"><label class="titletext">상영관 수정</label>
 </div>
 <div class="contentMain">
-<span class = "controller">행 <input type = "number" id = "row" value = "${row}" min="5" max="20" onclick = "row(this.value)" onkeydown="keyOnly(event)"></span>
-<span class = "controller">열 <input type = "number" id = "column" value = "${col}" min="5" max="50" onclick = "column(this.value)"></span>
-<span class = "controller">상영관명 <input type = "text" class = "nameAdd" id = "theatername" value = "${theatername}" placeholder="상영관 이름을 입력하세요."></span><br>
+<span class = "controller">행 <input type = "number" id = "row" value = "${row}" min="4" max="8" onclick = "row(this.value)" onkeydown="keyOnly(event)"></span>
+<span class = "controller">열 <input type = "number" id = "column" value = "${col}" min="5" max="20" onclick = "column(this.value)"></span>
+<span class = "controller">상영관명 <input type = "text" class = "nameAdd" id = "theatername" value = "${theatername}" maxlength="6"></span><br>
 <div id = "seats" class = "seate">${seates}</div>
 <div class="tableDiv">
 <input type = "button" value = "통로" class = "blockbutton1" onclick = "path()">
 <input type = "button" value = "초기화" class = "blockbutton2" onclick = "resetseate()">
-<input type = "button" value = "확인" class = "submit" onclick = "pushData()">
+<input type = "button" value = "저장" class = "submit" onclick = "pushData()">
 </div>
 </div>
 </div>
@@ -29,6 +29,7 @@
 <script type="text/javascript" src="../../resources/js/httpRequest.js"></script>
 <script>
 
+// checkbox 2개이상 선택했을 경우 checked를 막음
 function keyOnly(event) {
     
     let keyCode = event.keyCode;
@@ -41,11 +42,10 @@ function keyOnly(event) {
 
 let checkboxes = document.querySelectorAll('input[name="seates"]');
 
-
-let maxAllowed = 2;
-
-
+//checkbox 2개이상 선택했을 경우 추가선택을 막음(checked는 계속 가능)
 function handleCheckboxChange(e) {
+	
+let maxAllowed = 2;
     
     let checkedCheckboxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
     
@@ -62,7 +62,7 @@ checkboxes.forEach(checkbox => {
 });
 
 
-
+	//저장하기 요청함수
 	function pushData(){
 		
 		
@@ -99,12 +99,17 @@ checkboxes.forEach(checkbox => {
 			let jsonData = JSON.stringify(inputData);			
 
 			console.log(jsonData);
-		
-			let param = 'seatesData='+encodeURI(jsonData)+'&totalseat='+totalseat+'&row='+rows+'&col='+cols+'&tidx='+${tidx}+'&theatername='+theatername;
+			let param = null;
+		if(theatername != ''){
+			param = 'seatesData='+encodeURI(jsonData)+'&totalseat='+totalseat+'&row='+rows+'&col='+cols+'&tidx='+${tidx}+'&theatername='+theatername;
+		}else{
+			param = 'seatesData='+encodeURI(jsonData)+'&totalseat='+totalseat+'&row='+rows+'&col='+cols+'&tidx='+${tidx}+'&theatername=none';
+		}
 		
 		sendRequest('/amor/admin/theater/updateSeate.do',param,pushSeateData,'GET');
 	}
 	
+	//저장하기 응답함수
 	function pushSeateData(){
 		if(XHR.readyState == 4){
 			if(XHR.status == 200){
@@ -117,6 +122,7 @@ checkboxes.forEach(checkbox => {
 		}
 	}
 	
+	//초기화 요청함수
 	function resetseate(){
 		let box = document.getElementsByName('seates');
 		let row = document.getElementById('row').value;
@@ -142,8 +148,26 @@ checkboxes.forEach(checkbox => {
 			rowbox[j].innerHTML = j+1;
 			}
 		}
+		
+		let param='row='+8+'&col='+20;
+		sendRequest('/amor/admin/theater/seateInitialization.do',param,initializationResult,'GET');
 	}
 	
+	//초기화 응답함수
+	function initializationResult(){
+		if(XHR.readyState == 4){
+			if(XHR.status == 200){
+				let data = XHR.responseText;
+				let objData = JSON.parse(data);
+				let seats = objData.seates;
+				document.getElementById('seats').innerHTML = seats;
+				document.getElementById('row').value = 8;
+				document.getElementById('column').value = 20;
+			}
+		}
+	}
+	
+	//행증감 요청함수
 	function row(row){
 		let column = document.getElementById('column').value;
 		
@@ -151,6 +175,7 @@ checkboxes.forEach(checkbox => {
 		sendRequest('/amor/admin/theater/addSeate.do',param,rowResult,'GET');
 	}
 	
+	//행증감 응답함수
 	function rowResult(){
 		if(XHR.readyState == 4){
 			if(XHR.status == 200){
@@ -162,13 +187,15 @@ checkboxes.forEach(checkbox => {
 		}
 	}
 	
+	//열증가 요청함수
 	function column(column){
 		let row = document.getElementById('row').value;
 		
 		let param='row='+row+'&col='+column+'&theateridx='+${tidx};
 		sendRequest('/amor/admin/theater/addSeate.do',param,columnResult,'GET');
 	}
-
+	
+	//열증가 응답함수
 	function columnResult(){
 		if(XHR.readyState == 4){
 			if(XHR.status == 200){
@@ -180,6 +207,7 @@ checkboxes.forEach(checkbox => {
 		}
 	}
 	
+	//통로생성 함수
 	function path(){
 		let row = document.getElementById('row').value;
 		let column = document.getElementById('column').value;	
