@@ -25,7 +25,10 @@
 			<th>상품명</th>
 			<td>${store.item_name }</td>
 			<th>결제일자</th>
-			<td>${store.approved_at }</td>
+			<td>
+			<f:formatDate value="${store.approved_at }" pattern="yyyy-MM-dd HH:mm:ss" var="formatDate" timeZone="UTC"/>
+			${formatDate }
+			</td>
 		</tr>
 		<tr>
 			<th>결제수단</th>
@@ -38,8 +41,8 @@
 	</tbody>
 	</table>
 	<div class="btnDiv">
-		<button class="submitBtn1">스토어 내역 보기</button>
-		<button class="submitBtn2">확인</button>	
+		<a href="/amor/myAmor/"><button class="submitBtn1">스토어 내역 보기</button></a>
+		<a href="/amor/"><button class="submitBtn2">확인</button></a>	
 	</div>
 </div>
 </div>

@@ -23,6 +23,6 @@ public interface StorePaymentService {
 	public int storeListTotalCnt();
 	public List<StorePaymentDTO> storeList(int cp, int listSize);
 	public int storeListSubmit(String status, int idx);
-	public int storePayInert(StorePaymentDTO dto);
+	public int storePayInert(int product_idx, int sidx, int num, int totalPrice);
 
 }

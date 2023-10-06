@@ -14,8 +14,9 @@ function contentPopup(reviewIdx) {
 	window.open('reviewPopup.do?idx='+reviewIdx,'contentPopup','width=600,height=550');
 }
 function block(idx) {
-	value=document.getElementById('blockId').value;
-	let param='idx='+idx+'&value='+value;	
+	blockTag=document.getElementsByName('member_block'+idx)[0];
+	block_value=blockTag.value;	
+	let param='idx='+idx+'&value='+block_value;	
 	sendRequest('reviewListBlock.do',param,null,'GET');	
 	
 }
@@ -80,7 +81,7 @@ function reviewSearch() {
 			<td class="popupTd"><a href="javascript:contentPopup(${dto.movie_review_idx})">관람평 보기</a></td>
 			<td class="dateTd">${dto.movie_review_writedate }</td>
 			<td class="blockTd">
-				<select name="member_block" class="selectBox" id="blockId" onchange="block(${dto.movie_review_idx})">
+				<select name="member_block${dto.movie_review_idx}" class="selectBox" id="blockId" onchange="block(${dto.movie_review_idx})">
 					<option value="n" <c:if test="${dto.member_block=='n'}">selected</c:if>>N</option>
 					<option value="y" <c:if test="${dto.member_block=='y'}">selected</c:if>>Y</option>
 				</select>
