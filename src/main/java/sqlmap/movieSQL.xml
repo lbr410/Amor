@@ -14,7 +14,14 @@ movie_idx.nextval, #{movie_name}, #{movie_genre}, #{movie_god}, #{movie_actor}, 
 <select id="movieList" parameterType="Map" resultType="com.amor.movie.model.MovieDTO">
 <![CDATA[
 select * from 
-(select rownum as rnum, a.* from (select * from movie order by movie_idx desc)a)b 
+(select rownum as rnum, c.* from (select a.*, b.movie_review_star_avg as "avg_movie_review_star"
+from movie a
+inner join (
+    select movie_idx, avg(movie_review_star) as movie_review_star_avg
+    from movie_review
+    group by movie_idx
+) b on a.movie_idx = b.movie_idx
+order by a.movie_idx desc)c)d 
 where rnum >= #{start} and rnum <= #{end}
 ]]>
 </select>
@@ -22,7 +29,14 @@ where rnum >= #{start} and rnum <= #{end}
 <select id="movieListSearch" parameterType="Map" resultType="com.amor.movie.model.MovieDTO">
 <![CDATA[
 select * from 
-(select rownum as rnum, a.* from (select * from movie order by movie_idx desc)a)b 
+(select rownum as rnum, c.* from (select a.*, b.movie_review_star_avg as "avg_movie_review_star"
+from movie a
+inner join (
+    select movie_idx, avg(movie_review_star) as movie_review_star_avg
+    from movie_review
+    group by movie_idx
+) b on a.movie_idx = b.movie_idx
+order by a.movie_idx desc)c)d 
 where movie_name like '%${search}%' and rnum >= #{start} and rnum <= #{end}
 ]]>
 </select>
