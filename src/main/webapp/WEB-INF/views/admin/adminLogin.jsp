@@ -10,27 +10,24 @@
 	
 	body{
 	width: 1100px;
+	margin: 0 auto;
 	}
 	
-	div{
-		margin-top: 200px;
-		margin-left: 550px;
-	}
 	
 	.body{
+		text-align: center;
 		width: 1100px;
-		margin: 0 auto;
-		position: relative;
 		height: 550px;
-	}
+		display : flex;
+  		justify-content: center;
+  		align-items : center;
+		}
 	
 	.loginDiv{
 		width: 333px;
-		height: 452px;
-		flex-shrink: 0;
-		margin: 0 auto;
-		margin-top: 200px;
-		margin-left: 650px;
+		height: 552px;
+		margin-top: 500px;
+		
 	}
 	
 	img {
@@ -83,8 +80,8 @@
 </style>
 <body>
 <div class = "body">
-<form name = "admin" action = "/amor/admin/adminMain.do" method = "post">
 <div class = "loginDiv">
+<form name = "admin" action = "/amor/admin/adminMain.do" method = "post">
 <img src="/amor/resources/img/main_logo.png">
 	<input type = "text" name = "admin_id" class = "text1" value = "${cookie.idremember.value}" placeholder="아이디를 입력하세요."><br>
 	<input type = "password" name = "admin_pwd" class = "text2"  placeholder="비밀번호를 입력하세요."><br>
@@ -93,8 +90,8 @@
 	<input type = "checkbox" class = "box" name = "autoLogin" ${!empty cookie.autologin ? 'checked':''}> <span>자동 로그인</span>
 	
 	<input type = "submit" value = "로그인" class = "button">
-</div>
 </form>
+</div>
 </div>
 </body>
 </html>

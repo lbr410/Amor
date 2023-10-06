@@ -240,13 +240,12 @@
     </div>
     <c:if test="${temp.timelimit == 'y'}">
     	<c:url var="cancellticket" value="cancellation.do">
-			<c:param name="ticketnum">${temp.ticketnum}</c:param>    
+			<c:param name="ticketingidx">${temp.ticketingidx}</c:param>    
 			<c:param name="timelimit">${temp.timelimit}</c:param>    		
 		</c:url>
-    	<a href = "cancellticket"><input type = "button" value = "예매 취소" class = "button"></a>
+    	<a href = "${cancellticket}"><input type = "button" value = "예매 취소" class = "button"></a>
   	</c:if>
   	<c:if test="${temp.timelimit == 'n'}">
-  		${temp.timelimit}
   		<input type = "button" value = "관람평 작성" class = "button" onclick="document.getElementById('myReviewBtn${vs.index}').style.display='block'">
   	</c:if>
   	

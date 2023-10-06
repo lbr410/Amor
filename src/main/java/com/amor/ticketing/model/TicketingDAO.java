@@ -11,7 +11,7 @@ public interface TicketingDAO {
 	
 	public List<JoinTicketingHistoryDTO> ticketingList(int useridx);
 	//public List<Map<String, Object>> ticketingList(int useridx);
-	public int cancellationTicket(String ticketnum);
+	public int cancellationTicket(int ticketidx);
 	public List<JoinTicketingHistoryDTO> getcancellList(int useridx);
 	
 	public List<TicketingSelectMovieDTO> ticketingPlayingMovieList();
