@@ -240,7 +240,7 @@ em{
                 <tbody id="tab">
                 <c:if test="${empty lists }">
                 	<tr>
-                	<td colspan="4" align="center">
+                	<td colspan="5" align="center">
                 		등록된 1:1문의가 없습니다.
                 	</td>
                 	</tr>
