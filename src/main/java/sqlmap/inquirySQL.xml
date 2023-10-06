@@ -87,7 +87,7 @@
 
 
 	<select id="adminMainInquiryList" resultType="com.amor.inquiry.model.InquiryDTO">
-		<![CDATA[select * from (select inquiry_idx, inquiry_subject, inquiry_writedate, inquiry_answer 
+		<![CDATA[select * from (select inquiry_idx, inquiry_subject, inquiry_writedate, inquiry_astatus 
 			from inquiry 
 			order by inquiry_writedate desc) 
 		where rownum <= 5
