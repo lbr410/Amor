@@ -228,8 +228,13 @@ public class StorePaymentServiceImple implements StorePaymentService {
 	}
 	
 	@Override
-	public int storePayInert(StorePaymentDTO dto) {
-		int result=storePaymentDao.storePayInert(dto);
+	public int storePayInert(int product_idx, int sidx, int num, int totalPrice) {
+		Map map=new HashMap();
+		map.put("product_idx", product_idx);
+		map.put("sidx", sidx);
+		map.put("num", num);
+		map.put("totalPrice", totalPrice);
+		int result=storePaymentDao.storePayInert(map);
 		return result;
 	}
 

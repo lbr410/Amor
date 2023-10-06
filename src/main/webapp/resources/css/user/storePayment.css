@@ -119,12 +119,12 @@
 	padding: 20px;	
 }
 #payBtn{
-   border:none;
+   border:1px solid #1A2C82;
    padding: 2px 21px 2px 21px;
    width: 150px;
    height: 50px;
    border-radius: 3px;
-   background: #EEEEEE;
+   background: white;
    color: #1A2C82;
    cursor: pointer;
 }
