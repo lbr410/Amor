@@ -109,7 +109,7 @@ function movieStateYN(idx) {
 					<option value="y" <c:if test="${dto.movie_state eq 'y'}">selected</c:if>>Y</option>
 					<option value="n" <c:if test="${dto.movie_state eq 'n'}">selected</c:if>>N</option>
 				</select></td>
-			<td>10.0??</td>
+			<td>${dto.avg_movie_review_star }</td>
 			<td><img src="/amor/resources/upload/movie/${dto.movie_poster}" class="posterImg" alt="포스터 이미지"></td>
 			<td><input class="btn_movie" type="button" value="수정" onclick="movieUpdate(${dto.movie_idx})"></td>
 			<td><input class="btn_movie" type="button" value="삭제" onclick="movieDelete(${dto.movie_idx})"></td>

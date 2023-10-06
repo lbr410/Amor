@@ -52,6 +52,9 @@ public class TicketingController {
 		List<TicketingSelectMovieDTO> movieTimeLists = ticketingservice.ticketingPlayingMovieTimeList(movie_name,sumdate_s);
 		
 		model.addAttribute("movieTimeLists",movieTimeLists);
+		if(movie_name.equals("") || movie_name == "" || movie_name ==null) {
+			model.addAttribute("msg1","noselm");
+		}
 		
 		return "amorJson";
 	}

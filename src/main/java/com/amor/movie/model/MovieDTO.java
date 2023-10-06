@@ -22,7 +22,7 @@ public class MovieDTO {
 	private String movie_stillcut3;
 	private String movie_stillcut4;
 	private String movie_stillcut5; 
-	//private int 
+	private double avg_movie_review_star;
 	
 	public MovieDTO() {
 		// TODO Auto-generated constructor stub
@@ -81,6 +81,35 @@ public class MovieDTO {
 		this.movie_stillcut3 = movie_stillcut3;
 		this.movie_stillcut4 = movie_stillcut4;
 		this.movie_stillcut5 = movie_stillcut5;
+	}
+	
+	
+	
+
+	public MovieDTO(int movie_idx, String movie_name, String movie_genre, String movie_god, String movie_actor,
+			String movie_maxage, Date movie_opendate, int movie_runningtime, String movie_country, String movie_content,
+			String movie_poster, String movie_state, int movie_audience, String movie_stillcut1, String movie_stillcut2,
+			String movie_stillcut3, String movie_stillcut4, String movie_stillcut5, double avg_movie_review_star) {
+		super();
+		this.movie_idx = movie_idx;
+		this.movie_name = movie_name;
+		this.movie_genre = movie_genre;
+		this.movie_god = movie_god;
+		this.movie_actor = movie_actor;
+		this.movie_maxage = movie_maxage;
+		this.movie_opendate = movie_opendate;
+		this.movie_runningtime = movie_runningtime;
+		this.movie_country = movie_country;
+		this.movie_content = movie_content;
+		this.movie_poster = movie_poster;
+		this.movie_state = movie_state;
+		this.movie_audience = movie_audience;
+		this.movie_stillcut1 = movie_stillcut1;
+		this.movie_stillcut2 = movie_stillcut2;
+		this.movie_stillcut3 = movie_stillcut3;
+		this.movie_stillcut4 = movie_stillcut4;
+		this.movie_stillcut5 = movie_stillcut5;
+		this.avg_movie_review_star = avg_movie_review_star;
 	}
 
 	public int getMovie_idx() {
@@ -225,6 +254,14 @@ public class MovieDTO {
 
 	public void setMovie_stillcut5(String movie_stillcut5) {
 		this.movie_stillcut5 = movie_stillcut5;
+	}
+
+	public double getAvg_movie_review_star() {
+		return avg_movie_review_star;
+	}
+
+	public void setAvg_movie_review_star(double avg_movie_review_star) {
+		this.avg_movie_review_star = avg_movie_review_star;
 	}
 	
 	

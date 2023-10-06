@@ -121,6 +121,20 @@ var year = today.getFullYear();
 var month = today.getMonth()+1;
 var date = today.getDate();
 var weekday = today.getDay();
+
+var hours = today.getHours();
+var minutes = today.getMinutes();
+var cHHMM_s = ''+hours+minutes;
+var cHHMM = parseInt(cHHMM_s);
+var date_s = '';
+
+if(date < 10){
+	date_s = '0'+date;
+}else{
+	date_s = date;
+}
+var cYMD = ''+year+''+month+''+date_s;
+
 var select_movie_name = '';
 
 
@@ -226,17 +240,40 @@ document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+wee
 				var data = XHR.responseText;
 				var objData = JSON.parse(data);
 				var movieTimeLists = objData.movieTimeLists;
+				var noselectmovie = objData.msg1;
 				var msg ='';
 				
-				if (movieTimeLists == null || movieTimeLists == ''){
-					msg = '선택된 날짜에 상영시간이 없습니다';
+				if (noselectmovie == 'noselm') {
+					msg = '영화를 선택해주세요.';
 				}else{
-					//movieTimeLists.length
-					for(var i = 0 ; i < movieTimeLists.length; i++){
-						let time = ''+movieTimeLists[i].playing_movie_start+'';
-						let timeHHandMM = time.substring(11,16);
-						
-						msg += '<div class="sTimeC" onclick="selectresult('+movieTimeLists[i].playing_movie_idx+','+movieTimeLists[i].theater_idx+','+movieTimeLists[i].movie_idx+')"><div><a href="#" class="cursorblack">'+ timeHHandMM +'</a></div><div class="sTimeC_2line"><a href="#" class="cursorblack">'+ (movieTimeLists[i].theater_totalseat - movieTimeLists[i].playing_movie_remain_seats)+'/'+ movieTimeLists[i].theater_totalseat +'&nbsp;&nbsp;'+movieTimeLists[i].theater_name+'</a></div></div>';
+					if (movieTimeLists == null || movieTimeLists == ''){
+						msg = '선택된 날짜에 상영시간이 없습니다';
+					}else{
+						//movieTimeLists.length
+						for(var i = 0 ; i < movieTimeLists.length; i++){
+							let fYMD = ''+movieTimeLists[i].playing_movie_date+'';
+							let vsYearAndMonthAndDate = ''+fYMD.substring(0,4)+''+fYMD.substring(5,7)+''+fYMD.substring(8,10)+'';
+							//window.alert(vsYearAndMonthAndDate);
+							let time = ''+movieTimeLists[i].playing_movie_start+'';
+							let vsHHMM_s = ''+time.substring(11,13)+time.substring(14,16);
+							let vsHHMM = parseInt(vsHHMM_s);
+							
+							//오늘 일때
+							if(vsYearAndMonthAndDate == cYMD){
+								//현재 시간 > 상영 영화 시간 
+								if(cHHMM > vsHHMM){
+									 continue;
+								}else{
+									let timeHHandMM = time.substring(11,16);
+									msg += '<div class="sTimeC" onclick="selectresult('+movieTimeLists[i].playing_movie_idx+','+movieTimeLists[i].theater_idx+','+movieTimeLists[i].movie_idx+')"><div><a href="#" class="cursorblack">'+ timeHHandMM +'</a></div><div class="sTimeC_2line"><a href="#" class="cursorblack">'+ (movieTimeLists[i].playing_movie_remain_seats)+'/'+ movieTimeLists[i].theater_totalseat +'&nbsp;&nbsp;'+movieTimeLists[i].theater_name+'</a></div></div>';
+									
+								}
+							}else{
+								let timeHHandMM = time.substring(11,16);
+								msg += '<div class="sTimeC" onclick="selectresult('+movieTimeLists[i].playing_movie_idx+','+movieTimeLists[i].theater_idx+','+movieTimeLists[i].movie_idx+')"><div><a href="#" class="cursorblack">'+ timeHHandMM +'</a></div><div class="sTimeC_2line"><a href="#" class="cursorblack">'+ (movieTimeLists[i].playing_movie_remain_seats)+'/'+ movieTimeLists[i].theater_totalseat +'&nbsp;&nbsp;'+movieTimeLists[i].theater_name+'</a></div></div>';
+								
+							}
+						}
 					}
 				}
 				document.getElementById('ticketingMovieTime').innerHTML = msg;
