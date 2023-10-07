@@ -37,7 +37,7 @@
 			<div class="content2">
 				<div class="selectDateBox">
 					<div class="selectDate">
-						<div class="date0" onclick="selectDate(0)">
+						<div class="datecss" id="datebtn0" onclick="selectDate(0)">
 							<div>
 								<table class="ta123">
 									<tr><th id="datep0">123</th></tr>
@@ -45,7 +45,7 @@
 								</table>
 							</div>
 						</div>
-						<div class="date1" onclick="selectDate(1)">
+						<div class="datecss" id="datebtn1" onclick="selectDate(1)">
 							<div>
 								<table class="ta123">
 									<tr><th id="datep1">일</th></tr>
@@ -53,7 +53,7 @@
 								</table>
 							</div>
 						</div>
-						<div class="date2" onclick="selectDate(2)">
+						<div class="datecss" id="datebtn2" onclick="selectDate(2)">
 							<div>
 								<table class="ta123">
 									<tr><th id="datep2">일</th></tr>
@@ -61,7 +61,7 @@
 								</table>
 							</div>
 						</div>
-						<div class="date3" onclick="selectDate(3)">
+						<div class="datecss" id="datebtn3" onclick="selectDate(3)">
 							<div>
 								<table class="ta123">
 									<tr><th id="datep3">일</th></tr>
@@ -69,7 +69,7 @@
 								</table>
 							</div>
 						</div>
-						<div class="date4" onclick="selectDate(4)">
+						<div class="datecss" id="datebtn4" onclick="selectDate(4)">
 							<div>
 								<table class="ta123">
 									<tr><th id="datep4">일</th></tr>
@@ -77,7 +77,7 @@
 								</table>
 							</div>
 						</div>
-						<div class="date5" onclick="selectDate(5)">
+						<div class="datecss" id="datebtn5" onclick="selectDate(5)">
 							<div>
 								<table class="ta123">
 									<tr><th id="datep5">일</th></tr>
@@ -85,9 +85,9 @@
 								</table>
 							</div>
 						</div>
-						<div class="date6">
+						<div class="datecss" id="datebtn6" onclick="selectDate(6)">
 							<div>
-								<table class="ta123" onclick="selectDate(6)">
+								<table class="ta123">
 									<tr><th id="datep6">일</th></tr>
 									<tr><td id="weekp6">(요일)</td></tr>
 								</table>
@@ -115,6 +115,7 @@
 
 <script type="text/javascript" src="/amor/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
+var datecss = document.getElementsByClassName("datecss");
 
 var today = new Date();
 var year = today.getFullYear();
@@ -220,6 +221,17 @@ document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+wee
 	
 	
 	function selectDate(currentPlusDate){
+		
+		const currentDiv = document.getElementById(`datebtn${currentPlusDate}`); 	
+	//	if (currentDiv.classList[1] === "clicked") {
+	//		event.target.classList.remove("clicked");
+	//	} else {
+	//		for (var i = 0; i < datecss.length; i++) {
+	//			datecss[i].classList.remove("clicked");
+	//		}
+	//		currentDiv.classList.add("clicked");
+	//	}
+		
 		var dayPost= new Date(year,month-1,date+currentPlusDate);
 		let yearPost = dayPost.getFullYear();
 		let monthPost = dayPost.getMonth()+1;

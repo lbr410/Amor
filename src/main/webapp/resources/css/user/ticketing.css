@@ -113,13 +113,13 @@
 
 
 .playingmovie:hover{
-	background-color: green;
+	background-color: gray;
 }
 .playingmovie:active{
-	background-color: green;
+	background-color: gray;
 }
 .playingmovie:visited{
-	background-color: green;
+	background-color: gray;
 }
 
 
@@ -186,13 +186,16 @@
 	display: flex;
 }
 
-.date0{flex: 1;cursor: pointer;}
-.date1{flex: 1;cursor: pointer;}
-.date2{flex: 1;cursor: pointer;}
-.date3{flex: 1;cursor: pointer;}
-.date4{flex: 1;cursor: pointer;}
-.date5{flex: 1;cursor: pointer;}
-.date6{flex: 1;cursor: pointer;}
+
+
+.datecss{
+	flex: 1;cursor: pointer;
+}
+
+.clicked{
+	background-color: green;
+}
+
 
 .cursorblack{
 	color: black;
