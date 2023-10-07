@@ -16,17 +16,24 @@
 
 <insert id="inventoryAdd" parameterType="com.amor.inventory.model.InventoryDTO">
 	insert into inventory values(
-	inventory_idx.nextval, #{inventory_category}, #{inventory_num}, #{inventory_brand} #{inventory_name}, #{inventory_unit}, #{inventory_optimal},0,0)
+	inventory_idx.nextval, #{inventory_num}, #{inventory_category}, #{inventory_name}, #{inventory_brand},
+	#{inventory_unit}, #{inventory_optimal},0,0)
 </insert>
 
 <select id="inventoryUpdateForm" parameterType="Integer" resultType="com.amor.inventory.model.InventoryDTO">
 	select * from inventory
 	where inventory_idx=#{idx}
 </select>
+
 <update id="inventoryUpdate" parameterType="com.amor.inventory.model.InventoryDTO">
     update inventory 
-    set inventory_current = #{inventory_current}, 
-        inventory_deviation = (inventory_optimal - #{inventory_current})
+    set inventory_num=#{inventory_num},
+    	inventory_category=#{inventory_category},
+    	inventory_name=#{inventory_name},
+    	inventory_brand=#{inventory_brand},
+		inventory_unit=#{inventory_unit},
+    	inventory_current = #{inventory_current}, 
+        inventory_deviation = (#{inventory_optimal} - #{inventory_current})
     where inventory_idx = #{inventory_idx}
 </update>
 
