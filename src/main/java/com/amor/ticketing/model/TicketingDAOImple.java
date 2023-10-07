@@ -21,21 +21,20 @@ public class TicketingDAOImple implements TicketingDAO {
 	}
 	
 	@Override
-	public List<JoinTicketingHistoryDTO> ticketingList(int useridx) {
-		List<JoinTicketingHistoryDTO> lists = sqlmap.selectList("ticketingHistoryList", useridx);
+	public List<JoinTicketingHistoryDTO> ticketingHistoryList(Map<String, Object> parameter) {
+		List<JoinTicketingHistoryDTO> lists = sqlmap.selectList("ticketingHistoryList", parameter);
 		return lists;
 	}
 	
 	@Override
 	public int cancellationTicket(int ticketidx) {
 		int result = sqlmap.update("cancellationTicket",ticketidx);
-		System.out.println("updateResult="+result);
 		return result;
 	}
 	
 	@Override
-	public List<JoinTicketingHistoryDTO> getcancellList(int useridx) {
-		List<JoinTicketingHistoryDTO> lists = sqlmap.selectList("ticketingcancellList", useridx);
+	public List<JoinTicketingHistoryDTO> ticketingCancellList(Map<String, Object> parameter) {
+		List<JoinTicketingHistoryDTO> lists = sqlmap.selectList("ticketingCancellList", parameter);
 		return lists;
 	}
 	
@@ -46,8 +45,26 @@ public class TicketingDAOImple implements TicketingDAO {
 	}
 	
 	@Override
+	public int getticketingHistoryTotalCnt(int useridx) {
+		int result = sqlmap.selectOne("getticketingHistoryTotalCnt", useridx);
+		return result;
+	}
+	
+	@Override
+	public int getTicketingCancellListTotalCnt(int useridx) {
+		int result = sqlmap.selectOne("getTicketingCancellListTotalCnt", useridx);
+		return result;
+	}
+	
+	@Override
 	public PlayingMovieDTO getPlayingMovie(int playingMovieidx) {
 		PlayingMovieDTO result = sqlmap.selectOne("getPlayingMovie", playingMovieidx);
+		return result;
+	}
+	
+	@Override
+	public int PlayingMovieSeateUpdate(Map<String, Object> parameter) {
+		int result = sqlmap.update("playingMovieSeateUpdate", parameter);
 		return result;
 	}
 		

@@ -4,18 +4,51 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amor.ticketingSQL">
 
-<select id="ticketingHistoryList" parameterType="Integer" resultType="com.amor.ticketing.model.JoinTicketingHistoryDTO">
+<select id="ticketingHistoryList" parameterType="Map" resultType="com.amor.ticketing.model.JoinTicketingHistoryDTO">
   <![CDATA[
-select a.playing_movie_idx as playingMovieidx,b.member_idx as memberidx,b.ticketing_idx as ticketingidx,
-c.movie_idx as movieidx,c.movie_name as moviename,c.movie_poster as movieimg,b.ticketing_num as ticketnum,
-b.theater_name as theatername,b.ticketing_seat as seatnum,b.ticketing_screeningtime as screeningdate,
-b.ticketing_payment as payment,b.ticketing_price as price,b.ticketing_reservetime as reservetime
-from playing_movie a,(select * from ticketing,theater
-where ticketing.member_idx = #{useridx} and ticketing.ticketing_state = 'y' 
-and ticketing.theater_idx = theater.theater_idx
-order by ticketing_reservetime desc) b , movie c
-where a.playing_movie_idx = b.playing_movie_idx and a.movie_idx = c.movie_idx
+		with ticketingHistoryList as (
+	        select rownum as rnum,
+	               a.playing_movie_idx as playingMovieidx,
+	               b.member_idx as memberidx,
+	               b.ticketing_idx as ticketingidx,
+	               c.movie_idx as movieidx,
+	               c.movie_name as moviename,
+	               c.movie_poster as movieimg,
+	               b.ticketing_num as ticketnum,
+	               b.theater_name as theatername,
+	               b.ticketing_seat as seatnum,
+	               b.ticketing_screeningtime as screeningdate,
+	               b.ticketing_payment as payment,
+	               b.ticketing_price as price,
+	               b.ticketing_reservetime as reservetime
+	        from playing_movie a,
+	             (select * from ticketing, theater
+	              where ticketing.member_idx = #{useridx}
+	              and ticketing.ticketing_state in ('y', 'r')
+	              and ticketing.theater_idx = theater.theater_idx
+	              order by ticketing_reservetime desc) b,
+	             movie c
+	        where a.playing_movie_idx = b.playing_movie_idx
+	        and a.movie_idx = c.movie_idx
+	    )
+	    select * from ticketingHistoryList
+	    where rnum between #{start} and #{end} 
+	    order by reservetime desc
 ]]>
+</select>
+
+<select id="getticketingHistoryTotalCnt" parameterType="Integer" resultType="Integer">
+	select count(*) from ticketing a, playing_movie b
+	where a.member_idx = #{useridx} 
+	and a.ticketing_state in('y','r') 
+	and a.playing_movie_idx = b.playing_movie_idx
+</select>
+
+<select id="getTicketingCancellListTotalCnt" parameterType="Integer" resultType="Integer">
+	select count(*) from ticketing a, playing_movie b
+	where a.member_idx = #{useridx} 
+	and a.ticketing_state = 'n' 
+	and a.playing_movie_idx = b.playing_movie_idx
 </select>
 
 <select id="checkDate" parameterType="Integer" resultType="java.util.Date">
@@ -31,15 +64,43 @@ where a.playing_movie_idx = b.playing_movie_idx and a.movie_idx = c.movie_idx
 	where playing_movie_idx = #{playingMovieidx}
 </select>
 
-<select id = "ticketingcancellList" parameterType="Integer" resultType="com.amor.ticketing.model.JoinTicketingHistoryDTO">
+<update id = "playingMovieSeateUpdate" parameterType="Map">
+	update playing_movie
+	set 
+	playing_movie_remain_seats = #{playingMovieTotalSeateNum},
+	playing_movie_seat = #{playingMovieSeates}
+	where playing_movie_idx = #{playingMovieIdx}	
+</update>
+
+<select id = "ticketingCancellList" parameterType="Map" resultType="com.amor.ticketing.model.JoinTicketingHistoryDTO">
 <![CDATA[
-select c.movie_name as moviename,c.movie_poster as movieimg,b.ticketing_num as ticketnum,
-b.theater_name as theatername,b.ticketing_seat as seatnum,b.ticketing_screeningtime as screeningdate,
-b.ticketing_payment as payment,b.ticketing_price as price,b.ticketing_reservetime as reservetime 
-from playing_movie a,(select * from ticketing,theater
-where member_idx = #{useridx} and ticketing_state = 'n'
-and ticketing.theater_idx = theater.theater_idx) b , movie c
-where a.playing_movie_idx = b.playing_movie_idx and a.movie_idx = c.movie_idx
+		with ticketingHistoryList as (
+	        select rownum as rnum,
+	               a.playing_movie_idx as playingMovieidx,
+	               b.member_idx as memberidx,
+	               b.ticketing_idx as ticketingidx,
+	               c.movie_idx as movieidx,
+	               c.movie_name as moviename,
+	               c.movie_poster as movieimg,
+	               b.ticketing_num as ticketnum,
+	               b.theater_name as theatername,
+	               b.ticketing_seat as seatnum,
+	               b.ticketing_screeningtime as screeningdate,
+	               b.ticketing_payment as payment,
+	               b.ticketing_price as price,
+	               b.ticketing_reservetime as reservetime
+	        from playing_movie a,
+	             (select * from ticketing, theater
+	              where ticketing.member_idx = #{useridx}
+	              and ticketing.ticketing_state = 'n'
+	              and ticketing.theater_idx = theater.theater_idx
+	              order by ticketing_reservetime desc) b,
+	             movie c
+	        where a.playing_movie_idx = b.playing_movie_idx
+	        and a.movie_idx = c.movie_idx
+	    )
+	    select * from ticketingHistoryList
+	    where rnum between #{start} and #{end}
 ]]>
 </select>
 

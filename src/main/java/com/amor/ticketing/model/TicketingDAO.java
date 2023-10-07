@@ -10,11 +10,14 @@ import java.sql.*;
 
 public interface TicketingDAO {
 	
-	public List<JoinTicketingHistoryDTO> ticketingList(int useridx);
+	public List<JoinTicketingHistoryDTO> ticketingHistoryList(Map<String, Object> parameter);
 	public java.util.Date checkDate(int ticketidx);
 	public int cancellationTicket(int ticketidx);
-	public List<JoinTicketingHistoryDTO> getcancellList(int useridx);
+	public List<JoinTicketingHistoryDTO> ticketingCancellList(Map<String, Object> parameter);
 	public PlayingMovieDTO getPlayingMovie(int playingMovieidx);
+	public int PlayingMovieSeateUpdate(Map<String, Object> parameter);
+	public int getticketingHistoryTotalCnt(int useridx);
+	public int getTicketingCancellListTotalCnt(int useridx);
 	
 	public List<TicketingSelectMovieDTO> ticketingPlayingMovieList();
 	public List<TicketingSelectMovieDTO> ticketingPlayingMovieTimeList(Map map);
