@@ -41,7 +41,7 @@
 	</tbody>
 	</table>
 	<div class="btnDiv">
-		<a href="/amor/myAmor/"><button class="submitBtn1">스토어 내역 보기</button></a>
+		<a href="amor/myAmor/storeHistory.do"><button class="submitBtn1">스토어 내역 보기</button></a>
 		<a href="/amor/"><button class="submitBtn2">확인</button></a>	
 	</div>
 </div>

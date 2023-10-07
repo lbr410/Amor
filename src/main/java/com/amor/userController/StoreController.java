@@ -104,8 +104,7 @@ public class StoreController {
 	public  String storeSubmit(
 			@RequestParam("idx") int idx,
 			@RequestParam("num") int num,
-			HttpSession session,
-			HttpServletResponse resp) {
+			HttpSession session) {
 		ProductDTO pdto=productService.storeKakao(idx, num);
 		
 		String sid=(String)session.getAttribute("sid");
@@ -130,8 +129,7 @@ public class StoreController {
 	@RequestMapping("store/kakaoOk.do")
 	public ModelAndView storeDetailForm(
 			@RequestParam("pg_token")String pg_token,
-			HttpSession session,
-			HttpServletRequest req) {
+			HttpSession session) {
 
 		String sid=(String)session.getAttribute("sid");
 		int sidx=(Integer)session.getAttribute("sidx");
@@ -172,4 +170,8 @@ public class StoreController {
 		return mav;
 	}
 	
+	@RequestMapping("store/storemy.do")
+	public String mytest() {
+		return "/user/store/mypagetest";
+	}
 }
