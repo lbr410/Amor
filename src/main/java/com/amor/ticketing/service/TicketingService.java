@@ -12,13 +12,14 @@ import com.amor.ticketing.model.TicketingSelectMovieDTO;
 
 public interface TicketingService {
 
-	public List<JoinTicketingHistoryDTO> getReserveList(int useridx);
-	//public List<Map<String, Object>> getReserveList(int useridx);
+	public List<JoinTicketingHistoryDTO> ticketingHistoryList(int useridx,int cp, int listSize);
 	public int cancellationTicket(int ticketidx);
 	public boolean checkDate(int ticketidx);
 	public PlayingMovieDTO getPlayMovie(int playingMovieidx);
-	public List<JoinTicketingHistoryDTO> getcancellList(int useridx);
-	
+	public List<JoinTicketingHistoryDTO> ticketingcancellList(int useridx,int cp, int listSize);
+	public int playingMovieSeateUpdate(Map<String, Object> parameter);
+	public int getticketingHistoryTotalCnt(int useridx);
+	public int getTicketingCancellListTotalCnt(int useridx);
 	
 	public List<TicketingSelectMovieDTO> ticketingPlayingMovieList();
 	public List<TicketingSelectMovieDTO> ticketingPlayingMovieTimeList(String movie_name, java.sql.Date sumdate);
