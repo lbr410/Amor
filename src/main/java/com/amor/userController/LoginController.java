@@ -77,7 +77,7 @@ public class LoginController {
 			mav.addObject("goUrl","/amor/member/terms.do");
 			mav.setViewName("/user/msg/userMsg");
 		}else if(result==memberService.BLOK) {
-			mav.addObject("msg", "접근이 제한된 아이디 입니다. 고객센터로 문의 바랍니다.");
+			mav.addObject("msg", "접근이 제한된 아이디 입니다. [고객센터로 문의 바람]");
 			mav.addObject("goUrl","/amor/index.do");
 			mav.setViewName("/user/msg/userMsg");
 		}else if(result==memberService.ERROR) {
