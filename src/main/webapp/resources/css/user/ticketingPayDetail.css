@@ -1,0 +1,110 @@
+@charset "UTF-8";
+	a {
+		text-decoration: none;
+	}
+	body {
+		font-family: 'Nanum Gothic', sans-serif;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 1.4;
+		color: #333333;
+	}
+	img {
+		display: block;
+	}
+	.body-inner {
+		width: 1100px;
+		height:500px;
+		margin: 0 auto;
+		position: relative;
+	}
+
+	/**BORDER BAR*/
+	.border-bar {
+		margin-top: 300px;
+		padding-top: 140px;
+		width: 1100px;
+		margin: 0 auto;
+		display: block;
+		position: relative;
+		border-bottom: solid 1px #D9D9D9;
+	}
+
+	.border-title {
+		 margin-top: 78px;
+		display: block;
+		margin-bottom: 20px;
+		font-size: 24px;
+	}
+
+.border-sub{
+	font-size: 18px;
+	color: #D9D9D9;
+	margin-top: 10px;
+	margin-left: 950px;
+}	
+	
+.payForm{
+	margin: 0 auto;
+}
+.payForm .payTable{
+	margin: 0 auto;
+	margin-top: 65px;
+	width: 964px;
+	border-collapse: collapse;
+}
+.payForm .payTable tbody tr{
+	height:80px;
+	border-bottom: 1px dashed #D9D9D9;
+}
+.payForm .payTable tbody th, .payForm .payTable tbody td{
+	 text-align: left; 
+	 vertical-align: middle; 
+	 padding: 8px; 
+}
+.payForm .payTable tbody th{
+	width: 120px;
+	padding: 8px 8px 8px 20px ; 
+	font-weight: bold;
+	font-size: 18px;
+}
+.payForm .payTable tbody td{
+	width: 280px;
+	font-size: 16px;
+}
+.btnDiv {
+  display: flex;
+  flex-direction: row; 
+  align-items: flex-end; 
+  justify-content: center; 
+  height: 100px;
+  gap: 10px; 
+  margin-right: 150px;
+  margin-bottom: 50px;
+  
+}
+
+.submitBtn1,
+.submitBtn2 {
+  border: none;
+  padding: 2px 21px 6px 21px;
+  width: 150px;
+  height: 40px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.submitBtn1 {
+  background: #EEEEEE;
+  color: #1A2C82;
+}
+
+.submitBtn2 {
+  background: #1A2C82;
+  color: #C7E3FF;
+}
+
+.cancel {
+	color: red;	
+}
+

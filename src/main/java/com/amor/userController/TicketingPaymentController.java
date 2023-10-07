@@ -9,6 +9,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +42,9 @@ public class TicketingPaymentController {
 	private int theater_idx;
 	private String ticketing_screeningtime;
 	private String ticketing_seat;
+	private String movie_name;
+	private String theater_name;
+	
 
 	@RequestMapping(value = "ticketing/ticketingPayment.do", method = RequestMethod.POST)
 	public ModelAndView ticketingPayment(
@@ -107,12 +113,16 @@ public class TicketingPaymentController {
 			@RequestParam("movie_name") String movie_name
 			) {
 		
+		System.out.println(ticketing_screeningtime);
+		
 		this.ticketing_price=ticketing_price;
 		this.ticketing_personnel=ticketing_personnel;
 		this.playing_movie_idx=playing_movie_idx;
 		this.theater_idx=theater_idx;
 		this.ticketing_seat=ticketing_seat;
 		this.ticketing_screeningtime=ticketing_screeningtime;
+		this.movie_name=movie_name;
+		this.theater_name=theater_name;
 		
 		String ticketing_idx = "";
 		for (int i=0;i<10;i++) {
@@ -135,6 +145,7 @@ public class TicketingPaymentController {
 		return "redirect:"+kaka.kakaoPayReady(kdto);
 	}
 	
+	
 	@RequestMapping("ticketing/ticketingPayDetail.do")
 	public ModelAndView ticketingPayDetail(
 			@RequestParam("pg_token") String pg_token,
@@ -144,11 +155,29 @@ public class TicketingPaymentController {
 		String sid=(String)session.getAttribute("sid");
 		int sidx=(Integer)session.getAttribute("sidx");
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		java.util.Date cancelDate = null;
+		try {
+		cancelDate = sdf.parse(this.ticketing_screeningtime);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(cancelDate);
+		cal.add(Calendar.MINUTE, -30);
+		
+		String ticketing_cancel = sdf.format(cal.getTime());
+		
 		Kakaopay kaka = new Kakaopay();
 		KakaopayDTO kdto = new KakaopayDTO(this.ticketing_idx, sid, null, null, this.ticketing_price, null, null, null);
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("theater_name", this.theater_name);
+		mav.addObject("movie_name", this.movie_name);
+		mav.addObject("ticketing_screeningtime", this.ticketing_screeningtime);
+		mav.addObject("ticketing_seat", this.ticketing_seat);
+		mav.addObject("ticketing_personnel", this.ticketing_personnel);
+		mav.addObject("ticketing_cancel", ticketing_cancel);
 		mav.addObject("ticketing",kaka.kakaoPayInfo(pg_token, kdto));
-		mav.addObject("", this.)
 		mav.setViewName("/user/ticketing/ticketingPayDetail");
 		return mav;
 		
