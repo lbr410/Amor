@@ -1,0 +1,64 @@
+@charset "UTF-8";
+.inventoryWriteForm{
+	width: 800px;
+	text-align: center;
+}
+.inventoryDiv{
+	width: 600px;
+	margin-top: 20px;
+	text-align: right;
+}
+.inventoryDive{
+	width: 600px;
+	text-align: right;
+}
+.line{
+	background: #eeeeee;
+	height: 1px;
+	border: 0;
+}
+.titleDiv{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.invenMenu{
+	margin-right: 50px;
+	font-weight: bold;
+}
+.cateMenu{
+	width: 300px;
+	height: 35px;
+	border: 1px solid #D9D9D9;
+	padding-left: 5px;
+}
+.textBox{
+	width: 288px;
+	height: 30px;
+	border: 1px solid #D9D9D9;
+	padding-left: 8px;
+	margin-bottom: 5px;
+}
+.btnDiv{
+	margin-top: 30px;
+	padding-left: 300px;
+}
+.cancelBtn{
+	border: none;
+	padding-botton: 2px;
+	width: 130px;
+	height: 34px;
+	border-radius: 3px;
+	background: #eeeeee;
+	color: #1a2c82;
+	cursor: pointer;
+}
+.addBtn{
+	border: none;
+	padding-bottom: 2px;
+	width: 130px;
+	height: 34px;
+	border-radius: 3px;
+	background: #1A2C82;
+	color: #C7E3FF;
+	cursor: pointer;
+}

@@ -7,5 +7,5 @@ public interface InventoryDAO {
 	public int inventoryTotalCnt();
 	public int inventoryAdd(InventoryDTO dto);
 	public InventoryDTO inentoryUpdateForm(int idx);
-			
+	public int inventoryUpdate(InventoryDTO dto);
 }

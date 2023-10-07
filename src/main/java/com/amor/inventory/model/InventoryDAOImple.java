@@ -37,4 +37,10 @@ public class InventoryDAOImple implements InventoryDAO {
 		InventoryDTO dto=sqlmap.selectOne("inventoryUpdateForm", idx);
 		return dto;
 	}
+	
+	@Override
+	public int inventoryUpdate(InventoryDTO dto) {
+		int result=sqlmap.delete("inventoryUpdate", dto);
+		return result;
+	}
 }

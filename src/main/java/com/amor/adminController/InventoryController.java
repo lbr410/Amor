@@ -48,7 +48,7 @@ public class InventoryController {
 	}
 	
 	//재고상품 등록
-	@RequestMapping(value="admin/inventory/inventoryWried.do", method = RequestMethod.POST)
+	@RequestMapping(value="admin/inventory/inventoryWrite.do", method = RequestMethod.POST)
 	public ModelAndView inventoryAdd(
 			@RequestParam("inventory_num")String inventory_num,
 			@RequestParam("inventory_category")String inventory_category,
@@ -68,7 +68,7 @@ public class InventoryController {
 		}
 	
 	//재고상품 수정 페이지로 이동
-	@RequestMapping(value="admin/inventory/inventoryUpdate.do", method = RequestMethod.GET)
+	@RequestMapping("admin/inventory/inventoryUpdateForm.do")
 	public ModelAndView inventoryUpdate(
 			@RequestParam(value="idx", defaultValue = "0")int idx) {
 		
@@ -82,6 +82,19 @@ public class InventoryController {
 			mav.addObject("dto", dto);
 			mav.setViewName("/admin/inventory/inventoryUpdate");
 		}
+		return mav;
+	}
+	
+	//재고상품 수정
+	@RequestMapping("admin/inventory/inventoryUpdate.do")
+	public ModelAndView inventoryUpdate(InventoryDTO dto) {
+		
+		int result=inventoryService.inventoryUpdate(dto);
+		String msg=result>0?"수정 완료되었습니다.":"수정 실패했습니다.";
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("msg", msg);
+		mav.addObject("href", "/amor/admin/inventory/inventoryList.do");
+		mav.setViewName("/admin/msg/adminMsg");
 		return mav;
 	}
 }

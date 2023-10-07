@@ -45,4 +45,10 @@ public class InventoryServiceImple implements InventoryService {
 		InventoryDTO dto=inventoryDao.inentoryUpdateForm(idx);
 		return dto;
 	}
+	
+	@Override
+	public int inventoryUpdate(InventoryDTO dto) {
+		int result=inventoryDao.inventoryUpdate(dto);
+		return result;
+	}
 }
