@@ -14,7 +14,7 @@
 <div class="content-title"><label class="titletext">상영관 수정</label>
 </div>
 <div class="contentMain">
-<span class = "controller">행 <input type = "number" id = "row" value = "${row}" min="4" max="8" onclick = "row(this.value)" onkeydown="keyOnly(event)"></span>
+<span class = "controller">행 <input type = "number" id = "row" value = "${row}" min="4" max="8" onclick = "row(this.value)"></span>
 <span class = "controller">열 <input type = "number" id = "column" value = "${col}" min="5" max="20" onclick = "column(this.value)"></span>
 <span class = "controller">상영관명 <input type = "text" class = "nameAdd" id = "theatername" value = "${theatername}" maxlength="6"></span><br>
 <div id = "seats" class = "seate">${seates}</div>
@@ -42,24 +42,33 @@ function keyOnly(event) {
 
 let checkboxes = document.querySelectorAll('input[name="seates"]');
 
+//사용자가 checkbox를 클릭했을때 실행되는 함수 정의
+checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('click', handleCheckboxChange);
+});
+
+
 //checkbox 2개이상 선택했을 경우 추가선택을 막음(checked는 계속 가능)
 function handleCheckboxChange(e) {
 	
-let maxAllowed = 2;
+let max = 2;
     
     let checkedCheckboxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
     
     
-    if (checkedCheckboxes.length > maxAllowed) {
+    if (checkedCheckboxes.length > max) {
         e.preventDefault();
+        let box = document.getElementsByName('seates');
+        box.forEach(function(checkbox){
+     	  if(checkbox.checked){
+     		  checkbox.checked = false;
+     	  } 
+        });
         alert('두개이상 선택이 불가합니다.');
     }
 }
 
 
-checkboxes.forEach(checkbox => {
-    checkbox.addEventListener('click', handleCheckboxChange);
-});
 
 
 	//저장하기 요청함수
@@ -153,19 +162,49 @@ checkboxes.forEach(checkbox => {
 		sendRequest('/amor/admin/theater/seateInitialization.do',param,initializationResult,'GET');
 	}
 	
-	//초기화 응답함수
-	function initializationResult(){
-		if(XHR.readyState == 4){
-			if(XHR.status == 200){
-				let data = XHR.responseText;
-				let objData = JSON.parse(data);
-				let seats = objData.seates;
-				document.getElementById('seats').innerHTML = seats;
-				document.getElementById('row').value = 8;
-				document.getElementById('column').value = 20;
-			}
-		}
+	// 초기화 응답함수
+	function initializationResult() {
+	    if (XHR.readyState == 4) {
+	        if (XHR.status == 200) {
+	            let data = XHR.responseText;
+	            let objData = JSON.parse(data);
+	            let seats = objData.seates;
+	            document.getElementById('seats').innerHTML = seats;
+	            document.getElementById('row').value = 8;
+	            document.getElementById('column').value = 20;
+
+				let checkboxes = document.querySelectorAll('input[name="seates"]');
+	            // 기존에 등록된 이벤트 리스너 모두 제거
+	            checkboxes.forEach(checkbox => {
+	                checkbox.removeEventListener('click', handleCheckbox);
+	            });
+
+	            // 사용자가 checkbox를 클릭했을때 실행되는 함수 정의
+	            checkboxes.forEach(checkbox => {
+	                checkbox.addEventListener('click', handleCheckbox);
+	            });
+
+	            // checkbox 2개 이상 선택했을 경우 추가 선택을 막음(checked는 계속 가능)
+	            function handleCheckbox(e) {
+	                let max = 2;
+
+	                let checkedCheckboxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
+
+	                if (checkedCheckboxes.length > max) {
+	                    e.preventDefault();
+	                   let box = document.getElementsByName('seates');
+	                   box.forEach(function(checkbox){
+	                	  if(checkbox.checked){
+	                		  checkbox.checked = false;
+	                	  } 
+	                   });
+	                    alert('두 개 이상 선택이 불가합니다.');
+	                }
+	            }
+	        }
+	    }
 	}
+
 	
 	//행증감 요청함수
 	function row(row){
@@ -183,11 +222,40 @@ checkboxes.forEach(checkbox => {
 				let objData = JSON.parse(data);
 				let seats = objData.seates;
 				document.getElementById('seats').innerHTML = seats;
+				
+				let checkboxes = document.querySelectorAll('input[name="seates"]');
+	            // 기존에 등록된 이벤트 리스너 모두 제거
+	            checkboxes.forEach(checkbox => {
+	                checkbox.removeEventListener('click', handleCheckbox);
+	            });
+
+	            // 사용자가 checkbox를 클릭했을때 실행되는 함수 정의
+	            checkboxes.forEach(checkbox => {
+	                checkbox.addEventListener('click', handleCheckbox);
+	            });
+
+	            // checkbox 2개 이상 선택했을 경우 추가 선택을 막음(checked는 계속 가능)
+	            function handleCheckbox(e) {
+	                let max = 2;
+
+	                let checkedCheckboxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
+
+	                if (checkedCheckboxes.length > max) {
+	                    e.preventDefault();
+	                   let box = document.getElementsByName('seates');
+	                   box.forEach(function(checkbox){
+	                	  if(checkbox.checked){
+	                		  checkbox.checked = false;
+	                	  } 
+	                   });
+	                    alert('두 개 이상 선택이 불가합니다.');
+	                }
+	            }
 			}
 		}
 	}
 	
-	//열증가 요청함수
+	//열증감 요청함수
 	function column(column){
 		let row = document.getElementById('row').value;
 		
@@ -195,7 +263,7 @@ checkboxes.forEach(checkbox => {
 		sendRequest('/amor/admin/theater/addSeate.do',param,columnResult,'GET');
 	}
 	
-	//열증가 응답함수
+	//열증감 응답함수
 	function columnResult(){
 		if(XHR.readyState == 4){
 			if(XHR.status == 200){
@@ -203,6 +271,35 @@ checkboxes.forEach(checkbox => {
 				let objData = JSON.parse(data);
 				let seats = objData.seates;
 				document.getElementById('seats').innerHTML = seats;
+				
+				let checkboxes = document.querySelectorAll('input[name="seates"]');
+	            // 기존에 등록된 이벤트 리스너 모두 제거
+	            checkboxes.forEach(checkbox => {
+	                checkbox.removeEventListener('click', handleCheckbox);
+	            });
+
+	            // 사용자가 checkbox를 클릭했을때 실행되는 함수 정의
+	            checkboxes.forEach(checkbox => {
+	                checkbox.addEventListener('click', handleCheckbox);
+	            });
+
+	            // checkbox 2개 이상 선택했을 경우 추가 선택을 막음(checked는 계속 가능)
+	            function handleCheckbox(e) {
+	                let max = 2;
+
+	                let checkedCheckboxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
+
+	                if (checkedCheckboxes.length > max) {
+	                    e.preventDefault();
+	                   let box = document.getElementsByName('seates');
+	                   box.forEach(function(checkbox){
+	                	  if(checkbox.checked){
+	                		  checkbox.checked = false;
+	                	  } 
+	                   });
+	                    alert('두 개 이상 선택이 불가합니다.');
+	                }
+	            }
 			}
 		}
 	}
@@ -224,19 +321,10 @@ checkboxes.forEach(checkbox => {
 				
 			}
 		});
-		console.log(data);
-		console.log(data[0]);
-		console.log(data[1]);
-		
 		
 		let datarowblock = data[0].split(',');
 		let datacolblock = data[1].split(',');	
 		
-		
-		
-		if(data.length > 2){
-			alert('2개이상 클릭이 불가능합니다.');
-		}else{
 			
 			let allrow_1 = parseInt(datarowblock[0]);
 			let allrow_2 = parseInt(datacolblock[0]);
@@ -245,15 +333,17 @@ checkboxes.forEach(checkbox => {
 			
 			let allrow = parseInt(allrow_1+allrow_2);
 			let allcolumn = parseInt(allcolumn_1+allcolumn_2);
+			
+			//열 통로 2개생성 조건
 			let doublerowblock = (parseInt(allrow_1-allrow_2) == 1) || (parseInt(allrow_1-allrow_2) == -1);
-			console.log(allcolumn_1-allcolumn_2 == -1);
+			
+			//행통로 2개생성 조건
 			let doublecolblock = (parseInt(allcolumn_1-allcolumn_2) == 1) || (parseInt(allcolumn_1-allcolumn_2) == -1);
 			console.log(allrow+'<'+allcolumn);
 			console.log(allrow < allcolumn);
 			
 		//행지우기	
 		if(datarowblock[0] == datacolblock[0]){
-			console.log(box[0].value.slice(0,datarowblock[0].length) == datarowblock[0]);
 			let rowbox = document.getElementsByName(datarowblock[0]);
 			
 			for(let i = 0 ; i < box.length; i++){
@@ -299,7 +389,7 @@ checkboxes.forEach(checkbox => {
 					
 		}
 			//행열 지우기(두행을합친것보다 열이더 크면 행을지운다)
-			}else if(allrow < allcolumn && doublerowblock){
+			}else if(doublerowblock){
 				
 				let firstHideNum = document.getElementsByName(datarowblock[0]);
 				let lastHideNum = document.getElementsByName(datacolblock[0]);
@@ -307,26 +397,27 @@ checkboxes.forEach(checkbox => {
 				let count = 0;
 				
 				for(let i = 0 ; i < box.length; i++){
-				let firstblock = box[count].value.slice(0,datarowblock[0].length) == datarowblock[0];
-				console.log(firstblock);
-				let lastblock = box[count].value.slice(0,datacolblock[0].length) == datacolblock[0];				
-				console.log(lastblock);
+				let firstblock = box[i].value.slice(0,datarowblock[0].length) == datarowblock[0];
+				console.log(count);
+				console.log(box[i].value.slice(0,datarowblock[0].length)+'=='+ datarowblock[0]);
+				let lastblock = box[i].value.slice(0,datacolblock[0].length) == datacolblock[0];				
+				console.log(box[i].value.slice(0,datacolblock[0].length) +'=='+datacolblock[0]);
 				if(firstblock || lastblock){
 						
-						box[count].checked = false;
-						box[count].value = 0;           
-						box[count].disabled = true;
-						count++;
+						box[i].checked = false;
+						box[i].value = 0;           
+						box[i].disabled = true;
+						parseInt(count++);
 						
 						
+					}
+				}
 						for(let j = 0 ; j < firstHideNum.length; j++){
 							firstHideNum[j].style.display = 'none';
 							lastHideNum[j].style.display = 'none';
 						}
-					}
-				}
 			//열 통로 만들기(두개의 열을 합친것보다 행이더 크면 열을 지운다)
-			}else if(allrow > allcolumn || datarowblock[1] > datacolblock[1] || doublecolblock){
+			}else if(doublecolblock){
 				
 				for(let i = 1 ; i <= box.length; i++){
 					let colbox = document.getElementById('boxnum'+i);
@@ -357,8 +448,13 @@ checkboxes.forEach(checkbox => {
 					
 			
 							
+				}else{
+					alert('통로는 2줄씩만 가능합니다.');
+					for(let i = 0 ; i < box.length; i++){
+						box[i].checked = false;
+					}
 				}
-			}
+			
 		}
 		
 	
