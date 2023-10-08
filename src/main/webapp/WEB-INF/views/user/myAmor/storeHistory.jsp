@@ -19,7 +19,7 @@
    width: 100%;
    height: 350px;
    background: #F8F8F8;
-   margin-bottom: 500px; /**작업하는 영역 조절은 여기서*/
+
 }
 .mypagetitle .title1{
 	color: #000;
@@ -33,6 +33,12 @@
 	font-weight: 500;
 	cursor: pointer;
 } 
+.mypageContent{
+	padding-top: 150px;
+	margin: 0 auto;
+	width: 1000px;
+	margin-bottom: 50px;
+}
 .nullcontent{
 	margin-left:50px;
 	margin-top:50px;
@@ -47,7 +53,8 @@ border: 3px solid black;
 	<div class="body-inner">
 <%@include file="../mypageHeader.jsp" %>
 <div class="mypagetitle"><a href = "/amor/myAmor/storeHistory.do"><label class="title1">상품 내역</label></a> <a href="/amor/myAmor/storeCancellList.do"><label class="title2">취소 내역</label></a></div>
-<!-- 이 밑으로 작업 -->
+</div></div>
+<div class="mypageContent">
 <c:if test="${!empty list}">
 <c:forEach var="temp" items="${list}" >
 <div class="contentbox">
@@ -104,7 +111,7 @@ border: 3px solid black;
 <c:if test="${empty list}">
 <div class = "nullcontent">구매 내역이 없습니다.</div>
 </c:if>
-</div>
+
 </div>
 </body>
 <%@include file = "../footer.jsp" %>

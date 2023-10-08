@@ -77,7 +77,7 @@ function submit() {
         <div class="location">
             <span class="home">Home</span>
             <a href="/amor/store.do" title="스토어 페이지로 이동">스토어</a>            
-            <a href="/amor/store/storeContentForm.do?product_idx=${dto.product_idx }" title="스토어 페이지로 이동">${dto.product_title } 상세페이지</a>
+            <a href="/amor/store/storeContentForm.do?product_idx=${dto.product_idx }" title="스토어 페이지로 이동">${dto.product_title }</a>
         </div>
     </div>
     <div class="body-inner">
