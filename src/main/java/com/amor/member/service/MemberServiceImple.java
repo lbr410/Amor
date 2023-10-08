@@ -92,17 +92,16 @@ public class MemberServiceImple implements MemberService {
 	}
 	
 	@Override
-	public String userIdFind(String member_name, String member_email) {
-		String result=memberDao.userIdFind(member_name,member_email);
+	public List<MemberDTO> userIdFind(String member_name, String member_email) {
+		List<MemberDTO> result=memberDao.userIdFind(member_name,member_email);
 		return result;
 	}
-
 	@Override
 	public String userPwdIdck(String member_id) {
 		String result=memberDao.userPwdIdck(member_id);
 		return result;
 	}
-	
+
 	@Override
 	public int userPwdFindUpdate(String fid, String pwd) {
 		Map map=new HashedMap();

@@ -12,7 +12,7 @@ public interface MemberService {
 	int Join=4;
 	int ERROR=-1;
 
-	public String userIdFind(String member_name, String member_email);
+	public List<MemberDTO> userIdFind(String member_name, String member_email);
 	public String userPwdIdck(String member_id);
 	public int userPwdFindUpdate(String fid, String pwd);
 	public int memberLogin (MemberDTO dto);

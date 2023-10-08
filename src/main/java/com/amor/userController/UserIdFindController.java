@@ -1,6 +1,7 @@
 package com.amor.userController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,10 +42,10 @@ public class UserIdFindController {
 			@RequestParam("member_name")String member_name,
 			@RequestParam("member_email")String member_email) {
 		
-		String member_id=memberService.userIdFind(member_name, member_email);
+		List<MemberDTO> member_id=memberService.userIdFind(member_name, member_email);
 		ModelAndView mav=new ModelAndView();
 		if(member_id == null) {
-			mav.addObject("msg", "아이디와 이메일을 입력해주세요.");
+			mav.addObject("msg", "일치하는 회원정보를 찾을 수 없습니다..");
 			mav.addObject("goUrl","/amor/member/userIdFindForm.do");
 			mav.setViewName("/user/msg/userMsg");
 			return mav;
@@ -77,6 +78,7 @@ public class UserIdFindController {
 	    } else {
 	        // 아이디가 일치하는 경우 세션에 아이디를 저장
 	        session.setAttribute("id", fid);
+	        System.out.println(fid);
 	        mav.addObject("member_id", fid);
 		    mav.setViewName("/user/member/userPwdFindAuth");
 	        return mav;
@@ -102,7 +104,7 @@ public class UserIdFindController {
 		@RequestParam("member_pwd")String member_pwd,
 		HttpSession session) {
 		
-		String fid=(String)session.getAttribute("fid");
+		String fid=(String)session.getAttribute("id");
 		System.out.println("fid+"+fid);
 		String npwd = Encryption.pwdEncrypt(member_pwd);
 
@@ -111,7 +113,7 @@ public class UserIdFindController {
 
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg", msg);
-
+		mav.addObject("goUrl","/amor/member/login.do");
 		mav.setViewName("/user/msg/userMsg");
 		return mav;
 	}

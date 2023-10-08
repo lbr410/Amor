@@ -43,4 +43,10 @@ public class InventoryDAOImple implements InventoryDAO {
 		int result=sqlmap.delete("inventoryUpdate", dto);
 		return result;
 	}
+	
+	@Override
+	public int inventoryDelete(int idx) {
+		int result=sqlmap.delete("inventoryDelete", idx);
+		return result;
+	}
 }

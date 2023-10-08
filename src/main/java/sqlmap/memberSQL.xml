@@ -35,7 +35,7 @@
 <select id="userIdFind" resultType="String" parameterType="Map">
 	select member_id from member where member_email=#{member_email} and member_name=#{member_name}
 </select>
-  
+
 <select id="userPwdIdck" parameterType="String" resultType="String">
 	select member_id from member where member_id=#{member_id}
 </select>

@@ -51,4 +51,10 @@ public class InventoryServiceImple implements InventoryService {
 		int result=inventoryDao.inventoryUpdate(dto);
 		return result;
 	}
+	
+	@Override
+	public int inventoryDelete(int idx) {
+		int result=inventoryDao.inventoryDelete(idx);
+		return result;
+	}
 }
