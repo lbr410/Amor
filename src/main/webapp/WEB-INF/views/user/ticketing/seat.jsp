@@ -37,9 +37,9 @@
 			let rowValue = seatsArr[i];
 			  
 			// 행의 모든 요소가 0이 아닌지 확인
-			let hasNonZeroElement = rowValue.some((element) => element !== '0');
+			let noZero = rowValue.some((element) => element !== '0');
 			  
-			if(hasNonZeroElement) {
+			if(noZero) {
 			    // 행의 모든 요소가 0이 아닐 때 코드 실행
 			    let alphabetRow = document.createElement('span');
 			    alphabetRow.textContent = alphabet.charAt(alphabetIndex);
@@ -47,11 +47,6 @@
 				seatPlace.appendChild(alphabetRow);
 				alphabetIndex++;
 			}
-			
-			/*let alphabetRow = document.createElement('span');
-			alphabetRow.textContent = alphabet.charAt(i);
-			alphabetRow.className = 'alphabetRow';
-			seatPlace.appendChild(alphabetRow);*/
 			
 			let jNum = 0; 
 			for(let j=0; j<${theaterInfo.theater_column}; j++) { // theater의 열

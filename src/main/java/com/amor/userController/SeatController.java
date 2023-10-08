@@ -75,29 +75,4 @@ public class SeatController {
 		//}
 		return mav;
 	}
-	
-//	@RequestMapping("ticketing/valueTest.do")
-//	public ModelAndView test(@RequestParam("movie_idx") int movie_idx, @RequestParam("theater_idx") int theater_idx,
-//							 @RequestParam("playing_movie_idx") int playing_movie_idx, @RequestParam("playing_movie_seat") String playing_movie_seat[],
-//							 @RequestParam("adultC") int adultC, @RequestParam("teenagerC") int teenaterC, @RequestParam("seniorC") int seniorC,
-//							 @RequestParam("disabledC") int disabledC, @RequestParam("ticketing_personnel") int ticketing_personnel,
-//							 @RequestParam("ticketing_price") int ticketing_price) {
-//		ModelAndView mav = new ModelAndView();
-//		System.out.println("movie_idx = "+movie_idx);
-//		System.out.println("theater_idx = "+theater_idx);
-//		System.out.println("playing_movie_idx = "+playing_movie_idx);
-//		for(int i=0; i<playing_movie_seat.length; i++) {
-//			System.out.println("playing_movie_seat["+i+"] = "+playing_movie_seat[i]);
-//		}
-//		System.out.println("adultC = "+adultC);
-//		System.out.println("teenagerC = "+teenaterC);
-//		System.out.println("seniorC = "+seniorC);
-//		System.out.println("disabledC = "+disabledC);
-//		System.out.println("ticketing_personnel = "+ticketing_personnel);
-//		System.out.println("ticketing_price = "+ticketing_price);
-//		
-//		mav.setViewName("user/ticketing/");
-//		
-//		return mav;
-//	}
 }

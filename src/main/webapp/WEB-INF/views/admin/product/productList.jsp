@@ -46,7 +46,7 @@
 <div class="contentsearch">
 	<div class="search">
 		<input type="text" id="prodSearch" placeholder="제목을 검색해주세요." class="box">
-		<a href="javascript: prodSearchList()"><img src="img/Icon_Search.png" class="btn"></a>
+		<a href="javascript: prodSearchList()"><img src="/amor/resources/img/icon_search.png" class="btn"></a>
 	</div>
 </div>
 </div>
@@ -86,7 +86,7 @@
 				<c:if test="${dto.product_category eq 's'}">스낵</c:if>
 				<c:if test="${dto.product_category eq 't'}">관람권</c:if>
 			</td>
-			<td class="tablePrice">${dto.product_price}</td>
+			<td class="tablePrice">${dto.product_price2}</td>
 			<td class="tableSoldout">
 				<select name="product_soldout${dto.product_idx}" class="soldOutSel" onchange="soldOutYN(${dto.product_idx})">
 					<option value="y" <c:if test="${dto.product_soldout eq 'y'}">selected</c:if>>Y</option>
@@ -101,9 +101,11 @@
 	</c:forEach>
 	</tbody>
 	<tfoot>
+	<c:if test="${!empty lists}">
 		<tr>
 			<td colspan="8"><div class="paging">${pageStr}</div></td>
 		</tr>
+	</c:if>
 	</tfoot>
 	</table>
 </div>
