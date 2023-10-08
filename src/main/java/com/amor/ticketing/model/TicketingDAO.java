@@ -36,4 +36,8 @@ public interface TicketingDAO {
 	public int monthMovieTotal(Map map);
 	
 	public TicketingPayingJoinDTO ticketingPaying(Map map);
+	public int ticketingAdd(TicketingDTO dto);
+	public int totalAudience(int playing_movie_idx);
+	public int playingMovieSeat(Map map);
+	public int movieAudience(Map map);
 }

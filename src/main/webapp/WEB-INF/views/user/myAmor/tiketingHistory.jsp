@@ -134,7 +134,7 @@
 				<input type="file" name="movie_review_img" value="파일찾기" class="fileBtn" id="fileInput" onchange="imgPreview(this, 'reviewPreview${vs.index }')" required>
 				</div>
 			</div>
-			<div id="box2"><textarea cols="55" rows="12" name="movie_review_content" placeholder="관람평을 작성해주세요" maxlength="200" class="reviewTextarea" required></textarea></div>
+			<div id="box2"><textarea cols="55" rows="10" name="movie_review_content" placeholder="관람평을 작성해주세요" maxlength="200" class="reviewTextarea" required></textarea></div>
 		</div>
 		<p class="centerBtn"><input type="submit" value="작성 완료" class="cancelBtn"></p>
 		

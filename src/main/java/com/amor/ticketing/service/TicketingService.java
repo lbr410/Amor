@@ -39,4 +39,8 @@ public interface TicketingService {
 	public String monthMovieTotal(String startd, String endd);
 	
 	public TicketingPayingJoinDTO ticketingPaying(int movie_idx, int theater_idx, int playing_movie_idx);
+	public int ticketingAdd(TicketingDTO dto);
+	public int totalAudience(int playing_movie_idx);
+	public int playingMovieSeat(int ticketing_personnel, int playing_movie_idx);
+	public int movieAudience(int totalMovieAudience, int playing_movie_idx);
 }

@@ -56,7 +56,7 @@ public class PlayingMovieController {
 
 	@RequestMapping(value = "admin/playMovie/playingMovieAdd.do", method = RequestMethod.GET)
 	public ModelAndView playingMoiveAddList (
-			@RequestParam HttpSession session
+			HttpSession session
 			) {
 		
 		List<Map> movieLists = playingMovieService.playingMovieAddMovie();

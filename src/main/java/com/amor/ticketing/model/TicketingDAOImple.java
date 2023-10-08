@@ -153,4 +153,28 @@ public class TicketingDAOImple implements TicketingDAO {
 		TicketingPayingJoinDTO dto = sqlmap.selectOne("ticketingPaying", map);
 		return dto;
 	}
+	
+	@Override
+	public int ticketingAdd(TicketingDTO dto) {
+		int result = sqlmap.insert("ticketingAdd", dto);
+		return result;
+	}
+	
+	@Override
+	public int totalAudience(int playing_movie_idx) {
+		int totalAudience = sqlmap.selectOne("totalAudience", playing_movie_idx);
+		return totalAudience;
+	}
+	
+	@Override
+	public int playingMovieSeat(Map map) {
+		int result = sqlmap.update("playingMovieSeat", map);
+		return result;
+	}
+	
+	@Override
+	public int movieAudience(Map map) {
+		int result = sqlmap.update("movieAudience", map);
+		return result;
+	}
 }

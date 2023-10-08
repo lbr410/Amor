@@ -24,7 +24,7 @@
 	<select id="playingMovieAddScreen" resultType="Map">
 		select theater_name, theater_idx from theater
 	</select>
-	<select id="playingMovieSeat" parameterType="Integer" resultType="Integer">
+	<select id="playingMovieRemain" parameterType="Integer" resultType="Integer">
 		select theater_totalseat from theater where theater_idx = #{theater_idx}
 	</select>
 	<insert id="playingMovieAdd" parameterType="com.amor.playingMovie.model.PlayingMovieDTO">

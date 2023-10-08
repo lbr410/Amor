@@ -20,7 +20,7 @@
    width: 100%;
    height: 350px;
    background: #F8F8F8;
-   margin-bottom: 2100px; /**작업하는 영역 조절은 여기서*/
+
 }
 .mypagetitle .title1{
 	color: #000;
@@ -34,6 +34,12 @@
 	font-weight: 500;
 	cursor: pointer;
 } 
+.mypageContent{
+	padding-top: 150px;
+	margin: 0 auto;
+	width: 1000px;
+	margin-bottom: 50px;
+}
 
 .reviewTable {
 	margin: 50px auto;
@@ -290,6 +296,8 @@ table tfoot tr {
   	border-left: 3px solid #EEEEEE;
   	border-right: 3px solid #EEEEEE;
   	resize: none;
+  	overflow-y: scroll;
+  	font-family: "맑은 고딕";
 }
 </style>
 <body>
@@ -297,8 +305,9 @@ table tfoot tr {
 <div class="gray-section">
 	<div class="body-inner">
 <%@include file="../mypageHeader.jsp" %>
-
-<div class="mypagetitle"><label>관람평 목록</label></div>
+<div class="mypagetitle"><label class="title1">관람평 목록</label></div>
+</div></div>
+<div class="mypageContent">
 
 <div class="reviewTable">
 		<table>
@@ -379,14 +388,10 @@ table tfoot tr {
 					</div>
 					</div>
 						<input type="hidden" name="movie_review_idx" value="${dto.movie_review_idx}">
-				</form>
-					
+					</form>		
 				</c:forEach>
 			</tbody>
 		</table>
-	</form>
-</div>
-
 </div>
 </div>
 

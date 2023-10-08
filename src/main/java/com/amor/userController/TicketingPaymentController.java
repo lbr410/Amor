@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.amor.payment.Kakaopay;
 import com.amor.payment.KakaopayDTO;
+import com.amor.ticketing.model.TicketingDTO;
 import com.amor.ticketing.model.TicketingPayingJoinDTO;
 import com.amor.ticketing.service.TicketingService;
 
@@ -35,7 +36,7 @@ public class TicketingPaymentController {
 	@Autowired
 	private TicketingService ticketingService;
 	
-	private String ticketing_idx;
+	private String ticketing_num;
 	private String ticketing_price;
 	private String ticketing_personnel;
 	private int playing_movie_idx;
@@ -124,13 +125,13 @@ public class TicketingPaymentController {
 		this.movie_name=movie_name;
 		this.theater_name=theater_name;
 		
-		String ticketing_idx = "";
-		for (int i=0;i<10;i++) {
+		String ticketing_num = "";
+		for (int i=0;i<13;i++) {
 			int random = (int)(Math.random()*9)+0;
-			ticketing_idx += random;
+			ticketing_num += random;
         }
 		
-		this.ticketing_idx=ticketing_idx;
+		this.ticketing_num=ticketing_num;
 		
 		String sid=(String)session.getAttribute("sid");
 		String quantity=ticketing_personnel;
@@ -139,7 +140,7 @@ public class TicketingPaymentController {
 		String cancelpage="http://localhost:9090/amor/store/kakaoFail.do";
 		String failpage="http://localhost:9090/amor/store/kakaoCancel.do";
 		
-		KakaopayDTO kdto = new KakaopayDTO(ticketing_idx, sid, "Amor Ticketing", quantity, total_amount, okpage, cancelpage, failpage);
+		KakaopayDTO kdto = new KakaopayDTO(ticketing_num, sid, "Amor Ticketing", quantity, total_amount, okpage, cancelpage, failpage);
 		Kakaopay kaka = new Kakaopay();
 		
 		return "redirect:"+kaka.kakaoPayReady(kdto);
@@ -169,7 +170,26 @@ public class TicketingPaymentController {
 		String ticketing_cancel = sdf.format(cal.getTime());
 		
 		Kakaopay kaka = new Kakaopay();
-		KakaopayDTO kdto = new KakaopayDTO(this.ticketing_idx, sid, null, null, this.ticketing_price, null, null, null);
+		KakaopayDTO kdto = new KakaopayDTO(this.ticketing_num, sid, null, null, this.ticketing_price, null, null, null);
+		
+		java.sql.Date screenDate = java.sql.Date.valueOf(this.ticketing_screeningtime);
+		
+		int ticketing_price = Integer.parseInt(this.ticketing_price);
+		int ticketing_personnel = Integer.parseInt(this.ticketing_personnel);
+		
+		TicketingDTO dto = new TicketingDTO(this.playing_movie_idx, this.theater_idx, sidx, this.ticketing_num, this.ticketing_seat, screenDate, ticketing_price, ticketing_personnel);
+		int result1 = ticketingService.ticketingAdd(dto);
+		int audience = ticketingService.totalAudience(this.playing_movie_idx);
+		
+		int totalMovieAudience = audience+ticketing_personnel;
+		
+		int result2 = ticketingService.movieAudience(totalMovieAudience, this.playing_movie_idx);
+		int result3 = ticketingService.playingMovieSeat(ticketing_personnel, this.playing_movie_idx);
+		
+		int result = result1+result2+result3;
+		
+		String msg = result>2?"예매완료 되었습니다.":"예매에 실패하였습니다.";
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("theater_name", this.theater_name);
 		mav.addObject("movie_name", this.movie_name);
@@ -178,7 +198,9 @@ public class TicketingPaymentController {
 		mav.addObject("ticketing_personnel", this.ticketing_personnel);
 		mav.addObject("ticketing_cancel", ticketing_cancel);
 		mav.addObject("ticketing",kaka.kakaoPayInfo(pg_token, kdto));
-		mav.setViewName("/user/ticketing/ticketingPayDetail");
+		mav.addObject("msg", msg);
+		mav.addObject("goUrl", "/user/ticketing/ticketingPayDetail");
+		mav.setViewName("/user/msg/userMsg");
 		return mav;
 		
 	}
