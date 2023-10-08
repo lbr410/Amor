@@ -32,6 +32,7 @@
     	inventory_name=#{inventory_name},
     	inventory_brand=#{inventory_brand},
 		inventory_unit=#{inventory_unit},
+		inventory_optimal=#{inventory_optimal},
     	inventory_current = #{inventory_current}, 
         inventory_deviation = (#{inventory_optimal} - #{inventory_current})
     where inventory_idx = #{inventory_idx}

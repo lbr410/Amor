@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>아모르 관리자 : 재고관리 목록</title>
-<link rel="stylesheet" type="text/css" href="/amor/resources/css/admin/productList.css">
+<link rel="stylesheet" type="text/css" href="/amor/resources/css/admin/inventoryList.css">
 <script type="text/javascript" src="../../resources/js/httpRequest.js"></script>
 
 </head>
@@ -92,13 +92,21 @@
 				${dto.inventory_current }
 				</c:if>
 				<c:if test="${0==dto.inventory_current }">
-				<input type="button" class="smallBtn" value="입력" onclick="javascript: location.href='/amor/admin/inventory/inventoryUpdateForm.do?idx=${dto.inventory_idx}'">
+				<input type="button" class="smallBtn1" value="입력" onclick="javascript: location.href='/amor/admin/inventory/inventoryUpdateForm.do?idx=${dto.inventory_idx}'">
 				</c:if>
 			</td>
 			<td>
 			${dto.inventory_deviation }</td>
 			<td>
-				<input type="button" class="smallBtn" value="삭제" onclick="javascript: location.href='/amor/admin/inventory/inventoryDelete.do?idx=${dto.inventory_idx}'">
+				<c:choose>
+    			<c:when test="${dto.inventory_current != 0}">
+        			<input type="button" class="smallBtn2" value="수정" onclick="javascript: location.href='/amor/admin/inventory/inventoryUpdateForm.do?idx=${dto.inventory_idx}'">
+    			</c:when>
+    			<c:otherwise>
+        			<!-- 원하는 다른 내용을 여기에 추가할 수 있습니다. -->
+    			</c:otherwise>
+				</c:choose>
+				<input type="button" class="smallBtn2" value="삭제" onclick="javascript: location.href='/amor/admin/inventory/inventoryDelete.do?idx=${dto.inventory_idx}'">
 			</td>
 		</tr>
 	</c:forEach>

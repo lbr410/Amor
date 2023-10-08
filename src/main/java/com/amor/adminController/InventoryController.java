@@ -18,7 +18,6 @@ public class InventoryController {
 	@Autowired
 	private InventoryService inventoryService;
 	
-	//재고상품 목록
 	@RequestMapping("admin/inventory/inventoryList.do")
 	public ModelAndView inventoryList(
 			HttpSession session,
@@ -41,13 +40,11 @@ public class InventoryController {
 		return mav;
 	}
 	
-	//재고상품 등록 페이지로 이동
 	@RequestMapping(value="admin/inventory/inventoryWrite.do", method = RequestMethod.GET)
 	public String inventoryWriteForm() {
 		return "/admin/inventory/inventoryWrite";
 	}
 	
-	//재고상품 등록
 	@RequestMapping(value="admin/inventory/inventoryWrite.do", method = RequestMethod.POST)
 	public ModelAndView inventoryAdd(
 			@RequestParam("inventory_num")String inventory_num,
@@ -67,7 +64,6 @@ public class InventoryController {
 	    return mav;
 		}
 	
-	//재고상품 수정 페이지로 이동
 	@RequestMapping("admin/inventory/inventoryUpdateForm.do")
 	public ModelAndView inventoryUpdate(
 			@RequestParam(value="idx", defaultValue = "0")int idx) {
@@ -85,12 +81,23 @@ public class InventoryController {
 		return mav;
 	}
 	
-	//재고상품 수정
 	@RequestMapping("admin/inventory/inventoryUpdate.do")
 	public ModelAndView inventoryUpdate(InventoryDTO dto) {
 		
 		int result=inventoryService.inventoryUpdate(dto);
 		String msg=result>0?"수정 완료되었습니다.":"수정 실패했습니다.";
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("msg", msg);
+		mav.addObject("href", "/amor/admin/inventory/inventoryList.do");
+		mav.setViewName("/admin/msg/adminMsg");
+		return mav;
+	}
+	
+	@RequestMapping("admin/inventory/inventoryDelete.do")
+	public ModelAndView inventoryDelete(
+			@RequestParam(value="idx", defaultValue = "0")int idx) {
+		int result=inventoryService.inventoryDelete(idx);
+		String msg=result>0?"삭제되었습니다.":"삭제 실패했습니다.";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg", msg);
 		mav.addObject("href", "/amor/admin/inventory/inventoryList.do");

@@ -20,9 +20,9 @@ public class UserNoticeController {
 	public ModelAndView noticeList(
 			@RequestParam(value="cp", defaultValue = "1")int cp) {
 		int totalCnt=noticeService.noticeTotalCnt();
-		int listSize=5;
+		int listSize=10;
 		int pageSize=5;
-		String pageStr=com.amor.page.PageModule.makePage("/amor/user/customer/noticeList.do", totalCnt, listSize, pageSize, cp);
+		String pageStr=com.amor.page.PageModule.makePage("/amor/customer/noticeList.do", totalCnt, listSize, pageSize, cp);
 		
 		ModelAndView mav=new ModelAndView();
 		List<NoticeDTO>lists=noticeService.noticeList(cp,listSize);

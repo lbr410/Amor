@@ -14,7 +14,7 @@
     <div class="gray-bar">
         <div class="location">
         	Home
-            <a href="/amor/customer/noticeList.do" title="페이지로 이동">고객센터</a>
+            <a href="/amor/customer/faqList.do" title="페이지로 이동">고객센터</a>
             <a href="/amor/customer/noticeList.do" title="공지사항 페이지로 이동">공지사항</a>
         </div>
     </div>

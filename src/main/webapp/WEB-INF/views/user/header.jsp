@@ -29,7 +29,7 @@
             <a href="/amor/myAmor/ticketingHistory.do">MY AMOR</a>
           </li> 
           <li> 
-            <a href="/amor/customer/noticeList.do">고객센터</a>
+            <a href="/amor/customer/faqList.do">고객센터</a>
           </li>
           
          <c:if test="${empty sessionScope.sid}">

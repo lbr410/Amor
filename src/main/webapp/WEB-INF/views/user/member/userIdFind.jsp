@@ -25,16 +25,8 @@
                 </span>
                 <div class="tab-list">
                     <ul>
-                        <li class="on">
-                            <a href="userIdFindForm.do" title="아이디찾기">
-                                아이디 찾기
-                            </a>
-                        </li>
-                        <li>
-                            <a href="userPwdFindForm.do" title="비밀번호 찾기">
-                                비밀번호 찾기
-                            </a>
-                        </li>
+                        <li class="on"><a href="userIdFindForm.do" title="아이디찾기">아이디 찾기</a></li>
+                        <li><a href="userPwdFindForm.do" title="비밀번호 찾기">비밀번호 찾기</a></li>
                     </ul>
                 </div>
                 <div class="navi">

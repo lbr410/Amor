@@ -24,9 +24,9 @@ public class FaqListController {
 			HttpSession session,
 			@RequestParam(value="cp", defaultValue="1")int cp) {
 		int totalCnt=faqService.faqTotalCnt();
-		int listSize=5;
+		int listSize=10;
 		int pageSize=5;
-		String pageStr=com.amor.page.PageModule.makePage("/amor/user/customer/faqList.do", totalCnt, listSize, pageSize, cp);
+		String pageStr=com.amor.page.PageModule.makePage("/amor/customer/faqList.do", totalCnt, listSize, pageSize, cp);
 		
 		ModelAndView mav=new ModelAndView();
 		List<FaqDTO>lists=faqService.faqList(cp,listSize);

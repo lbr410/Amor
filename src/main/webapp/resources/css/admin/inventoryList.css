@@ -1,0 +1,75 @@
+@charset "UTF-8";
+.smallBtn2 {
+	border:none;
+	padding-bottom: 2px;
+	width: 50px;
+	height: 25px;
+	border-radius: 3px;
+	background: #EEEEEE;
+	color: #1A2C82;
+	cursor: pointer;
+}
+.smallBtn1{
+	border:none;
+	width: 50px;
+	height: 25px;
+	border-radius: 3px;
+	background: #1A2C82;
+	color: #C7E3FF;
+	cursor: pointer;
+	padding-bottom: 5px;
+	padding-top: 2px;
+	margin-left: 10px;
+}
+
+.tableNum {
+	width: 100px;
+}
+
+.tableImg {
+	width: 200px;
+}
+
+.tableTitle {
+	width: 200px;
+}
+
+.tableContent {
+	width: 150px;
+}
+
+.tableCategory {
+	width: 120px;
+}
+
+.tablePrice {
+	width: 120px;
+}
+
+.prodImg {
+	width: 80px;
+	height: 80px;
+	border: 1px solid #cccccc;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+.soldOutSel {
+	width: 50px;
+}
+
+.paging {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 16px;
+}
+
+.paging a:hover{
+	color: #2E90FF;
+	font-weight: bold;
+}
+
+.nowPage {
+	color: #2E90FF !important;
+	font-weight: bold;
+}

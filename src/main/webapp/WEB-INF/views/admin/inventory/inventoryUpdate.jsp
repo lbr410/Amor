@@ -45,26 +45,26 @@ function checkNumber(event) {
 		<div class="titleDiv">
 			<label class="invenMenu">품번</label>
 			<select name="inventory_num" class="cateMenu" id="selectTag">
-				<option value="1" selected>SNCO1TDS</option>
-				<option value="2">SNC01TDB</option>
-				<option value="3">SNC01TDV</option>
-				<option value="4">DNK02HRC</option>
-				<option value="5">DNK02HRM</option>
-				<option value="6">DNK02HRH</option>
-				<option value="7">ETS03FGM</option>
-				<option value="8">ETS03FGC</option>
-				<option value="9">ETS03FGP</option>
+				<option value="1" ${dto.inventory_num eq '1' ? 'selected' : ''}>SNCO1TDS</option>
+				<option value="2" ${dto.inventory_num eq '2' ? 'selected' : ''}>SNC01TDB</option>
+				<option value="3" ${dto.inventory_num eq '3' ? 'selected' : ''}>SNC01TDV</option>
+				<option value="4" ${dto.inventory_num eq '4' ? 'selected' : ''}>DNK02HRC</option>
+				<option value="5" ${dto.inventory_num eq '5' ? 'selected' : ''}>>DNK02HRM</option>
+				<option value="6" ${dto.inventory_num eq '6' ? 'selected' : ''}>>DNK02HRH</option>
+				<option value="7" ${dto.inventory_num eq '7' ? 'selected' : ''}>>ETS03FGM</option>
+				<option value="8" ${dto.inventory_num eq '8' ? 'selected' : ''}>>ETS03FGC</option>
+				<option value="9" ${dto.inventory_num eq '9' ? 'selected' : ''}>>ETS03FGP</option>
 			</select>
 		</div>
 		<div class="titleDiv">
 			<label class="invenMenu">단위</label>
 			<select name="inventory_unit" class="cateMenu" id="selectTag">
-				<option value="1" selected>개(unit)</option>
-				<option value="2">kg</option>
-				<option value="3">L</option>
-				<option value="4">개봉포장(pack)</option>
-				<option value="5">Box</option>
-				<option value="6">세트(set)</option>
+				<option value="1" ${dto.inventory_unit eq '1' ? 'selected' : ''}>개(unit)</option>
+				<option value="2" ${dto.inventory_unit eq '2' ? 'selected' : ''}>kg</option>
+				<option value="3" ${dto.inventory_unit eq '3' ? 'selected' : ''}>L</option>
+				<option value="4" ${dto.inventory_unit eq '4' ? 'selected' : ''}>개봉포장(pack)</option>
+				<option value="5" ${dto.inventory_unit eq '5' ? 'selected' : ''}>Box</option>
+				<option value="6" ${dto.inventory_unit eq '6' ? 'selected' : ''}>세트(set)</option>
 			</select>
 		</div>
 		<div class="titleDiv">
@@ -73,7 +73,14 @@ function checkNumber(event) {
 		</div>
 		<div class="titleDiv">
 			<label class="invenMenu">현재 재고량</label>
-			<input type="text" name="inventory_current" class="textBox" value="${dto.inventory_current }" maxlength="6" required>
+				<c:choose>
+    				<c:when test="${dto.inventory_current == 0}">
+        				<input type="text" name="inventory_current" class="textBox" maxlength="6" required>
+    				</c:when>
+    				<c:otherwise>
+        				<input type="text" name="inventory_current" class="textBox" value="${dto.inventory_current}" maxlength="6" required>
+   					</c:otherwise>
+				</c:choose>
 		</div>
 		<input type="hidden" name="inventory_deviation" value="${dto.inventory_deviation }">
 		</div>

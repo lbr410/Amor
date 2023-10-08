@@ -119,6 +119,7 @@ function validateForm() {
                             	<div class="chks" id="pwdSameChkMsg"><!-- state --></div>
                             </td>
                         </tr>
+                        
                     </tbody>
                 </table>
                     <div class="btn-bottom">
