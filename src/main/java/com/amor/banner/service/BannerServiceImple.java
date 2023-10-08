@@ -22,8 +22,8 @@ public class BannerServiceImple implements BannerService {
 	
 	@Override
 	public int bannerAdd(BannerDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = bannerdao.bannerAdd(dto);
+		return result;
 	}
 	
 	@Override

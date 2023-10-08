@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,6 +43,14 @@ function movieStateYN(idx) {
 
 </script>
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/admin/movieList.css">
+<style type="text/css">
+.actorwidthcss{
+	width: 180px;
+}
+.namewidthcss{
+	width: 140px;
+}
+</style>
 </head>
 <body>
 <%@include file="../admin_header.jsp" %>
@@ -50,7 +59,7 @@ function movieStateYN(idx) {
 <div class="contentsearch">
 	<div class="search">
 		<input type="text" name="movieSearch" placeholder="영화제목을 검색해주세요." class="box">
-		<img src="img/Icon_Search.png" class="btn" onclick="movieSearch()">
+		<img src="/amor/resources/img/icon_search.png" class="btn" onclick="movieSearch()">
 	</div>
 </div>
 </div>
@@ -61,9 +70,10 @@ function movieStateYN(idx) {
 	<thead>
 	<tr>
 		<th>영화번호</th>
-		<th>제목</th>
+		<th class="namewidthcss">제목</th>
+		<th>개봉일자</th>
 		<th>감독</th>
-		<th>배우</th>
+		<th class="actorwidthcss">배우</th>
 		<th>장르</th>
 		<th>국적</th>
 		<th>연령제한</th>
@@ -94,9 +104,10 @@ function movieStateYN(idx) {
 	<c:forEach var="dto" items="${lists }">
 		<tr>
 			<td>${dto.movie_idx }</td>
-			<td>${dto.movie_name}</td>
+			<td class="namewidthcss">${dto.movie_name}</td>
+			<td>${dto.movie_opendate}</td>
 			<td>${dto.movie_god }</td>
-			<td>${dto.movie_actor }</td>
+			<td class="actorwidthcss">${dto.movie_actor }</td>
 			<td>${dto.movie_genre }</td>
 			<td>${dto.movie_country }</td>
 			<td><c:if test="${0==dto.movie_maxage}">ALL</c:if>
@@ -111,7 +122,7 @@ function movieStateYN(idx) {
 					<option value="y" <c:if test="${dto.movie_state eq 'y'}">selected</c:if>>Y</option>
 					<option value="n" <c:if test="${dto.movie_state eq 'n'}">selected</c:if>>N</option>
 				</select></td>
-			<td>${dto.avg_movie_review_star }</td>
+			<td><fmt:formatNumber value="${dto.avg_movie_review_star}" pattern="0.0" /></td>
 			<td><img src="/amor/resources/upload/movie/${dto.movie_poster}" class="posterImg" alt="포스터 이미지"></td>
 			<td><input class="btn_movie" type="button" value="수정" onclick="movieUpdate(${dto.movie_idx})"></td>
 			<td><input class="btn_movie" type="button" value="삭제" onclick="movieDelete(${dto.movie_idx})"></td>
