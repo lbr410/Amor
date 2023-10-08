@@ -24,21 +24,22 @@ function showResult() {
 			let movieRunning = objdata.running;
 			
 			let movieStart = document.getElementById('movieStart').value
+			let movieDate = document.getElementById('movieDate').value
+			
+			let movieYear = parseInt(movieDate.substring(0,5));
+			let movieMonth = parseInt(movieDate.substring(5,7))-1;
+			let movieDay = parseInt(movieDate.substring(8,10));
 			let runTimeHH = parseInt(movieStart.substring(0,2));
 			let runTimeMM = parseInt(movieStart.substring(3,5));
 			let movieRun = parseInt(movieRunning.MOVIE_RUNNINGTIME);
 			
-			let movieEndHH = Math.floor((runTimeMM + movieRun)/60)+runTimeHH;
-			let movieEndMM = (runTimeMM + movieRun)%60;
+			let movieEnd = new Date (movieYear, movieMonth, movieDay, runTimeHH, runTimeMM, 0);
 			
-			if (movieEndMM < 10) {
-				movieEndMM = '0'+movieEndMM;
-			}
+			movieEnd.setMinutes(movieEnd.getMinutes() + movieRun); 
 			
-			if (movieEndHH < 10) {
-				movieEndHH = '0'+movieEndHH;
-			}
-			
+			let movieEndHH = ('0'+movieEnd.getHours()).slice(-2);
+			let movieEndMM = ('0'+movieEnd.getMinutes()).slice(-2);
+		
 			document.getElementById('movieEnd').value = movieEndHH+':'+movieEndMM+':'+'00';
 			
 		}
@@ -91,7 +92,7 @@ function showResult() {
 			<tr>
 				<td class="playAdd" id="playAdd3">상영 날짜 선택</td>
 				<td class="playAdd"><input type="date" name="playing_movie_date" 
-				value="${updatedto.playing_movie_date }" class="playAddInput"></td>
+				value="${updatedto.playing_movie_date }" class="playAddInput" id="movieDate"></td>
 			</tr>
 			<tr>
 				<td class="playAdd" id="playAdd3">상영 시간</td>

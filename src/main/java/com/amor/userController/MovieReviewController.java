@@ -136,7 +136,7 @@ public class MovieReviewController {
 		int result1 = movieReviewService.reviewDelete(movie_review_idx);
 		int result2 = movieReviewService.reviewTicketingDelState(ticketing_idx);
 		int result = result1+result2;
-		String msg = result>0?"삭제에 성공했습니다.":"삭제에 실패했습니다.";
+		String msg = result>1?"삭제에 성공했습니다.":"삭제에 실패했습니다.";
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg",msg);
 		mav.addObject("goUrl", "/amor/myAmor/reviewList.do");

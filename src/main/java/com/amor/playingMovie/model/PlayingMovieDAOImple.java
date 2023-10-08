@@ -39,7 +39,7 @@ public class PlayingMovieDAOImple implements PlayingMovieDAO {
 	
 	@Override
 	public int playingMovieSeat(int theater_idx) {
-		int seat = sqlmap.selectOne("playingMovieSeat", theater_idx);
+		int seat = sqlmap.selectOne("playingMovieRemain", theater_idx);
 		return seat;
 	}
 	

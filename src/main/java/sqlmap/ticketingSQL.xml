@@ -288,5 +288,45 @@ where ticketing_idx = #{ticketidx}
 		and b.playing_movie_idx = #{playing_movie_idx}
 		and c.theater_idx = #{theater_idx}
 	</select>
+	<insert id="ticketingAdd" parameterType="com.amor.ticketing.model.TicketingDTO">
+		insert into
+			ticketing
+		values
+			(ticketing_idx.nextval, #{playing_movie_idx}, #{theater_idx}, 
+			#{member_idx}, to_number(#{ticketing_num}), #{ticketing_seat}, sysdate,
+			#{ticketing_screeningtime}, #{ticketing_price}, #{ticketing_personnel}, 'y',
+			'kakaopay' )
+	</insert>
+	<update id="playingMovieSeat" parameterType="Map">
+	<![CDATA[
+		update playing_movie
+		set
+			playing_movie_remain_seats = playing_movie_remain_seats-#{ticketing_personnel}
+		where
+			playing_movie_idx = #{playing_movie_idx}
+	]]>
+	</update>
+	<select id="totalAudience" parameterType="Integer" resultType="Integer">
+	<![CDATA[
+		select 
+			movie_audience 
+		from 
+			movie 
+		where 
+			movie_idx = 
+			(select movie_idx from playing_movie where playing_movie_idx = #{playing_movie_idx})
+	]]>
+	</select>
+	<update id="movieAudience" parameterType="Map">
+	<![CDATA[
+		update 
+			movie
+		set
+			movie_audience = #{totalMovieAudience}	
+		where
+			movie_idx = 
+			(select movie_idx from playing_movie where playing_movie_idx = #{playing_movie_idx})	
+	]]>
+	</update>
 
 </mapper>

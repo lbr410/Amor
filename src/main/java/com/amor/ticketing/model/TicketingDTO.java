@@ -12,7 +12,7 @@ public class TicketingDTO {
 	private Date ticketing_reservetime;
 	private Date ticketing_screeningtime;
 	private int ticketing_price;
-	private String ticketing_personnel; // 테이블 자료형 변경 후 int로 변경할 것
+	private int ticketing_personnel; // 테이블 자료형 변경 후 int로 변경할 것
 	private String ticketing_state;
 	private String ticketing_payment;
 	private int a; // 총 가격 합계(매출)
@@ -22,10 +22,10 @@ public class TicketingDTO {
 	public TicketingDTO() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	public TicketingDTO(int ticketing_idx, int playing_movie_idx, int theater_idx, int member_idx, String ticketing_num,
 			String ticketing_seat, Date ticketing_reservetime, Date ticketing_screeningtime, int ticketing_price,
-			String ticketing_personnel, String ticketing_state, String ticketing_payment, int a, String b, String c) {
+			int ticketing_personnel, String ticketing_state, String ticketing_payment, int a, String b, String c) {
 		super();
 		this.ticketing_idx = ticketing_idx;
 		this.playing_movie_idx = playing_movie_idx;
@@ -42,6 +42,19 @@ public class TicketingDTO {
 		this.a = a;
 		this.b = b;
 		this.c = c;
+	}
+
+	public TicketingDTO(int playing_movie_idx, int theater_idx, int member_idx, String ticketing_num,
+			String ticketing_seat, Date ticketing_screeningtime, int ticketing_price, int ticketing_personnel) {
+		super();
+		this.playing_movie_idx = playing_movie_idx;
+		this.theater_idx = theater_idx;
+		this.member_idx = member_idx;
+		this.ticketing_num = ticketing_num;
+		this.ticketing_seat = ticketing_seat;
+		this.ticketing_screeningtime = ticketing_screeningtime;
+		this.ticketing_price = ticketing_price;
+		this.ticketing_personnel = ticketing_personnel;
 	}
 
 	public int getTicketing_idx() {
@@ -116,11 +129,11 @@ public class TicketingDTO {
 		this.ticketing_price = ticketing_price;
 	}
 
-	public String getTicketing_personnel() {
+	public int getTicketing_personnel() {
 		return ticketing_personnel;
 	}
 
-	public void setTicketing_personnel(String ticketing_personnel) {
+	public void setTicketing_personnel(int ticketing_personnel) {
 		this.ticketing_personnel = ticketing_personnel;
 	}
 
@@ -163,4 +176,6 @@ public class TicketingDTO {
 	public void setC(String c) {
 		this.c = c;
 	}
+
+	
 }

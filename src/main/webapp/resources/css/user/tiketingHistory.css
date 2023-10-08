@@ -279,7 +279,7 @@
   
 .thumbnail {
  	width: 262px;
-	height: 193px;
+	height: 185px;
   	object-fit: contain;
   	border: none;
   	border-top: 3px solid #EEEEEE;
@@ -303,6 +303,9 @@
   	border-left: 3px solid #EEEEEE;
   	border-right: 3px solid #EEEEEE;
   	resize: none;
+  	overflow-y: scroll;
+  	font-family: "맑은 고딕";
+  	outline: none;
 }
 
 .paging {
