@@ -69,16 +69,27 @@
 	display: flex;
 }
 
-.date0{flex: 1;cursor: pointer;}
-.date1{flex: 1;cursor: pointer;}
-.date2{flex: 1;cursor: pointer;}
-.date3{flex: 1;cursor: pointer;}
-.date4{flex: 1;cursor: pointer;}
-.date5{flex: 1;cursor: pointer;}
-.date6{flex: 1;cursor: pointer;}
-.date7{flex: 1;cursor: pointer;}
-.date8{flex: 1;cursor: pointer;}
-.date9{flex: 1;cursor: pointer;}
+.datecss{flex: 1;cursor: pointer;}
+
+.datecss:hover{
+	font-weight:bold;
+	color:black;
+}
+
+.datecss:active{
+	font-weight:bold;
+	color:black;
+}
+
+.datecss:visited{
+	font-weight:bold;
+	color:black;
+}
+
+.clicked1{
+	font-weight:bold;
+	color:black;
+}
 
 .cursorblack{
 	color: black;

@@ -1,15 +1,4 @@
 @charset "UTF-8";
-.btn_banner{
-	border:none;
-    width: 40px;
-    height: 28px;
-    border-radius: 3px;
-    background: #EEEEEE;
-    color: #1A2C82;
-    cursor: pointer;
-    text-align:center;
-}
-
 .bannerViewDiv{
 	margin-left:200px;
 	width: 750px;
@@ -40,13 +29,6 @@
 	justify-content : center;
 	align-items : center;
 }
-.mainbanner:hover{
-	background-color: green;	
-}
-.sidebanner:hover {
-	background-color: green;
-}
-
 
 .arrow-next{
 	margin-top:40px;
@@ -83,4 +65,44 @@
 	justify-content : center;
 	align-items : center;
 }
+.bannerAddFormDiv{
+	margin-left:200px;
+}
 
+.bannerAddFormDiv input[type=text]{
+	margin-left:10px;
+	margin-bottom:20px;
+	width: 690px;
+	height: 45px;
+	border-radius: 3px;
+	border: 1px solid #D9D9D9;
+	gap: 10px;
+	padding-left: 7px;
+}
+
+.bannerAddSumit{
+	padding-top:20px;
+	text-align: right;
+}
+
+.bannerAddSumit input[type=button]{
+    border:none;
+    padding: 2px 21px 6px 21px;
+    width: 150px;
+    height: 40px;
+    border-radius: 3px;
+    background: #EEEEEE;
+    color: #1A2C82;
+    cursor: pointer;
+}
+
+.bannerAddSumit input[type=submit]{
+    border:none;
+    padding: 2px 21px 6px 21px;
+    width: 150px;
+    height: 40px;
+    border-radius: 3px;
+    background: #1A2C82;
+    color: #C7E3FF;
+    cursor: pointer;
+}

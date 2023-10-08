@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <title>아모르 : 티켓팅</title>
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/user/ticketing.css">
+<style type="text/css">
+
+</style>
 </head>
 <body>
 <%@include file="../header.jsp" %>
@@ -20,7 +23,7 @@
 				<div class="playingmovieListBox">
 					<div class="playingmovieList">
 					<c:forEach var="dto" items="${lists }">
-						<div class="playingmovie" onclick="selectMovie('${dto.movie_name}',${dto.movie_maxage})">
+						<div class="playingmovie" id ="btnplayingmovie${dto.movie_idx}"  onclick="selectMovie('${dto.movie_name}',${dto.movie_maxage},${dto.movie_idx})">
 							<div class="playingmovie_imgDiv">
 							<c:if test="${dto.movie_maxage == 0 }"><img class="playingmovie_img" src="/amor/resources/img/maxage_all.png"></c:if>
 							<c:if test="${dto.movie_maxage == 1 }"><img class="playingmovie_img" src="/amor/resources/img/maxage_12.png"></c:if>
@@ -28,7 +31,7 @@
 							<c:if test="${dto.movie_maxage == 3 }"><img class="playingmovie_img" src="/amor/resources/img/maxage_18.png"></c:if>
 							
 							</div>
-							<div class="playingmovie_nameDiv"><div class="playingmovie_name"><a href="#" class="cursorblack">${dto.movie_name }</a></div></div>
+							<div class="playingmovie_nameDiv"><div class="playingmovie_name"><a href="#" class="cursorblackmovie">${dto.movie_name }</a></div></div>
 						</div>
 					</c:forEach>
 					</div>
@@ -116,6 +119,7 @@
 <script type="text/javascript" src="/amor/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
 var datecss = document.getElementsByClassName("datecss");
+var moviecss = document.getElementsByClassName("playingmovie");
 
 var today = new Date();
 var year = today.getFullYear();
@@ -171,7 +175,7 @@ document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+wee
 		}else{
 			resultyear = plusyear;
 		}	
-			document.getElementById('datep'+i).innerHTML = '<a class="cursorblack" href="#">'+plusdate+'</a>';
+			document.getElementById('datep'+i).innerHTML = plusdate;
 	}
 	
 	//요일
@@ -186,7 +190,20 @@ document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+wee
 		
 	}
 	
-	function selectMovie(movie_name,movie_maxage){
+	function selectMovie(movie_name,movie_maxage,movie_idx){
+		const movieCurrentDiv = document.getElementById('btnplayingmovie'+movie_idx);
+		
+		if (movieCurrentDiv.classList[1] === "clicked") {
+			//다시 클릭시 바뀜
+			//movieCurrentDiv.classList.remove("clicked");
+		}else{
+			for (var i = 0; i < moviecss.length; i++) {
+				moviecss[i].classList.remove("clicked");
+			}
+			movieCurrentDiv.classList.add("clicked");
+		}
+		
+		
 		select_movie_name = movie_name;
 		let param = 'movie_name='+movie_name+'&movie_maxage='+movie_maxage;
 		sendRequest('ticketingSelectMovie.do',param, selectMovieResult, 'POST');
@@ -222,15 +239,17 @@ document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+wee
 	
 	function selectDate(currentPlusDate){
 		
-		const currentDiv = document.getElementById(`datebtn${currentPlusDate}`); 	
-	//	if (currentDiv.classList[1] === "clicked") {
-	//		event.target.classList.remove("clicked");
-	//	} else {
-	//		for (var i = 0; i < datecss.length; i++) {
-	//			datecss[i].classList.remove("clicked");
-	//		}
-	//		currentDiv.classList.add("clicked");
-	//	}
+		const currentDiv = document.getElementById('datebtn'+currentPlusDate); 	
+		 
+		if (currentDiv.classList[1] === "clicked1") {
+			//다시 클릭시 바뀜
+			//currentDiv.classList.remove("clicked1");
+		}else{
+			for (var i = 0; i < datecss.length; i++) {
+				datecss[i].classList.remove("clicked1");
+			}
+			currentDiv.classList.add("clicked1");
+		}
 		
 		var dayPost= new Date(year,month-1,date+currentPlusDate);
 		let yearPost = dayPost.getFullYear();
@@ -268,7 +287,7 @@ document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+wee
 							let time = ''+movieTimeLists[i].playing_movie_start+'';
 							let timeHHandMM = time.substring(11,16);
 							
-							msg += '<div class="sTimeC" onclick="selectresult('+movieTimeLists[i].playing_movie_idx+','+movieTimeLists[i].theater_idx+','+movieTimeLists[i].movie_idx+')"><div><a href="#" class="cursorblack">'+ timeHHandMM +'</a></div><div class="sTimeC_2line"><a href="#" class="cursorblack">'+ (movieTimeLists[i].playing_movie_remain_seats)+'/'+ movieTimeLists[i].theater_totalseat +'&nbsp;&nbsp;'+movieTimeLists[i].theater_name+'</a></div></div>';
+							msg += '<div class="sTimeC" onclick="selectresult('+movieTimeLists[i].playing_movie_idx+','+movieTimeLists[i].theater_idx+','+movieTimeLists[i].movie_idx+')"><div><a href="#" class="cursorblackM">'+ timeHHandMM +'</a></div><div class="sTimeC_2line"><a href="#" class="cursorblack">'+ (movieTimeLists[i].playing_movie_remain_seats)+'/'+ movieTimeLists[i].theater_totalseat +'&nbsp;&nbsp;'+movieTimeLists[i].theater_name+'</a></div></div>';
 							
 						}
 					}

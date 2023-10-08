@@ -86,30 +86,39 @@
 #movieAddTextDivTable th{text-align: right;padding-right: 20px;}
 
 #movieAddTextDivTable input[type=text]{
-	width: 240px;
+	width: 300px;
 	height: 45px;
 	border-radius: 3px;
 	border: 1px solid #D9D9D9;
 	gap: 10px;
+	padding-left: 7px;
 }
 #movieAddTextDivTable input[type=date]{
-	width: 243px;
+	width: 302px;
 	height: 45px;
 	border-radius: 3px;
 	border: 1px solid #D9D9D9;
 	gap: 10px;
+	padding-left: 7px;
 }
 
 #movieAddTextDivTable select{
-	width: 246px;
+	width: 311px;
 	height: 45px;
 	border-radius: 3px;
 	border: 1px solid #D9D9D9;
+	padding-left: 7px;
 }
 
 #movieAddTextDivTable textarea{
 	border-radius: 3px;
 	border: 1px solid #D9D9D9;
+	width: 300px;
+	height: 230px;
+	padding-left:7px;
+	font-family: '맑은 고딕';
+	resize: none;
+	
 }
 
 .movieAddSumit{
@@ -159,6 +168,7 @@
 	text-align: center;
 	justify-content: center;
     align-items: center;display: flex;
+    cursor: pointer;
 }
 
 .btn_movieSimg{
@@ -178,6 +188,7 @@
     text-align: center;
     justify-content: center;
     align-items: center;display: flex;
+    cursor: pointer;
 }
 
 #btn_movieposter{
