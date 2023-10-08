@@ -98,6 +98,7 @@
 			<c:param name="ticketingidx">${temp.ticketingidx}</c:param>    
 			<c:param name="playingMovieidx">${temp.playingMovieidx}</c:param>    		
 			<c:param name="seateNum">${temp.seatnum}</c:param>    		
+			<c:param name="movieidx">${temp.movieidx}</c:param>    		
 		</c:url>
     	<a href = "${cancellticket}"><input type = "button" value = "예매 취소" class = "button"></a>
   	</c:if>

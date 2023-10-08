@@ -76,9 +76,52 @@ public class TicketingServiceImple implements TicketingService {
    }
    
    @Override
-   public int cancellationTicket(int ticketidx) {
-      int result = ticketingDao.cancellationTicket(ticketidx);
-      return result;
+   public boolean cancellationTicket(String seateNum,int playingMovieIdx,int ticketidx) {
+	   	int userTicketCancellation = ticketingDao.cancellationTicket(ticketidx);
+	   	boolean upDateResult = false;
+	   	if(userTicketCancellation > 0) {
+	   		
+	   		PlayingMovieDTO getPlayingMovie = ticketingDao.getPlayingMovie(playingMovieIdx);
+	   		
+	   		String movieSeate = getPlayingMovie.getPlaying_movie_seat();
+	   		
+	   		StringBuffer temp = new StringBuffer(movieSeate);
+	   		System.out.println(temp.toString());
+	   		
+	   		String[] ticketSeate = seateNum.split(",");
+	   		
+	   		for(int i = 0 ; i < ticketSeate.length ; i++) {
+	   			int index = temp.indexOf(ticketSeate[i]);
+	   			temp.delete(index, index+ticketSeate[i].length());
+	   		}
+	   		
+	   		String[] splitData_s = temp.toString().split(",");
+	   		StringBuffer splitData = new StringBuffer();
+	   		for(int i = 0 ; i < splitData_s.length ; i++) {
+	   			if(!splitData_s[i].equals("")) {
+	   				if(i != splitData_s.length-1) {							
+	   					splitData.append(splitData_s[i]).append(",");
+	   				}else {
+	   					splitData.append(splitData_s[i]);							
+	   				}
+	   			}
+	   		}
+	   		
+	   		//상영영화 남은 좌석수
+	   		int totalSeatesNum = getPlayingMovie.getPlaying_movie_remain_seats()+ticketSeate.length;
+	   		//상영영화 예약된 좌석
+	   		String realignmentSeateData = splitData.toString();								
+	   		
+	   		Map<String, Object> parameter = new HashMap<String, Object>();
+	   		parameter.put("playingMovieTotalSeateNum", totalSeatesNum);
+	   		parameter.put("playingMovieSeates", realignmentSeateData);
+	   		parameter.put("playingMovieIdx", playingMovieIdx);
+	   		int playingMovieUpdateResult = ticketingDao.PlayingMovieSeateUpdate(parameter);
+	   		upDateResult = playingMovieUpdateResult > 0 ? true:false;
+	   	}else {
+	   		upDateResult = false;
+	   	}
+	   	return upDateResult;
    }
    
    @Override
@@ -107,12 +150,6 @@ public class TicketingServiceImple implements TicketingService {
    @Override
 	public int getTicketingCancellListTotalCnt(int useridx) {
 	   int result = ticketingDao.getTicketingCancellListTotalCnt(useridx);
-		return result;
-	}
-   
-   @Override
-	public PlayingMovieDTO getPlayMovie(int playingMovieidx) {
-		PlayingMovieDTO result = ticketingDao.getPlayingMovie(playingMovieidx);
 		return result;
 	}
    
@@ -146,12 +183,6 @@ public class TicketingServiceImple implements TicketingService {
       }
       
    }
-   
-   @Override
-	public int playingMovieSeateUpdate(Map<String, Object> parameter) {
-		int result = ticketingDao.PlayingMovieSeateUpdate(parameter);
-		return result;
-	}
      
    @Override
    public String allMovie(String startd, String endd) {

@@ -97,7 +97,8 @@ public class TicketingHistoryController {
 	@RequestMapping("/myAmor/cancellation.do")
 	public ModelAndView cancellationTicket(@RequestParam("ticketingidx")int ticketidx ,
 			@RequestParam("playingMovieidx")int playingMovieidx,
-			@RequestParam("seateNum")String seateNum) {
+			@RequestParam("seateNum")String seateNum,
+			@RequestParam("movieidx")int movieidx) {
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -105,51 +106,12 @@ public class TicketingHistoryController {
 		
 		if(checkDate) {	
 			
-			int result = ticketingService.cancellationTicket(ticketidx);
+			boolean result = ticketingService.cancellationTicket(seateNum,playingMovieidx,ticketidx);
 			
-			if(result > 0) {
-				
-				PlayingMovieDTO getPlayingMovie = ticketingService.getPlayMovie(playingMovieidx);
-				
-				String[] movieSeate = getPlayingMovie.getPlaying_movie_seat().split(",");
-				
-				String[] ticketSeate = seateNum.split(",");
-				
-				//사용자가 예매한 좌석(상영영화 좌석에 동일한 좌석 데이터가 있는지 유효성검사)
-				StringBuffer temp = new StringBuffer();
-				
-				for(int i = 0 ; i < ticketSeate.length; i++){
-					for(int j = 0 ; j < movieSeate.length; j++) {
-						if(!movieSeate[j].equals(ticketSeate[i])) {
-							String temp1 = null; 
-									temp1 += movieSeate[j];
-									System.out.println(temp1);
-						}
-					}
-				}
-				
-				int totalSeatesNum = getPlayingMovie.getPlaying_movie_remain_seats();
-				
-
-								
-				String realignmentSeateData = temp.toString();
-				
-				Map<String, Object> parameter = new HashMap<String, Object>();
-				parameter.put("playingMovieTotalSeateNum", totalSeatesNum);
-				parameter.put("playingMovieSeates", realignmentSeateData);
-				parameter.put("playingMovieIdx", playingMovieidx);
-				
-				int playingMovieUpdateResult = ticketingService.playingMovieSeateUpdate(parameter);
-		
-				if(playingMovieUpdateResult > 0) {					
+			if(result) {
 					mav.addObject("msg", "예매가 취소되었습니다.");
 					mav.addObject("goUrl", "/amor/myAmor/ticketingHistory.do");
 					mav.setViewName("user/msg/userMsg");
-				}else {
-					mav.addObject("msg", "예매취소 실패(관리자 문의 바랍니다.)");
-					mav.addObject("goUrl", "/amor/myAmor/ticketingHistory.do");
-					mav.setViewName("user/msg/userMsg");
-				}				
 			}else {
 				mav.addObject("msg", "예매취소 실패(관리자 문의 바랍니다.)");
 				mav.addObject("goUrl", "/amor/myAmor/ticketingHistory.do");
