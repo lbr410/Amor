@@ -20,6 +20,7 @@ public class ProductServiceImple implements ProductService {
 
 	@Override
 	public List<ProductDTO> productList(int cp, int listSize) {
+		DecimalFormat df = new DecimalFormat("#,##0");
 		int start = (cp-1) * listSize + 1;
 		int end = cp * listSize;
 		Map map = new HashMap();
@@ -27,6 +28,11 @@ public class ProductServiceImple implements ProductService {
 		map.put("end", end);
 		
 		List<ProductDTO> lists = productDao.productList(map);
+		for(int i=0; i<lists.size(); i++) {
+			int price = lists.get(i).getProduct_price();
+			String price_s = df.format(price);
+			lists.get(i).setProduct_price2(price_s);
+		}
 		return lists;
 	}
 	
