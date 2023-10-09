@@ -129,12 +129,12 @@ public class MovieReviewController {
 	
 	@RequestMapping("/myAmor/reviewDelete.do")
 	public ModelAndView reviewDelete(
-			@RequestParam("movie_review_idx") int movie_review_idx,
-			@RequestParam("ticketing_idx") int ticketing_idx
+			@RequestParam("movie_review_idx") int movie_review_idx
 			) {
-		
-		int result1 = movieReviewService.reviewDelete(movie_review_idx);
+
+		int ticketing_idx = movieReviewService.reviewTicketingIDX(movie_review_idx);
 		int result2 = movieReviewService.reviewTicketingDelState(ticketing_idx);
+		int result1 = movieReviewService.reviewDelete(movie_review_idx);
 		int result = result1+result2;
 		String msg = result>1?"삭제에 성공했습니다.":"삭제에 실패했습니다.";
 		ModelAndView mav = new ModelAndView();

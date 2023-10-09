@@ -111,6 +111,14 @@ select * from movie where movie_opendate <![CDATA[>=]]> sysdate order by movie_o
 <select id="movieBestCnt" resultType="Integer">
 select count(*) from movie where movie_state='y' 
 </select>
-
-
+<select id="movieReviewInfo" parameterType="Map" resultType="com.amor.movieReview.model.MovieReviewDTO">
+	select * from
+		(select rownum as rnum,a.* from 
+		(select movie_review_star, movie_review_content, movie_review_write 
+	from movie_review where movie_idx = #{movie_idx})a)b
+	where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+</select>
+<select id="movieReviewContentCnt" parameterType="Integer" resultType="Integer">
+	select count(*) from movie_review where movie_idx = #{movie_idx}
+</select>
 </mapper>

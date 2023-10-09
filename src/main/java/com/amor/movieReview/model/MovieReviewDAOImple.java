@@ -101,4 +101,10 @@ public class MovieReviewDAOImple implements MovieReviewDAO {
 		int result = sqlmap.update("reviewTicketingDelState", ticketing_idx);
 		return result;
 	}
+	
+	@Override
+	public int reviewTicketingIDX(int movie_review_idx) {
+		int ticketing_idx = sqlmap.selectOne("reviewTicketingIDX", movie_review_idx);
+		return ticketing_idx;
+	}
 }

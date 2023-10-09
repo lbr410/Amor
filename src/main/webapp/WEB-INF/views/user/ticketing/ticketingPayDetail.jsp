@@ -58,7 +58,7 @@
 	</tbody>
 	</table>
 	<div class="btnDiv">
-		<a href="/amor/"><button class="submitBtn2">확인</button></a>	
+		<a href="ticketingPayDetailConfirm.do"><button class="submitBtn2">확인</button></a>	
 	</div>
 </div>
 </div>

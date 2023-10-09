@@ -41,4 +41,6 @@ public interface TicketingService {
 	public int totalAudience(int playing_movie_idx);
 	public int playingMovieSeat(int ticketing_personnel, int playing_movie_idx);
 	public int movieAudience(int totalMovieAudience, int playing_movie_idx);
+	public String playingMovieTotalSeat(int playing_movie_idx);
+	public int playingMovieUpdateSeat(String playingUpdateSeat, int playing_movie_idx);
 }

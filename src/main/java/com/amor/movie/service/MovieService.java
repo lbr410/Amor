@@ -1,6 +1,8 @@
 package com.amor.movie.service;
 
 import com.amor.movie.model.*;
+import com.amor.movieReview.model.MovieReviewDTO;
+
 import java.util.*;
 
 public interface MovieService {
@@ -30,5 +32,9 @@ public interface MovieService {
 	public int getUserSearchTotalCnt(String userSearch);
 	
 	public List<MovieDTO> userMovieSearch(String userSearch, int cp, int listSize);
+	
+	public List<MovieReviewDTO> movieReviewInfo(int movie_idx, int cp, int listSize);
+	
+	public int movieReviewContentCnt(int movie_idx);
 	
 }

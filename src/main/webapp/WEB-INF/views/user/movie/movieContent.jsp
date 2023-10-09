@@ -74,13 +74,13 @@
     		<div id="stillbox">
     			<table class="moviedetailtable">
     				<tr>
-    					<td rowspan="2"><img src="/amor/resources/upload/movie/${dto.movie_stillcut1 }"></td>
-    					<td><img src="/amor/resources/upload/movie/${dto.movie_stillcut2 }"></td>
-    					<td><img src="/amor/resources/upload/movie/${dto.movie_stillcut3 }"></td>
+    					<td rowspan="2"><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut1 }"></td>
+    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut2 }"></td>
+    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut3 }"></td>
     				</tr>
     				<tr>
-    					<td><img src="/amor/resources/upload/movie/${dto.movie_stillcut4 }"></td>
-    					<td><img src="/amor/resources/upload/movie/${dto.movie_stillcut5 }"></td>
+    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut4 }"></td>
+    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut5 }"></td>
     				</tr>
     			</table>
     		</div>
