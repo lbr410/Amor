@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>아모르 : 공지사항 목록</title>
-<link rel="stylesheet" href="/amor/resources/css/user/customer.css">
+<link rel="stylesheet" href="/amor/resources/css/user/noticeList.css">
 </head>
 <%@ include file="../header.jsp" %>
 <body>

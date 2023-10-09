@@ -68,7 +68,7 @@ function checkNumber(event) {
 		</div>
 		<div class="titleDiv">
 			<label class="invenMenu">적정 재고량</label>
-			<input type="text" name="inventory_optimal" class="textBox" maxlength="4" required>
+			<input type="text" name="inventory_optimal" class="textBox" maxlength="4" onkeypress="return checkNumber(event)" required>
 		</div>
 		</div>
 		<div class="btnDiv">

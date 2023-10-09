@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>아모르 : faq 목록</title>
 <link rel="stylesheet" href="../resources/css/user/faq.css">
 </head>
 <body>
@@ -56,13 +56,6 @@
                         <th scope="col" id="thead1">질문</th>
                     </tr>
                 </thead>
-                <tfoot>
-                	<tr>
-                		<td colspan="2" align="center">
-                			<div class="paging">${pageStr }</div>
-                		</td>
-                	</tr>
-                </tfoot>
                 <tbody id="tab">
                 <c:if test="${empty lists }">
                 	<tr>
@@ -116,13 +109,6 @@
                         <th scope="col" id="thead1">질문</th>
                     </tr>
                 </thead>
-                <tfoot>
-                	<tr>
-                		<td colspan="2" align="center">
-                			<div class="paging">${pageStr }</div>
-                		</td>
-                	</tr>
-                </tfoot>
                 <tbody id="tab">
                 <c:if test="${empty lists }">
                 	<tr>
@@ -175,13 +161,6 @@
                         <th scope="col" id="thead1">질문</th>
                     </tr>
                 </thead>
-                <tfoot>
-                	<tr>
-                		<td colspan="2" align="center">
-                			<div class="paging">${pageStr }</div>
-                		</td>
-                	</tr>
-                </tfoot>
                 <tbody id="tab">
                 <c:if test="${empty lists }">
                 	<tr>
@@ -234,13 +213,6 @@
                         <th scope="col" id="thead1">질문</th>
                     </tr>
                 </thead>
-                <tfoot>
-                	<tr>
-                		<td colspan="2" align="center">
-                			<div class="paging">${pageStr }</div>
-                		</td>
-                	</tr>
-                </tfoot>
                 <tbody id="tab">
                 <c:if test="${empty lists }">
                 	<tr>
@@ -305,24 +277,20 @@
             });
         });
     document.addEventListener('DOMContentLoaded', function () {
-        // 모든 FAQ 내용 숨기기
         const contents = document.querySelectorAll('.faq-content');
         contents.forEach(content => {
             content.style.display = 'none';
         });
 
-        // 영화관 이용 버튼에 대한 내용 보이기
         document.getElementById('faq-content1').style.display = 'block';
 
         const buttons = document.querySelectorAll('.pagemenu button');
         buttons.forEach((button, index) => {
             button.addEventListener('click', () => {
-                // 모든 FAQ 내용 숨기기
                 contents.forEach(content => {
                     content.style.display = 'none';
                 });
 
-                // 클릭한 버튼에 해당하는 FAQ 내용 표시
                 const contentId = 'faq-content' + (index + 1);
                 document.getElementById(contentId).style.display = 'block';
             });

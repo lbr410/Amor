@@ -1,0 +1,135 @@
+@charset "UTF-8";
+.body-inner{
+	margin-bottom: 78px;
+}
+.inquiryWriteForm{width: 1000px; margin: 0 auto;}
+.titleDiv, .typeDiv{
+	width: 850px;
+    height: 40px;
+    font-size: 16px;
+    margin: 0 auto;
+    padding: 24px 24px 18px 24px;
+    justify-content: center;
+    border-bottom: 1px solid #DDDDDD;
+}
+.countDiv{
+	width: 730px; height: 40px; font-size: 14px; padding: 24px 24px 18px 24px;
+	padding-right: 24px;text-align: right;}
+.contentDiv{
+	width: 850px;
+	height: 300px;
+    font-size: 16px;
+    margin: 0 auto;
+    padding: 24px 24px 18px 24px;
+    justify-content: center;
+    border-bottom: 1px solid #DDDDDD;
+}
+.fileDiv{
+	width: 850px;
+    height: 128px;
+    font-size: 16px;
+    margin: 0 auto;
+    padding: 24px 24px 18px 24px;
+    justify-content: center;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.imgDiv2{
+	width: 850px;
+	height: 78px;
+    font-size: 16px;
+    margin: 0 auto;
+    padding: 24px 24px 18px 65px;
+    justify-content: center;
+}
+.menumame3{width: 200px; padding: 24px; margin-left: 48px;}
+.textBox1{
+	width: 600px;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	padding-left: 8px;
+	margin-bottom: 5px;
+}
+
+.textCount {
+	color: #bcbcbc;
+}
+.fileDeco {
+	border:none;
+	padding-bottom: 2px;
+	width: 100px;
+	height: 25px;
+	border-radius: 3px;
+	background: #eeeeee;
+	color: #1a2c82;
+	cursor: pointer;
+	margin-left: 24px;
+}
+
+.textBox2{
+	width: 590px;
+	height: 200px;
+	resize: none;
+	padding: 12px;
+	font-size: 14px;
+	color: #111111;
+	border: 1px solid #d9d9d9;
+	font-family: '맑은 고딕';
+}
+#preview {
+	width: 80px;
+	height: 80px;
+	border: 1px solid #d9d9d9;
+	margin-top: 8px;
+	margin-left: 144px;
+}
+.titleDiv input{width: 400px, height: 40px; border: 1px solid #D9D9D9}
+.info{ padding: 24px;margin-left: 48px;}
+.info-content{
+	width: 800px;
+    padding: 24px;
+    margin-left: 48px;
+    margin-top: 10px;}
+.content{ border-style: solid;
+	border-color: #979797;
+	border-width: 1px;
+	padding: 3px 23px 3px 23px;
+	flex-direction: row;
+	gap: 10px;
+	align-items: center;
+	justify-content: flex-start;
+	flex-shrink: 0;
+	width: 600px;
+	overflow: hidden;}
+.btnDiv{padding: 24px 24px 24px 0px;
+	display: flex;
+	flex-direction: row;
+	gap: 420px;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-shrink: 0;
+	width: 850px;
+	margin: 0 auto;
+	position: relative;}
+.nextBtn { 
+	border:none;
+	padding: 2px 21px 6px 21px;
+	width: 150px;
+	height: 40px;
+	border-radius: 3px;
+	background: #1A2C82;
+	color: #C7E3FF;
+	cursor: pointer;
+	margin-right: 65px;
+}
+.cancleBtn { 
+   border:none;
+   padding: 2px 21px 6px 21px;
+   width: 150px;
+   height: 40px;
+   border-radius: 3px;
+   background: #EEEEEE;
+   color: #1A2C82;
+   cursor: pointer;
+   margin-left: 65px;
+}

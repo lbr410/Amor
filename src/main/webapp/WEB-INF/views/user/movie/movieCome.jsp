@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>아모르 : 현재 상영작</title>
-<link rel="stylesheet" href="/amor/resources/css/user/movie.css">
+<link rel="stylesheet" href="/amor/resources/css/user/movieCome.css">
 <!--브라우저 스타일 초기화-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
 </head>
@@ -43,11 +43,9 @@
 	<c:if test="${empty mlists }">
 	<div>상영중인 영화가 없습니다.</div>
 	</c:if>
-		<c:set var="rank" value="1" />
 		<c:forEach var="mdto" items="${mlists }">
             <div class="movie-wrapper">
                 <div class="rank-movie">
-                    <div class="rank"><span class="rank-txt">${rank }위</span></div>
                     <div class="movie_poster">
                    	 	<c:url var="MovieContentUrl" value="movieContentForm.do">
 							<c:param name="movie_idx">${mdto.movie_idx }</c:param>
@@ -79,7 +77,6 @@
                     </div>
                 </div>
             </div>
-            <c:set var="rank" value="${rank+1 }" />
         </c:forEach>
      	</div>
      	<div class="paging">${pageStr }</div>

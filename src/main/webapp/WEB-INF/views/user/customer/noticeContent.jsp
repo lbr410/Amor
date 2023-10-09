@@ -8,6 +8,22 @@
 <link rel="stylesheet" href="/amor/resources/css/user/noticeContent.css">
 </head>
 <%@include file = "../header.jsp" %>
+<body>
+    <!-- GRAY NAVIGATE BAR -->
+    <div class="gray-bar">
+        <div class="location">
+        	Home
+            <a href="/amor/customer/faqList.do" title="페이지로 이동">고객센터</a>
+            <a href="/amor/customer/noticeList.do" title="공지사항 페이지로 이동">공지사항</a>
+            <a href="#">공지사항 내용</a>
+        </div>
+    </div>
+    
+    <div class="body-inner">
+        <!-- BORDER BAR -->
+        <div class="border-bar">
+            <div class="border-title">고객센터</div>
+        </div>
 <div class="noticeContent">
 <section class="content">
 
@@ -44,6 +60,7 @@
 </tbody>
 </table>
 </section>
+</div>
 </div>
 <%@ include file="../footer.jsp" %>
 </body>
