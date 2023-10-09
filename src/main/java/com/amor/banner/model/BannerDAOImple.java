@@ -15,32 +15,32 @@ public class BannerDAOImple implements BannerDAO {
 	
 	@Override
 	public List<BannerDTO> bannerList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<BannerDTO> lists = sqlmap.selectList("bannerList");
+		return lists;
 	}
 	
 	@Override
 	public int bannerAdd(BannerDTO dto) {
-		int result = sqlmap.insert("",dto);
+		int result = sqlmap.insert("bannerAdd",dto);
 		return result;
 	}
 	
 	@Override
 	public BannerDTO bannerUpdate1(int banner_idx) {
-		// TODO Auto-generated method stub
-		return null;
+		BannerDTO dto = sqlmap.selectOne("bannerUpdate1",banner_idx);
+		return dto;
 	}
 	
 	@Override
 	public int bannerUpdate2(BannerDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = sqlmap.update("bannerUpdate2", dto);
+		return result;
 	}
 	
 	@Override
 	public int bannerDelete(int banner_idx) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = sqlmap.delete("bannerDelete",banner_idx);
+		return result;
 	}
 	
 	

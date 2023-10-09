@@ -16,8 +16,8 @@ public class BannerServiceImple implements BannerService {
 
 	@Override
 	public List<BannerDTO> bannerList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<BannerDTO> lists = bannerdao.bannerList();
+		return lists;
 	}
 	
 	@Override
@@ -28,19 +28,19 @@ public class BannerServiceImple implements BannerService {
 	
 	@Override
 	public BannerDTO bannerUpdate1(int banner_idx) {
-		// TODO Auto-generated method stub
-		return null;
+		BannerDTO dto = bannerdao.bannerUpdate1(banner_idx);
+		return dto;
 	}
 	
 	@Override
 	public int bannerUpdate2(BannerDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = bannerdao.bannerUpdate2(dto);
+		return result;
 	}
 	
 	@Override
 	public int bannerDelete(int banner_idx) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = bannerdao.bannerDelete(banner_idx);
+		return result;
 	}
 }

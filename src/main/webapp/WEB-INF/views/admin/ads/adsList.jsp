@@ -5,6 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>아모르 관리자 : 광고 관리</title>
+<link rel="styleSheet" type="text/css" href="/amor/resources/css/admin/adsList.css">
+<script type="text/javascript">
+function adsAdd(idx){
+	let ads_idx = idx;
+	location.href='adsAdd.do?ads_idx='+ads_idx;
+}
+
+</script>
 </head>
 <body>
 <%@include file="../admin_header.jsp" %>
@@ -12,43 +20,59 @@
 <div class="content-title"><label class="titletext">광고 등록</label>
 </div>
 <div class="contentMain">
+	<div class="adsViewDiv">
+	<div class="adsMid">
+		<div class="firstads" onclick="adsAdd(1)"
+		<c:if test="${btnOk eq 'bothOpen' || btnOk eq 'sideLock'}"> onclick="adsAdd(1)"</c:if>
+		<c:if test="${!(btnOk eq 'bothOpen' || btnOk eq 'sideLock')}"> onclick="adsalready()"</c:if>
+		>첫번째 광고</div>
+		<div class="arrow-next1"></div>
+		<div class="secondads" 
+		<c:if test="${btnOk eq 'bothOpen' || btnOk eq 'mainLock'}"> onclick="adsAdd(2)"</c:if>
+		<c:if test="${!(btnOk eq 'bothOpen' || btnOk eq 'mainLock')}"> onclick="adsalready()"</c:if>
+		>두번째 광고</div>
+		<div class="arrow-next2"></div>
+		<div class="thirdads" 
+		<c:if test="${btnOk eq 'bothOpen' || btnOk eq 'mainLock'}"> onclick="adsAdd(3)"</c:if>
+		<c:if test="${!(btnOk eq 'bothOpen' || btnOk eq 'mainLock')}"> onclick="adsalready()"</c:if>
+		>세번째 광고</div>
+	</div>
+	</div>
+
+
+
 <div class="tableDiv">
 	<table class="commonTable">
 	<thead>
 	<tr>
 		<th>광고 위치</th>
-		<th>광고 이름 </th>
+		<th>광고 이름</th>
 		<th>URL 경로</th>
-		<th>파일이름</th>
+		<th>광고 이미지</th>
 		<th>수정</th>
 		<th>삭제</th>
 	</tr>
 	</thead>
 	<tbody>
-	<tr>
-		<td>좌측</td>
-		<td>이름</td>
-		<td>URI</td>
-		<td>파일이름</td>
-		<td>수정 버튼 </td>
-		<td>삭제버튼</td>
-	</tr>
-	<tr>
-		<td>좌측</td>
-		<td>이름</td>
-		<td>URI</td>
-		<td>파일이름</td>
-		<td>수정 버튼 </td>
-		<td>삭제버튼</td>
-	</tr>
-	<tr>
-		<td>좌측</td>
-		<td>이름</td>
-		<td>URI</td>
-		<td>파일이름</td>
-		<td>수정 버튼 </td>
-		<td>삭제버튼</td>
-	</tr>
+	<c:if test="${empty lists}">
+		<tr>
+			<td colspan="6">없음</td>
+		</tr>
+	</c:if>
+	<c:forEach var="dto" items="${lists}">
+		<tr>
+			<td>
+			<c:if test="${dto.ads_idx == 1}">첫번째 광고</c:if>
+			<c:if test="${dto.ads_idx == 2}">두번째 광고</c:if>
+			<c:if test="${dto.ads_idx == 3}">세번째 광고</c:if>
+			</td>
+			<td>${dto.ads_name }</td>
+			<td>${dto.ads_url }</td>
+			<td>${dto.ads_filename }</td>
+			<td><input class="btn_ads" type="button" value="수정" onclick="adsUpdate(${dto.ads_idx})"></td>
+			<td><input class="btn_ads" type="button" value="삭제" onclick="adsDelete(${dto.ads_idx})"></td>
+		</tr>
+	</c:forEach>
 	</tbody>
 	</table>
 </div>

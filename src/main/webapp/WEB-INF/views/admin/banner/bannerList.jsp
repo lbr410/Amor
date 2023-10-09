@@ -8,10 +8,23 @@
 <title>아모르 관리자 : 베너 관리</title>
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/admin/bannerList.css">
 <script type="text/javascript">
+function banneralready(){
+	window.alert('해당 베너가 이미 등록되어있습니다.');
+}
+
 function bannerAdd(idx){
 	let banner_idx = idx;
 	location.href='bannerAdd.do?banner_idx='+banner_idx;
 }
+function bannerUpdate(idx){
+	let banner_idx = idx;
+	location.href='bannerUpdate.do?banner_idx='+banner_idx;
+}
+function bannerDelete(idx){
+	let banner_idx = idx;
+	location.href='bannerDelete.do?banner_idx='+banner_idx;
+}
+
 
 </script>
 </head>
@@ -23,9 +36,15 @@ function bannerAdd(idx){
 <div class="contentMain">
 <div class="bannerViewDiv">
 <div class="bannerMid">
-	<div class="mainbanner" onclick="bannerAdd(1)">메인 베너</div>
+	<div class="mainbanner" 
+	<c:if test="${btnOk eq 'bothOpen' || btnOk eq 'sideLock'}"> onclick="bannerAdd(1)"</c:if>
+	<c:if test="${!(btnOk eq 'bothOpen' || btnOk eq 'sideLock')}"> onclick="banneralready()"</c:if>
+	>메인 베너</div>
 	<div class="arrow-next"></div>
-	<div class="sidebanner" onclick="bannerAdd(2)">사이드 베너</div>
+	<div class="sidebanner" 
+	<c:if test="${btnOk eq 'bothOpen' || btnOk eq 'mainLock'}"> onclick="bannerAdd(2)"</c:if>
+	<c:if test="${!(btnOk eq 'bothOpen' || btnOk eq 'mainLock')}"> onclick="banneralready()"</c:if>
+	>사이드 베너</div>
 </div>
 </div>
 <div class="tableDiv">
@@ -42,20 +61,23 @@ function bannerAdd(idx){
 	</thead>
 	<tbody>
 	<c:if test="${empty lists}">
-	<c:forEach var="dto" items="lists">
+		<tr>
+			<td colspan="6">없음</td>
+		</tr>
+	</c:if>
+	<c:forEach var="dto" items="${lists}">
 		<tr>
 			<td>
-			<c:if test="${banner_idx == 1}">메인 베너</c:if>
-			<c:if test="${banner_idx == 2}">사이드 베너</c:if>
+			<c:if test="${dto.banner_idx == 1}">메인 베너</c:if>
+			<c:if test="${dto.banner_idx == 2}">사이드 베너</c:if>
 			</td>
-			<td>이름</td>
-			<td>URI</td>
-			<td>영상ID</td>
-			<td><input class="btn_banner" type="button" value="수정" onclick="bannerUpdate(${banner_idx})"></td>
-			<td><input class="btn_banner" type="button" value="삭제" onclick="bannerDelete(${banner_idx})"></td>
+			<td>${dto.banner_name }</td>
+			<td>${dto.banner_url }</td>
+			<td>${dto.banner_source }</td>
+			<td><input class="btn_banner" type="button" value="수정" onclick="bannerUpdate(${dto.banner_idx})"></td>
+			<td><input class="btn_banner" type="button" value="삭제" onclick="bannerDelete(${dto.banner_idx})"></td>
 		</tr>
 	</c:forEach>
-	</c:if>
 	</tbody>
 	</table>
 </div>

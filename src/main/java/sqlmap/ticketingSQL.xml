@@ -210,7 +210,7 @@ where ticketing_idx = #{ticketidx}
 	
 	<select id="timetoMovieLists" parameterType="Date" resultType="com.amor.ticketing.model.TicketingSelectMovieDTO">
 	<![CDATA[
-		select a.movie_idx as "movie_idx", movie_name as "movie_name", playing_movie_idx, 
+		select a.movie_idx as "movie_idx", movie_name as "movie_name", movie_maxage, playing_movie_idx, 
 		b.theater_idx as "theater_idx", c.theater_name as "theater_name" ,b.playing_movie_date as "playing_movie_date", 
 		b.playing_movie_start as "playing_movie_start", b.playing_movie_remain_seats as "playing_movie_remain_seats", 
 		c.theater_totalseat as "theater_totalseat"
