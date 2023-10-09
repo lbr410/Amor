@@ -23,13 +23,13 @@ public class MovieContentController {
 		public ModelAndView movieList(
 				@RequestParam(value="cp", defaultValue = "1") int cp) {
 			
-			int totalCnt=movieservice.getTotalCnt();
-			int listSize=5;
+			int totalCnt=movieservice.movieBestCnt();
+			int listSize=20;
 			int pageSize=5;
-			String pageStr=com.amor.page.PageModule.makePage("/amor/user/movie/movie.do", totalCnt, listSize, pageSize, cp);
-
-			List<MovieDTO> mlists = movieservice.movieBest(cp, listSize);
+			String pageStr=com.amor.page.PageModule.makePage("/amor/movie/movie.do", totalCnt, listSize, pageSize, cp);
+			
 			ModelAndView mav=new ModelAndView();
+			List<MovieDTO> mlists = movieservice.movieBest(cp, listSize);
 			mav.addObject("mlists", mlists);
 			mav.addObject("pageStr", pageStr);
 			mav.setViewName("/user/movie/movie");

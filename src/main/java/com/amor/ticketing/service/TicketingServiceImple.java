@@ -76,8 +76,8 @@ public class TicketingServiceImple implements TicketingService {
    }
    
    @Override
-   public boolean cancellationTicket(String seateNum,int playingMovieIdx,int ticketidx) {
-	   	int userTicketCancellation = ticketingDao.cancellationTicket(ticketidx);
+   public boolean cancellationTicket(String seateNum,int playingMovieIdx,int ticketIdx,int movieIdx) {
+	   	int userTicketCancellation = ticketingDao.cancellationTicket(ticketIdx);
 	   	boolean upDateResult = false;
 	   	if(userTicketCancellation > 0) {
 	   		
@@ -85,16 +85,14 @@ public class TicketingServiceImple implements TicketingService {
 	   		
 	   		String movieSeate = getPlayingMovie.getPlaying_movie_seat();
 	   		
-	   		StringBuffer temp = new StringBuffer(movieSeate);
-	   		System.out.println(temp.toString());
-	   		
 	   		String[] ticketSeate = seateNum.split(",");
 	   		
+	   		StringBuffer temp = new StringBuffer(movieSeate);
 	   		for(int i = 0 ; i < ticketSeate.length ; i++) {
 	   			int index = temp.indexOf(ticketSeate[i]);
 	   			temp.delete(index, index+ticketSeate[i].length());
 	   		}
-	   		
+
 	   		String[] splitData_s = temp.toString().split(",");
 	   		StringBuffer splitData = new StringBuffer();
 	   		for(int i = 0 ; i < splitData_s.length ; i++) {
@@ -105,19 +103,28 @@ public class TicketingServiceImple implements TicketingService {
 	   					splitData.append(splitData_s[i]);							
 	   				}
 	   			}
-	   		}
+	   		}	
 	   		
 	   		//상영영화 남은 좌석수
 	   		int totalSeatesNum = getPlayingMovie.getPlaying_movie_remain_seats()+ticketSeate.length;
 	   		//상영영화 예약된 좌석
-	   		String realignmentSeateData = splitData.toString();								
-	   		
+	   		String realignmentSeateData = !splitData.toString().equals("") ? splitData.toString():"[]";								
 	   		Map<String, Object> parameter = new HashMap<String, Object>();
 	   		parameter.put("playingMovieTotalSeateNum", totalSeatesNum);
 	   		parameter.put("playingMovieSeates", realignmentSeateData);
 	   		parameter.put("playingMovieIdx", playingMovieIdx);
-	   		int playingMovieUpdateResult = ticketingDao.PlayingMovieSeateUpdate(parameter);
-	   		upDateResult = playingMovieUpdateResult > 0 ? true:false;
+	   		int playingMovieUpDateResult = ticketingDao.PlayingMovieSeateUpdate(parameter);
+	   
+	   		if(playingMovieUpDateResult > 0) {
+	   			int movieAudience = ticketingDao.getMovieAudience(movieIdx)-1;
+	   			parameter.clear();
+	   			parameter.put("audience", movieAudience);
+	   			parameter.put("movieIdx", movieIdx);
+	   			upDateResult = ticketingDao.upDateMovieAudience(parameter) > 0 ? true:false;
+	   			
+	   		}else {
+	   			upDateResult = false;
+	   		}
 	   	}else {
 	   		upDateResult = false;
 	   	}

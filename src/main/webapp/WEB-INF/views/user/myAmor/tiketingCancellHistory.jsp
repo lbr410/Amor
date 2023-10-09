@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Amor:MyPage(CancellList)</title>
+<title>아모르 마이페이지 : 영화예매 취소내역</title>
 <link rel="stylesheet" href="/amor/resources/css/user/tiketingHistory.css" />
 </head>
 <style>
@@ -19,7 +19,7 @@
    width: 100%;
    height: 350px;
    background: #F8F8F8;
-   margin-bottom: 1000px; /**작업하는 영역 조절은 여기서*/
+
 }
 .mypagetitle .title1{
 	color: #000;
@@ -33,25 +33,11 @@
 	font-weight: 500;
 	cursor: pointer;
 } 
-.nullcontent{
-	margin-left:50px;
-	margin-top:50px;
-}
-.paging {
-	margin-top: 20px;
-	text-align: center;
-	font-size: 16px;
-	margin-bottom: 20px;
-}
-
-.paging a:hover{
-	color: #324ABC;
-	font-weight: normal;
-}
-
-.nowPage {
-	color: #324ABC !important;
-	font-weight: bold;
+.mypageContent{
+	padding-top: 150px;
+	margin: 0 auto;
+	width: 1000px;
+	margin-bottom: 50px;
 }
 </style>
 <body>
@@ -59,8 +45,9 @@
 <div class="gray-section">
 	<div class="body-inner">
 <%@include file="../mypageHeader.jsp" %>
-<div class="mypagetitle"><a href = "/amor/myAmor/ticketingHistory.do"><label class="title2">예매내역</label></a> <a href="/amor/myAmor/cancellHistory.do"><label class="title1">취소내역</label></a></div>
-<!-- 이 밑으로 작업 -->
+<div class="mypagetitle"><a href = "myAmor/ticketingHistory.do"><label class="title2">예매내역</label></a> <a href="myAmor/cancellHistory.do"><label class="title1">취소내역</label></a></div>
+</div></div>
+<div class="mypageContent">
 <c:if test="${!empty list}">
 <c:forEach var="temp" items="${list}" >
 <div class="contentbox">
@@ -121,7 +108,7 @@
 <c:if test="${empty list}">
 <div class = "nullcontent">취소 내역이 없습니다.</div>
 </c:if>
-</div>
+
 </div>
 <c:if test="${!empty page}">
 <div class = "paging">${page}</div>

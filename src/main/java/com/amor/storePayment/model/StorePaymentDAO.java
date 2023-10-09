@@ -13,11 +13,14 @@ public interface StorePaymentDAO {
 	public int monthAllTotal(Map map);
 	public List<StorePaymentDTO> monthStore(Map map);
 	public int monthStoreTotal(Map map);
-	//수민
-	public List<MyPageStorePaymentDTO> mypageStorePaymentList(int useridx);
+	
+	
+	public List<MyPageStorePaymentDTO> mypageStorePaymentList(Map<String, Object> parameter);
 	public int mypageStoreCancell(int paymentidx);
-	public List<MyPageStorePaymentDTO> mypageStoreCancellList(int useridx);
-
+	public List<MyPageStorePaymentDTO> mypageStoreCancellList(Map<String, Object> parameter);
+	public int userStoreListTotalCntY(int userIdx);
+	public int userStoreListTotalCntN(int userIdx);
+	
 	public int storeListTotalCnt();
 	public List<StorePaymentDTO> storeList(Map map);
 	public int storeListSubmit(Map map);

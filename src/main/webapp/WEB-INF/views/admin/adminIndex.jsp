@@ -113,7 +113,7 @@
 	</div>
 	<div class="table2Deco">
 	<div class="tableDivs">
-		<div><label class="tableMenu">영화목록</label>
+		<div><label class="tableMenu">상영영화</label>
 		<a class="moreView" href="/amor/admin/movie/movieList.do">더보기</a></div>
 		<table class="commonTables">
 			<thead>

@@ -23,7 +23,7 @@ public class TheaterController {
 	TheaterService theaterService;
 	
 	@RequestMapping("/admin/theater/theaterList.do")
-	public ModelAndView goTheater(@CookieValue(value = "autologin", required = false)String autologin,
+	public ModelAndView TheaterList(@CookieValue(value = "autologin", required = false)String autologin,
 			HttpSession session) {
 
 		ModelAndView mav = new ModelAndView();
@@ -65,14 +65,14 @@ public class TheaterController {
 	}
 	
 	@RequestMapping("/admin/theater/addSeate.do")
-	public String show(@RequestParam("row")int row,
+	public String showSeate(@RequestParam("row")int row,
 			@RequestParam(name = "col",required = false)int col,
 			@RequestParam("theateridx")int tidx,
 			Model model) {
 		TheaterDTO tdto = theaterService.theaterInfo(tidx);
-		seat item = new seat();
-		String seates = item.addTheater(tdto.getTheater_seat(), row, col);
-		model.addAttribute("seates",seates);
+		Seats item = new Seats();
+		String seats = item.createSeats(tdto.getTheater_seat(), row, col);
+		model.addAttribute("seats",seats);
 		return "amorJson";
 	}
 	
@@ -80,21 +80,21 @@ public class TheaterController {
 	public String seateInitialization(@RequestParam("row")int row,
 			@RequestParam(name = "col",required = false)int col,
 			Model model) {
-		seat item = new seat();
-		String seates = item.addTheater(null, row, col);
-		model.addAttribute("seates",seates);
+		Seats item = new Seats();
+		String seats = item.createSeats(null, row, col);
+		model.addAttribute("seats",seats);
 		return "amorJson";
 	}
 	
 	@RequestMapping("/admin/theater/updateSeate.do")
-	public String updateSeate(@RequestParam("seatesData")String seates,
+	public String updateSeate(@RequestParam("seatsData")String seats,
 			@RequestParam("totalseat")int totalseat,
 			@RequestParam("row")int row,
 			@RequestParam("col")int col,
 			@RequestParam("tidx")int tidx,
 			@RequestParam("theatername")String name,
 			Model model) {
-		int result = theaterService.updateSeate(name, seates, tidx, totalseat, row, col);
+		int result = theaterService.updateSeate(name, seats, tidx, totalseat, row, col);
 		if(result > 0) {
 			model.addAttribute("alert","저장했습니다.");
 		}else {
@@ -109,7 +109,7 @@ public class TheaterController {
 			@RequestParam("row")int row_s,
 			@RequestParam("col")int col_s) {
 		TheaterDTO tdto = theaterService.theaterInfo(tidx);
-		seat item = new seat();
+		Seats item = new Seats();
 		int row = 0;
 		int col = 0;
 		if(tdto.getTheater_row() > row_s) {
@@ -122,13 +122,13 @@ public class TheaterController {
 		}else {
 			col = col_s;
 		}
-		String seates = item.addTheater(tdto.getTheater_seat(), row, col);
+		String seats = item.createSeats(tdto.getTheater_seat(), row, col);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("tidx", tidx);
 		mav.addObject("row",row);
 		mav.addObject("col",col);
 		mav.addObject("theatername", tdto.getTheater_name());
-		mav.addObject("seates", seates);
+		mav.addObject("seats", seats);
 		mav.setViewName("/admin/theater/theaterAdd");
 		return mav;
 	}

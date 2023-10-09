@@ -67,6 +67,7 @@ a:link{
 }
 .tab_wrap {
      position: relative;
+     margin-left: 50px;
  }
 .tab_wrap .li.active .tab_con {
     overflow: inherit;
@@ -77,7 +78,7 @@ a:link{
 table {
     border-collapse: collapse;
     border-spacing: 0;
-    width: 1100px;
+    width: 1000px;
     border: 0;
 }
 colgroup {

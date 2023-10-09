@@ -24,7 +24,7 @@
 		</div>
 		<div class="youtube__cover"></div>
 		<div class="inner"></div>
-	</section>
+		</section>
 	</a>
 	<div class="movie-section">
 	
@@ -61,7 +61,7 @@
                      </span>
                      <span title="제목" class="movie_name">${mdto.movie_name }</span>
            			</div>
-           </div>
+           			</div>
                     <div class="info-area">
                         <span class="movie_audience">
                             <span class="rate">
@@ -93,15 +93,11 @@
     <div class="promotion">
       <div class="swiper-container">
         <div class="swiper-wrapper">
+        <c:forEach var="adto"  items="${alists }" begin="1" end="3" >
           <div class="swiper-slide">
-            <img src="/amor/resources/img/promotion_slide1.jpg" alt="ads_filename" />
+            <img src="/amor/resources/upload/ads/${adto.ads_filename }" alt="ads_filename" />
           </div>
-          <div class="swiper-slide">
-            <img src="/amor/resources/img/promotion_slide2.jpg" alt="ads_filename" />
-          </div>
-          <div class="swiper-slide">
-				<img src="/amor/resources/img/promotion_slide3.jpg" alt="ads_filename" />
-          </div>
+      	</c:forEach>
         </div>
       </div>
       <div class="swiper-prev">
@@ -128,7 +124,7 @@
 			    	<c:url var="storeContentUrl" value="store/storeContentForm.do">
 			    		<c:param name="product_idx">${pdto.product_idx }</c:param>
 			    	</c:url>
-			    	<a href="${storeContentUrl }"><img src="/amor/resources/upload/store/${pdto.product_img }" alt="스토어"></a>
+			    	<a href="${storeContentUrl }"><img src="/amor/resources/upload/product/${pdto.product_img }" alt="스토어"></a>
 			    </td>
 			    <td class="product_info">
 			      <div class="product_title">${pdto.product_title }</div>
@@ -150,7 +146,7 @@
 				    <c:url var="storeContentUrl" value="store/storeContentForm.do">
 				    	<c:param name="product_idx">${tdto.product_idx }</c:param>
 			    	</c:url>
-			    	<a href="${storeContentUrl }"><img src="/amor/resources/upload/store/${tdto.product_img }" alt="관람권"></a>
+			    	<a href="${storeContentUrl }"><img src="/amor/resources/upload/product/${tdto.product_img }" alt="관람권"></a>
 			    </td>
 			    <td class="product_info">
 			      <div class="product_title">${tdto.product_title }</div>

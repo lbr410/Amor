@@ -83,14 +83,11 @@ button {
 
 .faqListDiv{
 	width: 1000px;
-	height: 192px;
+	height: 128px;
 	border-radius: 5px;
 	background: #FFFFFF;
 	margin: 0 auto;
 	margin-top: 24px;
-}
-.faqListDiv hr{
-	width
 }
 .pagemenu{
 	display: flex;
@@ -180,6 +177,7 @@ a:link{
 }
 .tab_wrap {
      position: relative;
+     margin-bottom: 128px;
  }
 .tab_wrap .li.active .tab_con {
     overflow: inherit;
@@ -205,6 +203,7 @@ li {
     text-align: center;
 }
 .tb_wrap thead th {
+	border-top: 1px solid #BBBBBB;
     border-bottom-color: #BBBBBB;
     font-weight: bold;
 }

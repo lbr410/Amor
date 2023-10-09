@@ -14,6 +14,10 @@ import com.amor.movie.model.MovieDTO;
 import com.amor.movie.service.MovieService;
 import com.amor.product.model.ProductDTO;
 import com.amor.product.service.ProductService;
+import com.amor.ads.model.AdsDTO;
+import com.amor.ads.service.AdsService;
+import com.amor.banner.model.BannerDTO;
+import com.amor.banner.service.BannerService;
 
 @Controller
 public class IndexController {
@@ -22,12 +26,16 @@ public class IndexController {
 	private MovieService movieservice;
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private BannerService bannerService;
+	@Autowired
+	private AdsService adsService;
 	
 	@RequestMapping("/index.do")
 	public ModelAndView index() {
 		
 		//banner
-		//List<BannerDTO> blists = bannerService.bannerList();
+		List<BannerDTO> blists = bannerService.bannerList();
 		
 		//Movie
 		List<MovieDTO> mlists = movieservice.movieBest(0, 0);

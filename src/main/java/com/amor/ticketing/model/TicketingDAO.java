@@ -18,6 +18,8 @@ public interface TicketingDAO {
 	public int PlayingMovieSeateUpdate(Map<String, Object> parameter);
 	public int getticketingHistoryTotalCnt(int useridx);
 	public int getTicketingCancellListTotalCnt(int useridx);
+	public int getMovieAudience(int movieIdx);
+	public int upDateMovieAudience(Map<String, Object> parameter);
 	
 	public List<TicketingSelectMovieDTO> ticketingPlayingMovieList();
 	public List<TicketingSelectMovieDTO> ticketingPlayingMovieTimeList(Map map);

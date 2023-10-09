@@ -20,16 +20,24 @@ public class MyPageStoreHistoryController {
 	StorePaymentService storePaymentService;
 	
 	@RequestMapping("myAmor/storeHistory.do")
-	public ModelAndView mypageStorePaymentList(HttpSession session) {
+	public ModelAndView mypageStorePaymentList(HttpSession session,
+			@RequestParam(value = "cp", defaultValue = "1")int cp) {
 		int useridx = (int)session.getAttribute("sidx");
 		ModelAndView mav = new ModelAndView();
 		if(useridx > 0) {
-			List<MyPageStorePaymentDTO> lists = storePaymentService.mypageStorePaymentList(useridx);
+			String pagename = "/amor/myAmor/storeHistory.do";
+			int totalCnt = storePaymentService.userStoreListTotalCntY(useridx);
+			int listSize = 5;
+			int pageSize = 5;
+			List<MyPageStorePaymentDTO> lists = storePaymentService.mypageStorePaymentList(useridx, listSize, cp);
 			if(lists != null) {
+				String page = com.amor.page.PageModule.makePage(pagename, totalCnt, listSize, pageSize, cp);
 				mav.addObject("list", lists);
+				mav.addObject("page", page);
 				mav.setViewName("user/myAmor/storeHistory");
 			}else {
 				mav.addObject("list", null);
+				mav.addObject("page", null);
 				mav.setViewName("user/myAmor/storeHistory");
 			}
 		}else {
@@ -58,17 +66,25 @@ public class MyPageStoreHistoryController {
 	}
 	
 	@RequestMapping("myAmor/storeCancellList.do")
-	public ModelAndView storeCancellList(HttpSession session) {
+	public ModelAndView storeCancellList(HttpSession session,
+			@RequestParam(value = "cp", defaultValue = "1")int cp) {
 		int useridx = (int)session.getAttribute("sidx");
 		ModelAndView mav = new ModelAndView();
 		if(useridx > 0) {
-			List<MyPageStorePaymentDTO> lists = storePaymentService.mypageStoreCancellList(useridx);
+			String pagename = "/amor/myAmor/storeCancellList.do";
+			int totalCnt = storePaymentService.userStoreListTotalCntN(useridx);
+			int listSize = 5;
+			int pageSize = 5;
+			List<MyPageStorePaymentDTO> lists = storePaymentService.mypageStoreCancellList(useridx,listSize,cp);
 			if(lists != null) {
+				String page = com.amor.page.PageModule.makePage(pagename, totalCnt, listSize, pageSize, cp);
 				mav.addObject("list", lists);
+				mav.addObject("page", page);
 				mav.setViewName("user/myAmor/storeCancellList");
 				return mav;
 			}else {
 				mav.addObject("list", null);
+				mav.addObject("page", null);
 				mav.setViewName("user/myAmor/storeCancellList");
 				return mav;
 			}

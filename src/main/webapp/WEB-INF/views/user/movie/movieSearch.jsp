@@ -18,6 +18,9 @@
 	vertical-align: middle;
 	
 	}
+	.movie_name{
+	font-size: 16px;
+	}
 </style>
 <body>
 	<!--GRAY NAVIGATE BAR-->
@@ -72,7 +75,7 @@
                         <span class="movie_opendate">&nbsp;개봉일 : ${temp.movie_opendate}</span>
                     </div>
                     <div class="book-btn" >
-                        <c:url var="ticketingUrl" value="/amor/ticketing/ticketing.do">
+                        <c:url var="ticketingUrl" value="/ticketing/ticketing.do">
                        		<c:param name="movie_name">${temp.movie_name}</c:param>
                        	</c:url>
                      	<a href = "${ticketingUrl}">
@@ -85,8 +88,10 @@
      </c:if>
      </div>	
 	</div>
-     	<div class="paging">${pageTag}</div>
 	</div>
+ <c:if test="${!empty pageTag}">
+<div class = "paging">${pageTag}</div>
+</c:if>
 	</div>
 <%@ include file="../footer.jsp" %>
 </body>

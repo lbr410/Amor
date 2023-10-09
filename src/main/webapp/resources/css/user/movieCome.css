@@ -50,15 +50,14 @@ a, a:link, a:active, a:visited, a:focus, a:before{
   position: relative;
 }
 .left-title .movieNow {
-  color: #000;
-  font-family: Inter;
-  font-size: 33px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  position: relative;
-  width: 210px;
-  cursor: pointer;
+	color: #BCBCBC;
+	font-size: 33px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	width: 240px;
+	cursor: pointer;
+	color: #000;
 }
 .left-title .movieCome{
 	color: #BCBCBC;
@@ -67,6 +66,15 @@ a, a:link, a:active, a:visited, a:focus, a:before{
 	font-weight: 400;
 	line-height: normal;
 	width: 240px;
+	cursor: pointer;
+	color: #000;
+	font-family: Inter;
+	font-size: 33px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	position: relative;
+	width: 210px;
 	cursor: pointer;
 }
 .right-button {
@@ -82,7 +90,22 @@ a, a:link, a:active, a:visited, a:focus, a:before{
   position: relative;
   
 }
-
+.sortAudience{
+  color: #000000;
+  text-align: right;
+  font: 400 20px;
+  position: relative;
+  width: 80px;
+  cursor: pointer;
+}
+.sortReview {
+  color: #bcbcbc;
+  text-align: right;
+  font: 400 20px ;
+  position: relative; 
+  width: 133px;
+  cursor: pointer;
+}
 .movie-section{
 	width: 100%;
 	hegiht: 870px;

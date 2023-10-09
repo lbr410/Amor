@@ -14,12 +14,6 @@
 <%@include file="../admin_header.jsp" %>
 <div class="content">
 <div class="content-title"><label class="titletext">재고관리 목록</label>
-<div class="contentsearch">
-	<div class="search">
-		<input type="text" id="prodSearch" placeholder="제목을 검색해주세요." class="box">
-		<a href="javascript: prodSearchList()"><img src="img/Icon_Search.png" class="btn"></a>
-	</div>
-</div>
 </div>
 <div class="contentMain">
 <div class="tableDiv">

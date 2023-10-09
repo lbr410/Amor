@@ -13,7 +13,7 @@ import com.amor.ticketing.model.TicketingSelectMovieDTO;
 public interface TicketingService {
 
 	public List<JoinTicketingHistoryDTO> ticketingHistoryList(int useridx,int cp, int listSize);
-	public boolean cancellationTicket(String seateNum,int playingMovieIdx,int ticketidx);
+	public boolean cancellationTicket(String seateNum,int playingMovieIdx,int ticketidx,int movieidx);
 	public boolean checkDate(int ticketidx);
 	public List<JoinTicketingHistoryDTO> ticketingcancellList(int useridx,int cp, int listSize);
 	public int getticketingHistoryTotalCnt(int useridx);

@@ -1,10 +1,93 @@
 @charset "UTF-8";
+body, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+a,
+a:link,
+a:visited,
+a:active,
+a:hover {
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.body-inner {
+    width: 1100px;
+    margin: 0 auto;
+    position: relative;
+}
+button {
+    background-color: transparent;
+    border: none;
+}
+.paging {
+	margin-top: 30px;
+	text-align: center;
+	font-size: 16px;
+}
+
+.paging a:hover{
+	color: #2E90FF;
+	font-weight: normal;
+}
+
+.nowPage {
+	color: #2E90FF !important;
+	font-weight: bold;
+}
+.gray-bar{
+	margin-top: 120px;
+    width: 100%;
+    height: 14px;
+    background-color: #F7F8F9;
+    padding: 8px 8px 16px 8px;
+}
+.gray-bar .location{
+    width: 1100px;
+    margin: 0 auto;
+}
+.gray-bar .location .home{
+    margin-left: 80px;
+    color: #666666;
+    font-size: 14px;
+}
+.gray-bar .location a{
+    color: #666666;
+    text-decoration: none;
+        font-size: 14px;
+}
+.location a::before{
+    content: ' >';
+    color:#666666;
+    display: inline;
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;
+}
+/**BORDER BAR*/
+.border-bar {
+    padding-top: 48px;
+    width: 1100px;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    border-bottom: solid 1px #D9D9D9;
+}
+
+.border-title {
+    margin-top: 48px;
+    display: block;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
 .noticeContent{
 	width: 950px;
 	margin: 0 auto;
 }
 .content{
-	margin-top: 140px;
+	margin-top: 24px;
 }
 table{
 	width:950px;

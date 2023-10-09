@@ -1,0 +1,146 @@
+@charset "UTF-8";
+
+@charset "UTF-8";
+
+.memberInfo{
+	border-bottom: 1px dashed #BCBCBC;
+	display: flex;
+	flex-direction: row;
+	gap: 122px;
+	align-items: center;
+	justify-content: center;
+	width: 960px;
+	height: 64px;
+	position: relative;
+	margin-top: 34px;
+	margin-left: 33px;
+}
+.titleDiv{
+	width: 225px;
+}
+.info{
+	font-weight: bold;
+	padding-right: 20px;
+	width: 100px;
+	font-size: 16px;
+}
+.inquirySub{
+	border-bottom: 1px dashed #BCBCBC;
+	display: flex;
+	flex-direction: row;
+	gap: -3px;
+	align-items: center;
+	justify-content: left;
+	width: 960px;
+	height: 64px;
+	position: relative;
+	margin-left: 34px;
+}
+.infoSub{
+	width: 80px;
+	text-align: left;
+	font-weight: bold;
+	padding-left: 20px;
+	font-size: 16px;
+}
+.inquiryCon{
+	border-bottom: 1px dashed #BCBCBC;
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	align-items: flex-start;
+	justify-content: left;
+	width: 960px;
+	height: 220px;
+	position: relative;
+	margin-top: 34px;
+	margin-left: 34px;
+}
+.infoCon{
+	width: 40px;
+	text-align: left;
+	font-weight: bold;
+	padding-left: 20px;
+	padding-right: 32px;
+	font-size: 16px;
+}
+.fileDiv{
+	border-bottom: 1px dashed #BCBCBC;
+	display: flex;
+	flex-direction: row;
+	gap: -3px;
+	align-items: center;
+	justify-content: left;
+	width: 960px;
+	height: 64px;
+	position: relative;
+	margin-left: 34px;
+}
+.infoFile{
+	width: 100px;
+	text-align: left;
+	font-weight: bold;
+	padding-left: 20px;
+	font-size: 16px;
+}
+.answerDiv{
+	font-size: 33px;
+	margin-top: 128px;
+	margin-bottom: 24px;
+	width: 100%;
+	height:64px;
+	border-top: 1px solid #D4D4D4;
+	border-bottom: 1px solid #D4D4D4;
+	padding: 20px 0px 10px 0px;
+}
+.answerCon{
+	width: 960px;
+	margin-top: 24px;
+	padding: 0px 0px 10px 24px;
+	border-bottom: 1px dashed #D4D4D4;
+}
+.textBox2{
+	width: 590px;
+	height: 200px;
+	resize: none;
+	padding: 12px;
+	font-size: 14px;
+	color: #111111;
+	border: 1px solid #d9d9d9;
+	font-family: '맑은 고딕';
+}
+.textCount {
+	color: #bcbcbc;
+}
+
+.btnDiv{padding: 24px 24px 24px 0px;
+	display: flex;
+	flex-direction: row;
+	gap: 420px;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-shrink: 0;
+	width: 850px;
+	margin: 0 auto;
+	position: relative;}
+.nextBtn { 
+	border:none;
+	padding: 2px 21px 6px 21px;
+	width: 150px;
+	height: 40px;
+	border-radius: 3px;
+	background: #1A2C82;
+	color: #C7E3FF;
+	cursor: pointer;
+	margin-right: 65px;
+}
+.cancelBtn { 
+   border:none;
+   padding: 2px 21px 6px 21px;
+   width: 150px;
+   height: 40px;
+   border-radius: 3px;
+   background: #EEEEEE;
+   color: #1A2C82;
+   cursor: pointer;
+}
