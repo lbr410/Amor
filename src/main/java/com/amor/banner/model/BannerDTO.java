@@ -7,6 +7,10 @@ public class BannerDTO {
 	private String banner_url;
 	private String banner_source;
 	
+	public BannerDTO() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public BannerDTO(int banner_idx, String banner_name, String banner_url, String banner_source) {
 		super();
 		this.banner_idx = banner_idx;
