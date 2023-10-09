@@ -105,12 +105,14 @@ select * from movie order by movie_audience desc
 </select>
 
 <select id="movieCome" parameterType="Map" resultType="com.amor.movie.model.MovieDTO">
-select * from movie where movie_opendate <![CDATA[>=]]> sysdate order by movie_opendae
+select * from movie where movie_opendate <![CDATA[>=]]> sysdate order by movie_opendate
 </select>
 
 <select id="movieBestCnt" resultType="Integer">
 select count(*) from movie where movie_state='y' 
 </select>
 
-
+<select id="movieComeCnt" resultType="Integer">
+select count(*) from movie where movie_opendate <![CDATA[>=]]> sysdate
+</select>
 </mapper>

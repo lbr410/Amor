@@ -83,11 +83,20 @@ public class MovieServiceImple implements MovieService {
 	
 	@Override
 	public List<MovieDTO> movieBest(int cp, int listSize) {
+		int start=(cp-1) * listSize + 1;
+		int end=cp * listSize;
 		Map map=new HashedMap();
-		List <MovieDTO> lists = moviedao.movieBest(map);
-		return lists;
+		map.put("start", start);
+		map.put("end", end);
+		List <MovieDTO> mlists = moviedao.movieBest(map);
+		return mlists;
 	}
 	
+	@Override
+	public int movieBestCnt() {
+		int result=moviedao.movieBestCnt();
+		return result;
+	}
 	@Override
 	public List<MovieDTO> movieCome(int cp, int listSize) {
 		Map map=new HashedMap();

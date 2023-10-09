@@ -7,7 +7,22 @@
 <meta charset="UTF-8">
 <title>아모르 관리자 : 1:1 문의 목록</title>
 <style>
+.answerWait {
+	color: red;
+}
 
+.answerComplete {
+	color: blue;
+}
+.cancleBtn { 
+   border:none;
+   width: 50px;
+   height: 30px;
+   border-radius: 3px;
+   background: #EEEEEE;
+   color: #1A2C82;
+   cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -59,10 +74,12 @@
         <td class="tableTitle">${dto.member_id}</td>
         <td class="tableContent">
         <a href="${contentUrl}">${dto.inquiry_subject}</a></td>
-        <td>
-        	<c:if test="${dto.inquiry_astatus =='y'}">답변완료</c:if>
-        	<c:if test="${dto.inquiry_astatus =='n'}">답변대기</c:if>
-        </td>
+       	<c:if test="${dto.inquiry_astatus eq 'y'}">
+			<td><label class="answerComplete">답변완료</label></td>
+		</c:if>
+       	<c:if test="${dto.inquiry_astatus eq 'n'}">
+       		<td><label class="answerWait">답변대기</label></td>
+       	</c:if>
         <td>${dto.inquiry_writedate}</td>
         <td class="nyTd">
 			<select name="member_block" class="selectBox" id="blockId" onchange="block(${dto.member_idx})">
@@ -71,7 +88,7 @@
 			</select>			
 		</td>
         <td class="tableBtn">
-            <input type="button" class="smallBtn" value="삭제" onclick="inquiryDel(${joinDTO.idto.inquiry_idx})">
+            <input type="button" class="cancleBtn" value="삭제" onclick="inquiryDel(${joinDTO.idto.inquiry_idx})">
         </td>
     </tr>
 </c:forEach>

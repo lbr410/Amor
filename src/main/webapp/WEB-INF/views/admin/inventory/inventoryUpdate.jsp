@@ -75,10 +75,10 @@ function checkNumber(event) {
 			<label class="invenMenu">현재 재고량</label>
 				<c:choose>
     				<c:when test="${dto.inventory_current == 0}">
-        				<input type="text" name="inventory_current" class="textBox" maxlength="6" required>
+        				<input type="text" name="inventory_current" class="textBox" maxlength="6" onkeypress="return checkNumber(event)" required>
     				</c:when>
     				<c:otherwise>
-        				<input type="text" name="inventory_current" class="textBox" value="${dto.inventory_current}" maxlength="6" required>
+        				<input type="text" name="inventory_current" class="textBox" value="${dto.inventory_current}" maxlength="6" onkeypress="return checkNumber(event)" required>
    					</c:otherwise>
 				</c:choose>
 		</div>
