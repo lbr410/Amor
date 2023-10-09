@@ -189,4 +189,16 @@ public class TicketingDAOImple implements TicketingDAO {
 		int result = sqlmap.update("movieAudience", map);
 		return result;
 	}
+	
+	@Override
+	public String playingMovieTotalSeat(int playing_movie_idx) {
+		String playing_movie_seat = sqlmap.selectOne("playingMovieTotalSeat", playing_movie_idx);
+		return playing_movie_seat;
+	}
+	
+	@Override
+	public int playingMovieUpdateSeat(Map map) {
+		int result = sqlmap.update("playingMovieUpdateSeat", map);
+		return result;
+	}
 }

@@ -1,6 +1,8 @@
 package com.amor.movie.model;
 import java.util.*;
 
+import com.amor.movieReview.model.MovieReviewDTO;
+
 public interface MovieDAO {
 	public int movieAdd(MovieDTO dto);
 	public List<MovieDTO> movieList(Map map);
@@ -16,5 +18,6 @@ public interface MovieDAO {
 	public List<MovieDTO> movieCome(Map map);
 	public int getUserSearchTotalCnt(String userSearch);
 	public List<MovieDTO> userMovieListSearch(Map map);
-	
+	public List<MovieReviewDTO> movieReviewInfo(Map map);
+	public int movieReviewContentCnt(int movie_idx);
 }

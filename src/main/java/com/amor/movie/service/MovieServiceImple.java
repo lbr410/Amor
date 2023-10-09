@@ -5,6 +5,7 @@ import java.util.*;
 import org.apache.commons.collections.map.HashedMap;
 
 import com.amor.movie.model.*;
+import com.amor.movieReview.model.MovieReviewDTO;
 
 public class MovieServiceImple implements MovieService {
 
@@ -126,5 +127,21 @@ public class MovieServiceImple implements MovieService {
 		}
 	}
 	
+	@Override
+	public List<MovieReviewDTO> movieReviewInfo(int movie_idx, int cp, int listSize) {
+		int start=(cp-1)*listSize+1;
+		int end=cp*listSize;
+		Map map = new HashedMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("movie_idx", movie_idx);
+		List<MovieReviewDTO> lists = moviedao.movieReviewInfo(map);
+		return lists;
+	}
 	
+	@Override
+	public int movieReviewContentCnt(int movie_idx) {
+		int cnt = moviedao.movieReviewContentCnt(movie_idx);
+		return cnt;
+	}
 }

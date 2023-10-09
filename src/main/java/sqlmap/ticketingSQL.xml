@@ -306,7 +306,7 @@ where ticketing_idx = #{ticketidx}
 			(ticketing_idx.nextval, #{playing_movie_idx}, #{theater_idx}, 
 			#{member_idx}, to_number(#{ticketing_num}), #{ticketing_seat}, sysdate,
 			#{ticketing_screeningtime}, #{ticketing_price}, #{ticketing_personnel}, 'y',
-			'kakaopay' )
+			'c' )
 	</insert>
 	<update id="playingMovieSeat" parameterType="Map">
 	<![CDATA[
@@ -339,5 +339,15 @@ where ticketing_idx = #{ticketidx}
 			(select movie_idx from playing_movie where playing_movie_idx = #{playing_movie_idx})	
 	]]>
 	</update>
-
+	<select id="playingMovieTotalSeat" parameterType="Integer" resultType="String">
+		select playing_movie_seat from playing_movie where playing_movie_idx = #{playing_movie_idx}
+	</select>
+	<update id="playingMovieUpdateSeat" parameterType="Map">
+		update
+			playing_movie
+		set
+			playing_movie_seat = #{playingUpdateSeat}
+		where
+			playing_movie_idx = #{playing_movie_idx}	
+	</update>
 </mapper>

@@ -42,4 +42,6 @@ public interface TicketingDAO {
 	public int totalAudience(int playing_movie_idx);
 	public int playingMovieSeat(Map map);
 	public int movieAudience(Map map);
+	public String playingMovieTotalSeat(int playing_movie_idx);
+	public int playingMovieUpdateSeat(Map map);
 }

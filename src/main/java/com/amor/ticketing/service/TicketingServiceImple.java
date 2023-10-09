@@ -365,4 +365,19 @@ public class TicketingServiceImple implements TicketingService {
 		int result = ticketingDao.movieAudience(map);
 		return result;
 	}
+  
+  @Override
+	public String playingMovieTotalSeat(int playing_movie_idx) {
+		String playing_movie_seat = ticketingDao.playingMovieTotalSeat(playing_movie_idx);
+		return playing_movie_seat;
+	}
+  
+  @Override
+	public int playingMovieUpdateSeat(String playingUpdateSeat, int playing_movie_idx) {
+	  	Map map = new HashedMap();
+	  	map.put("playingUpdateSeat", playingUpdateSeat);
+	  	map.put("playing_movie_idx", playing_movie_idx);
+		int result = ticketingDao.playingMovieUpdateSeat(map);
+		return result;
+	}
 }

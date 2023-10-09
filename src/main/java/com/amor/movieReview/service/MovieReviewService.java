@@ -21,4 +21,5 @@ public interface MovieReviewService {
 	public int reviewUpdate(MovieReviewJoinDTO dto);
 	public int reviewTicketingState(int ticketing_idx);
 	public int reviewTicketingDelState(int ticketing_idx);
+	public int reviewTicketingIDX(int movie_review_idx);
 }

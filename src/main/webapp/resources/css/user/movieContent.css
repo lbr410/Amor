@@ -281,4 +281,7 @@ p::after{
 	background-color: #EDEDED;
 }
 
-
+.thumnail {
+	object-fit: contain;
+	
+}

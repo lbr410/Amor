@@ -148,12 +148,12 @@
 		
 	</div>
 </div>
-	<input type="hidden" name="ticketing_idx" value="${temp.ticketnum}">
+	<input type="hidden" name="ticketing_idx" value="${temp.ticketingidx}">
 	<input type="hidden" name="movie_idx" value="${temp.movieidx }">
 	<input type="hidden" name="member_idx" value="${temp.memberidx }">
 </form>
-
 </c:forEach>
+
 </c:if>
 <c:if test="${empty list}">
 <div class = "nullcontent">예매 내역이 없습니다.</div>

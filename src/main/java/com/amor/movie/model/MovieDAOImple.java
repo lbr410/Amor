@@ -4,6 +4,8 @@ import java.util.*;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.amor.movieReview.model.MovieReviewDTO;
+
 public class MovieDAOImple implements MovieDAO {
 	
 	private SqlSessionTemplate sqlmap;
@@ -96,5 +98,16 @@ public class MovieDAOImple implements MovieDAO {
 		return lists;
 	}
 	
+	@Override
+	public List<MovieReviewDTO> movieReviewInfo(Map map) {
+		List<MovieReviewDTO> lists = sqlmap.selectList("movieReviewInfo", map);
+		return lists;
+	}
+	
+	@Override
+	public int movieReviewContentCnt(int movie_idx) {
+		int cnt = sqlmap.selectOne("movieReviewContentCnt", movie_idx);
+		return cnt;
+	}
 	
 }

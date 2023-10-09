@@ -126,7 +126,7 @@ public class TicketingPaymentController {
 		this.theater_name=theater_name;
 		
 		String ticketing_num = "";
-		for (int i=0;i<13;i++) {
+		for (int i=0;i<12;i++) {
 			int random = (int)(Math.random()*9)+0;
 			ticketing_num += random;
         }
@@ -137,8 +137,8 @@ public class TicketingPaymentController {
 		String quantity=ticketing_personnel;
 		String total_amount=ticketing_price;
 		String okpage="http://localhost:9090/amor/ticketing/ticketingPayDetail.do";
-		String cancelpage="http://localhost:9090/amor/store/kakaoFail.do";
-		String failpage="http://localhost:9090/amor/store/kakaoCancel.do";
+		String cancelpage="http://localhost:9090/amor/ticketing/kakaoFail.do";
+		String failpage="http://localhost:9090/amor/ticketing/kakaoCancel.do";
 		
 		KakaopayDTO kdto = new KakaopayDTO(ticketing_num, sid, "Amor Ticketing", quantity, total_amount, okpage, cancelpage, failpage);
 		Kakaopay kaka = new Kakaopay();
@@ -172,7 +172,48 @@ public class TicketingPaymentController {
 		Kakaopay kaka = new Kakaopay();
 		KakaopayDTO kdto = new KakaopayDTO(this.ticketing_num, sid, null, null, this.ticketing_price, null, null, null);
 		
-		java.sql.Date screenDate = java.sql.Date.valueOf(this.ticketing_screeningtime);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("theater_name", this.theater_name);
+		mav.addObject("movie_name", this.movie_name);
+		mav.addObject("ticketing_screeningtime", this.ticketing_screeningtime);
+		mav.addObject("ticketing_seat", this.ticketing_seat);
+		mav.addObject("ticketing_personnel", this.ticketing_personnel);
+		mav.addObject("ticketing_cancel", ticketing_cancel);
+		mav.addObject("ticketing",kaka.kakaoPayInfo(pg_token, kdto));
+		mav.addObject("store", kaka.kakaoPayInfo(pg_token, kdto));
+		mav.setViewName("/user/ticketing/ticketingPayDetail");
+		return mav;
+		
+	}
+	
+	@RequestMapping("ticketing/kakaoCancel.do")
+	public ModelAndView ticketingCancel() {
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("msg", "결제가 취소되었습니다.");
+		mav.addObject("goUrl", "/amor/store.do");
+		mav.setViewName("/user/msg/userMsg");
+		return mav;
+	}
+	
+	@RequestMapping("ticketing/kakaoFail.do")
+	public ModelAndView ticketingFail() {
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("msg", "결제가 실패하였습니다.");
+		mav.addObject("goUrl", "/amor/index.do");
+		mav.setViewName("/user/msg/userMsg");
+		return mav;
+	}
+	
+	@RequestMapping("ticketing/ticketingPayDetailConfirm.do")
+	public ModelAndView ticketingPayDetailConfirm(
+			HttpSession session
+			) {
+		
+		int sidx=(Integer)session.getAttribute("sidx");
+		
+		String ticketingSQL = this.ticketing_screeningtime.substring(0,10);
+		java.sql.Date screenDate = java.sql.Date.valueOf(ticketingSQL);
 		
 		int ticketing_price = Integer.parseInt(this.ticketing_price);
 		int ticketing_personnel = Integer.parseInt(this.ticketing_personnel);
@@ -186,23 +227,24 @@ public class TicketingPaymentController {
 		int result2 = ticketingService.movieAudience(totalMovieAudience, this.playing_movie_idx);
 		int result3 = ticketingService.playingMovieSeat(ticketing_personnel, this.playing_movie_idx);
 		
-		int result = result1+result2+result3;
+		String playingMovieSeat = ticketingService.playingMovieTotalSeat(this.playing_movie_idx);
+		String playingUpdateSeat = "";
+		if (playingMovieSeat.equals("[]")) {
+			playingUpdateSeat = this.ticketing_seat;
+		} else {
+			playingUpdateSeat = playingMovieSeat +","+this.ticketing_seat;
+		}
 		
-		String msg = result>2?"예매완료 되었습니다.":"예매에 실패하였습니다.";
+		int result4 = ticketingService.playingMovieUpdateSeat(playingUpdateSeat, this.playing_movie_idx); 
+		
+		int result = result1+result2+result3+result4;
+		String msg = result>3?"예매가 완료되었습니다.":"예매를 완료할 수 없습니다.(고객센터 문의)";
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("theater_name", this.theater_name);
-		mav.addObject("movie_name", this.movie_name);
-		mav.addObject("ticketing_screeningtime", this.ticketing_screeningtime);
-		mav.addObject("ticketing_seat", this.ticketing_seat);
-		mav.addObject("ticketing_personnel", this.ticketing_personnel);
-		mav.addObject("ticketing_cancel", ticketing_cancel);
-		mav.addObject("ticketing",kaka.kakaoPayInfo(pg_token, kdto));
 		mav.addObject("msg", msg);
-		mav.addObject("goUrl", "/user/ticketing/ticketingPayDetail");
+		mav.addObject("goUrl", "/amor/index.do");
 		mav.setViewName("/user/msg/userMsg");
 		return mav;
-		
 	}
 	
 }

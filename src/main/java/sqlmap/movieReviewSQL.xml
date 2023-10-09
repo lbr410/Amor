@@ -9,22 +9,18 @@
 		(select 
 			f.movie_name, 
 			c.movie_review_content,
-			substr(movie_review_content, 0, 8) as movie_review_shortcontent, 
 			c.movie_review_img, 
 			d.member_idx,
 			c.movie_review_writedate, 
 			c.movie_review_idx,
-			c.movie_review_star,
-			g.ticketing_idx 
+			c.movie_review_star
 		from movie_review c, 
 			 member d, 
-			 movie f,
-			 ticketing g
+			 movie f
 		where 
 		 	d.member_idx=c.member_idx 
 			 and f.movie_idx=c.movie_idx 
 			 and d.member_idx=#{member_idx}
-			 and g.member_idx=#{member_idx} 
 		order by c.movie_idx desc)a)b
 		where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 	</select>
@@ -126,7 +122,7 @@
 		
 	</update>
 	<update id="reviewTicketingState" parameterType="Integer">
-		upadate
+		update
 			ticketing
 		set
 			ticketing_state = 'r'
@@ -141,4 +137,7 @@
 		where
 			ticketing_idx = #{ticketing_idx}
 	</update>
+	<select id="reviewTicketingIDX" parameterType="Integer" resultType="Integer">
+		select ticketing_idx from movie_review where movie_review_idx = #{movie_review_idx}
+	</select>
 </mapper>
