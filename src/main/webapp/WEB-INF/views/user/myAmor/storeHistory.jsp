@@ -43,9 +43,7 @@
 	margin-left:50px;
 	margin-top:50px;
 }
-.title1{
-border: 3px solid black;
-}
+
 </style>
 <body>
 <%@include file="../header.jsp" %>
@@ -111,7 +109,9 @@ border: 3px solid black;
 <c:if test="${empty list}">
 <div class = "nullcontent">구매 내역이 없습니다.</div>
 </c:if>
-
+<c:if test="${!empty page}">
+<div class = "paging">${page}</div>
+</c:if>
 </div>
 </body>
 <%@include file = "../footer.jsp" %>

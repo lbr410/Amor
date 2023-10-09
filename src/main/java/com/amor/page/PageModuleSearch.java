@@ -20,7 +20,8 @@ public class PageModuleSearch {
 		}
 
 		for(int i=userGroup*pageSize+1; i<=userGroup*pageSize+pageSize; i++) {
-			sb.append("&nbsp;&nbsp;<a href='");
+			String css = i == cp ? "nowPage" : "";
+			sb.append("&nbsp;&nbsp;<a class='"+css+"' href='");
 			sb.append(pagename);
 			sb.append("?cp=");
 			sb.append(i);

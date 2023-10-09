@@ -38,6 +38,7 @@ left join (
     from movie_review
     group by movie_idx
 ) b on a.movie_idx = b.movie_idx
+where movie_state = 'y'
 order by a.movie_idx desc)c)d 
 where movie_name like '%${search}%' and rnum >= #{start} and rnum <= #{end}
 ]]>
@@ -65,7 +66,7 @@ delete from movie where movie_idx = #{movie_idx}
 <select id = "userSearchTotalCnt" parameterType="String" resultType="Integer">
 	<![CDATA[
 	select count(*) from movie
-	where movie_name like '%${userSearch}%'	
+	where movie_name like '%${userSearch}%'	and movie_state = 'y'
 	]]>
 </select>
 

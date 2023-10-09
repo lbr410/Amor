@@ -37,6 +37,11 @@
 ]]>
 </select>
 
+<select id="getMovieAudience" parameterType="Integer" resultType="Integer">
+	select movie_audience from movie
+	where movie_idx = #{movieIdx}
+</select>
+
 <select id="getticketingHistoryTotalCnt" parameterType="Integer" resultType="Integer">
 	select count(*) from ticketing a, playing_movie b
 	where a.member_idx = #{useridx} 
@@ -70,6 +75,12 @@
 	playing_movie_remain_seats = #{playingMovieTotalSeateNum},
 	playing_movie_seat = #{playingMovieSeates}
 	where playing_movie_idx = #{playingMovieIdx}	
+</update>
+
+<update id="upDateMovieAudience" parameterType="Map">
+	update movie
+	set movie_audience = #{audience}
+	where movie_idx = #{movieIdx}
 </update>
 
 <select id = "ticketingCancellList" parameterType="Map" resultType="com.amor.ticketing.model.JoinTicketingHistoryDTO">

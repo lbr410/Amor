@@ -147,8 +147,15 @@ public class StorePaymentServiceImple implements StorePaymentService {
 	}
 	
 	@Override
-	public List<MyPageStorePaymentDTO> mypageStorePaymentList(int useridx) {
-		List<MyPageStorePaymentDTO> lists = storePaymentDao.mypageStorePaymentList(useridx);
+	public List<MyPageStorePaymentDTO> mypageStorePaymentList(int useridx,int listSize,int cp) {
+		 Map<String, Object> parameter = new HashMap<String, Object>();
+		  int start=(cp-1)*listSize+1;
+		  int end=cp*listSize;
+		  
+		  parameter.put("userIdx", useridx);
+		  parameter.put("start", start);
+		  parameter.put("end", end);
+		List<MyPageStorePaymentDTO> lists = storePaymentDao.mypageStorePaymentList(parameter);
 		if(lists != null && lists.size() > 0) {
 			DecimalFormat df = new DecimalFormat("#,##0원");
 			SimpleDateFormat dateDf = new SimpleDateFormat("yyyy.MM.dd (E) | HH:mm");
@@ -166,6 +173,18 @@ public class StorePaymentServiceImple implements StorePaymentService {
 	}
 	
 	@Override
+	public int userStoreListTotalCntY(int userIdx) {
+		int result = storePaymentDao.userStoreListTotalCntY(userIdx);
+		return result;
+	}
+	
+	@Override
+	public int userStoreListTotalCntN(int userIdx) {
+		int result = storePaymentDao.userStoreListTotalCntN(userIdx);
+		return result;
+	}
+	
+	@Override
 	public int mypageStoreCancell(int paymentidx) {
 		int result = storePaymentDao.mypageStoreCancell(paymentidx);
 		if(result > 0) {
@@ -176,8 +195,20 @@ public class StorePaymentServiceImple implements StorePaymentService {
 	}
 	
 	@Override
-	public List<MyPageStorePaymentDTO> mypageStoreCancellList(int useridx) {
-		List<MyPageStorePaymentDTO> lists = storePaymentDao.mypageStoreCancellList(useridx);
+	public List<MyPageStorePaymentDTO> mypageStoreCancellList(int useridx,int listSize,int cp) {
+		 
+		Map<String, Object> parameter = new HashMap<String, Object>();
+		  
+		int start=(cp-1)*listSize+1;
+		  
+		int end=cp*listSize;
+		  
+		  parameter.put("userIdx", useridx);
+		  parameter.put("start", start);
+		  parameter.put("end", end);
+		  
+		List<MyPageStorePaymentDTO> lists = storePaymentDao.mypageStoreCancellList(parameter);
+		
 		if(lists != null && lists.size() > 0) {
 			DecimalFormat df = new DecimalFormat("#,##0원");
 			SimpleDateFormat dateDf = new SimpleDateFormat("yyyy.MM.dd (E) | HH:mm");
