@@ -48,7 +48,7 @@ public class StoreController {
 	private int dbnum;
 
 
-	@RequestMapping("store.do")
+	@RequestMapping("store/store.do")
 	public ModelAndView storeForm() {
 		
 		List<ProductDTO> Tlists=productService.storeTicketList();

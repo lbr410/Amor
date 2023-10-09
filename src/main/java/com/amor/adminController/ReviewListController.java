@@ -51,8 +51,8 @@ public class ReviewListController {
 		int totalCnt=movieReviewService.adminReviewListSearchTotalCnt(search);
 		int listSize = 10;
 		int pageSize = 5;
-		String pageStr=com.amor.page.PageModule.makePage("/amor/admin/review/reviewList.do", totalCnt, listSize, pageSize, cp);
-
+		String pageStr=com.amor.page.PageModuleSearch.makePage("/amor/admin/review/reviewListSearch.do", totalCnt, listSize, pageSize, cp, search);
+		
 		List<MovieReviewDTO> lists=movieReviewService.adminReviewListSearch(cp, listSize, search);
 		ModelAndView mav =new ModelAndView();
 		mav.addObject("pageStr", pageStr);

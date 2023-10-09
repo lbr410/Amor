@@ -61,8 +61,7 @@ public class MemberListController {
 		int totalCnt = memberService.memberSearchTotalCnt(search);
 		int listSize =10;
 		int pageSize = 5;
-		String pageStr=com.amor.page.PageModule.makePage("/amor/admin/member/memberList.do", totalCnt, listSize, pageSize, cp);
-		
+		String pageStr=com.amor.page.PageModuleSearch.makePage("/amor/admin/member/memberSearch.do", totalCnt, listSize, pageSize, cp, search);
 		List<MemberDTO> lists=memberService.memberSearch(cp, listSize, search);
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("pageStr", pageStr);

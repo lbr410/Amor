@@ -30,7 +30,7 @@
     </c:if>
     <c:forEach var="Tdto" items="${Tlists }">
         <div class="product ${Tdto.product_price2=='품절'?'soldout':'' }">
-        	<c:url var="detailUrl" value="store/storeContentForm.do">
+        	<c:url var="detailUrl" value="storeContentForm.do">
 				<c:param name="product_idx">${Tdto.product_idx }</c:param>
 			</c:url>
         	<div class="prodImg"><a href="${detailUrl }"><img src="/amor/resources/upload/product/${Tdto.product_img}" class="img" alt="store_ticket_img"></a></div>
@@ -58,7 +58,7 @@
     </c:if>
     <c:forEach var="Sdto" items="${Slists }">
         <div class="product ${Sdto.product_price2=='품절'?'soldout':'' }" >
-        	<c:url var="detailUrl" value="store/storeContentForm.do">
+        	<c:url var="detailUrl" value="storeContentForm.do">
 				<c:param name="product_idx">${Sdto.product_idx }</c:param>
 			</c:url>
         	<div class="prodImg">
@@ -88,7 +88,7 @@
     </c:if>
     <c:forEach var="Ddto" items="${Dlists }">
         <div class="product ${Ddto.product_price2=='품절'?'soldout':'' }">
-        	<c:url var="detailUrl" value="store/storeContentForm.do">
+        	<c:url var="detailUrl" value="storeContentForm.do">
 				<c:param name="product_idx">${Ddto.product_idx }</c:param>
 			</c:url>
         	<div class="prodImg">
