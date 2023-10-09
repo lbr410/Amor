@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아모르 관리자 : 상영영화수정</title>
+<title>아모르 관리자 : 상영 시간 수정</title>
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/admin/playingMovieAddUp.css">
 <script type="text/javascript" src="../../resources/js/httpRequest.js"></script>
 <script>

@@ -60,7 +60,7 @@ footer .footer-inner .logo {
       <div class="btn-group">
         <a href="/amor/intro/intro.do" class="navi-btn">영화관소개</a>
         <a href="#" class="navi-btn">공지사항</a>
-        <a href="/amor/admin/adminLogin.do" class="navi-btn">admin_page</a>
+        <a href="/amor/admin/adminLogin.do" class="navi-btn">관리자 페이지</a>
       </div>
 
       <div class="footer-info">

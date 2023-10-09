@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Amor AdminLogin</title>
+<title>Amor Admin Login</title>
 </head>
 <style>
 	

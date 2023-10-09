@@ -5,13 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아모르 관리자 : 상영영화리스트</title>
+<title>아모르 관리자 : 상영 영화 목록</title>
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/admin/playingMovieList.css">
 </head>
 <body>
 <%@include file="../admin_header.jsp" %>
 <div class="content">
-<div class="content-title"><label class="titletext">상영 영화 조회</label>
+<div class="content-title"><label class="titletext">상영 영화 목록</label>
 </div>
 <div class="contentMain">
 <div class="tableDiv">

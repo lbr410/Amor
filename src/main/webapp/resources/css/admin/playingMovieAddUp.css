@@ -1,6 +1,6 @@
 @charset "UTF-8";
 table {
-	margin-left: 150px;
+	margin-left: 60px;
 	width : 1000px;
 	height: 600px;
 	table-layout: fixed;	
@@ -27,14 +27,14 @@ table td {
 	font-style: normal;
 	font-weight: 600;
 	line-height: normal;
-	width: 120px;
-	height: 25px;
+	width: 167px;
+	height: 22px;
 	padding: 8px 16px;
 	align-items: center;
 	gap: 8px;
 	flex-shrink: 0;
-	border-radius: 12px;
-	border: 3px solid #4186EF;
+	border-radius: 5px;
+	border: 1px solid #d9d9d9;
 	background: #FFF;
 }
 
@@ -45,13 +45,13 @@ table td {
 	font-style: normal;
 	font-weight: 600;
 	width: 200px;
-	height: 50px;
+	height: 40px;
 	padding: 8px 16px;
 	align-items: center;
 	gap: 8px;
 	flex-shrink: 0;
-	border-radius: 12px;
-	border: 3px solid #4186EF;
+	border-radius: 5px;
+	border: 1px solid #d9d9d9;
 	background: #FFF;
 }
 
@@ -78,5 +78,6 @@ table td {
 }
 
 #playAdd3 {
-	width: 350px;
+	width: 170px;
+	height: 80px;
 }
