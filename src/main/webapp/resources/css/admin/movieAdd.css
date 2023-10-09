@@ -20,7 +20,7 @@
 	flex:1;
 	height: 700px;
 	float: left;
-	text-align: center;
+	/*text-align: center;*/
 }
 
 #moviePosterDiv{
@@ -118,7 +118,7 @@
 	padding-left:7px;
 	font-family: '맑은 고딕';
 	resize: none;
-	
+	margin-top: 7px;
 }
 
 .movieAddSumit{
@@ -148,7 +148,8 @@
     cursor: pointer;
 }
 #moviePosterDiv{
-	text-align: center;
+	/*text-align: center;*/
+	padding-left: 115px;
 }
 
 #moviePosterDiv label{
@@ -169,6 +170,7 @@
 	justify-content: center;
     align-items: center;display: flex;
     cursor: pointer;
+    margin-left: 54px;
 }
 
 .btn_movieSimg{
@@ -211,3 +213,6 @@
 }
 
 
+table td {
+	height: 60px;
+}

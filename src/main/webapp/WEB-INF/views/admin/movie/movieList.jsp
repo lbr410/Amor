@@ -113,7 +113,7 @@ function movieStateYN(idx) {
 			<td><c:if test="${0==dto.movie_maxage}">ALL</c:if>
 				<c:if test="${1==dto.movie_maxage}">12</c:if>
 				<c:if test="${2==dto.movie_maxage}">15</c:if>
-				<c:if test="${3==dto.movie_maxage}">19</c:if>
+				<c:if test="${3==dto.movie_maxage}">18</c:if>
 			</td>
 			<td>${dto.movie_runningtime }분</td>
 			<td>${dto.movie_audience }명</td>
