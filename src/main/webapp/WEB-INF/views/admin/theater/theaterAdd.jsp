@@ -16,8 +16,8 @@
 <div class="contentMain">
 <span class = "controller">행 <input type = "number" id = "row" value = "${row}" min="4" max="8" onclick = "row(this.value)"></span>
 <span class = "controller">열 <input type = "number" id = "column" value = "${col}" min="5" max="20" onclick = "column(this.value)"></span>
-<span class = "controller">상영관명 <input type = "text" class = "nameAdd" id = "theatername" value = "${theatername}" maxlength="6"></span><br>
-<div id = "seats" class = "seate">${seates}</div>
+<span class = "controller">상영관명 <input type = "text" class = "nameAdd" id = "theaterName" value = "${theatername}" maxlength="6"></span><br>
+<div id = "seats" class = "seate">${seats}</div>
 <div class="tableDiv">
 <input type = "button" value = "통로" class = "blockbutton1" onclick = "path()">
 <input type = "button" value = "초기화" class = "blockbutton2" onclick = "resetseate()">
@@ -28,6 +28,14 @@
 </body>
 <script type="text/javascript" src="../../resources/js/httpRequest.js"></script>
 <script>
+
+let inputElement = document.getElementById('theaterName');
+
+inputElement.addEventListener('input', function() {
+    if (inputElement.value.length > 6) {
+        inputElement.value = inputElement.value.slice(0, 6); // 6자 이상 입력을 자름
+    }
+});
 
 // checkbox 2개이상 선택했을 경우 checked를 막음
 function keyOnly(event) {
@@ -40,7 +48,7 @@ function keyOnly(event) {
 }
 
 
-let checkboxes = document.querySelectorAll('input[name="seates"]');
+let checkboxes = document.querySelectorAll('input[name="seats"]');
 
 //사용자가 checkbox를 클릭했을때 실행되는 함수 정의
 checkboxes.forEach(checkbox => {
@@ -58,7 +66,7 @@ let max = 2;
     
     if (checkedCheckboxes.length > max) {
         e.preventDefault();
-        let box = document.getElementsByName('seates');
+        let box = document.getElementsByName('seats');
         box.forEach(function(checkbox){
      	  if(checkbox.checked){
      		  checkbox.checked = false;
@@ -75,10 +83,10 @@ let max = 2;
 	function pushData(){
 		
 		
-		let seats = document.getElementsByName("seates");
+		let seats = document.getElementsByName("seats");
 		let rows = document.getElementById('row').value;
 		let cols = document.getElementById('column').value;
-		let theatername = document.getElementById('theatername').value;
+		let theatername = document.getElementById('theaterName').value;
 		let seatsData = new Array(rows);
 		let setData = [];
 		for(let i = 0 ; i < rows; i++){
@@ -110,9 +118,9 @@ let max = 2;
 			console.log(jsonData);
 			let param = null;
 		if(theatername != ''){
-			param = 'seatesData='+encodeURI(jsonData)+'&totalseat='+totalseat+'&row='+rows+'&col='+cols+'&tidx='+${tidx}+'&theatername='+theatername;
+			param = 'seatsData='+encodeURI(jsonData)+'&totalseat='+totalseat+'&row='+rows+'&col='+cols+'&tidx='+${tidx}+'&theatername='+theatername;
 		}else{
-			param = 'seatesData='+encodeURI(jsonData)+'&totalseat='+totalseat+'&row='+rows+'&col='+cols+'&tidx='+${tidx}+'&theatername=none';
+			param = 'seatsData='+encodeURI(jsonData)+'&totalseat='+totalseat+'&row='+rows+'&col='+cols+'&tidx='+${tidx}+'&theatername=none';
 		}
 		
 		sendRequest('/amor/admin/theater/updateSeate.do',param,pushSeateData,'GET');
@@ -133,7 +141,7 @@ let max = 2;
 	
 	//초기화 요청함수
 	function resetseate(){
-		let box = document.getElementsByName('seates');
+		let box = document.getElementsByName('seats');
 		let row = document.getElementById('row').value;
 		let col = document.getElementById('column').value;
 		
@@ -168,12 +176,12 @@ let max = 2;
 	        if (XHR.status == 200) {
 	            let data = XHR.responseText;
 	            let objData = JSON.parse(data);
-	            let seats = objData.seates;
+	            let seats = objData.seats;
 	            document.getElementById('seats').innerHTML = seats;
 	            document.getElementById('row').value = 8;
 	            document.getElementById('column').value = 20;
 
-				let checkboxes = document.querySelectorAll('input[name="seates"]');
+				let checkboxes = document.querySelectorAll('input[name="seats"]');
 	            // 기존에 등록된 이벤트 리스너 모두 제거
 	            checkboxes.forEach(checkbox => {
 	                checkbox.removeEventListener('click', handleCheckbox);
@@ -192,7 +200,7 @@ let max = 2;
 
 	                if (checkedCheckboxes.length > max) {
 	                    e.preventDefault();
-	                   let box = document.getElementsByName('seates');
+	                   let box = document.getElementsByName('seats');
 	                   box.forEach(function(checkbox){
 	                	  if(checkbox.checked){
 	                		  checkbox.checked = false;
@@ -220,10 +228,10 @@ let max = 2;
 			if(XHR.status == 200){
 				let data = XHR.responseText;
 				let objData = JSON.parse(data);
-				let seats = objData.seates;
+				let seats = objData.seats;
 				document.getElementById('seats').innerHTML = seats;
 				
-				let checkboxes = document.querySelectorAll('input[name="seates"]');
+				let checkboxes = document.querySelectorAll('input[name="seats"]');
 	            // 기존에 등록된 이벤트 리스너 모두 제거
 	            checkboxes.forEach(checkbox => {
 	                checkbox.removeEventListener('click', handleCheckbox);
@@ -242,7 +250,7 @@ let max = 2;
 
 	                if (checkedCheckboxes.length > max) {
 	                    e.preventDefault();
-	                   let box = document.getElementsByName('seates');
+	                   let box = document.getElementsByName('seats');
 	                   box.forEach(function(checkbox){
 	                	  if(checkbox.checked){
 	                		  checkbox.checked = false;
@@ -269,10 +277,10 @@ let max = 2;
 			if(XHR.status == 200){
 				let data = XHR.responseText;
 				let objData = JSON.parse(data);
-				let seats = objData.seates;
+				let seats = objData.seats;
 				document.getElementById('seats').innerHTML = seats;
 				
-				let checkboxes = document.querySelectorAll('input[name="seates"]');
+				let checkboxes = document.querySelectorAll('input[name="seats"]');
 	            // 기존에 등록된 이벤트 리스너 모두 제거
 	            checkboxes.forEach(checkbox => {
 	                checkbox.removeEventListener('click', handleCheckbox);
@@ -291,7 +299,7 @@ let max = 2;
 
 	                if (checkedCheckboxes.length > max) {
 	                    e.preventDefault();
-	                   let box = document.getElementsByName('seates');
+	                   let box = document.getElementsByName('seats');
 	                   box.forEach(function(checkbox){
 	                	  if(checkbox.checked){
 	                		  checkbox.checked = false;
@@ -308,7 +316,7 @@ let max = 2;
 	function path(){
 		let row = document.getElementById('row').value;
 		let column = document.getElementById('column').value;	
-		let box = document.getElementsByName('seates');
+		let box = document.getElementsByName('seats');
 		
 		let data = [];
 		
@@ -444,21 +452,13 @@ let max = 2;
 						}
 					}	
 				}
-					
-					
-			
-							
-				}else{
-					alert('통로는 2줄씩만 가능합니다.');
-					for(let i = 0 ; i < box.length; i++){
-						box[i].checked = false;
-					}
+						
+			}else{
+				alert('통로는 2줄씩만 가능합니다.');
+				for(let i = 0 ; i < box.length; i++){
+					box[i].checked = false;
 				}
-			
+			}		
 		}
-		
-	
-
 </script>
-
 </html>

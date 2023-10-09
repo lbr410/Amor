@@ -25,7 +25,7 @@ public class TicketingHistoryController {
 	private TicketingService ticketingService;
 	
 	@RequestMapping("/myAmor/ticketingHistory.do")
-	public ModelAndView goTiketingHistory(HttpSession session,
+	public ModelAndView TiketingHistory(HttpSession session,
 			@RequestParam(value = "cp", defaultValue = "1")int cp) {
 		String id = (String)session.getAttribute("sid");
 		ModelAndView mav = new ModelAndView();
@@ -33,7 +33,7 @@ public class TicketingHistoryController {
 			int useridx = (int)session.getAttribute("sidx");
 			String pagename = "/amor/myAmor/ticketingHistory.do";
 			int totalCnt = ticketingService.getticketingHistoryTotalCnt(useridx);
-			int listSize = 3;
+			int listSize = 5;
 			int pageSize = 5;
 			List<JoinTicketingHistoryDTO>lists = ticketingService.ticketingHistoryList(useridx,cp,listSize);
 			if(lists != null) {		
@@ -69,7 +69,7 @@ public class TicketingHistoryController {
 			int useridx = (int)session.getAttribute("sidx");
 			String pagename = "/amor/myAmor/cancellHistory.do";
 			int totalCnt = ticketingService.getTicketingCancellListTotalCnt(useridx);
-			int listSize = 3;
+			int listSize = 5;
 			int pageSize = 5;
 			
 			List<JoinTicketingHistoryDTO>lists = ticketingService.ticketingcancellList(useridx,cp,listSize);
@@ -106,7 +106,7 @@ public class TicketingHistoryController {
 		
 		if(checkDate) {	
 			
-			boolean result = ticketingService.cancellationTicket(seateNum,playingMovieidx,ticketidx);
+			boolean result = ticketingService.cancellationTicket(seateNum,playingMovieidx,ticketidx,movieidx);
 			
 			if(result) {
 					mav.addObject("msg", "예매가 취소되었습니다.");

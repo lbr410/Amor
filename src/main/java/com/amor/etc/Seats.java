@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class seat {
+public class Seats {
 
-	public String addTheater(String seat,int row,int col) {
+	public String createSeats(String seat,int row,int col) {
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		StringBuffer sb = new StringBuffer();
@@ -23,13 +23,13 @@ public class seat {
 					for(int j = 1 ; j <= col; j++) {
 						num++;
 						if(data[i][j-1].equals("0")) {						
-							sb.append("<input type='checkbox' id = 'checkbox"+num+"' value = '0' name = 'seates' disabled>");
+							sb.append("<input type='checkbox' id = 'checkbox"+num+"' value = '0' name = 'seats' disabled>");
 							sb.append("<label for='checkbox"+num+"'>");
 							sb.append("<div class = 'checkbox-label' id = 'boxnum"+num+"' name = '"+i+"' value = '"+j+"' style = 'display: none;'></div>");		
 							sb.append("</label>");
 							sb.append("&nbsp;&nbsp;");
 						}else {
-							sb.append("<input type='checkbox' id = 'checkbox"+num+"' value = '"+i+","+j+"' name = 'seates' onkeydown='keyOnly(event)'>");
+							sb.append("<input type='checkbox' id = 'checkbox"+num+"' value = '"+i+","+j+"' name = 'seats' onkeydown='keyOnly(event)'>");
 							sb.append("<label for='checkbox"+num+"'>");
 							sb.append("<div class = 'checkbox-label' id = 'boxnum"+num+"' name = '"+i+"' value = '"+j+"'>"+innerHTML+"</div>");		
 							sb.append("</label>");
@@ -45,7 +45,7 @@ public class seat {
 					sb.append("<br>");
 					for(int j = 1 ; j <= col; j++) {
 						num++;
-				sb.append("<input type='checkbox' id = 'checkbox"+num+"' value = '"+i+","+j+"' name = 'seates' onkeydown='keyOnly(event)'>");
+				sb.append("<input type='checkbox' id = 'checkbox"+num+"' value = '"+i+","+j+"' name = 'seats' onkeydown='keyOnly(event)'>");
 				sb.append("<label for='checkbox"+num+"'>");
 				sb.append("<div class = 'checkbox-label' id = 'boxnum"+num+"' name = '"+i+"' value = '"+j+"'>"+j+"</div>");		
 				sb.append("</label>");
@@ -66,7 +66,7 @@ public class seat {
 				for(int j = 1 ; j <= col; j++) {
 					num++;
 			//체크박스(좌석)
-			sb.append("<input type='checkbox' id = 'checkbox"+num+"' value = '"+i+","+j+"' name = 'seates' onkeydown='keyOnly(event)'>");
+			sb.append("<input type='checkbox' id = 'checkbox"+num+"' value = '"+i+","+j+"' name = 'seats' onkeydown='keyOnly(event)'>");
 			sb.append("<label for='checkbox"+num+"'>");
 			// 각좌석의 번호를 보여주는 div태그
 			sb.append("<div class = 'checkbox-label' id = 'boxnum"+num+"' name = '"+i+"' value = '"+j+"'>"+j+"</div>");		
