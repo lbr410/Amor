@@ -1,6 +1,8 @@
 package com.amor.ticketing.model;
 
 import java.sql.*;
+import java.sql.Date;
+import java.util.*;
 
 public class TicketingDTO {
 	private int ticketing_idx;
@@ -10,7 +12,7 @@ public class TicketingDTO {
 	private String ticketing_num;
 	private String ticketing_seat;
 	private Date ticketing_reservetime;
-	private Date ticketing_screeningtime;
+	private java.util.Date ticketing_screeningtime;
 	private int ticketing_price;
 	private int ticketing_personnel; // 테이블 자료형 변경 후 int로 변경할 것
 	private String ticketing_state;
@@ -24,7 +26,7 @@ public class TicketingDTO {
 	}
 	
 	public TicketingDTO(int ticketing_idx, int playing_movie_idx, int theater_idx, int member_idx, String ticketing_num,
-			String ticketing_seat, Date ticketing_reservetime, Date ticketing_screeningtime, int ticketing_price,
+			String ticketing_seat, Date ticketing_reservetime, java.util.Date ticketing_screeningtime, int ticketing_price,
 			int ticketing_personnel, String ticketing_state, String ticketing_payment, int a, String b, String c) {
 		super();
 		this.ticketing_idx = ticketing_idx;
@@ -45,7 +47,7 @@ public class TicketingDTO {
 	}
 
 	public TicketingDTO(int playing_movie_idx, int theater_idx, int member_idx, String ticketing_num,
-			String ticketing_seat, Date ticketing_screeningtime, int ticketing_price, int ticketing_personnel) {
+			String ticketing_seat, java.util.Date ticketing_screeningtime, int ticketing_price, int ticketing_personnel) {
 		super();
 		this.playing_movie_idx = playing_movie_idx;
 		this.theater_idx = theater_idx;
@@ -113,11 +115,11 @@ public class TicketingDTO {
 		this.ticketing_reservetime = ticketing_reservetime;
 	}
 
-	public Date getTicketing_screeningtime() {
+	public java.util.Date getTicketing_screeningtime() {
 		return ticketing_screeningtime;
 	}
 
-	public void setTicketing_screeningtime(Date ticketing_screeningtime) {
+	public void setTicketing_screeningtime(java.util.Date ticketing_screeningtime) {
 		this.ticketing_screeningtime = ticketing_screeningtime;
 	}
 

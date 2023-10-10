@@ -96,7 +96,7 @@
 						<p class="centerBtn"><input type="submit" value="수정하기" class="cancelBtn"></p>
 					</div>
 					</div>
-						<input type="text" name="movie_review_idx" value="${dto.movie_review_idx}">
+						<input type="hidden" name="movie_review_idx" value="${dto.movie_review_idx}">
 					</form>		
 				</c:forEach>
 			</tbody>

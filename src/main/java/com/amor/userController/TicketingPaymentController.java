@@ -45,6 +45,10 @@ public class TicketingPaymentController {
 	private String ticketing_seat;
 	private String movie_name;
 	private String theater_name;
+	private String ticketing_cancel;
+	private String partner_order_id;
+	private String approved_at;
+	private String amountTotal;
 	
 
 	@RequestMapping(value = "ticketing/ticketingPayment.do", method = RequestMethod.POST)
@@ -76,7 +80,7 @@ public class TicketingPaymentController {
 					playing_movie_seat_num += playing_movie_seat[i];
 					break;
 				}
-				playing_movie_seat_num += playing_movie_seat[i]+", ";	
+				playing_movie_seat_num += playing_movie_seat[i]+",";	
 			}
 		}		
 		
@@ -114,8 +118,6 @@ public class TicketingPaymentController {
 			@RequestParam("movie_name") String movie_name
 			) {
 		
-		System.out.println(ticketing_screeningtime);
-		
 		this.ticketing_price=ticketing_price;
 		this.ticketing_personnel=ticketing_personnel;
 		this.playing_movie_idx=playing_movie_idx;
@@ -136,7 +138,7 @@ public class TicketingPaymentController {
 		String sid=(String)session.getAttribute("sid");
 		String quantity=ticketing_personnel;
 		String total_amount=ticketing_price;
-		String okpage="http://localhost:9090/amor/ticketing/ticketingPayDetail.do";
+		String okpage="http://localhost:9090/amor/ticketing/kakaoPayOk.do";
 		String cancelpage="http://localhost:9090/amor/ticketing/kakaoFail.do";
 		String failpage="http://localhost:9090/amor/ticketing/kakaoCancel.do";
 		
@@ -148,15 +150,34 @@ public class TicketingPaymentController {
 	
 	
 	@RequestMapping("ticketing/ticketingPayDetail.do")
-	public ModelAndView ticketingPayDetail(
+	public ModelAndView ticketingPayDetail( ) {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("approved_at", this.approved_at);
+		mav.addObject("partner_order_id", this.partner_order_id);
+		mav.addObject("amountTotal", this.amountTotal);
+		mav.addObject("theater_name", this.theater_name);
+		mav.addObject("movie_name", this.movie_name);
+		mav.addObject("ticketing_screeningtime", this.ticketing_screeningtime);
+		mav.addObject("ticketing_seat", this.ticketing_seat);
+		mav.addObject("ticketing_personnel", this.ticketing_personnel);
+		mav.addObject("ticketing_cancel", ticketing_cancel);
+		mav.setViewName("/user/ticketing/ticketingPayDetail");
+		return mav;
+		
+	}
+	
+	@RequestMapping("ticketing/kakaoPayOk.do")
+	public ModelAndView ticketingPayOK(
 			@RequestParam("pg_token") String pg_token,
-			HttpSession session,
-			HttpServletRequest req) {
+			HttpSession session
+			) {
 		
 		String sid=(String)session.getAttribute("sid");
 		int sidx=(Integer)session.getAttribute("sidx");
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		java.util.Date cancelDate = null;
 		try {
 		cancelDate = sdf.parse(this.ticketing_screeningtime);
@@ -168,22 +189,59 @@ public class TicketingPaymentController {
 		cal.add(Calendar.MINUTE, -30);
 		
 		String ticketing_cancel = sdf.format(cal.getTime());
-		
+		this.ticketing_cancel = ticketing_cancel;
 		Kakaopay kaka = new Kakaopay();
 		KakaopayDTO kdto = new KakaopayDTO(this.ticketing_num, sid, null, null, this.ticketing_price, null, null, null);
 		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("theater_name", this.theater_name);
-		mav.addObject("movie_name", this.movie_name);
-		mav.addObject("ticketing_screeningtime", this.ticketing_screeningtime);
-		mav.addObject("ticketing_seat", this.ticketing_seat);
-		mav.addObject("ticketing_personnel", this.ticketing_personnel);
-		mav.addObject("ticketing_cancel", ticketing_cancel);
-		mav.addObject("ticketing",kaka.kakaoPayInfo(pg_token, kdto));
-		mav.addObject("store", kaka.kakaoPayInfo(pg_token, kdto));
-		mav.setViewName("/user/ticketing/ticketingPayDetail");
-		return mav;
+		Calendar now = Calendar.getInstance();
 		
+		this.partner_order_id = kdto.getPartner_order_id();
+		this.approved_at = sdf3.format(now.getTime()); 
+		this.amountTotal = kdto.getTotal_amount();
+		
+		//데이터 insert 과정 
+		
+		String ticketing_screeningtime = this.ticketing_screeningtime+":00";
+		
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		java.util.Date screenDate = null;
+		try {
+		screenDate = sdf1.parse(ticketing_screeningtime);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		int ticketing_price = Integer.parseInt(this.ticketing_price);
+		int ticketing_personnel = Integer.parseInt(this.ticketing_personnel);
+		
+		TicketingDTO dto = new TicketingDTO(this.playing_movie_idx, this.theater_idx, sidx, this.ticketing_num, this.ticketing_seat, screenDate, ticketing_price, ticketing_personnel);
+		int result1 = ticketingService.ticketingAdd(dto);
+		int audience = ticketingService.totalAudience(this.playing_movie_idx);
+		
+		int totalMovieAudience = audience+ticketing_personnel;
+		
+		int result2 = ticketingService.movieAudience(totalMovieAudience, this.playing_movie_idx);
+		int result3 = ticketingService.playingMovieSeat(ticketing_personnel, this.playing_movie_idx);
+		
+		String playingMovieSeat = ticketingService.playingMovieTotalSeat(this.playing_movie_idx);
+		String playingUpdateSeat = "";
+		if (playingMovieSeat.equals("[]")) {
+			playingUpdateSeat = this.ticketing_seat;
+		} else {
+			playingUpdateSeat = playingMovieSeat+","+this.ticketing_seat;
+		}
+		
+		int result4 = ticketingService.playingMovieUpdateSeat(playingUpdateSeat, this.playing_movie_idx); 
+		
+		int result = result1+result2+result3+result4;
+		
+		String msg = result>3?"결제가 완료되었습니다.":"결제를 완료할 수 없습니다.(고객센터 문의)";
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("msg", msg);
+		mav.addObject("goUrl", "ticketingPayDetail.do");
+		mav.setViewName("/user/msg/userMsg");
+		return mav;
 	}
 	
 	@RequestMapping("ticketing/kakaoCancel.do")
@@ -205,46 +263,5 @@ public class TicketingPaymentController {
 		return mav;
 	}
 	
-	@RequestMapping("ticketing/ticketingPayDetailConfirm.do")
-	public ModelAndView ticketingPayDetailConfirm(
-			HttpSession session
-			) {
-		
-		int sidx=(Integer)session.getAttribute("sidx");
-		
-		String ticketingSQL = this.ticketing_screeningtime.substring(0,10);
-		java.sql.Date screenDate = java.sql.Date.valueOf(ticketingSQL);
-		
-		int ticketing_price = Integer.parseInt(this.ticketing_price);
-		int ticketing_personnel = Integer.parseInt(this.ticketing_personnel);
-		
-		TicketingDTO dto = new TicketingDTO(this.playing_movie_idx, this.theater_idx, sidx, this.ticketing_num, this.ticketing_seat, screenDate, ticketing_price, ticketing_personnel);
-		int result1 = ticketingService.ticketingAdd(dto);
-		int audience = ticketingService.totalAudience(this.playing_movie_idx);
-		
-		int totalMovieAudience = audience+ticketing_personnel;
-		
-		int result2 = ticketingService.movieAudience(totalMovieAudience, this.playing_movie_idx);
-		int result3 = ticketingService.playingMovieSeat(ticketing_personnel, this.playing_movie_idx);
-		
-		String playingMovieSeat = ticketingService.playingMovieTotalSeat(this.playing_movie_idx);
-		String playingUpdateSeat = "";
-		if (playingMovieSeat.equals("[]")) {
-			playingUpdateSeat = this.ticketing_seat;
-		} else {
-			playingUpdateSeat = playingMovieSeat +","+this.ticketing_seat;
-		}
-		
-		int result4 = ticketingService.playingMovieUpdateSeat(playingUpdateSeat, this.playing_movie_idx); 
-		
-		int result = result1+result2+result3+result4;
-		String msg = result>3?"예매가 완료되었습니다.":"예매를 완료할 수 없습니다.(고객센터 문의)";
-		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("msg", msg);
-		mav.addObject("goUrl", "/amor/index.do");
-		mav.setViewName("/user/msg/userMsg");
-		return mav;
-	}
 	
 }

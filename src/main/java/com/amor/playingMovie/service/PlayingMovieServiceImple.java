@@ -83,14 +83,28 @@ public class PlayingMovieServiceImple implements PlayingMovieService {
 	}
 	
 	
-	
-	
-	
-	
 	@Override
 	public PlayingMovieDTO playingMovieContent(int playing_moive_idx) {
 		PlayingMovieDTO dto = playingMovieDao.playingMovieContent(playing_moive_idx);
 		return dto;
+	}
+	
+	@Override
+	public List<PlayingMovieJoinDTO> playingMovieListSelect(int cp, int ls, int movie_idx) {
+		int start=(cp-1)*ls+1;
+		int end=cp*ls;
+		Map map=new HashedMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("movie_idx", movie_idx);
+		List<PlayingMovieJoinDTO> lists = playingMovieDao.playingMovieListSelect(map);
+		return lists;
+	}
+	
+	@Override
+	public int totalCntSelect(int movie_idx) {
+		int count = playingMovieDao.totalCntSelect(movie_idx);
+		return count;
 	}
 	
 }

@@ -3,6 +3,7 @@
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,27 +28,49 @@ public class PlayingMovieController {
 	@RequestMapping("admin/playMovie/playingMovieList.do")
 	public ModelAndView playingMovieList(
 			@RequestParam(value = "cp", defaultValue = "1") int cp,
+			@CookieValue(value = "autologin", required = false) String autologin,
+			@RequestParam(value = "movie_idx", required = false) String movie_idx,
 			HttpSession session) {
 		
-		int totalCnt=playingMovieService.getTotalCnt();
-		int listSize=10;
-		int pageSize=5;
-		
-		List<PlayingMovieJoinDTO> playingMovieLists=playingMovieService.playingMovieList(cp, listSize);
-		
-		String playingMoviepageStr=com.amor.page.PageModule.makePage("playingMovieList.do", totalCnt, listSize, pageSize, cp);
-		
+		System.out.println(movie_idx);
 		ModelAndView mav = new ModelAndView();
 		
-		if (session.getAttribute("data")==null) {
-			mav.addObject("msg", "로그인 후 이용가능합니다.");
-			mav.addObject("href", "/amor/admin/adminLogin.do");
-			mav.setViewName("/admin/msg/adminMsg");	
+		List<Map> movieList = playingMovieService.playingMovieAddMovie();
+		
+		if (movie_idx == null || movie_idx == "aa") {
+		
+			int totalCnt=playingMovieService.getTotalCnt();
+			int listSize=10;
+			int pageSize=5;
+			
+			List<PlayingMovieJoinDTO> playingMovieLists=playingMovieService.playingMovieList(cp, listSize);
+			
+			String playingMoviepageStr=com.amor.page.PageModule.makePage("playingMovieList.do", totalCnt, listSize, pageSize, cp);
+			
+			if (session.getAttribute("data")==null || autologin == null) {
+				mav.addObject("msg", "로그인 후 이용가능합니다.");
+				mav.addObject("href", "/amor/admin/adminLogin.do");
+				mav.setViewName("/admin/msg/adminMsg");	
+			} else {
+				mav.addObject("movieList", movieList);
+				mav.addObject("playingMoviepageStr", playingMoviepageStr);
+				mav.addObject("playingMovieLists", playingMovieLists);
+				mav.setViewName("/admin/playMovie/playingMovieList");
+			}
+		
 		} else {
-			mav.addObject("playingMoviepageStr", playingMoviepageStr);
-			mav.addObject("playingMovieLists", playingMovieLists);
-			mav.setViewName("/admin/playMovie/playingMovieList");
+			int movie_idx2 = Integer.parseInt(movie_idx);
+			
+			int totalCnt=playingMovieService.totalCntSelect(movie_idx2);
+			int listSize=10;
+			int pageSize=5;
+			
+			List<PlayingMovieJoinDTO> lists = playingMovieService.playingMovieListSelect(cp, listSize, movie_idx2);
+			
+			
+			mav.setViewName("amorJson");
 		}
+		
 		
 		return mav;
 		

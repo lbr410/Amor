@@ -99,7 +99,8 @@ table tfoot tr {
 
 .reviewTdContent {
 	height: 200px;
-	text-align: left;	
+	text-align: left;
+	padding: 30px 30px 30px 30px;
 	vertical-align: middle;
 	white-space: pre-line;
 }
@@ -287,4 +288,11 @@ table tfoot tr {
   	resize: none;
   	overflow-y: scroll;
   	font-family: "맑은 고딕";
+}
+
+#btn3{
+    background: #1A2C82;
+    color: #FFF;
+    border: 1px solid #1A2C82;
+    cursor: pointer;
 }
