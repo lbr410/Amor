@@ -88,7 +88,16 @@
 			</select>			
 		</td>
         <td class="tableBtn">
-            <input type="button" class="cancleBtn" value="삭제" onclick="inquiryDel(${joinDTO.idto.inquiry_idx})">
+   			<c:if test="${dto.inquiry_astatus eq 'y'}">
+   				<input type="button" class="cancleBtn" value="삭제" onclick="inquiryDel(${joinDTO.idto.inquiry_idx})">
+       			<input type="button" class="cancleBtn" value="수정" onclick="javascript: location.href='/amor/admin/inquiry/inquiryUpdateForm.do?idx=${dto.inquiry_idx}'">
+   				<input type="hidden" name="inquiry_idx" value="${dto.inquiry_idx}">
+			</c:if>
+			<c:if test="${dto.inquiry_astatus eq 'n'}">
+				<input type="button" class="cancleBtn" value="삭제" onclick="inquiryDel(${joinDTO.idto.inquiry_idx})">
+				<input type="hidden" name="inquiry_idx" value="${dto.inquiry_idx}">
+			</c:if>
+		<input type="hidden" name="inquiry_idx" value="${dto.inquiry_idx}">
         </td>
     </tr>
 </c:forEach>

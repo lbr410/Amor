@@ -72,11 +72,6 @@
                         </span>
                         <span class="movie_opendate">개봉일 : ${cdto.movie_opendate }</span>
                     </div>
-                    <div class="book-btn" >
-                     	<a href="/amor/ticketing/ticketing.do">
-                     		<button type="button" name="ticketing-btn" title="영화 예매하기">예매하기</button>
-                     	</a>
-                    </div>
                 </div>
             </div>
         </c:forEach>
@@ -115,11 +110,6 @@
                             </span>
                         </span>
                         <span class="movie_opendate">개봉일 : ${ndto.movie_opendate }</span>
-                    </div>
-                    <div class="book-btn" >
-                     	<a href="/amor/ticketing/ticketing.do">
-                     		<button type="button" name="ticketing-btn" title="영화 예매하기">예매하기</button>
-                     	</a>
                     </div>
                 </div>
             </div>

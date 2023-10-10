@@ -39,8 +39,10 @@
 			<input type="file" id="selectImg" name="product_img" accept=".jpg, .jpeg, .png"
 				onchange="extensionCheck(this); setProdImg(event)" style="display: none" required>
 			<input type="button" value="이미지 추가" onclick="document.getElementById('selectImg').click();" class="fileDeco">
+			
 		</label>
 		<span><img src="/amor/resources/img/preview.png" id="preview" onError="this.style.visibility='hidden'"></span>
+		<div class="filenavi">최대 5MB의 이미지(jpg, jpeg, png) 또는 문서(xlsx, pptx) 형식의 파일만 업로드하실 수 있습니다.</div>
 	</div>
 	<div class="btnDiv">
 		<input type="button" value="취소" onclick="javascript: location.href='/amor/myAmor/memberInquiryList.do'" class="cancleBtn">
@@ -69,7 +71,7 @@
         let len = filename.length;
         let filetype = filename.substring(len-4, len);
         
-        if(filetype!='.jpg' && filetype!='.png' && filetype!='jpeg' && filetype!='hwp') {
+        if(filetype!='.jpg' && filetype!='.png' && filetype!='jpeg' && filetype!='xlsp' && filetype!='pptx') {
             window.alert('제시된 파일만 등록 가능합니다.');
             rp.value = '';
         }

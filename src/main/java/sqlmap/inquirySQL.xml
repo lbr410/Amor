@@ -60,31 +60,15 @@
 		where
 			inquiry_idx = #{inquiry_idx}
 	</update>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
+	<update id="inquiryUpdateForm" parameterType="com.amor.inquiry.model.InquiryJoinDTO">
+		select i.inquiry_idx, i.member_idx, i.inquiry_subject, i.inquiry_content, i.inquiry_filename,
+			i.inquiry_writedate, i.inquiry_answer, i.inquiry_astatus, i.inquiry_type,
+			m.member_idx, m.member_email, m.member_id, m.member_tel1, m.member_tel2
+		from inquiry i
+		join member m on i.member_idx = m.member_idx
+		where i.inquiry_idx = #{idx}
+	</update>
 
 	<select id="adminMainInquiryList" resultType="com.amor.inquiry.model.InquiryDTO">
 		<![CDATA[select * from (select inquiry_idx, inquiry_subject, inquiry_writedate, inquiry_astatus 

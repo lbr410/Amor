@@ -86,6 +86,11 @@ public class MovieServiceImple implements MovieService {
 	public List<MovieDTO> movieBest() {
 		Map map=new HashedMap();
 		List <MovieDTO> mlists = moviedao.movieBest(map);
+		 for (MovieDTO movieDTO : mlists) {
+		        String originalTitle = movieDTO.getMovie_name();
+		        String truncatedTitle = originalTitle.length() > 10 ? originalTitle.substring(0, 10) + "..." : originalTitle;
+		        movieDTO.setMovie_name(truncatedTitle);
+		    }
 		return mlists;
 	}
 	
@@ -93,6 +98,11 @@ public class MovieServiceImple implements MovieService {
 	public List<MovieDTO> movieBestReview() {
 		Map map=new HashedMap();
 		List <MovieDTO> rlists = moviedao.movieBestReview(map);
+		 for (MovieDTO movieDTO : rlists) {
+		        String originalTitle = movieDTO.getMovie_name();
+		        String truncatedTitle = originalTitle.length() > 10 ? originalTitle.substring(0, 10) + "..." : originalTitle;
+		        movieDTO.setMovie_name(truncatedTitle);
+		    }
 		return rlists;
 	}
 	
@@ -106,6 +116,11 @@ public class MovieServiceImple implements MovieService {
 	public List<MovieDTO> movieCome() {
 		Map map=new HashedMap();
 		List <MovieDTO> lists = moviedao.movieCome(map);
+		 for (MovieDTO movieDTO : lists) {
+		        String originalTitle = movieDTO.getMovie_name();
+		        String truncatedTitle = originalTitle.length() > 10 ? originalTitle.substring(0, 10) + "..." : originalTitle;
+		        movieDTO.setMovie_name(truncatedTitle);
+		    }
 		return lists;
 	}
 	
@@ -113,6 +128,11 @@ public class MovieServiceImple implements MovieService {
 	public List<MovieDTO> movieName() {
 		Map map=new HashedMap();
 		List <MovieDTO> lists = moviedao.movieName(map);
+		 for (MovieDTO movieDTO : lists) {
+		        String originalTitle = movieDTO.getMovie_name();
+		        String truncatedTitle = originalTitle.length() > 10 ? originalTitle.substring(0, 10) + "..." : originalTitle;
+		        movieDTO.setMovie_name(truncatedTitle);
+		    }
 		return lists;
 	}
 	

@@ -53,7 +53,7 @@
 }
 .fileDiv{
 	width: 850px;
-    height: 128px;
+    height: 138px;
     font-size: 16px;
     margin: 0 auto;
     padding: 24px 24px 18px 24px;
@@ -92,7 +92,12 @@
 	cursor: pointer;
 	margin-left: 24px;
 }
-
+.filenavi{
+	font-size: 12px;	
+	text-align: right;
+	margin-top: 10px;
+	margin-right: 190px;
+}
 .textBox2{
 	width: 590px;
 	height: 200px;
