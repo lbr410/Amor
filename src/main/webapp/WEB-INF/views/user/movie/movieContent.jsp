@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,13 +55,28 @@
     <!-- 리뷰 페이지 -->
     <div id="review">
     	<div class="grayspace">
-    		영화의 관람평입니다.
+    		<div class="movieReviewInfo">영화의 관람평을 들어보세요!</div>
     	</div>
-    	
-    	<div>
-    
-    
-    
+    	<div class="movieReviewInfoTable">
+    		<table class="reviewTable">
+    			<tr>
+    				<th class="reviewTH">별점</th>
+    				<th class="reviewTH3">관람평 일부</th>
+    				<th class="reviewTH2">회원 아이디</th>
+    			</tr>
+    			<c:if test="${empty rlists }">
+    				<tr>
+    					<td colspan="3">등록된 관람평이 없습니다.</td>
+    				</tr>
+    			</c:if>
+    			<c:forEach var="rdto" items="${rlists }">
+    			<tr>
+    				<td class="reviewTD"><span class="material-icons">star</span>${rdto.movie_review_star }</td>
+    				<td class="reviewTD3">${rdto.movie_review_content }</td>
+    				<td class="reviewTD2">${rdto.member_id }</td>
+    			</tr>
+    			</c:forEach>
+    		</table>
     	</div>
     </div>
     
@@ -68,10 +84,28 @@
     <!-- 상세정보 페이지 -->
     <div id="moviedetail">
     	<div class="grayspace">
-    		영화 상세정보 페이지입니다.
+    		<table class="movieInfotable">
+    		<tr>
+    			<th class="movieTitleInfo">영화정보</th>
+    			<td></td>
+    		</tr>
+    		<tr>
+    			<th class="movieTitleTh">장르</th> 
+    			<td>${dto.movie_genre }</td>
+    		</tr>
+    		<tr>
+    			<th class="movieTitleTh">감독</th> 
+    			<td>${dto.movie_god }</td>
+    		</tr>
+    		<tr>
+    			<th class="movieTitleTh">출연</th> 
+    			<td>${dto.movie_actor }</td>
+    		</tr>
+    		</table>
     	</div>
     	<div id="stillcontainer">
     		<div id="stillbox">
+    			<div class="stillcutTitle">스틸컷</div>
     			<table class="moviedetailtable">
     				<tr>
     					<td rowspan="2"><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut1 }"></td>
@@ -97,11 +131,15 @@
 	
 	reviewWrite.addEventListener("click", () => {
 		reviewBtn.style.display = "block";
+		detailMovie.style.borderBottom = "none";
+		reviewWrite.style.borderBottom = "2px solid black";
 		movieDetailBtn.style.display = "none";
 	});
 	
 	detailMovie.addEventListener("click", () => {
 		reviewBtn.style.display = "none";
+		reviewWrite.style.borderBottom = "none";
+		detailMovie.style.borderBottom = "2px solid black";
 		movieDetailBtn.style.display = "block";
 	});
 

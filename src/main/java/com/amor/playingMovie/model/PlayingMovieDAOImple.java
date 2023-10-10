@@ -79,4 +79,16 @@ public class PlayingMovieDAOImple implements PlayingMovieDAO {
 		PlayingMovieDTO dto = sqlmap.selectOne("playingMovieContent", playing_movie_idx);
 		return dto;
 	}
+	
+	@Override
+	public List<PlayingMovieJoinDTO> playingMovieListSelect(Map map) {
+		List<PlayingMovieJoinDTO> lists = sqlmap.selectList("playingMovieListSelect", map);
+		return lists;
+	}
+	
+	@Override
+	public int totalCntSelect(int movie_idx) {
+		int count = sqlmap.selectOne("totalCntSelect", movie_idx);
+		return count;
+	}
 }

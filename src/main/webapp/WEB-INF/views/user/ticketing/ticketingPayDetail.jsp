@@ -18,14 +18,14 @@
 		결제 내역 확인 
 	</div>
 </div>
-<div class="border-sub"><f:formatDate value="${ticketing.approved_at }" pattern="yyyy년 MM월 dd일 HH시 mm분" timeZone="UTC"/></div>
+<div class="border-sub">${approved_at }</div>
 <div class="body-inner">
 <div class="payForm">
 	<table class="payTable">
 	<tbody>
 		<tr>
 			<th>예매번호</th>
-			<td>${ticketing.partner_order_id }</td>
+			<td>${partner_order_id }</td>
 			<th>극장명</th>
 			<td>${theater_name }</td>
 		</tr>
@@ -53,12 +53,13 @@
 			<th>인원</th>
 			<td>${ticketing_personnel }</td>
 			<th class="cancel">결제 금액</th>
-			<td class="cancel"><f:formatNumber type="number" value="${ticketing.amount.total }" pattern="#,###"/>원</td>
+			<td class="cancel"><f:formatNumber type="number" value="${amountTotal }" pattern="#,###"/>원</td>
 		</tr>	
 	</tbody>
 	</table>
 	<div class="btnDiv">
-		<a href="ticketingPayDetailConfirm.do"><button class="submitBtn2">확인</button></a>	
+		<a href="/amor/index.do"><button class="submitBtn2">확인</button></a>
+		<a href="/amor/myAmor/ticketingHistory.do"><button class="submitBtn3">예매 내역 보기</button></a>	
 	</div>
 </div>
 </div>

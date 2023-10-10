@@ -16,8 +16,8 @@ public interface PlayingMovieService {
 	public int playingMovieUpdate(PlayingMovieDTO dto);
 	public int playingMovieDelete(int idx);
 	public Map movieRunning(int idx_m);
-	
-	
+	public List<PlayingMovieJoinDTO> playingMovieListSelect(int cp, int ls, int movie_idx);
+	public int totalCntSelect(int movie_idx);
 	
 	public PlayingMovieDTO playingMovieContent(int playing_moive_idx);
 }

@@ -85,7 +85,8 @@
 }
 
 .submitBtn1,
-.submitBtn2 {
+.submitBtn2,
+.submitBtn3 {
   border: none;
   padding: 2px 21px 6px 21px;
   width: 150px;
@@ -102,6 +103,11 @@
 .submitBtn2 {
   background: #1A2C82;
   color: #C7E3FF;
+}
+
+.submitBtn3 {
+	background: #EEEEEE;
+	color: #1A2C82;
 }
 
 .cancel {
