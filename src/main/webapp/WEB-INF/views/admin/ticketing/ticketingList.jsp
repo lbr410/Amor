@@ -40,7 +40,7 @@ function ticketingCancel(tidx,pidx,midx,personnel,seat){
 <div class="contentsearch">
 	<div class="search">
 		<input type="text"  name="ticketingListSearch" placeholder="아이디를 검색해주세요." class="box">
-		<img src="img/Icon_Search.png" class="btn" onclick="ticketingListSearch()">
+		<img src="/amor/resources/img/icon_search.png" class="btn" onclick="ticketingListSearch()">
 	</div>
 </div>
 </div>
