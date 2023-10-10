@@ -48,7 +48,6 @@
 	</div>
 </div>
 <script>
-
 var button = document.getElementById('payBtn');
 var submitBtn= document.getElementById('submitBtn');
 var clickState=false;

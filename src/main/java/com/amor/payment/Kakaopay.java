@@ -75,12 +75,11 @@ public class Kakaopay {
 	   
 	    public KakaoPayApprovalVO kakaoPayInfo (String pg_token, KakaopayDTO kdto) {
 	    	 
-	        System.out.println("kakaInfo1");
+
 	        RestTemplate restTemplate = new RestTemplate();
 	 
 	        // 서버로 요청할 Header
 	        HttpHeaders headers = new HttpHeaders();
-	        System.out.println("kakaInfo2");
 	        headers.add("Authorization","KakaoAK fccc27b54366df53bfa835c02e180aa9");
 	        headers.add("Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
 	        headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");	        
