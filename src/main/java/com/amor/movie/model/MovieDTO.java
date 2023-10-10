@@ -23,6 +23,7 @@ public class MovieDTO {
 	private String movie_stillcut4;
 	private String movie_stillcut5; 
 	private double avg_movie_review_star;
+	private int review_cnt;
 	
 	public MovieDTO() {
 		// TODO Auto-generated constructor stub
@@ -262,6 +263,14 @@ public class MovieDTO {
 
 	public void setAvg_movie_review_star(double avg_movie_review_star) {
 		this.avg_movie_review_star = avg_movie_review_star;
+	}
+
+	public int getReview_cnt() {
+		return review_cnt;
+	}
+
+	public void setReview_cnt(int review_cnt) {
+		this.review_cnt = review_cnt;
 	}
 	
 	

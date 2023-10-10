@@ -97,7 +97,6 @@
         			<input type="button" class="smallBtn2" value="수정" onclick="javascript: location.href='/amor/admin/inventory/inventoryUpdateForm.do?idx=${dto.inventory_idx}'">
     			</c:when>
     			<c:otherwise>
-        			<!-- 원하는 다른 내용을 여기에 추가할 수 있습니다. -->
     			</c:otherwise>
 				</c:choose>
 				<input type="button" class="smallBtn2" value="삭제" onclick="javascript: location.href='/amor/admin/inventory/inventoryDelete.do?idx=${dto.inventory_idx}'">

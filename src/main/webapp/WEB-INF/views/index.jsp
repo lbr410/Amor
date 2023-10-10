@@ -10,9 +10,34 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
-<script defer src="/amor/resources/js/youtube.js"></script>
+
 <script defer src="/amor/resources/js/index.js"></script>
 <title>Amor Cinema</title>
+<script>
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+function onYouTubePlayerAPIReady() {
+  // <div id="player"></div>
+  new YT.Player('player', {
+    videoId: '${blists[0].banner_source}', // 최초 재생할 유튜브 영상 ID
+    playerVars: {
+      autoplay: true, // 자동 재생 유무
+      loop: true, // 반복 재생 유무
+      playlist: '${blists[1].banner_source}' // 반복 재생할 유튜브 영상 ID 목록
+    },
+    events: {
+      // 영상이 준비되었을 때,
+      onReady: function (event) {
+        event.target.mute() // 음소거!
+      }
+    }
+  })
+}
+
+</script>
 </head>
 <%@ include file="../views/user/header.jsp" %>
 <body>
@@ -62,21 +87,16 @@
                      <span title="제목" class="movie_name">${mdto.movie_name }</span>
            			</div>
            			</div>
-                    <div class="info-area">
+                     <div class="info-area">
                         <span class="movie_audience">
                             <span class="rate">
-                                관객수 ${mdto.movie_audience }<em>명 | </em>
+                            <span class="material-icons">star</span> ${mdto.avg_movie_review_star} &nbsp;
                             </span>
                         </span>
-                        <span class="movie_opendate">
-                            개봉일 ${mdto.movie_opendate }
-                        </span>
+                        <span class="movie_opendate">개봉일 : ${mdto.movie_opendate }</span>
                     </div>
                     <div class="book-btn" >
-                        <c:url var="ticketingUrl" value="/amor/ticketing/ticketing.do">
-                       		<c:param name="movie_idx">${mdto.movie_idx }</c:param>
-                       	</c:url>
-                     	<a href="${ticketingUrl}">
+                     	<a href="/amor/ticketing/ticketing.do">
                      		<button type="button" name="ticketing-btn" title="영화 예매하기">예매하기</button>
                      	</a>
                     </div>
@@ -93,11 +113,15 @@
     <div class="promotion">
       <div class="swiper-container">
         <div class="swiper-wrapper">
-        <c:forEach var="adto"  items="${alists }" begin="1" end="3" >
           <div class="swiper-slide">
-            <img src="/amor/resources/upload/ads/${adto.ads_filename }" alt="ads_filename" />
+            <img src="/amor/resources/upload/ads/${alists[0].ads_filename }" alt="ads_filename" />
           </div>
-      	</c:forEach>
+          <div class="swiper-slide">
+            <img src="/amor/resources/upload/ads/${alists[1].ads_filename }" alt="ads_filename" />
+          </div>
+          <div class="swiper-slide">
+            <img src="/amor/resources/upload/ads/${alists[2].ads_filename }" alt="ads_filename" />
+          </div>
         </div>
       </div>
       <div class="swiper-prev">

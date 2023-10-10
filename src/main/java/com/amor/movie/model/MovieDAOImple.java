@@ -76,6 +76,12 @@ public class MovieDAOImple implements MovieDAO {
 	}
 	
 	@Override
+	public List<MovieDTO> movieBestReview(Map map) {
+		List<MovieDTO> rlists = sqlmap.selectList("movieBestReview", map);
+		return rlists;
+	}
+	
+	@Override
 	public int movieBestCnt() {
 		int result = sqlmap.selectOne("movieBestCnt");
 		return 0;
@@ -85,7 +91,16 @@ public class MovieDAOImple implements MovieDAO {
 		List<MovieDTO> lists = sqlmap.selectList("movieCome", map);
 		return lists;
 	}
-	
+	@Override
+	public List<MovieDTO> movieName(Map map) {
+		List<MovieDTO> lists = sqlmap.selectList("movieName", map);
+		return lists;
+	}
+	@Override
+	public int movieComeCnt() {
+		int result = sqlmap.selectOne("movieComeCnt");
+		return 0;
+	}
 	@Override
 	public int getUserSearchTotalCnt(String userSearch) {
 		int result = sqlmap.selectOne("userSearchTotalCnt", userSearch); 

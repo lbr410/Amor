@@ -38,17 +38,18 @@ public class IndexController {
 		List<BannerDTO> blists = bannerService.bannerList();
 		
 		//Movie
-		List<MovieDTO> mlists = movieservice.movieBest(0, 0);
+		List<MovieDTO> mlists = movieservice.movieBest();
 		
 		//ads
-		//List<AdsDTO> alists = adsService.adsList();
+		List<AdsDTO> alists = adsService.adsList();
 		//Store
 		List<ProductDTO> slists = productService.storeSnackList();
 		List<ProductDTO> tlists = productService.storeTicketList();
 
 		ModelAndView mav=new ModelAndView();
+		mav.addObject("blists", blists);
 		mav.addObject("mlists", mlists);
-		//mav.addObject("alists", alists);
+		mav.addObject("alists", alists);
 		mav.addObject("slists", slists);
 		mav.addObject("tlists", tlists);
 		
@@ -56,7 +57,8 @@ public class IndexController {
 		return mav;   
 	}
 	
-	//영화 상새내용 페이지로 이동
+	
+	//영화 상세내용 페이지로 이동
 	@RequestMapping("movieContentForm.do")
 	public ModelAndView movieContent(
 			@RequestParam(value="movie_idx", defaultValue = "0")int movie_idx) {

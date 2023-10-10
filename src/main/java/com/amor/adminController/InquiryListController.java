@@ -93,4 +93,35 @@ public class InquiryListController {
 		mav.setViewName("/admin/msg/adminMsg");
 		return mav;
 	}
+	
+	//관리자 1:1문의 수정으로 이동
+	@RequestMapping("admin/inquiry/inquiryUpdate.do")
+	public ModelAndView inquiriyUpdateForm(
+			@RequestParam(value="idx", defaultValue = "0")int idx) {
+		
+		InquiryJoinDTO dto=inquiryService.inquiryContent(idx);
+		ModelAndView mav=new ModelAndView();
+			mav.addObject("dto", dto);
+			mav.setViewName("/admin/inquiry/inquiryUpdate");
+
+		return mav;
+	}
+	//관리자 수정한 답변 등록
+	@RequestMapping(value="admin/inquiry/inquiryUpdate.do", method = RequestMethod.POST)
+	public ModelAndView inquiryUpdateAnswer(
+			@RequestParam("inquiry_answer") String inquiry_answer, @RequestParam("inquiry_idx") int inquiry_idx) {
+		
+		InquiryJoinDTO dto=new InquiryJoinDTO();
+		dto.setInquiry_answer(inquiry_answer);
+		dto.setInquiry_idx(inquiry_idx);
+		int result=inquiryService.inquiryAnswer(dto);
+		String msg=result>0?"문의에 대한 답변이 등록되었습니다.":"문의에 대한 답변이 등록되지 않았습니다.";
+		ModelAndView mav=new ModelAndView();
+		
+		mav.addObject("msg", msg);
+		mav.addObject("href", "/amor/admin/inquiry/inquiryList.do");
+		mav.setViewName("/admin/msg/adminMsg");
+		return mav;
+	}
+	
 }

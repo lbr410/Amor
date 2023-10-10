@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아모르 관리자 : 1:1 문의 내용</title>
+<title>아모르 관리자 : 1:1 문의 수정</title>
 <link rel="stylesheet" href="/amor/resources/css/admin/inquiryContent.css">
 </head>
 <body>
@@ -55,7 +55,7 @@
     <img src="/amor/resources/upload/inquiry/${Sdto.inquiry_filename}" class="img" alt="inquiry_filename_img">
 	</span>
 	</div>
-	<c:if test="${dto.inquiry_astatus =='y'}">
+
 	<div class="answerDiv">1:1 문의 답변</div>
 	<label class="infoCon">답변내용</label>
 	<div class="answerCon">${dto.inquiry_answer }</div>
@@ -64,8 +64,7 @@
 		<input type="button" class="cancelBtn" value="수정하기" onclick="javascript: location.href='/amor/admin/inquiry/inquiryUpdateForm.do?idx=${dto.inquiry_idx}'">
 		</div>
 		<input type="hidden" name="inquiry_idx" value="${dto.inquiry_idx}">
-	</c:if>
-	<c:if test="${dto.inquiry_astatus =='n'}">
+
 	<form name="inquiryAnswerForm" action="inquiryContent.do" method="post">
 		<div class="AnswerDiv">
 		<label class="info-content">내용</label>
@@ -78,7 +77,6 @@
 		</div>
 		<input type="hidden" name="inquiry_idx" value="${dto.inquiry_idx}">
 	</form>
-	</c:if>
 </div>
 
 <script>

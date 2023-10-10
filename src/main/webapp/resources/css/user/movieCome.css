@@ -37,6 +37,9 @@ a, a:link, a:active, a:visited, a:focus, a:before{
     margin: 0 auto;
 }
 .movieCome a{
+	color: #000000;
+}
+.movieNow a{
 	color: #BCBCBC;
 }
 .left-title {
@@ -50,31 +53,19 @@ a, a:link, a:active, a:visited, a:focus, a:before{
   position: relative;
 }
 .left-title .movieNow {
-	color: #BCBCBC;
-	font-size: 33px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
-	width: 240px;
-	cursor: pointer;
-	color: #000;
+  color: #BCBCBC;
+  font-family: Inter;
+  font-size: 33px;
+  line-height: normal;
+  position: relative;
+  width: 210px;
+  cursor: pointer;
 }
 .left-title .movieCome{
-	color: #BCBCBC;
+	color: #000000;
 	font-size: 33px;
-	font-style: normal;
-	font-weight: 400;
 	line-height: normal;
 	width: 240px;
-	cursor: pointer;
-	color: #000;
-	font-family: Inter;
-	font-size: 33px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: normal;
-	position: relative;
-	width: 210px;
 	cursor: pointer;
 }
 .right-button {
@@ -90,27 +81,34 @@ a, a:link, a:active, a:visited, a:focus, a:before{
   position: relative;
   
 }
-.sortAudience{
-  color: #000000;
-  text-align: right;
-  font: 400 20px;
-  position: relative;
-  width: 80px;
-  cursor: pointer;
+.sort1, .sort2 {
+    background-color: transparent;
+    border: none;
+    color: #BCBCBC;
+    text-decoration: none;
+    cursor: pointer;
 }
-.sortReview {
-  color: #bcbcbc;
-  text-align: right;
-  font: 400 20px ;
-  position: relative; 
-  width: 133px;
-  cursor: pointer;
+.sort:hover {
+    color: #000000;
+    border: none;
+    border-bottom: 2px solid #DDDDDD;
 }
+
+.middle{
+	padding-bottom: 18px;   
+}
+.tmiddle{
+	font-size: 33px;
+}
+/* sort1 또는 sort2가 클릭된 상태 */
+.sort1.active, .sort2.active {
+    color: #333333;
+}
+
 .movie-section{
 	width: 100%;
 	hegiht: 870px;
-	padding-bottom: 60px;
-	margin-bottom: 170px;
+	padding-bottom: 20px;
 }
 /*MOVIE TITLE*/
 .movie-title{
@@ -199,10 +197,6 @@ a, a:link, a:active, a:visited, a:focus, a:before{
 	height: 40px;
 	font-size: 16px;
 }
-.material-icons{
-color: #FFAC33;
-vertical-align: middle;
-}
 .container .rank-movie .title-area{
     width: 230px;
     height: 34px;
@@ -219,25 +213,25 @@ vertical-align: middle;
     width: 230px;
     height: 18px;
     padding-bottom: 18px;
+    vertical-align: middle;
+}
+.material-icons{
+	color: #FECD00;
+	vertical-align: middle;
 }
 .container .rank-movie .info-area .movie_audience .rate span ::after{
     content: '|';
     margin-left: 5px;
     color:#333333;
 }
-.material-icons{
-color: #FFAC33;
-vertical-align: middle;
-
-}
 button{
     background-color: #1A2C82;
     color: #FFFFFF;
     border: none;
     width: 230px;
-    border-radius: 5px;
     text-align: center;
     font-size: 14px;
+    border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
     padding: 18px 0 18px 0;
@@ -247,11 +241,13 @@ button{
     color: #FFFFFF;
     border: none;
     height: 48px;
+    border-radius: 5px;
     text-align: center;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
     padding: 18px 0 18px 0;
+
 }
 .paging {
 	margin-top: 20px;
