@@ -4,21 +4,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아모르 관리자 : 베너 수정</title>
+<title>아모르 관리자 : 배너 수정</title>
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/admin/bannerUpdate.css">
 
 </head>
 <body>
 <%@include file="../admin_header.jsp" %>
 <div class="content">
-<div class="content-title"><label class="titletext">베너 수정</label>
+<div class="content-title"><label class="titletext">배너 수정</label>
 </div>
 <div class="contentMain">
 	<div class="bannerViewDiv">
 		<div class="bannerMid">
-			<div class="mainbanner" id="mainDIV">메인 베너</div>
+			<div class="mainbanner" id="mainDIV">메인 배너</div>
 			<div class="arrow-next"></div>
-			<div class="sidebanner" id="sideDIV">사이드 베너</div>
+			<div class="sidebanner" id="sideDIV">사이드 배너</div>
 		</div>
 	</div>
 	<div class="bannerUpdateFormDiv">

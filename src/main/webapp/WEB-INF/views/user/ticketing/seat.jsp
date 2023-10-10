@@ -20,6 +20,7 @@
 	let priceStack = []; // 가격 스택 배열
 	let alphabet = 'ABCDEFGH'; // 행
 	let seatCheckCnt = 0; // 좌석 체크 갯수
+	let remainSeat = ${playingMovieInfo.playing_movie_remain_seats};
 
 	// 이미 예약된 좌석
 	let alreadyBookedArr = '${playingMovieInfo.playing_movie_seat}'.split(',');
@@ -165,11 +166,14 @@
 		if(seatCheckCnt == 0) {
 			if(personnelCnt < 8) {
 				let number = parseInt(adultCnt.value) + 1;
-				adultCnt.value = number;
-				personnelCnt++;
-				adultC++;
-				
-				priceArr.push(15000);
+				if(remainSeat > adultCnt.value && personnelCnt < remainSeat) {
+					adultCnt.value = number;
+					personnelCnt++;
+					adultC++;					
+					priceArr.push(15000);
+				} else {
+					window.alert('남아있는 좌석수를 확인바랍니다.');
+				}
 			} else {
 				window.alert(eightPersonMsg);
 			}
@@ -204,11 +208,14 @@
 		if(seatCheckCnt == 0) {
 			if(personnelCnt < 8) {
 				let number = parseInt(teenagerCnt.value) + 1;
-				teenagerCnt.value = number;
-				personnelCnt++;
-				teenagerC++;
-				
-				priceArr.push(12000);
+				if(remainSeat > teenagerCnt.value && personnelCnt < remainSeat) {
+					teenagerCnt.value = number;
+					personnelCnt++;
+					teenagerC++;
+					priceArr.push(12000);
+				} else {
+					window.alert('남아있는 좌석수를 확인바랍니다.');
+				}
 			} else {
 				window.alert(eightPersonMsg);
 			}
@@ -242,11 +249,14 @@
 		if(seatCheckCnt == 0) {
 			if(personnelCnt < 8) {
 				let number = parseInt(seniorCnt.value) + 1;
-				seniorCnt.value = number;
-				personnelCnt++;
-				seniorC++;
-				
-				priceArr.push(5000);
+				if(remainSeat > seniorCnt.value && personnelCnt < remainSeat) {
+					seniorCnt.value = number;
+					personnelCnt++;
+					seniorC++;
+					priceArr.push(5000);
+				} else {
+					window.alert('남아있는 좌석수를 확인바랍니다.');
+				}
 			} else {
 				window.alert(eightPersonMsg);
 			}
@@ -280,11 +290,14 @@
 		if(seatCheckCnt == 0) {
 			if(personnelCnt < 8) {
 				let number = parseInt(disabledCnt.value) + 1;
-				disabledCnt.value = number;
-				personnelCnt++;
-				disabledC++;
-				
-				priceArr.push(5000);
+				if(remainSeat > disabledCnt.value && personnelCnt < remainSeat) {
+					disabledCnt.value = number;
+					personnelCnt++;
+					disabledC++;
+					priceArr.push(5000);
+				} else {
+					window.alert('남아있는 좌석수를 확인바랍니다.');
+				}
 			} else {
 				window.alert(eightPersonMsg);
 			}

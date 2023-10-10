@@ -63,16 +63,16 @@ public class SeatController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		/*if(session.getAttribute("sidx") == null) {
+		if(session.getAttribute("sidx") == null) {
 			mav.addObject("msg", "로그인 후 이용 가능합니다.");
 			mav.addObject("goUrl", "/amor/member/login.do");
 			mav.setViewName("/user/msg/userMsg");
-		} else {*/
+		} else {
 			mav.addObject("movieInfo", movieInfo);
 			mav.addObject("playingMovieInfo", playingMovieInfo);
 			mav.addObject("theaterInfo", theaterInfo);
 			mav.setViewName("user/ticketing/seat");
-		//}
+		}
 		return mav;
 	}
 }
