@@ -25,11 +25,17 @@ public interface MovieService {
 	
 	public int stateChange(MovieDTO dto);
 	
-	public List<MovieDTO> movieBest(int cp, int listSize);
+	public List<MovieDTO> movieBest();
+	
+	public List<MovieDTO> movieBestReview();
 	
 	public int movieBestCnt();
 	
-	public List<MovieDTO> movieCome(int cp, int listSize);
+	public List<MovieDTO> movieCome();
+	
+	public List<MovieDTO> movieName();
+	
+	public int movieComeCnt();
 	
 	public int getUserSearchTotalCnt(String userSearch);
 	

@@ -18,24 +18,37 @@ public class MovieContentController {
 	@Autowired
 	private MovieService movieservice; 
 	
-	//현재 상영작 출력
+		//현재 상영작 출력
 		@RequestMapping("movie/movie.do")
-		public ModelAndView movieList(
-				@RequestParam(value="cp", defaultValue = "1") int cp) {
+		public ModelAndView movieList() {
 			
-			int totalCnt=movieservice.movieBestCnt();
-			int listSize=20;
-			int pageSize=5;
-			String pageStr=com.amor.page.PageModule.makePage("/amor/movie/movie.do", totalCnt, listSize, pageSize, cp);
-			
+			int movieBestCnt=movieservice.movieBestCnt();
+		
 			ModelAndView mav=new ModelAndView();
-			List<MovieDTO> mlists = movieservice.movieBest(cp, listSize);
+			
+			List<MovieDTO> mlists = movieservice.movieBest();
+			List<MovieDTO> rlists = movieservice.movieBestReview();
 			mav.addObject("mlists", mlists);
-			mav.addObject("pageStr", pageStr);
+			mav.addObject("rlists", rlists);
+			mav.addObject("movieBestCnt", movieBestCnt);
 			mav.setViewName("/user/movie/movie");
 			return mav;
 		}
 
+		//상영 예정작 출력
+		@RequestMapping("movie/movieCome.do")
+		public ModelAndView movieCome(){
+			
+			int totalCnt=movieservice.movieComeCnt();
+			
+			ModelAndView mav=new ModelAndView();
+			List<MovieDTO> clists = movieservice.movieCome();
+			List<MovieDTO> nlists = movieservice.movieName();
+			mav.addObject("clists", clists);
+			mav.addObject("nlists", nlists);
+			mav.setViewName("/user/movie/movieCome");
+			return mav;
+		}
 		
 		//영화 상세내용
 		@RequestMapping("movie/movieContentForm.do")

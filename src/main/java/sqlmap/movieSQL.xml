@@ -117,17 +117,70 @@ update movie set movie_state = #{movie_state} where movie_idx = #{movie_idx}
 </select>
 
 <select id="movieBest" parameterType="Map" resultType="com.amor.movie.model.MovieDTO">
-select * from movie order by movie_audience desc
+select * from 
+(select rownum as rnum, c.* from (
+select a.*, nvl(b.movie_review_star_avg, 0) as "avg_movie_review_star"
+from movie a
+left join (
+    select movie_idx, avg(movie_review_star) as movie_review_star_avg
+    from movie_review
+    group by movie_idx
+) b on a.movie_idx = b.movie_idx
+where movie_state='y'
+order by a.movie_audience desc)c)d 
+</select>
+
+<select id="movieBestReview" parameterType="Map" resultType="com.amor.movie.model.MovieDTO">
+select * from 
+(select rownum as rnum, c.* from (
+select a.*, nvl(b.movie_review_star_avg, 0) as "avg_movie_review_star"
+from movie a
+left join (
+    select avg(movie_review_star) as movie_review_star_avg, mr.movie_idx, m.movie_name, m.movie_maxage, m.movie_opendate, m.movie_poster, COUNT(*) AS review_cnt
+from movie_review mr
+inner join movie m on mr.movie_idx = m.movie_idx and m.movie_state = 'y'
+group by mr.movie_idx, m.movie_name, m.movie_maxage, movie_opendate, m.movie_poster
+) b on a.movie_idx = b.movie_idx
+where movie_state='y'
+order by review_cnt asc)c)d 
 </select>
 
 <select id="movieCome" parameterType="Map" resultType="com.amor.movie.model.MovieDTO">
-select * from movie where movie_opendate <![CDATA[>=]]> sysdate order by movie_opendate
+select * from 
+(select rownum as rnum, c.* from (
+select a.*, nvl(b.movie_review_star_avg, 0) as "avg_movie_review_star"
+from movie a
+left join (
+    select movie_idx, avg(movie_review_star) as movie_review_star_avg
+    from movie_review
+    group by movie_idx
+) b on a.movie_idx = b.movie_idx
+where movie_opendate <![CDATA[>=]]> sysdate and movie_state='n'
+order by movie_opendate desc)c)d 
+</select>
+
+<select id="movieName" parameterType="Map" resultType="com.amor.movie.model.MovieDTO">
+select * from 
+(select rownum as rnum, c.* from (
+select a.*, nvl(b.movie_review_star_avg, 0) as "avg_movie_review_star"
+from movie a
+left join (
+    select movie_idx, avg(movie_review_star) as movie_review_star_avg
+    from movie_review
+    group by movie_idx
+) b on a.movie_idx = b.movie_idx
+where movie_opendate <![CDATA[>=]]> sysdate and movie_state='n'
+order by movie_name)c)d 
 </select>
 
 <select id="movieBestCnt" resultType="Integer">
 select count(*) from movie where movie_state='y' 
 </select>
-  
+
+<select id="movieComeCnt" resultType="Integer">
+select count(*) from movie where movie_state='n' and movie_opendate <![CDATA[>=]]> sysdate order by movie_opendate desc
+</select>
+
 <select id="movieReviewInfo" parameterType="Map" resultType="com.amor.movieReview.model.MovieReviewDTO">
 	select * from
 		(select rownum as rnum,a.* from 
@@ -140,7 +193,4 @@ select count(*) from movie where movie_state='y'
 	select count(*) from movie_review where movie_idx = #{movie_idx}
 </select>
 
-<select id="movieComeCnt" resultType="Integer">
-  select count(*) from movie where movie_opendate <![CDATA[>=]]> sysdate
-</select>
 </mapper>

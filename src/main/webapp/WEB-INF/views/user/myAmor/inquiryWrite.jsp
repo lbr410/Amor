@@ -13,6 +13,8 @@
 	<div class="body-inner">
 <%@include file="../mypageHeader.jsp" %>
 <div class="mypagetitle"><a href = "/amor/customer/inquiryList.do"><label class="title1">1:1 문의</label></a></div>
+</div></div>
+<div class="mypageContent">
 <form class="inquiryWriteForm" action="inquiryWrite.do" method="post" enctype="multipart/form-data">
 	<div class="typeDiv">
 		<label class="info">분류</label>
@@ -46,10 +48,9 @@
 	</div>
 </form>
 
-</div>
-</div>
 
-<%@include file="../footer.jsp" %>
+
+
 <script>
 	let text = document.getElementById("text");
 	let count = document.getElementById("count");
@@ -68,8 +69,8 @@
         let len = filename.length;
         let filetype = filename.substring(len-4, len);
         
-        if(filetype!='.jpg' && filetype!='.png' && filetype!='jpeg') {
-            window.alert('이미지 파일만 등록 가능합니다.');
+        if(filetype!='.jpg' && filetype!='.png' && filetype!='jpeg' && filetype!='hwp') {
+            window.alert('제시된 파일만 등록 가능합니다.');
             rp.value = '';
         }
     }
@@ -86,6 +87,7 @@
 	}
 	
 </script>
+</div>
 </body>
-
+<%@include file="../footer.jsp" %>
 </html>

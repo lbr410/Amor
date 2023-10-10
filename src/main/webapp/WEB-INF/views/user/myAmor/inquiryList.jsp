@@ -8,6 +8,42 @@
 <meta charset="UTF-8">
 <title>아모르 : 1:1 문의</title>
 <style>
+.body-inner{
+  width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  padding-top: 200px;
+}
+.gray-section{
+   width: 100%;
+   height: 350px;
+   background: #F8F8F8;
+
+}
+.mypagetitle .title1{
+	color: #000;
+	font-size: 20px;
+	font-weight: 500;
+	cursor: pointer;
+}  
+.mypagetitle .title2{
+	color:#979797;
+	font-size: 20px;
+	font-weight: 500;
+	cursor: pointer;
+} 
+.mypageContent{
+	padding-top: 150px;
+	margin: 0 auto;
+	width: 1000px;
+	margin-bottom: 50px;
+}
+#btn4{
+    background: #1A2C82;
+    color: #FFF;
+    border: 1px solid #1A2C82;
+    cursor: pointer;
+}
 .inquiryQBtn{
 	width: 1000px;
 	height: 78px;
@@ -32,12 +68,6 @@ body, h1, h2, p {
 a a:active a:link{
 	text-decoration: none;
 	color: 333333;
-}
-.body-inner {
-    width: 1100px;
-    margin: 0 auto;
-    position: relative;
-    margin-bottom: 148px;
 }
 button {
     background-color: transparent;
@@ -216,6 +246,8 @@ em{
 	<div class="body-inner">
 <%@include file="../mypageHeader.jsp" %>
 <div class="mypagetitle"><a href = "/amor/myAmor/memberInquiryList.do"><label class="title1">1:1 문의</label></a></div>
+</div></div>
+<div class="mypageContent">
 <div class="inquiryQBtn">
 	<a href="/amor/myAmor/inquiryWrite.do"><input type="button" value="1:1문의 쓰기"></a>
 </div>
@@ -291,7 +323,7 @@ em{
 									    <c:otherwise>
 									        -----------------------------------------------------------------
 									        답변 대기중입니다.
-									        -----------------------------------------------------------------
+									        ---------------------------------------------------------------
 									    </c:otherwise>
 									</c:choose>
                                     </div>
@@ -305,11 +337,11 @@ em{
         </div>
     </div>
 
-</div>
-</div>
 
-<%@include file="../footer.jsp" %>
+
+</div>
 </body>
+<%@include file="../footer.jsp" %>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const accHeads = document.querySelectorAll('.acc_head');
