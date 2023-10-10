@@ -26,10 +26,10 @@ public class MovieSearchController {
 		int pageSize = 5;
 		
 		ModelAndView mav = new ModelAndView();
-		if(search != null || search == "없음" || search.equals("") || search == "") {
+		if(search.equals("") || search.equals("없음")) {
 			String pageTag = com.amor.page.PageModuleSearch.makePage("/amor/movie/movieSearch.do", totalCnt, listSize, pageSize, cp, search);
 			List<MovieDTO> lists = movieservice.userMovieSearch(search, cp, listSize);
-			if(lists != null) {
+			if(lists != null || totalCnt != 0) {
 				mav.addObject("lists",lists);
 				mav.addObject("search", search);
 				mav.addObject("pageTag", pageTag);
@@ -37,12 +37,14 @@ public class MovieSearchController {
 				return mav;
 			}else { 
 				mav.addObject("lists",null);
+				mav.addObject("search", search);
 				mav.addObject("pageTag",null);
 				mav.setViewName("/user/movie/movieSearch");
 				return mav;
 			}
 		}else {
 			mav.addObject("lists",null);
+			mav.addObject("search", search);
 			mav.addObject("pageTag",null);
 			mav.setViewName("/user/movie/movieSearch");
 			return mav;

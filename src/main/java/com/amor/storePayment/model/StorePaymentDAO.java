@@ -16,8 +16,8 @@ public interface StorePaymentDAO {
 	
 	
 	public List<MyPageStorePaymentDTO> mypageStorePaymentList(Map<String, Object> parameter);
-	public int mypageStoreCancell(int paymentidx);
-	public List<MyPageStorePaymentDTO> mypageStoreCancellList(Map<String, Object> parameter);
+	public int mypageStoreCancel(int paymentidx);
+	public List<MyPageStorePaymentDTO> mypageStoreCancelList(Map<String, Object> parameter);
 	public int userStoreListTotalCntY(int userIdx);
 	public int userStoreListTotalCntN(int userIdx);
 	

@@ -6,7 +6,6 @@ public class AdminDTO {
 	private String admin_pwd;
 	
 	public AdminDTO() {
-		System.out.println("adminDTO start");
 	}
 	
 	public AdminDTO(String admin_id, String admin_pwd) {

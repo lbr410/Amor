@@ -116,7 +116,7 @@ public class TicketingServiceImple implements TicketingService {
 	   		int playingMovieUpDateResult = ticketingDao.PlayingMovieSeateUpdate(parameter);
 	   
 	   		if(playingMovieUpDateResult > 0) {
-	   			int movieAudience = ticketingDao.getMovieAudience(movieIdx)-1;
+	   			int movieAudience = ticketingDao.getMovieAudience(movieIdx)-ticketSeate.length;
 	   			parameter.clear();
 	   			parameter.put("audience", movieAudience);
 	   			parameter.put("movieIdx", movieIdx);
@@ -155,13 +155,13 @@ public class TicketingServiceImple implements TicketingService {
 	}
    
    @Override
-	public int getTicketingCancellListTotalCnt(int useridx) {
-	   int result = ticketingDao.getTicketingCancellListTotalCnt(useridx);
+	public int getTicketingCancelListTotalCnt(int useridx) {
+	   int result = ticketingDao.getTicketingCancelListTotalCnt(useridx);
 		return result;
 	}
    
    @Override
-   public List<JoinTicketingHistoryDTO> ticketingcancellList(int useridx,int cp, int listSize) {
+   public List<JoinTicketingHistoryDTO> ticketingcancelList(int useridx,int cp, int listSize) {
       
 	   Map<String, Object> parameter = new HashMap<String, Object>();
 		  int start=(cp-1)*listSize+1;
@@ -171,7 +171,7 @@ public class TicketingServiceImple implements TicketingService {
 		  parameter.put("start", start);
 		  parameter.put("end", end);
 	   
-	  List<JoinTicketingHistoryDTO> lists = ticketingDao.ticketingCancellList(parameter);
+	  List<JoinTicketingHistoryDTO> lists = ticketingDao.ticketingCancelList(parameter);
       if(lists != null && lists.size() > 0) {
          DecimalFormat df = new DecimalFormat("#,##0원");
          SimpleDateFormat dateDf = new SimpleDateFormat("yyyy.MM.dd (E) | HH:mm");

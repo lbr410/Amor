@@ -185,8 +185,8 @@ public class StorePaymentServiceImple implements StorePaymentService {
 	}
 	
 	@Override
-	public int mypageStoreCancell(int paymentidx) {
-		int result = storePaymentDao.mypageStoreCancell(paymentidx);
+	public int mypageStoreCancel(int paymentidx) {
+		int result = storePaymentDao.mypageStoreCancel(paymentidx);
 		if(result > 0) {
 			return result;
 		}else {
@@ -195,7 +195,7 @@ public class StorePaymentServiceImple implements StorePaymentService {
 	}
 	
 	@Override
-	public List<MyPageStorePaymentDTO> mypageStoreCancellList(int useridx,int listSize,int cp) {
+	public List<MyPageStorePaymentDTO> mypageStoreCancelList(int useridx,int listSize,int cp) {
 		 
 		Map<String, Object> parameter = new HashMap<String, Object>();
 		  
@@ -207,7 +207,7 @@ public class StorePaymentServiceImple implements StorePaymentService {
 		  parameter.put("start", start);
 		  parameter.put("end", end);
 		  
-		List<MyPageStorePaymentDTO> lists = storePaymentDao.mypageStoreCancellList(parameter);
+		List<MyPageStorePaymentDTO> lists = storePaymentDao.mypageStoreCancelList(parameter);
 		
 		if(lists != null && lists.size() > 0) {
 			DecimalFormat df = new DecimalFormat("#,##0원");

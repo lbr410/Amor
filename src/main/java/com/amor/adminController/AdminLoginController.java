@@ -41,7 +41,8 @@ public class AdminLoginController {
 		String id = (String)session.getAttribute("data");
 		ModelAndView mav = new ModelAndView();
 
-		if(autologin != null && id != null) {
+		if(autologin != null || id != null) {
+			
 			List<DualDTO> chartData = dualService.chartData();
 			List<DualDTO> tableData = dualService.threeTableResult(); // 3개의 테이블(member, movie, notice)의 결과
 			List<DualDTO> memberResult = new ArrayList<DualDTO>();
@@ -65,7 +66,7 @@ public class AdminLoginController {
 			mav.addObject("inquiryResult", inquiryResult);
 			mav.setViewName("admin/adminIndex");
 			
-		}else {
+		}else if(id == null) {
 			mav.setViewName("admin/adminLogin");
 		}
 		return mav;
@@ -116,9 +117,19 @@ public class AdminLoginController {
 	}
 	
 	@RequestMapping("/admin/adminlogout.do")
-	public String adminLogout(HttpServletRequest req) {
-		HttpSession session = req.getSession();
-		session.invalidate();
-		return "admin/adminLogin";
-	}
+	public String adminLogout(
+			HttpServletResponse resp,
+			HttpServletRequest request,
+			HttpSession session,
+			@CookieValue(value = "autologin", required = false)String autologin) {
+			
+			session = request.getSession();
+			session.invalidate();
+			Cookie ck = new Cookie("autologin","admin");
+			ck.setMaxAge(0);
+			resp.addCookie(ck);
+			
+			return "redirect:adminLogin.do";
+		}
+	
 }

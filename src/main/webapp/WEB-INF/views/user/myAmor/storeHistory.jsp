@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아모르 마이페이지 : 스토어 내역</title>
+<title>아모르 : 스토어 구매내역</title>
 <link rel="stylesheet" href="/amor/resources/css/user/storePaymentList.css" />
 </head>
 <style>
@@ -43,14 +43,19 @@
 	margin-left:50px;
 	margin-top:50px;
 }
-
+#btn2{
+    background: #1A2C82;
+    color: #FFF;
+    border: 1px solid #1A2C82;
+    cursor: pointer;
+}
 </style>
 <body>
 <%@include file="../header.jsp" %>
 <div class="gray-section">
 	<div class="body-inner">
 <%@include file="../mypageHeader.jsp" %>
-<div class="mypagetitle"><a href = "/amor/myAmor/storeHistory.do"><label class="title1">상품 내역</label></a> <a href="/amor/myAmor/storeCancellList.do"><label class="title2">취소 내역</label></a></div>
+<div class="mypagetitle"><a href = "storeHistory.do"><label class="title1">상품 내역</label></a> <a href="storeCancelList.do"><label class="title2">취소 내역</label></a></div>
 </div></div>
 <div class="mypageContent">
 <c:if test="${!empty list}">
@@ -100,7 +105,7 @@
    			<a href = "${storeCancell}"><input type = "button" value = "구매 취소" class = "button"></a>
    	</c:if>
   	<c:if test="${temp.status == 'y'}">
-  		<span class = "cancellmsg">구매 완료</span>
+  		<span class = "cancelmsg">구매 완료</span>
   	</c:if>
   </div>
 </div>

@@ -143,14 +143,14 @@
 		        a.store_payment_amount as amount, a.store_payment_price as price, a.store_payment_status as status,
 		        rownum as rnum
 		    from store_payment a, (select * from member where member_idx = #{userIdx}) b, product c
-		    where a.member_idx = b.member_idx and a.product_idx = c.product_idx and a.store_payment_status = 'y'
+		    where a.member_idx = b.member_idx and a.product_idx = c.product_idx and a.store_payment_status in('y','미승인')
 		    order by a.store_payment_idx desc
 		)
 		where rnum >= #{start} and rnum <= #{end}
 		]]>
 	</select>
 	
-	<update id = "mypageStoreCancell" parameterType="Integer">
+	<update id = "mypageStoreCancel" parameterType="Integer">
 		<![CDATA[
 		update store_payment
 		set store_payment_status = 'n'
@@ -158,7 +158,7 @@
 		]]>
 	</update>
 	
-	<select id = "myPageStoreCancellList" parameterType="Map" resultType="com.amor.storePayment.model.MyPageStorePaymentDTO">
+	<select id = "myPageStoreCancelList" parameterType="Map" resultType="com.amor.storePayment.model.MyPageStorePaymentDTO">
 		<![CDATA[
 		select paymentidx, productname, productimg, paymentdate, payment, amount, price, status
 		from (
@@ -175,13 +175,17 @@
 	</select>
 	
 	<select id="userStoreListTotalCntY" parameterType="Integer" resultType="Integer">
-		select count(*) from store_payment
-		where member_idx = #{userIdx} and store_payment_status = 'y'
+		select count(*) from store_payment a, product b
+		where a.member_idx = #{userIdx} 
+		and a.product_idx = b.product_idx 
+		and a.store_payment_status in('y','미승인')		
 	</select>
 	
 	<select id="userStoreListTotalCntN" parameterType="Integer" resultType="Integer">
-		select count(*) from store_payment
-		where member_idx = #{userIdx} and store_payment_status = 'n'
+		select count(*) from store_payment a, product b
+		where a.member_idx = #{userIdx} 
+		and a.product_idx = b.product_idx 
+		and a.store_payment_status in('n')
 	</select>
 	
 	<select id="storeListTotalCnt" resultType="Integer">

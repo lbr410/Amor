@@ -56,8 +56,8 @@ public class TicketingHistoryController {
 		}
 	}
 	
-	@RequestMapping("/myAmor/cancellHistory.do")
-	public ModelAndView cancellHistory(HttpSession session,
+	@RequestMapping("/myAmor/cancelHistory.do")
+	public ModelAndView cancelHistory(HttpSession session,
 			@RequestParam(value = "cp", defaultValue = "1")int cp) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -67,23 +67,23 @@ public class TicketingHistoryController {
 		if(id != null) {
 			
 			int useridx = (int)session.getAttribute("sidx");
-			String pagename = "/amor/myAmor/cancellHistory.do";
-			int totalCnt = ticketingService.getTicketingCancellListTotalCnt(useridx);
+			String pagename = "cancelHistory.do";
+			int totalCnt = ticketingService.getTicketingCancelListTotalCnt(useridx);
 			int listSize = 5;
 			int pageSize = 5;
 			
-			List<JoinTicketingHistoryDTO>lists = ticketingService.ticketingcancellList(useridx,cp,listSize);
+			List<JoinTicketingHistoryDTO>lists = ticketingService.ticketingcancelList(useridx,cp,listSize);
 			
 			if(lists != null) {	
 				String page = com.amor.page.PageModule.makePage(pagename, totalCnt, listSize, pageSize, cp);
 				mav.addObject("list", lists);
 				mav.addObject("page", page);
-				mav.setViewName("user/myAmor/tiketingCancellHistory");
+				mav.setViewName("user/myAmor/tiketingCancelHistory");
 				
 			}else {
 				mav.addObject("lists", null);
 				mav.addObject("page", null);
-				mav.setViewName("user/myAmor/tiketingCancellHistory");				
+				mav.setViewName("user/myAmor/tiketingCancelHistory");				
 			}
 	}else{
 		mav.addObject("msg", "로그인 후 이용가능합니다.");

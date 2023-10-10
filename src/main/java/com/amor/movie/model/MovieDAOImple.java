@@ -94,7 +94,7 @@ public class MovieDAOImple implements MovieDAO {
 	
 	@Override
 	public List<MovieDTO> userMovieListSearch(Map map) {
-		List<MovieDTO> lists = sqlmap.selectList("movieListSearch", map);
+		List<MovieDTO> lists = sqlmap.selectList("userMovieListSearch", map);
 		return lists;
 	}
 	
