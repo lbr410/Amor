@@ -9,22 +9,46 @@
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/admin/playingMovieList.css">
 <script type="text/javascript" src="../../resources/js/httpRequest.js"></script>
 <script>
-function show(aaa) {
+document.addEventListener("DOMContentLoaded", function() {
+    show();
+});
+
+function show() {
 	let selectMovie = document.getElementById('movieName');
 	let movie_idx = selectMovie.options[selectMovie.selectedIndex].value;
 	let param = 'movie_idx='+movie_idx;
-	sendRequest ('playingMovieList.do',param,showResult,'GET');
+	sendRequest ('playingMovieList2.do',param,showResult,'GET');
 
 }
 function showResult() {
 	if (XHR.readyState==4) {
 		if (XHR.status==200){
+		
 			let data=XHR.responseText;
 			let objdata=JSON.parse(data);
-			let movieRunning = objdata.running;
+			let playingList = objdata.lists;
+			let str = '';
 			
-			let movieStart = document.getElementById('movieStart').value
-			let movieDate = document.getElementById('movieDate').value
+			for (let i=0;i<playingList.length;i++) {
+				let dto = playingList[i];
+				str += '<tr><td>'+dto.playing_movie_date+'</td>\n<td>'
+				+dto.playing_movie_start+'</td>\n<td>'+dto.theater_name
+				+'</td>\n<td>'+dto.movie_name+'</td><td><input type="button" class="smallBtn" value="수정" onclick="location.href=\'playingMovieUpdate.do?playing_movie_idx='
+				+dto.playing_movie_idx+'\'">&nbsp;<input type="button" class="smallBtn" value="삭제" onclick="location.href=\'playingMovieDelete.do?playing_movie_idx='
+				+dto.playing_movie_idx+'\'"></td></tr>';
+			}
+
+			let trTag = document.getElementById('playingMovieList');
+			
+			if (str == '') {
+				str = '<td colspan="5">등록된 상영영화가 없습니다.</td>'
+			}
+			
+			trTag.innerHTML = str;
+			
+			let pageList = objdata.playingMoviepageStr;
+			let divTag = document.getElementById('paging');
+			divTag.innerHTML = pageList;
 			
 		}
 	}
@@ -44,7 +68,7 @@ function showResult() {
 </select>
 </div>
 <div class="contentMain">
-<div class="tableDiv">
+<div id="tableDiv" class="tableDiv">
 	<table class="commonTable">
 	<thead>
 	<tr>
@@ -55,27 +79,16 @@ function showResult() {
 		<th>수정 및 삭제</th>
 	</tr>
 	</thead>
-	<tbody>
-		<c:if test="${empty playingMovieLists }">
+	<tbody id="playingMovieList">
 			<tr>
-			<td colspan="4">등록된 상영 영화가 없습니다.</td>
+				<td>playing_movie_date</td>
+				<td>playing_movie_start</td>
+				<td>dto.theater_name</td>
+				<td>dto.movie_name</td>
 			</tr>
-		</c:if>
-		<c:forEach var="dto" items="${playingMovieLists }">
-			<tr>
-			<td>${dto.playing_movie_date }</td>
-			<td>${dto.playing_movie_start }</td>
-			<td>${dto.theater_name }</td>
-			<td>${dto.movie_name }</td>
-			<td><input type="button" class="smallBtn" value="수정" onclick="location.href='playingMovieUpdate.do?playing_movie_idx=${dto.playing_movie_idx}'">
-				<input type="button" class="smallBtn" value="삭제" onclick="location.href='playingMovieDelete.do?playing_movie_idx=${dto.playing_movie_idx}'"></td>
-			</tr>
-		</c:forEach>
 	</tbody>
 	</table>
-	<c:if test="${!empty playingMoviepageStr }">
-		<div class="paging">${playingMoviepageStr }</div>
-	</c:if>
+		<div class="paging" id="paging">${playingMoviepageStr }</div>
 </div>
 </div>
 </div>

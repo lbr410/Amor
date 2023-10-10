@@ -25,40 +25,54 @@ public class PlayingMovieController {
 	@Autowired
 	private PlayingMovieService playingMovieService;
 
+	
 	@RequestMapping("admin/playMovie/playingMovieList.do")
+	public ModelAndView playingMovieList() {
+		
+		List<Map> movieList = playingMovieService.playingMovieAddMovie();
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("movieList", movieList);
+		mav.setViewName("/admin/playMovie/playingMovieList");
+		return mav;
+	}
+	
+	@RequestMapping("admin/playMovie/playingMovieList2.do")
 	public ModelAndView playingMovieList(
 			@RequestParam(value = "cp", defaultValue = "1") int cp,
 			@CookieValue(value = "autologin", required = false) String autologin,
 			@RequestParam(value = "movie_idx", required = false) String movie_idx,
 			HttpSession session) {
 		
-		System.out.println(movie_idx);
+		
 		ModelAndView mav = new ModelAndView();
 		
-		List<Map> movieList = playingMovieService.playingMovieAddMovie();
+		if (movie_idx == null || movie_idx.equals("aa")) {
 		
-		if (movie_idx == null || movie_idx == "aa") {
-		
+			System.out.println("모두보기");
+			
 			int totalCnt=playingMovieService.getTotalCnt();
 			int listSize=10;
 			int pageSize=5;
 			
-			List<PlayingMovieJoinDTO> playingMovieLists=playingMovieService.playingMovieList(cp, listSize);
+			List<PlayingMovieJoinDTO> lists=playingMovieService.playingMovieList(cp, listSize);
 			
 			String playingMoviepageStr=com.amor.page.PageModule.makePage("playingMovieList.do", totalCnt, listSize, pageSize, cp);
 			
-			if (session.getAttribute("data")==null || autologin == null) {
+			if (session.getAttribute("data")==null && autologin == null) {
 				mav.addObject("msg", "로그인 후 이용가능합니다.");
 				mav.addObject("href", "/amor/admin/adminLogin.do");
 				mav.setViewName("/admin/msg/adminMsg");	
 			} else {
-				mav.addObject("movieList", movieList);
 				mav.addObject("playingMoviepageStr", playingMoviepageStr);
-				mav.addObject("playingMovieLists", playingMovieLists);
-				mav.setViewName("/admin/playMovie/playingMovieList");
+				mav.addObject("lists", lists);
+				mav.setViewName("amorJson");
 			}
-		
+			
 		} else {
+			
+			System.out.println("부분 보기");
+			
 			int movie_idx2 = Integer.parseInt(movie_idx);
 			
 			int totalCnt=playingMovieService.totalCntSelect(movie_idx2);
@@ -67,11 +81,13 @@ public class PlayingMovieController {
 			
 			List<PlayingMovieJoinDTO> lists = playingMovieService.playingMovieListSelect(cp, listSize, movie_idx2);
 			
+			String playingMoviepageStr=com.amor.page.PageModule.makePage("playingMovieList.do", totalCnt, listSize, pageSize, cp);
 			
+			mav.addObject("playingMoviepageStr", playingMoviepageStr);
+			mav.addObject("lists", lists);
 			mav.setViewName("amorJson");
 		}
-		
-		
+	
 		return mav;
 		
 	}
