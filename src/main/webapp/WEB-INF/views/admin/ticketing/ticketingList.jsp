@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,9 +19,14 @@ let result = document.all.ticketingListSearch.value;
 	}
 }
 
-function ticketingCancel(idx){
-	let ticketing_idx = idx;
-	let param = 'ticketing_idx='+ticketing_idx;
+function ticketingCancel(tidx,pidx,midx,personnel,seat){
+	let ticketing_idx = tidx;
+	let playing_movie_idx = pidx;
+	let movie_idx = midx;
+	
+	let ticketing_personnel = personnel;
+	let ticketing_seat = seat;
+	let param = 'ticketing_idx='+ticketing_idx+'&playing_movie_idx='+playing_movie_idx+'&movie_idx='+movie_idx+'&ticketing_personnel='+ticketing_personnel+'&ticketing_seat='+ticketing_seat;
 	document.getElementById('ticketingcancel'+ticketing_idx).innerHTML = '취소완료';
 	sendRequest('ticketingstateChk.do',param, null, 'POST');
 }
@@ -78,20 +84,25 @@ function ticketingCancel(idx){
 		<td>${dto.ticketing_idx}</td>
 		<td>${dto.member_id}</td>
 		<td>${dto.member_name}</td>
-		<td>0${dto.member_tel1}-${dto.member_tel2}</td>
+		<td>${dto.member_tel1}-${dto.member_tel2}</td>
 		<td>${dto.movie_name}</td>
 		<td>${dto.theater_name}</td>
 		<td>${dto.ticketing_seat}</td>
 		<td>${dto.playing_movie_date}</td>
-		<td>${dto.playing_movie_start}</td>
-		<td>${dto.ticketing_reservetime}</td>
+		<td>${fn:substring(dto.playing_movie_start, 11, 16)}</td>
+		<td>${dto.ticketing_reservetime_s}</td>
 		<td>${dto.ticketing_price}</td>
 		<td>${dto.ticketing_personnel}</td>
 		<td>${dto.ticketing_payment}</td>
 		<td id="ticketingcancel${dto.ticketing_idx}">
-		<c:if test="${dto.ticketing_state eq 'y'}"><input class="btnticketingcancel" type="button" value="취소" onclick="ticketingCancel(${dto.ticketing_idx})">
+		<c:if test="${dto.btn_cancel eq 'canAble'}">
+			<c:if test="${dto.ticketing_state eq 'y'}">
+			<input class="btnticketingcancel" type="button" value="취소" onclick="ticketingCancel(${dto.ticketing_idx},${dto.playing_movie_idx},${dto.movie_idx},${dto.ticketing_personnel},'${dto.ticketing_seat}')">
+			</c:if>
+			<c:if test="${dto.ticketing_state eq 'n'}">취소완료</c:if>
+			<c:if test="${dto.ticketing_state eq 'r'}">취소불가</c:if>
 		</c:if>
-		<c:if test="${dto.ticketing_state eq 'n'}">취소완료</c:if>
+		<c:if test="${dto.btn_cancel eq 'canDisAble'}">취소불가</c:if>
 		</td>
 	</tr>
 	</c:forEach>

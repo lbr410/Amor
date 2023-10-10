@@ -30,6 +30,8 @@ public interface TicketingService {
 	public int ticketingstateChange(TicketingListDTO dto);
 	
 	
+	
+	
 	public String allMovie(String startd, String endd);
 	public List<TicketingDTO> dayMovie(String startd, String endd);
 	public String dayMovieTotal(String startd, String endd);

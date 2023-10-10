@@ -16,32 +16,32 @@ public class AdsServiceImple implements AdsService {
 
 	@Override
 	public List<AdsDTO> adsList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<AdsDTO> lists = adsdao.adsList();
+		return lists;
 	}
 	
 	@Override
 	public int adsAdd(AdsDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = adsdao.adsAdd(dto);
+		return result;
 	}
 	
 	@Override
 	public AdsDTO adsUpdate1(int ads_idx) {
-		// TODO Auto-generated method stub
-		return null;
+		AdsDTO dto = adsdao.adsUpdate1(ads_idx);
+		return dto;
 	}
 	
 	@Override
 	public int adsUpdate2(AdsDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = adsdao.adsUpdate2(dto);
+		return result;
 	}
 	
 	@Override
 	public int adsDelete(int ads_idx) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = adsdao.adsDelete(ads_idx);
+		return result;
 	}
 
 }

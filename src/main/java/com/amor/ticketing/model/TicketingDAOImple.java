@@ -201,4 +201,7 @@ public class TicketingDAOImple implements TicketingDAO {
 		int result = sqlmap.update("playingMovieUpdateSeat", map);
 		return result;
 	}
+	
+	
+	
 }

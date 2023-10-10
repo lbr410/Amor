@@ -287,7 +287,14 @@ document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+wee
 							let time = ''+movieTimeLists[i].playing_movie_start+'';
 							let timeHHandMM = time.substring(11,16);
 							
-							msg += '<div class="sTimeC" onclick="selectresult('+movieTimeLists[i].playing_movie_idx+','+movieTimeLists[i].theater_idx+','+movieTimeLists[i].movie_idx+')"><div><a href="#" class="cursorblackM">'+ timeHHandMM +'</a></div><div class="sTimeC_2line"><a href="#" class="cursorblack">'+ (movieTimeLists[i].playing_movie_remain_seats)+'/'+ movieTimeLists[i].theater_totalseat +'&nbsp;&nbsp;'+movieTimeLists[i].theater_name+'</a></div></div>';
+							let soldOut = movieTimeLists[i].playing_movie_remain_seats;
+							
+							if(soldOut == 0 || soldOut=='0'){
+								msg += '<div class="sTimeC" ><div><a href="#" class="cursorblackM">'+ timeHHandMM +'</a></div><div class="sTimeC_2line"><a href="#" class="cursorblack">매진'+'&nbsp;&nbsp;'+movieTimeLists[i].theater_name+'</a></div></div>';
+							}else{
+								msg += '<div class="sTimeC" onclick="selectresult('+movieTimeLists[i].playing_movie_idx+','+movieTimeLists[i].theater_idx+','+movieTimeLists[i].movie_idx+')"><div><a href="#" class="cursorblackM">'+ timeHHandMM +'</a></div><div class="sTimeC_2line"><a href="#" class="cursorblack">'+ (movieTimeLists[i].playing_movie_remain_seats)+'/'+ movieTimeLists[i].theater_totalseat +'&nbsp;&nbsp;'+movieTimeLists[i].theater_name+'</a></div></div>';
+								
+							}
 							
 						}
 					}

@@ -7,9 +7,21 @@
 <title>아모르 관리자 : 광고 관리</title>
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/admin/adsList.css">
 <script type="text/javascript">
+
+function adsalready(){
+	window.alert('해당 광고가 이미 등록되어있습니다.');
+}
 function adsAdd(idx){
 	let ads_idx = idx;
 	location.href='adsAdd.do?ads_idx='+ads_idx;
+}
+function adsUpdate(idx){
+	let ads_idx = idx;
+	location.href='adsUpdate.do?ads_idx='+ads_idx;
+}
+function adsDelete(idx){
+	let ads_idx = idx;
+	location.href='adsDelete.do?ads_idx='+ads_idx;
 }
 
 </script>
@@ -22,19 +34,19 @@ function adsAdd(idx){
 <div class="contentMain">
 	<div class="adsViewDiv">
 	<div class="adsMid">
-		<div class="firstads" onclick="adsAdd(1)"
-		<c:if test="${btnOk eq 'bothOpen' || btnOk eq 'sideLock'}"> onclick="adsAdd(1)"</c:if>
-		<c:if test="${!(btnOk eq 'bothOpen' || btnOk eq 'sideLock')}"> onclick="adsalready()"</c:if>
+		<div class="firstads"
+		<c:if test="${btnOk eq 'allOpen' || btnOk eq 'fOpen' || btnOk eq 'fsOpen' || btnOk eq 'ftOpen'}"> onclick="adsAdd(1)"</c:if>
+		<c:if test="${!(btnOk eq 'allOpen' || btnOk eq 'fOpen' || btnOk eq 'fsOpen' || btnOk eq 'ftOpen')}"> onclick="adsalready()"</c:if>
 		>첫번째 광고</div>
 		<div class="arrow-next1"></div>
 		<div class="secondads" 
-		<c:if test="${btnOk eq 'bothOpen' || btnOk eq 'mainLock'}"> onclick="adsAdd(2)"</c:if>
-		<c:if test="${!(btnOk eq 'bothOpen' || btnOk eq 'mainLock')}"> onclick="adsalready()"</c:if>
+		<c:if test="${btnOk eq 'allOpen' || btnOk eq 'sOpen' || btnOk eq 'stOpen' || btnOk eq 'fsOpen'}"> onclick="adsAdd(2)"</c:if>
+		<c:if test="${!(btnOk eq 'allOpen' || btnOk eq 'sOpen' || btnOk eq 'stOpen' || btnOk eq 'fsOpen')}"> onclick="adsalready()"</c:if>
 		>두번째 광고</div>
 		<div class="arrow-next2"></div>
 		<div class="thirdads" 
-		<c:if test="${btnOk eq 'bothOpen' || btnOk eq 'mainLock'}"> onclick="adsAdd(3)"</c:if>
-		<c:if test="${!(btnOk eq 'bothOpen' || btnOk eq 'mainLock')}"> onclick="adsalready()"</c:if>
+		<c:if test="${btnOk eq 'allOpen' || btnOk eq 'tOpen' || btnOk eq 'stOpen' || btnOk eq 'ftOpen'}"> onclick="adsAdd(3)"</c:if>
+		<c:if test="${!(btnOk eq 'allOpen' || btnOk eq 'tOpen' || btnOk eq 'stOpen' || btnOk eq 'ftOpen')}"> onclick="adsalready()"</c:if>
 		>세번째 광고</div>
 	</div>
 	</div>

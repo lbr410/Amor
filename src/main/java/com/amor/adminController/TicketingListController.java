@@ -34,6 +34,7 @@ public class TicketingListController {
 				String pageStr = com.amor.page.PageModule.makePage("/amor/admin/ticketing/ticketingList.do", totalCnt, listSize, pageSize, cp);
 				List<TicketingListDTO> lists = ticketingservice.ticketingList(cp, listSize);
 				int pagsize = lists.size();
+				
 				mav.addObject("lists",lists);
 				mav.addObject("pagsize", pagsize);
 				mav.addObject("pageStr", pageStr);
@@ -44,6 +45,7 @@ public class TicketingListController {
 				String pageStr = com.amor.page.PageModuleSearch.makePage("/amor/admin/ticketing/ticketingList.do", totalCnt, listSize, pageSize, cp, search);
 				List<TicketingListDTO> lists = ticketingservice.ticketingListSearch(cp, listSize,search);
 				int pagsize = lists.size();
+				mav.addObject("lists",lists);
 				mav.addObject("pagsize", pagsize);
 				mav.addObject("pageStr", pageStr);
 				mav.setViewName("admin/ticketing/ticketingList");
@@ -53,12 +55,15 @@ public class TicketingListController {
 	}
 	
 	@RequestMapping("admin/ticketing/ticketingstateChk.do")
-	public ModelAndView ticketingstateChange(int ticketing_idx) {
+	public ModelAndView ticketingstateChange(int ticketing_idx,int playing_movie_idx,int movie_idx,int ticketing_personnel,String ticketing_seat) {
 		String state = "n";
 		TicketingListDTO dto = new TicketingListDTO(ticketing_idx,state);
 		dto.setTicketing_idx(ticketing_idx);
 		dto.setTicketing_state(state);
 		ticketingservice.ticketingstateChange(dto);
+		ticketingservice.cancellationTicket(ticketing_seat,playing_movie_idx,ticketing_idx,movie_idx);
+		
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin/ticketing/ticketingList");
 		return mav;

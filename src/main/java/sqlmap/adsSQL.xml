@@ -3,5 +3,24 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amor.adsSQL">
+<select id="adsList" resultType="com.amor.ads.model.AdsDTO">
+select * from ads order by ads_idx asc
+</select>
+
+<insert id="adsAdd" parameterType="com.amor.ads.model.AdsDTO">
+insert into ads values(#{ads_idx},#{ads_name},#{ads_url},#{ads_filename})
+</insert>
+
+<select id="adsUpdate1" parameterType="Integer" resultType="com.amor.ads.model.AdsDTO">
+select * from ads where ads_idx = #{ads_idx}
+</select>
+<update id="adsUpdate2" parameterType="com.amor.ads.model.AdsDTO">
+update ads set ads_name=#{ads_name}, ads_url=#{ads_url}, ads_filename=#{ads_filename} where ads_idx = #{ads_idx}
+</update>
+
+<delete id="adsDelete" parameterType="Integer">
+delete from ads where ads_idx = #{ads_idx}
+</delete>
+
 
 </mapper>
