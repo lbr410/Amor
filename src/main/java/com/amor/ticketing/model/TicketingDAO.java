@@ -13,11 +13,11 @@ public interface TicketingDAO {
 	public List<JoinTicketingHistoryDTO> ticketingHistoryList(Map<String, Object> parameter);
 	public java.util.Date checkDate(int ticketidx);
 	public int cancellationTicket(int ticketidx);
-	public List<JoinTicketingHistoryDTO> ticketingCancellList(Map<String, Object> parameter);
+	public List<JoinTicketingHistoryDTO> ticketingCancelList(Map<String, Object> parameter);
 	public PlayingMovieDTO getPlayingMovie(int playingMovieidx);
 	public int PlayingMovieSeateUpdate(Map<String, Object> parameter);
 	public int getticketingHistoryTotalCnt(int useridx);
-	public int getTicketingCancellListTotalCnt(int useridx);
+	public int getTicketingCancelListTotalCnt(int useridx);
 	public int getMovieAudience(int movieIdx);
 	public int upDateMovieAudience(Map<String, Object> parameter);
 	

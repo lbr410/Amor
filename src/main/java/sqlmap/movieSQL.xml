@@ -38,12 +38,27 @@ left join (
     from movie_review
     group by movie_idx
 ) b on a.movie_idx = b.movie_idx
-where movie_state = 'y'
 order by a.movie_idx desc)c)d 
 where movie_name like '%${search}%' and rnum >= #{start} and rnum <= #{end}
 ]]>
 </select>
 
+<select id="userMovieListSearch" parameterType="Map" resultType="com.amor.movie.model.MovieDTO">
+<![CDATA[
+select * from 
+(select rownum as rnum, c.* from (
+select a.*, nvl(b.movie_review_star_avg, 0) as "avg_movie_review_star"
+from movie a
+left join (
+    select movie_idx, avg(movie_review_star) as movie_review_star_avg
+    from movie_review
+    group by movie_idx
+) b on a.movie_idx = b.movie_idx
+where movie_state = 'y'
+order by a.movie_idx desc)c)d 
+where movie_name like '%${search}%' and rnum >= #{start} and rnum <= #{end}
+]]>
+</select>
 
 <select id="movieContent" parameterType="Integer" resultType="com.amor.movie.model.MovieDTO">
 select * from movie where movie_idx = #{movie_idx}

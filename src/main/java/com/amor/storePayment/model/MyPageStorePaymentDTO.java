@@ -16,7 +16,6 @@ public class MyPageStorePaymentDTO {
 	private String changePrice;
 	
 	public MyPageStorePaymentDTO() {
-		System.out.println("MaypageStorePaymentDTO start");
 	}
 
 	public MyPageStorePaymentDTO(int paymentidx, String productname, String productimg, Date paymentdate,

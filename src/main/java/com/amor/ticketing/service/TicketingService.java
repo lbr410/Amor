@@ -15,9 +15,9 @@ public interface TicketingService {
 	public List<JoinTicketingHistoryDTO> ticketingHistoryList(int useridx,int cp, int listSize);
 	public boolean cancellationTicket(String seateNum,int playingMovieIdx,int ticketidx,int movieidx);
 	public boolean checkDate(int ticketidx);
-	public List<JoinTicketingHistoryDTO> ticketingcancellList(int useridx,int cp, int listSize);
+	public List<JoinTicketingHistoryDTO> ticketingcancelList(int useridx,int cp, int listSize);
 	public int getticketingHistoryTotalCnt(int useridx);
-	public int getTicketingCancellListTotalCnt(int useridx);
+	public int getTicketingCancelListTotalCnt(int useridx);
 	
 	public List<TicketingSelectMovieDTO> ticketingPlayingMovieList();
 	public List<TicketingSelectMovieDTO> ticketingPlayingMovieTimeList(String movie_name, java.sql.Date sumdate);

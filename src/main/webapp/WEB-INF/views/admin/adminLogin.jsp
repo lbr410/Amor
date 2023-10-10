@@ -26,8 +26,7 @@
 	.loginDiv{
 		width: 333px;
 		height: 552px;
-		margin-top: 500px;
-		
+		margin-top: 500px;		
 	}
 	
 	img {
@@ -46,8 +45,7 @@
 		border-radius: 3px;
 		border-color: #1A2C82;
 		padding-left: 5px;
-		margin-bottom: 10px;
-		
+		margin-bottom: 10px;		
 	}
 	
 	.text2{
@@ -58,7 +56,6 @@
 		border-color: #1A2C82;
 		padding-left: 5px;
 		margin-bottom: 5px;
-		
 	}
 	
 	.button{
@@ -70,7 +67,7 @@
 		background: #1A2C82;
 		color: #C7E3FF;
 		cursor: pointer;
-		margin-top: 20px;
+		margin-top: 10px;
 	}
 	
 	.box{

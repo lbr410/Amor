@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아모르 마이페이지 : 영화예매 내역</title>
+<title>아모르 : 영화예매 내역</title>
 <link rel="stylesheet" type="text/css" href="/amor/resources/css/user/tiketingHistory.css">
 </head>
 <style>
@@ -39,13 +39,19 @@
 	width: 1000px;
 	margin-bottom: 50px;
 }
+#btn1{
+    background: #1A2C82;
+    color: #FFF;
+    border: 1px solid #1A2C82;
+    cursor: pointer;
+}
 </style>
 <body>
 <%@include file="../header.jsp" %>
 <div class="gray-section">
 	<div class="body-inner">
 <%@include file="../mypageHeader.jsp" %>
-<div class="mypagetitle"><a href = "myAmor/ticketingHistory.do"><label class="title1">예매내역</label></a> <a href="myAmor/cancellHistory.do"><label class="title2">취소내역</label></a></div>
+<div class="mypagetitle"><a href = "ticketingHistory.do"><label class="title1">예매내역</label></a> <a href="cancelHistory.do"><label class="title2">취소내역</label></a></div>
 </div></div>
 <div class="mypageContent">
 <c:if test="${!empty list}">
@@ -89,7 +95,7 @@
           결제방법
           </span>
           <span class="span12">
-            ${temp.payment}<br/>
+            카카오페이<br/>
           </span>
           <span class="span13">
           금액

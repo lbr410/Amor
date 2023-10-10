@@ -33,8 +33,8 @@ public class TicketingDAOImple implements TicketingDAO {
 	}
 	
 	@Override
-	public List<JoinTicketingHistoryDTO> ticketingCancellList(Map<String, Object> parameter) {
-		List<JoinTicketingHistoryDTO> lists = sqlmap.selectList("ticketingCancellList", parameter);
+	public List<JoinTicketingHistoryDTO> ticketingCancelList(Map<String, Object> parameter) {
+		List<JoinTicketingHistoryDTO> lists = sqlmap.selectList("ticketingCancelList", parameter);
 		return lists;
 	}
 	
@@ -51,8 +51,8 @@ public class TicketingDAOImple implements TicketingDAO {
 	}
 	
 	@Override
-	public int getTicketingCancellListTotalCnt(int useridx) {
-		int result = sqlmap.selectOne("getTicketingCancellListTotalCnt", useridx);
+	public int getTicketingCancelListTotalCnt(int useridx) {
+		int result = sqlmap.selectOne("getTicketingCancelListTotalCnt", useridx);
 		return result;
 	}
 	

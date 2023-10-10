@@ -49,9 +49,9 @@ public class MyPageStoreHistoryController {
 	}
 	
 	@RequestMapping("myAmor/storeCancellation.do")
-	public ModelAndView mypageStoreCancell(@RequestParam("paymentidx")int paymentidx) {
+	public ModelAndView mypageStoreCancel(@RequestParam("paymentidx")int paymentidx) {
 		ModelAndView mav = new ModelAndView();
-		int result = storePaymentService.mypageStoreCancell(paymentidx);
+		int result = storePaymentService.mypageStoreCancel(paymentidx);
 		if(result == 1) {
 			mav.addObject("msg", "상품이 취소되었습니다.");
 			mav.addObject("goUrl","/amor/myAmor/storeHistory.do");
@@ -65,27 +65,27 @@ public class MyPageStoreHistoryController {
 		}
 	}
 	
-	@RequestMapping("myAmor/storeCancellList.do")
-	public ModelAndView storeCancellList(HttpSession session,
+	@RequestMapping("myAmor/storeCancelList.do")
+	public ModelAndView storeCancelList(HttpSession session,
 			@RequestParam(value = "cp", defaultValue = "1")int cp) {
 		int useridx = (int)session.getAttribute("sidx");
 		ModelAndView mav = new ModelAndView();
 		if(useridx > 0) {
-			String pagename = "/amor/myAmor/storeCancellList.do";
+			String pagename = "/amor/myAmor/storeCancelList.do";
 			int totalCnt = storePaymentService.userStoreListTotalCntN(useridx);
 			int listSize = 5;
 			int pageSize = 5;
-			List<MyPageStorePaymentDTO> lists = storePaymentService.mypageStoreCancellList(useridx,listSize,cp);
+			List<MyPageStorePaymentDTO> lists = storePaymentService.mypageStoreCancelList(useridx,listSize,cp);
 			if(lists != null) {
 				String page = com.amor.page.PageModule.makePage(pagename, totalCnt, listSize, pageSize, cp);
 				mav.addObject("list", lists);
 				mav.addObject("page", page);
-				mav.setViewName("user/myAmor/storeCancellList");
+				mav.setViewName("user/myAmor/storeCancelList");
 				return mav;
 			}else {
 				mav.addObject("list", null);
 				mav.addObject("page", null);
-				mav.setViewName("user/myAmor/storeCancellList");
+				mav.setViewName("user/myAmor/storeCancelList");
 				return mav;
 			}
 		}else {

@@ -82,14 +82,14 @@ public class StorePaymentDAOImple implements StorePaymentDAO {
 	}
 	
 	@Override
-	public int mypageStoreCancell(int paymentidx) {
-		int result = sqlmap.update("mypageStoreCancell", paymentidx);
+	public int mypageStoreCancel(int paymentidx) {
+		int result = sqlmap.update("mypageStoreCancel", paymentidx);
 		return result;
 	}
 	
 	@Override
-	public List<MyPageStorePaymentDTO> mypageStoreCancellList(Map<String, Object> parameter) {
-		List<MyPageStorePaymentDTO> lists = sqlmap.selectList("myPageStoreCancellList", parameter);
+	public List<MyPageStorePaymentDTO> mypageStoreCancelList(Map<String, Object> parameter) {
+		List<MyPageStorePaymentDTO> lists = sqlmap.selectList("myPageStoreCancelList", parameter);
 		return lists;
 	}
 	

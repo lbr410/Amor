@@ -42,18 +42,22 @@
 	where movie_idx = #{movieIdx}
 </select>
 
-<select id="getticketingHistoryTotalCnt" parameterType="Integer" resultType="Integer">
-	select count(*) from ticketing a, playing_movie b
-	where a.member_idx = #{useridx} 
-	and a.ticketing_state in('y','r') 
-	and a.playing_movie_idx = b.playing_movie_idx
+<select id="getticketingHistoryTotalCnt" parameterType="Integer" resultType="Integer">	
+	select count(*) from ticketing a, theater b, playing_movie c, movie d
+	where a.member_idx = ${useridx} 
+	and a.ticketing_state in ('y','r')
+	and b.theater_idx = a.theater_idx 
+	and a.playing_movie_idx = c.playing_movie_idx
+	and c.movie_idx = d.movie_idx
 </select>
 
-<select id="getTicketingCancellListTotalCnt" parameterType="Integer" resultType="Integer">
-	select count(*) from ticketing a, playing_movie b
-	where a.member_idx = #{useridx} 
-	and a.ticketing_state = 'n' 
-	and a.playing_movie_idx = b.playing_movie_idx
+<select id="getTicketingCancelListTotalCnt" parameterType="Integer" resultType="Integer">
+	select count(*) from ticketing a, theater b, playing_movie c, movie d
+	where a.member_idx = ${useridx} 
+	and a.ticketing_state = 'n'
+	and b.theater_idx = a.theater_idx 
+	and a.playing_movie_idx = c.playing_movie_idx
+	and c.movie_idx = d.movie_idx
 </select>
 
 <select id="checkDate" parameterType="Integer" resultType="java.util.Date">
@@ -83,7 +87,7 @@
 	where movie_idx = #{movieIdx}
 </update>
 
-<select id = "ticketingCancellList" parameterType="Map" resultType="com.amor.ticketing.model.JoinTicketingHistoryDTO">
+<select id = "ticketingCancelList" parameterType="Map" resultType="com.amor.ticketing.model.JoinTicketingHistoryDTO">
 <![CDATA[
 		with ticketingHistoryList as (
 	        select rownum as rnum,

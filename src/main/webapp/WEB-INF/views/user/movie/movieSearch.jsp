@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>검색 결과</title>
+<title>아모르 : 검색 결과</title>
 <link rel="stylesheet" href="/amor/resources/css/user/movie.css">
 <!--브라우저 스타일 초기화-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
@@ -15,8 +16,7 @@
 <style>
 	.material-icons{
 	color: #FFAC33;
-	vertical-align: middle;
-	
+	vertical-align: middle;	
 	}
 	.movie_name{
 	font-size: 16px;
@@ -64,12 +64,13 @@
 							<c:if test="${2==temp.movie_maxage}"><img src="/amor/resources/img/maxage_15.png" alt="15세 관람가"></c:if>
 							<c:if test="${3==temp.movie_maxage}"><img src="/amor/resources/img/maxage_18.png" alt="18세 관람가"></c:if>
                         </span>
-                        <span title="제목" class="movie_name">${temp.movie_name }</span>
+                        <span title="제목" class="movie_name">${temp.movie_name}</span>
                     </div>
                     <div class="info-area">
                         <span class="movie_audience">
-                            <span class="rate">
-                            <span class="material-icons">star</span> ${temp.avg_movie_review_star} &nbsp;
+                            <span class="rate">                     
+                            <span class="material-icons">star</span> 
+                            <fmt:formatNumber value="${temp.avg_movie_review_star}" pattern="0.0" /> &nbsp;
                             </span>
                         </span>
                         <span class="movie_opendate">&nbsp;개봉일 : ${temp.movie_opendate}</span>
