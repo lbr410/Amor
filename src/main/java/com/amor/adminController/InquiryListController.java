@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +26,8 @@ public class InquiryListController {
 	@RequestMapping("admin/inquiry/inquiryList.do")
 	public ModelAndView adminInquiryListForm(
 			HttpSession session,
-			@RequestParam(value="cp", defaultValue = "1")int cp) {
+			@RequestParam(value="cp", defaultValue = "1")int cp,
+			@CookieValue(value = "autologin", required = false)String autologin) {
 
 		int totalCnt=inquiryService.inquiryTotalCnt();
 		int listSize=10;
@@ -33,7 +35,7 @@ public class InquiryListController {
 		String pageStr=com.amor.page.PageModule.makePage("/amor/admin/inquiry/inquiryList.do", totalCnt, listSize, pageSize, cp);
 	
 		ModelAndView mav=new ModelAndView();
-		if(session.getAttribute("data")==null) {
+		if(autologin == null && session.getAttribute("data") == null) {
 			mav.addObject("msg", "로그인 후 이용가능합니다.");
 			mav.addObject("href", "/amor/admin/adminLogin.do");
 			mav.setViewName("/admin/msg/adminMsg");
@@ -99,8 +101,10 @@ public class InquiryListController {
 	public ModelAndView inquiriyUpdateForm(
 			@RequestParam(value="idx", defaultValue = "0")int idx) {
 		
-		InquiryJoinDTO dto=inquiryService.inquiryContent(idx);
+		InquiryJoinDTO dto=inquiryService.inquiryUpdateForm(idx);
+		System.out.println(dto.getInquiry_idx());
 		ModelAndView mav=new ModelAndView();
+		
 			mav.addObject("dto", dto);
 			mav.setViewName("/admin/inquiry/inquiryUpdate");
 

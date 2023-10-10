@@ -49,12 +49,6 @@ public class FaqServiceImple implements FaqService {
 	public FaqDTO faqContent(int idx) {
 		FaqDTO dto=faqDao.faqContent(idx);
 		dto.setFaq_content(dto.getFaq_content().replaceAll("\n", "<br>")); 
-		switch (dto.getFaq_type()) {
-			case 1: dto.setFaq_type2("영화관"); break;
-			case 2: dto.setFaq_type2("회원"); break;
-			case 3: dto.setFaq_type2("온라인"); break;
-			case 4: dto.setFaq_type2("스토어");
-		}
 		return dto;
 	}
 	

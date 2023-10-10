@@ -25,8 +25,8 @@ function onYouTubePlayerAPIReady() {
     videoId: '${blists[0].banner_source}', // 최초 재생할 유튜브 영상 ID
     playerVars: {
       autoplay: true, // 자동 재생 유무
-      loop: true, // 반복 재생 유무
-      playlist: '${blists[1].banner_source}' // 반복 재생할 유튜브 영상 ID 목록
+      loop: false, // 반복 재생 유무
+      playlist: '${blists[0].banner_source},${blists[1].banner_source}' // 반복 재생할 유튜브 영상 ID 목록
     },
     events: {
       // 영상이 준비되었을 때,
@@ -139,7 +139,7 @@ function onYouTubePlayerAPIReady() {
 		<div class="left-section">
 			<div class="sub-title">
 				<span class="product_store">패키지</span>
-				<span class="more"><a href="/amor/store.do">더보기</a></span>
+				<span class="more"><a href="/amor/store/store.do">더보기</a></span>
 			</div>
 			<table class="product">
 			<c:forEach var="pdto"  items="${slists }" begin="1" end="2">
@@ -152,7 +152,7 @@ function onYouTubePlayerAPIReady() {
 			    </td>
 			    <td class="product_info">
 			      <div class="product_title">${pdto.product_title }</div>
-			      <div class="product_price">${pdto.product_price }</div>
+			      <div class="product_price">${pdto.product_price2 }<span>원</span></div>
 			    </td>
 			  </tr>
 			  </c:forEach>
@@ -161,9 +161,14 @@ function onYouTubePlayerAPIReady() {
 		<div class="right-section">
 			<div class="sub-title">
 				<span class="product_store">관람권</span>
-				<span class="more"><a href="/amor/store.do">더보기</a></span>
+				<span class="more"><a href="/amor/store/store.do">더보기</a></span>
 			</div>
 			<table class="product">
+			<c:if test="${empty Tlists }">
+			<tr>
+				<td><div class="msg">상품 준비 중입니다.</div></td>
+			</tr>
+			</c:if>
 			<c:forEach var="tdto"  items="${tlists }" begin="1" end="2">
 			  <tr>
 			    <td class="product_img">
@@ -174,7 +179,7 @@ function onYouTubePlayerAPIReady() {
 			    </td>
 			    <td class="product_info">
 			      <div class="product_title">${tdto.product_title }</div>
-			      <div class="product_price">${pdto.product_price }</div>
+			      <div class="product_price">${tdto.product_price2 }<span>원</span></div>
 			    </td>
 			  </tr>
 			  </c:forEach>

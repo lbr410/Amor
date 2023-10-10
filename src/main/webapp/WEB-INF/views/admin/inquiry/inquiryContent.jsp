@@ -18,7 +18,7 @@
 		</div>
 		<div class="titleDiv">
 		<label class="info">전화번호</label>
-		<span>${dto.member_tel1} ${dto.member_tel2 }</span>
+		<span>${dto.member_tel1}) ${dto.member_tel2 }</span>
 		</div>
 		<div class="titleDiv">
 		<label class="info">이메일</label>
@@ -36,9 +36,11 @@
 	    <c:when test="${dto.inquiry_type eq 4}">분실물</c:when>
 	</c:choose>
 	</span>
-	<div class="titleDiv">
-	<label class="info">답변상태</label>
-	<span class="infoSub">${dto.inquiry_astatus }</span>
+	<div class="titleDiv2">
+	<label class="ainfo">답변상태</label>
+	<span class="sub">
+	<c:if test="${dto.inquiry_astatus eq 'y'}">답변완료</c:if>
+	<c:if test="${dto.inquiry_astatus eq 'n' }">답변대기</c:if></span>
 	</div>
 	</div>
 	<div class="inquirySub">
@@ -57,27 +59,33 @@
 	</div>
 	<c:if test="${dto.inquiry_astatus =='y'}">
 	<div class="answerDiv">1:1 문의 답변</div>
-	<label class="infoCon">답변내용</label>
-	<div class="answerCon">${dto.inquiry_answer }</div>
+	<div class="inquiryCon">
+	<label class="infoCon">답변</label>
+	<span class="inquiryConText">${dto.inquiry_answer }</span>
+	</div>
 	<div class="btnDiv">
 		<input type="button" class="cancelBtn" value="목록으로" onclick="javascript: location.href='/amor/admin/inquiry/inquiryList.do'">
-		<input type="button" class="cancelBtn" value="수정하기" onclick="javascript: location.href='/amor/admin/inquiry/inquiryUpdateForm.do?idx=${dto.inquiry_idx}'">
+
 		</div>
 		<input type="hidden" name="inquiry_idx" value="${dto.inquiry_idx}">
 	</c:if>
+	
 	<c:if test="${dto.inquiry_astatus =='n'}">
+	<div class="answerDiv">1:1 문의 답변</div>
+	<div class="pack">
+	<label class="answerw">답변내용</label>
 	<form name="inquiryAnswerForm" action="inquiryContent.do" method="post">
 		<div class="AnswerDiv">
-		<label class="info-content">내용</label>
 			<textarea name="inquiry_answer" maxlength="1000" required="required" class="textBox2" id="text"></textarea>
 		<div class="countDiv">(<span id="count">0</span> / 1000)</div>
 		</div>
 		<div class="btnDiv">
-			<input type="button" value="취소" onclick="javascript: location.href='/amor/admin/inquiry/inquiryList.do'">
-			<input type="submit" value="등록하기">
+			<input type="button" value="취소" onclick="javascript: location.href='/amor/admin/inquiry/inquiryList.do'" class="cancelBtn">
+			<input type="submit" value="등록하기" class="nextBtn">
 		</div>
 		<input type="hidden" name="inquiry_idx" value="${dto.inquiry_idx}">
 	</form>
+	</div>
 	</c:if>
 </div>
 
