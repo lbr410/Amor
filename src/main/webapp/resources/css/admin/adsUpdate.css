@@ -1,1 +1,202 @@
 @charset "UTF-8";
+.adsViewDiv{
+	margin-left:200px;
+	width: 750px;
+	height: 300px;
+	flex-shrink: 0;
+	border-radius: 10px;
+	border: 3px solid #C7E3FF;
+	background: #FFF;
+	margin-bottom: 50px;
+	display : flex;
+    justify-content: center;
+    align-items : center;
+}
+.adsMid{
+	margin-top:150px;
+	width:600px;
+	height: 300px;
+	display: flex;
+}
+
+.firstads{
+	width:150px;
+	height:150px;
+	border: 2px solid black;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 5px;
+	display : flex;
+	justify-content : center;
+	align-items : center;
+	cursor: pointer;
+}
+
+
+.arrow-next1{
+	margin-top:40px;
+	margin-left:10px;
+	position: relative;
+    float:left;
+    width:100px;
+    height:100px;
+    margin-right:5px;
+    float: left;
+}
+.arrow-next1::after {
+    position: absolute;
+    left: 10px; 
+    top: 20px; 
+    content: '';
+    width: 40px; /* 사이즈 */
+    height: 40px; /* 사이즈 */
+    border-top: 5px solid #C5C5C5; /* 선 두께 */
+    border-right: 5px solid #C5C5C5; /* 선 두께 */
+    transform: rotate(45deg); /* 각도 */
+}
+
+.secondads{
+	margin-top:25px;
+	position: relative;
+	width:120px;
+	height:120px;
+	border: 2px solid black;
+	float: left;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 5px;
+	display : flex;
+	justify-content : center;
+	align-items : center;
+	cursor: pointer;
+}
+.arrow-next2{
+	margin-top:40px;
+	margin-left:10px;
+	position: relative;
+    float:left;
+    width:100px;
+    height:100px;
+    margin-right:5px;
+    float: left;
+}
+.arrow-next2::after {
+    position: absolute;
+    left: 10px; 
+    top: 20px; 
+    content: '';
+    width: 40px; /* 사이즈 */
+    height: 40px; /* 사이즈 */
+    border-top: 5px solid #C5C5C5; /* 선 두께 */
+    border-right: 5px solid #C5C5C5; /* 선 두께 */
+    transform: rotate(45deg); /* 각도 */
+}
+.thirdads{
+	margin-top:40px;
+	position: relative;
+	width:100px;
+	height:100px;
+	border: 2px solid black;
+	float: left;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 5px;
+	display : flex;
+	justify-content : center;
+	align-items : center;
+	cursor: pointer;
+}
+
+.adsUpdateFormDiv{
+	margin-left:200px;
+}
+
+.adsUpdateFormDiv input[type=text]{
+	margin-left:10px;
+	margin-bottom:20px;
+	width: 690px;
+	height: 45px;
+	border-radius: 3px;
+	border: 1px solid #D9D9D9;
+	gap: 10px;
+	padding-left: 7px;
+}
+
+.adsUpdateSumit{
+	padding-top:20px;
+	text-align: right;
+}
+
+.adsUpdateSumit input[type=button]{
+    border:none;
+    padding: 2px 21px 6px 21px;
+    width: 150px;
+    height: 40px;
+    border-radius: 3px;
+    background: #EEEEEE;
+    color: #1A2C82;
+    cursor: pointer;
+}
+
+.adsUpdateSumit input[type=submit]{
+    border:none;
+    padding: 2px 21px 6px 21px;
+    width: 150px;
+    height: 40px;
+    border-radius: 3px;
+    background: #1A2C82;
+    color: #C7E3FF;
+    cursor: pointer;
+}
+
+.adsimgth{
+	border:1px soild black;
+	padding-top:75px;
+}
+
+.btn_adsPimg{
+	margin-left:15px;
+	margin-top:5px;
+	border:none;
+	width: 120px;
+    height: 35px;
+	border-radius: 3px;
+	background: #EEEEEE;
+    color: #1A2C82;
+	text-align: center;
+	justify-content: center;
+    align-items: center;display: flex;
+    cursor: pointer;
+}
+
+label{
+	text-align: center;
+	display: inline-block;
+	
+}
+
+.adsImg{
+	display:inline-block;
+}
+
+
+.adsPreviewimg{
+	margin-left:20px;
+	display:inline-block;
+	width: 100px;
+	height: 100px;
+	border:1px solid #D9D9D9;
+	object-fit: contain;
+}
+
+.adsPreviewimg img{
+	width: 100px;
+	height: 100px;
+	object-fit: contain;
+	
+}
+
+#adsPreview{
+	object-fit: contain;
+}
+
+#btn_adsimg{
+	display: none;
+}

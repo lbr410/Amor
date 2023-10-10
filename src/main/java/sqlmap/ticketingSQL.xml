@@ -181,7 +181,7 @@ where ticketing_idx = #{ticketidx}
 	<select id="ticketingPlayingMovieList" resultType="com.amor.ticketing.model.TicketingSelectMovieDTO">
 	<![CDATA[
 		select movie_maxage, movie_name, a.movie_idx as "movie_idx" 
-		from (select * from movie)a, (select movie_idx from playing_movie group by movie_idx) b 
+		from (select * from movie)a, (select movie_idx from playing_movie where playing_movie_start >= sysdate and playing_movie_start <= sysdate+6 group by movie_idx ) b 
 		where a.movie_idx = b.movie_idx
 	]]>
 	</select>
@@ -235,11 +235,11 @@ where ticketing_idx = #{ticketidx}
 	<select id="ticketingList" parameterType="Map" resultType="com.amor.ticketing.model.TicketingListDTO">
 	<![CDATA[
 	select * from 
-	(select rownum as rnum, g.* from (select ticketing_idx, b.member_idx as "member_idx", e.playing_movie_idx as "playing_movie_idx", f.theater_idx as "theater_idx" , a.member_id as "member_id", a.member_name as "member_name", a.member_tel1 as "member_tel1", a.member_tel2 as "member_tel2", e.movie_name as "movie_name", f.theater_name ,ticketing_seat, e.playing_movie_date as "playing_movie_date", e.playing_movie_start as "playing_movie_start", ticketing_reservetime, ticketing_price, ticketing_personnel, ticketing_payment, ticketing_state  
-	from (select * from member) a, ticketing b, 
-    (select playing_movie_idx, playing_movie_date, playing_movie_start, d.movie_idx as "movie_idx", movie_name from (select movie_idx, movie_name from movie) c, playing_movie d where c.movie_idx = d.movie_idx) e,
-    (select theater_idx ,theater_name from theater) f
-	where a.member_idx = b.member_idx and b.playing_movie_idx = e.playing_movie_idx and b.theater_idx = f.theater_idx
+	(select rownum as rnum, g.* 
+    from (select ticketing_idx, b.member_idx as "member_idx", c.movie_idx as "movie_idx", e.playing_movie_idx as "playing_movie_idx", f.theater_idx as "theater_idx" , a.member_id as "member_id", a.member_name as "member_name", a.member_tel1 as "member_tel1", a.member_tel2 as "member_tel2", c.movie_name as "movie_name", f.theater_name ,ticketing_seat, e.playing_movie_date as "playing_movie_date", e.playing_movie_start as "playing_movie_start", ticketing_reservetime, ticketing_price, ticketing_personnel, ticketing_payment, ticketing_state  
+	from 
+    member a, ticketing b, playing_movie e, movie c, theater f
+	where a.member_idx = b.member_idx and b.playing_movie_idx = e.playing_movie_idx and b.theater_idx = f.theater_idx and e.movie_idx = c.movie_idx
 	order by ticketing_idx desc) g)h
 	where rnum >= #{start} and rnum <= #{end}
 	]]>
@@ -248,11 +248,11 @@ where ticketing_idx = #{ticketidx}
 	<select id="ticketingListSearch" parameterType="Map" resultType="com.amor.ticketing.model.TicketingListDTO">
 	<![CDATA[
 	select * from 
-	(select rownum as rnum, g.* from (select ticketing_idx, b.member_idx as "member_idx", e.playing_movie_idx as "playing_movie_idx", f.theater_idx as "theater_idx" , a.member_id as "member_id", a.member_name as "member_name", a.member_tel1 as "member_tel1", a.member_tel2 as "member_tel2", e.movie_name as "movie_name", f.theater_name ,ticketing_seat, e.playing_movie_date as "playing_movie_date", e.playing_movie_start as "playing_movie_start", ticketing_reservetime, ticketing_price, ticketing_personnel, ticketing_payment, ticketing_state  
-	from (select * from member) a, ticketing b, 
-    (select playing_movie_idx, playing_movie_date, playing_movie_start, d.movie_idx as "movie_idx", movie_name from (select movie_idx, movie_name from movie) c, playing_movie d where c.movie_idx = d.movie_idx) e,
-    (select theater_idx ,theater_name from theater) f
-	where a.member_idx = b.member_idx and b.playing_movie_idx = e.playing_movie_idx and b.theater_idx = f.theater_idx and and a.member_id like '%${search}%'
+	(select rownum as rnum, g.* 
+    from (select ticketing_idx, b.member_idx as "member_idx", c.movie_idx as "movie_idx", e.playing_movie_idx as "playing_movie_idx", f.theater_idx as "theater_idx" , a.member_id as "member_id", a.member_name as "member_name", a.member_tel1 as "member_tel1", a.member_tel2 as "member_tel2", c.movie_name as "movie_name", f.theater_name ,ticketing_seat, e.playing_movie_date as "playing_movie_date", e.playing_movie_start as "playing_movie_start", ticketing_reservetime, ticketing_price, ticketing_personnel, ticketing_payment, ticketing_state  
+	from 
+    member a, ticketing b, playing_movie e, movie c, theater f
+	where a.member_idx = b.member_idx and b.playing_movie_idx = e.playing_movie_idx and b.theater_idx = f.theater_idx and e.movie_idx = c.movie_idx and a.member_id like '%${search}%'
 	order by ticketing_idx desc) g)h
 	where rnum >= #{start} and rnum <= #{end}
 	]]>

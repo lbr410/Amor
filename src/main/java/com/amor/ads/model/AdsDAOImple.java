@@ -15,32 +15,32 @@ public class AdsDAOImple implements AdsDAO {
 	
 	@Override
 	public List<AdsDTO> adsList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<AdsDTO> lists = sqlmap.selectList("adsList");
+		return lists;
 	}
 	
 	@Override
 	public int adsAdd(AdsDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = sqlmap.insert("adsAdd",dto);
+		return result;
 	}
 	
 	@Override
 	public AdsDTO adsUpdate1(int ads_idx) {
-		// TODO Auto-generated method stub
-		return null;
+		AdsDTO dto = sqlmap.selectOne("adsUpdate1", ads_idx);
+		return dto;
 	}
 	
 	@Override
 	public int adsUpdate2(AdsDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = sqlmap.update("adsUpdate2", dto);
+		return result;
 	}
 	
 	@Override
 	public int adsDelete(int ads_idx) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = sqlmap.delete("adsDelete", ads_idx);
+		return result;
 	}
 	
 	

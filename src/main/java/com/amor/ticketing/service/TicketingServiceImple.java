@@ -290,6 +290,21 @@ public class TicketingServiceImple implements TicketingService {
       map.put("start", start);
       map.put("end", end);
       List<TicketingListDTO> lists = ticketingDao.ticketingList(map);
+      TicketingListDTO dto = null;
+      java.util.Date nowDate = new java.util.Date();
+      SimpleDateFormat dateDf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+      //현재시간 list시간 비교
+      for(int i = 0 ; i < lists.size(); i++) {
+    	  dto = lists.get(i);
+    	  dto.setTicketing_reservetime_s(dateDf.format(lists.get(i).getTicketing_reservetime()));
+    	  if(nowDate.compareTo(lists.get(i).getPlaying_movie_start()) < 0) {
+    		  dto.setBtn_cancel("canAble");
+          }else{
+        	  dto.setBtn_cancel("canDisAble");
+          }
+    	  lists.set(i, dto);
+      }
+
       return lists;
    }
    
@@ -301,7 +316,21 @@ public class TicketingServiceImple implements TicketingService {
       map.put("start", start);
       map.put("end", end);
       map.put("search",search);
-      List<TicketingListDTO> lists = ticketingDao.ticketingList(map);
+      List<TicketingListDTO> lists = ticketingDao.ticketingListSearch(map);
+      TicketingListDTO dto = null;
+      java.util.Date nowDate = new java.util.Date();
+      SimpleDateFormat dateDf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+      //현재시간 list시간 비교
+      for(int i = 0 ; i < lists.size(); i++) {
+    	  dto = lists.get(i);
+    	  dto.setTicketing_reservetime_s(dateDf.format(lists.get(i).getTicketing_reservetime()));
+    	  if(nowDate.compareTo(lists.get(i).getPlaying_movie_start()) < 0) {
+    		  dto.setBtn_cancel("canAble");
+          }else{
+        	  dto.setBtn_cancel("canDisAble");
+          }
+    	  lists.set(i, dto);
+      }
       return lists;
    }
    
@@ -380,4 +409,6 @@ public class TicketingServiceImple implements TicketingService {
 		int result = ticketingDao.playingMovieUpdateSeat(map);
 		return result;
 	}
+  
+ 
 }

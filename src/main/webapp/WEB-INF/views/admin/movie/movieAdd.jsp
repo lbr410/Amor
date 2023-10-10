@@ -33,9 +33,9 @@ function checkNumber(event) {
             var fileInput = document.getElementById('btn_movieposter');
             if (!fileInput.files || fileInput.files.length == 0) {
                 alert('파일을 선택해주세요.');
-                return false; // 업로드를 막습니다.
+                return false;
             }
-            return true; // 파일이 선택되었으므로 업로드를 허용합니다.
+            return true;
         }
 
 

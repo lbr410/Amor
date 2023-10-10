@@ -31,6 +31,7 @@ public interface TicketingDAO {
 	public int getTotalSearchCnt(String search);
 	public int ticketingstateChange(TicketingListDTO dto);
 	
+	
 	public int allMovie(Map map);
 	public List<TicketingDTO> dayMovie(Map map);
 	public int dayMovieTotal(Map map);

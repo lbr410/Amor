@@ -19,6 +19,15 @@ function adsimgPreview(input) {
 	    document.getElementById('imgadsPreview').src = "";
 	  }
 	}
+	
+function checkFileUpload() {
+    var fileInput = document.getElementById('btn_adsimg');
+    if (!fileInput.files || fileInput.files.length == 0) {
+        alert('파일을 선택해주세요.');
+        return false;
+    }
+    return true;
+}	
 
 </script>
 
@@ -31,15 +40,15 @@ function adsimgPreview(input) {
 <div class="contentMain">
 	<div class="adsViewDiv">
 	<div class="adsMid">
-		<div class="firstads">첫번째 광고</div>
+		<div class="firstads" id="firstDiv">첫번째 광고</div>
 		<div class="arrow-next1"></div>
-		<div class="secondads">두번째 광고</div>
+		<div class="secondads" id="secondDiv">두번째 광고</div>
 		<div class="arrow-next2"></div>
-		<div class="thirdads">세번째 광고</div>
+		<div class="thirdads" id="thirdDiv">세번째 광고</div>
 	</div>
 	</div>
 	<div class="adsAddFormDiv">
-		<form name="adsAdd" action="adsAdd.do" method="post" enctype="multipart/form-data">
+		<form name="adsAdd" action="adsAdd.do" method="post" enctype="multipart/form-data" onsubmit="return checkFileUpload()">
 			<input type="hidden" name="ads_idx" value="${ads_idx}">
 			<table>
 				<tr>
@@ -53,7 +62,7 @@ function adsimgPreview(input) {
 					<td>
 					<div class="adsImg">
 						<label for="btn_adsimg"><div class="btn_adsPimg">이미지 선택</div></label>
-						<input id="btn_adsimg" type="file" name="ads_img" onchange="adsimgPreview(this);">
+						<input id="btn_adsimg" type="file" name="ads_filename" onchange="adsimgPreview(this);">
 						<div class="adsPreviewimg"><img id="imgadsPreview"></div>
 					</div>
 					</td>
@@ -69,5 +78,24 @@ function adsimgPreview(input) {
 	</div>
 </div>
 </div>
+<script type="text/javascript">
+let curparam = window.location.search;
+let lastcurparam = curparam.substr(-1);
+
+let firstDiv = document.getElementById('firstDiv');
+let secondDiv = document.getElementById('secondDiv');
+let thirdDiv = document.getElementById('thirdDiv');
+
+if(lastcurparam == 1 || lastcurparam == '1'){
+	firstDiv.style.backgroundColor = '#C5C5C5';
+
+}else if(lastcurparam == 2 || lastcurparam == '2'){
+	secondDiv.style.backgroundColor = '#C5C5C5';
+
+}else if(lastcurparam == 3 || lastcurparam == '3'){
+	thirdDiv.style.backgroundColor = '#C5C5C5';
+}
+
+</script>
 </body>
 </html>

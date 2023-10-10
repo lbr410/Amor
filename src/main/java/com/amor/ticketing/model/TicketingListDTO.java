@@ -1,6 +1,6 @@
 package com.amor.ticketing.model;
 
-import java.sql.*;
+import java.util.*;
 
 public class TicketingListDTO {
 
@@ -8,6 +8,7 @@ public class TicketingListDTO {
 	private int member_idx;			// 멤버테이블 예매내역 테이블 조인
 	private int playing_movie_idx;	// 상영영화 예매내역 테이블 조인
 	private int theater_idx;		// 상영관테이블 예매내역 테이블 조인
+	private int movie_idx;		// 영화테이블 예매내역 테이블 조인
 	
 	private String member_id;		// 멤버테이블 
 	private String member_name;		// 멤버테이블 
@@ -17,12 +18,15 @@ public class TicketingListDTO {
 	private String theater_name;	// 상영관테이블 예매 내역테이블 조인 
 	private String ticketing_seat;	
 	private java.sql.Date playing_movie_date;		// 상영영화 테이블 
-	private java.sql.Date playing_movie_start;		// 상영시작 시간(시 : 분) 
-	private java.sql.Date ticketing_reservetime;	// 실 예매시간 
+	private Date playing_movie_start;		// 상영시작 시간(시 : 분) 
+	private Date ticketing_reservetime;	// 실 예매시간 
 	private int ticketing_price; 
 	private int ticketing_personnel;
 	private String ticketing_payment;
 	private String ticketing_state;
+	
+	private String btn_cancel;
+	private String ticketing_reservetime_s;
 	
 	public TicketingListDTO() {
 		// TODO Auto-generated constructor stub
@@ -34,15 +38,16 @@ public class TicketingListDTO {
 		this.ticketing_state = ticketing_state;
 	}
 
-	public TicketingListDTO(int ticketing_idx, int member_idx, int playing_movie_idx, int theater_idx, String member_id,
+	public TicketingListDTO(int ticketing_idx, int member_idx, int playing_movie_idx, int theater_idx, int movie_idx,String member_id,
 			String member_name, String member_tel1, String member_tel2, String movie_name, String theater_name,
-			String ticketing_seat, Date playing_movie_date, Date playing_movie_start, Date ticketing_reservetime,
+			String ticketing_seat, java.sql.Date playing_movie_date, Date playing_movie_start, Date ticketing_reservetime,
 			int ticketing_price, int ticketing_personnel, String ticketing_payment, String ticketing_state) {
 		super();
 		this.ticketing_idx = ticketing_idx;
 		this.member_idx = member_idx;
 		this.playing_movie_idx = playing_movie_idx;
 		this.theater_idx = theater_idx;
+		this.movie_idx = movie_idx;
 		this.member_id = member_id;
 		this.member_name = member_name;
 		this.member_tel1 = member_tel1;
@@ -57,6 +62,34 @@ public class TicketingListDTO {
 		this.ticketing_personnel = ticketing_personnel;
 		this.ticketing_payment = ticketing_payment;
 		this.ticketing_state = ticketing_state;
+	}
+	
+	
+	
+	
+
+	public String getTicketing_reservetime_s() {
+		return ticketing_reservetime_s;
+	}
+
+	public void setTicketing_reservetime_s(String ticketing_reservetime_s) {
+		this.ticketing_reservetime_s = ticketing_reservetime_s;
+	}
+
+	public String getBtn_cancel() {
+		return btn_cancel;
+	}
+
+	public void setBtn_cancel(String btn_cancel) {
+		this.btn_cancel = btn_cancel;
+	}
+
+	public int getMovie_idx() {
+		return movie_idx;
+	}
+
+	public void setMovie_idx(int movie_idx) {
+		this.movie_idx = movie_idx;
 	}
 
 	public int getTicketing_idx() {
@@ -155,19 +188,19 @@ public class TicketingListDTO {
 		this.playing_movie_date = playing_movie_date;
 	}
 
-	public java.sql.Date getPlaying_movie_start() {
+	public Date getPlaying_movie_start() {
 		return playing_movie_start;
 	}
 
-	public void setPlaying_movie_start(java.sql.Date playing_movie_start) {
+	public void setPlaying_movie_start(Date playing_movie_start) {
 		this.playing_movie_start = playing_movie_start;
 	}
 
-	public java.sql.Date getTicketing_reservetime() {
+	public Date getTicketing_reservetime() {
 		return ticketing_reservetime;
 	}
 
-	public void setTicketing_reservetime(java.sql.Date ticketing_reservetime) {
+	public void setTicketing_reservetime(Date ticketing_reservetime) {
 		this.ticketing_reservetime = ticketing_reservetime;
 	}
 
