@@ -24,10 +24,13 @@ function deleteClick(idx) {
 	let param='idx='+idx;
 	let confirm=window.confirm('삭제하시겠습니까?');
 	if(confirm){
-		sendRequest('reviewListDelete.do',param,null,'GET');	
-		window.location.reload();
+		sendRequest('reviewListDelete.do',param,function (){
+			var deleteId=document.getElementById('delete'+idx);
+			deleteId.remove();
+		},'GET');	
 	}
 }
+
 function reviewSearch() {
 	var search=document.getElementById('reviewSearch').value;
 	var param='search='+search;
@@ -74,7 +77,7 @@ function reviewSearch() {
 			</tr>
 		</c:if>	
 		<c:forEach var="dto" items="${lists }">
-		<tr>
+		<tr id="delete${dto.movie_review_idx }">
 			<td class="idTd" id="idxId">${dto.movie_review_idx }</td>
 			<td>${dto.member_id }</td>
 			<td class="nameTd">${dto.movie_name }</td>

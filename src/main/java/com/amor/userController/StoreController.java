@@ -5,7 +5,8 @@ import java.net.*;
 import java.net.URL;
 import java.net.http.HttpRequest;
 import java.text.*;
-import java.time.LocalDate;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -46,6 +47,8 @@ public class StoreController {
 	private int product_idx;
 	private String totalPrice;
 	private int dbnum;
+	private String product_title;
+	private String paytime;
 
 
 	@RequestMapping("store/store.do")
@@ -87,10 +90,8 @@ public class StoreController {
 			mav.addObject("msg", "로그인 후 이용가능합니댜.");
 			mav.addObject("goUrl", "/amor/member/login.do");
 			mav.setViewName("/user/msg/userMsg");
-		}else {
-			
-			ProductDTO dto=productService.storePayForm(idx,num);
-				
+		}else {			
+			ProductDTO dto=productService.storePayForm(idx,num);			
 			mav.addObject("num", num);
 			mav.addObject("dto", dto);
 			mav.setViewName("/user/store/storePayment");
@@ -102,7 +103,7 @@ public class StoreController {
 	
 	@RequestMapping(value="store/storeSubmit.do",method = RequestMethod.POST)
 	public  String storeSubmit(
-			@RequestParam("idx") int idx,
+			@RequestParam(value="idx", defaultValue = "0") int idx,
 			@RequestParam("num") int num,
 			HttpSession session) {
 		ProductDTO pdto=productService.storeKakao(idx, num);
@@ -113,9 +114,10 @@ public class StoreController {
 		String okpage="http://localhost:9090/amor/store/kakaoOk.do";
 		String cancelpage="http://localhost:9090/amor/store/kakaoFail.do";
 		String failpage="http://localhost:9090/amor/store/kakaoCancel.do";
-		String product_idx=Integer.toString(pdto.getProduct_idx());
 		
-		this.product_idx=pdto.getProduct_idx();
+		product_idx=pdto.getProduct_idx();	
+		product_title=pdto.getProduct_title();
+	
 		totalPrice=total_amount;
 		dbnum=num;
 
@@ -123,33 +125,42 @@ public class StoreController {
 		Kakaopay kaka=new Kakaopay();
 		return "redirect:" + kaka.kakaoPayReady(kdto);
 	}
-	
-	
-	
+		
 	@RequestMapping("store/kakaoOk.do")
-	public ModelAndView storeDetailForm(
+	public ModelAndView storeInsert(
 			@RequestParam("pg_token")String pg_token,
 			HttpSession session) {
 
-		String sid=(String)session.getAttribute("sid");
 		int sidx=(Integer)session.getAttribute("sidx");
 		int totalPriceInt=Integer.parseInt(totalPrice);
 		
 		int result=storePaymentService.storePayInert(product_idx, sidx, dbnum,totalPriceInt);
-		System.out.println(result);
 		
+		LocalDateTime time = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formatTime = time.format(formatter);
+		paytime=formatTime;
+		
+        ModelAndView mav=new ModelAndView();
+        mav.addObject("msg", "결제가 완료되었습니다.");
+        mav.addObject("goUrl", "/amor/store/storeDetail.do");
+        mav.setViewName("/user/msg/userMsg");
         
-        System.out.println("ok pdidx: "+product_idx);
-        System.out.println("ok pdtotal: "+totalPrice);
-		
-		Kakaopay kaka=new Kakaopay();
-		KakaopayDTO kdto=new KakaopayDTO("1", sid, null, null,totalPrice, null, null, null);
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("store", kaka.kakaoPayInfo(pg_token, kdto));
-		mav.setViewName("/user/store/storeDetail");
 		return mav;
 	}
 	
+	@RequestMapping("store/storeDetail.do")
+	public ModelAndView storeDetailForm() {
+		
+		ModelAndView mav=new ModelAndView(); 
+		mav.addObject("title", product_title);
+		mav.addObject("price", Integer.parseInt(totalPrice));
+		mav.addObject("time", paytime);
+		mav.setViewName("/user/store/storeDetail");
+		
+		return mav;
+	}
+
 	
 	@RequestMapping("store/kakaoCancel.do")
 	public ModelAndView storeCancel() {

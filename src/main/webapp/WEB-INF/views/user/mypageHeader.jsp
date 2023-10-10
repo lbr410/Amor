@@ -160,6 +160,7 @@ a:link{
 		</div>
 	</div>
 <script>
+/**
 //버튼 클릭 시 실행되는 함수
 function show(event) {
     // 이전에 활성화된 버튼이 있으면 스타일 초기화
@@ -187,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function() {
     initialButton.classList.add("active");
     activeButton = initialButton;
 });
-
+*/
 </script>
 </body>
 </html>

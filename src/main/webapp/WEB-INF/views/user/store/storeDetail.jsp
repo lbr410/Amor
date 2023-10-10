@@ -23,19 +23,16 @@
 	<tbody>
 		<tr>
 			<th>상품명</th>
-			<td>${store.item_name }</td>
+			<td>${title }</td>
 			<th>결제일자</th>
-			<td>
-			<f:formatDate value="${store.approved_at }" pattern="yyyy-MM-dd HH:mm:ss" var="formatDate" timeZone="UTC"/>
-			${formatDate }
-			</td>
+			<td>${time }</td>		
 		</tr>
 		<tr>
 			<th>결제수단</th>
 			<td>카카오페이</td>
 			<th>결제금액</th>
 			<td>
-			<f:formatNumber type="number" value="${store.amount.total}" pattern="#,###"/>원
+			<f:formatNumber type="number" value="${price}" pattern="#,###"/>원
 			</td>
 		</tr>
 	</tbody>
