@@ -156,7 +156,7 @@ window.onload = function() {
 				<span class="more"><a href="/amor/store/store.do">더보기</a></span>
 			</div>
 			<table class="product">
-			<c:forEach var="pdto"  items="${slists }" begin="1" end="2">
+			<c:forEach var="pdto"  items="${slists }" begin="0" end="1">
 			  <tr>
 			    <td class="product_img">
 			    	<c:url var="storeContentUrl" value="store/storeContentForm.do">
@@ -183,7 +183,7 @@ window.onload = function() {
 				<td><div class="msg">상품 준비 중입니다.</div></td>
 			</tr>
 			</c:if>
-			<c:forEach var="tdto"  items="${tlists }" begin="1" end="2">
+			<c:forEach var="tdto"  items="${tlists }" begin="0" end="1">
 			  <tr>
 			    <td class="product_img">
 				    <c:url var="storeContentUrl" value="store/storeContentForm.do">
@@ -193,7 +193,14 @@ window.onload = function() {
 			    </td>
 			    <td class="product_info">
 			      <a href="${storeContentUrl }"><div class="product_title">${tdto.product_title }</div></a>
-			      <div class="product_price">${tdto.product_price2 }<span>원</span></div>
+			      <div class="product_price">
+				      <c:if test="${tdto.product_price2=='품절'}">
+				      	${tdto.product_price2 }
+				      </c:if>	
+				      <c:if test="${tdto.product_price2!='품절'}">	   
+				      ${tdto.product_price2 }<span>원</span>
+				      </c:if>
+			      </div>
 			    </td>
 			  </tr>
 			  </c:forEach>

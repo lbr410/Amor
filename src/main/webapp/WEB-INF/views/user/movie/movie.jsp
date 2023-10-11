@@ -71,7 +71,7 @@
 							<c:if test="${2==mdto.movie_maxage}"><img src="/amor/resources/img/maxage_15.png" alt="15세 관람가"></c:if>
 							<c:if test="${3==mdto.movie_maxage}"><img src="/amor/resources/img/maxage_18.png" alt="18세 관람가"></c:if>
                         </span>
-                        <span title="제목" class="movie_name">${mdto.movie_name }</span>
+                        <span title="제목" class="movie_name" name="truncatedTitle">${mdto.truncatedTitle }</span>
                     </div>
                     <div class="info-area">
                         <span class="movie_audience">
