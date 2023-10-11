@@ -37,7 +37,7 @@
 		<label class="imgDiv2">
 			<span class="menuname3">이미지</span>
 			<input type="file" id="selectImg" name="inquiry_filename" accept=".jpg, .jpeg, .png"
-				onchange="extensionCheck(this); setProdImg(event)" style="display: none" required>
+				onchange="extensionCheck(this); setProdImg(event)" style="display: none">
 			<input type="button" value="이미지 추가" onclick="document.getElementById('selectImg').click();" class="fileDeco">
 			
 		</label>

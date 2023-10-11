@@ -16,8 +16,7 @@
 	</select>
 	
 	<insert id="inquiryWrite" parameterType="com.amor.inquiry.model.InquiryDTO">
-		insert into inquiry values(
-		inquiry_idx.nextval,  #{member_idx}, #{inquiry_subject}, #{inquiry_content}, #{inquiry_filename}, sysdate, 'n', 'n', #{inquiry_type})
+		insert into inquiry values(inquiry_idx.nextval, #{member_idx}, #{inquiry_subject}, #{inquiry_content}, #{inquiry_filename}, sysdate, 'n', 'n', #{inquiry_type})
 	</insert>
 	
 	<delete id="inquiryDelete" parameterType="Integer">

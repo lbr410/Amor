@@ -18,7 +18,7 @@
 		</div>
 		<div class="titleDiv">
 		<label class="info">전화번호</label>
-		<span>${dto.member_tel1} ${dto.member_tel2 }</span>
+		<span>${dto.member_tel1}${dto.member_tel2 }</span>
 		</div>
 		<div class="titleDiv">
 		<label class="info">이메일</label>

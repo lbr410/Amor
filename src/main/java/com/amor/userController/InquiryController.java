@@ -66,46 +66,50 @@ public class InquiryController {
 			MultipartHttpServletRequest req) {
 		
 		MultipartFile upl = req.getFile("inquiry_filename");
-		String upload = upl.getOriginalFilename();
-		String noExt = upload.substring(0, upload.lastIndexOf('.'));
-		String ext = upload.substring(upload.lastIndexOf(".") + 1);
-		
+
 		String savePath = req.getRealPath("/resources/upload/inquiry/");
-		String saveFileName="";
+		String saveFileName= upl.getOriginalFilename();
 		
-		try {
-			byte bytes[] = upl.getBytes();
-			String filefull = savePath + upload;
-			File f = new File(filefull);
-			if(f.isFile()) {
-				boolean ex = true;
-				int index = 0;
-				while(ex) {
-					index++;
-					saveFileName = noExt+"("+index+")."+ext;
-					String dictFile = savePath + saveFileName;
-					ex = new File(dictFile).isFile();
-					f = new File(dictFile);
-				}
-			} else if(!f.isFile()) {
-            saveFileName = upload;
-        }
-			FileOutputStream fos = new FileOutputStream(f);
-			fos.write(bytes);
-			fos.close();
-		}catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}catch (IOException e) {
-			e.printStackTrace();
+		if(saveFileName.equals("")||saveFileName==null) {
+			saveFileName = "-";
+		}else {
+			try {
+				String upload = saveFileName;
+				String noExt = upload.substring(0, upload.lastIndexOf('.'));
+				String ext = upload.substring(upload.lastIndexOf(".") + 1);
+				
+				byte bytes[] = upl.getBytes();
+				String filefull = savePath + upload;
+				File f = new File(filefull);
+				if(f.isFile()) {
+					boolean ex = true;
+					int index = 0;
+					while(ex) {
+						index++;
+						saveFileName = noExt+"("+index+")."+ext;
+						String dictFile = savePath + saveFileName;
+						ex = new File(dictFile).isFile();
+						f = new File(dictFile);
+					}
+				} else if(!f.isFile()) {
+	            saveFileName = upload;
+	        }
+				FileOutputStream fos = new FileOutputStream(f);
+				fos.write(bytes);
+				fos.close();
+			}catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		
 		int member_idx=(Integer)session.getAttribute("sidx");
 		
 		InquiryDTO dto=new InquiryDTO();
 		dto.setMember_idx(member_idx);
 		dto.setInquiry_subject(req.getParameter("inquiry_subject"));
 		dto.setInquiry_content(req.getParameter("inquiry_content"));
-		dto.setInquiry_filename(req.getFile("inquiry_filename").getOriginalFilename());
+		dto.setInquiry_filename(saveFileName);
 		String type=req.getParameter("inquiry_type");
 		int inquiry_type=Integer.parseInt(type);
 		dto.setInquiry_type(inquiry_type);
