@@ -11,7 +11,12 @@
 
 </style>
 </head>
+<c:if test="${!empty movieName && !empty movieMaxAge && !empty movieIdx}">
+<body onload = "searchTicketing('${movieName}', ${movieMaxAge}, ${movieIdx})">
+</c:if>
+<c:if test="${empty movieName && empty movieMaxAge && empty movieIdx}">
 <body>
+</c:if>
 <%@include file="../header.jsp" %>
 <div class="body-inner">
 	<div class="commonDiv">
@@ -111,7 +116,11 @@
 				</div>
 
 			</div>
-			
+			<form name = "ticketinghiddenForm" action="seat.do" method="post">
+			<input type="hidden" name="playing_movie_idx">
+			<input type="hidden" name="theater_idx">
+			<input type="hidden" name="movie_idx">
+			</form>
 		</div>
 	</div>
 </div>
@@ -190,8 +199,26 @@ document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+wee
 		
 	}
 	
+	function searchTicketing(movie_name,movie_maxage,movie_idx){
+		   let movieCurrentDiv = document.getElementById('btnplayingmovie'+movie_idx);
+		   if (movieCurrentDiv.classList[1] === "clicked") {
+		      //다시 클릭시 바뀜
+		      //movieCurrentDiv.classList.remove("clicked");
+		   }else{
+		      for (let i = 0; i < moviecss.length; i++) {
+		         moviecss[i].classList.remove("clicked");
+		      }
+		      movieCurrentDiv.classList.add("clicked");
+		   }
+		   
+		   
+		   select_movie_name = movie_name;
+		   let param = 'movie_name='+movie_name+'&movie_maxage='+movie_maxage;
+		   sendRequest('ticketingSelectMovie.do',param, selectMovieResult, 'POST');
+		}
+	
 	function selectMovie(movie_name,movie_maxage,movie_idx){
-		const movieCurrentDiv = document.getElementById('btnplayingmovie'+movie_idx);
+		let movieCurrentDiv = document.getElementById('btnplayingmovie'+movie_idx);
 		
 		if (movieCurrentDiv.classList[1] === "clicked") {
 			//다시 클릭시 바뀜
@@ -306,10 +333,15 @@ document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+wee
 	}
 	
 	function selectresult(playing_movie_idx, theater_idx, movie_idx){
-		location.href='seat.do?movie_idx='+movie_idx+'&theater_idx='+theater_idx+'&playing_movie_idx='+playing_movie_idx;
+		let pidx = playing_movie_idx;
+		let tidx = theater_idx;
+		let midx = movie_idx;
+		
+		document.ticketinghiddenForm.playing_movie_idx.value = pidx;
+		document.ticketinghiddenForm.theater_idx.value = tidx;
+		document.ticketinghiddenForm.movie_idx.value = midx;
+		document.ticketinghiddenForm.submit();
 	}
-	
-
 </script>
 
 </body>

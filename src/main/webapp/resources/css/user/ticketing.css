@@ -68,12 +68,12 @@
 	flex-shrink: 0;
 }
 .content1{
-	flex:1;
+	width:300px;
 	height: 566px; 
 	float:left;
 }
 .content2{
-	flex:2.8;
+	width:799px;
 	height: 566px;
 	float:left;
 	border-left: 1px solid #1A2C82;
@@ -105,7 +105,7 @@
 }
 
 .playingmovie{
-	width: 247px;
+	width: 258px;
 	border-bottom: 1px solid #D9D9D9;
 	display: flex;
 	cursor: pointer;

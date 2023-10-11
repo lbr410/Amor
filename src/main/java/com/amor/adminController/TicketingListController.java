@@ -2,6 +2,7 @@ package com.amor.adminController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,12 +20,12 @@ public class TicketingListController {
 	private TicketingService ticketingservice;
 
 	@RequestMapping("admin/ticketing/ticketingList.do")
-	public ModelAndView ticketingList(@RequestParam(value="cp", defaultValue = "1") int cp, @RequestParam(value="search", defaultValue = "") String search, HttpSession session) {
+	public ModelAndView ticketingList(@RequestParam(value="cp", defaultValue = "1") int cp, @RequestParam(value="search", defaultValue = "") String search, HttpSession session, @CookieValue(value = "autologin", required = false)String autologin) {
 		ModelAndView mav = new ModelAndView();
 		int listSize=5;
 		int pageSize=5;
 		
-		if(session.getAttribute("data") == null) {
+		if(autologin == null && session.getAttribute("data") == null) {
 			mav.addObject("msg", "로그인 후 이용 가능합니다.");
 			mav.addObject("href", "/amor/admin/adminLogin.do");
 			mav.setViewName("/admin/msg/adminMsg");
