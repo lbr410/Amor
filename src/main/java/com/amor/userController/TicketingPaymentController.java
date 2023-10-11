@@ -10,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Date;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -69,7 +70,8 @@ public class TicketingPaymentController {
 		String movie_poster = dto.getMovie_poster();
 		String movie_name = dto.getMovie_name();
 		String playing_movie_start = dto.getPlaying_movie_start();
-		String theater_name = dto.getTheater_name();		
+		String theater_name = dto.getTheater_name();
+		String playing_movie_end = dto.getPlaying_movie_end();
 		
 		String playing_movie_seat_num = "";
 		for (int i = 0 ; i<playing_movie_seat.length;i++) {
@@ -84,7 +86,11 @@ public class TicketingPaymentController {
 			}
 		}		
 		
-		String playing_movie_start_cut = playing_movie_start.substring(0, 16);
+		String playing_movie_end_cut = playing_movie_end.substring(10, 16);
+		String playing_movie_start_cut = playing_movie_start.substring(0,16);
+		
+		DecimalFormat df = new DecimalFormat("###,###");
+		String ticketing_price_comma = df.format(ticketing_price);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("movie_idx", movie_idx);
@@ -96,9 +102,11 @@ public class TicketingPaymentController {
 		mav.addObject("seniorC", seniorC);
 		mav.addObject("disabledC", disabledC);
 		mav.addObject("ticketing_personnel", ticketing_personnel);
-		mav.addObject("ticketing_price", ticketing_price);
+		mav.addObject("ticketing_price", ticketing_price_comma);
 		mav.addObject("movie_poster", movie_poster);
-		mav.addObject("playing_movie_start", playing_movie_start_cut);
+		mav.addObject("playing_movie_start", playing_movie_start);
+		mav.addObject("playing_movie_start_cut", playing_movie_start_cut);
+		mav.addObject("playing_movie_end", playing_movie_end_cut);
 		mav.addObject("movie_name", movie_name);
 		mav.addObject("theater_name", theater_name);
 		mav.setViewName("/user/ticketing/ticketingPayment");

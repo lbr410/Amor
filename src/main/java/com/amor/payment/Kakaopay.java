@@ -52,7 +52,7 @@ public class Kakaopay {
 	        params.add("fail_url", kdto.getFail_url());
 	 
 	         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
-	 
+	         
 	        try {
 	            kakaoPayReadyVO = restTemplate.postForObject (new URI(HOST + "/v1/payment/ready"), body, KakaoPayReadyVO.class);
 	            

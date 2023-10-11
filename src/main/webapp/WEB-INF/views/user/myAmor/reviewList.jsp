@@ -45,7 +45,7 @@
 			<c:forEach var="dto" items="${reviewLists }" varStatus="vs">
 				<tr>
 					<td class="reviewTd1">${dto.movie_review_writedate }</td>
-					<td class="reviewTd">${dto.movie_name }</td>
+					<td class="reviewTd5">${dto.movie_name }</td>
 					<td class="reviewTd">
 					
 					<span class="starBack">	
@@ -62,8 +62,8 @@
 					<td class="reviewTd3" onclick="document.getElementById('reviewContent${vs.index}').style.display=''">▽</td>
 				</tr>
 				<tr id="reviewContent${vs.index }" style="display:none;">
-					<td class="reviewTdContent2" colspan="2"><img src="/amor/resources/upload/review/${dto.movie_review_img}" class="reviewImg"></td>
-					<td class="reviewTdContent" colspan="2">${dto.movie_review_content }</td>
+					<td class="reviewTdContent2"><img src="/amor/resources/upload/review/${dto.movie_review_img}" class="reviewImg"></td>
+					<td class="reviewTdContent" colspan="3">${dto.movie_review_content }</td>
 					<td class="reviewTdContent3" onclick="document.getElementById('reviewContent${vs.index}').style.display='none'">&times;</td>
 				</tr>
 				
@@ -80,7 +80,7 @@
 						<span class="star">
 							☆☆☆☆☆
 						<span class="starAll${vs.index}" style="width: ${dto.movie_review_star}0%;">★★★★★</span>
-							<input type="range" name="movie_review_star" oninput="drawStar(this, '.starAll${vs.index}')" min="1" max="10">
+							<input type="range" name="movie_review_star" value="${dto.movie_review_star}" oninput="drawStar(this, '.starAll${vs.index}')" min="1" max="10">
 						</span>
 						</span>
 						<br>
