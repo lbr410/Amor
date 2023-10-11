@@ -159,36 +159,5 @@ a:link{
 			<a href="/amor/myAmor/memberInquiryList.do" onclick="show(event)"><button id="btn4">1:1문의</button></a>
 		</div>
 	</div>
-<script>
-/**
-//버튼 클릭 시 실행되는 함수
-function show(event) {
-    // 이전에 활성화된 버튼이 있으면 스타일 초기화
-    if (activeButton !== null) {
-        activeButton.classList.remove("active");
-    }
-
-    // 현재 클릭한 버튼을 활성화로 표시
-    var clickedButton = event.target;
-    clickedButton.classList.add("active");
-
-    // 클릭한 버튼을 현재 활성화된 버튼으로 설정
-    activeButton = clickedButton;
-
-    // 로컬 스토리지에 현재 활성화된 버튼의 ID를 저장
-    localStorage.setItem("activeButton", clickedButton.id);
-}
-
-// 페이지 로드 시 초기 버튼 설정 (로컬 스토리지에서 정보를 읽어와 설정)
-document.addEventListener("DOMContentLoaded", function() {
-    var storedActiveButtonId = localStorage.getItem("activeButton");
-    var initialButton = document.getElementById(storedActiveButtonId || "btn1");
-    
-    // 저장된 버튼 ID가 없으면 예매내역 버튼을 기본으로 선택
-    initialButton.classList.add("active");
-    activeButton = initialButton;
-});
-*/
-</script>
 </body>
 </html>

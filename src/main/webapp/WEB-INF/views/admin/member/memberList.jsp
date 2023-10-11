@@ -70,7 +70,7 @@ function block(idx) {
 			<td class="idTd">${dto.member_idx }</td>
 			<td>${dto.member_id }</td>
 			<td>${dto.member_name }</td>
-			<td>${dto.member_birth_year }. ${dto.member_birth_month }.${dto.member_birth_day }</td>
+			<td>${dto.member_birth_year }.${dto.member_birth_month }.${dto.member_birth_day }</td>
 			<td class="genderTd">
 			<c:if test="${dto.member_gender=='f' }">여</c:if>
 			<c:if test="${dto.member_gender=='m' }">남</c:if>
