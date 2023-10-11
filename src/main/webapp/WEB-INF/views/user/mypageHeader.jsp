@@ -150,7 +150,7 @@ a:link{
 </style>
 <body>
 	<div class="mypageDiv">
-		<div class="usertitle"><div class="titleNameDiv"><label>${sessionScope.sname}</label>님 반갑습니다:)</div><label class="useredit"><a href="/amor/myAmor/userInfoUpdateForm.do">편집</a></label></div>
+		<div class="usertitle"><div class="titleNameDiv"><label>${sessionScope.sname}</label>님 반갑습니다 :) ❤️</div><label class="useredit"><a href="/amor/myAmor/userInfoUpdateForm.do">편집</a></label></div>
 		<hr>
 		<div class="pagemenu">
 			<a href="/amor/myAmor/ticketingHistory.do" onclick="show(event)"><button id="btn1">예매내역</button></a>

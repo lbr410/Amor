@@ -65,7 +65,7 @@
 	<span class="inquiryConText">${dto.inquiry_answer }</span>
 	</div>
 	<div class="btnDiv">
-		<input type="button" class="cancelBtn" value="목록으로" onclick="javascript: location.href='/amor/admin/inquiry/inquiryList.do'">
+		<input type="button" class="cancelBtn2" value="목록으로" onclick="javascript: location.href='/amor/admin/inquiry/inquiryList.do'">
 
 		</div>
 		<input type="hidden" name="inquiry_idx" value="${dto.inquiry_idx}">

@@ -29,7 +29,7 @@ public class MovieSearchController {
 		
 			String pageTag = com.amor.page.PageModuleSearch.makePage("/amor/movie/movieSearch.do", totalCnt, listSize, pageSize, cp, search);
 			List<MovieDTO> lists = movieservice.userMovieSearch(search, cp, listSize);
-			if(lists != null || totalCnt != 0) {
+			if(lists != null && totalCnt != 0) {
 				mav.addObject("lists",lists);
 				mav.addObject("search", search);
 				mav.addObject("pageTag", pageTag);
