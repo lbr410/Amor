@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.collections.functors.ExceptionPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,15 +30,14 @@ public class MovieController {
 	private MovieService movieservice; 
 
 	@RequestMapping("admin/movie/movieList.do")
-	public ModelAndView movieList(@RequestParam(value="cp", defaultValue = "1") int cp, @RequestParam(value="search", defaultValue = "") String search, HttpSession session) {
+	public ModelAndView movieList(@RequestParam(value="cp", defaultValue = "1") int cp, @RequestParam(value="search", defaultValue = "") String search, HttpSession session, @CookieValue(value = "autologin", required = false)String autologin) {
 		int listSize=5;
 		int pageSize=5;
 		ModelAndView mav = new ModelAndView();
-		if(session.getAttribute("data") == null) {
+		if(autologin == null && session.getAttribute("data") == null) {
 			mav.addObject("msg", "로그인 후 이용 가능합니다.");
 			mav.addObject("href", "/amor/admin/adminLogin.do");
 			mav.setViewName("/admin/msg/adminMsg");
-			
 		}else {
 			if(search == null || search.equals("")) {
 				int totalCnt=movieservice.getTotalCnt();
@@ -66,26 +66,45 @@ public class MovieController {
 	}
 	
 	@RequestMapping("admin/movie/stateChk.do")
-	public ModelAndView soldOutChange(@RequestParam("idx") int idx, @RequestParam("state") String state) {
-		MovieDTO dto = new MovieDTO(idx,state);
-		if(state.equals("y")) {
-			dto.setMovie_state("y");
-			dto.setMovie_idx(idx);
-			movieservice.stateChange(dto);
-		} 
-		if(state.equals("n")) {
-			dto.setMovie_state("n");
-			dto.setMovie_idx(idx);
-			movieservice.stateChange(dto);
-		}
-		
+	public ModelAndView soldOutChange(@RequestParam("idx") int idx, @RequestParam("state") String state, HttpSession session,
+			@CookieValue(value = "autologin", required = false)String autologin) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/movie/movieList");
+		
+		if(autologin == null && session.getAttribute("data") == null) {
+			mav.addObject("msg", "로그인 후 이용 가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");
+		}else{
+			MovieDTO dto = new MovieDTO(idx,state);
+			if(state.equals("y")) {
+				dto.setMovie_state("y");
+				dto.setMovie_idx(idx);
+				movieservice.stateChange(dto);
+			} 
+			if(state.equals("n")) {
+				dto.setMovie_state("n");
+				dto.setMovie_idx(idx);
+				movieservice.stateChange(dto);
+			}
+			mav.setViewName("admin/movie/movieList");
+		}
+
 		return mav;
 	}
 	
 	@RequestMapping(value =  "admin/movie/movieAdd.do", method = RequestMethod.GET)
-	public String movieAddForm() {return "admin/movie/movieAdd";}
+	public ModelAndView movieAddForm(HttpSession session, @CookieValue(value = "autologin", required = false)String autologin) {
+		ModelAndView mav = new ModelAndView();
+		if(autologin == null && session.getAttribute("data") == null) {
+			mav.addObject("msg", "로그인 후 이용 가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");
+		}else{
+			mav.setViewName("admin/movie/movieAdd");
+		}
+		
+		return mav;
+	}
 	
 	@RequestMapping(value = "admin/movie/movieAdd.do", method=RequestMethod.POST)
 	public ModelAndView movieAddSumit(
@@ -135,9 +154,9 @@ public class MovieController {
 	}
 
 	@RequestMapping(value =  "admin/movie/movieUpdate.do", method = RequestMethod.GET)
-	public ModelAndView movieUpdate1(int movie_idx, HttpSession session) {
+	public ModelAndView movieUpdate1(int movie_idx, HttpSession session, @CookieValue(value = "autologin", required = false)String autologin) {
 		ModelAndView mav = new ModelAndView();
-		if(session.getAttribute("data") == null) {
+		if(autologin == null && session.getAttribute("data") == null) {
 			mav.addObject("msg", "로그인 후 이용 가능합니다.");
 			mav.addObject("href", "/amor/admin/adminLogin.do");
 			mav.setViewName("/admin/msg/adminMsg");
@@ -175,9 +194,9 @@ public class MovieController {
 	}
 	
 	@RequestMapping("admin/movie/movieDelete.do")
-	public ModelAndView movieDelete(int movie_idx, HttpSession session) {
+	public ModelAndView movieDelete(int movie_idx, HttpSession session, @CookieValue(value = "autologin", required = false)String autologin) {
 		ModelAndView mav = new ModelAndView();
-		if(session.getAttribute("data") == null) {
+		if(autologin == null && session.getAttribute("data") == null) {
 			mav.addObject("msg", "로그인 후 이용 가능합니다.");
 			mav.addObject("href", "/amor/admin/adminLogin.do");
 			mav.setViewName("/admin/msg/adminMsg");
