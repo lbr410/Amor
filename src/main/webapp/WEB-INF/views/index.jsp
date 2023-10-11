@@ -25,7 +25,7 @@ function onYouTubePlayerAPIReady() {
     videoId: '${blists[0].banner_source}', // 최초 재생할 유튜브 영상 ID
     playerVars: {
       autoplay: true, // 자동 재생 유무
-      loop: false, // 반복 재생 유무
+      loop: true, // 반복 재생 유무
       playlist: '${blists[0].banner_source},${blists[1].banner_source}' // 반복 재생할 유튜브 영상 ID 목록
     },
     events: {
@@ -76,7 +76,7 @@ window.onload = function() {
 	<div class="nomovie">상영중인 영화가 없습니다.</div>
 	</c:if>
 		<c:set var="rank" value="1" />
-		<c:forEach var="mdto"  items="${mlists }" begin="1" end="4" >
+		<c:forEach var="mdto"  items="${mlists }" begin="0" end="3" >
             <div class="movie-wrapper">
                 <div class="rank-movie">
                     <div class="rank">${rank }<span class="rank-txt">위</span></div>
