@@ -54,7 +54,7 @@
 	<div class="fileDiv">
 	<label class="infoFile">첨부 파일</label>
 	<span>
-    <img src="/amor/resources/upload/inquiry/${dto.inquiry_filename}" class="img" alt="inquiry_filename_img">
+    <img src="/amor/resources/upload/inquiry/${dto.inquiry_filename}" class="img" alt="inquiry_filename_img"  onError="this.style.visibility='hidden'">
 	</span>
 	</div>
 	
