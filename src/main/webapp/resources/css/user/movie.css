@@ -49,6 +49,19 @@ a, a:link, a:active, a:visited, a:focus, a:before{
   width: 450px;
   position: relative;
 }
+
+.searchTitle {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 550px;
+  position: relative;
+  margin-left: 100px;
+}
+
 .left-title .movieNow {
   color: #000;
   font-family: Inter;
@@ -58,6 +71,10 @@ a, a:link, a:active, a:visited, a:focus, a:before{
   position: relative;
   width: 210px;
   cursor: pointer;
+}
+.searchTitle .movieSearch{
+	font-size: 27px;
+	width: 700px;
 }
 .left-title .movieCome{
 	color: #BCBCBC;
@@ -253,6 +270,7 @@ button{
 	margin-top: 20px;
 	text-align: center;
 	font-size: 16px;
+	margin-bottom: 50px;
 }
 
 .paging a:hover{

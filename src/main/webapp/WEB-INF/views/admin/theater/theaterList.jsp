@@ -98,20 +98,20 @@
 				let data = XHR.responseText;
 				let objData = JSON.parse(data);
 				let msg = objData.alert;
-				if(msg == null){					
-				location.reload();
-				}else {					
-					alert(msg);
+					if(msg == null){					
+						location.reload();
+					}else {					
+						alert(msg);
+					}
 				}
 			}
 		}
-	}
 	
 	function theaterDel(tidx){
 		let delcheck = window.confirm("상영관을 삭제하시겠습니까?");
 		if(delcheck){
-		let param = 'tidx='+tidx;
-		sendRequest('/amor/admin/theater/theaterDelete.do',param,delResult,'GET')
+			let param = 'tidx='+tidx;
+			sendRequest('/amor/admin/theater/theaterDelete.do',param,delResult,'GET')
 		}
 	}
 	
@@ -122,16 +122,16 @@
 				let objData = JSON.parse(data);
 				let tidx = objData.tidx;
 				let msg = objData.alert;
-				if(msg == null){					
+			if(msg == null){					
 				let getNode = document.getElementById(tidx);
 				let parentNode = getNode.parentNode; 
 				parentNode.removeChild(getNode);
-				}else{
-					alert(msg);
-				}
+			}else{
+				alert(msg);
 			}
 		}
 	}
+}
 
 </script>
 </html>

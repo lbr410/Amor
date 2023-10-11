@@ -34,13 +34,12 @@ public class MovieSearchController {
 				mav.addObject("search", search);
 				mav.addObject("pageTag", pageTag);
 				mav.setViewName("/user/movie/movieSearch");
-				return mav;
 			}else { 
 				mav.addObject("lists",null);
 				mav.addObject("search", search);
 				mav.addObject("pageTag",null);
 				mav.setViewName("/user/movie/movieSearch");
-				return mav;
 			}
+			return mav;
 	}
 }

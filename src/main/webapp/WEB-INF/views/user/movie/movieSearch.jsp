@@ -37,8 +37,8 @@
   	<div class="movie-title">
 	
 	<div class="title-bar1">
-	<div class="left-title">
-	  <div class="movieNow">'${search}' 검색 결과</div>
+	<div class="searchTitle">
+	  <div class="movieSearch">'${search}' 검색 결과</div>
 	</div>
 	</div>
 	<!-- MOVIE CHART -->

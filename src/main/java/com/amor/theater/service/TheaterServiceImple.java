@@ -33,11 +33,7 @@ public class TheaterServiceImple implements TheaterService {
 	@Override
 	public List<TheaterDTO> theaterSelect() {
 		List<TheaterDTO> lists = theaterDao.theaterSelect();
-		if(lists != null || lists.size() > 0) {
-			return lists;
-		}else {
-			return null;
-		}		
+		return lists;	
 	}
 	
 	@Override

@@ -22,8 +22,11 @@ public class MyPageStoreHistoryController {
 	@RequestMapping("myAmor/storeHistory.do")
 	public ModelAndView mypageStorePaymentList(HttpSession session,
 			@RequestParam(value = "cp", defaultValue = "1")int cp) {
+		
 		int useridx = (int)session.getAttribute("sidx");
+		
 		ModelAndView mav = new ModelAndView();
+		
 		if(useridx > 0) {
 			String pagename = "/amor/myAmor/storeHistory.do";
 			int totalCnt = storePaymentService.userStoreListTotalCntY(useridx);
@@ -50,19 +53,21 @@ public class MyPageStoreHistoryController {
 	
 	@RequestMapping("myAmor/storeCancellation.do")
 	public ModelAndView mypageStoreCancel(@RequestParam("paymentidx")int paymentidx) {
+		
 		ModelAndView mav = new ModelAndView();
-		int result = storePaymentService.mypageStoreCancel(paymentidx);
-		if(result == 1) {
+		
+		boolean result = storePaymentService.mypageStoreCancel(paymentidx);
+		
+		if(result) {
 			mav.addObject("msg", "상품이 취소되었습니다.");
 			mav.addObject("goUrl","/amor/myAmor/storeHistory.do");
 			mav.setViewName("user/msg/userMsg");
-			return mav;
 		}else {
 			mav.addObject("msg", "상품취소가 불가합니다.(관리자 문의부탁드립니다.)");
 			mav.addObject("goUrl","/amor/myAmor/storeHistory.do");
 			mav.setViewName("user/msg/userMsg");
-			return mav;
 		}
+		return mav;
 	}
 	
 	@RequestMapping("myAmor/storeCancelList.do")
@@ -81,18 +86,16 @@ public class MyPageStoreHistoryController {
 				mav.addObject("list", lists);
 				mav.addObject("page", page);
 				mav.setViewName("user/myAmor/storeCancelList");
-				return mav;
 			}else {
 				mav.addObject("list", null);
 				mav.addObject("page", null);
 				mav.setViewName("user/myAmor/storeCancelList");
-				return mav;
 			}
 		}else {
 			mav.addObject("msg", "로그인 후 이용가능합니다.");
 			mav.addObject("goUrl", "/amor/member/login.do");
 			mav.setViewName("user/msg/userMsg");
-			return mav;
 		}
+		return mav;
 	}
 }

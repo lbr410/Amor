@@ -17,7 +17,7 @@ public interface StorePaymentService {
 	public String monthStoreTotal(String startd, String endd);
 	
 	public List<MyPageStorePaymentDTO> mypageStorePaymentList(int useridx,int listSize,int cp);
-	public int mypageStoreCancel(int paymentidx);
+	public boolean mypageStoreCancel(int paymentidx);
 	public List<MyPageStorePaymentDTO> mypageStoreCancelList(int useridx,int listSize,int cp);
 	public int userStoreListTotalCntY(int userIdx);
 	public int userStoreListTotalCntN(int userIdx);
