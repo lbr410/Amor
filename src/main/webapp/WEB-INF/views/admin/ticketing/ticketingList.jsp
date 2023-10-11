@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아모르 : 관리자 회원 예매 목록</title>
+<title>아모르 관리자 : 회원 예매 목록</title>
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/admin/ticketingList.css">
 <script type="text/javascript" src="../../resources/js/httpRequest.js"></script>
 <script type="text/javascript">
@@ -91,9 +92,14 @@ function ticketingCancel(tidx,pidx,midx,personnel,seat){
 		<td>${dto.playing_movie_date}</td>
 		<td>${fn:substring(dto.playing_movie_start, 11, 16)}</td>
 		<td>${dto.ticketing_reservetime_s}</td>
-		<td>${dto.ticketing_price}</td>
+		<td>
+		<fmt:formatNumber value="${dto.ticketing_price}" type="currency" currencySymbol=""/>
+		</td>
 		<td>${dto.ticketing_personnel}</td>
-		<td>${dto.ticketing_payment}</td>
+		<td>
+		<c:if test="${dto.ticketing_payment eq 'c'}"></c:if>
+		카카오페이
+		</td>
 		<td id="ticketingcancel${dto.ticketing_idx}">
 		<c:if test="${dto.btn_cancel eq 'canAble'}">
 			<c:if test="${dto.ticketing_state eq 'y'}">
