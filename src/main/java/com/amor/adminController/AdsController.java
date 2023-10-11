@@ -1,12 +1,16 @@
 package com.amor.adminController;
 
 import java.util.*;
+
+import javax.servlet.http.HttpSession;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,48 +27,62 @@ public class AdsController {
 	private AdsService adsservice;
 
 	@RequestMapping("admin/ads/adsList.do")
-	public ModelAndView adsList() {
+	public ModelAndView adsList(HttpSession session, @CookieValue(value = "autologin", required = false)String autologin) {
 		ModelAndView mav = new ModelAndView();
-		List<AdsDTO> lists = adsservice.adsList();
-		String btnOk="";
-		if(lists.size()==3) {
-			btnOk = "AllLock";
-		}else if(lists.size()==2) {
-			if(lists.get(0).getAds_idx() == 1) {
-				if(lists.get(1).getAds_idx() == 2) {
-					btnOk = "tOpen";
-				}else {
-					btnOk = "sOpen";
+		
+		if(autologin == null && session.getAttribute("data") == null) {
+			mav.addObject("msg", "로그인 후 이용 가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");
+		}else{
+			List<AdsDTO> lists = adsservice.adsList();
+			String btnOk="";
+			if(lists.size()==3) {
+				btnOk = "AllLock";
+			}else if(lists.size()==2) {
+				if(lists.get(0).getAds_idx() == 1) {
+					if(lists.get(1).getAds_idx() == 2) {
+						btnOk = "tOpen";
+					}else {
+						btnOk = "sOpen";
+					}
+				}else if(lists.get(0).getAds_idx() == 2) {
+					if(lists.get(1).getAds_idx() == 3) {
+						btnOk = "fOpen";
+					}
 				}
-			}else if(lists.get(0).getAds_idx() == 2) {
-				if(lists.get(1).getAds_idx() == 3) {
-					btnOk = "fOpen";
+			}else if(lists.size()==1) {
+				if(lists.get(0).getAds_idx() == 1) {
+					btnOk = "stOpen";
+				}else if(lists.get(0).getAds_idx() == 2) {
+					btnOk = "ftOpen";
+				}else if(lists.get(0).getAds_idx() == 3) {
+					btnOk = "fsOpen";
 				}
+			}else if(lists.size()==0) {
+				btnOk = "allOpen";
+			}else {
+				btnOk = "alreadyExists";
 			}
-		}else if(lists.size()==1) {
-			if(lists.get(0).getAds_idx() == 1) {
-				btnOk = "stOpen";
-			}else if(lists.get(0).getAds_idx() == 2) {
-				btnOk = "ftOpen";
-			}else if(lists.get(0).getAds_idx() == 3) {
-				btnOk = "fsOpen";
-			}
-		}else if(lists.size()==0) {
-			btnOk = "allOpen";
-		}else {
-			btnOk = "alreadyExists";
+			mav.addObject("btnOk",btnOk);
+			mav.addObject("lists",lists);
+			mav.setViewName("admin/ads/adsList");
 		}
-		mav.addObject("btnOk",btnOk);
-		mav.addObject("lists",lists);
-		mav.setViewName("admin/ads/adsList");
 		return mav;
 	}
 	
 	@RequestMapping(value =  "admin/ads/adsAdd.do", method = RequestMethod.GET )
-	public ModelAndView adsAddForm(int ads_idx) {
+	public ModelAndView adsAddForm(int ads_idx, HttpSession session, @CookieValue(value = "autologin", required = false)String autologin) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("ads_idx",ads_idx);
-		mav.setViewName("admin/ads/adsAdd");
+		if(autologin == null && session.getAttribute("data") == null) {
+			mav.addObject("msg", "로그인 후 이용 가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");
+		}else{
+			mav.addObject("ads_idx",ads_idx);
+			mav.setViewName("admin/ads/adsAdd");
+		}
+		
 		return mav;
 	}
 	
@@ -122,16 +140,22 @@ public class AdsController {
 	}
 	
 	@RequestMapping(value="admin/ads/adsUpdate.do",method = RequestMethod.GET)
-	public ModelAndView adsUpdateForm(int ads_idx) {
+	public ModelAndView adsUpdateForm(int ads_idx, HttpSession session, @CookieValue(value = "autologin", required = false)String autologin) {
 		ModelAndView mav = new ModelAndView();
-		AdsDTO dto = adsservice.adsUpdate1(ads_idx);
-		mav.addObject("dto",dto);
-		mav.addObject("ads_idx", ads_idx);
-		mav.setViewName("admin/ads/adsUpdate");
+		if(autologin == null && session.getAttribute("data") == null) {
+			mav.addObject("msg", "로그인 후 이용 가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");
+		}else{
+			AdsDTO dto = adsservice.adsUpdate1(ads_idx);
+			mav.addObject("dto",dto);
+			mav.addObject("ads_idx", ads_idx);
+			mav.setViewName("admin/ads/adsUpdate");
+		}
 		return mav;
 	}
 	
-	@RequestMapping(value =  "admin/ads/adsUpdate.do",method = RequestMethod.POST )
+	@RequestMapping(value =  "admin/ads/adsUpdate.do",method = RequestMethod.POST)
 	public ModelAndView adsUpdateSubmit(MultipartHttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -186,13 +210,20 @@ public class AdsController {
 	}
 	
 	@RequestMapping("admin/ads/adsDelete.do")
-	public ModelAndView adsDelete(int ads_idx) {
+	public ModelAndView adsDelete(int ads_idx, HttpSession session, @CookieValue(value = "autologin", required = false)String autologin) {
 		ModelAndView mav = new ModelAndView();
-		int result = adsservice.adsDelete(ads_idx);
-		String msg = result > 0 ? "삭제 성공" : "삭제 실패";
-		mav.addObject("msg", msg);
-		mav.addObject("href","/amor/admin/ads/adsList.do");
-		mav.setViewName("admin/msg/adminMsg");
+		
+		if(autologin == null && session.getAttribute("data") == null) {
+			mav.addObject("msg", "로그인 후 이용 가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");
+		}else{
+			int result = adsservice.adsDelete(ads_idx);
+			String msg = result > 0 ? "삭제 성공" : "삭제 실패";
+			mav.addObject("msg", msg);
+			mav.addObject("href","/amor/admin/ads/adsList.do");
+			mav.setViewName("admin/msg/adminMsg");
+		}
 		return mav;
 	}
 }
