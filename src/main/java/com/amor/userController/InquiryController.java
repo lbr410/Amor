@@ -34,21 +34,33 @@ public class InquiryController {
 			HttpSession session,
 			@RequestParam(value="cp", defaultValue="1")int cp) {
 		
+		String id = (String)session.getAttribute("sid");
+		ModelAndView mav=new ModelAndView();
+		if(id != null) {
 		int member_idx=(Integer)session.getAttribute("sidx");
 		InquiryDTO dto=new InquiryDTO();
 		dto.setMember_idx(member_idx);
-		String sid = (String)session.getAttribute("sid");
 		int totalCnt=inquiryService.memberInquiryTotalCnt(member_idx);
 		int listSize=5;
 		int pageSize=5;
 		String pageStr=com.amor.page.PageModule.makePage("memberInquiryList.do", totalCnt, listSize, pageSize, cp);
 		
 		List<InquiryDTO>lists=inquiryService.memberInquiryList(cp, listSize, member_idx);
-
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("lists", lists);
-		mav.addObject("pageStr", pageStr);
-		mav.setViewName("/user/myAmor/inquiryList");
+			if(lists != null) {
+				mav.addObject("lists", lists);
+				mav.addObject("pageStr", pageStr);
+				mav.setViewName("/user/myAmor/inquiryList");
+				return mav;
+			}else {
+				mav.addObject("lists", null);
+				mav.addObject("page", null);
+				mav.setViewName("user/myAmor/inquiryList");
+			}
+		}else {
+			mav.addObject("msg", "로그인 후 이용가능합니다.");
+			mav.addObject("goUrl", "/amor/member/login.do");
+			mav.setViewName("user/msg/userMsg");
+		}
 		return mav;
 	}
 	
