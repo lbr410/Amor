@@ -75,13 +75,15 @@ table tfoot tr {
 }
 
 .reviewImg {
- 	width: 262px;
+ 	width: 200px;
 	height: 193px;
 	line-height: 193px;
   	object-fit: contain;
   	border: none;
 }
-
+.reviewTd5 {
+	width: 280px;
+}
 .reviewTd1 {
 	width: 150px;	
 }
@@ -95,10 +97,12 @@ table tfoot tr {
 	line-height: 80px;
 	cursor: pointer;
 	color: #1A2C82;
+	padding-right: 20px;
 }
 
 .reviewTdContent {
 	height: 200px;
+	width: 300px;
 	text-align: left;
 	padding: 30px 30px 30px 30px;
 	vertical-align: middle;
@@ -106,8 +110,11 @@ table tfoot tr {
 }
 
 .reviewTdContent2 {
+	padding-left: 50px;
+	padding-right: 60px;
 	object-fit: contain;
 	text-align: center;
+	width: 230px;
 	border: none;
 	width: 150px;
 	vertical-align: middle;

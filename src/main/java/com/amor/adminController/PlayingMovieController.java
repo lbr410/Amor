@@ -44,7 +44,6 @@ public class PlayingMovieController {
 			@RequestParam(value = "movie_idx", required = false) String movie_idx,
 			HttpSession session) {
 		
-		
 		ModelAndView mav = new ModelAndView();
 		
 		if (movie_idx == null || movie_idx.equals("aa")) {
@@ -54,10 +53,10 @@ public class PlayingMovieController {
 			int totalCnt=playingMovieService.getTotalCnt();
 			int listSize=10;
 			int pageSize=5;
-			
+		
 			List<PlayingMovieJoinDTO> lists=playingMovieService.playingMovieList(cp, listSize);
 			
-			String playingMoviepageStr=com.amor.page.PageModule.makePage("playingMovieList.do", totalCnt, listSize, pageSize, cp);
+			String playingMoviepageStr=com.amor.page.PageModuleAjax.makePage(totalCnt, listSize, pageSize, cp);
 			
 			if (session.getAttribute("data")==null && autologin == null) {
 				mav.addObject("msg", "로그인 후 이용가능합니다.");
@@ -81,7 +80,7 @@ public class PlayingMovieController {
 			
 			List<PlayingMovieJoinDTO> lists = playingMovieService.playingMovieListSelect(cp, listSize, movie_idx2);
 			
-			String playingMoviepageStr=com.amor.page.PageModule.makePage("playingMovieList.do", totalCnt, listSize, pageSize, cp);
+			String playingMoviepageStr=com.amor.page.PageModuleAjax.makePage(totalCnt, listSize, pageSize, cp);
 			
 			mav.addObject("playingMoviepageStr", playingMoviepageStr);
 			mav.addObject("lists", lists);
@@ -95,6 +94,7 @@ public class PlayingMovieController {
 
 	@RequestMapping(value = "admin/playMovie/playingMovieAdd.do", method = RequestMethod.GET)
 	public ModelAndView playingMoiveAddList (
+			@CookieValue(value = "autologin", required = false) String autologin,
 			HttpSession session
 			) {
 		
@@ -103,7 +103,7 @@ public class PlayingMovieController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		if (session.getAttribute("data")==null) {
+		if (session.getAttribute("data")==null && autologin == null) {
 			mav.addObject("msg", "로그인 후 이용가능합니다.");
 			mav.addObject("href", "/amor/admin/adminLogin.do");
 			mav.setViewName("/admin/msg/adminMsg");	

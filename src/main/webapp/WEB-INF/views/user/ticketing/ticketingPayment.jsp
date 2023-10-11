@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>아모르 : 영화 예매 결제</title>
 <link rel="stylesheet" href="/amor/resources/css/user/ticketingPayment.css">
 </head>
 <script type="text/javascript" src="../../resources/js/httpRequest.js"></script>
@@ -19,9 +19,10 @@
 		<div class="commonMid">
 		<form id="ticketingPayment" action="ticketingPaymentKako.do" method="post">
 			<div class="content1">
-				<div><img class="ticketingPoster" src="/amor/resources/upload/movie/${movie_poster }.jpg"></div>
+				<div><img class="ticketingPoster" src="/amor/resources/upload/movie/${dto.movie_poster}"></div>
 				<div><input class="ticketingInfo3" type="text" name="movie_name" value="${movie_name }" readonly></div>
-				<div><input class="ticketingInfo" type="text" name="ticketing_screeningtime" value="${playing_movie_start }" readonly></div>
+				<div class="playingEnd"><input class="ticketingInfo10" type="hidden" name="ticketing_screeningtime" value="${playing_movie_start }" readonly>
+				${playing_movie_start_cut }~${playing_movie_end }</div>
 				<div><input class="ticketingInfo" type="text" name="theater_name" value="${theater_name }" readonly></div>
 				<c:if test="${adultC != 0}">
 				<div>성인 <input class="ticketingInfo2" type="text" value="${adultC }" readonly>명</div>
@@ -59,7 +60,7 @@
 						<td colspan="2" class="ticketingTable4">
 						<input type="hidden" name="ticketing_price" value="${ticketing_price }">
 						<input type="hidden" name="ticketing_personnel" value="${ticketing_personnel }">
-						<input type="submit" class="ticketingTable5" value="결제하기">
+						<input type="submit" id="submitBtn" disabled="disabled" class="ticketingTable5" value="결제하기">
 						</td>
 					</tr>
 				</table>
@@ -68,7 +69,22 @@
 		</div>
 	</div>
 </div>
+<script>
+var button = document.getElementById('payBtn');
+var submitBtn= document.getElementById('submitBtn');
+var clickState=false;
+button.addEventListener('click', function() {
+	if(clickState){
+		button.classList.remove('clicked');
+		submitBtn.disabled=true;
+	}else{
+		button.classList.add('clicked');
+		submitBtn.disabled=false;
+	}
+	clickState = !clickState;
+})
 
+</script>
 </body>
 <%@include file="../footer.jsp" %>
 </html>

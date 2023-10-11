@@ -59,7 +59,7 @@
 }
 .content2{
 	width: 366px;
-	height: 600px;
+	height: 566px;
 	float:left;
 	border-right: 1px solid #1A2C82;
 	border-left: 1px solid #1A2C82;
@@ -69,6 +69,21 @@
 	height: 600px;
 	display:inline-block;
 	text-align: center;
+}
+
+.playingEnd {
+	font-size: 15px;
+}
+
+.ticketingInfo10 {
+	border: none;
+	width: 122px;
+	height: 25px;
+	font-size: 15px;
+}
+
+.ticketingInfo10:focus {
+	outline: none;
 }
 
 .ticketingInfo {
@@ -200,4 +215,20 @@
    background: white;
    color: #1A2C82;
    cursor: pointer;
+}
+
+#payBtn.clicked{
+   border:none;
+   padding: 2px 20px 2px 20px;
+   width: 150px;
+   height: 50px;
+   border-radius: 3px;
+   background: #1A2C82;
+   color: white;
+   cursor: pointer;
+	
+}
+
+.payType{
+	padding: 20px;
 }

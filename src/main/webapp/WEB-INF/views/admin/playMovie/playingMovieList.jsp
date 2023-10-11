@@ -13,10 +13,14 @@ document.addEventListener("DOMContentLoaded", function() {
     show();
 });
 
-function show() {
+function show(aaa) {
 	let selectMovie = document.getElementById('movieName');
 	let movie_idx = selectMovie.options[selectMovie.selectedIndex].value;
-	let param = 'movie_idx='+movie_idx;
+	let cp = aaa;
+	if (cp == undefined) {
+		cp = 1;
+	}
+	let param = 'movie_idx='+movie_idx+'&cp='+cp;
 	sendRequest ('playingMovieList2.do',param,showResult,'GET');
 
 }
@@ -48,19 +52,25 @@ function showResult() {
 			
 			let pageList = objdata.playingMoviepageStr;
 			let divTag = document.getElementById('paging');
-			divTag.innerHTML = pageList;
 			
+			if (str == '<td colspan="5">등록된 상영영화가 없습니다.</td>') {
+				divTag.innerHTML = '';
+			} 
+			if (str != '<td colspan="5">등록된 상영영화가 없습니다.</td>') {
+				divTag.innerHTML = pageList;
+			} 
 		}
 	}
 	
 }
+
 </script>
 </head>
 <body>
 <%@include file="../admin_header.jsp" %>
 <div class="content">
 <div class="content-title"><label class="titletext">상영 영화 목록</label>
-<select id="movieName" onchange="show()">
+<select class="box" id="movieName" onchange="show()">
 		<option value="aa">모두보기</option>
 	<c:forEach var="mdto" items="${movieList }" begin = "1" end = "${movieList.size() }" step = "1">
 		<option value="${mdto.MOVIE_IDX }">${mdto.MOVIE_NAME}</option>
@@ -80,15 +90,9 @@ function showResult() {
 	</tr>
 	</thead>
 	<tbody id="playingMovieList">
-			<tr>
-				<td>playing_movie_date</td>
-				<td>playing_movie_start</td>
-				<td>dto.theater_name</td>
-				<td>dto.movie_name</td>
-			</tr>
 	</tbody>
 	</table>
-		<div class="paging" id="paging">${playingMoviepageStr }</div>
+		<div class="paging" id="paging"></div>
 </div>
 </div>
 </div>
