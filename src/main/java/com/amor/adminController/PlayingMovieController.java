@@ -47,8 +47,6 @@ public class PlayingMovieController {
 		ModelAndView mav = new ModelAndView();
 		
 		if (movie_idx == null || movie_idx.equals("aa")) {
-		
-			System.out.println("모두보기");
 			
 			int totalCnt=playingMovieService.getTotalCnt();
 			int listSize=10;
@@ -70,9 +68,6 @@ public class PlayingMovieController {
 			
 		} else {
 			
-			System.out.println("부분 보기");
-			System.out.println(movie_idx);
-			
 			int movie_idx2 = Integer.parseInt(movie_idx);
 			
 			int totalCnt=playingMovieService.totalCntSelect(movie_idx2);
@@ -80,8 +75,6 @@ public class PlayingMovieController {
 			int pageSize=5;
 			
 			List<PlayingMovieJoinDTO> lists = playingMovieService.playingMovieListSelect(cp, listSize, movie_idx2);
-			
-			System.out.println(lists.size()+"/"+totalCnt);
 			
 			String playingMoviepageStr=com.amor.page.PageModuleAjax.makePage(totalCnt, listSize, pageSize, cp);
 			

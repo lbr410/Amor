@@ -82,10 +82,10 @@ table tfoot tr {
   	border: none;
 }
 .reviewTd5 {
-	width: 280px;
+	width: 150px;
 }
 .reviewTd1 {
-	width: 150px;	
+	width: 120px;	
 }
 
 .reviewTd2 {
@@ -102,7 +102,6 @@ table tfoot tr {
 
 .reviewTdContent {
 	height: 200px;
-	width: 300px;
 	text-align: left;
 	padding: 30px 30px 30px 30px;
 	vertical-align: middle;
@@ -110,14 +109,11 @@ table tfoot tr {
 }
 
 .reviewTdContent2 {
-	padding-left: 50px;
-	padding-right: 60px;
+	padding-left: 30px;
 	object-fit: contain;
-	text-align: center;
-	width: 230px;
 	border: none;
-	width: 150px;
 	vertical-align: middle;
+	margin: auto;
 }
 
 .reviewTdContent3 {

@@ -59,7 +59,7 @@
 }
 .content2{
 	width: 366px;
-	height: 566px;
+	height: 620px;
 	float:left;
 	border-right: 1px solid #1A2C82;
 	border-left: 1px solid #1A2C82;
@@ -88,6 +88,7 @@
 
 .ticketingInfo {
 	border: none;
+	width: 250px;
 	height: 25px;
 	font-size: 15px;
 }

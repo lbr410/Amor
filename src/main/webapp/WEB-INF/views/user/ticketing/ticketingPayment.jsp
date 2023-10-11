@@ -19,10 +19,10 @@
 		<div class="commonMid">
 		<form id="ticketingPayment" action="ticketingPaymentKako.do" method="post">
 			<div class="content1">
-				<div><img class="ticketingPoster" src="/amor/resources/upload/movie/${dto.movie_poster}"></div>
+				<div><img class="ticketingPoster" src="/amor/resources/upload/movie/${movie_poster}"></div>
 				<div><input class="ticketingInfo3" type="text" name="movie_name" value="${movie_name }" readonly></div>
 				<div class="playingEnd">
-				<input class="ticketingInfo" type="text" value="${playing_movie_start } ~${playing_movie_end }" readonly>
+				<input class="ticketingInfo" type="text" value="${fullday }" readonly>
 				<input class="ticketingInfo10" type="hidden" name="ticketing_screeningtime" value="${playing_movie_start }" readonly></div>
 				<div><input class="ticketingInfo" type="text" name="theater_name" value="${theater_name }" readonly></div>
 				<c:if test="${adultC != 0}">
