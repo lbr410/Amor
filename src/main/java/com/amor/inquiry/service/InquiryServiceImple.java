@@ -28,6 +28,7 @@ public class InquiryServiceImple implements InquiryService {
 		List<InquiryDTO>lists=inquiryDao.memberInquiryList(map);
 		for(int i=0;i<lists.size();i++) {
 			lists.get(i).setInquiry_answer(lists.get(i).getInquiry_answer().replaceAll("\n", "<br>"));
+			lists.get(i).setInquiry_content(lists.get(i).getInquiry_content().replaceAll("\n", "<br>"));
 		}
 		return lists;
 	}
@@ -52,9 +53,6 @@ public class InquiryServiceImple implements InquiryService {
 		map.put("start", start);
 		map.put("end", end);
 		List<InquiryJoinDTO>lists=inquiryDao.adminInquiryList(map);
-		for(int i=0;i<lists.size();i++) {
-			lists.get(i).setInquiry_answer(lists.get(i).getInquiry_answer().replaceAll("\n", "<br>"));
-		}
 		return lists;
 	}
 	
@@ -76,6 +74,7 @@ public class InquiryServiceImple implements InquiryService {
 	public InquiryJoinDTO inquiryContent(int idx) {
 		InquiryJoinDTO dto=inquiryDao.inquiryContent(idx);
 		dto.setInquiry_content(dto.getInquiry_content().replaceAll("\n", "<br>"));
+		dto.setInquiry_answer(dto.getInquiry_answer().replaceAll("\n", "<br>"));
 		return dto;
 	}
 	

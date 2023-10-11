@@ -59,7 +59,7 @@
                     </c:otherwise>
                 	</c:choose>
                     <div class="movie_poster">
-                   	 	<c:url var="MovieContentUrl" value="movieContentForm.do">
+                   	 	<c:url var="MovieContentUrl" value="/movie/movieContentForm.do">
 							<c:param name="movie_idx">${mdto.movie_idx }</c:param>
                     	</c:url>
                     <a href="${MovieContentUrl}"><img src="/amor/resources/upload/movie/${mdto.movie_poster }" alt="영화 포스터"></a>
@@ -125,7 +125,7 @@
                     </c:otherwise>
                 	</c:choose>
                     <div class="movie_poster">
-                   	 	<c:url var="MovieContentUrl" value="movieContentForm.do">
+                   	 	<c:url var="MovieContentUrl" value="/movie/movieContentForm.do">
 							<c:param name="movie_idx">${rdto.movie_idx }</c:param>
                     	</c:url>
                     <a href="${MovieContentUrl}"><img src="/amor/resources/upload/movie/${rdto.movie_poster }" alt="영화 포스터"></a>

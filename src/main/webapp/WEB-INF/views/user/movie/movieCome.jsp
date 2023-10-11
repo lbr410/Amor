@@ -51,7 +51,7 @@
                 <div class="rank-movie">
                         <div class="rank"></div>
                     <div class="movie_poster">
-                   	 	<c:url var="MovieContentUrl" value="movieContentForm.do">
+                   	 	<c:url var="MovieContentUrl" value="/movie/movieContentForm.do">
 							<c:param name="movie_idx">${cdto.movie_idx }</c:param>
                     	</c:url>
                     <a href="${MovieContentUrl}"><img src="/amor/resources/upload/movie/${cdto.movie_poster }" alt="영화 포스터"></a>
@@ -90,7 +90,7 @@
                 <div class="rank-movie">
                         <div class="rank"></div>
                     <div class="movie_poster">
-                   	 	<c:url var="MovieContentUrl" value="movieContentForm.do">
+                   	 	<c:url var="MovieContentUrl" value="/movie/movieContentForm.do">
 							<c:param name="movie_idx">${ndto.movie_idx }</c:param>
                     	</c:url>
                     <a href="${MovieContentUrl}"><img src="/amor/resources/upload/movie/${ndto.movie_poster }" alt="영화 포스터"></a>
