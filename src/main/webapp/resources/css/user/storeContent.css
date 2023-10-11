@@ -78,19 +78,17 @@ body, h1, h2, p {
     margin-left: 20px;
     height: 397px;
     position: relative;
+    align-items: center; 
+    display: flex;
 }
 .contents-detail .pd-wrap .pd-img .main-img {
     position: relative;
     margin-bottom: 20px;
-    display: flex; /* Flexbox를 사용하여 요소들을 가로/세로 중앙 정렬 */
-	justify-content: center; /* 가로 중앙 정렬 */
-	align-items: center; 
+
 }
 .prodImg{
-	width: 380px;
-	height: 320px;
-	justify-content: center; /* 가로 중앙 정렬 */
-	align-items: center; 
+	width: 100%;
+
 	padding-top: 30px;
 }
 /* PRODUCT INFO*/

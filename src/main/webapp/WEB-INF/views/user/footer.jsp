@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
   <style>
 footer {
+	margin-top:200px;
   background-color: #272727;
   border-top: 1px solid #333;
   bottom: 0;
@@ -59,7 +60,7 @@ footer .footer-inner .logo {
     <div class="footer-inner">
       <div class="btn-group">
         <a href="/amor/intro/intro.do" class="navi-btn">영화관소개</a>
-        <a href="#" class="navi-btn">공지사항</a>
+        <a href="/amor/customer/noticeList.do" class="navi-btn">공지사항</a>
         <a href="/amor/admin/adminLogin.do" class="navi-btn">관리자 페이지</a>
       </div>
 

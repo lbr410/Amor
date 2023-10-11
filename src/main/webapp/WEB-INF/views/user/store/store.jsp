@@ -18,9 +18,9 @@
 		<div class="border-title">스토어</div>	
 </div>
 <div class="tapMenu">
-	<div class="menu1"><label><a href="#sc1">관람권</a></label></div>
-	<div class="menu2"><label><a href="#sc2">스낵</a></label></div>
-	<div class="menu3"><label><a href="#sc3">음료</a></label></div>
+	<div class="menu1"><a href="#sc1"><label>관람권</label></a></div>
+	<div class="menu2"><a href="#sc2"><label>스낵</label></a></div>
+	<div class="menu3"><a href="#sc3"><label>음료</label></a></div>
 </div>
 <div id="sc1">
 <div class="title">관람권</div>
