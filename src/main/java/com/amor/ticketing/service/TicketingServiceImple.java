@@ -47,10 +47,11 @@ public class TicketingServiceImple implements TicketingService {
       if(lists != null && lists.size() > 0) {
          DecimalFormat df = new DecimalFormat("#,##0원");
          SimpleDateFormat dateDf = new SimpleDateFormat("yyyy.MM.dd (E) | HH:mm");
+         SimpleDateFormat endDateDf = new SimpleDateFormat("HH:mm");
          JoinTicketingHistoryDTO dto = null;
-
          for(int i = 0 ; i < lists.size(); i++) {
         	 java.util.Date ticketDate = lists.get(i).getScreeningdate();
+        	 java.util.Date movieEndDate = lists.get(i).getEndDate();
         	 long getMS = ticketDate.getTime();
         	 long minutes = 30 * 60 * 1000;
         	 
@@ -65,6 +66,7 @@ public class TicketingServiceImple implements TicketingService {
         		 dto.setTimelimit("n");
         	 }
             dto.setChangePrice(df.format(lists.get(i).getPrice()));
+            dto.setChangeEndDate(endDateDf.format(movieEndDate));
             dto.setChangeScreeningDate(dateDf.format(lists.get(i).getScreeningdate()));
             dto.setChangeReserveTime(dateDf.format(lists.get(i).getReservetime()));
             lists.set(i, dto);               
@@ -135,6 +137,7 @@ public class TicketingServiceImple implements TicketingService {
 	public boolean checkDate(int ticketidx) {
 	
 	 java.util.Date movieDate = ticketingDao.checkDate(ticketidx);
+	 
 		
 	 long getMS = movieDate.getTime();
 	 long minutes = 30 * 60 * 1000;
@@ -175,10 +178,12 @@ public class TicketingServiceImple implements TicketingService {
       if(lists != null && lists.size() > 0) {
          DecimalFormat df = new DecimalFormat("#,##0원");
          SimpleDateFormat dateDf = new SimpleDateFormat("yyyy.MM.dd (E) | HH:mm");
+         SimpleDateFormat endDateDf = new SimpleDateFormat("HH:mm");
          JoinTicketingHistoryDTO dto = null;
          
          for(int i = 0 ; i < lists.size(); i++) {
-            dto = lists.get(i);            
+            dto = lists.get(i);
+            dto.setChangeEndDate(endDateDf.format(lists.get(i).getEndDate()));
             dto.setChangePrice(df.format(lists.get(i).getPrice()));
             dto.setChangeScreeningDate(dateDf.format(lists.get(i).getScreeningdate()));
             dto.setChangeReserveTime(dateDf.format(lists.get(i).getReservetime()));

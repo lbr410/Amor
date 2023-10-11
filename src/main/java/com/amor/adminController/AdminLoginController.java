@@ -43,30 +43,30 @@ public class AdminLoginController {
 
 		if(autologin != null || id != null) {
 			
-			List<DualDTO> chartData = dualService.chartData();
-			List<DualDTO> tableData = dualService.threeTableResult(); // 3개의 테이블(member, movie, notice)의 결과
-			List<DualDTO> memberResult = new ArrayList<DualDTO>();
-			List<DualDTO> movieResult = new ArrayList<DualDTO>();
-			List<DualDTO> noticeResult = new ArrayList<DualDTO>();
-			for(int i=0; i<tableData.size(); i++) {
-				if(tableData.get(i).getOrders() == 0) {
-					memberResult.add(tableData.get(i));
-				} else if(tableData.get(i).getOrders() == 1) {
-					movieResult.add(tableData.get(i));
-				} else if(tableData.get(i).getOrders() == 2) {
-					noticeResult.add(tableData.get(i));
-				}
-			}
-			List<InquiryDTO> inquiryResult = inquiryService.adminMainInquiryList(); 
+//			List<DualDTO> chartData = dualService.chartData();
+//			List<DualDTO> tableData = dualService.threeTableResult(); // 3개의 테이블(member, movie, notice)의 결과
+//			List<DualDTO> memberResult = new ArrayList<DualDTO>();
+//			List<DualDTO> movieResult = new ArrayList<DualDTO>();
+//			List<DualDTO> noticeResult = new ArrayList<DualDTO>();
+//			for(int i=0; i<tableData.size(); i++) {
+//				if(tableData.get(i).getOrders() == 0) {
+//					memberResult.add(tableData.get(i));
+//				} else if(tableData.get(i).getOrders() == 1) {
+//					movieResult.add(tableData.get(i));
+//				} else if(tableData.get(i).getOrders() == 2) {
+//					noticeResult.add(tableData.get(i));
+//				}
+//			}
+//			List<InquiryDTO> inquiryResult = inquiryService.adminMainInquiryList(); 
+//			
+//			mav.addObject("chartData", chartData);
+//			mav.addObject("memberResult", memberResult);
+//			mav.addObject("movieResult", movieResult);
+//			mav.addObject("noticeResult", noticeResult);
+//			mav.addObject("inquiryResult", inquiryResult);
+			mav.setViewName("redirect:adminIndex.do");
 			
-			mav.addObject("chartData", chartData);
-			mav.addObject("memberResult", memberResult);
-			mav.addObject("movieResult", movieResult);
-			mav.addObject("noticeResult", noticeResult);
-			mav.addObject("inquiryResult", inquiryResult);
-			mav.setViewName("admin/adminIndex");
-			
-		}else if(id == null) {
+		}else {
 			mav.setViewName("admin/adminLogin");
 		}
 		return mav;

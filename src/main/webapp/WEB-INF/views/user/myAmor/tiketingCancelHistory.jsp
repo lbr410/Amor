@@ -77,7 +77,7 @@
           관람 일시
           </span>
           <span class="span6">
-            ${temp.changeScreeningDate}<br/>
+            ${temp.changeScreeningDate} ~ ${temp.changeEndDate}<br/>
           </span>
           <span class="span7">
           상영관

@@ -77,7 +77,9 @@
                     </div>
                     <div class="book-btn" >
                         <c:url var="ticketingUrl" value="/ticketing/ticketing.do">
-                       		<c:param name="movie_name">${temp.movie_name}</c:param>
+                       		<c:param name="movie_name">${temp.movie_name}</c:param> 
+                       		<c:param name="movie_maxage">${temp.movie_maxage}</c:param> 
+                       		<c:param name="movie_idx">${temp.movie_idx}</c:param> 
                        	</c:url>
                      	<a href = "${ticketingUrl}">
                      		<button type="button" name="ticketing-btn" title="영화 예매하기">예매하기</button>

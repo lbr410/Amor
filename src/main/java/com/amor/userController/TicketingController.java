@@ -22,13 +22,23 @@ public class TicketingController {
 	private TicketingService ticketingservice;
 	
 	@RequestMapping("ticketing/ticketing.do")
-	public ModelAndView ticketing() {
+	public ModelAndView ticketing(@RequestParam(value = "movie_name", required = false)String movieName,
+			@RequestParam(value = "movie_maxage", defaultValue = "0")int movieMaxAge,
+			@RequestParam(value = "movie_idx", defaultValue = "0")int movieIdx) {
 		
 		List<TicketingSelectMovieDTO> lists = ticketingservice.ticketingPlayingMovieList();
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("lists", lists);
-		mav.setViewName("/user/ticketing/ticketing");
+		if(movieName == null && movieMaxAge == 0 && movieIdx == 0) {			
+			mav.addObject("lists", lists);
+			mav.setViewName("/user/ticketing/ticketing");
+		}else {
+			mav.addObject("lists", lists);
+			mav.addObject("movieName", movieName);
+			mav.addObject("movieMaxAge", movieMaxAge);
+			mav.addObject("movieIdx", movieIdx);
+			mav.setViewName("/user/ticketing/ticketing");
+		}
 		return mav;
 	}
 	
