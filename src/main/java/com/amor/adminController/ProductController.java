@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import java.io.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,7 +27,7 @@ public class ProductController {
 	// 관리자 상품 목록 조회
 	@RequestMapping("/admin/product/productList.do")
 	public ModelAndView productListForm(@RequestParam(value = "cp", defaultValue = "1") int cp,
-										HttpSession session) {
+										HttpSession session, @CookieValue(value = "autologin", required = false) String autologin) {
 		int totalCnt = productService.totalCnt();
 		int listSize = 5;
 		int pageSize = 5;
@@ -36,7 +37,7 @@ public class ProductController {
 		List<ProductDTO> lists = productService.productList(cp, listSize);
 		
 		ModelAndView mav = new ModelAndView();
-		if(session.getAttribute("data") == null) {
+		if(autologin == null && session.getAttribute("data") == null) {
 			mav.addObject("msg", "로그인 후 이용 가능합니다.");
 			mav.addObject("href", "/amor/admin/adminLogin.do");
 			mav.setViewName("/admin/msg/adminMsg");
@@ -83,7 +84,7 @@ public class ProductController {
 	// 스토어 제목 검색
 	@RequestMapping("admin/product/prodSearchList.do")
 	public ModelAndView searchList(@RequestParam(value = "cp", defaultValue = "1") int cp, @RequestParam("search") String search,
-								   HttpSession session) {
+								   HttpSession session, @CookieValue(value = "autologin", required = false) String autologin) {
 		int totalCnt = productService.prodSearchTotalCnt(search);
 		int listSize = 5;
 		int pageSize = 5;
@@ -93,7 +94,7 @@ public class ProductController {
 		List<ProductDTO> lists = productService.prodSearchList(cp, listSize, search);
 		
 		ModelAndView mav = new ModelAndView();
-		if(session.getAttribute("data") == null) {
+		if(autologin == null && session.getAttribute("data") == null) {
 			mav.addObject("msg", "로그인 후 이용 가능합니다.");
 			mav.addObject("href", "/amor/admin/adminLogin.do");
 			mav.setViewName("/admin/msg/adminMsg");
@@ -108,9 +109,9 @@ public class ProductController {
 	
 	// 상품 등록 페이지로 이동
 	@RequestMapping(value = "admin/product/productAdd.do", method = RequestMethod.GET)
-	public ModelAndView productAddForm(HttpSession session) {
+	public ModelAndView productAddForm(HttpSession session, @CookieValue(value = "autologin", required = false) String autologin) {
 		ModelAndView mav = new ModelAndView();
-		if(session.getAttribute("data") == null) {
+		if(autologin == null && session.getAttribute("data") == null) {
 			mav.addObject("msg", "로그인 후 이용 가능합니다.");
 			mav.addObject("href", "/amor/admin/adminLogin.do");
 			mav.setViewName("/admin/msg/adminMsg");

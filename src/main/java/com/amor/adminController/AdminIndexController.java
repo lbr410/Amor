@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,7 +25,7 @@ public class AdminIndexController {
 	private InquiryService inquiryService;
 	
 	@RequestMapping("/admin/adminIndex.do")
-	public ModelAndView adminIndex(HttpSession session) {
+	public ModelAndView adminIndex(HttpSession session, @CookieValue(value = "autologin", required = false) String autologin) {
 		List<DualDTO> chartData = dualService.chartData();
 		List<DualDTO> tableData = dualService.threeTableResult(); // 3개의 테이블(member, movie, notice)의 결과
 		List<DualDTO> memberResult = new ArrayList<DualDTO>();
@@ -42,7 +43,7 @@ public class AdminIndexController {
 		List<InquiryDTO> inquiryResult = inquiryService.adminMainInquiryList(); 
 		
 		ModelAndView mav = new ModelAndView();
-		if(session.getAttribute("data") == null) {
+		if(autologin == null && session.getAttribute("data") == null) {
 			mav.addObject("msg", "로그인 후 이용 가능합니다.");
 			mav.addObject("href", "/amor/admin/adminLogin.do");
 			mav.setViewName("/admin/msg/adminMsg");
