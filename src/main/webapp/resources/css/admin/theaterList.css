@@ -49,14 +49,14 @@
 }
 .addimg {
   position: absolute;
-  left: 0px;
-  top: 0px;
+  left: 1px;
+  top: 1.2px;
   overflow: visible;
 }
 .wright {
   position: absolute;
-  left: 3px;
-  top: 3px;
+  left: 4px;
+  top: 4px;
   overflow: visible;
 }
 .delbox {
@@ -72,11 +72,11 @@
   border-style: solid;
   border-color: #000000;
   border-width: 1px;
-  width: 29px;
+  width: 30px;
   height: 31px;
   position: absolute;
-  left: 29px;
-  top: 0px;
+  left: 30px;
+  top: 1px;
   transform-origin: 0 0;
   transform: rotate(0deg) scale(-1, 1);
 }
