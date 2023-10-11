@@ -62,8 +62,7 @@ function handleCheckboxChange(e) {
 let max = 2;
     
     let checkedCheckboxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
-    
-    
+        
     if (checkedCheckboxes.length > max) {
         e.preventDefault();
         let box = document.getElementsByName('seats');
@@ -80,8 +79,7 @@ let max = 2;
 
 
 	//저장하기 요청함수
-	function pushData(){
-		
+	function pushData(){		
 		
 		let seats = document.getElementsByName("seats");
 		let rows = document.getElementById('row').value;
@@ -89,10 +87,13 @@ let max = 2;
 		let theatername = document.getElementById('theaterName').value;
 		let seatsData = new Array(rows);
 		let setData = [];
+		
 		for(let i = 0 ; i < rows; i++){
 			seatsData[i] = new Array(cols);
 		}
+		
 		let totalseat = 0;
+		
 		seats.forEach(function(checkbox){		
 			if(checkbox.value != 0){
 				checkbox.value = 1;
@@ -107,6 +108,7 @@ let max = 2;
 				console.log(seatsData[i][j]);
 			}
 		}
+		
 		for(let i = 0 ; i < rows; i++){
 			setData.push(seatsData[i]);
 		}
@@ -117,12 +119,12 @@ let max = 2;
 
 			console.log(jsonData);
 			let param = null;
+			
 		if(theatername != ''){
 			param = 'seatsData='+encodeURI(jsonData)+'&totalseat='+totalseat+'&row='+rows+'&col='+cols+'&tidx='+${tidx}+'&theatername='+theatername;
 		}else{
 			param = 'seatsData='+encodeURI(jsonData)+'&totalseat='+totalseat+'&row='+rows+'&col='+cols+'&tidx='+${tidx}+'&theatername=none';
-		}
-		
+		}		
 		sendRequest('/amor/admin/theater/updateSeate.do',param,pushSeateData,'GET');
 	}
 	
@@ -146,8 +148,7 @@ let max = 2;
 		let col = document.getElementById('column').value;
 		
 		for(let i = 0 ; i < box.length; i++){
-			box[i].disabled = false;
-			
+			box[i].disabled = false;			
 		}
 		
 		let l = -1;
@@ -174,6 +175,7 @@ let max = 2;
 	function initializationResult() {
 	    if (XHR.readyState == 4) {
 	        if (XHR.status == 200) {
+	        	
 	            let data = XHR.responseText;
 	            let objData = JSON.parse(data);
 	            let seats = objData.seats;
@@ -182,6 +184,7 @@ let max = 2;
 	            document.getElementById('column').value = 20;
 
 				let checkboxes = document.querySelectorAll('input[name="seats"]');
+				
 	            // 기존에 등록된 이벤트 리스너 모두 제거
 	            checkboxes.forEach(checkbox => {
 	                checkbox.removeEventListener('click', handleCheckbox);
@@ -226,12 +229,14 @@ let max = 2;
 	function rowResult(){
 		if(XHR.readyState == 4){
 			if(XHR.status == 200){
+				
 				let data = XHR.responseText;
 				let objData = JSON.parse(data);
 				let seats = objData.seats;
 				document.getElementById('seats').innerHTML = seats;
 				
 				let checkboxes = document.querySelectorAll('input[name="seats"]');
+				
 	            // 기존에 등록된 이벤트 리스너 모두 제거
 	            checkboxes.forEach(checkbox => {
 	                checkbox.removeEventListener('click', handleCheckbox);
@@ -275,12 +280,14 @@ let max = 2;
 	function columnResult(){
 		if(XHR.readyState == 4){
 			if(XHR.status == 200){
+				
 				let data = XHR.responseText;
 				let objData = JSON.parse(data);
 				let seats = objData.seats;
 				document.getElementById('seats').innerHTML = seats;
 				
 				let checkboxes = document.querySelectorAll('input[name="seats"]');
+				
 	            // 기존에 등록된 이벤트 리스너 모두 제거
 	            checkboxes.forEach(checkbox => {
 	                checkbox.removeEventListener('click', handleCheckbox);
@@ -298,8 +305,11 @@ let max = 2;
 	                let checkedCheckboxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
 
 	                if (checkedCheckboxes.length > max) {
+	                	
 	                    e.preventDefault();
+	                    
 	                   let box = document.getElementsByName('seats');
+	                   
 	                   box.forEach(function(checkbox){
 	                	  if(checkbox.checked){
 	                		  checkbox.checked = false;
@@ -314,22 +324,20 @@ let max = 2;
 	
 	//통로생성 함수
 	function path(){
+		
 		let row = document.getElementById('row').value;
 		let column = document.getElementById('column').value;	
 		let box = document.getElementsByName('seats');
 		
 		let data = [];
-		
-		
-		
-		box.forEach(function(checkbox){ 		
-			if(checkbox.checked){
 						
-				data.push(checkbox.value);
-				
+		box.forEach(function(checkbox){ 		
+			if(checkbox.checked){						
+				data.push(checkbox.value);				
 			}
 		});
 		
+		// 클릭된 checkbox의 좌표값이 담긴 value를 split으로 나눠담음
 		let datarowblock = data[0].split(',');
 		let datacolblock = data[1].split(',');	
 		
@@ -347,6 +355,7 @@ let max = 2;
 			
 			//행통로 2개생성 조건
 			let doublecolblock = (parseInt(allcolumn_1-allcolumn_2) == 1) || (parseInt(allcolumn_1-allcolumn_2) == -1);
+			
 			console.log(allrow+'<'+allcolumn);
 			console.log(allrow < allcolumn);
 			
@@ -377,14 +386,18 @@ let max = 2;
 			if(colbox){
 				if(value == datacolblock[1]){
 					colbox.style.display = 'none';
-					//colbox.innerHTML = '';
 				}
 			}
+			
 			if(parseInt(value)-1 >= parseInt(datacolblock[1])){
+				
 				colbox.innerHTML = colbox.innerHTML-1;
+				
 			for(let j = 0 ; j < box.length; j++){
+				
 				let rowblock = box[j].value;
 				let result = rowblock.split(',');
+				
 				if(result[1] == datacolblock[1]){
 										
 					box[j].checked = false;
@@ -392,12 +405,11 @@ let max = 2;
 					box[j].disabled = true;
 					
 				}
-				}
 			}
-					
-		}
+		}					
+	}
 			//행열 지우기(두행을합친것보다 열이더 크면 행을지운다)
-			}else if(doublerowblock){
+		}else if(doublerowblock){
 				
 				let firstHideNum = document.getElementsByName(datarowblock[0]);
 				let lastHideNum = document.getElementsByName(datacolblock[0]);
@@ -405,11 +417,10 @@ let max = 2;
 				let count = 0;
 				
 				for(let i = 0 ; i < box.length; i++){
+					
 				let firstblock = box[i].value.slice(0,datarowblock[0].length) == datarowblock[0];
-				console.log(count);
-				console.log(box[i].value.slice(0,datarowblock[0].length)+'=='+ datarowblock[0]);
 				let lastblock = box[i].value.slice(0,datacolblock[0].length) == datacolblock[0];				
-				console.log(box[i].value.slice(0,datacolblock[0].length) +'=='+datacolblock[0]);
+				
 				if(firstblock || lastblock){
 						
 						box[i].checked = false;
@@ -428,31 +439,33 @@ let max = 2;
 			}else if(doublecolblock){
 				
 				for(let i = 1 ; i <= box.length; i++){
+					
 					let colbox = document.getElementById('boxnum'+i);
-					//let value = colbox.value;
 					let value=colbox.getAttribute('value');
+					
 					if(colbox){
 						if(value == datarowblock[1] || value == datacolblock[1]){
 							colbox.style.display = 'none';
-							//colbox.innerHTML = '';
 						}
 					}
-				if(parseInt(value-1) >= parseInt(datarowblock[1]) || parseInt(value-1) >= parseInt(datacolblock[1])){						
+					
+				if(parseInt(value-1) >= parseInt(datarowblock[1]) || parseInt(value-1) >= parseInt(datacolblock[1])){
+					
 						colbox.innerHTML = colbox.innerHTML-2;
+						
 					for(let j = 0 ; j < box.length; j++){
 						
 						let firstblock = box[j].value.slice(datarowblock[0].length+1,box[j].length) == datarowblock[1];
 						let lastblock = box[j].value.slice(datacolblock[0].length+1,box[j].length) == datacolblock[1];
-						if(firstblock || lastblock){
-												
+						
+						if(firstblock || lastblock){												
 							box[j].checked = false;
 							box[j].value = 0;
 							box[j].disabled = true;
 						}
 						}
 					}	
-				}
-						
+				}						
 			}else{
 				alert('통로는 2줄씩만 가능합니다.');
 				for(let i = 0 ; i < box.length; i++){

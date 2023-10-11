@@ -185,12 +185,12 @@ public class StorePaymentServiceImple implements StorePaymentService {
 	}
 	
 	@Override
-	public int mypageStoreCancel(int paymentidx) {
+	public boolean mypageStoreCancel(int paymentidx) {
 		int result = storePaymentDao.mypageStoreCancel(paymentidx);
 		if(result > 0) {
-			return result;
+			return true;
 		}else {
-			return -1;
+			return false;
 		}
 	}
 	

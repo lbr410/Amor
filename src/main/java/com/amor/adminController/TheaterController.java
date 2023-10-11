@@ -34,17 +34,17 @@ public class TheaterController {
 		if(lists != null) {
 			mav.addObject("lists", lists);
 			mav.setViewName("admin/theater/theaterList");
-			return mav;
 		}else{
 			mav.addObject("lists", null);
 			mav.setViewName("admin/theater/theaterList");
-			return mav;
 		}
 		
 		}else {
-			mav.setViewName("admin/adminLogin");
-			return mav;
+			mav.addObject("msg", "로그인 후 이용가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("admin/msg/adminMsg");
 		}
+		return mav;
 	}
 	
 	@RequestMapping("/admin/theater/createTheater.do")
@@ -107,29 +107,40 @@ public class TheaterController {
 	@RequestMapping("/admin/theater/seateSelect.do")
 	public ModelAndView seateSelect(@RequestParam("theateridx")int tidx,
 			@RequestParam("row")int row_s,
-			@RequestParam("col")int col_s) {
-		TheaterDTO tdto = theaterService.theaterInfo(tidx);
-		Seats item = new Seats();
-		int row = 0;
-		int col = 0;
-		if(tdto.getTheater_row() > row_s) {
-			row = tdto.getTheater_row();
-		}else {
-			row = row_s;
-		}
-		if(tdto.getTheater_column() > col_s) {
-			col = tdto.getTheater_column();
-		}else {
-			col = col_s;
-		}
-		String seats = item.createSeats(tdto.getTheater_seat(), row, col);
+			@RequestParam("col")int col_s,
+			@CookieValue(value = "autologin", required = false)String autologin,
+			HttpSession session) {
+		String id = (String)session.getAttribute("data");
+
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("tidx", tidx);
-		mav.addObject("row",row);
-		mav.addObject("col",col);
-		mav.addObject("theatername", tdto.getTheater_name());
-		mav.addObject("seats", seats);
-		mav.setViewName("/admin/theater/theaterAdd");
+		
+		if(autologin != null || id != null) {			
+			TheaterDTO tdto = theaterService.theaterInfo(tidx);
+			Seats item = new Seats();
+			int row = 0;
+			int col = 0;
+			if(tdto.getTheater_row() > row_s) {
+				row = tdto.getTheater_row();
+			}else {
+				row = row_s;
+			}
+			if(tdto.getTheater_column() > col_s) {
+				col = tdto.getTheater_column();
+			}else {
+				col = col_s;
+			}
+			String seats = item.createSeats(tdto.getTheater_seat(), row, col);
+			mav.addObject("tidx", tidx);
+			mav.addObject("row",row);
+			mav.addObject("col",col);
+			mav.addObject("theatername", tdto.getTheater_name());
+			mav.addObject("seats", seats);
+			mav.setViewName("/admin/theater/theaterAdd");
+		}else {
+			mav.addObject("msg", "로그인 후 이용가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("admin/msg/adminMsg");
+		}
 		return mav;
 	}
 	

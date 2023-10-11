@@ -27,8 +27,11 @@ public class TicketingHistoryController {
 	@RequestMapping("/myAmor/ticketingHistory.do")
 	public ModelAndView TiketingHistory(HttpSession session,
 			@RequestParam(value = "cp", defaultValue = "1")int cp) {
+		
 		String id = (String)session.getAttribute("sid");
+		
 		ModelAndView mav = new ModelAndView();
+		
 		if(id != null) {			
 			int useridx = (int)session.getAttribute("sidx");
 			String pagename = "/amor/myAmor/ticketingHistory.do";
@@ -41,19 +44,17 @@ public class TicketingHistoryController {
 				mav.addObject("list", lists);
 				mav.addObject("page", page);
 				mav.setViewName("user/myAmor/tiketingHistory");
-				return mav;
 			}else {
 				mav.addObject("lists", null);
 				mav.addObject("page", null);
 				mav.setViewName("user/myAmor/tiketingHistory");
-				return mav;
 			}
 		}else {
 			mav.addObject("msg", "로그인 후 이용가능합니다.");
 			mav.addObject("goUrl", "/amor/member/login.do");
 			mav.setViewName("user/msg/userMsg");
-			return mav;
 		}
+		return mav;
 	}
 	
 	@RequestMapping("/myAmor/cancelHistory.do")
