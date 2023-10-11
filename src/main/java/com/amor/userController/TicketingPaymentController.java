@@ -12,13 +12,18 @@ import java.net.URL;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -63,53 +68,74 @@ public class TicketingPaymentController {
 			@RequestParam("seniorC") int seniorC,
 			@RequestParam("disabledC") int disabledC,
 			@RequestParam("ticketing_personnel") int ticketing_personnel,
-			@RequestParam("ticketing_price") int ticketing_price
+			@RequestParam("ticketing_price") int ticketing_price,
+			HttpSession session
 			) {
 		
-		TicketingPayingJoinDTO dto = ticketingService.ticketingPaying(movie_idx, theater_idx, playing_movie_idx);
-		String movie_poster = dto.getMovie_poster();
-		String movie_name = dto.getMovie_name();
-		String playing_movie_start = dto.getPlaying_movie_start();
-		String theater_name = dto.getTheater_name();
-		String playing_movie_end = dto.getPlaying_movie_end();
-		
-		String playing_movie_seat_num = "";
-		for (int i = 0 ; i<playing_movie_seat.length;i++) {
-			if (playing_movie_seat.length == 0) {
-			playing_movie_seat_num = playing_movie_seat[i]; 
-			} else {
-				if (playing_movie_seat.length-1==i) {
-					playing_movie_seat_num += playing_movie_seat[i];
-					break;
-				}
-				playing_movie_seat_num += playing_movie_seat[i]+",";	
-			}
-		}		
-	
-		String playing_movie_end_cut = playing_movie_end.substring(10, 16);
-		String playing_movie_start_cut = playing_movie_start.substring(0,16);
-		
-		DecimalFormat df = new DecimalFormat("###,###");
-		String ticketing_price_comma = df.format(ticketing_price);
+		String sid = (String)session.getAttribute("sid");
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("movie_idx", movie_idx);
-		mav.addObject("theater_idx", theater_idx);
-		mav.addObject("playing_movie_idx", playing_movie_idx);
-		mav.addObject("playing_movie_seat", playing_movie_seat_num);
-		mav.addObject("adultC", adultC);
-		mav.addObject("teenagerC", teenagerC);
-		mav.addObject("seniorC", seniorC);
-		mav.addObject("disabledC", disabledC);
-		mav.addObject("ticketing_personnel", ticketing_personnel);
-		mav.addObject("ticketing_price_comma", ticketing_price_comma);
-		mav.addObject("ticketing_price", ticketing_price);
-		mav.addObject("movie_poster", movie_poster);
-		mav.addObject("playing_movie_start", playing_movie_start_cut);
-		mav.addObject("playing_movie_end", playing_movie_end_cut);
-		mav.addObject("movie_name", movie_name);
-		mav.addObject("theater_name", theater_name);
-		mav.setViewName("/user/ticketing/ticketingPayment");
+		
+		if (sid != null) {
+		
+			TicketingPayingJoinDTO dto = ticketingService.ticketingPaying(movie_idx, theater_idx, playing_movie_idx);
+			String movie_poster = dto.getMovie_poster();
+			String movie_name = dto.getMovie_name();
+			String playing_movie_start = dto.getPlaying_movie_start();
+			String theater_name = dto.getTheater_name();
+			String playing_movie_end = dto.getPlaying_movie_end();
+			
+			String playing_movie_seat_num = "";
+			for (int i = 0 ; i<playing_movie_seat.length;i++) {
+				if (playing_movie_seat.length == 0) {
+				playing_movie_seat_num = playing_movie_seat[i]; 
+				} else {
+					if (playing_movie_seat.length-1==i) {
+						playing_movie_seat_num += playing_movie_seat[i];
+						break;
+					}
+					playing_movie_seat_num += playing_movie_seat[i]+",";	
+				}
+			}		
+		
+			String playing_movie_end_cut = playing_movie_end.substring(10, 16);
+			String playing_movie_start_cut = playing_movie_start.substring(0,16);
+			
+			LocalDate date = LocalDate.of(Integer.parseInt(playing_movie_start.substring(0,4)),Integer.parseInt(playing_movie_start.substring(5,7)),Integer.parseInt(playing_movie_start.substring(8,10)));
+			
+			DayOfWeek dayOfWeek = date.getDayOfWeek();
+			String week = dayOfWeek.getDisplayName(TextStyle.NARROW, Locale.KOREAN);
+			
+			String fullday = playing_movie_start.substring(0,10)+"("+week+")"+" |"+playing_movie_start.substring(10,16)+"~"+playing_movie_end.substring(10, 16);
+			
+			DecimalFormat df = new DecimalFormat("###,###");
+			String ticketing_price_comma = df.format(ticketing_price);
+			
+			
+			mav.addObject("movie_idx", movie_idx);
+			mav.addObject("theater_idx", theater_idx);
+			mav.addObject("playing_movie_idx", playing_movie_idx);
+			mav.addObject("playing_movie_seat", playing_movie_seat_num);
+			mav.addObject("adultC", adultC);
+			mav.addObject("teenagerC", teenagerC);
+			mav.addObject("seniorC", seniorC);
+			mav.addObject("disabledC", disabledC);
+			mav.addObject("ticketing_personnel", ticketing_personnel);
+			mav.addObject("ticketing_price_comma", ticketing_price_comma);
+			mav.addObject("ticketing_price", ticketing_price);
+			mav.addObject("movie_poster", movie_poster);
+			mav.addObject("playing_movie_start", playing_movie_start_cut);
+			mav.addObject("playing_movie_end", playing_movie_end_cut);
+			mav.addObject("fullday", fullday);
+			mav.addObject("movie_name", movie_name);
+			mav.addObject("theater_name", theater_name);
+			mav.setViewName("/user/ticketing/ticketingPayment");
+			
+		} else {
+			mav.addObject("msg", "로그인 후 이용가능합니다.");
+			mav.addObject("goUrl", "/amor/member/login.do");
+			mav.setViewName("user/msg/userMsg");
+		}
 		return mav;
 	}
 	
@@ -150,8 +176,6 @@ public class TicketingPaymentController {
 		String cancelpage="http://localhost:9090/amor/ticketing/kakaoFail.do";
 		String failpage="http://localhost:9090/amor/ticketing/kakaoCancel.do";
 		
-		System.out.println(ticketing_num);
-		
 		KakaopayDTO kdto = new KakaopayDTO(ticketing_num, sid, "Amor Ticketing", quantity, total_amount, okpage, cancelpage, failpage);
 		Kakaopay kaka = new Kakaopay();
 		
@@ -160,19 +184,31 @@ public class TicketingPaymentController {
 	
 	
 	@RequestMapping("ticketing/ticketingPayDetail.do")
-	public ModelAndView ticketingPayDetail( ) {
+	public ModelAndView ticketingPayDetail(HttpSession session ) {
+		
+		String sid = (String)session.getAttribute("sid");
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("approved_at", this.approved_at);
-		mav.addObject("partner_order_id", this.partner_order_id);
-		mav.addObject("amountTotal", this.amountTotal);
-		mav.addObject("theater_name", this.theater_name);
-		mav.addObject("movie_name", this.movie_name);
-		mav.addObject("ticketing_screeningtime", this.ticketing_screeningtime);
-		mav.addObject("ticketing_seat", this.ticketing_seat);
-		mav.addObject("ticketing_personnel", this.ticketing_personnel);
-		mav.addObject("ticketing_cancel", ticketing_cancel);
-		mav.setViewName("/user/ticketing/ticketingPayDetail");
+		
+		if (sid != null) {
+		
+			mav.addObject("approved_at", this.approved_at);
+			mav.addObject("partner_order_id", this.partner_order_id);
+			mav.addObject("amountTotal", this.amountTotal);
+			mav.addObject("theater_name", this.theater_name);
+			mav.addObject("movie_name", this.movie_name);
+			mav.addObject("ticketing_screeningtime", this.ticketing_screeningtime);
+			mav.addObject("ticketing_seat", this.ticketing_seat);
+			mav.addObject("ticketing_personnel", this.ticketing_personnel);
+			mav.addObject("ticketing_cancel", ticketing_cancel);
+			mav.setViewName("/user/ticketing/ticketingPayDetail");
+		
+		} else {
+			mav.addObject("msg", "로그인 후 이용가능합니다.");
+			mav.addObject("goUrl", "/amor/member/login.do");
+			mav.setViewName("user/msg/userMsg");
+		}
+		
 		return mav;
 		
 	}

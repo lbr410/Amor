@@ -62,8 +62,8 @@
 					<td class="reviewTd3" onclick="document.getElementById('reviewContent${vs.index}').style.display=''">▽</td>
 				</tr>
 				<tr id="reviewContent${vs.index }" style="display:none;">
-					<td class="reviewTdContent2"><img src="/amor/resources/upload/review/${dto.movie_review_img}" class="reviewImg"></td>
-					<td class="reviewTdContent" colspan="3">${dto.movie_review_content }</td>
+					<td class="reviewTdContent2" colspan="2"><img src="/amor/resources/upload/review/${dto.movie_review_img}" class="reviewImg"></td>
+					<td class="reviewTdContent" colspan="2">${dto.movie_review_content }</td>
 					<td class="reviewTdContent3" onclick="document.getElementById('reviewContent${vs.index}').style.display='none'">&times;</td>
 				</tr>
 				
