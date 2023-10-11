@@ -192,7 +192,6 @@ select count(*) from movie where movie_state='n' and movie_opendate <![CDATA[>=]
 		from movie_review a, member b where a.movie_idx = #{movie_idx} and b.member_idx = a.member_idx)a)b
 	where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 </select>
-  
 <select id="movieReviewContentCnt" parameterType="Integer" resultType="Integer">
 	select count(*) from movie_review where movie_idx = #{movie_idx}
 </select>

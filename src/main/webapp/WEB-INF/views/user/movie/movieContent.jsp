@@ -30,19 +30,26 @@
       <div class="movie_name">${dto.movie_name }</div> 
     </div>
     <div class="movie-info">
-      <div class="movie-opendate">${dto.movie_opendate } |</div>
+      <div class="movie-opendate">${dto.movie_opendate }&nbsp; |</div>
       <span class="material-icons">schedule</span>
-	  <div class="movie_runningtime">${dto.movie_runningtime }분 |</div>
+	  <div class="movie_runningtime">${dto.movie_runningtime }분&nbsp; | </div>
       <div class="movie_maxage">
-		<c:if test="${0==dto.movie_maxage}"><img src="/amor/resources/img/maxage_all.png" alt="ALL"><div class="ageTxt">전체 관람가 |</div></c:if>
-		<c:if test="${1==dto.movie_maxage}"><img src="/amor/resources/img/maxage_12.png" alt="12세 관람가"><div class="ageTxt">12세 관람가 |</div></c:if>
-		<c:if test="${2==dto.movie_maxage}"><img src="/amor/resources/img/maxage_15.png" alt="15세 관람가"><div class="ageTxt">15세 관람가 |</div></c:if>
-		<c:if test="${3==dto.movie_maxage}"><img src="/amor/resources/img/maxage_18.png" alt="18세 관람가"><div class="ageTxt">18세 관람가 |</div></c:if></div>
+		<c:if test="${0==dto.movie_maxage}"><img src="/amor/resources/img/maxage_all.png" alt="ALL"><div class="ageTxt">전체 관람가</div></c:if>
+		<c:if test="${1==dto.movie_maxage}"><img src="/amor/resources/img/maxage_12.png" alt="12세 관람가"><div class="ageTxt">12세 관람가</div></c:if>
+		<c:if test="${2==dto.movie_maxage}"><img src="/amor/resources/img/maxage_15.png" alt="15세 관람가"><div class="ageTxt">15세 관람가</div></c:if>
+		<c:if test="${3==dto.movie_maxage}"><img src="/amor/resources/img/maxage_18.png" alt="18세 관람가"><div class="ageTxt">18세 관람가</div></c:if></div>
     </div>
     <div class="movie_content">
       <textarea class="content">${dto.movie_content }</textarea>
     </div>
-    <div class="btn-wrap"><button class="blue-btn" type="button" onclick="location.href='/amor/ticketing/ticketing.do'">예매하기</button></div>
+    <div class="btn-wrap">
+     <c:url var="ticketingUrl" value="/ticketing/ticketing.do">
+            <c:param name="movie_name">${dto.movie_name}</c:param>
+            <c:param name="movie_maxage">${dto.movie_maxage}</c:param>
+            <c:param name="movie_idx">${dto.movie_idx}</c:param>
+     </c:url>
+    <button class="blue-btn" type="button" onclick="location.href='${ticketingUrl}'">예매하기</button></div>
+    
   </div>
 </div>
 </div>
@@ -78,16 +85,16 @@
 					<td class="reviewTd7" colspan="5" >등록된 관람평이 없습니다.</td>
 				</tr>
 			</c:if>
-			<c:forEach var="dto" items="${rlists }" varStatus="vs">
+			<c:forEach var="rdto" items="${rlists }" varStatus="vs">
 				<tr class="reviewTableINfoTbody">
-					<td class="reviewTd1">${dto.movie_review_writedate }</td>
-					<td class="reviewTd5">${dto.member_id }</td>
+					<td class="reviewTd1">${rdto.movie_review_writedate }</td>
+					<td class="reviewTd5">${rdto.member_id }</td>
 					<td class="reviewTd" colspan="2">
 					
 					<span class="starBack">	
 					<span class="star">
 						☆☆☆☆☆
-					<span class="starAll" style="width: ${dto.movie_review_star}0%;">★★★★★</span>
+					<span class="starAll" style="width: ${rdto.movie_review_star}0%;">★★★★★</span>
 						<input type="range" name="movie_review_star"  min="1" max="10">
 					</span>
 					</span>
@@ -96,8 +103,8 @@
 					<td class="reviewTd3" onclick="document.getElementById('reviewContent${vs.index}').style.display=''">▽</td>
 				</tr>
 				<tr class="reviewTableINfoTbody" id="reviewContent${vs.index }" style="display:none;">
-					<td class="reviewTdContent2" colspan="2"><img src="/amor/resources/upload/review/${dto.movie_review_img}" class="reviewImg"></td>
-					<td class="reviewTdContent" colspan="2">${dto.movie_review_content }</td>
+					<td class="reviewTdContent2" colspan="2"><img src="/amor/resources/upload/review/${rdto.movie_review_img}" class="reviewImg"></td>
+					<td class="reviewTdContent" colspan="2">${rdto.movie_review_content }</td>
 					<td class="reviewTdContent3" onclick="document.getElementById('reviewContent${vs.index}').style.display='none'">&times;</td>
 				</tr>
 				
@@ -135,13 +142,13 @@
     			<div class="stillcutTitle">스틸컷</div>
     			<table class="moviedetailtable">
     				<tr>
-    					<td rowspan="2"><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut1 }"></td>
-    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut2 }"></td>
-    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut3 }"></td>
+    					<td rowspan="2"><img class="thumnail2" src="/amor/resources/upload/movie/${dto.movie_stillcut1 }" onError="this.style.visibility='hidden'"></td>
+    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut2 }" onError="this.style.visibility='hidden'"></td>
+    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut3 }" onError="this.style.visibility='hidden'"></td>
     				</tr>
     				<tr>
-    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut4 }"></td>
-    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut5 }"></td>
+    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut4 }" onError="this.style.visibility='hidden'"></td>
+    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut5 }" onError="this.style.visibility='hidden'"></td>
     				</tr>
     			</table>
     		</div>

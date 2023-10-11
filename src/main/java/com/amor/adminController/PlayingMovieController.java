@@ -27,13 +27,21 @@ public class PlayingMovieController {
 
 	
 	@RequestMapping("admin/playMovie/playingMovieList.do")
-	public ModelAndView playingMovieList() {
+	public ModelAndView playingMovieList(
+			@CookieValue(value = "autologin", required = false) String autologin,
+			HttpSession session) {
 		
 		List<Map> movieList = playingMovieService.playingMovieAddMovie();
-		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("movieList", movieList);
-		mav.setViewName("/admin/playMovie/playingMovieList");
+		
+		if (session.getAttribute("data")==null && autologin == null) {
+			mav.addObject("msg", "로그인 후 이용가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");	
+		} else {
+			mav.addObject("movieList", movieList);
+			mav.setViewName("/admin/playMovie/playingMovieList");
+		}
 		return mav;
 	}
 	
@@ -139,17 +147,26 @@ public class PlayingMovieController {
 	
 	@RequestMapping(value = "admin/playMovie/playingMovieUpdate.do", method = RequestMethod.GET)
 	public ModelAndView playingMovieUpdateList (
-			@RequestParam("playing_movie_idx")int idx_u) {
+			@RequestParam("playing_movie_idx")int idx_u,
+			@CookieValue(value = "autologin", required = false) String autologin,
+			HttpSession session) {
 		
 		PlayingMovieJoinDTO updatedto=playingMovieService.playingMovieUpdateList(idx_u);
 		List<Map> movieLists = playingMovieService.playingMovieAddMovie();
 		List<Map> screenLists = playingMovieService.playingMovieAddScreen();
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("updatedto", updatedto);
-		mav.addObject("movieLists", movieLists);
-		mav.addObject("screenLists", screenLists);
-		mav.setViewName("admin/playMovie/playingMovieUpdate");
+		
+		if (session.getAttribute("data")==null && autologin == null) {
+			mav.addObject("msg", "로그인 후 이용가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");	
+		} else {
+			mav.addObject("updatedto", updatedto);
+			mav.addObject("movieLists", movieLists);
+			mav.addObject("screenLists", screenLists);
+			mav.setViewName("admin/playMovie/playingMovieUpdate");
+		}
 		return mav;
 	}
 	
