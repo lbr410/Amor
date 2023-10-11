@@ -49,27 +49,43 @@ public class ReviewListController {
 	@RequestMapping("admin/review/reviewListSearch.do")
 	public ModelAndView reviewListSearch(
 			@RequestParam(value="cp",defaultValue = "1")int cp,
-			@RequestParam("search")String search) {
+			@RequestParam("search")String search,
+			@CookieValue(value = "autologin", required = false)String autologin,
+			HttpSession session) {
 		int totalCnt=movieReviewService.adminReviewListSearchTotalCnt(search);
 		int listSize = 10;
 		int pageSize = 5;
 		String pageStr=com.amor.page.PageModuleSearch.makePage("/amor/admin/review/reviewListSearch.do", totalCnt, listSize, pageSize, cp, search);
 		
-		List<MovieReviewDTO> lists=movieReviewService.adminReviewListSearch(cp, listSize, search);
 		ModelAndView mav =new ModelAndView();
-		mav.addObject("pageStr", pageStr);
-		mav.addObject("lists", lists);
-		mav.setViewName("/admin/review/reviewList");
+		if(autologin == null && session.getAttribute("data") == null) {
+			mav.addObject("msg", "로그인 후 이용가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");			
+		}else {
+			List<MovieReviewDTO> lists=movieReviewService.adminReviewListSearch(cp, listSize, search);		
+			mav.addObject("pageStr", pageStr);
+			mav.addObject("lists", lists);
+			mav.setViewName("/admin/review/reviewList");
+		}
 		return mav;
 	}
 	
 	@RequestMapping("admin/review/reviewPopup.do")
 	public ModelAndView reviewPopup(
-			@RequestParam("idx")int idx) {
+			@RequestParam("idx")int idx,
+			HttpSession session,
+			@CookieValue(value = "autologin", required = false)String autologin) {
 		ModelAndView mav=new ModelAndView();
-		MovieReviewDTO dto=movieReviewService.adminReviewPopup(idx);
-		mav.addObject("dto", dto);
-		mav.setViewName("/admin/review/reviewPopup");
+		if(autologin == null && session.getAttribute("data") == null) {
+			mav.addObject("msg", "로그인 후 이용가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");			
+		}else {
+			MovieReviewDTO dto=movieReviewService.adminReviewPopup(idx);
+			mav.addObject("dto", dto);
+			mav.setViewName("/admin/review/reviewPopup");
+		}
 		return mav;
 	}
 	

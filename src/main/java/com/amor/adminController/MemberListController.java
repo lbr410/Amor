@@ -48,10 +48,9 @@ public class MemberListController {
 	public ModelAndView memberListBlock(
 			@RequestParam(value="idx",defaultValue = "0") int idx,
 			@RequestParam("value")String value) {
-		ModelAndView mav=new ModelAndView();
-		MemberDTO dto=new MemberDTO();
-		int result=memberService.memberListBlock(idx, value);
 		
+		int result=memberService.memberListBlock(idx, value);
+		ModelAndView mav=new ModelAndView();
 		mav.setViewName("/admin/member/memberList");
 		return mav;
 	}
@@ -59,16 +58,25 @@ public class MemberListController {
 	@RequestMapping("admin/member/memberSearch.do")
 	public ModelAndView memberSearch(
 			@RequestParam(value="cp",defaultValue = "1")int cp,
-			@RequestParam("search")String search) {
+			@CookieValue(value = "autologin", required = false)String autologin,
+			@RequestParam("search")String search,
+			HttpSession session) {
 		int totalCnt = memberService.memberSearchTotalCnt(search);
 		int listSize =10;
 		int pageSize = 5;
 		String pageStr=com.amor.page.PageModuleSearch.makePage("/amor/admin/member/memberSearch.do", totalCnt, listSize, pageSize, cp, search);
-		List<MemberDTO> lists=memberService.memberSearch(cp, listSize, search);
+		
 		ModelAndView mav=new ModelAndView();
-		mav.addObject("pageStr", pageStr);
-		mav.addObject("lists", lists);
-		mav.setViewName("admin/member/memberList");
+		if(autologin == null && session.getAttribute("data") == null) {
+			mav.addObject("msg", "로그인 후 이용가능합니다.");
+			mav.addObject("href", "/amor/admin/adminLogin.do");
+			mav.setViewName("/admin/msg/adminMsg");
+		}else {
+			List<MemberDTO> lists=memberService.memberSearch(cp, listSize, search);		
+			mav.addObject("pageStr", pageStr);
+			mav.addObject("lists", lists);
+			mav.setViewName("admin/member/memberList");
+		}
 		return mav;
 	}
 

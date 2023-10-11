@@ -20,13 +20,18 @@ public class UserInfoUpdateController {
 
 	@RequestMapping("myAmor/userInfoUpdateForm.do")
 	public ModelAndView userInfoUpdateForm(HttpSession session) {
-		
-		int sidx=(Integer)session.getAttribute("sidx");
-		
-		MemberDTO dto=memberService.memberInfo(sidx);		
+				
 		ModelAndView mav=new ModelAndView();
-		mav.addObject("dto", dto);
-		mav.setViewName("/user/myAmor/userInfoUpdate");
+		if(session.getAttribute("sid")==null) {
+			mav.addObject("msg", "로그인 후 이용가능합니다.");
+			mav.addObject("goUrl", "/amor/member/login.do");
+			mav.setViewName("/user/msg/userMsg");
+		}else {
+			int sidx=(Integer)session.getAttribute("sidx");
+			MemberDTO dto=memberService.memberInfo(sidx);				
+			mav.addObject("dto", dto);
+			mav.setViewName("/user/myAmor/userInfoUpdate");
+		}
 		return mav;
 	}
 	

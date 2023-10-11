@@ -9,10 +9,9 @@
   box-sizing: border-box;
 }
 .contentbox {
-  padding: 0px 88px 0px 88px;
+  padding: 0px 0px 0px 50px;
   display: flex;
   flex-direction: row;
-  gap: 42px;
   align-items: flex-start;
   justify-content: flex-start;
   width: 1000px;
@@ -20,9 +19,15 @@
 }
 .movieimg {
   flex-shrink: 0;
-  width: 153px;
-  height: 227px;
+  width: 100%;
   position: relative;
+}
+.prdImg{
+	display:flex;
+	padding: 20px 50px 20px 20px;
+	align-items:center;
+	width: 240px;
+  height: 227px;
 }
 .contentbox2 {
   display: flex;
