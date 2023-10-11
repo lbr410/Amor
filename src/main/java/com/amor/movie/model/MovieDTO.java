@@ -24,6 +24,7 @@ public class MovieDTO {
 	private String movie_stillcut5; 
 	private double avg_movie_review_star;
 	private int review_cnt;
+	private String truncatedTitle;
 	
 	public MovieDTO() {
 		// TODO Auto-generated constructor stub
@@ -271,6 +272,14 @@ public class MovieDTO {
 
 	public void setReview_cnt(int review_cnt) {
 		this.review_cnt = review_cnt;
+	}
+
+	public String getTruncatedTitle() {
+		return truncatedTitle;
+	}
+
+	public void setTruncatedTitle(String truncatedTitle) {
+		this.truncatedTitle = truncatedTitle;
 	}
 	
 	

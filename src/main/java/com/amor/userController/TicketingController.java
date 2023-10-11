@@ -27,7 +27,9 @@ public class TicketingController {
 			@RequestParam(value = "movie_idx", defaultValue = "0")int movieIdx) {
 		
 		List<TicketingSelectMovieDTO> lists = ticketingservice.ticketingPlayingMovieList();
-		
+		System.out.println(movieName);
+		System.out.println(movieMaxAge);
+		System.out.println(movieIdx);
 		ModelAndView mav = new ModelAndView();
 		if(movieName == null && movieMaxAge == 0 && movieIdx == 0) {			
 			mav.addObject("lists", lists);

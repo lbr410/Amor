@@ -87,9 +87,9 @@ public class MovieServiceImple implements MovieService {
 		Map map=new HashedMap();
 		List <MovieDTO> mlists = moviedao.movieBest(map);
 		 for (MovieDTO movieDTO : mlists) {
-		        String originalTitle = movieDTO.getMovie_name();
+			 	String originalTitle = movieDTO.getMovie_name();
 		        String truncatedTitle = originalTitle.length() > 10 ? originalTitle.substring(0, 10) + "..." : originalTitle;
-		        movieDTO.setMovie_name(truncatedTitle);
+		        movieDTO.setTruncatedTitle(truncatedTitle);
 		    }
 		return mlists;
 	}
@@ -99,9 +99,9 @@ public class MovieServiceImple implements MovieService {
 		Map map=new HashedMap();
 		List <MovieDTO> rlists = moviedao.movieBestReview(map);
 		 for (MovieDTO movieDTO : rlists) {
-		        String originalTitle = movieDTO.getMovie_name();
+			 	String originalTitle = movieDTO.getMovie_name();
 		        String truncatedTitle = originalTitle.length() > 10 ? originalTitle.substring(0, 10) + "..." : originalTitle;
-		        movieDTO.setMovie_name(truncatedTitle);
+		        movieDTO.setTruncatedTitle(truncatedTitle);
 		    }
 		return rlists;
 	}
@@ -119,7 +119,7 @@ public class MovieServiceImple implements MovieService {
 		 for (MovieDTO movieDTO : lists) {
 		        String originalTitle = movieDTO.getMovie_name();
 		        String truncatedTitle = originalTitle.length() > 10 ? originalTitle.substring(0, 10) + "..." : originalTitle;
-		        movieDTO.setMovie_name(truncatedTitle);
+		        movieDTO.setTruncatedTitle(truncatedTitle);
 		    }
 		return lists;
 	}
@@ -129,7 +129,7 @@ public class MovieServiceImple implements MovieService {
 		Map map=new HashedMap();
 		List <MovieDTO> lists = moviedao.movieName(map);
 		 for (MovieDTO movieDTO : lists) {
-		        String originalTitle = movieDTO.getMovie_name();
+			 	String originalTitle = movieDTO.getMovie_name();
 		        String truncatedTitle = originalTitle.length() > 10 ? originalTitle.substring(0, 10) + "..." : originalTitle;
 		        movieDTO.setMovie_name(truncatedTitle);
 		    }

@@ -21,9 +21,28 @@ function sendMail(memberid) {
 
 	if(email != '') {		
 		let param = 'email='+email+'&member_id='+memberid;
-		sendRequest('emailSameChk.do', param, sendMailCallBack, 'POST');
+		sendRequest('emailSameChk.do', param, sendMailJson, 'POST');
 	} else {
 		window.alert('이메일을 입력해주세요.');
+	}
+}
+
+function sendMailJson() {
+	if(XHR.readyState == 4) {
+		if(XHR.status == 200) {
+			let result = XHR.responseText;
+			let objData = JSON.parse(result);
+			let Url = objData.Url;
+			let param = objData.email;
+			let msg = objData.msg;
+			if(msg == null || msg == ''){
+				sendRequest(Url, param, sendMailCallBack, 'POST');
+			}else{
+				dataList = objData.msg;
+				window.alert(dataList);
+				location.reload();
+			}
+		}
 	}
 }
 
@@ -32,13 +51,9 @@ function sendMailCallBack() {
 		if(XHR.status == 200) {
 			let result = XHR.responseText;
 			let objData = JSON.parse(result);
-			let data = objData.goUrl;
-			if(data!=null && data!=''){
-				location.href=data;
-			}else{
-				dataList = objData.msg;
-				window.alert(dataList);
-			}
+			
+			dataList = objData.data;
+			window.alert(dataList[0].msg);
 		}
 	}
 }
