@@ -85,7 +85,7 @@ public class TicketingPaymentController {
 				playing_movie_seat_num += playing_movie_seat[i]+",";	
 			}
 		}		
-		
+	
 		String playing_movie_end_cut = playing_movie_end.substring(10, 16);
 		String playing_movie_start_cut = playing_movie_start.substring(0,16);
 		
@@ -102,10 +102,10 @@ public class TicketingPaymentController {
 		mav.addObject("seniorC", seniorC);
 		mav.addObject("disabledC", disabledC);
 		mav.addObject("ticketing_personnel", ticketing_personnel);
-		mav.addObject("ticketing_price", ticketing_price_comma);
+		mav.addObject("ticketing_price_comma", ticketing_price_comma);
+		mav.addObject("ticketing_price", ticketing_price);
 		mav.addObject("movie_poster", movie_poster);
-		mav.addObject("playing_movie_start", playing_movie_start);
-		mav.addObject("playing_movie_start_cut", playing_movie_start_cut);
+		mav.addObject("playing_movie_start", playing_movie_start_cut);
 		mav.addObject("playing_movie_end", playing_movie_end_cut);
 		mav.addObject("movie_name", movie_name);
 		mav.addObject("theater_name", theater_name);
@@ -149,6 +149,8 @@ public class TicketingPaymentController {
 		String okpage="http://localhost:9090/amor/ticketing/kakaoPayOk.do";
 		String cancelpage="http://localhost:9090/amor/ticketing/kakaoFail.do";
 		String failpage="http://localhost:9090/amor/ticketing/kakaoCancel.do";
+		
+		System.out.println(ticketing_num);
 		
 		KakaopayDTO kdto = new KakaopayDTO(ticketing_num, sid, "Amor Ticketing", quantity, total_amount, okpage, cancelpage, failpage);
 		Kakaopay kaka = new Kakaopay();

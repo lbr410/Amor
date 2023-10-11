@@ -21,8 +21,9 @@
 			<div class="content1">
 				<div><img class="ticketingPoster" src="/amor/resources/upload/movie/${dto.movie_poster}"></div>
 				<div><input class="ticketingInfo3" type="text" name="movie_name" value="${movie_name }" readonly></div>
-				<div class="playingEnd"><input class="ticketingInfo10" type="hidden" name="ticketing_screeningtime" value="${playing_movie_start }" readonly>
-				${playing_movie_start_cut }~${playing_movie_end }</div>
+				<div class="playingEnd">
+				<input class="ticketingInfo" type="text" value="${playing_movie_start } ~${playing_movie_end }" readonly>
+				<input class="ticketingInfo10" type="hidden" name="ticketing_screeningtime" value="${playing_movie_start }" readonly></div>
 				<div><input class="ticketingInfo" type="text" name="theater_name" value="${theater_name }" readonly></div>
 				<c:if test="${adultC != 0}">
 				<div>성인 <input class="ticketingInfo2" type="text" value="${adultC }" readonly>명</div>
@@ -54,7 +55,7 @@
 					</tr>
 					<tr>
 						<td class="ticketingTable2">결제금액</td>
-						<td class="ticketingTable3">${ticketing_price }</td>
+						<td class="ticketingTable3">${ticketing_price_comma }</td>
 					</tr>
 					<tr>
 						<td colspan="2" class="ticketingTable4">

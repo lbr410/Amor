@@ -64,6 +64,8 @@ public class MovieContentController {
 			MovieDTO dto = movieservice.movieContent(movie_idx);
 			List<MovieReviewDTO> rlists = movieservice.movieReviewInfo(movie_idx, cp, listSize);
 			
+			String reviewPage = com.amor.page.PageModule.makePage("/amor/movie/movieContentForm.do", totalCnt, listSize, pageSize, cp);
+			
 			ModelAndView mav=new ModelAndView();
 			if(dto == null) {
 				mav.addObject("msg","삭제된 게시물 잘못된 접근입니다.");
@@ -71,6 +73,7 @@ public class MovieContentController {
 			}else {	
 				String movieContent = dto.getMovie_content().replaceAll("\n", "<br>");
 				mav.addObject("movieContent",movieContent);
+				mav.addObject("reviewPage", reviewPage);
 				mav.addObject("rlists",rlists);
 				mav.addObject("dto",dto);
 				mav.setViewName("/user/movie/movieContent");
