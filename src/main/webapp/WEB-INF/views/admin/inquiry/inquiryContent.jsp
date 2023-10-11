@@ -54,9 +54,10 @@
 	<div class="fileDiv">
 	<label class="infoFile">첨부 파일</label>
 	<span>
-    <img src="/amor/resources/upload/inquiry/${Sdto.inquiry_filename}" class="img" alt="inquiry_filename_img">
+    <img src="/amor/resources/upload/inquiry/${dto.inquiry_filename}" class="img" alt="inquiry_filename_img">
 	</span>
 	</div>
+	
 	<c:if test="${dto.inquiry_astatus =='y'}">
 	<div class="answerDiv">1:1 문의 답변</div>
 	<div class="inquiryCon">
@@ -77,7 +78,7 @@
 	<form name="inquiryAnswerForm" action="inquiryContent.do" method="post">
 		<div class="AnswerDiv">
 			<textarea name="inquiry_answer" maxlength="1000" required="required" class="textBox2" id="text"></textarea>
-		<div class="countDiv">(<span id="count">0</span> / 1000)</div>
+		<div class="countDiv">(<span id="count">0</span> / 700)</div>
 		</div>
 		<div class="btnDiv">
 			<input type="button" value="취소" onclick="javascript: location.href='/amor/admin/inquiry/inquiryList.do'" class="cancelBtn">

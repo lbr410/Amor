@@ -93,7 +93,7 @@
 	align-items: center;
 	justify-content: left;
 	width: 960px;
-	height: 64px;
+	height: 150px;
 	position: relative;
 	margin-left: 34px;
 }
@@ -110,7 +110,6 @@
 	margin-bottom: 24px;
 	width: 100%;
 	height:64px;
-	border-top: 1px solid #D4D4D4;
 	border-bottom: 1px solid #D4D4D4;
 	padding: 20px 0px 10px 0px;
 }
@@ -123,7 +122,11 @@
 	flex-shrink: 0;
 	position: relative;
 }
-
+.fileDiv img{
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+}
 .answerw{
 	padding: 10px;
     display: flex;
@@ -152,10 +155,10 @@
 	color: #bcbcbc;
 }
 
-.btnDiv{padding: 24px 1029px 24px 0px;
+.btnDiv{padding: 24px 1029px 24px 288px;
 	display: flex;
 	flex-direction: row;
-	gap: 200px;
+	gap: 28px;
 	align-items: flex-start;
 	justify-content: flex-start;
 	flex-shrink: 0;

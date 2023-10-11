@@ -20,31 +20,14 @@ public class FaqListController {
 	private FaqService faqService;
 	
 	@RequestMapping("customer/faqList.do")
-	public ModelAndView faqList(
-			HttpSession session,
-			@RequestParam(value="cp", defaultValue="1")int cp) {
-		int totalCnt=faqService.faqTotalCnt();
-		int listSize=10;
-		int pageSize=5;
-		String pageStr=com.amor.page.PageModule.makePage("/amor/customer/faqList.do", totalCnt, listSize, pageSize, cp);
-		
+	public ModelAndView userFaqList(
+			HttpSession session) {
+
 		ModelAndView mav=new ModelAndView();
-		List<FaqDTO>lists=faqService.faqList(cp,listSize);
+		List<FaqDTO>lists=faqService.userFaqList();
 		mav.addObject("lists", lists);
-		mav.addObject("pageStr", pageStr);
 		mav.setViewName("/user/customer/faqList");
 		return mav;
 	}
 	
-	@RequestMapping("customer/faqContent.do")
-	public ModelAndView faqContent(
-		@RequestParam(value="faq_idx", defaultValue = "0")int faq_idx) {
-		
-		FaqDTO dto=faqService.faqContent(faq_idx);
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("dto", dto);
-		mav.setViewName("/user/customer/faqContent");
-		
-		return mav;
-	}
 }

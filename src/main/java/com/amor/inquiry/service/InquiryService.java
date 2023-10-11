@@ -20,4 +20,5 @@ public interface InquiryService {
 	public InquiryJoinDTO inquiryUpdateForm(int idx);
 	public List<InquiryDTO> adminMainInquiryList();
 
+	
 }

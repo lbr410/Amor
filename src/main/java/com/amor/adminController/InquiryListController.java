@@ -22,7 +22,6 @@ public class InquiryListController {
 	@Autowired
 	private InquiryService inquiryService;
 	
-	//관리자 1:1문의 리스트 폼
 	@RequestMapping("admin/inquiry/inquiryList.do")
 	public ModelAndView adminInquiryListForm(
 			HttpSession session,
@@ -48,7 +47,6 @@ public class InquiryListController {
 		return mav;
 	}
 	
-	//사용자 block
 	public ModelAndView inquiryBlock(
 			@RequestParam(value="inquiry_idx", defaultValue = "0")int inquiry_idx,
 			@RequestParam("value")String value) {
@@ -56,6 +54,8 @@ public class InquiryListController {
 		InquiryJoinDTO dto=new InquiryJoinDTO();
 		int result=inquiryService.inquiryBlock(inquiry_idx, value);
 		
+		//mav.setViewName("/admin/member/memberList");
+		//return mav;
 		if(value.equals("y")) {
 			dto.setMember_block("y");
 		}else if(value.equals("n")) {
@@ -65,7 +65,6 @@ public class InquiryListController {
 		
 	}
 	
-	//관리자 1:1문의 내용으로 이동
 	@RequestMapping("admin/inquiry/inquiryContent.do")
 	public ModelAndView inquiriyContentForm(
 			@RequestParam(value="idx", defaultValue = "0")int idx) {
@@ -78,7 +77,6 @@ public class InquiryListController {
 		return mav;
 	}
 	
-	//관리자 답변 등록
 	@RequestMapping(value="admin/inquiry/inquiryContent.do", method = RequestMethod.POST)
 	public ModelAndView inquiryAnswer(
 			@RequestParam("inquiry_answer") String inquiry_answer, @RequestParam("inquiry_idx") int inquiry_idx) {
@@ -96,13 +94,11 @@ public class InquiryListController {
 		return mav;
 	}
 	
-	//관리자 1:1문의 수정으로 이동
-	@RequestMapping("admin/inquiry/inquiryUpdate.do")
+	@RequestMapping("admin/inquiry/inquiryUpdateForm.do")
 	public ModelAndView inquiriyUpdateForm(
 			@RequestParam(value="idx", defaultValue = "0")int idx) {
 		
 		InquiryJoinDTO dto=inquiryService.inquiryUpdateForm(idx);
-		System.out.println(dto.getInquiry_idx());
 		ModelAndView mav=new ModelAndView();
 		
 			mav.addObject("dto", dto);
@@ -110,7 +106,7 @@ public class InquiryListController {
 
 		return mav;
 	}
-	//관리자 수정한 답변 등록
+	
 	@RequestMapping(value="admin/inquiry/inquiryUpdate.do", method = RequestMethod.POST)
 	public ModelAndView inquiryUpdateAnswer(
 			@RequestParam("inquiry_answer") String inquiry_answer, @RequestParam("inquiry_idx") int inquiry_idx) {
@@ -128,4 +124,15 @@ public class InquiryListController {
 		return mav;
 	}
 	
+	@RequestMapping("admin/inquiry/inquiryDelete.do")
+	public ModelAndView inquiryDelete(
+			@RequestParam(value="idx", defaultValue = "0")int idx) {
+		int result=inquiryService.inquiryDelete(idx);
+		String msg=result>0?"삭제되었습니다.":"삭제되지 않았습니다.";
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("msg", msg);
+		mav.addObject("href","/amor/admin/inquiry/inquiryList.do");
+		mav.setViewName("/admin/msg/adminMsg");
+		return mav;
+	}
 }

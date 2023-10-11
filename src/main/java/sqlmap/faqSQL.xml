@@ -38,4 +38,9 @@
 <delete id="faqDelete" parameterType="Integer">
 	delete from faq where faq_idx=#{idx}
 </delete>
+
+<select id="userFaqList" parameterType="Map" resultType="com.amor.faq.model.FaqDTO">
+	select * from faq order by faq_idx desc
+</select>
+
 </mapper>

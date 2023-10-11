@@ -75,7 +75,7 @@ function emailOk() {
 }
 
 </script>
-</head>
+</head>   
 <body>
     <div class="top">
         <div class="navigate"><a href="/amor/index.do"><img src="/amor/resources/img/white_b_logo.png"></a>

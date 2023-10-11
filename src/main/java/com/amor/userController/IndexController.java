@@ -42,6 +42,7 @@ public class IndexController {
 		
 		//ads
 		List<AdsDTO> alists = adsService.adsList();
+
 		//Store
 		List<ProductDTO> slists = productService.storeSnackList();
 		List<ProductDTO> tlists = productService.storeTicketList();

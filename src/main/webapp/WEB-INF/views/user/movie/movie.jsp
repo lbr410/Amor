@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,13 +76,19 @@
                     <div class="info-area">
                         <span class="movie_audience">
                             <span class="rate">
-                            <span class="material-icons">star</span> ${mdto.avg_movie_review_star} &nbsp;
+                            <span class="material-icons">star</span> 
+                            <fmt:formatNumber value="${mdto.avg_movie_review_star}" pattern="0.0" />&nbsp;
                             </span>
                         </span>
                         <span class="movie_opendate">개봉일 : ${mdto.movie_opendate }</span>
                     </div>
                     <div class="book-btn" >
-                     	<a href="/amor/ticketing/ticketing.do">
+                    <c:url var="ticketingUrl" value="/ticketing/ticketing.do">
+                       		<c:param name="movie_name">${mdto.movie_name}</c:param>
+                       		<c:param name="movie_maxage">${mdto.movie_maxage}</c:param>
+                       		<c:param name="movie_idx">${mdto.movie_idx}</c:param>
+                       	</c:url>
+                     	<a href="${ticketingUrl }">
                      		<button type="button" name="ticketing-btn" title="영화 예매하기">예매하기</button>
                      	</a>
                     </div>
@@ -121,7 +128,7 @@
                    	 	<c:url var="MovieContentUrl" value="movieContentForm.do">
 							<c:param name="movie_idx">${rdto.movie_idx }</c:param>
                     	</c:url>
-                    <a href="${MovieContentUrl}"><img src="/amor/resources/upload/movie/${mdto.movie_poster }" alt="영화 포스터"></a>
+                    <a href="${MovieContentUrl}"><img src="/amor/resources/upload/movie/${rdto.movie_poster }" alt="영화 포스터"></a>
                     </div>
                     <div class="title-area">
                         <span class="movie_maxage">
@@ -135,13 +142,19 @@
                     <div class="info-area">
                         <span class="movie_audience">
                             <span class="rate">
-                            <span class="material-icons">star</span> ${rdto.avg_movie_review_star} &nbsp;
+                            <span class="material-icons">star</span>
+                            <fmt:formatNumber value="${rdto.avg_movie_review_star}" pattern="0.0" />&nbsp;
                             </span>
                         </span>
                         <span class="movie_opendate">개봉일 : ${rdto.movie_opendate }</span>
                     </div>
                     <div class="book-btn" >
-                     	<a href="/amor/ticketing/ticketing.do">
+                    <c:url var="ticketingUrl" value="/ticketing/ticketing.do">
+                       		<c:param name="movie_name">${rdto.movie_name}</c:param>
+                       		<c:param name="movie_maxage">${rdto.movie_maxage}</c:param>
+                       		<c:param name="movie_idx">${rdto.movie_idx}</c:param>
+                       	</c:url>
+                     	<a href="${ticketingUrl }">
                      		<button type="button" name="ticketing-btn" title="영화 예매하기">예매하기</button>
                      	</a>
                     </div>
