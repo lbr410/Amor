@@ -50,12 +50,13 @@ public class Kakaopay {
 	        params.add("approval_url", kdto.getApproval_url());
 	        params.add("cancel_url", kdto.getCancel_url());
 	        params.add("fail_url", kdto.getFail_url());
-	 
+
 	         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
 	         
 	        try {
+
 	            kakaoPayReadyVO = restTemplate.postForObject (new URI(HOST + "/v1/payment/ready"), body, KakaoPayReadyVO.class);
-	            
+
 	            tid1=kakaoPayReadyVO.getTid();
 	            
 	            return kakaoPayReadyVO.getNext_redirect_pc_url();
