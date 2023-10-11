@@ -81,6 +81,7 @@ public class InquiryServiceImple implements InquiryService {
 	@Override
 	public int inquiryAnswer(InquiryJoinDTO dto) {
 		int result=inquiryDao.inquiryAnswer(dto);
+		dto.setInquiry_content(dto.getInquiry_answer().replaceAll("\n", "<br>"));
 		return result;
 	}
 	

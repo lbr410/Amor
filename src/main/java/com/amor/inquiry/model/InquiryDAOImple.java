@@ -55,15 +55,12 @@ public class InquiryDAOImple implements InquiryDAO {
 	@Override
 	public InquiryJoinDTO inquiryContent(int idx) {
 		InquiryJoinDTO dto=sqlmap.selectOne("inquiryContent", idx);
-		dto.setInquiry_content(dto.getInquiry_content().replaceAll("\n", "<br>")); 
-		dto.setInquiry_content(dto.getInquiry_answer().replaceAll("\n", "<br>"));
 		return dto;
 	}
 	
 	@Override
 	public int inquiryAnswer(InquiryJoinDTO dto) {
 		int result=sqlmap.update("inquiryAnswer", dto);
-		dto.setInquiry_content(dto.getInquiry_answer().replaceAll("\n", "<br>"));
 		return result;
 	}
 	
