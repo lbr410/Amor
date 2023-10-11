@@ -73,7 +73,7 @@
 	float:left;
 }
 .content2{
-	width:799px;
+	width:796px;
 	height: 566px;
 	float:left;
 	border-left: 1px solid #1A2C82;
@@ -96,6 +96,7 @@
 
 .playingmovieList{
 	overflow:auto;
+	overflow-x:hidden;
 	margin-left:20px;
 	margin-right:20px;
 	margin-top: 20px;
@@ -179,7 +180,7 @@
 
 .selectDateBox{
 	height: 120px;
-	border-bottom: 1px solid #1A2C82;
+	
 	text-align: center;
 }
 
@@ -190,7 +191,12 @@
 	display: flex;
 }
 
-
+.hr_color{
+	width: 799.5px;
+	background-color: #1A2C82;
+	height:1px;
+	border:0;
+}
 
 .datecss{
 	flex: 1;cursor: pointer;

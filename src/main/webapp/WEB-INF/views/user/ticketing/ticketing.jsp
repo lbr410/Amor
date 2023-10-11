@@ -103,6 +103,7 @@
 						</div>
 					</div>
 				</div>
+				<hr class="hr_color"/>
 				<div class="selectDateToPlayingMovie">
 				
 					<div class="imgandmovietitle">
