@@ -16,11 +16,13 @@
 	               c.movie_poster as movieimg,
 	               b.ticketing_num as ticketnum,
 	               b.theater_name as theatername,
-	               b.ticketing_seat as seatnum,
+	               b.ticketing_seat as seatnum,	        
 	               b.ticketing_screeningtime as screeningdate,
+	               a.playing_movie_end as endDate,
 	               b.ticketing_payment as payment,
 	               b.ticketing_price as price,
-	               b.ticketing_reservetime as reservetime
+	               b.ticketing_reservetime as reservetime,
+	               b.ticketing_state as state
 	        from playing_movie a,
 	             (select * from ticketing, theater
 	              where ticketing.member_idx = #{useridx}
@@ -101,6 +103,7 @@
 	               b.theater_name as theatername,
 	               b.ticketing_seat as seatnum,
 	               b.ticketing_screeningtime as screeningdate,
+	               a.playing_movie_end as endDate,
 	               b.ticketing_payment as payment,
 	               b.ticketing_price as price,
 	               b.ticketing_reservetime as reservetime

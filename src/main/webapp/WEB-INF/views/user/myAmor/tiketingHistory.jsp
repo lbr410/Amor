@@ -77,7 +77,7 @@
           관람 일시
           </span>
           <span class="span6">
-            ${temp.changeScreeningDate}<br/>
+            ${temp.changeScreeningDate} ~ ${temp.changeEndDate}<br/>
           </span>
           <span class="span7">
           상영관
@@ -115,10 +115,12 @@
 		</c:url>
     	<a href = "${cancellticket}"><input type = "button" value = "예매 취소" class = "button"></a>
   	</c:if>
-  	<c:if test="${temp.timelimit == 'n'}">
+  	<c:if test="${temp.timelimit == 'n' && temp.state != 'r'}">
   		<input type = "button" value = "관람평 작성" class = "button" onclick="document.getElementById('myReviewBtn${vs.index}').style.display='block'">
+  	</c:if>  	
+  	<c:if test="${temp.timelimit != 'y' && temp.timelimit == 'n' && temp.state == 'r'}">
+  		<span class = "cancelmsg">관람평 완료</span>
   	</c:if>
-  	
   </div>
 </div>
 

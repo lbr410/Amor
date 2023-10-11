@@ -18,7 +18,7 @@ public class MovieSearchController {
 	private MovieService movieservice;
 
 	@RequestMapping("/movie/movieSearch.do")
-	public ModelAndView movieSearch(@RequestParam(value = "search",defaultValue = "없음")String search,
+	public ModelAndView movieSearch(@RequestParam("search")String search,
 			@RequestParam(value = "cp", defaultValue = "1")int cp) {
 		
 		int totalCnt = movieservice.getUserSearchTotalCnt(search);
@@ -26,7 +26,7 @@ public class MovieSearchController {
 		int pageSize = 5;
 		
 		ModelAndView mav = new ModelAndView();
-		if(search.equals("") || search.equals("없음")) {
+		
 			String pageTag = com.amor.page.PageModuleSearch.makePage("/amor/movie/movieSearch.do", totalCnt, listSize, pageSize, cp, search);
 			List<MovieDTO> lists = movieservice.userMovieSearch(search, cp, listSize);
 			if(lists != null || totalCnt != 0) {
@@ -42,12 +42,5 @@ public class MovieSearchController {
 				mav.setViewName("/user/movie/movieSearch");
 				return mav;
 			}
-		}else {
-			mav.addObject("lists",null);
-			mav.addObject("search", search);
-			mav.addObject("pageTag",null);
-			mav.setViewName("/user/movie/movieSearch");
-			return mav;
-		}
 	}
 }

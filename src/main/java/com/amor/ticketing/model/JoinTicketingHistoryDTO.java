@@ -12,23 +12,26 @@ public class JoinTicketingHistoryDTO {
 	private String movieimg;
 	private String ticketnum;
 	private String seatnum;
+	private Date endDate;
 	private Date screeningdate;
 	private String payment;
 	private Long price;
 	private Date reservetime;
+	private String changeEndDate;
 	private String changeScreeningDate;
 	private String changeReserveTime;
 	private String changePrice;
 	private String theatername;
 	private String timelimit;
+	private String state;
 	
 	public JoinTicketingHistoryDTO() {
 	}
 
 	public JoinTicketingHistoryDTO(int movieidx, int ticketingidx, int memberidx, int playingMovieidx, String moviename,
-			String movieimg, String ticketnum, String seatnum, Date screeningdate, String payment, Long price,
-			Date reservetime, String changeScreeningDate, String changeReserveTime, String changePrice,
-			String theatername, String timelimit) {
+			String movieimg, String ticketnum, String seatnum, Date endDate, Date screeningdate, String payment,
+			Long price, Date reservetime, String changeEndDate, String changeScreeningDate, String changeReserveTime,
+			String changePrice, String theatername, String timelimit, String state) {
 		super();
 		this.movieidx = movieidx;
 		this.ticketingidx = ticketingidx;
@@ -38,15 +41,18 @@ public class JoinTicketingHistoryDTO {
 		this.movieimg = movieimg;
 		this.ticketnum = ticketnum;
 		this.seatnum = seatnum;
+		this.endDate = endDate;
 		this.screeningdate = screeningdate;
 		this.payment = payment;
 		this.price = price;
 		this.reservetime = reservetime;
+		this.changeEndDate = changeEndDate;
 		this.changeScreeningDate = changeScreeningDate;
 		this.changeReserveTime = changeReserveTime;
 		this.changePrice = changePrice;
 		this.theatername = theatername;
 		this.timelimit = timelimit;
+		this.state = state;
 	}
 
 	public int getMovieidx() {
@@ -113,6 +119,14 @@ public class JoinTicketingHistoryDTO {
 		this.seatnum = seatnum;
 	}
 
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
 	public Date getScreeningdate() {
 		return screeningdate;
 	}
@@ -143,6 +157,14 @@ public class JoinTicketingHistoryDTO {
 
 	public void setReservetime(Date reservetime) {
 		this.reservetime = reservetime;
+	}
+
+	public String getChangeEndDate() {
+		return changeEndDate;
+	}
+
+	public void setChangeEndDate(String changeEndDate) {
+		this.changeEndDate = changeEndDate;
 	}
 
 	public String getChangeScreeningDate() {
@@ -183,5 +205,14 @@ public class JoinTicketingHistoryDTO {
 
 	public void setTimelimit(String timelimit) {
 		this.timelimit = timelimit;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}	
+		
 }
