@@ -47,6 +47,7 @@ public class InquiryListController {
 		return mav;
 	}
 	
+	@RequestMapping("admin/inquiry/inquiryBlock.do")
 	public ModelAndView inquiryBlock(
 			@RequestParam(value="inquiry_idx", defaultValue = "0")int inquiry_idx,
 			@RequestParam("value")String value) {

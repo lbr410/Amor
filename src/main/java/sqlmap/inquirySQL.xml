@@ -31,7 +31,7 @@
 		where rnum <![CDATA[>=]]> #{start} and rnum <![CDATA[<=]]> #{end}
 	</select>
 
-	<update id="inquiryMemberBlock" parameterType="Map">
+	<update id="inquiryBlock" parameterType="Map">
 		update member
 		set member_block=#{value}
 		where member_idx=

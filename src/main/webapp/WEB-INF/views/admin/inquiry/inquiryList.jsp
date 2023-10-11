@@ -10,7 +10,21 @@
 .answerWait {
 	color: red;
 }
+.paging {
+	margin-top: 30px;
+	text-align: center;
+	font-size: 16px;
+}
 
+.paging a:hover{
+	color: #2E90FF;
+	font-weight: normal;
+}
+
+.nowPage {
+	color: #2E90FF !important;
+	font-weight: bold;
+}
 .answerComplete {
 	color: blue;
 }
@@ -25,6 +39,17 @@
 }
 
 </style>
+<script type="text/javascript" src="../../resources/js/httpRequest.js"></script>
+<script>
+function block(idx) {
+
+	blockTag=document.getElementsByName('member_block'+idx)[0];
+	block_value=blockTag.value;
+	let param='inquiry_idx='+idx+'&value='+block_value;	
+	sendRequest('inquiryBlock.do',param,null,'GET');	
+	
+}
+</script>
 </head>
 <body>
 <%@include file="../admin_header.jsp" %>
@@ -83,9 +108,9 @@
        	</c:if>
         <td>${dto.inquiry_writedate}</td>
         <td class="nyTd">
-			<select name="member_block" class="selectBox" id="blockId" onchange="block(${dto.member_idx})">
+			<select name="member_block${dto.inquiry_idx}" class="selectBox" id="blockId" onchange="block(${dto.inquiry_idx})">
 				<option value="n" <c:if test="${dto.member_block=='n'}">selected</c:if>>N</option>
-				<option value="y" <c:if test="${dto.member_block=='y'}"></c:if>>Y</option>
+				<option value="y" <c:if test="${dto.member_block=='y'}">selected</c:if>>Y</option>
 			</select>			
 		</td>
         <td class="tableBtn">
