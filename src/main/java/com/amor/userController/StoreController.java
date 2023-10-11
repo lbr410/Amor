@@ -181,8 +181,4 @@ public class StoreController {
 		return mav;
 	}
 	
-	@RequestMapping("store/storemy.do")
-	public String mytest() {
-		return "/user/store/mypagetest";
-	}
 }
