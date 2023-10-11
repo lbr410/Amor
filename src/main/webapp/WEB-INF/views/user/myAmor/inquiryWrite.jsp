@@ -18,10 +18,10 @@
 <form class="inquiryWriteForm" action="inquiryWrite.do" method="post" enctype="multipart/form-data">
 	<div class="typeDiv">
 		<label class="info">분류</label>
-		<input type="radio" name="inquiry_type" value="0" checked>문의
-		<input type="radio" name="inquiry_type" value="1">불만
-		<input type="radio" name="inquiry_type" value="2">칭찬
-		<input type="radio" name="inquiry_type" value="3">제안
+		<input type="radio" name="inquiry_type" value="0" checked>문의&nbsp;
+		<input type="radio" name="inquiry_type" value="1">불만&nbsp;
+		<input type="radio" name="inquiry_type" value="2">칭찬&nbsp;
+		<input type="radio" name="inquiry_type" value="3">제안&nbsp;
 		<input type="radio" name="inquiry_type" value="4">분실물
 	</div>
 	<div class="titleDiv">
@@ -41,8 +41,8 @@
 			<input type="button" value="이미지 추가" onclick="document.getElementById('selectImg').click();" class="fileDeco">
 			
 		</label>
+		<span class="filenavi">최대 5MB의 이미지(jpg, jpeg, png) 형식의 파일만 업로드하실 수 있습니다.</span>
 		<span><img src="/amor/resources/img/preview.png" id="preview" onError="this.style.visibility='hidden'"></span>
-		<div class="filenavi">최대 5MB의 이미지(jpg, jpeg, png) 형식의 파일만 업로드하실 수 있습니다.</div>
 	</div>
 	<div class="btnDiv">
 		<input type="button" value="취소" onclick="javascript: location.href='/amor/myAmor/memberInquiryList.do'" class="cancleBtn">

@@ -40,7 +40,7 @@
     border-bottom: 1px solid #DDDDDD;
 }
 .countDiv{
-	width: 730px; height: 40px; font-size: 14px; padding: 24px 24px 18px 24px;
+	width: 730px; height: 40px; font-size: 14px; padding: 0px 24px 0px 24px;
 	padding-right: 24px;text-align: right;}
 .contentDiv{
 	width: 850px;
@@ -53,7 +53,7 @@
 }
 .fileDiv{
 	width: 850px;
-    height: 138px;
+    height: 120px;
     font-size: 16px;
     margin: 0 auto;
     padding: 24px 24px 18px 24px;
@@ -94,9 +94,9 @@
 }
 .filenavi{
 	font-size: 12px;	
-	text-align: right;
+	/*text-align: right;*/
 	margin-top: 10px;
-	margin-right: 190px;
+	margin-right: 140px;
 }
 .textBox2{
 	width: 590px;
@@ -116,12 +116,15 @@
 	margin-left: 144px;
 }
 .titleDiv input{width: 400px, height: 40px; border: 1px solid #D9D9D9}
-.info{ padding: 24px;margin-left: 48px;}
+.info{ padding: 24px;margin-left: 48px; font-weight: bold;}
 .info-content{
 	width: 800px;
     padding: 24px;
     margin-left: 48px;
-    margin-top: 10px;}
+    position: relative;
+    bottom: 205px;
+    margin-top: 10px;
+    font-weight: bold;}
 .content{ border-style: solid;
 	border-color: #979797;
 	border-width: 1px;
@@ -164,10 +167,16 @@
    color: #1A2C82;
    cursor: pointer;
    margin-left: 65px;
+   position: relative;
+   left: 410px; 
 }
 #btn4{
     background: #1A2C82;
     color: #FFF;
     border: 1px solid #1A2C82;
     cursor: pointer;
+}
+
+.menuname3 {
+	font-weight: bold;
 }
