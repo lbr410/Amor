@@ -21,7 +21,7 @@
 <div class="reviewTable">
 		<table>
 			<thead>
-				<tr>
+				<tr class="reviewMenu">
 					<th>작성 날짜</th>
 					<th>관람 영화</th>
 					<th>관람평점</th>
@@ -39,7 +39,7 @@
 			<tbody>
 			<c:if test="${empty reviewLists }">
 				<tr>
-					<td colspan="5" >등록된 관람평이 없습니다.</td>
+					<td colspan="5" class="emptyReviewList">등록된 관람평이 없습니다.</td>
 				</tr>
 			</c:if>
 			<c:forEach var="dto" items="${reviewLists }" varStatus="vs">

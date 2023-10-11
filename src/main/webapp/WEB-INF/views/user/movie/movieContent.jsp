@@ -59,7 +59,7 @@
     <!-- 리뷰 페이지 -->
     <div id="review">
     	<div class="grayspace">
-    		<div class="movieReviewInfo">영화의 관람평을 들어보세요!</div>
+    		<div class="movieReviewInfo">⭐⭐ 영화의 관람평을 들어보세요! ⭐⭐</div>
     	</div>
     	<div class="movieReviewInfoTable">   			
     			<table class="reviewTableINfo">

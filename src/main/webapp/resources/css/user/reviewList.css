@@ -299,3 +299,11 @@ table tfoot tr {
     border: 1px solid #1A2C82;
     cursor: pointer;
 }
+
+.emptyReviewList {
+	background: #ffffff;
+}
+
+.reviewMenu {
+	font-weight: bold;
+}
