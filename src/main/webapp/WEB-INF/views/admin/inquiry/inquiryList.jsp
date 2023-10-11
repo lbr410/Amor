@@ -14,7 +14,7 @@
 .answerComplete {
 	color: blue;
 }
-.cancleBtn { 
+.cancelBtn { 
    border:none;
    width: 50px;
    height: 30px;
@@ -23,6 +23,7 @@
    color: #1A2C82;
    cursor: pointer;
 }
+
 </style>
 </head>
 <body>
@@ -88,13 +89,22 @@
 			</select>			
 		</td>
         <td class="tableBtn">
-   			<c:if test="${dto.inquiry_astatus eq 'y'}">
-   				<input type="button" class="cancleBtn" value="삭제" onclick="inquiryDel(${joinDTO.idto.inquiry_idx})">
-       			<input type="button" class="cancleBtn" value="수정" onclick="javascript: location.href='/amor/admin/inquiry/inquiryUpdateForm.do?idx=${dto.inquiry_idx}'">
+	   			<c:if test="${dto.inquiry_astatus eq 'y'}">
+	   				<c:url var="deleteUrl" value="inquiryDelete.do">
+						<c:param name="idx">${dto.inquiry_idx }</c:param>
+					</c:url>
+				<a href="${deleteUrl }"><button class="cancelBtn">삭제</button></a>
+       			<c:url var="updateUrl" value="inquiryUpdateForm.do">
+				<c:param name="idx">${dto.inquiry_idx }</c:param>
+				</c:url>
+				<a href="${updateUrl }"><button class="cancelBtn">수정</button></a>
    				<input type="hidden" name="inquiry_idx" value="${dto.inquiry_idx}">
 			</c:if>
 			<c:if test="${dto.inquiry_astatus eq 'n'}">
-				<input type="button" class="cancleBtn" value="삭제" onclick="inquiryDel(${joinDTO.idto.inquiry_idx})">
+					<c:url var="deleteUrl" value="inquiryDelete.do">
+						<c:param name="idx">${dto.inquiry_idx }</c:param>
+					</c:url>
+					<a href="${deleteUrl }"><button class="cancelBtn">삭제</button></a>
 				<input type="hidden" name="inquiry_idx" value="${dto.inquiry_idx}">
 			</c:if>
 		<input type="hidden" name="inquiry_idx" value="${dto.inquiry_idx}">

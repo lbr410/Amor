@@ -156,7 +156,7 @@ left join (
     group by movie_idx
 ) b on a.movie_idx = b.movie_idx
 where movie_opendate <![CDATA[>=]]> sysdate and movie_state='n'
-order by movie_opendate desc)c)d 
+order by movie_opendate asc)c)d 
 </select>
 
 <select id="movieName" parameterType="Map" resultType="com.amor.movie.model.MovieDTO">

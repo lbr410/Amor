@@ -91,27 +91,7 @@ public class InquiryServiceImple implements InquiryService {
 		int result=inquiryDao.inquiryDelete(inquiry_idx);
 		return result;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	@Override
 	public List<InquiryDTO> adminMainInquiryList() {
 		List<InquiryDTO> lists = inquiryDao.adminMainInquiryList();

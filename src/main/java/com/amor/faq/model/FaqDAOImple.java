@@ -54,4 +54,11 @@ public class FaqDAOImple implements FaqDAO {
 		int result=sqlmap.delete("faqDelete", idx);
 		return result;
 	}
+	
+	@Override
+	public List<FaqDTO> userFaqList(Map map) {
+		List<FaqDTO> lists=sqlmap.selectList("userFaqList", map);
+		return lists;
+	}
+	
 }

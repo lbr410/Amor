@@ -11,4 +11,5 @@ public interface FaqDAO {
 	public FaqDTO faqUpdateForm(int idx);
 	public int faqUpdate(FaqDTO dto);
 	public int faqDelete(int idx);
+	public List<FaqDTO> userFaqList(Map map);
 }

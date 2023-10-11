@@ -40,6 +40,7 @@
 	select member_id from member where member_id=#{member_id}
 </select>
 
+
 	<select id="idCheck" parameterType="String" resultType="String">
 		select member_id from member where member_id = #{id}		
 	</select>

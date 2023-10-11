@@ -36,13 +36,22 @@ function onYouTubePlayerAPIReady() {
     }
   })
 }
+//배너의 URL을 변경하는 함수
+function changeBannerUrl(url) {
+    var bannerLink = document.querySelector('.youtube');
+    bannerLink.href = url;
+}
 
+// 페이지 로딩 시 두 번째 배너의 URL로 변경
+window.onload = function() {
+    changeBannerUrl('${blists[1].banner_url}');
+};
 </script>
 </head>
 <%@ include file="../views/user/header.jsp" %>
 <body>
 	<!--YOUTUBE VIDEO-->
-	<a href="#">
+	<a href="${blists[0].banner_url }">
 		<section class="youtube">
 		<div class="youtube__area">
 			<div id="player"></div>
@@ -84,7 +93,7 @@ function onYouTubePlayerAPIReady() {
 							<c:if test="${2==mdto.movie_maxage}"><img src="/amor/resources/img/maxage_15.png" alt="15세 관람가"></c:if>
 							<c:if test="${3==mdto.movie_maxage}"><img src="/amor/resources/img/maxage_18.png" alt="18세 관람가"></c:if>
                      </span>
-                     <span title="제목" class="movie_name">${mdto.movie_name }</span>
+                     <a href="${MovieContentUrl}"><span title="제목" class="movie_name">${mdto.movie_name }</span></a>
            			</div>
            			</div>
                      <div class="info-area">
@@ -114,13 +123,13 @@ function onYouTubePlayerAPIReady() {
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
-            <img src="/amor/resources/upload/ads/${alists[0].ads_filename }" alt="ads_filename" />
+             <a href="${alists[1].ads_url }"><img src="/amor/resources/upload/ads/${alists[1].ads_filename }" alt="ads_filename" /></a>
           </div>
           <div class="swiper-slide">
-            <img src="/amor/resources/upload/ads/${alists[1].ads_filename }" alt="ads_filename" />
+            <a href="${alists[0].ads_url }"><img src="/amor/resources/upload/ads/${alists[0].ads_filename }" alt="ads_filename" /></a>
           </div>
           <div class="swiper-slide">
-            <img src="/amor/resources/upload/ads/${alists[2].ads_filename }" alt="ads_filename" />
+            <a href="${alists[2].ads_url }"><img src="/amor/resources/upload/ads/${alists[2].ads_filename }" alt="ads_filename" /></a>
           </div>
         </div>
       </div>
@@ -151,7 +160,7 @@ function onYouTubePlayerAPIReady() {
 			    	<a href="${storeContentUrl }"><img src="/amor/resources/upload/product/${pdto.product_img }" alt="스토어"></a>
 			    </td>
 			    <td class="product_info">
-			      <div class="product_title">${pdto.product_title }</div>
+			      <a href="${storeContentUrl }"><div class="product_title"> <a href="${storeContentUrl }">${pdto.product_title }</div></a>
 			      <div class="product_price">${pdto.product_price2 }<span>원</span></div>
 			    </td>
 			  </tr>
@@ -178,7 +187,7 @@ function onYouTubePlayerAPIReady() {
 			    	<a href="${storeContentUrl }"><img src="/amor/resources/upload/product/${tdto.product_img }" alt="관람권"></a>
 			    </td>
 			    <td class="product_info">
-			      <div class="product_title">${tdto.product_title }</div>
+			      <a href="${storeContentUrl }"><div class="product_title">${tdto.product_title }</div></a>
 			      <div class="product_price">${tdto.product_price2 }<span>원</span></div>
 			    </td>
 			  </tr>

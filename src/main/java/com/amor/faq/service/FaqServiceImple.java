@@ -75,4 +75,23 @@ public class FaqServiceImple implements FaqService {
 		int result=faqDao.faqDelete(idx);
 		return result;
 	}
+	
+	@Override
+	public List<FaqDTO> userFaqList() {
+		Map map=new HashMap();
+		List<FaqDTO> lists=faqDao.userFaqList(map);
+		
+		for(int i=0;i<lists.size();i++) {
+			
+			lists.get(i).setFaq_content(lists.get(i).getFaq_content().replaceAll("\n", "<br>"));
+			switch (lists.get(i).getFaq_type()) {
+			case 1: lists.get(i).setFaq_type2("영화관"); break;
+			case 2: lists.get(i).setFaq_type2("회원"); break;
+			case 3: lists.get(i).setFaq_type2("온라인"); break;
+			case 4: lists.get(i).setFaq_type2("스토어");
+			}
+		}	
+		return lists;
+	}
+	
 }

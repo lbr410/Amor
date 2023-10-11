@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,7 +93,7 @@
                    	 	<c:url var="MovieContentUrl" value="movieContentForm.do">
 							<c:param name="movie_idx">${ndto.movie_idx }</c:param>
                     	</c:url>
-                    <a href="${MovieContentUrl}"><img src="/amor/resources/upload/movie/${cdto.movie_poster }" alt="영화 포스터"></a>
+                    <a href="${MovieContentUrl}"><img src="/amor/resources/upload/movie/${ndto.movie_poster }" alt="영화 포스터"></a>
                     </div>
                     <div class="title-area">
                         <span class="movie_maxage">
@@ -106,7 +107,8 @@
                     <div class="info-area">
                         <span class="movie_audience">
                             <span class="rate">
-                            <span class="material-icons">star</span> ${ndto.avg_movie_review_star} &nbsp;
+                            <span class="material-icons">star</span>
+                            <fmt:formatNumber value="${ndto.avg_movie_review_star}" pattern="0.0" />&nbsp;
                             </span>
                         </span>
                         <span class="movie_opendate">개봉일 : ${ndto.movie_opendate }</span>

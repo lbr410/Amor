@@ -72,8 +72,8 @@ body{
 .movie-section{
 	width: 100%;
 	hegiht: 870px;
-	padding-bottom: 60px;
-	margin-bottom: 170px;
+	padding-bottom: 48px;
+	margin-bottom: 78px;
 	background-color: #F8F9FA;
 }
 /*MOVIE TITLE*/
@@ -280,7 +280,7 @@ button{
 	align-items: flex-start;
 	margin: 0 auto;
 	gap: 88px;
-	margin-bottom: 120px;
+	margin-bottom: 178px;
 }
 .store-section .left-section{
 	display: flex;
@@ -332,20 +332,21 @@ button{
   padding-bottom: 20px;
 }
 .store-section .left-section .product .product_img{
-	width: 130px;
-	max-height: 100px;
-	padding-left: 38px;
+	width:120px;
+	height: 120px;
+	margin-left: 38px;
 }
 .store-section .left-section .product .product_img img{
-	width: 100px;
-	min-height: 100px;
+	width:120px;
+	height: 120px;
 	over-flow: hidden;
+	margin-left: 38px;
 }
 .store-section .left-section .product .product_info {
 	font-size: 16px;
 	font-weight: bold;
 	color: #333333;
-	gap: 20px;
+	gap: 5px;
 	padding-bottom: 20px;
 }
 .store-section .left-section .product .product_info .product_price {
@@ -407,20 +408,22 @@ button{
   padding-bottom: 20px;
 }
 .store-section .right-section .product .product_img{
-	width: 130px;
-	max-height: 100px;
-	padding-left: 42px;
+	width:120px;
+	height: 120px;
+	margin-left: 38px;
 }
 .store-section .right-section .product .product_img img{
-	width: 100px;
-	min-height: 100px;
+	width:120px;
+	height: 120px;
+	over-flow: hidden;
+	margin-left: 38px;
 	over-flow: hidden;
 }
 .store-section .right-section .product .product_info {
 	font-size: 16px;
 	font-weight: bold;
 	color: #333333;
-	gap: 20px;
+	gap: 5px;
 	padding-bottom: 20px;
 }
 .store-section .right-section .product .product_info .product_price {
