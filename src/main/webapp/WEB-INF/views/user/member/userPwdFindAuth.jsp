@@ -16,12 +16,12 @@ var authOk = '인증번호가 일치합니다.';
 var dataList = null;
 
 // 인증번호 메일로 보내기
-function sendMail() {
+function sendMail(memberid) {
 	let email = document.getElementById('email').value; // 이메일
 
 	if(email != '') {		
-		let param = 'email='+email;
-		sendRequest('sendMail.do', param, sendMailCallBack, 'GET');
+		let param = 'email='+email+'&member_id='+memberid;
+		sendRequest('emailSameChk.do', param, sendMailCallBack, 'POST');
 	} else {
 		window.alert('이메일을 입력해주세요.');
 	}
@@ -32,9 +32,13 @@ function sendMailCallBack() {
 		if(XHR.status == 200) {
 			let result = XHR.responseText;
 			let objData = JSON.parse(result);
-			
-			dataList = objData.data;
-			window.alert(dataList[0].msg);
+			let data = objData.goUrl;
+			if(data!=null && data!=''){
+				location.href=data;
+			}else{
+				dataList = objData.msg;
+				window.alert(dataList);
+			}
 		}
 	}
 }
@@ -110,9 +114,10 @@ function emailOk() {
                                 <th class="signUpMenu">이메일 주소</th>
                                 <td>
                                     <input type="text" name="member_email" id="email" maxlength="50" placeholder="이메일">
+                                    
                                 </td>
                                 <td>
-                                    <input type="button" class="gray-btn" value="인증번호 받기"  onclick="sendMail()"> 
+                                    <input type="button" class="gray-btn" value="인증번호 받기"  onclick="sendMail('${member_id}')"> 
                                 </td>
                             </tr>
                             <tr>

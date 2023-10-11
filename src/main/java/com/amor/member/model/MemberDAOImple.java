@@ -65,6 +65,11 @@ public class MemberDAOImple implements MemberDAO {
 	}
 	
 	@Override
+	public String userEmailCheck(String member_id) {
+		String id=sqlmap.selectOne("userEmailCheck", member_id);
+		return id;
+	}
+	@Override
 	public MemberDTO memberInfo(int sidx) {
 		MemberDTO dto=sqlmap.selectOne("memberInfo", sidx);
 		return dto;

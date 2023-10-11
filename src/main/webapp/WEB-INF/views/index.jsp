@@ -105,9 +105,14 @@ window.onload = function() {
                         <span class="movie_opendate">개봉일 : ${mdto.movie_opendate }</span>
                     </div>
                     <div class="book-btn" >
-                     	<a href="/amor/ticketing/ticketing.do">
-                     		<button type="button" name="ticketing-btn" title="영화 예매하기">예매하기</button>
-                     	</a>
+                    <c:url var="ticketingUrl" value="/ticketing/ticketing.do">
+                       		<c:param name="movie_name">${mdto.movie_name}</c:param>
+                       		<c:param name="movie_maxage">${mdto.movie_maxage}</c:param>
+                       		<c:param name="movie_idx">${mdto.movie_idx}</c:param>
+                    </c:url>
+                   	<a href="${ticketingUrl }">
+                   		<button type="button" name="ticketing-btn" title="영화 예매하기">예매하기</button>
+                   	</a>
                     </div>
                 </div>
                 <c:set var="rank" value="${rank+1 }" />
@@ -173,7 +178,7 @@ window.onload = function() {
 				<span class="more"><a href="/amor/store/store.do">더보기</a></span>
 			</div>
 			<table class="product">
-			<c:if test="${empty Tlists }">
+			<c:if test="${empty tlists }">
 			<tr>
 				<td><div class="msg">상품 준비 중입니다.</div></td>
 			</tr>

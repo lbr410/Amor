@@ -87,10 +87,10 @@
                        		<c:param name="movie_name">${mdto.movie_name}</c:param>
                        		<c:param name="movie_maxage">${mdto.movie_maxage}</c:param>
                        		<c:param name="movie_idx">${mdto.movie_idx}</c:param>
-                       	</c:url>
-                     	<a href="${ticketingUrl }">
-                     		<button type="button" name="ticketing-btn" title="영화 예매하기">예매하기</button>
-                     	</a>
+                    </c:url>
+                   	<a href="${ticketingUrl }">
+                   		<button type="button" name="ticketing-btn" title="영화 예매하기">예매하기</button>
+                   	</a>
                     </div>
                 </div>
             </div>

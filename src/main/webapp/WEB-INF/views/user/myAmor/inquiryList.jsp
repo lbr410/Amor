@@ -264,12 +264,11 @@ em{
                     </tr>
                 </thead>
                 <tfoot>
-                	<tr>
-                		<td colspan="5" align="center">
-                			<div class="paging">${pageStr }</div>
-                		</td>
-                	</tr>
-                </tfoot>
+					<tr>
+						<td colspan="8">
+						<c:if test="${!empty lists }"><div class="paging">${pageStr}</div></c:if></td>
+					</tr>
+				</tfoot>
                 <tbody id="tab">
                 <c:if test="${empty lists }">
                 	<tr>

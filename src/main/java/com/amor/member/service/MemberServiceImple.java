@@ -96,6 +96,7 @@ public class MemberServiceImple implements MemberService {
 		List<MemberDTO> result=memberDao.userIdFind(member_name,member_email);
 		return result;
 	}
+	
 	@Override
 	public String userPwdIdck(String member_id) {
 		String result=memberDao.userPwdIdck(member_id);
@@ -108,6 +109,12 @@ public class MemberServiceImple implements MemberService {
 		map.put("fid", fid);
 		map.put("member_pwd", pwd);
 		int result=memberDao.userPwdFindUpdate(map);
+		return result;
+	}
+	
+	@Override
+	public String userEmailCheck(String id) {
+		String result=memberDao.userEmailCheck(id);
 		return result;
 	}
 	@Override
