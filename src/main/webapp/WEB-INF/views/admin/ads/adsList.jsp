@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아모르 관리자 : 광고 관리</title>
+<title>아모르 관리자 : 광고 등록</title>
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/admin/adsList.css">
 <script type="text/javascript">
 

@@ -47,16 +47,16 @@
 				<div class="menutext"><a href="#" data-submenu="submenu-4">배너 관리</a></div>
 			</div>	
 			<div class="submenu" id="submenu-4"> 
-				<div class="menutext"><a href="/amor/admin/banner/bannerList.do">배너 목록</a></div>
-				<!-- <div class="menutext"><a href="/amor/admin/banner/bannerAdd.do">배너 등록</a></div>-->
+				<div class="menutext"><a href="/amor/admin/banner/bannerList.do">배너 등록</a></div>
+				
 			</div>			
 			
 			<div class="menu" onclick="toggleSubmenu(this)">
 				<div class="menutext"><a href="#" data-submenu="submenu-5">광고 관리</a></div>
 			</div>	
 			<div class="submenu" id="submenu-5"> 
-				<div class="menutext"><a href="/amor/admin/ads/adsList.do">광고 목록</a></div>
-				<!--  <div class="menutext"><a href="/amor/admin/ads/adsAdd.do">광고 등록</a></div>-->
+				<div class="menutext"><a href="/amor/admin/ads/adsList.do">광고 등록</a></div>
+				
 			</div>
 			
 			<div class="menu" onclick="toggleSubmenu(this)">
