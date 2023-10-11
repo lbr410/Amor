@@ -19,21 +19,26 @@ public class UserPwdCheckUpdateController {
 	private MemberService memberService;
 	
 	@RequestMapping("myAmor/userPwdCheckForm.do")
-	public ModelAndView userPwdCheckForm(@RequestParam("type")String type) {
+	public ModelAndView userPwdCheckForm(@RequestParam("type")String type, HttpSession session) {
 
 		ModelAndView mav=new ModelAndView();
-		mav.setViewName("/user/myAmor/userPwdCheck");
-		String msg="";
-		if(type.equals("pwdUpdate")) {
-			msg="비밀번호 수정";
-			mav.addObject("msg", msg);
-			mav.addObject("type", "pwdUpdate");
-			mav.setViewName("/user/myAmor/userPwdCheck");
-		}else if(type.equals("withdraw")) {
-			msg="회원탈퇴";
-			mav.addObject("msg", msg);
-			mav.addObject("type", "withdraw");
-			mav.setViewName("/user/myAmor/userPwdCheck");
+		if(session.getAttribute("sid")==null) {
+			mav.addObject("msg", "로그인 후 이용가능합니다.");
+			mav.addObject("goUrl", "/amor/member/login.do");
+			mav.setViewName("user/msg/userMsg");			
+		}else {
+			String msg="";
+			if(type.equals("pwdUpdate")) {
+				msg="비밀번호 수정";
+				mav.addObject("msg", msg);
+				mav.addObject("type", "pwdUpdate");
+				mav.setViewName("/user/myAmor/userPwdCheck");
+			}else if(type.equals("withdraw")) {
+				msg="회원탈퇴";
+				mav.addObject("msg", msg);
+				mav.addObject("type", "withdraw");
+				mav.setViewName("/user/myAmor/userPwdCheck");
+			}
 		}
 		return mav;
 	}
@@ -44,47 +49,63 @@ public class UserPwdCheckUpdateController {
 			@RequestParam("typemsg") String typemsg,
 			HttpSession session) {
 		
-		String type="";
-		if(typemsg.equals("비밀번호 수정")) {
-			type="pwdUpdate";
-		}else if(typemsg.equals("회원탈퇴")) {
-			type="withdraw";
-		}
-		
 		String pwd = Encryption.pwdEncrypt(pwd2);
-		String sid=(String)session.getAttribute("sid");
 		ModelAndView mav=new ModelAndView();
-		String msg;
-		if(pwd.equals("notpwd") || pwd.equals("")) {
-			msg="비밀번호를 입력해주세요.";
-			mav.addObject("msg", msg);
-			mav.addObject("goUrl", "userPwdCheckForm.do");
-			mav.setViewName("/user/msg/userMsg");
-			return mav;
-		}
 		
-		int result=memberService.memberPwdCheck(sid, pwd);
-		
-		if(result==memberService.SUCCES) {
-			if(type.equals("pwdUpdate")) {
-				mav.setViewName("/user/myAmor/userPwdUpdate");	
-
-			}else if(type.equals("withdraw")) {
-				mav.setViewName("/user/myAmor/withdraw");
+		if(session.getAttribute("sid")==null) {
+			mav.addObject("msg", "로그인 후 이용가능합니다.");
+			mav.addObject("goUrl", "/amor/member/login.do");
+			mav.setViewName("user/msg/userMsg");			
+		}else {
+			String sid=(String)session.getAttribute("sid");
+			String type="";
+			if(typemsg.equals("비밀번호 수정")) {
+				type="pwdUpdate";
+			}else if(typemsg.equals("회원탈퇴")) {
+				type="withdraw";
 			}
 			
-		}else if(result==memberService.ERROR) {
-			msg="비밀번호가 맞지 않습니다.";
-			mav.addObject("msg", msg);
-			mav.addObject("goUrl", "userPwdCheckForm.do?type="+type);
-			mav.setViewName("/user/msg/userMsg");
-		}		
+			String msg;
+			if(pwd.equals("notpwd") || pwd.equals("")) {
+				msg="비밀번호를 입력해주세요.";
+				mav.addObject("msg", msg);
+				mav.addObject("goUrl", "userPwdCheckForm.do");
+				mav.setViewName("/user/msg/userMsg");
+				return mav;
+			}
+			
+			int result=memberService.memberPwdCheck(sid, pwd);
+			
+			if(result==memberService.SUCCES) {
+				if(type.equals("pwdUpdate")) {
+					mav.setViewName("/user/myAmor/userPwdUpdate");	
+
+				}else if(type.equals("withdraw")) {
+					mav.setViewName("/user/myAmor/withdraw");
+				}
+				
+			}else if(result==memberService.ERROR) {
+				msg="비밀번호가 맞지 않습니다.";
+				mav.addObject("msg", msg);
+				mav.addObject("goUrl", "userPwdCheckForm.do?type="+type);
+				mav.setViewName("/user/msg/userMsg");
+			}	
+			
+		}
 		return mav;
 	}
 	
 	@RequestMapping("myAmor/userPwdUpdateForm.do")
-	public String userPwdUpdateForm() {
-		return "/user/myAmor/userPwdUpdate";
+	public ModelAndView userPwdUpdateForm(HttpSession session) {
+		ModelAndView mav=new ModelAndView();
+		if(session.getAttribute("sid")==null) {
+			mav.addObject("msg", "로그인 후 이용가능합니다.");
+			mav.addObject("goUrl", "/amor/member/login.do");
+			mav.setViewName("user/msg/userMsg");			
+		}else {
+			mav.setViewName("/user/myAmor/userPwdUpdate");
+		}	
+		return mav;
 	}
 	
 	@RequestMapping(value="myAmor/userPwdUpdateSubmit.do",method = RequestMethod.POST)

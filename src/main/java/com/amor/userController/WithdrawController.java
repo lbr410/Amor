@@ -21,8 +21,16 @@ public class WithdrawController {
 	private MemberService memberService;
 	
 	@RequestMapping("myAmor/withdrawForm.do")
-	public String withdrawForm() {
-		return "/user/myAmor/withdraw";
+	public ModelAndView withdrawForm(HttpSession session) {
+		ModelAndView mav=new ModelAndView();
+		if(session.getAttribute("sid")==null) {
+			mav.addObject("msg", "잘못된 접근입니다.");
+			mav.addObject("goUrl", "/amor/member/login.do");
+			mav.setViewName("user/msg/userMsg");			
+		}else {
+			mav.setViewName("/user/myAmor/withdraw");
+		}
+		return mav;
 	}
 	
 	@RequestMapping("myAmor/withdrawSubmit.do")
