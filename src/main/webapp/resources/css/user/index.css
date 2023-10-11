@@ -24,17 +24,14 @@ body{
 .youtube .youtube__area {
   width: 1920px;
   position: absolute;
-  /* 16비율 */
   left: 50%;
   margin-left: calc(1920px / -2);
-  /* 9비율 */
   top: 50%;
   margin-top: calc(1920px * 9 / 16 / -2);
 }
 .youtube .youtube__area::before {
   content: "";
   display: block;
-  /* 16:9 영상 비율로 요소 크기 만들기! */
   width: 100%;
   height: 0;
   padding-top: 56.25%;
@@ -89,7 +86,7 @@ body{
 	padding-bottom: 78px;
 	justify-content: center;
 	align-items: center;
-	gap: 480px;
+	gap: 493px;
 }
 .movie-title .title-bar .menu{
 	display: flex;
@@ -341,6 +338,7 @@ button{
 	height: 120px;
 	over-flow: hidden;
 	margin-left: 38px;
+	background-color: #BCBCBC;
 }
 .store-section .left-section .product .product_info {
 	font-size: 16px;
@@ -411,6 +409,7 @@ button{
 	width:120px;
 	height: 120px;
 	margin-left: 38px;
+
 }
 .store-section .right-section .product .product_img img{
 	width:120px;
@@ -418,6 +417,7 @@ button{
 	over-flow: hidden;
 	margin-left: 38px;
 	over-flow: hidden;
+	background-color: #BCBCBC;
 }
 .store-section .right-section .product .product_info {
 	font-size: 16px;

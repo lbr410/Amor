@@ -92,6 +92,30 @@ public class UserIdFindController {
 		return "/user/member/userPwdFindAuth";
 	}
 	
+	@RequestMapping(value="member/emailSameChk.do", method=RequestMethod.POST)
+	public ModelAndView userEmailCheck(
+			HttpSession session,
+			@RequestParam("email")String email,
+			@RequestParam("member_id")String id) {
+//		System.out.println(id);
+		System.out.println(email);
+		
+		ModelAndView mav=new ModelAndView();
+		
+		String getEmail=memberService.userEmailCheck(id);
+		System.out.println(getEmail);
+		if(email.equals(getEmail)) {
+			mav.addObject("goUrl","/amor/member/sendMail.do?email="+email);
+			mav.setViewName("amorJson");
+		} else if(!email.equals(getEmail)) {
+			mav.addObject("msg", "아이디와 이메일이 일치하지 않습니다.");
+			mav.addObject("goUrl", "/amor/member/userPwdFind.do");
+			mav.setViewName("amorJson");
+			//mav.setViewName("/user/member/userPwdFindAuth");
+		}
+		return mav;
+	}
+
 	//비밀번호 업데이트 폼으로 이동
 	@RequestMapping("member/userPwdFindUpdate.do")
 	public String userPwdFindUpdateForm() {

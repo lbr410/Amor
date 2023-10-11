@@ -15,6 +15,7 @@ public interface MemberService {
 	public List<MemberDTO> userIdFind(String member_name, String member_email);
 	public String userPwdIdck(String member_id);
 	public int userPwdFindUpdate(String fid, String pwd);
+	public String userEmailCheck(String id);
 	public int memberLogin (MemberDTO dto);
 	public MemberDTO memberSession(String id);
 	public int memberWithDraw(String id);

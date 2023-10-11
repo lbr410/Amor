@@ -18,7 +18,7 @@
 		</div>
 		<div class="titleDiv">
 		<label class="info">전화번호</label>
-		<span>${dto.member_tel1}) ${dto.member_tel2 }</span>
+		<span>${dto.member_tel1} ${dto.member_tel2 }</span>
 		</div>
 		<div class="titleDiv">
 		<label class="info">이메일</label>
@@ -63,7 +63,7 @@
 	<label class="answerw">답변내용</label>
 	<form name="inquiryAnswerForm" action="inquiryContent.do" method="post">
 		<div class="AnswerDiv">
-			<textarea name="inquiry_answer" maxlength="1000" required="required" class="textBox2" id="text"
+			<textarea name="inquiry_answer" maxlength="700" required="required" class="textBox2" id="text"
 			>${dto.inquiry_answer }</textarea>
 		<div class="countDiv">(<span id="count">0</span> / 700)</div>
 		</div>

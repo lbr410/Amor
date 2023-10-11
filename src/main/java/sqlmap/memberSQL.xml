@@ -39,8 +39,9 @@
 <select id="userPwdIdck" parameterType="String" resultType="String">
 	select member_id from member where member_id=#{member_id}
 </select>
-
-
+<select id="userEmailCheck" resultType="String" parameterType="String">
+	select member_email from member where member_id=#{member_id}
+</select>
 	<select id="idCheck" parameterType="String" resultType="String">
 		select member_id from member where member_id = #{id}		
 	</select>
