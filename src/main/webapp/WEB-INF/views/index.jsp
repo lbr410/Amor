@@ -81,7 +81,7 @@ window.onload = function() {
                 <div class="rank-movie">
                     <div class="rank">${rank }<span class="rank-txt">위</span></div>
                     <div class="movie_poster">
-                   	 	<c:url var="MovieContentUrl" value="movieContentForm.do">
+                   	 	<c:url var="MovieContentUrl" value="movie/movieContentForm.do">
 							<c:param name="movie_idx">${mdto.movie_idx }</c:param>
                     	</c:url>
                     <a href="${MovieContentUrl}"><img src="/amor/resources/upload/movie/${mdto.movie_poster }" alt="영화 포스터"></a>
@@ -152,7 +152,7 @@ window.onload = function() {
 	<section class="store-section">
 		<div class="left-section">
 			<div class="sub-title">
-				<span class="product_store">패키지</span>
+				<span class="product_store">스낵</span>
 				<span class="more"><a href="/amor/store/store.do">더보기</a></span>
 			</div>
 			<table class="product">
@@ -165,7 +165,7 @@ window.onload = function() {
 			    	<a href="${storeContentUrl }"><img src="/amor/resources/upload/product/${pdto.product_img }" alt="스토어"></a>
 			    </td>
 			    <td class="product_info">
-			      <a href="${storeContentUrl }"><div class="product_title"> <a href="${storeContentUrl }">${pdto.product_title }</div></a>
+			      <a href="${storeContentUrl }"><div class="product_title">${pdto.product_title }</div></a>
 			      <div class="product_price">${pdto.product_price2 }<span>원</span></div>
 			    </td>
 			  </tr>
