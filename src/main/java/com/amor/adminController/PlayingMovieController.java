@@ -71,6 +71,7 @@ public class PlayingMovieController {
 		} else {
 			
 			System.out.println("부분 보기");
+			System.out.println(movie_idx);
 			
 			int movie_idx2 = Integer.parseInt(movie_idx);
 			
@@ -79,6 +80,8 @@ public class PlayingMovieController {
 			int pageSize=5;
 			
 			List<PlayingMovieJoinDTO> lists = playingMovieService.playingMovieListSelect(cp, listSize, movie_idx2);
+			
+			System.out.println(lists.size()+"/"+totalCnt);
 			
 			String playingMoviepageStr=com.amor.page.PageModuleAjax.makePage(totalCnt, listSize, pageSize, cp);
 			

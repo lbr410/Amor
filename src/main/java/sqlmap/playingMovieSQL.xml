@@ -15,21 +15,22 @@
 		where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 	</select>
 	<select id="playingMovieListSelect" parameterType="Map" resultType="com.amor.playingMovie.model.PlayingMovieJoinDTO">
-	with movieSelectList as
-		(select * from
+		select * from
 		(select rownum as rnum,a.* from 
 		(select  
 			e.movie_idx,
 			to_char(c.playing_movie_date, 'yyyy-mm-dd') as "playing_movie_date",
 			to_char(c.playing_movie_start, 'hh24:mi:ss') as "playing_movie_start", 
-			e.movie_name, d.theater_name, c.playing_movie_idx from playing_movie c, theater d, movie e 
-			where c.theater_idx=d.theater_idx and c.movie_idx=e.movie_idx
+			e.movie_name, d.theater_name, c.playing_movie_idx 
+			from playing_movie c, theater d, movie e 
+			where c.theater_idx=d.theater_idx and c.movie_idx=e.movie_idx and c.movie_idx = #{movie_idx}
 			order by c.playing_movie_date desc)a)b
-		where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end} )
-	select * from movieSelectList where movie_idx = #{movie_idx}
+		where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 	</select>
 	<select id="totalCntSelect" resultType="Integer">
-		select count(*) from movie a, playing_movie b where movie_state = 'y' and a.movie_idx = b.movie_idx and b.movie_idx = #{movie_idx} 
+		select count(*) from playing_movie c, theater d, movie e 
+			where c.theater_idx=d.theater_idx and c.movie_idx=e.movie_idx and
+			c.movie_idx = #{movie_idx} 
 	</select>
 	<select id="totalCntPlaying" resultType="Integer">
 		select count(*) from playing_movie c, theater d, movie e 

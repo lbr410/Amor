@@ -38,14 +38,11 @@
 		<c:if test="${1==dto.movie_maxage}"><img src="/amor/resources/img/maxage_12.png" alt="12세 관람가"><div class="ageTxt">12세 관람가 |</div></c:if>
 		<c:if test="${2==dto.movie_maxage}"><img src="/amor/resources/img/maxage_15.png" alt="15세 관람가"><div class="ageTxt">15세 관람가 |</div></c:if>
 		<c:if test="${3==dto.movie_maxage}"><img src="/amor/resources/img/maxage_18.png" alt="18세 관람가"><div class="ageTxt">18세 관람가 |</div></c:if></div>
-      <div class="movie-audience">${dto.movie_audience }</div>
     </div>
     <div class="movie_content">
-      <textarea class="content" style="overflow-y:scroll;" readonly>
-      ${dto.movie_content }
-      </textarea>
+      <textarea class="content">${dto.movie_content }</textarea>
     </div>
-    <div class="btn-wrap"><button class="blue-btn">예매하기</button></div>
+    <div class="btn-wrap"><button class="blue-btn" type="button" onclick="location.href='/amor/ticketing/ticketing.do'">예매하기</button></div>
   </div>
 </div>
 </div>
@@ -57,26 +54,56 @@
     	<div class="grayspace">
     		<div class="movieReviewInfo">영화의 관람평을 들어보세요!</div>
     	</div>
-    	<div class="movieReviewInfoTable">
-    		<table class="reviewTable">
-    			<tr>
-    				<th class="reviewTH">별점</th>
-    				<th class="reviewTH3">관람평 일부</th>
-    				<th class="reviewTH2">회원 아이디</th>
-    			</tr>
-    			<c:if test="${empty rlists }">
-    				<tr>
-    					<td colspan="3">등록된 관람평이 없습니다.</td>
-    				</tr>
-    			</c:if>
-    			<c:forEach var="rdto" items="${rlists }">
-    			<tr>
-    				<td class="reviewTD"><span class="material-icons">star</span>${rdto.movie_review_star }</td>
-    				<td class="reviewTD3">${rdto.movie_review_content }</td>
-    				<td class="reviewTD2">${rdto.member_id }</td>
-    			</tr>
-    			</c:forEach>
-    		</table>
+    	<div class="movieReviewInfoTable">   			
+    			<table class="reviewTableINfo">
+			<thead>
+				<tr class="reviewTableInfoThead">
+					<th>작성 날짜</th>
+					<th>회원아이디</th>
+					<th>관람평점</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tfoot>
+			<c:if test="${!empty rlists}">
+				<tr class="reviewTableInfoTfoot">
+					<td colspan="5" class="paging">${reviewPage}</td>
+				</tr>
+			</c:if>
+			</tfoot>
+			<tbody>
+			<c:if test="${empty rlists }">
+				<tr class="reviewTableINfoTbody">
+					<td class="reviewTd7" colspan="5" >등록된 관람평이 없습니다.</td>
+				</tr>
+			</c:if>
+			<c:forEach var="dto" items="${rlists }" varStatus="vs">
+				<tr class="reviewTableINfoTbody">
+					<td class="reviewTd1">${dto.movie_review_writedate }</td>
+					<td class="reviewTd5">${dto.member_id }</td>
+					<td class="reviewTd" colspan="2">
+					
+					<span class="starBack">	
+					<span class="star">
+						☆☆☆☆☆
+					<span class="starAll" style="width: ${dto.movie_review_star}0%;">★★★★★</span>
+						<input type="range" name="movie_review_star"  min="1" max="10">
+					</span>
+					</span>
+					
+					</td>
+					<td class="reviewTd3" onclick="document.getElementById('reviewContent${vs.index}').style.display=''">▽</td>
+				</tr>
+				<tr class="reviewTableINfoTbody" id="reviewContent${vs.index }" style="display:none;">
+					<td class="reviewTdContent2" colspan="2"><img src="/amor/resources/upload/review/${dto.movie_review_img}" class="reviewImg"></td>
+					<td class="reviewTdContent" colspan="2">${dto.movie_review_content }</td>
+					<td class="reviewTdContent3" onclick="document.getElementById('reviewContent${vs.index}').style.display='none'">&times;</td>
+				</tr>
+				
+			</c:forEach>
+			</tbody>
+		</table>
     	</div>
     </div>
     

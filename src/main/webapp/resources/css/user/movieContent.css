@@ -20,7 +20,7 @@ a{
 	background-color: none;
 	font-style: '맑은 고딕';
 	line-height: 20px;
-	overflow-y:scroll
+	font-size: 15px;
 }
 .content:focus{
 	outline:none
@@ -170,7 +170,6 @@ a{
   position: relative;
 }
 .movie_content .txtarea {
-    margin: 27px 0 27px;
     overflow: scroll;
     height: 200px;
     font-weight: normal;
@@ -230,6 +229,7 @@ textarea{
     cursor: pointer;
     margin-right: 200px;
     text-align: center;
+    margin-top: 50px;
 }
 em {
     font-style: normal;
@@ -283,7 +283,7 @@ p::after{
 
 .movieTitleInfo{
 	text-align: right;
-	padding-left: 300px;
+	padding-left: 500px;
 	padding-bottom: 15px;
 	font-size: 20px;
 	font-weight: bold;	
@@ -296,7 +296,7 @@ p::after{
 }
 
 .stillcutTitle {
-	margin-left: 300px;
+	margin-left: 500px;
 	padding-top: 30px;
 	font-size: 20px;
 	font-weight: bold;
@@ -311,7 +311,7 @@ p::after{
 
 .movieReviewInfoTable {
 	width: 800px;
-	height: 500px;
+
 	object-fit: contain;
 	margin: 50px auto;
 }
@@ -338,59 +338,193 @@ color: #FFAC33;
 vertical-align: middle;
 }
 
+reviewTableINfo {
+	width: 1000px;
+}
 
-
-.reviewTD {
-	width: 100px;
-	border-bottom: 10px solid white;
+.reviewTableInfoThead {
+	height: 100px;
+	width: 1000px;
+	line-height: 100px;
 	text-align: center;
-	height: 80px;
-	line-height: 80px;
+}
+
+.reviewTableINfoTbody {
+	text-align: center;
+	width: 1000px;
+	background-color: #F8F9FA;
+	border-bottom: 30px solid white;
+}
+
+.reviewTableInfoTfoot {
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+}
+
+.paging {
+	height : 80px;
+	margin-top: 70px;
+	text-align: center;
+	font-size: 16px;
+}
+
+.paging a:hover{
+	color: #324ABC;
+	font-weight: normal;
+}
+
+.nowPage {
+	color: #324ABC !important;
+	font-weight: bold;
+}
+
+.reviewImg {
+ 	width: 200px;
+	height: 193px;
+	line-height: 193px;
+  	object-fit: contain;
+  	border: none;
+  	text-align: center;
+  	margin: auto;
+}
+
+.reviewTd7 {
+	width: 1000px;
+	hegith: 50px;
 	background-color: #F8F9FA;
 }
 
-.reviewTD2 {
-	border-bottom: 10px solid white;
-	width: 100px;
-	text-align: center;
+.reviewTd5 {
+	width: 150px;
+}
+.reviewTd1 {
+	width: 150px;	
+}
+
+.reviewTd {
+	margin: auto;
+	width: 500px;	
+}
+
+.reviewTd2 {
+	width: 150px;
+}
+
+.reviewTd3 {
 	height: 80px;
 	line-height: 80px;
+	cursor: pointer;
+	color: #1A2C82;
+	padding-right: 20px;
+}
+
+.reviewTdContent {
+	height: 200px;
+	text-align: left;
+	padding: 30px 30px 70px 30px;
+	vertical-align: middle;
+	white-space: pre-line;
 	background-color: #F8F9FA;
-	padding-right: 50px;
+	border-bottom: 30px solid white;
+
 }
 
-.reviewTD3{
-	border-bottom: 10px solid white;
+.reviewTdContent2 {
+	object-fit: contain;
 	text-align: center;
-	width: 500px;
-	padding-right: 50px;
-	padding-left: 50px;
-	height: 80px;
-	line-height: 80px;
+	border: none;
+	vertical-align: middle;
 	background-color: #F8F9FA;
+	border-bottom: 30px solid white;
+
 }
 
-.reviewTH {
-	width: 100px;
-	border-bottom: 10px solid white;
-	text-align: center;
-	height: 80px;
-	line-height: 80px;
+.reviewTdContent3 {
+	height: 200px;
+	text-align: center;	
+	vertical-align: middle;
+	cursor: pointer;
+	background-color: #F8F9FA;
+	border-bottom: 30px solid white;
+
 }
 
-.reviewTH2 {
-	border-bottom: 10px solid white;
-	width: 100px;
-	text-align: center;
-	height: 80px;
-	line-height: 80px;
-	padding-right: 50px;
+.smallBtn {
+	border:none;
+	padding-bottom: 2px;
+	width: 50px;
+	height: 25px;
+	border-radius: 3px;
+	background: #EEEEEE;
+	color: #1A2C82;
+	cursor: pointer;
 }
 
-.reviewTH3{
-	border-bottom: 10px solid white;
-	text-align: center;
-	width: 500px;
-	height: 80px;
-	line-height: 80px;
+.star {
+	padding-bottom: 5px;
+	position: relative;
+	font-size: 1.3rem;
+	color: white;
+}
+ 
+.starBack span {
+  	position: relative;
+  	background-color: #FFF0BB;
+  	border-radius: 5px;
+}
+  
+.star span {
+   position: absolute; 
+   left: 0; 
+   color: #FFAC33; 
+   overflow: hidden; 
+   pointer-events: none; 
+   border-radius: 5px;
+  }
+
+.star input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+  }  
+ 
+ .starAll {
+ 	background-color: none;
+ 	vertical-align: middle;
+ } 
+ 
+.name {
+  	margin-top:5px;
+ 	line-height: 30px;
+  	height: 50px;
+  	margin-right: 30px;
+  	margin-left: 40px;
+  	float:left;
+  }
+  
+.reviewTableINfo {
+	margin: 30px auto;
+}
+  
+.reviewtitle {
+  	margin-left: 15px;
+  	margin-bottom: 10px;
+  	font-size: 25px;
+  	font-weight: bold;
+  	color: gray;
+}
+  
+.reviewTextarea{
+  	border: none;
+  	border-top: 3px solid #EEEEEE;
+  	border-bottom: 3px solid #EEEEEE;
+  	border-left: 3px solid #EEEEEE;
+  	border-right: 3px solid #EEEEEE;
+  	resize: none;
+  	overflow-y: scroll;
+  	font-family: "맑은 고딕";
 }

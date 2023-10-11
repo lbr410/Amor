@@ -18,7 +18,7 @@
 		결제 내역 확인 
 	</div>
 </div>
-<div class="border-sub">${approved_at }</div>
+<div class="border-sub"></div>
 <div class="body-inner">
 <div class="payForm">
 	<table class="payTable">
@@ -26,8 +26,8 @@
 		<tr>
 			<th>예매번호</th>
 			<td>${partner_order_id }</td>
-			<th>극장명</th>
-			<td>${theater_name }</td>
+			<th>결제일자</th>
+			<td>${approved_at }</td>
 		</tr>
 		<tr>
 			<th>영화명</th>
@@ -40,8 +40,8 @@
 			</td>
 		</tr>
 		<tr>
-			<th>좌석번호</th>
-			<td>${ticketing_seat }</td>
+			<th>상영관</th>
+			<td>${theater_name }&nbsp;&nbsp;&nbsp;${ticketing_seat }</td>
 			<th class="cancel">취소가능시간</th>
 			<td class="cancel">
 			<f:parseDate var="ticketing_date2" value="${ticketing_cancel }" pattern="yyyy-MM-dd HH:mm"/>
