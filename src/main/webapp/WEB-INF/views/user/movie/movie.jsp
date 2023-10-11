@@ -177,7 +177,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const sortButtons = document.querySelectorAll('.sort1, .sort2');
-
+    document.querySelector('.sort1').classList.add('active');
     sortButtons.forEach(button => {
         button.addEventListener('click', function () {
             // 모든 버튼에서 active 클래스 제거

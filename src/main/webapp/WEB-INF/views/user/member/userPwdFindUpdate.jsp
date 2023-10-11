@@ -11,53 +11,53 @@
 let pwdOk = '사용할 수 있는 비밀번호입니다.';
 let samePwdOk = '비밀번호가 일치합니다.';
 // 비밀번호 유효성 체크
-function pwdChk(pwd) {
-	let reg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,12}$/;
-	let state = document.getElementById('pwdChkMsg');
-	if(pwd.value != '') {
-		if(!reg.test(pwd.value)) {
-			state.innerHTML = '8~12자, 영문, 숫자, 특수문자를 조합하여 입력바랍니다.';
-			state.style.color = 'red';
+	function pwdChk(pwd) {
+		let reg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,12}$/;
+		let state = document.getElementById('pwdChkMsg');
+		if(pwd.value != '') {
+			if(!reg.test(pwd.value)) {
+				state.innerHTML = '8~12자, 영문, 숫자, 특수문자를 조합하여 입력바랍니다.';
+				state.style.color = 'red';
+			} else {
+				state.innerHTML = pwdOk;
+				state.style.color = 'green';
+			}
 		} else {
-			state.innerHTML = pwdOk;
-			state.style.color = 'green';
+			state.innerHTML = '';
 		}
-	} else {
-		state.innerHTML = '';
-	}
-	
-	let pwd2 = document.getElementById('pwd2').value;
-	let state2 = document.getElementById('pwdSameChkMsg');
+		
+		let pwd2 = document.getElementById('pwd2').value;
+		let state2 = document.getElementById('pwdSameChkMsg');
 
-	if(pwd2 != '') {
-		if(pwd.value != pwd2) {
-			state2.innerHTML = '비밀번호가 일치하지 않습니다.';
-			state2.style.color = 'red';		
+		if(pwd2 != '') {
+			if(pwd.value != pwd2) {
+				state2.innerHTML = '비밀번호가 일치하지 않습니다.';
+				state2.style.color = 'red';
+			} else {
+				state2.innerHTML = '비밀번호가 일치합니다.';
+				state2.style.color = 'green';
+			}
 		} else {
-			state2.innerHTML = '비밀번호가 일치합니다.';
-			state2.style.color = 'green';
+			state2.innerHTML = '';
 		}
-	} else {
-		state2.innerHTML = '';
 	}
-}
 
 // 비밀번호와 재확인이 일치한지 확인
-function samePwdChk(pwd2) {
-	let pwd1 = document.getElementById('pwd1').value;
-	let state = document.getElementById('pwdSameChkMsg');
-	if(pwd2.value != '') {
-		if(pwd1 == pwd2.value) {
-			state.innerHTML = samePwdOk;
-			state.style.color = 'green';		
+	function samePwdChk(pwd2) {
+		let pwd1 = document.getElementById('pwd1').value;
+		let state = document.getElementById('pwdSameChkMsg');
+		if(pwd2.value != '') {
+			if(pwd1 == pwd2.value) {
+				state.innerHTML = samePwdOk;
+				state.style.color = 'green';
+			} else {
+				state.innerHTML = '비밀번호가 일치하지 않습니다.';
+				state.style.color = 'red';
+			}
 		} else {
-			state.innerHTML = '비밀번호가 일치하지 않습니다.';
-			state.style.color = 'red';
+			state.innerHTML = '';
 		}
-	} else {
-		state.innerHTML = '';
 	}
-}
 
 // 폼 전송 시 유효성 체크 함수 호출
 function validation() {
