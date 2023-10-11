@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -32,7 +33,7 @@ public class SalesController {
 	
 	// 매출관리 페이지로 이동
 	@RequestMapping("admin/sales/sales.do")
-	public ModelAndView salesForm(HttpSession session) {		
+	public ModelAndView salesForm(HttpSession session, @CookieValue(value = "autologin", required = false) String autologin) {		
 		
 		List<DualDTO> salesChartData = dualService.salesChartData();
 		List<DualDTO> sixMonthData = new ArrayList<DualDTO>();
@@ -49,7 +50,7 @@ public class SalesController {
 		}
 
 		ModelAndView mav = new ModelAndView();
-		if(session.getAttribute("data") == null) {
+		if(autologin == null && session.getAttribute("data") == null) {
 			mav.addObject("msg", "로그인 후 이용 가능합니다."); // 메시지 왜 안뜨는?
 			mav.addObject("href", "/amor/admin/adminLogin.do");
 			mav.setViewName("/admin/msg/adminMsg");
