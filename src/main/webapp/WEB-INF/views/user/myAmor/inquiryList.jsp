@@ -49,7 +49,7 @@
 	height: 78px;
 	margin: 0 auto;
 	text-align: right;
-	padding: 24px 0;
+	/*padding: 24px 0;*/
 }
 .inquiryQBtn input{
 	border:none;
@@ -238,6 +238,24 @@ em{
 	font-size: 14px;
 	font-weight: bold;
 }
+
+.tb_wrap {
+	position: relative;
+	right: 50px;
+}
+
+.okAnswer {
+	color: blue;
+}
+
+.waitAnswer {
+	color: red;
+}
+
+.reviewImgView {
+	width: 400px;
+	height: 400px;
+}
 </style>
 </head>
 <body>
@@ -295,10 +313,15 @@ em{
                         	<span>${dto.inquiry_writedate }</span>
                         </td>
                         <td headers="thead1 row0">
-                        	<span>${dto.inquiry_astatus }</span>
+                        	<c:if test="${dto.inquiry_astatus eq 'y'}">
+                        		<span class="okAnswer">답변완료</span>
+                        	</c:if>
+                        	<c:if test="${dto.inquiry_astatus eq 'n'}">
+                        		<span class="waitAnswer">답변대기</span>
+                        	</c:if>
                         </td>
                         <td headers="thead1 row0">
-                        	<c:url var="delBtn" value="/amor/myAmor/inquiryListDel.do">
+                        	<c:url var="delBtn" value="inquiryListDels.do">
                         		<c:param name="inquiry_idx">${dto.inquiry_idx }</c:param>
                         	</c:url>
                         	<a href="${delBtn }">
@@ -314,7 +337,9 @@ em{
                                         <span>${dto.inquiry_subject }</span>
                                     </strong>
                                     <div class="open">
-                                   	<p><em>Q . </em><span class="inquiry_subject">${dto.inquiry_content }</span></p>
+                                   	<p><em>Q . </em><span class="inquiry_subject">${dto.inquiry_content }</span><br><br>
+                                   		<img src="/amor/resources/upload/inquiry/${dto.inquiry_filename}" class="reviewImgView"  onError="this.style.visibility='hidden'">
+                                   	</p><br><br>
                                    	<c:choose>
 									    <c:when test="${dto.inquiry_astatus eq 'y'}">
 									        <p><em>A . </em><span class="inquiry_answer">${dto.inquiry_answer}</span></p>

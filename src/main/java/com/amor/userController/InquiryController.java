@@ -41,7 +41,7 @@ public class InquiryController {
 		int totalCnt=inquiryService.memberInquiryTotalCnt(member_idx);
 		int listSize=5;
 		int pageSize=5;
-		String pageStr=com.amor.page.PageModule.makePage("myAmor/memberInquiryList.do", totalCnt, listSize, pageSize, cp);
+		String pageStr=com.amor.page.PageModule.makePage("memberInquiryList.do", totalCnt, listSize, pageSize, cp);
 		
 		List<InquiryDTO>lists=inquiryService.memberInquiryList(cp, listSize, member_idx);
 
@@ -118,4 +118,10 @@ public class InquiryController {
 		return mav;
 	}
 	
+	@RequestMapping("myAmor/inquiryListDels.do")
+	public String inquiryDel(@RequestParam("inquiry_idx") int idx) {
+		inquiryService.inquiryDelete(idx);
+		
+		return "redirect:memberInquiryList.do";
+	}
 }
