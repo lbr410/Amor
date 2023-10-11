@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아모르 관리자 : 배너 관리</title>
+<title>아모르 관리자 : 배너 등록</title>
 <link rel="styleSheet" type="text/css" href="/amor/resources/css/admin/bannerList.css">
 <script type="text/javascript">
 function banneralready(){
@@ -31,7 +31,7 @@ function bannerDelete(idx){
 <body>
 <%@include file="../admin_header.jsp" %>
 <div class="content">
-<div class="content-title"><label class="titletext">배너 목록</label>
+<div class="content-title"><label class="titletext">배너 등록</label>
 </div>
 <div class="contentMain">
 <div class="bannerViewDiv">
