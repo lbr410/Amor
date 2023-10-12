@@ -95,7 +95,6 @@ public class UserIdFindController {
 		ModelAndView mav=new ModelAndView();
 		
 		String getEmail=memberService.userEmailCheck(id);
-		System.out.println(getEmail);
 		if(email.equals(getEmail)) {
 			mav.addObject("msg", "");
 			mav.addObject("Url","/amor/member/sendMail.do");

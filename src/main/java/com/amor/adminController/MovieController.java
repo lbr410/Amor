@@ -123,7 +123,6 @@ public class MovieController {
 		java.sql.Date movie_opendate_d = java.sql.Date.valueOf(movie_opendate); //string -> java.sql.date 타입으로
 		
 		String movieImg[] = stillcutDefault(savepath, movie_poster,movie_stillcut1,movie_stillcut2,movie_stillcut3,movie_stillcut4,movie_stillcut5);
-		System.out.println("스틸컷 => \n 1"+movieImg[1]+"2"+movieImg[2]+"3"+movieImg[3]+"4"+movieImg[4]+"5"+movieImg[5]);
 
 		MovieDTO dto = new MovieDTO(0, movie_name, movie_genre, movie_god, movie_actor, movie_maxage, movie_opendate_d, movie_runningtime, movie_country, movie_content, movieImg[0], movieImg[1], movieImg[2],movieImg[3],movieImg[4],movieImg[5]);
 		ModelAndView mav = new ModelAndView();
