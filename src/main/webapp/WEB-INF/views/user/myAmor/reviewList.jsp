@@ -64,7 +64,7 @@
 				<tr id="reviewContent${vs.index }" style="display:none;">
 				<td colspan="5" width="800px">
 					<div class="reviewTdContent2"><img src="/amor/resources/upload/review/${dto.movie_review_img}" class="reviewImg"></div>
-					<div class="reviewTdContent"><form class="contentForm">${dto.movie_review_content }</form></div>
+					<div class="reviewTdContent"><textarea class="contentForm" readonly>${dto.movie_review_content }</textarea></div>
 					<div class="reviewTdContent3" onclick="document.getElementById('reviewContent${vs.index}').style.display='none'">&times;</div>
 				</td>
 				</tr>

@@ -27,7 +27,7 @@
 	padding-top: 150px;
 	margin: 0 auto;
 	width: 1000px;
-	margin-bottom: 50px;
+	margin-bottom: 80px;
 }
 
 .reviewTable {
@@ -130,6 +130,14 @@ table tfoot tr {
 .contentForm {
 	height: 180px;
 	overflow-y: scroll;
+	width: 400px;
+	white-space: pre-wrap;
+	background: none;
+	border: none;
+	outline: none;
+	font-size: 14px;
+	font-family: '맑은 고딕';
+	cursor: default;
 }
 
 .contentForm::-webkit-scrollbar {
@@ -148,6 +156,7 @@ table tfoot tr {
 	/*padding-top: 20px;*/
 	position: relative;
 	left: 53px;
+	top: 15px;
 }
 
 .smallBtn {
