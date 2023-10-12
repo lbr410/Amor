@@ -27,7 +27,7 @@
 	padding-top: 150px;
 	margin: 0 auto;
 	width: 1000px;
-	margin-bottom: 50px;
+	margin-bottom: 80px;
 }
 #btn4{
     background: #1A2C82;
@@ -111,7 +111,6 @@ ol {
 }
 li {
     display: list-item;
-    text-align: center;
 }
 .tb_wrap thead th {
     border-bottom-color: #BBBBBB;

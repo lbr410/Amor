@@ -37,7 +37,7 @@
 	padding-top: 150px;
 	margin: 0 auto;
 	width: 1000px;
-	margin-bottom: 50px;
+	margin-bottom: 130px;
 }
 #btn1{
     background: #1A2C82;

@@ -37,7 +37,7 @@
 	padding-top: 150px;
 	margin: 0 auto;
 	width: 1000px;
-	margin-bottom: 50px;
+	margin-bottom: 130px;
 }
 #btn2{
     background: #1A2C82;
@@ -51,13 +51,13 @@
 <div class="gray-section">
 	<div class="body-inner">
 <%@include file="../mypageHeader.jsp" %>
-<div class="mypagetitle"><a href = "storeHistory.do"><label class="title2">상품 내역</label></a> <a href="storeCancelList.do"><label class="title1">취소 내역</label></a></div>
+<div class="mypagetitle"><a href = "storeHistory.do"><label class="title2">상품내역</label></a> <a href="storeCancelList.do"><label class="title1">취소내역</label></a></div>
 </div></div>
 <div class="mypageContent">
 <c:if test="${!empty list}">
 <c:forEach var="temp" items="${list}" >
 <div class="contentbox">
-  <img class="movieimg" src="/amor/resources/upload/product/${temp.productimg}"/>
+  <span class="prdImg"><img class="movieimg" src="/amor/resources/upload/product/${temp.productimg}"/></span>
   <div class="contentbox2">
     <div class="contentbox3">
       <div class="content-container">
