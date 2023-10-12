@@ -57,14 +57,16 @@
 					</span>
 					
 					</td>
-					<td class="reviewTd2"><input type="button" value="수정" class="smallBtn" onclick="document.getElementById('myReviewBtn${vs.index}').style.display='block'">&nbsp;&nbsp;&nbsp;
+					<td class="reviewTd2"><input type="button" value="수정" class="smallBtn" onclick="document.getElementById('myReviewBtn${vs.index}').style.display='block'">&nbsp;
 					<input type="button" value="삭제" onclick="location.href='reviewDelete.do?movie_review_idx=${dto.movie_review_idx }&ticketing_idx=${dto.ticketing_idx}'" class="smallBtn"></td>
-					<td class="reviewTd3" onclick="document.getElementById('reviewContent${vs.index}').style.display=''">▽</td>
+					<td class="reviewTd3" onclick="document.getElementById('reviewContent${vs.index}').style.display=''">▼</td>
 				</tr>
 				<tr id="reviewContent${vs.index }" style="display:none;">
-					<td class="reviewTdContent2" colspan="2"><img src="/amor/resources/upload/review/${dto.movie_review_img}" class="reviewImg"></td>
-					<td class="reviewTdContent" colspan="2">${dto.movie_review_content }</td>
-					<td class="reviewTdContent3" onclick="document.getElementById('reviewContent${vs.index}').style.display='none'">&times;</td>
+				<td colspan="5" width="800px">
+					<div class="reviewTdContent2"><img src="/amor/resources/upload/review/${dto.movie_review_img}" class="reviewImg"></div>
+					<div class="reviewTdContent"><form class="contentForm">${dto.movie_review_content }</form></div>
+					<div class="reviewTdContent3" onclick="document.getElementById('reviewContent${vs.index}').style.display='none'">&times;</div>
+				</td>
 				</tr>
 				
 				<!-- 관람평 수정 -->
@@ -75,7 +77,7 @@
 						<span class="reviewtitle">관람평 수정</span>
 						<br>
 						<br>
-						<span class="name">${sessionScope.sname } 님</span>
+						<span class="name">${sessionScope.sname }님</span>
 						<span class="starBack">	
 						<span class="star">
 							☆☆☆☆☆
@@ -91,7 +93,7 @@
 								<input type="file" name="movie_review_img" value="파일 찾기" class="fileBtn" id="fileInput" onchange="imgPreview(this, 'reviewPreview${vs.index }')" required>
 								</div>
 							</div>
-							<div id="box2"><textarea cols="55" rows="12" name="movie_review_content" maxlength="200" class="reviewTextarea" required>${dto.movie_review_content }</textarea></div>
+							<div id="box2"><textarea cols="55" rows="10" name="movie_review_content" maxlength="200" class="reviewTextarea" required>${dto.movie_review_content }</textarea></div>
 						</div>
 						<p class="centerBtn"><input type="submit" value="수정하기" class="cancelBtn"></p>
 					</div>

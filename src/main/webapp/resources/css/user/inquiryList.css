@@ -135,6 +135,9 @@ tbody {
     text-align: center;
     line-height: 24px;
 }
+.pageTr td {
+	border-bottom: 1px solid #ffffff;
+}
 .tb_wrap tbody tr.acc_head {
     cursor: pointer;
 }
@@ -217,9 +220,9 @@ em{
 }
 .grayBtn {
    border:none;
-   padding: 2px 21px 6px 21px;
+   padding: 2px 21px 4px 21px;
    width: 70px;
-   height: 40px;
+   height: 35px;
    border-radius: 3px;
    background: #EEEEEE;
    color: #1A2C82;

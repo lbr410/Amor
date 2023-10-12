@@ -134,7 +134,7 @@
 		<span class="reviewtitle">관람평 작성</span>
 		<br>
 		<br>
-		<span class="name">${sessionScope.sname } 님</span>
+		<span class="name">${sessionScope.sname }님</span>
 		<span class="starBack">	
 		<span class="star">
 			☆☆☆☆☆
