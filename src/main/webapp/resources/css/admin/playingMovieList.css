@@ -7,12 +7,12 @@
 }
 
 .paging a:hover{
-	color: #2E90FF;
+	color: #324ABC;
 	font-weight: normal;
 }
 
 .nowPage {
-	color: #2E90FF !important;
+	color: #324ABC !important;
 	font-weight: bold;
 }
 
