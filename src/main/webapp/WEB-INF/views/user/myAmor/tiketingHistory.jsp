@@ -55,7 +55,7 @@
 </div></div>
 <div class="mypageContent">
 <c:if test="${!empty list}">
-<c:forEach var="temp" items="${list}">
+<c:forEach var="temp" items="${list}" varStatus="vs">
 <div class="contentbox">
   <img class="movieimg" src="/amor/resources/upload/movie/${temp.movieimg}"/>
   <div class="contentbox2">
@@ -68,7 +68,7 @@
           <span class="span2">
           <br/></span>
           <span class="span3">
-            예매 번호
+            예매 번호 /${temp.ticketingidx} / ${temp.movieidx } / ${temp.memberidx }
           </span>
           <span class="span4">
             ${temp.ticketnum}<br/>
@@ -129,7 +129,6 @@
 <form name="reviewUpload" action="movieReviewAdd.do" method="post" enctype="multipart/form-data">
 <div id="myReviewBtn${vs.index}" class="btn" onclick="if (event.target == myReviewBtn${vs.index}) { document.getElementById('myReviewBtn${vs.index}').style.display='none'}">
 	<div class="btn-content">
-		
 		<span id="closeBtn" class="closeBtn2" onclick="document.getElementById('myReviewBtn${vs.index}').style.display='none'">&times;</span>
 		<span class="reviewtitle">관람평 작성</span>
 		<br>
@@ -153,12 +152,11 @@
 			<div id="box2"><textarea cols="55" rows="10" name="movie_review_content" placeholder="관람평을 작성해주세요" maxlength="200" class="reviewTextarea" required></textarea></div>
 		</div>
 		<p class="centerBtn"><input type="submit" value="작성 완료" class="cancelBtn"></p>
-		
+			<input type="hidden" name="ticketing_idx" value="${temp.ticketingidx}" id="popticket">
+			<input type="hidden" name="movie_idx" value="${temp.movieidx }" id="popmovie">
+			<input type="hidden" name="member_idx" value="${temp.memberidx }" id="popmember">
 	</div>
 </div>
-	<input type="hidden" name="ticketing_idx" value="${temp.ticketingidx}">
-	<input type="hidden" name="movie_idx" value="${temp.movieidx }">
-	<input type="hidden" name="member_idx" value="${temp.memberidx }">
 </form>
 </c:forEach>
 
