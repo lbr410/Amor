@@ -379,6 +379,8 @@ let max = 2;
 		//열지우기
 		}else if(datarowblock[1] == datacolblock[1]){
 			
+			
+			
 			for(let i = 1 ; i <= box.length; i++){
 			let colbox = document.getElementById('boxnum'+i);
 			
@@ -389,9 +391,10 @@ let max = 2;
 				}
 			}
 			
-			if(parseInt(value)-1 >= parseInt(datacolblock[1])){
-				
+			if(parseInt(value)-1 >= parseInt(datacolblock[1]) || column == parseInt(datacolblock[1])){
+				if(column != parseInt(datacolblock[1])){					
 				colbox.innerHTML = colbox.innerHTML-1;
+				}
 				
 			for(let j = 0 ; j < box.length; j++){
 				
