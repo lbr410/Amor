@@ -17,6 +17,7 @@
 		height:500px;
 		margin: 0 auto;
 		position: relative;
+		margin-bottom: 30px;
 	}
 
 	/**BORDER BAR*/
@@ -79,7 +80,6 @@
   justify-content: center; 
   height: 100px;
   gap: 10px; 
-  margin-right: 150px;
   margin-bottom: 50px;
   
 }

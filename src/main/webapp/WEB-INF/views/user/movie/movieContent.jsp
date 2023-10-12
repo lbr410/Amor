@@ -96,7 +96,7 @@ function showResult() {
 		<c:if test="${3==dto.movie_maxage}"><img src="/amor/resources/img/maxage_18.png" alt="18세 관람가"><div class="ageTxt">18세 관람가</div></c:if></div>
     </div>
     <div class="movie_content">
-      <textarea class="content">${dto.movie_content }</textarea>
+      <textarea class="content" readonly="readonly">${dto.movie_content }</textarea>
     </div>
     <div class="btn-wrap">
      <c:url var="ticketingUrl" value="/ticketing/ticketing.do">
