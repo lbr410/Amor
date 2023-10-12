@@ -199,4 +199,17 @@ select count(*) from movie where movie_state='n' and movie_opendate <![CDATA[>=]
 	select count(*) from movie_review where movie_idx = #{movie_idx}
 </select>
 
+<select id="indexMovieBest" parameterType="Map" resultType="com.amor.movie.model.MovieDTO">
+select * from 
+(select rownum as rnum, c.* from (
+select a.*, nvl(b.movie_review_star_avg, 0) as "avg_movie_review_star"
+from movie a
+left join (
+    select movie_idx, avg(movie_review_star) as movie_review_star_avg
+    from movie_review
+    group by movie_idx
+) b on a.movie_idx = b.movie_idx
+where movie_state='y' and rownum <![CDATA[<=]]> 4
+order by a.movie_audience desc)c)d 
+</select>
 </mapper>

@@ -45,4 +45,6 @@ public interface MovieService {
 	
 	public int movieReviewContentCnt(int movie_idx);
 	
+	public List<MovieDTO> indexMovieBest();
+	
 }

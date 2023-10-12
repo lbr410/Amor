@@ -38,7 +38,7 @@ public class IndexController {
 		List<BannerDTO> blists = bannerService.bannerList();
 		
 		//Movie
-		List<MovieDTO> mlists = movieservice.movieBest();
+		List<MovieDTO> mlists = movieservice.indexMovieBest();
 		
 		//ads
 		List<AdsDTO> alists = adsService.adsList();
@@ -59,7 +59,6 @@ public class IndexController {
 	}
 	
 	
-	//영화 상세내용 페이지로 이동
 	@RequestMapping("movieContentForm.do")
 	public ModelAndView movieContent(
 			@RequestParam(value="movie_idx", defaultValue = "0")int movie_idx) {

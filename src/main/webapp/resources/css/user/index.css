@@ -85,8 +85,8 @@ body{
 	padding-top: 128px;
 	padding-bottom: 78px;
 	justify-content: center;
-	align-items: center;
-	gap: 493px;
+	align-items: baseline;
+	gap: 494px;
 }
 .movie-title .title-bar .menu{
 	display: flex;
@@ -103,6 +103,9 @@ body{
 .movie-section .title-bar .menu .comming-movie{
 	font-size: 24px;
 	color: #666666;
+}
+.more-movie a{
+	color #DDDDDD;
 }
 /*MOVIE CHART*/
 .container{
