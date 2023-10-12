@@ -123,8 +123,11 @@
     display: flex;
 }
 .img{
-	width: 80%;
+	width: 75%;
 	margin: 0 auto; /* 수평 가운데 정렬 */
+}
+.img:hover{
+	transform: scale(1.05);
 }
 .prodTitle{
 	width: calc(100%);
