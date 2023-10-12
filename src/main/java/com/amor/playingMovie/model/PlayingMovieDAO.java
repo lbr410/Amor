@@ -17,4 +17,6 @@ public interface PlayingMovieDAO {
 	public List<PlayingMovieJoinDTO> playingMovieListSelect(Map map);
 	public int totalCntSelect(int movie_idx);
 	public PlayingMovieDTO playingMovieContent(int playing_movie_idx);
+	public int playingTicketingCnt(int playing_movie_idx);
+	public int playingTicketingUpdate(Map map);
 }

@@ -107,6 +107,22 @@ public class PlayingMovieServiceImple implements PlayingMovieService {
 		return count;
 	}
 	
+	@Override
+	public int playingTicketingCnt(int playing_movie_idx) {
+		int count = playingMovieDao.playingTicketingCnt(playing_movie_idx);
+		return count;
+	}
+	
+	@Override
+	public int playingTicketingUpdate(int theater_idx, String ticketing_screeningtime, int playing_movie_idx) {
+		Map map = new HashMap();
+		map.put("theater_idx", theater_idx);
+		map.put("ticketing_screeningtime", ticketing_screeningtime);
+		map.put("playing_movie_idx", playing_movie_idx);
+		int count = playingMovieDao.playingTicketingUpdate(map);
+		return count;
+	}
+	
 }
 
 

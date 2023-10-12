@@ -20,4 +20,6 @@ public interface PlayingMovieService {
 	public int totalCntSelect(int movie_idx);
 	
 	public PlayingMovieDTO playingMovieContent(int playing_moive_idx);
+	public int playingTicketingCnt(int playing_movie_idx);
+	public int playingTicketingUpdate(int theater_idx, String ticketing_screeningtime, int playing_movie_idx);
 }

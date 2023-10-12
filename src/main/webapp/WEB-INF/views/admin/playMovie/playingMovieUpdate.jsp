@@ -47,6 +47,12 @@ function showResult() {
 	
 }
 </script>
+<script>
+function disable() {
+	let target = document.getElementById('movieRunning');
+	target.disabled = false;
+}
+</script>
 </head>
 <body>
 <%@include file="../admin_header.jsp" %>
@@ -61,7 +67,7 @@ function showResult() {
 		<table>
 			<tr>
 				<td class="playAdd" id="playAdd3">상영 영화 선택</td>
-				<td class="playAdd"><select name="movie_idx" class="playAddInput2" id="movieRunning" onchange="show()">
+				<td class="playAdd"><select name="movie_idx" class="playAddInput2" id="movieRunning" onchange="show()" disabled>
 				<c:if test="${empty movieLists }">
 					<option selected disabled>등록된 영화가 없습니다.</option>				
 				</c:if>
@@ -102,7 +108,7 @@ function showResult() {
 				value="${updatedto.playing_movie_end}" class="playAddInput" id="movieEnd" readonly></td>
 			</tr>
 			<tr>
-				<td class="playAddBtn" colspan="2"><input type="submit" value="상영 수정" class="nextBtn">&nbsp;&nbsp;
+				<td class="playAddBtn" colspan="2"><input type="submit" value="상영 수정" class="nextBtn" onclick="disable()">&nbsp;&nbsp;
 				<input type="reset" value="다시 작성" class="cancelBtn"></td>
 			</tr>
 		</table>
