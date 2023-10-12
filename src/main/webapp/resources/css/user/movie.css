@@ -103,7 +103,10 @@ a, a:link, a:active, a:visited, a:focus, a:before{
     border: none;
     color: #BCBCBC;
     text-decoration: none;
-    cursor: pointer;
+    cursor: pointer; 
+}
+.sort2{
+	padding-left: 13px;	
 }
 .sort:hover {
     color: #000000;
@@ -140,7 +143,7 @@ a, a:link, a:active, a:visited, a:focus, a:before{
 	padding-top: 128px;
 	padding-bottom: 78px;
 	justify-content: center;
-	align-items: center;
+	align-items: baseline;
 	gap: 300px;
 }
 .movie-title .title-bar1{

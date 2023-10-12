@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
   <style>
 footer {
-	margin-top:200px;
   background-color: #272727;
   border-top: 1px solid #333;
   bottom: 0;
