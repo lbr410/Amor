@@ -186,6 +186,7 @@ document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+wee
 			resultyear = plusyear;
 		}	
 			document.getElementById('datep'+i).innerHTML = plusdate;
+			
 	}
 	
 	//요일
@@ -198,6 +199,17 @@ document.getElementById('selectDay').innerHTML = year+'-'+month+'-'+date+' '+wee
 			document.getElementById('weekp'+i).innerHTML = week[wday];
 		}
 		
+		//요일에 따른 글자색 변경
+		if(wday % 7 == 6){ //토요일
+			document.getElementById('weekp'+i).style.color = "blue";
+			document.getElementById('datep'+i).style.color = "blue";
+		}else if(wday % 7 == 0){ //일요일
+			document.getElementById('weekp'+i).style.color = "red";
+			document.getElementById('datep'+i).style.color = "red";
+		}else{
+			document.getElementById('weekp'+i).style.color = "black";
+			document.getElementById('datep'+i).style.color = "black";
+		}
 	}
 	
 	function searchTicketing(movie_name,movie_maxage,movie_idx){
