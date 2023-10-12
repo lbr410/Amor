@@ -101,7 +101,7 @@ a{
   position: relative;
 }
 .movie-info {
-  padding: 10px;
+  /*padding: 10px;*/
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -263,7 +263,7 @@ p::after{
 	text-align: center;
 }
 .infoBtn {
-	width: 400px;
+	width: 500px;
 	padding: 31px 150px;
 	justify-content: center;
 	align-items: center;
@@ -298,7 +298,7 @@ p::after{
 }
 
 .stillcutTitle {
-	margin:0 auto;
+	margin:20px auto;
 	padding-top: 30px;
 	font-size: 20px;
 	font-weight: bold;
@@ -312,7 +312,7 @@ p::after{
 	padding-top: 43px;
 	width:700px;
 	padding-bottom: 43px;
-	padding-left: 70px;
+	/*padding-left: 70px;*/
 }
 
 .movieReviewInfoTable {
@@ -322,7 +322,7 @@ p::after{
 }
 
 .movieInfotable {
-	width: 800px;
+	width: 1000px;
 	height: 50px;
 }
 
@@ -365,7 +365,7 @@ reviewTableINfo {
 
 .reviewTableINfoTbody {
 	text-align: center;
-	width: 1000px;
+	width: 800px;
 	background-color: #F8F9FA;
 	border-bottom: 30px solid white;
 }
@@ -401,24 +401,27 @@ reviewTableINfo {
   	border: none;
   	text-align: center;
   	margin: auto;
+  	margin-top: 20px;
+  	margin-bottom: 20px;
 }
 
 .reviewTd7 {
 	width: 1000px;
-	hegith: 50px;
+	height: 50px;
 	background-color: #ffffff;
+	text-align: center;
 }
 
 .reviewTd5 {
-	width: 150px;
+	width: 250px;
 }
 .reviewTd1 {
-	width: 150px;	
+	width: 250px;	
 }
 
 .reviewTd {
 	margin: auto;
-	width: 500px;	
+	width: 250px;	
 }
 
 .reviewTd2 {
@@ -433,6 +436,7 @@ reviewTableINfo {
 	padding-right: 20px;
 }
 
+/*
 .reviewTdContent {
 	height: 200px;
 	text-align: left;
@@ -456,12 +460,58 @@ reviewTableINfo {
 
 .reviewTdContent3 {
 	height: 200px;
-	text-align: center;	
+	text-align: left;	
 	vertical-align: middle;
 	cursor: pointer;
 	background-color: #F8F9FA;
 	border-bottom: 30px solid white;
+	padding-left: 1px;
 
+}*/
+
+.reviewTdContent {
+	text-align: left;
+	padding: 30px 0px 30px 30px;
+	vertical-align: middle;
+	white-space: pre-line;
+	float: left;
+	width: 50%;
+}
+
+.reviewTdContent2 {
+	/*padding-top: 15px;*/
+	line-height: 200px;
+	padding-left: 30px;
+	object-fit: contain;
+	border: none;
+	vertical-align: middle;
+	margin: auto;
+	float: left;
+	width: 30%;
+}
+
+.contentForm {
+	height: 180px;
+	overflow-y: scroll;
+	width: 400px;
+}
+
+.contentForm::-webkit-scrollbar {
+    display: none;
+}
+
+.reviewTdContent3 {
+	line-height: 200px;
+	text-align: center;	
+	vertical-align: middle;
+	cursor: pointer;
+	padding-right: 15px;
+	/*float: left;*/
+	overflow: hidden;
+	width: 3%;
+	/*padding-top: 20px;*/
+	position: relative;
+	left: 57px;
 }
 
 .smallBtn {
@@ -541,4 +591,8 @@ reviewTableINfo {
   	resize: none;
   	overflow-y: scroll;
   	font-family: "맑은 고딕";
+}
+
+.content::-webkit-scrollbar {
+    display: none;
 }

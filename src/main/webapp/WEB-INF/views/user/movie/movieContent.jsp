@@ -65,8 +65,8 @@
     			<table class="reviewTableINfo">
 			<thead>
 				<tr class="reviewTableInfoThead">
-					<th>작성 날짜</th>
-					<th>회원아이디</th>
+					<th class="reviewTd1">작성 날짜</th>
+					<th class="reviewTd5">회원아이디</th>
 					<th>관람평점</th>
 					<th></th>
 					<th></th>
@@ -100,12 +100,14 @@
 					</span>
 					
 					</td>
-					<td class="reviewTd3" onclick="document.getElementById('reviewContent${vs.index}').style.display=''">▽</td>
+					<td class="reviewTd3" onclick="document.getElementById('reviewContent${vs.index}').style.display=''">▼</td>
 				</tr>
 				<tr class="reviewTableINfoTbody" id="reviewContent${vs.index }" style="display:none;">
-					<td class="reviewTdContent2" colspan="2"><img src="/amor/resources/upload/review/${rdto.movie_review_img}" class="reviewImg"></td>
-					<td class="reviewTdContent" colspan="2">${rdto.movie_review_content }</td>
-					<td class="reviewTdContent3" onclick="document.getElementById('reviewContent${vs.index}').style.display='none'">&times;</td>
+					<td colspan="5">
+					<div class="reviewTdContent2"><img src="/amor/resources/upload/review/${rdto.movie_review_img}" class="reviewImg"  onError="this.style.visibility='hidden'"></div>
+					<div class="reviewTdContent"><form class="contentForm">${rdto.movie_review_content }</form></div>
+					<div class="reviewTdContent3" onclick="document.getElementById('reviewContent${vs.index}').style.display='none'">&times;</div>
+					</td>
 				</tr>
 				
 			</c:forEach>
@@ -142,13 +144,13 @@
     			<div class="stillcutTitle">스틸컷</div>
     			<table class="moviedetailtable">
     				<tr>
-    					<td rowspan="2"><img class="thumnail2" src="/amor/resources/upload/movie/${dto.movie_stillcut1 }" onError="this.style.visibility='hidden'"></td>
-    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut2 }" onError="this.style.visibility='hidden'"></td>
-    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut3 }" onError="this.style.visibility='hidden'"></td>
+    					<td rowspan="2"><img class="thumnail2" src="/amor/resources/upload/movie/${dto.movie_stillcut1 }" onError="this.style.display='none'"></td>
+    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut2 }" onError="this.style.display='none'"></td>
+    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut3 }" onError="this.style.display='none'"></td>
     				</tr>
     				<tr>
-    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut4 }" onError="this.style.visibility='hidden'"></td>
-    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut5 }" onError="this.style.visibility='hidden'"></td>
+    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut4 }" onError="this.style.display='none'"></td>
+    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut5 }" onError="this.style.display='none'"></td>
     				</tr>
     			</table>
     		</div>

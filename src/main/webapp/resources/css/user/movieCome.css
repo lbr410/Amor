@@ -122,7 +122,7 @@ a, a:link, a:active, a:visited, a:focus, a:before{
 	padding-top: 128px;
 	padding-bottom: 78px;
 	justify-content: center;
-	align-items: center;
+	align-items: baseline;
 	gap: 300px;
 }
 .movie-title .title-bar1{
