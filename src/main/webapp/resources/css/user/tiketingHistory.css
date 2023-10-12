@@ -273,13 +273,13 @@
  	line-height: 30px;
   	height: 50px;
   	margin-right: 30px;
-  	margin-left: 40px;
+  	margin-left: 10px;
   	float:left;
   }
   
 .thumbnail {
  	width: 262px;
-	height: 185px;
+	height: 190px;
   	object-fit: contain;
   	border: none;
   	border-top: 3px solid #EEEEEE;
@@ -289,7 +289,7 @@
 }
   
 .reviewtitle {
-  	margin-left: 15px;
+  	margin-left: 5px;
   	margin-bottom: 10px;
   	font-size: 25px;
   	font-weight: bold;
@@ -306,6 +306,7 @@
   	overflow-y: scroll;
   	font-family: "맑은 고딕";
   	outline: none;
+  	padding: 5px;
 }
 
 .nullcontent{

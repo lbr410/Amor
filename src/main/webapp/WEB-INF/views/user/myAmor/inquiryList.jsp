@@ -33,7 +33,7 @@
                     </tr>
                 </thead>
                 <tfoot>
-					<tr>
+					<tr class="pageTr">
 						<td colspan="8">
 						<c:if test="${!empty lists }"><div class="paging">${pageStr}</div></c:if></td>
 					</tr>
@@ -89,7 +89,7 @@
                                     </strong>
                                     <div class="open">
                                    	<p><em>Q . </em><span class="inquiry_subject">${dto.inquiry_content }</span><br><br>
-                                   		<img src="/amor/resources/upload/inquiry/${dto.inquiry_filename}" class="reviewImgView"  onError="this.style.visibility='hidden'">
+                                   		<img src="/amor/resources/upload/inquiry/${dto.inquiry_filename}" class="reviewImgView"  onError="this.style.display='none'">
                                    	</p><br><br>
                                    	<c:choose>
 									    <c:when test="${dto.inquiry_astatus eq 'y'}">
