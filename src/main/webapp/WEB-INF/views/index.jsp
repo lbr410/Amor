@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/amor/resources/css/user/index.css" />
-<!--Google Material Icons-->
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
@@ -20,29 +20,25 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function onYouTubePlayerAPIReady() {
-  // <div id="player"></div>
   new YT.Player('player', {
-    videoId: '${blists[0].banner_source}', // 최초 재생할 유튜브 영상 ID
+    videoId: '${blists[0].banner_source}',
     playerVars: {
-      autoplay: true, // 자동 재생 유무
-      loop: true, // 반복 재생 유무
-      playlist: '${blists[0].banner_source},${blists[1].banner_source}' // 반복 재생할 유튜브 영상 ID 목록
+      autoplay: true,
+      loop: true,
+      playlist: '${blists[0].banner_source},${blists[1].banner_source}'
     },
     events: {
-      // 영상이 준비되었을 때,
       onReady: function (event) {
-        event.target.mute() // 음소거!
+        event.target.mute()
       }
     }
   })
 }
-//배너의 URL을 변경하는 함수
 function changeBannerUrl(url) {
     var bannerLink = document.querySelector('.youtube');
     bannerLink.href = url;
 }
 
-// 페이지 로딩 시 두 번째 배너의 URL로 변경
 window.onload = function() {
     changeBannerUrl('${blists[1].banner_url}');
 };
@@ -76,7 +72,7 @@ window.onload = function() {
 	<div class="nomovie">상영중인 영화가 없습니다.</div>
 	</c:if>
 		<c:set var="rank" value="1" />
-		<c:forEach var="mdto"  items="${mlists }" begin="0" end="3" >
+		<c:forEach var="mdto"  items="${mlists }">
             <div class="movie-wrapper">
                 <div class="rank-movie">
                     <div class="rank">${rank }<span class="rank-txt">위</span></div>
@@ -96,10 +92,11 @@ window.onload = function() {
                      <a href="${MovieContentUrl}"><span title="제목" class="movie_name">${mdto.movie_name }</span></a>
            			</div>
            			</div>
-                     <div class="info-area">
+                    <div class="info-area">
                         <span class="movie_audience">
                             <span class="rate">
-                            <span class="material-icons">star</span> ${mdto.avg_movie_review_star} &nbsp;
+                            <span class="material-icons">star</span> 
+                            <fmt:formatNumber value="${mdto.avg_movie_review_star}" pattern="0.0" />&nbsp;
                             </span>
                         </span>
                         <span class="movie_opendate">개봉일 : ${mdto.movie_opendate }</span>
@@ -119,34 +116,33 @@ window.onload = function() {
           </c:forEach>
           </div>
      </div>
-</div> 
-</div>
+	</div> 
+	</div>
 
- 	<!-- PROMOTION BANNER -->
+	<!-- PROMOTION BANNER -->
 	<section class="navi">
-    <div class="promotion">
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-             <a href="${alists[1].ads_url }"><img src="/amor/resources/upload/ads/${alists[1].ads_filename }" alt="ads_filename" /></a>
-          </div>
-          <div class="swiper-slide">
-            <a href="${alists[0].ads_url }"><img src="/amor/resources/upload/ads/${alists[0].ads_filename }" alt="ads_filename" /></a>
-          </div>
-          <div class="swiper-slide">
-            <a href="${alists[2].ads_url }"><img src="/amor/resources/upload/ads/${alists[2].ads_filename }" alt="ads_filename" /></a>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-prev">
-        <span class="material-icons">arrow_back</span>
-      </div>
-      <div class="swiper-next">
-        <span class="material-icons">arrow_forward</span>
-      </div>
-    </div>
-  </section>
-  
+	   <div class="promotion">
+	     <div class="swiper-container">
+	       <div class="swiper-wrapper">
+	         <div class="swiper-slide">
+	            <a href="${alists[1].ads_url }"><img src="/amor/resources/upload/ads/${alists[1].ads_filename }" alt="ads_filename" /></a>
+	        </div>
+	        <div class="swiper-slide">
+	          <a href="${alists[0].ads_url }"><img src="/amor/resources/upload/ads/${alists[0].ads_filename }" alt="ads_filename" /></a>
+	        </div>
+	        <div class="swiper-slide">
+	          <a href="${alists[2].ads_url }"><img src="/amor/resources/upload/ads/${alists[2].ads_filename }" alt="ads_filename" /></a>
+	        </div>
+	      </div>
+	    </div>
+	    <div class="swiper-prev">
+	      <span class="material-icons">arrow_back</span>
+	    </div>
+	    <div class="swiper-next">
+	      <span class="material-icons">arrow_forward</span>
+	    </div>
+	  </div>
+	</section>
   
 	<!-- bottom store section -->
 	<section class="store-section">
@@ -207,6 +203,6 @@ window.onload = function() {
 			</table>
 		</div>
 	</section>
-	<%@ include file="../views/user/footer.jsp" %>
 </body>
+<%@ include file="../views/user/footer.jsp" %>
 </html>

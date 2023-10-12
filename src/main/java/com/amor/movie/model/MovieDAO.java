@@ -23,4 +23,5 @@ public interface MovieDAO {
 	public List<MovieDTO> userMovieListSearch(Map map);
 	public List<MovieReviewDTO> movieReviewInfo(Map map);
 	public int movieReviewContentCnt(int movie_idx);
+	public List<MovieDTO> indexMovieBest(Map map);
 }

@@ -9,18 +9,16 @@
 <link rel="stylesheet" href="/amor/resources/css/user/userIdFind.css">
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // 데이터 속성을 이용하여 아이디 가져오기
+
     var members = document.querySelectorAll('.member_id');
     
-    // 아이디 마스킹 처리 함수
     function maskUserId(userId) {
         return userId.substring(0, 3) + '**' + userId.substring(5);
     }
     
-    // 모든 회원 아이디에 대해 반복 처리
     members.forEach(function(member) {
         var memberId = member.dataset.memberId;
-        // 마스킹된 아이디로 교체
+
         var maskedId = maskUserId(memberId);
         member.innerText = '일치하는 아이디는 ' + maskedId + '로 등록되어 있습니다.';
     });

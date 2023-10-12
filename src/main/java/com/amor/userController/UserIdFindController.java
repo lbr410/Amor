@@ -31,12 +31,11 @@ public class UserIdFindController {
 	@Autowired
 	private MemberService memberService;
 	
-	//아이디 찾기 폼으로 이동
 	@RequestMapping("member/userIdFindForm.do")
 	public String userIdFindForm() {
 		return "/user/member/userIdFind";
 	}
-	//아이디 찾기
+
 	@RequestMapping(value = "member/userIdFindSubmit.do", method = RequestMethod.POST)
 	public ModelAndView userIdFindSubmit(
 			@RequestParam("member_name")String member_name,
@@ -55,13 +54,11 @@ public class UserIdFindController {
 		return mav;
 	}
 
-	//비밀번호 찾기 폼으로 이동
 	@RequestMapping("member/userPwdFindForm.do")
 	public String userPwdFindForm() {
 		return "/user/member/userPwdFind";
 	}
 	
-	//비밀번호 아이디 입력하고 체크
 	@RequestMapping(value = "member/userPwdFind.do", method = RequestMethod.POST)
 	public ModelAndView userPwdSubmit(
 			@RequestParam(value="member_id", defaultValue = "noid")String member_id,
@@ -76,7 +73,6 @@ public class UserIdFindController {
 		      mav.setViewName("/user/msg/userMsg");
 		        return mav;
 	    } else {
-	        // 아이디가 일치하는 경우 세션에 아이디를 저장
 	        session.setAttribute("id", fid);
 	        mav.addObject("member_id", fid);
 		    mav.setViewName("/user/member/userPwdFindAuth");
@@ -85,7 +81,6 @@ public class UserIdFindController {
 	   
 	}
 	
-	//이메일 인증 폼으로 이동
 	@RequestMapping("member/userPwdFindAuth.do")
 	public String userPwdFindAuth() {
 		return "/user/member/userPwdFindAuth";
@@ -114,13 +109,11 @@ public class UserIdFindController {
 		return mav;
 	}
 
-	//비밀번호 업데이트 폼으로 이동
 	@RequestMapping("member/userPwdFindUpdate.do")
 	public String userPwdFindUpdateForm() {
 		return "/user/member/userPwdFindUpdate";
 	}
 
-	//비밀번호 업데이트
 	@RequestMapping(value="member/userPwdFindUpdateSubmit.do", method = RequestMethod.POST)
 	public ModelAndView userPwdFindUpdateSubmit(
 		@RequestParam("member_pwd")String member_pwd,

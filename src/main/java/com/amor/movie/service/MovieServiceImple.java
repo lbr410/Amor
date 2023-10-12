@@ -181,4 +181,16 @@ public class MovieServiceImple implements MovieService {
 		int cnt = moviedao.movieReviewContentCnt(movie_idx);
 		return cnt;
 	}
+	
+	@Override
+	public List<MovieDTO> indexMovieBest() {
+		Map map=new HashedMap();
+		List <MovieDTO> mlists = moviedao.indexMovieBest(map);
+		 for (MovieDTO movieDTO : mlists) {
+			 	String originalTitle = movieDTO.getMovie_name();
+		        String truncatedTitle = originalTitle.length() > 10 ? originalTitle.substring(0, 10) + "..." : originalTitle;
+		        movieDTO.setTruncatedTitle(truncatedTitle);
+		    }
+		return mlists;
+	}
 }

@@ -28,7 +28,6 @@ public class InquiryController {
 	@Autowired
 	private InquiryService inquiryService;
 	
-	//사용자 1:1문의 리스트
 	@RequestMapping("myAmor/memberInquiryList.do")
 	public ModelAndView inquiryList(
 			HttpSession session,
@@ -64,14 +63,13 @@ public class InquiryController {
 		return mav;
 	}
 	
-	//사용자 1:1문의 작성 폼으로 이동
 	@RequestMapping("myAmor/inquiryWrite.do")
 	public String inquiryWriteForm() {
   
 		return "/user/myAmor/inquiryWrite";
 
 	}
-	//사용자 1:1문의 작성
+
 	@RequestMapping(value="myAmor/inquiryWrite.do", method = RequestMethod.POST)
 	public ModelAndView inquiryWrite(
 			HttpSession session,

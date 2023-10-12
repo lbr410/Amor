@@ -125,4 +125,9 @@ public class MovieDAOImple implements MovieDAO {
 		return cnt;
 	}
 	
+	@Override
+	public List<MovieDTO> indexMovieBest(Map map) {
+		List<MovieDTO> mlists = sqlmap.selectList("indexMovieBest", map);
+		return mlists;
+	}
 }

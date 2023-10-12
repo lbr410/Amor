@@ -18,7 +18,6 @@ public class MovieContentController {
 	@Autowired
 	private MovieService movieservice; 
 	
-		//현재 상영작 출력
 		@RequestMapping("movie/movie.do")
 		public ModelAndView movieList() {
 			
@@ -35,7 +34,6 @@ public class MovieContentController {
 			return mav;
 		}
 
-		//상영 예정작 출력
 		@RequestMapping("movie/movieCome.do")
 		public ModelAndView movieCome(){
 			
@@ -50,7 +48,6 @@ public class MovieContentController {
 			return mav;
 		}
 		
-		//영화 상세 페이지 이동
 		@RequestMapping("movie/movieContentForm.do")
 		public ModelAndView movieContent (
 				@RequestParam(value="movie_idx", defaultValue = "0")int movie_idx
