@@ -63,7 +63,7 @@
 							<c:if test="${2==cdto.movie_maxage}"><img src="/amor/resources/img/maxage_15.png" alt="15세 관람가"></c:if>
 							<c:if test="${3==cdto.movie_maxage}"><img src="/amor/resources/img/maxage_18.png" alt="18세 관람가"></c:if>
                         </span>
-                        <span title="제목" class="movie_name">${cdto.movie_name }</span>
+                        <a href="${MovieContentUrl}"><span title="제목" class="movie_name" name="truncatedTitle">${cdto.truncatedTitle }</span></a>
                     </div>
                     <div class="info-area">
                         <span class="movie_audience">
@@ -102,7 +102,7 @@
 							<c:if test="${2==ndto.movie_maxage}"><img src="/amor/resources/img/maxage_15.png" alt="15세 관람가"></c:if>
 							<c:if test="${3==ndto.movie_maxage}"><img src="/amor/resources/img/maxage_18.png" alt="18세 관람가"></c:if>
                         </span>
-                        <span title="제목" class="movie_name">${ndto.movie_name }</span>
+                        <a href="${MovieContentUrl}"><span title="제목" class="movie_name" name="truncatedTitle">${ndto.truncatedTitle }</span></a>
                     </div>
                     <div class="info-area">
                         <span class="movie_audience">

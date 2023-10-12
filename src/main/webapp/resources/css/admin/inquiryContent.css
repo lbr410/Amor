@@ -36,6 +36,9 @@
 	position: relative;
 	margin-left: 34px;
 }
+.type{
+	width: 48px;
+}
 .infoSub{
 	width: 100px;
 	text-align: left;

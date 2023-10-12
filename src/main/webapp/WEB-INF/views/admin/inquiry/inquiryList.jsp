@@ -118,12 +118,12 @@ function block(idx) {
 	   				<c:url var="deleteUrl" value="inquiryDelete.do">
 						<c:param name="idx">${dto.inquiry_idx }</c:param>
 					</c:url>
-				<a href="${deleteUrl }"><button class="cancelBtn">삭제</button></a>
        			<c:url var="updateUrl" value="inquiryUpdateForm.do">
 				<c:param name="idx">${dto.inquiry_idx }</c:param>
 				</c:url>
 				<a href="${updateUrl }"><button class="cancelBtn">수정</button></a>
    				<input type="hidden" name="inquiry_idx" value="${dto.inquiry_idx}">
+   				<a href="${deleteUrl }"><button class="cancelBtn">삭제</button></a>
 			</c:if>
 			<c:if test="${dto.inquiry_astatus eq 'n'}">
 					<c:url var="deleteUrl" value="inquiryDelete.do">

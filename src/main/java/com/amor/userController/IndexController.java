@@ -44,14 +44,16 @@ public class IndexController {
 		List<AdsDTO> alists = adsService.adsList();
 
 		//Store
-		List<ProductDTO> slists = productService.storeSnackList();
-		List<ProductDTO> tlists = productService.storeTicketList();
+		List<ProductDTO> slists = productService.indexSnack();
+		List<ProductDTO> dlists = productService.indexDrink();
+		List<ProductDTO> tlists = productService.indexTicket();
 
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("blists", blists);
 		mav.addObject("mlists", mlists);
 		mav.addObject("alists", alists);
 		mav.addObject("slists", slists);
+		mav.addObject("dlists", dlists);
 		mav.addObject("tlists", tlists);
 		
 		mav.setViewName("index");

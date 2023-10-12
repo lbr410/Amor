@@ -63,6 +63,29 @@ public class NoticeServiceImple implements NoticeService {
 		int result=noticeDao.noticeDelete(idx);
 		return result;
 	}
+
+	@Override
+	public List<NoticeDTO> userNoticeList(int cp, int listSize) {
+		int start=(cp-1) * listSize + 1;
+		int end=cp * listSize;
+		Map map=new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		List<NoticeDTO>lists=noticeDao.userNoticeList(map);
+		return lists;
+	}
+	
+	@Override
+	public int userNoticeTotalCnt() {
+		int result=noticeDao.userNoticeTotalCnt();
+		return result;
+	}
+	@Override
+	public NoticeDTO userNoticeContnet(int idx) {
+		NoticeDTO dto=noticeDao.userNoticeContent(idx);
+		dto.setNotice_content(dto.getNotice_content().replaceAll("\n", "<br>"));
+		return dto;
+	}
 	
 	@Override
 	public int noticeReadNumUpdate(int notice_idx) {

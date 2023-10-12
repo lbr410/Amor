@@ -176,4 +176,45 @@ public class ProductServiceImple implements ProductService {
 		dto.setTotalnum(num);
 		return dto;
 	}
+	
+	@Override
+	public List<ProductDTO> indexSnack() {
+		DecimalFormat df = new DecimalFormat("#,##0");
+		Map map = new HashMap();
+
+		List<ProductDTO> slists = productDao.indexSnack(map);
+		for(int i=0; i<slists.size(); i++) {
+			int price = slists.get(i).getProduct_price();
+			String price_s = df.format(price);
+			slists.get(i).setProduct_price2(price_s);
+		}
+		return slists;
+	}
+	
+	@Override
+	public List<ProductDTO> indexDrink() {
+		DecimalFormat df = new DecimalFormat("#,##0");
+		Map map = new HashMap();
+
+		List<ProductDTO> dlists = productDao.indexDrink(map);
+		for(int i=0; i<dlists.size(); i++) {
+			int price = dlists.get(i).getProduct_price();
+			String price_s = df.format(price);
+			dlists.get(i).setProduct_price2(price_s);
+		}
+		return dlists;
+	}
+	@Override
+	public List<ProductDTO> indexTicket() {
+		DecimalFormat df = new DecimalFormat("#,##0");
+		Map map = new HashMap();
+
+		List<ProductDTO> tlists = productDao.indexTicket(map);
+		for(int i=0; i<tlists.size(); i++) {
+			int price = tlists.get(i).getProduct_price();
+			String price_s = df.format(price);
+			tlists.get(i).setProduct_price2(price_s);
+		}
+		return tlists;
+	}
 }

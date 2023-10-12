@@ -256,7 +256,6 @@
         </div>
     </div>
     </div>
-<%@include file="../footer.jsp" %>
 <script>
     document.querySelectorAll('.category-button').forEach(button => {
       button.addEventListener("click", event => {
@@ -298,4 +297,5 @@
     });
   </script>
 </body>
+<%@include file="../footer.jsp" %>
 </html>

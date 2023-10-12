@@ -96,4 +96,23 @@
 		select * from product
 		where product_idx=#{idx}
 	</select>
+	
+	<select id="indexSnack" resultType="com.amor.product.model.ProductDTO" parameterType="Map">
+		select * from
+		(select rownum as rnum, a.* from
+		(select * from product where product_category='s' order by product_idx desc) a)
+		where rnum <![CDATA[<=]]> 2
+	</select>
+	<select id="indexDrink" resultType="com.amor.product.model.ProductDTO" parameterType="Map">
+		select * from
+		(select rownum as rnum, a.* from
+		(select * from product where product_category='d' order by product_idx desc) a)
+		where rnum <![CDATA[<=]]> 2
+	</select>
+	<select id="indexTicket" resultType="com.amor.product.model.ProductDTO" parameterType="Map">
+		select * from
+		(select rownum as rnum, a.* from
+		(select * from product where product_category='t' order by product_idx desc) a)
+		where rnum <![CDATA[<=]]> 2
+	</select>
 </mapper>

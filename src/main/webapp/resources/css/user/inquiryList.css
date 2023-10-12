@@ -109,9 +109,6 @@ ul,
 ol {
     list-style: none;
 }
-li {
-    display: list-item;
-}
 .tb_wrap thead th {
     border-bottom-color: #BBBBBB;
     font-weight: bold;
@@ -139,6 +136,7 @@ tbody {
 }
 .tb_wrap tbody tr.acc_head {
     cursor: pointer;
+    width: 1000px;
 }
 .tb_wrap td.text_1 {
     padding: 20px;
@@ -151,8 +149,15 @@ tbody {
     text-align: left;
 }
 #thead0, #thead4{
-	width: 200px;
+	width: 133px;
 }
+#thead2, #thead3{
+	width: 140px;
+}
+#thead1{
+	width: 400px;
+}
+
 a,
 a:link,
 a:visited,
@@ -164,6 +169,7 @@ a:hover {
 }
 .txt_qna.q {
     background-color: #FF7787;
+    margin-left: 12px;
 }
 .tb_wrap .txt_qna {
     position: absolute;
@@ -194,6 +200,7 @@ strong {
 .acc_body.active {
     display: table-row;
     background: #F9FBFC;
+    width: 960px;
     padding: 20px;
 }
 .faq_subject{
@@ -208,9 +215,6 @@ strong {
 .open{
 	text-align: left;
 	padding: 34px;
-}
-#row0{
-width: 300;
 }
 em{
 	font-size: 24px;

@@ -26,7 +26,7 @@
 	</div>
 	<div class="titleDiv">
 		<label class="info">제목</label>
-		<input type="text" name="inquiry_subject" required="required" class="textBox1">
+		<input type="text" name="inquiry_subject" required="required" class="textBox1" maxlength="20">
 	</div>
 	<div class="contentDiv">
 		<label class="info-content">내용</label>

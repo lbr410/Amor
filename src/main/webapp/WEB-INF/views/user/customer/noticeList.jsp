@@ -76,8 +76,6 @@
         </form>
     </div>
     </div>
-<%@ include file="../footer.jsp" %>
-</body>
 <script>
     document.querySelectorAll('.category-button').forEach(button => {
       button.addEventListener("click", event => {
@@ -86,5 +84,7 @@
         button.setAttribute('id', 'active-category-button')
       })
     })
-  </script>
+</script>
+</body>
+  <%@ include file="../footer.jsp" %>
 </html>

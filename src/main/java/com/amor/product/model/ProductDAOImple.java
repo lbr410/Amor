@@ -109,4 +109,20 @@ public class ProductDAOImple implements ProductDAO {
 		ProductDTO dto=sqlmap.selectOne("storeKakao", idx);
 		return dto;
 	}
+	
+	@Override
+	public List<ProductDTO> indexSnack(Map map) {
+		List<ProductDTO> slists = sqlmap.selectList("indexSnack", map);
+		return slists;
+	}
+	@Override
+	public List<ProductDTO> indexDrink(Map map) {
+		List<ProductDTO> dlists = sqlmap.selectList("indexDrink", map);
+		return dlists;
+	}
+	@Override
+	public List<ProductDTO> indexTicket(Map map) {
+		List<ProductDTO> tlists = sqlmap.selectList("indexTicket", map);
+		return tlists;
+	}
 }

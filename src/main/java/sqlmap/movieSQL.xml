@@ -127,7 +127,7 @@ left join (
     from movie_review
     group by movie_idx
 ) b on a.movie_idx = b.movie_idx
-where movie_state='y'
+where movie_state='y' and movie_opendate <![CDATA[<=]]> sysdate
 order by a.movie_audience desc)c)d 
 </select>
 
@@ -156,7 +156,7 @@ left join (
     from movie_review
     group by movie_idx
 ) b on a.movie_idx = b.movie_idx
-where movie_opendate <![CDATA[>=]]> sysdate and movie_state='n'
+where movie_opendate <![CDATA[>=]]> sysdate and movie_state='y'
 order by movie_opendate asc)c)d 
 </select>
 
@@ -170,8 +170,8 @@ left join (
     from movie_review
     group by movie_idx
 ) b on a.movie_idx = b.movie_idx
-where movie_opendate <![CDATA[>=]]> sysdate and movie_state='n'
-order by movie_name)c)d 
+where movie_opendate <![CDATA[>=]]> sysdate and movie_state='y'
+order by movie_name asc)c)d 
 </select>
 
 <select id="movieBestCnt" resultType="Integer">
@@ -200,7 +200,8 @@ select count(*) from movie where movie_state='n' and movie_opendate <![CDATA[>=]
 </select>
 
 <select id="indexMovieBest" parameterType="Map" resultType="com.amor.movie.model.MovieDTO">
-select * from 
+select * from      
+(select * from 
 (select rownum as rnum, c.* from (
 select a.*, nvl(b.movie_review_star_avg, 0) as "avg_movie_review_star"
 from movie a
@@ -209,7 +210,7 @@ left join (
     from movie_review
     group by movie_idx
 ) b on a.movie_idx = b.movie_idx
-where movie_state='y' and rownum <![CDATA[<=]]> 4
-order by a.movie_audience desc)c)d 
+where movie_state='y' and movie_opendate <![CDATA[<=]]> sysdate
+order by a.movie_audience desc)c)d) where rownum <![CDATA[<=]]> 4
 </select>
 </mapper>

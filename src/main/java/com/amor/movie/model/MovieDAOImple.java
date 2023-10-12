@@ -70,14 +70,14 @@ public class MovieDAOImple implements MovieDAO {
 	}
 	
 	@Override
-	public List<MovieDTO> movieBest(Map map) {
-		List<MovieDTO> mlists = sqlmap.selectList("movieBest", map);
+	public List<MovieDTO> movieBest() {
+		List<MovieDTO> mlists = sqlmap.selectList("movieBest");
 		return mlists;
 	}
 	
 	@Override
-	public List<MovieDTO> movieBestReview(Map map) {
-		List<MovieDTO> rlists = sqlmap.selectList("movieBestReview", map);
+	public List<MovieDTO> movieBestReview() {
+		List<MovieDTO> rlists = sqlmap.selectList("movieBestReview");
 		return rlists;
 	}
 	
@@ -87,13 +87,13 @@ public class MovieDAOImple implements MovieDAO {
 		return 0;
 	}
 	@Override
-	public List<MovieDTO> movieCome(Map map) {
-		List<MovieDTO> lists = sqlmap.selectList("movieCome", map);
+	public List<MovieDTO> movieCome() {
+		List<MovieDTO> lists = sqlmap.selectList("movieCome");
 		return lists;
 	}
 	@Override
-	public List<MovieDTO> movieName(Map map) {
-		List<MovieDTO> lists = sqlmap.selectList("movieName", map);
+	public List<MovieDTO> movieName() {
+		List<MovieDTO> lists = sqlmap.selectList("movieName");
 		return lists;
 	}
 	@Override

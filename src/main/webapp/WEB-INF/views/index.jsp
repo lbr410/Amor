@@ -89,7 +89,7 @@ window.onload = function() {
 							<c:if test="${2==mdto.movie_maxage}"><img src="/amor/resources/img/maxage_15.png" alt="15세 관람가"></c:if>
 							<c:if test="${3==mdto.movie_maxage}"><img src="/amor/resources/img/maxage_18.png" alt="18세 관람가"></c:if>
                      </span>
-                     <a href="${MovieContentUrl}"><span title="제목" class="movie_name">${mdto.movie_name }</span></a>
+                     <a href="${MovieContentUrl}"><span title="제목" class="movie_name" name="truncatedTitle">${mdto.truncatedTitle }</span></a>
            			</div>
            			</div>
                     <div class="info-area">
@@ -152,17 +152,58 @@ window.onload = function() {
 				<span class="more"><a href="/amor/store/store.do">더보기</a></span>
 			</div>
 			<table class="product">
-			<c:forEach var="pdto"  items="${slists }" begin="0" end="1">
+			<c:forEach var="sdto"  items="${slists }" begin="0" end="1">
 			  <tr>
 			    <td class="product_img">
 			    	<c:url var="storeContentUrl" value="store/storeContentForm.do">
-			    		<c:param name="product_idx">${pdto.product_idx }</c:param>
+			    		<c:param name="product_idx">${sdto.product_idx }</c:param>
 			    	</c:url>
-			    	<a href="${storeContentUrl }"><img src="/amor/resources/upload/product/${pdto.product_img }" alt="스토어"></a>
+			    	<a href="${storeContentUrl }"><img src="/amor/resources/upload/product/${sdto.product_img }" alt="스토어"></a>
 			    </td>
 			    <td class="product_info">
-			      <a href="${storeContentUrl }"><div class="product_title">${pdto.product_title }</div></a>
-			      <div class="product_price">${pdto.product_price2 }<span>원</span></div>
+			      <div class="product_title"><a href="${storeContentUrl }">${sdto.product_title }</a></div>
+			      <div class="product_price">
+				      <c:if test="${sdto.product_price2=='품절'}">
+				      	${sdto.product_price2 } 
+				      </c:if>	
+				      <c:if test="${sdto.product_price2!='품절'}">	   
+				      ${sdto.product_price2 }<span>원</span>
+				      </c:if>
+			      </div>
+			    </td>
+			  </tr>
+			  </c:forEach>
+			</table>
+		</div>
+		<div class="middle-section">
+			<div class="sub-title">
+				<span class="product_store">음료</span>
+				<span class="more"><a href="/amor/store/store.do">더보기</a></span>
+			</div>
+			<table class="product">
+			<c:if test="${empty tlists }">
+			<tr>
+				<td><div class="msg">상품 준비 중입니다.</div></td>
+			</tr>
+			</c:if>
+			<c:forEach var="ddto"  items="${dlists }" begin="0" end="1">
+			  <tr>
+			    <td class="product_img">
+				    <c:url var="storeContentUrl" value="store/storeContentForm.do">
+				    	<c:param name="product_idx">${ddto.product_idx }</c:param>
+			    	</c:url>
+			    	<a href="${storeContentUrl }"><img src="/amor/resources/upload/product/${ddto.product_img }" alt="음료"></a>
+			    </td>
+			    <td class="product_info">
+			      <div class="product_title"><a href="${storeContentUrl }">${ddto.product_title }</a></div>
+			      <div class="product_price">
+				      <c:if test="${ddto.product_price2=='품절'}">
+				      	${ddto.product_price2 } 
+				      </c:if>	
+				      <c:if test="${ddto.product_price2!='품절'}">	   
+				      ${ddto.product_price2 }<span>원</span>
+				      </c:if>
+			      </div>
 			    </td>
 			  </tr>
 			  </c:forEach>
@@ -188,7 +229,7 @@ window.onload = function() {
 			    	<a href="${storeContentUrl }"><img src="/amor/resources/upload/product/${tdto.product_img }" alt="관람권"></a>
 			    </td>
 			    <td class="product_info">
-			      <a href="${storeContentUrl }"><div class="product_title">${tdto.product_title }</div></a>
+			      <div class="product_title"><a href="${storeContentUrl }">${tdto.product_title }</a></div>
 			      <div class="product_price">
 				      <c:if test="${tdto.product_price2=='품절'}">
 				      	${tdto.product_price2 }

@@ -58,7 +58,7 @@
 	</span>
 	</div>
 
-	<div class="answerDiv">1:1 문의 답변</div>
+	<div class="answerDiv">1:1 문의 답변 수정</div>
 	<div class="pack">
 	<label class="answerw">답변내용</label>
 	<form name="inquiryAnswerForm" action="inquiryContent.do" method="post">
