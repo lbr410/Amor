@@ -91,4 +91,16 @@ public class PlayingMovieDAOImple implements PlayingMovieDAO {
 		int count = sqlmap.selectOne("totalCntSelect", movie_idx);
 		return count;
 	}
+	
+	@Override
+	public int playingTicketingCnt(int playing_movie_idx) {
+		int count = sqlmap.selectOne("playingTicketingCnt", playing_movie_idx);
+		return count;
+	}
+	
+	@Override
+	public int playingTicketingUpdate(Map map) {
+		int count = sqlmap.update("playingTicketingUpdate", map);
+		return count;
+	}
 }

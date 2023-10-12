@@ -189,7 +189,7 @@ select count(*) from movie where movie_state='n' and movie_opendate <![CDATA[>=]
 		a.movie_review_content, 
 		a.movie_review_star, 
 		replace(b.member_id, substr(b.member_id, 1, 3), '***') as "member_id",
-		a.movie_review_writedate,
+		to_char(a.movie_review_writedate, 'yyyy-mm-dd') as "movie_review_writedate2",
 		a.movie_review_img 
 		from movie_review a, member b where a.movie_idx = #{movie_idx} and b.member_idx = a.member_idx
 		order by a.movie_review_idx desc)a)b

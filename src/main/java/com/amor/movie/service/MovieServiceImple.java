@@ -173,6 +173,7 @@ public class MovieServiceImple implements MovieService {
 		map.put("end", end);
 		map.put("movie_idx", movie_idx);
 		List<MovieReviewDTO> lists = moviedao.movieReviewInfo(map);
+		
 		return lists;
 	}
 	

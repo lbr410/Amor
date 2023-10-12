@@ -11,6 +11,7 @@ public class MovieReviewDTO {
 	private String movie_review_content;
 	private String movie_review_img;
 	private Date movie_review_writedate;
+	private String movie_review_writedate2;
 	private Date ticketing_screeningtime;
 	private String movie_name;
 	private String member_id;
@@ -20,10 +21,10 @@ public class MovieReviewDTO {
 		// TODO Auto-generated constructor stub
 	}
 	
-
 	public MovieReviewDTO(int movie_review_idx, int movie_idx, int ticketing_idx, int member_idx, int movie_review_star,
 			String movie_review_content, String movie_review_img, Date movie_review_writedate,
-			Date ticketing_screeningtime, String movie_name, String member_id, String member_block) {
+			String movie_review_writedate2, Date ticketing_screeningtime, String movie_name, String member_id,
+			String member_block) {
 		super();
 		this.movie_review_idx = movie_review_idx;
 		this.movie_idx = movie_idx;
@@ -33,12 +34,12 @@ public class MovieReviewDTO {
 		this.movie_review_content = movie_review_content;
 		this.movie_review_img = movie_review_img;
 		this.movie_review_writedate = movie_review_writedate;
+		this.movie_review_writedate2 = movie_review_writedate2;
 		this.ticketing_screeningtime = ticketing_screeningtime;
 		this.movie_name = movie_name;
 		this.member_id = member_id;
 		this.member_block = member_block;
 	}
-
 
 	public MovieReviewDTO(String movie_review_content, String movie_review_img, Date ticketing_screeningtime,
 			String movie_name) {
@@ -113,6 +114,14 @@ public class MovieReviewDTO {
 		this.movie_review_writedate = movie_review_writedate;
 	}
 
+	public String getMovie_review_writedate2() {
+		return movie_review_writedate2;
+	}
+
+	public void setMovie_review_writedate2(String movie_review_writedate2) {
+		this.movie_review_writedate2 = movie_review_writedate2;
+	}
+
 	public Date getTicketing_screeningtime() {
 		return ticketing_screeningtime;
 	}
@@ -144,6 +153,5 @@ public class MovieReviewDTO {
 	public void setMember_block(String member_block) {
 		this.member_block = member_block;
 	}
-
 	
 }

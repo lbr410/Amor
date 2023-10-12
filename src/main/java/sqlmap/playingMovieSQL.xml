@@ -89,4 +89,16 @@
 	<select id="playingMovieContent" parameterType="Integer" resultType="com.amor.playingMovie.model.PlayingMovieDTO">
 		select * from playing_movie where playing_movie_idx = #{playing_movie_idx}
 	</select>
+	<select id="playingTicketingCnt" parameterType="Integer" resultType="Integer">
+		select count(*) from ticketing where playing_movie_idx = #{playing_movie_idx}
+	</select>
+	<update id="playingTicketingUpdate" parameterType="Map">
+		update 
+			ticketing
+		set
+			theater_idx = #{theater_idx},
+			ticketing_screeningtime = to_date(#{ticketing_screeningtime},'yyyy-mm-dd hh24:mi:ss')
+		where
+			playing_movie_idx = #{playing_movie_idx}
+	</update>
 </mapper>
