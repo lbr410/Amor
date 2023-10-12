@@ -40,11 +40,11 @@ function checkFileUpload() {
 <div class="contentMain">
 	<div class="adsViewDiv">
 	<div class="adsMid">
-		<div class="firstads">첫번째 광고</div>
+		<div class="firstads" id="firstDiv">첫번째 광고</div>
 		<div class="arrow-next1"></div>
-		<div class="secondads">두번째 광고</div>
+		<div class="secondads" id="secondDiv">두번째 광고</div>
 		<div class="arrow-next2"></div>
-		<div class="thirdads">세번째 광고</div>
+		<div class="thirdads" id="thirdDiv">세번째 광고</div>
 	</div>
 	</div>
 	<div class="adsUpdateFormDiv">
@@ -78,5 +78,24 @@ function checkFileUpload() {
 	</div>
 </div>
 </div>
+<script type="text/javascript">
+let curparam = window.location.search;
+let lastcurparam = curparam.substr(-1);
+
+let firstDiv = document.getElementById('firstDiv');
+let secondDiv = document.getElementById('secondDiv');
+let thirdDiv = document.getElementById('thirdDiv');
+
+if(lastcurparam == 1 || lastcurparam == '1'){
+	firstDiv.style.backgroundColor = '#C5C5C5';
+
+}else if(lastcurparam == 2 || lastcurparam == '2'){
+	secondDiv.style.backgroundColor = '#C5C5C5';
+
+}else if(lastcurparam == 3 || lastcurparam == '3'){
+	thirdDiv.style.backgroundColor = '#C5C5C5';
+}
+
+</script>
 </body>
 </html>
