@@ -27,7 +27,7 @@
 	</div>
 	<div class="inquirySub">
 	<label class="infoSub">문의유형</label>
-	<span>
+	<span class="type">
 	<c:choose>
 	    <c:when test="${dto.inquiry_type eq 0}">문의</c:when>
 	    <c:when test="${dto.inquiry_type eq 1}">불만</c:when>

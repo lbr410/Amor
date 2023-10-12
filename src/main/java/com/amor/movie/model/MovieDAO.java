@@ -13,11 +13,11 @@ public interface MovieDAO {
 	public int getTotalCnt();
 	public int getTotalSearchCnt(String search);
 	public int stateChange(MovieDTO dto);
-	public List<MovieDTO> movieBest(Map map);
-	public List<MovieDTO> movieBestReview(Map map);
+	public List<MovieDTO> movieBest();
+	public List<MovieDTO> movieBestReview();
 	public int movieBestCnt();
-	public List<MovieDTO> movieCome(Map map);
-	public List<MovieDTO> movieName(Map map);
+	public List<MovieDTO> movieCome();
+	public List<MovieDTO> movieName();
 	public int movieComeCnt();
 	public int getUserSearchTotalCnt(String userSearch);
 	public List<MovieDTO> userMovieListSearch(Map map);

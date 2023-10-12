@@ -36,6 +36,9 @@
 	position: relative;
 	margin-left: 34px;
 }
+.type{
+	width: 48px;
+}
 .infoSub{
 	width: 100px;
 	text-align: left;
@@ -52,7 +55,7 @@
 	width: 400px;
 }
 .ainfo{
-	margin-left: 185px;
+	margin-left: 170px;
 	margin-right: 5px;
 	font-weight: bold;
 }

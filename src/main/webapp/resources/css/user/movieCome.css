@@ -3,6 +3,9 @@ a, a:link, a:active, a:visited, a:focus, a:before{
 	text-decoration: none;
 	color: #333333;
 }
+body{
+	font-family: 'Nanum Gothic', sans-serif;
+}
 .gray-bar{
     width: 100%;
     height: 14px;
@@ -54,17 +57,18 @@ a, a:link, a:active, a:visited, a:focus, a:before{
 }
 .left-title .movieNow {
   color: #BCBCBC;
-  font-family: Inter;
-  font-size: 33px;
+  font-size: 24px;
   line-height: normal;
+  font-weight: 400;
   position: relative;
-  width: 210px;
+  width: 145px;
   cursor: pointer;
 }
 .left-title .movieCome{
 	color: #000000;
-	font-size: 33px;
+	font-size: 24px;
 	line-height: normal;
+	font-style: normal;
 	width: 240px;
 	cursor: pointer;
 }
@@ -95,10 +99,10 @@ a, a:link, a:active, a:visited, a:focus, a:before{
 }
 
 .middle{
-	padding-bottom: 18px;   
+	padding-bottom: 18px;
 }
 .tmiddle{
-	font-size: 33px;
+	font-size: 24px;
 }
 /* sort1 또는 sort2가 클릭된 상태 */
 .sort1.active, .sort2.active {
@@ -119,8 +123,8 @@ a, a:link, a:active, a:visited, a:focus, a:before{
 .movie-title .title-bar{
 	display: flex;
 	width: 1100px;
-	padding-top: 128px;
-	padding-bottom: 78px;
+	padding-top: 78px;
+	padding-bottom: 0px;
 	justify-content: center;
 	align-items: baseline;
 	gap: 300px;
@@ -201,13 +205,14 @@ a, a:link, a:active, a:visited, a:focus, a:before{
     width: 230px;
     height: 34px;
     display: flex;
-    font-size: 20px;
+    font-size: 18px;
     padding: 14px 0;
     font-weight: bold;
     align-items: center;
 }
 .container .rank-movie .title-area .movie_name{
     padding-left: 12px;
+    font-size: 18px;
 }
 .container .rank-movie .info-area{
     width: 230px;
@@ -232,7 +237,6 @@ button{
     text-align: center;
     font-size: 14px;
     border-radius: 5px;
-    font-weight: bold;
     cursor: pointer;
     padding: 18px 0 18px 0;
 }
@@ -244,7 +248,6 @@ button{
     border-radius: 5px;
     text-align: center;
     font-size: 14px;
-    font-weight: bold;
     cursor: pointer;
     padding: 18px 0 18px 0;
 

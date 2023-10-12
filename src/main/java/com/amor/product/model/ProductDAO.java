@@ -19,4 +19,8 @@ public interface ProductDAO {
 	public ProductDTO storeContent(int idx);
 	public ProductDTO storePayForm(int idx);
 	public ProductDTO storeKakao(int idx);
+	public List<ProductDTO> indexSnack(Map map);
+	public List<ProductDTO> indexDrink(Map map);
+	public List<ProductDTO> indexTicket(Map map);
+
 }

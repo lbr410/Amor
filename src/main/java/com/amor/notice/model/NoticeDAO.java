@@ -11,5 +11,8 @@ public interface NoticeDAO {
 	public NoticeDTO noticeUpdateForm(int idx);
 	public int noticeUpdate(NoticeDTO dto);
 	public int noticeDelete(int idx);
+	public List<NoticeDTO> userNoticeList(Map map);
+	public int userNoticeTotalCnt();
+	public NoticeDTO userNoticeContent(int idx);
 	public int noticeReadNumUpdate(int notice_idx);
 }

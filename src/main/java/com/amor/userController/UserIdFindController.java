@@ -115,20 +115,22 @@ public class UserIdFindController {
 
 	@RequestMapping(value="member/userPwdFindUpdateSubmit.do", method = RequestMethod.POST)
 	public ModelAndView userPwdFindUpdateSubmit(
-		@RequestParam("member_pwd")String member_pwd,
-		HttpSession session) {
-		
-		String fid=(String)session.getAttribute("id");
-		String npwd = Encryption.pwdEncrypt(member_pwd);
+	    @RequestParam("member_pwd") String member_pwd,
+	    HttpSession session, HttpServletRequest req) {
+	    
+	    String fid = (String) session.getAttribute("id");
+	    String npwd = Encryption.pwdEncrypt(member_pwd);
 
-		int result=memberService.userPwdFindUpdate(fid, npwd);
-		String msg=result>0?"비밀번호 업데이트 성공":"비밀번호 업데이트 실패";
+	    int result = memberService.userPwdFindUpdate(fid, npwd);
+	    String msg = result > 0 ? "비밀번호가 수정되었습니다." : "비밀번호가 수정되지 않았습니다.";
 
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("msg", msg);
-		mav.addObject("goUrl","/amor/member/login.do");
-		mav.setViewName("/user/msg/userMsg");
-		return mav;
+	    session.removeAttribute("id");
+
+	    ModelAndView mav = new ModelAndView();
+	    mav.addObject("msg", msg);
+	    mav.addObject("goUrl", "/amor/member/login.do");
+	    mav.setViewName("/user/msg/userMsg");
+	    return mav;
 	}
 
 }

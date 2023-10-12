@@ -84,8 +84,7 @@ public class MovieServiceImple implements MovieService {
 	
 	@Override
 	public List<MovieDTO> movieBest() {
-		Map map=new HashedMap();
-		List <MovieDTO> mlists = moviedao.movieBest(map);
+		List <MovieDTO> mlists = moviedao.movieBest();
 		 for (MovieDTO movieDTO : mlists) {
 			 	String originalTitle = movieDTO.getMovie_name();
 		        String truncatedTitle = originalTitle.length() > 10 ? originalTitle.substring(0, 10) + "..." : originalTitle;
@@ -96,8 +95,7 @@ public class MovieServiceImple implements MovieService {
 	
 	@Override
 	public List<MovieDTO> movieBestReview() {
-		Map map=new HashedMap();
-		List <MovieDTO> rlists = moviedao.movieBestReview(map);
+		List <MovieDTO> rlists = moviedao.movieBestReview();
 		 for (MovieDTO movieDTO : rlists) {
 			 	String originalTitle = movieDTO.getMovie_name();
 		        String truncatedTitle = originalTitle.length() > 10 ? originalTitle.substring(0, 10) + "..." : originalTitle;
@@ -114,8 +112,7 @@ public class MovieServiceImple implements MovieService {
 	
 	@Override
 	public List<MovieDTO> movieCome() {
-		Map map=new HashedMap();
-		List <MovieDTO> lists = moviedao.movieCome(map);
+		List <MovieDTO> lists = moviedao.movieCome();
 		 for (MovieDTO movieDTO : lists) {
 		        String originalTitle = movieDTO.getMovie_name();
 		        String truncatedTitle = originalTitle.length() > 10 ? originalTitle.substring(0, 10) + "..." : originalTitle;
@@ -126,13 +123,12 @@ public class MovieServiceImple implements MovieService {
 	
 	@Override
 	public List<MovieDTO> movieName() {
-		Map map=new HashedMap();
-		List <MovieDTO> lists = moviedao.movieName(map);
+		List <MovieDTO> lists = moviedao.movieName();
 		 for (MovieDTO movieDTO : lists) {
 			 	String originalTitle = movieDTO.getMovie_name();
 		        String truncatedTitle = originalTitle.length() > 10 ? originalTitle.substring(0, 10) + "..." : originalTitle;
-		        movieDTO.setMovie_name(truncatedTitle);
-		    }
+		        movieDTO.setTruncatedTitle(truncatedTitle);
+		 }
 		return lists;
 	}
 	

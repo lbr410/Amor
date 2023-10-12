@@ -57,6 +57,24 @@ public class NoticeDAOImple implements NoticeDAO {
 	}
 
 	@Override
+	public List<NoticeDTO> userNoticeList(Map map) {
+		List<NoticeDTO>lists=sqlmap.selectList("userNoticeList", map);
+		return lists;
+	}
+	
+	@Override
+	public int userNoticeTotalCnt() {
+		int result=sqlmap.selectOne("userNoticeTotalCnt");
+		return result;
+	}
+	
+	@Override
+	public NoticeDTO userNoticeContent(int idx) {
+		NoticeDTO dto=sqlmap.selectOne("userNoticeContent", idx);
+		return dto;
+	}
+	
+	@Override
 	public int noticeReadNumUpdate(int notice_idx) {
 		int result=sqlmap.update("noticeReadNumUpdate", notice_idx);
 		return result;

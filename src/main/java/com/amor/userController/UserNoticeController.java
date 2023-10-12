@@ -19,13 +19,13 @@ public class UserNoticeController {
 	@RequestMapping("customer/noticeList.do")
 	public ModelAndView noticeList(
 			@RequestParam(value="cp", defaultValue = "1")int cp) {
-		int totalCnt=noticeService.noticeTotalCnt();
+		int totalCnt=noticeService.userNoticeTotalCnt();
 		int listSize=10;
 		int pageSize=5;
 		String pageStr=com.amor.page.PageModule.makePage("/amor/customer/noticeList.do", totalCnt, listSize, pageSize, cp);
 		
 		ModelAndView mav=new ModelAndView();
-		List<NoticeDTO>lists=noticeService.noticeList(cp,listSize);
+		List<NoticeDTO>lists=noticeService.userNoticeList(cp,listSize);
 		mav.addObject("lists", lists);
 		mav.addObject("pageStr", pageStr);
 		mav.setViewName("/user/customer/noticeList");
@@ -36,7 +36,7 @@ public class UserNoticeController {
 	public ModelAndView noticeContent(
 		@RequestParam(value="notice_idx", defaultValue = "0")int notice_idx) {
 		
-		NoticeDTO dto=noticeService.noticeContnet(notice_idx);
+		NoticeDTO dto=noticeService.userNoticeContnet(notice_idx);
 		ModelAndView mav=new ModelAndView();
 		int readNum=noticeService.noticeReadNumUpdate(notice_idx);
 		mav.addObject("dto", dto);
