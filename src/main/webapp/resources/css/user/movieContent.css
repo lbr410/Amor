@@ -494,6 +494,12 @@ reviewTableINfo {
 	height: 180px;
 	overflow-y: scroll;
 	width: 400px;
+	background: none;
+	border: none;
+	outline: none;
+	font-size: 14px;
+	font-family: '맑은 고딕';
+	cursor: default;
 }
 
 .contentForm::-webkit-scrollbar {

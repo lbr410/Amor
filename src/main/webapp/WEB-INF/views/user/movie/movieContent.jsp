@@ -35,9 +35,9 @@ function showResult() {
 				+dto.movie_review_writedate2+'</td><td class="reviewTd5">'
 				+dto.member_id+'</td><td class="reviewTd" colspan="2"><span class="starBack"><span class="star">☆☆☆☆☆<span class="starAll" style="width:'
 				+dto.movie_review_star+'0%;">★★★★★</span><input type="range" name="movie_review_star"  min="1" max="10"></span></span></td><td class="reviewTd3" onclick="document.getElementById(\'reviewContent'
-				+i+'\').style.display=\'\'">▼</td></tr><tr class="reviewTableINfoTbody" id="reviewContent'+i+'" style="display:none;"><td colspan="5"><div class="reviewTdContent2"><img src="/amor/resources/upload/review/'
-				+dto.movie_review_img+'" class="reviewImg"  onError="this.style.visibility=\'hidden\'"></div><div class="reviewTdContent"><form class="contentForm">'
-				+dto.movie_review_content+'</form></div><div class="reviewTdContent3" onclick="document.getElementById(\'reviewContent'
+				+i+'\').style.display=\'\'">▼</td></tr><tr class="reviewTableINfoTbody" id="reviewContent'+i+'" style="display:none;"><td colspan="5"><div class="reviewTdContent2"><a href="/amor/resources/upload/review/'+dto.movie_review_img+'" target="blank"><img src="/amor/resources/upload/review/'
+				+dto.movie_review_img+'" class="reviewImg"  onError="this.style.visibility=\'hidden\'"></a></div><div class="reviewTdContent"><textarea class="contentForm" readonly>'
+				+dto.movie_review_content+'</textarea></div><div class="reviewTdContent3" onclick="document.getElementById(\'reviewContent'
 				+i+'\').style.display=\'none\'">&times;</div></td></tr>';
 			}
 
@@ -163,13 +163,13 @@ function showResult() {
     			<div class="stillcutTitle">스틸컷</div>
     			<table class="moviedetailtable">
     				<tr>
-    					<td rowspan="2"><img class="thumnail2" src="/amor/resources/upload/movie/${dto.movie_stillcut1 }" onError="this.style.display='none'"></td>
-    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut2 }" onError="this.style.display='none'"></td>
-    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut3 }" onError="this.style.display='none'"></td>
+    					<td rowspan="2"><a href="/amor/resources/upload/movie/${dto.movie_stillcut1 }"  target="blank"><img class="thumnail2" src="/amor/resources/upload/movie/${dto.movie_stillcut1 }" onError="this.style.display='none'"></a></td>
+    					<td><a href="/amor/resources/upload/movie/${dto.movie_stillcut2 }"  target="blank"><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut2 }" onError="this.style.display='none'"></a></td>
+    					<td><a href="/amor/resources/upload/movie/${dto.movie_stillcut3 }"  target="blank"><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut3 }" onError="this.style.display='none'"></a></td>
     				</tr>
     				<tr>
-    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut4 }" onError="this.style.display='none'"></td>
-    					<td><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut5 }" onError="this.style.display='none'"></td>
+    					<td><a href="/amor/resources/upload/movie/${dto.movie_stillcut4 }"  target="blank"><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut4 }" onError="this.style.display='none'"></a></td>
+    					<td><a href="/amor/resources/upload/movie/${dto.movie_stillcut5 }"  target="blank"><img class="thumnail" src="/amor/resources/upload/movie/${dto.movie_stillcut5 }" onError="this.style.display='none'"></a></td>
     				</tr>
     			</table>
     		</div>
