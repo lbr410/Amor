@@ -24,9 +24,7 @@ public class MemberDTO {
 	private String member_block;
 	private Date member_quitdate;
 	
-	public MemberDTO() {
-		System.out.println("memberDTO() 호출됨");
-	}
+	public MemberDTO() {}
 	
 	public MemberDTO(int member_idx, String member_id, String member_pwd, String member_name) {
 		super();
