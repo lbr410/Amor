@@ -50,9 +50,31 @@ public class MovieContentController {
 			return mav;
 		}
 		
-		//영화 상세내용
+		//영화 상세 페이지 이동
 		@RequestMapping("movie/movieContentForm.do")
-		public ModelAndView movieContent(
+		public ModelAndView movieContent (
+				@RequestParam(value="movie_idx", defaultValue = "0")int movie_idx
+				) {
+			
+			MovieDTO dto = movieservice.movieContent(movie_idx);
+			
+			ModelAndView mav=new ModelAndView();
+			
+			if(dto == null) {
+				mav.addObject("msg","삭제된 게시물 잘못된 접근입니다.");
+				mav.setViewName("user/msg/userMsg");
+			}else {	
+				String movieContent = dto.getMovie_content().replaceAll("\n", "<br>");
+				mav.addObject("movieContent",movieContent);
+				mav.addObject("dto",dto);
+				mav.setViewName("/user/movie/movieContent");
+			}
+			return mav;
+		}
+		
+		//영화 상세 페이지 JSON 데이터
+		@RequestMapping("movie/movieContentForm2.do")
+		public ModelAndView movieContentJSON (
 				@RequestParam(value="movie_idx", defaultValue = "0")int movie_idx,
 				@RequestParam(value="cp", defaultValue = "1")int cp
 				) {
@@ -61,23 +83,16 @@ public class MovieContentController {
 			int listSize=5;
 			int pageSize=5;
 			
-			MovieDTO dto = movieservice.movieContent(movie_idx);
 			List<MovieReviewDTO> rlists = movieservice.movieReviewInfo(movie_idx, cp, listSize);
 			
-			String reviewPage = com.amor.page.PageModule.makePage("/amor/movie/movieContentForm.do", totalCnt, listSize, pageSize, cp);
+			String reviewPage = com.amor.page.PageModuleAjax.makePage(totalCnt, listSize, pageSize, cp);
 			
 			ModelAndView mav=new ModelAndView();
-			if(dto == null) {
-				mav.addObject("msg","삭제된 게시물 잘못된 접근입니다.");
-				mav.setViewName("user/msg/userMsg");
-			}else {	
-				String movieContent = dto.getMovie_content().replaceAll("\n", "<br>");
-				mav.addObject("movieContent",movieContent);
-				mav.addObject("reviewPage", reviewPage);
-				mav.addObject("rlists",rlists);
-				mav.addObject("dto",dto);
-				mav.setViewName("/user/movie/movieContent");
-			}
+			
+			mav.addObject("reviewPage", reviewPage);
+			mav.addObject("rlists",rlists);
+			mav.setViewName("amorJson");
+			
 			return mav;
 	 	}
 		

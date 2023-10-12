@@ -21,7 +21,7 @@
 		 	d.member_idx=c.member_idx 
 			 and f.movie_idx=c.movie_idx 
 			 and d.member_idx=#{member_idx}
-		order by c.movie_idx desc)a)b
+		order by c.movie_review_idx desc)a)b
 		where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 	</select>
 	<select id="totalCntReview" resultType="Integer">
