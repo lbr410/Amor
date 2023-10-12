@@ -596,3 +596,8 @@ reviewTableINfo {
 .content::-webkit-scrollbar {
     display: none;
 }
+
+.noneReview {
+	text-align: center;
+	padding-left: 20px;
+}

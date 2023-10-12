@@ -153,7 +153,7 @@ for(let i = 0 ; i< 10; i++){
 	}else{
 		resultyear = plusyear;
 	}	
-		document.getElementById('datep'+i).innerHTML = '<a class="cursorblack" href="#">'+plusdate+'</a>';
+		document.getElementById('datep'+i).innerHTML = plusdate;
 }
 
 //요일
@@ -164,6 +164,18 @@ for(let i = 0; i<10 ;i++ ){
 	}else{
 		wday = (wday % 7);
 		document.getElementById('weekp'+i).innerHTML = week[wday];
+	}
+	
+	//요일에 따른 글자색 변경
+	if(wday % 7 == 6){ //토요일
+		document.getElementById('weekp'+i).style.color = "blue";
+		document.getElementById('datep'+i).style.color = "blue";
+	}else if(wday % 7 == 0){ //일요일
+		document.getElementById('weekp'+i).style.color = "red";
+		document.getElementById('datep'+i).style.color = "red";
+	}else{
+		document.getElementById('weekp'+i).style.color = "black";
+		document.getElementById('datep'+i).style.color = "black";
 	}
 	
 }

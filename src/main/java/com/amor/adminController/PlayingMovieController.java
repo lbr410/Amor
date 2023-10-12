@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -182,9 +183,28 @@ public class PlayingMovieController {
 		String playing_movie_start = playing_movie_date+" "+playing_movie_start_s;
 		String playing_movie_end = playing_movie_date+" "+playing_movie_end_e;
 		
+		System.out.println(playing_movie_start);
+		System.out.println(playing_movie_idx);
+		System.out.println(theater_idx);
+		System.out.println(movie_idx);
+		
 		PlayingMovieDTO dto = new PlayingMovieDTO(playing_movie_idx , movie_idx, theater_idx, playing_movie_date, playing_movie_start, playing_movie_end);
-		int result = playingMovieService.playingMovieUpdate(dto);
-		String msg = result>0?"수정에 성공했습니다.":"수정에 실패했습니다.";
+		
+		int result3 = playingMovieService.playingTicketingCnt(playing_movie_idx);
+
+		String msg = null;
+		if (result3 == 0) {
+			int result1 = playingMovieService.playingMovieUpdate(dto);
+			
+			msg = result1>0?"수정에 성공했습니다.":"수정에 실패했습니다.";
+			
+		} else {
+			int result1 = playingMovieService.playingMovieUpdate(dto);
+			int result2 = playingMovieService.playingTicketingUpdate(theater_idx, playing_movie_start, playing_movie_idx);
+			int result = result1+result2;
+			
+			msg = result>1?"수정에 성공했습니다.":"수정에 실패했습니다.";
+		}
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);

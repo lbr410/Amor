@@ -43,7 +43,7 @@
 		justify-content: center; /* 세로 중앙 정렬 */
 		align-items: center; /* 가로 중앙 정렬 */
 		margin: 0 auto; /* 수평 가운데 정렬 */
-		border-bottom: solid 1px #D9D9D9;
+		border-bottom: solid 2px #D9D9D9;
 	}
 	.menu1, .menu2, .menu3{
 		display: inline-block;

@@ -37,12 +37,9 @@
 	padding-top: 150px;
 	margin: 0 auto;
 	width: 1000px;
-	margin-bottom: 50px;
+	margin-bottom: 130px;
 }
-.nullcontent{
-	margin-left:50px;
-	margin-top:50px;
-}
+
 #btn2{
     background: #1A2C82;
     color: #FFF;
@@ -105,7 +102,7 @@
    			<a href = "${storeCancell}"><input type = "button" value = "구매 취소" class = "button"></a>
    	</c:if>
   	<c:if test="${temp.status == 'y'}">
-  		<span class = "cancelmsg">구매 완료</span>
+  		<span class = "cancelmsg">사용 완료</span>
   	</c:if>
   </div>
 </div>

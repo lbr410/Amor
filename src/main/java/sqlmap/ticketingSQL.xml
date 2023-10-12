@@ -7,8 +7,7 @@
 <select id="ticketingHistoryList" parameterType="Map" resultType="com.amor.ticketing.model.JoinTicketingHistoryDTO">
   <![CDATA[
 		with ticketingHistoryList as (
-	        select rownum as rnum,
-	               a.playing_movie_idx as playingMovieidx,
+	        select a.playing_movie_idx as playingMovieidx,
 	               b.member_idx as memberidx,
 	               b.ticketing_idx as ticketingidx,
 	               c.movie_idx as movieidx,
@@ -26,16 +25,15 @@
 	        from playing_movie a,
 	             (select * from ticketing, theater
 	              where ticketing.member_idx = #{useridx}
-	              and ticketing.ticketing_state in ('y', 'r')
-	              and ticketing.theater_idx = theater.theater_idx
-	              order by ticketing_reservetime desc) b,
-	             movie c
-	        where a.playing_movie_idx = b.playing_movie_idx
-	        and a.movie_idx = c.movie_idx
+	              and ticketing.ticketing_state in ('y','r')
+	              and ticketing.theater_idx = theater.theater_idx) b,movie c
+	        where a.playing_movie_idx = b.playing_movie_idx 
+            and a.movie_idx = c.movie_idx
+	        order by reservetime desc
 	    )
-	    select * from ticketingHistoryList
-	    where rnum between #{start} and #{end} 
-	    order by reservetime desc
+	    select * from(
+	    select rownum as rnum, t.* from ticketingHistoryList t
+	    )where rnum >= #{start} and rnum <= #{end}
 ]]>
 </select>
 
@@ -92,8 +90,7 @@
 <select id = "ticketingCancelList" parameterType="Map" resultType="com.amor.ticketing.model.JoinTicketingHistoryDTO">
 <![CDATA[
 		with ticketingHistoryList as (
-	        select rownum as rnum,
-	               a.playing_movie_idx as playingMovieidx,
+	        select a.playing_movie_idx as playingMovieidx,
 	               b.member_idx as memberidx,
 	               b.ticketing_idx as ticketingidx,
 	               c.movie_idx as movieidx,
@@ -101,24 +98,25 @@
 	               c.movie_poster as movieimg,
 	               b.ticketing_num as ticketnum,
 	               b.theater_name as theatername,
-	               b.ticketing_seat as seatnum,
+	               b.ticketing_seat as seatnum,	        
 	               b.ticketing_screeningtime as screeningdate,
 	               a.playing_movie_end as endDate,
 	               b.ticketing_payment as payment,
 	               b.ticketing_price as price,
-	               b.ticketing_reservetime as reservetime
+	               b.ticketing_reservetime as reservetime,
+	               b.ticketing_state as state
 	        from playing_movie a,
 	             (select * from ticketing, theater
 	              where ticketing.member_idx = #{useridx}
 	              and ticketing.ticketing_state = 'n'
-	              and ticketing.theater_idx = theater.theater_idx
-	              order by ticketing_reservetime desc) b,
-	             movie c
-	        where a.playing_movie_idx = b.playing_movie_idx
-	        and a.movie_idx = c.movie_idx
+	              and ticketing.theater_idx = theater.theater_idx) b,movie c
+	        where a.playing_movie_idx = b.playing_movie_idx 
+            and a.movie_idx = c.movie_idx
+	        order by reservetime desc
 	    )
-	    select * from ticketingHistoryList
-	    where rnum between #{start} and #{end}
+	    select * from(
+	    select rownum as rnum, t.* from ticketingHistoryList t
+	    )where rnum >= #{start} and rnum <= #{end}
 ]]>
 </select>
 

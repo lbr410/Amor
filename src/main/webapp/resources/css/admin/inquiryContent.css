@@ -55,7 +55,7 @@
 	width: 400px;
 }
 .ainfo{
-	margin-left: 170px;
+	margin-left: 167px;
 	margin-right: 5px;
 	font-weight: bold;
 }
@@ -210,4 +210,8 @@
 
 .countDiv {
 	margin-left: 555px;
+}
+
+.typeMenu {
+	width: 50px;
 }

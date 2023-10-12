@@ -69,10 +69,9 @@ public class MovieContentController {
 			return mav;
 		}
 		
-		//영화 상세 페이지 JSON 데이터
 		@RequestMapping("movie/movieContentForm2.do")
 		public ModelAndView movieContentJSON (
-				@RequestParam(value="movie_idx", defaultValue = "0")int movie_idx,
+				@RequestParam("movie_idx")int movie_idx,
 				@RequestParam(value="cp", defaultValue = "1")int cp
 				) {
 			

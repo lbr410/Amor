@@ -27,7 +27,7 @@
 	</div>
 	<div class="inquirySub">
 	<label class="infoSub">문의유형</label>
-	<span class="type">
+	<span class="typeMenu">
 	<c:choose>
 	    <c:when test="${dto.inquiry_type eq 0}">문의</c:when>
 	    <c:when test="${dto.inquiry_type eq 1}">불만</c:when>
@@ -54,7 +54,9 @@
 	<div class="fileDiv">
 	<label class="infoFile">첨부 파일</label>
 	<span>
+	<a href="/amor/resources/upload/inquiry/${dto.inquiry_filename}" target="blank">
     <img src="/amor/resources/upload/inquiry/${dto.inquiry_filename}" class="img" alt="inquiry_filename_img"  onError="this.style.visibility='hidden'">
+    </a>
 	</span>
 	</div>
 	

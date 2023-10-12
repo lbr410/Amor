@@ -8,6 +8,62 @@
 <title>아모르 : 영화 상세</title>
 <link rel="stylesheet" href="/amor/resources/css/user/movieContent.css"></link>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script type="text/javascript" src="../resources/js/httpRequest.js"></script>
+<script>
+function show(aaa) {
+	let movie_idx = document.getElementById('movieIDX').value;
+	let cp = aaa;
+	if (cp == undefined) {
+		cp = 1;
+	}
+	let param = 'movie_idx='+movie_idx+'&cp='+cp;
+	sendRequest ('movieContentForm2.do', param,showResult,'GET');
+}
+
+function showResult() {
+	if (XHR.readyState==4) {
+		if (XHR.status==200){
+		
+			let data=XHR.responseText;
+			let objdata=JSON.parse(data);
+			let reviewList = objdata.rlists;
+			let str = '';
+			
+			for (let i=0;i<reviewList.length;i++) {
+				let dto = reviewList[i];
+				str += '<tr class="reviewTableINfoTbody"><td class="reviewTd1">'
+				+dto.movie_review_writedate2+'</td><td class="reviewTd5">'
+				+dto.member_id+'</td><td class="reviewTd" colspan="2"><span class="starBack"><span class="star">☆☆☆☆☆<span class="starAll" style="width:'
+				+dto.movie_review_star+'0%;">★★★★★</span><input type="range" name="movie_review_star"  min="1" max="10"></span></span></td><td class="reviewTd3" onclick="document.getElementById(\'reviewContent'
+				+i+'\').style.display=\'\'">▼</td></tr><tr class="reviewTableINfoTbody" id="reviewContent'+i+'" style="display:none;"><td colspan="5"><div class="reviewTdContent2"><img src="/amor/resources/upload/review/'
+				+dto.movie_review_img+'" class="reviewImg"  onError="this.style.visibility=\'hidden\'"></div><div class="reviewTdContent"><form class="contentForm">'
+				+dto.movie_review_content+'</form></div><div class="reviewTdContent3" onclick="document.getElementById(\'reviewContent'
+				+i+'\').style.display=\'none\'">&times;</div></td></tr>';
+			}
+
+			let tbodyTag = document.getElementById('contentReviewBody');
+			
+			if (str == '') {
+				str = '<td colspan="5" class="noneReview">등록된 관람평이 없습니다.</td>'
+			}
+			
+			tbodyTag.innerHTML = str;
+			
+			let pageList = objdata.reviewPage;
+			let divTag = document.getElementById('paging');
+			
+			if (str == '<td colspan="5" class="noneReview">등록된 관람평이 없습니다.</td>') {
+				divTag.innerHTML = '';
+			} 
+			if (str != '<td colspan="5" class="noneReview">등록된 관람평이 없습니다.</td>') {
+				divTag.innerHTML = pageList;
+			} 
+		}
+	}
+	
+}
+
+</script>
 </head>
 <%@ include file="../header.jsp" %>
 <body>
@@ -54,7 +110,8 @@
 </div>
 </div>
     <div class="infodiv"><input type="button" value="상세정보" class="infoBtn" id="detailMovie">
-    <input type="button" value="관람평" class="infoBtn" id="reviewWrite"></div>
+    <input type="button" value="관람평" class="infoBtn" id="reviewWrite" onclick="show()">
+    <input type="hidden" value="${dto.movie_idx }" id="movieIDX"></div>
     
     <!-- 리뷰 페이지 -->
     <div id="review">
@@ -67,52 +124,14 @@
 				<tr class="reviewTableInfoThead">
 					<th class="reviewTd1">작성 날짜</th>
 					<th class="reviewTd5">회원아이디</th>
-					<th>관람평점</th>
-					<th></th>
-					<th></th>
+					<th class="reviewTd5">관람평점</th>
+					<th colspan="2"></th>
 				</tr>
 			</thead>
-			<tfoot>
-			<c:if test="${!empty rlists}">
-				<tr class="reviewTableInfoTfoot">
-					<td colspan="5" class="paging">${reviewPage}</td>
-				</tr>
-			</c:if>
-			</tfoot>
-			<tbody>
-			<c:if test="${empty rlists }">
-				<tr class="reviewTableINfoTbody">
-					<td class="reviewTd7" colspan="5" >등록된 관람평이 없습니다.</td>
-				</tr>
-			</c:if>
-			<c:forEach var="rdto" items="${rlists }" varStatus="vs">
-				<tr class="reviewTableINfoTbody">
-					<td class="reviewTd1">${rdto.movie_review_writedate }</td>
-					<td class="reviewTd5">${rdto.member_id }</td>
-					<td class="reviewTd" colspan="2">
-					
-					<span class="starBack">	
-					<span class="star">
-						☆☆☆☆☆
-					<span class="starAll" style="width: ${rdto.movie_review_star}0%;">★★★★★</span>
-						<input type="range" name="movie_review_star"  min="1" max="10">
-					</span>
-					</span>
-					
-					</td>
-					<td class="reviewTd3" onclick="document.getElementById('reviewContent${vs.index}').style.display=''">▼</td>
-				</tr>
-				<tr class="reviewTableINfoTbody" id="reviewContent${vs.index }" style="display:none;">
-					<td colspan="5">
-					<div class="reviewTdContent2"><img src="/amor/resources/upload/review/${rdto.movie_review_img}" class="reviewImg"  onError="this.style.visibility='hidden'"></div>
-					<div class="reviewTdContent"><form class="contentForm">${rdto.movie_review_content }</form></div>
-					<div class="reviewTdContent3" onclick="document.getElementById('reviewContent${vs.index}').style.display='none'">&times;</div>
-					</td>
-				</tr>
-				
-			</c:forEach>
+			<tbody id="contentReviewBody">
 			</tbody>
 		</table>
+		<div class="paging" id="paging"></div>
     	</div>
     </div>
     

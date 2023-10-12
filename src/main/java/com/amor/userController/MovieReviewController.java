@@ -42,7 +42,7 @@ public class MovieReviewController {
 			@RequestParam("movie_review_star")int movie_review_star,
 			@RequestParam("movie_review_content")String movie_review_content
 			) {
-			
+		
 		  MultipartFile upl = req.getFile("movie_review_img");
 	      String upload = upl.getOriginalFilename();
 	      String noExt = upload.substring(0, upload.lastIndexOf("."));
@@ -81,6 +81,8 @@ public class MovieReviewController {
 	    MovieReviewJoinDTO dto = new MovieReviewJoinDTO(movie_idx, ticketing_idx, member_idx, movie_review_star, movie_review_content, saveFileName);
 	    int result1 = movieReviewService.movieReviewAdd(dto);
 	    int result2 = movieReviewService.reviewTicketingState(ticketing_idx);
+	    System.out.println("ticketing_idx="+ticketing_idx);
+	    System.out.println("result2="+result2);
 	    int result = result1+result2;
 	    String msg = result>1?"등록에 성공하였습니다.":"등록에 실패하였습니다.";
 	    
