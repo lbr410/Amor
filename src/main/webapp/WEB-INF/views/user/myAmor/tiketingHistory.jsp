@@ -68,7 +68,7 @@
           <span class="span2">
           <br/></span>
           <span class="span3">
-            예매 번호 /${temp.ticketingidx} / ${temp.movieidx } / ${temp.memberidx }
+            예매 번호
           </span>
           <span class="span4">
             ${temp.ticketnum}<br/>

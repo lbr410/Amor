@@ -255,7 +255,7 @@
 		<div class="chks" id="idChkMsg"><!-- state --></div>
 		
 		<div class="signUpMenu">비밀번호</div>
-		<div><input type="password" id="pwd1" name="member_pwd" placeholder="8~12자리 영문, 숫자조합 입력" class="textBoxDeco1" maxlength="12"
+		<div><input type="password" id="pwd1" name="member_pwd" placeholder="8~12자리 영문, 숫자, 특수문자 조합 입력" class="textBoxDeco1" maxlength="12"
 			oninput="pwdChk(this)" required></div>
 		<div class="chks" id="pwdChkMsg"><!-- state --></div>
 		

@@ -172,9 +172,18 @@ public class TicketingPaymentController {
 		String sid=(String)session.getAttribute("sid");
 		String quantity=ticketing_personnel;
 		String total_amount=ticketing_price;
-		String okpage="http://localhost:9090/amor/ticketing/kakaoPayOk.do";
-		String cancelpage="http://localhost:9090/amor/ticketing/kakaoFail.do";
-		String failpage="http://localhost:9090/amor/ticketing/kakaoCancel.do";
+//		String okpage="http://localhost:9090/amor/ticketing/kakaoPayOk.do"; // localhost
+//		String okpage="http://192.168.0.45:9090/amor/ticketing/kakaoPayOk.do"; // 203호
+		String okpage="http://192.168.1.156:9090/amor/ticketing/kakaoPayOk.do"; // 401호
+		
+//		String cancelpage="http://localhost:9090/amor/ticketing/kakaoFail.do"; // localhost
+//		String cancelpage="http://192.168.0.45:9090/amor/ticketing/kakaoFail.do"; // 203호
+		String cancelpage="http://192.168.1.156:9090/amor/ticketing/kakaoFail.do"; // 401호
+		
+//		String failpage="http://localhost:9090/amor/ticketing/kakaoCancel.do"; // localhost
+//		String failpage="http://192.168.0.45:9090/amor/ticketing/kakaoCancel.do"; // 203호
+		String failpage="http://192.168.1.156:9090/amor/ticketing/kakaoCancel.do"; // 401호
+		
 		
 		KakaopayDTO kdto = new KakaopayDTO(ticketing_num, sid, "Amor Ticketing", quantity, total_amount, okpage, cancelpage, failpage);
 		Kakaopay kaka = new Kakaopay();

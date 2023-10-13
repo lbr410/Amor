@@ -127,23 +127,24 @@ left join (
     from movie_review
     group by movie_idx
 ) b on a.movie_idx = b.movie_idx
-where movie_state='y' and movie_opendate <![CDATA[<=]]> sysdate
+where movie_state='y'
 order by a.movie_audience desc)c)d 
 </select>
 
 <select id="movieBestReview" parameterType="Map" resultType="com.amor.movie.model.MovieDTO">
-select * from 
-(select rownum as rnum, c.* from (
-select a.*, nvl(b.movie_review_star_avg, 0) as "avg_movie_review_star"
-from movie a
-left join (
-    select avg(movie_review_star) as movie_review_star_avg, mr.movie_idx, m.movie_name, m.movie_maxage, m.movie_opendate, m.movie_poster, COUNT(*) AS review_cnt
-from movie_review mr
-inner join movie m on mr.movie_idx = m.movie_idx and m.movie_state = 'y'
-group by mr.movie_idx, m.movie_name, m.movie_maxage, movie_opendate, m.movie_poster
-) b on a.movie_idx = b.movie_idx
-where movie_state='y'
-order by review_cnt asc)c)d 
+select 
+    coalesce(avg(movie_review_star), 0) AS avg_movie_review_star, 
+    m.movie_idx, 
+    m.movie_name, 
+    m.movie_maxage, 
+    m.movie_opendate, 
+    m.movie_poster, 
+    coalesce(count(*), 0) AS review_cnt
+from movie m
+left join movie_review mr ON mr.movie_idx = m.movie_idx
+where m.movie_state = 'y'
+group by m.movie_idx, m.movie_name, m.movie_maxage, m.movie_opendate, m.movie_poster
+order by review_cnt desc
 </select>
 
 <select id="movieCome" parameterType="Map" resultType="com.amor.movie.model.MovieDTO">
@@ -156,7 +157,7 @@ left join (
     from movie_review
     group by movie_idx
 ) b on a.movie_idx = b.movie_idx
-where movie_opendate <![CDATA[>=]]> sysdate and movie_state='y'
+where movie_opendate <![CDATA[>=]]> sysdate and movie_state='n'
 order by movie_opendate asc)c)d 
 </select>
 
@@ -170,7 +171,7 @@ left join (
     from movie_review
     group by movie_idx
 ) b on a.movie_idx = b.movie_idx
-where movie_opendate <![CDATA[>=]]> sysdate and movie_state='y'
+where movie_opendate <![CDATA[>=]]> sysdate and movie_state='n'
 order by movie_name asc)c)d 
 </select>
 
@@ -210,7 +211,7 @@ left join (
     from movie_review
     group by movie_idx
 ) b on a.movie_idx = b.movie_idx
-where movie_state='y' and movie_opendate <![CDATA[<=]]> sysdate
+where movie_state='y'
 order by a.movie_audience desc)c)d) where rownum <![CDATA[<=]]> 4
 </select>
 </mapper>

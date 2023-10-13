@@ -22,7 +22,7 @@ public class TicketingListController {
 	@RequestMapping("admin/ticketing/ticketingList.do")
 	public ModelAndView ticketingList(@RequestParam(value="cp", defaultValue = "1") int cp, @RequestParam(value="search", defaultValue = "") String search, HttpSession session, @CookieValue(value = "autologin", required = false)String autologin) {
 		ModelAndView mav = new ModelAndView();
-		int listSize=5;
+		int listSize=10;
 		int pageSize=5;
 		
 		if(autologin == null && session.getAttribute("data") == null) {

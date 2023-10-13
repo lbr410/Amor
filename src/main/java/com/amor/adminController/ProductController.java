@@ -178,11 +178,11 @@ public class ProductController {
 	
 	// 해당 상품 수정 페이지로 이동 후 정보 불러오기
 	@RequestMapping(value = "admin/product/productUpdate.do", method = RequestMethod.GET)
-	public ModelAndView productUpdateForm(@RequestParam("idx") int product_idx, HttpSession session) {
+	public ModelAndView productUpdateForm(@RequestParam("idx") int product_idx, HttpSession session, @CookieValue(value = "autologin", required = false) String autologin) {
 		
 		ProductDTO dto = productService.productSelectIdx(product_idx);
 		ModelAndView mav = new ModelAndView();
-		if(session.getAttribute("data") == null) {
+		if(autologin == null && session.getAttribute("data") == null) {
 			mav.addObject("msg", "로그인 후 이용 가능합니다.");
 			mav.addObject("href", "/amor/admin/adminLogin.do");
 			mav.setViewName("/admin/msg/adminMsg");

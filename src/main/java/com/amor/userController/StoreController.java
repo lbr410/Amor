@@ -111,9 +111,18 @@ public class StoreController {
 		String sid=(String)session.getAttribute("sid");
 		String quantity=Integer.toString(num);
 		String total_amount=Integer.toString(pdto.getProduct_price()*num);
-		String okpage="http://localhost:9090/amor/store/kakaoOk.do";
-		String cancelpage="http://localhost:9090/amor/store/kakaoFail.do";
-		String failpage="http://localhost:9090/amor/store/kakaoCancel.do";
+//		String okpage="http://localhost:9090/amor/store/kakaoOk.do"; // localhost
+//		String okpage="http://192.168.0.45:9090/amor/store/kakaoOk.do"; // 203호
+		String okpage="192.168.1.156:9090/amor/store/kakaoOk.do"; // 401호
+		
+//		String cancelpage="http://localhost:9090/amor/store/kakaoFail.do"; // localhost
+//		String cancelpage="http://192.168.0.45:9090/amor/store/kakaoFail.do"; // 203호
+		String cancelpage="http://192.168.1.156:9090/amor/store/kakaoFail.do"; // 401호
+		
+//		String failpage="http://localhost:9090/amor/store/kakaoCancel.do"; // localhost
+//		String failpage="http://192.168.0.45:9090/amor/store/kakaoCancel.do"; // 203호
+		String failpage="http://192.168.1.156:9090/amor/store/kakaoCancel.do"; // 401호
+		
 		
 		product_idx=pdto.getProduct_idx();	
 		product_title=pdto.getProduct_title();
